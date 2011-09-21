@@ -21,10 +21,17 @@ interface.
 
 from flask import Blueprint, render_template
 
-admin = Blueprint('admin', __name__, template_folder='templates')
+admin = Blueprint(
+    'admin', __name__,
+    template_folder='templates',
+    static_folder='static')
 
 @admin.route('/')
 def index():
+    return 'Please access the /audience url in your browser!'
+
+@admin.route('/audience')
+def audiences():
     """Main view, lists all registered audiencces"""
     return render_template('admin/listing.html')
 
