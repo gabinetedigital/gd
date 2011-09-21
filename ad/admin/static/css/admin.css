@@ -1,0 +1,25 @@
+/* General stuff */
+* { margin:0; padding:0; list-style:none; }
+body { font:normal 10pt sans-serif; }
+.container { width:968px; margin:0 auto; }
+
+
+/* Header and main title */
+#header { padding:30px 0; }
+.toolbar { display:block; }
+.toolbar li { display:block; float:right; margin-left:10px; }
+
+
+/* Form fields are organized inside fieldsets */
+input { border:solid 1px #999; background:#efefef; padding:3px; }
+input.button { background:#333; color:#fff; }
+fieldset { margin:10px 0; border:0; }
+fieldset ul { padding-left:20px; }
+fieldset ul li { margin:10px 0; }
+label { width:130px; display:block; float:left; padding:3px 0; }
+
+
+/* ----  new.html customized stuff  ---- */
+fieldset.streaming input.add { margin-left:90px; }
+fieldset.streaming label { float:left; width:70px; }
+fieldset.streaming div.source { float:left; margin-right:20px; }
