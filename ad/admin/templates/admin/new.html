@@ -1,0 +1,44 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<form id="new" method="post" action="{{ url_for('.new') }}">
+  <h2>New Audience</h2>
+
+  <fieldset class="default">
+    <ul>
+      <li>
+        <label>Title</label>
+        <input type="text" name="title" id="title">
+      </li>
+      <li>
+        <label>Subject</label>
+        <input type="text" name="subject" id="subject">
+      </li>
+      <li>
+        <label>Date and time</label>
+        <input type="text" name="date" id="date">
+      </li>
+      <li>
+        <label>Hashtag</label>
+        <input type="text" name="hashtag" id="hashtag">
+      </li>
+    </ul>
+  </fieldset>
+
+  <fieldset class="streaming">
+    <h3>Streaming</h3>
+    <ul>
+      <li>
+        <div class="source">
+          <label>Source</label>
+          <input type="text" name="source">
+        </div>
+        <div class="format">
+          <label>Format</label>
+          <input type="text" name="source">
+        </div>
+      </li>
+    </ul>
+    <input class="button add" type="button" value="+">
+  </fieldset>
+</form>
+{% endblock %}
