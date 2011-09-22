@@ -5,7 +5,6 @@
 body { font:normal 10pt Sans, Helvetica, sans-serif; color:#4f5b66; }
 .container { width:968px; margin:0 auto; }
 
-
 /* Header and main title */
 #header { height:50px; padding:5px 0:;
           background:url(../imgs/bg_header.png) repeat-x bottom #73d216; }
@@ -29,7 +28,7 @@ h3.title { font-family:Cantarell; color:#ce5c00; font-size:16px; }
 
 
 /* content */
-.subcontent { background-color:#fafafa; padding:10px; margin-top:40px;
+.subcontent { background-color:#fafafa; padding:10px 20px; margin-top:40px;
               border:solid 1px #aeaeae; border-bottom:0; border-radius: 10px;
               box-shadow: 1px 1px 25px #bbb; }
 
@@ -42,9 +41,25 @@ fieldset { margin:10px 0; border:0; }
 fieldset ul { padding-left:10px; }
 fieldset ul li { margin:10px 0; }
 label { display:block; padding:3px 0; font-weight:bold; }
+.submit { clear:both; }
 
+
+/* Footer stuff */
+div#footer { border-top:solid 2px #d3d7cf; margin-top:30px; height:140px;
+             background:url(../imgs/footer.png) repeat-x 0 10px; }
+div#footer .wrapper { padding:30px 20px; }
 
 /* ----  new.html customized stuff  ---- */
-fieldset.streaming input.add { margin-left:90px; }
-fieldset.streaming label { float:left; width:70px; }
-fieldset.streaming div.source { float:left; margin-right:20px; }
+fieldset.default { display:block; width:45%; float:left; }
+
+fieldset.streaming { display:block; float:left; }
+fieldset.streaming input.add { margin-left:5px; }
+fieldset.streaming input.source { width:50%; }
+fieldset.streaming input.format { width:25%; margin-left:5px; }
+fieldset.streaming input.button { padding:3px 10px; margin-left:5px; }
+fieldset.streaming label { display:inline; }
+fieldset.streaming a.source {
+  padding-left:30px; text-decoration:none; font-size:x-small; }
+fieldset.streaming input.remove {
+  background:url(../imgs/bt_remove.png) no-repeat 0 0;
+  padding:0; border:0; width:30px; height:27px; cursor:pointer; }

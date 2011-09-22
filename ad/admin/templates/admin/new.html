@@ -2,9 +2,8 @@
 {% block content %}
 <form id="new" method="post" action="{{ url_for('.new') }}"
       class="subcontent">
-  <h3 class="title">General Info</h3>
-
   <fieldset class="default">
+    <h3 class="title">General Info</h3>
     <ul>
       <li>
         <label>The audience title</label>
@@ -29,17 +28,19 @@
     <h3 class="title">Streaming</h3>
     <ul>
       <li>
-        <div class="source">
-          <label>Source</label>
-          <input type="text" name="source">
+        <div>
+          <label>Source</label> / <label>Format</label>
         </div>
-        <div class="format">
-          <label>Format</label>
-          <input type="text" name="source">
-        </div>
+        <input type="text" name="source" class="source">
+        <input type="text" name="format" class="format">
+        <input class="button remove" type="button" value="-">
       </li>
     </ul>
-    <input class="button add" type="button" value="+">
+    <a class="source" href="#">New source</a>
   </fieldset>
+
+  <div class="submit">
+    <input type="submit" name="submit" value="Submit">
+  </div>
 </form>
 {% endblock %}

@@ -20,6 +20,40 @@
      id="defs7270">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient7421">
+      <stop
+         style="stop-color:#729fcf;stop-opacity:1;"
+         offset="0"
+         id="stop7423" />
+      <stop
+         style="stop-color:#729fcf;stop-opacity:0;"
+         offset="1"
+         id="stop7425" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7415">
+      <stop
+         id="stop7417"
+         offset="0"
+         style="stop-color:#fafafa;stop-opacity:1;" />
+      <stop
+         id="stop7419"
+         offset="1"
+         style="stop-color:#3465a4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7357">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop7359" />
+      <stop
+         style="stop-color:#00ffec;stop-opacity:0;"
+         offset="1"
+         id="stop7361" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        xlink:href="#linearGradient2997"
        id="linearGradient3003"
        x1="474.12674"
@@ -65,7 +99,7 @@
        xlink:href="#linearGradient5536"
        id="linearGradient6244"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.88892358,0,0,1,75.18076,-560.11975)"
+       gradientTransform="matrix(0.88892358,0,0,1,75.18076,-500.11975)"
        x1="675.14435"
        y1="662.6958"
        x2="675.14435"
@@ -124,6 +158,48 @@
        id="linearGradient7017"
        xlink:href="#linearGradient2997-7"
        inkscape:collect="always" />
+    <filter
+       inkscape:collect="always"
+       id="filter7321"
+       x="-0.098120536"
+       width="1.1962411"
+       y="-0.11352731"
+       height="1.2270546">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.1824577"
+         id="feGaussianBlur7323" />
+    </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7357"
+       id="radialGradient7363"
+       cx="846.54706"
+       cy="386.30762"
+       fx="846.54706"
+       fy="386.30762"
+       r="6.2830119"
+       gradientTransform="matrix(2.6167167,0.0157785,-0.01136521,1.8848131,-1364.2363,-355.16725)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7421"
+       id="linearGradient7427"
+       x1="509.8746"
+       y1="154.06625"
+       x2="509.8746"
+       y2="391.4801"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7421"
+       id="linearGradient7490"
+       gradientUnits="userSpaceOnUse"
+       x1="509.8746"
+       y1="154.06625"
+       x2="509.8746"
+       y2="391.4801"
+       gradientTransform="matrix(1.2610144,0,0,1,7.8833024,217.88013)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -132,11 +208,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.54487835"
-     inkscape:cx="374.04281"
-     inkscape:cy="1381.4488"
+     inkscape:zoom="2.7214868"
+     inkscape:cx="150.20524"
+     inkscape:cy="483.07766"
      inkscape:document-units="px"
-     inkscape:current-layer="g7213"
+     inkscape:current-layer="layer1"
      showgrid="false"
      showborder="false"
      inkscape:showpageshadow="false"
@@ -464,7 +540,7 @@
        ry="0"
        y="244.18813"
        x="14"
-       height="423.39359"
+       height="508.84409"
        width="830.27759"
        id="rect5420"
        style="fill:#d3d7cf;fill-opacity:1;stroke:none;filter:url(#filter5450)"
@@ -473,7 +549,7 @@
        style="fill:#fafafa;fill-opacity:1;stroke:#aeaeae;stroke-opacity:1"
        id="rect5370"
        width="810"
-       height="440.45862"
+       height="518.28406"
        x="96.963982"
        y="-314.7168"
        ry="8.8300514"
@@ -484,7 +560,7 @@
        width="808.92053"
        height="76.341003"
        x="97.403847"
-       y="102.82655"
+       y="162.82655"
        rx="0"
        ry="0" />
     <path
@@ -517,12 +593,106 @@
        inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bg_header.png"
        inkscape:export-xdpi="88.800003"
        inkscape:export-ydpi="88.800003" />
+    <rect
+       y="254.17569"
+       x="94.83075"
+       height="3.5050859"
+       width="812.3385"
+       id="rect7395"
+       style="fill:#d3d7cf;fill-opacity:1;stroke:none" />
+    <rect
+       style="fill:url(#linearGradient7427);fill-opacity:1;stroke:none"
+       id="rect7405"
+       width="808.86908"
+       height="131.37634"
+       x="96.273781"
+       y="265.23523" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="180"
+       y="293.95367"
+       id="text7397"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan7399"
+         x="180"
+         y="293.95367"
+         style="font-size:12px">Audience</tspan><tspan
+         sodipodi:role="line"
+         x="180"
+         y="308.95367"
+         id="tspan7401"
+         style="font-size:12px">Collaborations</tspan><tspan
+         sodipodi:role="line"
+         x="180"
+         y="323.95367"
+         id="tspan7403"
+         style="font-size:12px">Content</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text7431"
+       y="293.15387"
+       x="516"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       xml:space="preserve"><tspan
+         style="font-size:10px"
+         y="293.15387"
+         x="516"
+         sodipodi:role="line"
+         id="tspan7454">This software is free and you can get its source content by</tspan><tspan
+         style="font-size:10px"
+         y="305.65387"
+         x="516"
+         sodipodi:role="line"
+         id="tspan7470">issuing the following command in your computer:</tspan></text>
+    <rect
+       style="fill:#eeeeec;fill-opacity:1;stroke:none"
+       id="rect7462"
+       width="305.99997"
+       height="28.24386"
+       x="516"
+       y="316.5231" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="540.17188"
+       y="333.40381"
+       id="text7464"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan7466"
+         x="540.17188"
+         y="333.40381"
+         style="font-size:10px">$ git clone http://git.gabinetedigital.rs.gov.br/ad.git</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="516"
+       y="361.15381"
+       id="text7476"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="516"
+         y="361.15381"
+         style="font-size:10px"
+         id="tspan7484">You can also access it throug our gitweb interface</tspan></text>
+    <rect
+       y="483.11536"
+       x="129.28592"
+       height="131.37634"
+       width="1"
+       id="rect7488"
+       style="fill:url(#linearGradient7490);fill-opacity:1;stroke:none"
+       inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/footer.png"
+       inkscape:export-xdpi="78.040001"
+       inkscape:export-ydpi="78.040001" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Listing"
-     style="display:inline">
+     style="display:none">
     <g
        style="display:inline"
        transform="translate(100.09211,-0.01854958)"
@@ -560,55 +730,55 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="New"
-     style="display:none">
+     style="display:inline">
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="138.54451"
-       y="355.38934"
+       x="132.54451"
+       y="355.93964"
        id="text5319"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5321"
-         x="138.54451"
-         y="355.38934"
+         x="132.54451"
+         y="355.93964"
          style="font-size:14px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:Sans Bold">The audience title</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.45185125;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
        id="rect5323"
        width="266.80035"
        height="24.997482"
-       x="154.08575"
+       x="148.08575"
        y="373.8089"
        ry="4.5587482" />
     <text
        sodipodi:linespacing="125%"
        id="text5325"
        y="427.66449"
-       x="138.54451"
+       x="132.54451"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
          style="font-size:14px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:Sans Bold"
          y="427.66449"
-         x="138.54451"
+         x="132.54451"
          id="tspan5327"
          sodipodi:role="line">What this audience is all about?</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="138.54451"
+       x="132.54451"
        y="499.93964"
        id="text5329"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5331"
-         x="138.54451"
+         x="132.54451"
          y="499.93964"
          style="font-size:14px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:Sans Bold">When it happens?</tspan></text>
     <rect
        ry="4.5587482"
        y="446.08405"
-       x="154.08575"
+       x="148.08575"
        height="24.441126"
        width="266.80035"
        id="rect5333"
@@ -618,25 +788,25 @@
        id="rect5335"
        width="266.80035"
        height="24.997488"
-       x="154.08575"
+       x="148.08575"
        y="521.07306"
        ry="4.5587482" />
     <text
        sodipodi:linespacing="125%"
        id="text5337"
        y="574.92859"
-       x="138.54451"
+       x="132.54451"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
          style="font-size:14px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:Sans Bold"
          y="574.92859"
-         x="138.54451"
+         x="132.54451"
          id="tspan5339"
          sodipodi:role="line">Hashtag to be tracked in social networks</tspan></text>
     <rect
        ry="4.5587482"
        y="596.17145"
-       x="154.08575"
+       x="148.08575"
        height="24.997486"
        width="266.80035"
        id="rect5341"
@@ -645,12 +815,12 @@
        sodipodi:linespacing="125%"
        id="text5362"
        y="287.27075"
-       x="618.88611"
+       x="498.88611"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#204a87;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
          style="font-size:22px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ce5c00;font-family:Cantarell;-inkscape-font-specification:Cantarell Bold"
          y="287.27075"
-         x="618.88611"
+         x="498.88611"
          id="tspan5364"
          sodipodi:role="line">Streaming Channels</tspan></text>
     <text
@@ -695,5 +865,80 @@
          x="122.1386"
          id="tspan3017-4"
          sodipodi:role="line">New</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text7301"
+       y="355.2663"
+       x="506.54449"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       xml:space="preserve"><tspan
+         style="font-size:14px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:Sans Bold"
+         y="355.2663"
+         x="506.54449"
+         id="tspan7303"
+         sodipodi:role="line">Source / Format</tspan></text>
+    <rect
+       ry="4.5587482"
+       y="373.8089"
+       x="520.08575"
+       height="24.997498"
+       width="189.7332"
+       id="rect7305"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.45185125;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.45185125;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       id="rect7307"
+       width="85.624954"
+       height="24.997498"
+       x="728.13989"
+       y="373.8089"
+       ry="4.5587482" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="518.68207"
+       y="422.52847"
+       id="text7309"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan7311"
+         x="518.68207"
+         y="422.52847"
+         style="font-size:12px;fill:#3465a4">New source</tspan></text>
+    <rect
+       ry="4.5587482"
+       y="373.8089"
+       x="832.08575"
+       height="24.997498"
+       width="28.922575"
+       id="rect7313"
+       style="fill:#cc0000;fill-opacity:1;stroke:none;stroke-width:0.45185124999999998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;filter:url(#filter7321)"
+       inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
+       inkscape:export-xdpi="78.040001"
+       inkscape:export-ydpi="78.040001" />
+    <rect
+       style="fill:#cc0000;fill-opacity:1;stroke:#ef2929;stroke-width:0.45185124999999998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       id="rect7315"
+       width="28.922575"
+       height="24.997498"
+       x="832.08575"
+       y="373.8089"
+       ry="4.5587482"
+       inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
+       inkscape:export-xdpi="78.040001"
+       inkscape:export-ydpi="78.040001" />
+    <rect
+       style="fill:#eeeeec;fill-opacity:1;stroke:#ef2929;stroke-width:0.53764191;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect7365"
+       width="11.116744"
+       height="7.1147065"
+       x="839.58704"
+       y="381.55984"
+       rx="2.2766361"
+       ry="2.9349577"
+       transform="matrix(1.0910899,0,0,0.79267151,-75.582577,81.148769)"
+       inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
+       inkscape:export-xdpi="78.040001"
+       inkscape:export-ydpi="78.040001" />
   </g>
 </svg>
