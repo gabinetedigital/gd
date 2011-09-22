@@ -20,6 +20,7 @@ interface.
 """
 
 from flask import Blueprint, render_template
+from .utils import _
 
 admin = Blueprint(
     'admin', __name__,
@@ -33,18 +34,18 @@ def index():
 @admin.route('/audience')
 def audiences():
     """Main view, lists all registered audiencces"""
-    return render_template('admin/listing.html')
+    return render_template('admin/listing.html', title=_(u'Audience'))
 
 @admin.route('/audience/new')
 def new():
     """Shows the form that creates new audiences and save collected data
     in the database.
     """
-    return render_template('admin/new.html')
+    return render_template('admin/new.html', title=_(u'Audience'))
 
 @admin.route('/audience/<int:aid>')
 def audience(aid):
     """Returns a form to edit an audience and saves new params in the
     database.
     """
-    return render_template('admin/edit.html')
+    return render_template('admin/edit.html', title=_(u'Audience'))

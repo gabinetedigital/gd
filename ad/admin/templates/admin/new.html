@@ -1,31 +1,32 @@
 {% extends 'admin/base.html' %}
 {% block content %}
-<form id="new" method="post" action="{{ url_for('.new') }}">
-  <h2>New Audience</h2>
+<form id="new" method="post" action="{{ url_for('.new') }}"
+      class="subcontent">
+  <h3 class="title">General Info</h3>
 
   <fieldset class="default">
     <ul>
       <li>
-        <label>Title</label>
+        <label>The audience title</label>
         <input type="text" name="title" id="title">
       </li>
       <li>
-        <label>Subject</label>
+        <label>What this audience is all about?</label>
         <input type="text" name="subject" id="subject">
       </li>
       <li>
-        <label>Date and time</label>
+        <label>When it happens?</label>
         <input type="text" name="date" id="date">
       </li>
       <li>
-        <label>Hashtag</label>
+        <label>Hashtag to be tracked in social networks</label>
         <input type="text" name="hashtag" id="hashtag">
       </li>
     </ul>
   </fieldset>
 
   <fieldset class="streaming">
-    <h3>Streaming</h3>
+    <h3 class="title">Streaming</h3>
     <ul>
       <li>
         <div class="source">
