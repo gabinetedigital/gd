@@ -1,5 +1,6 @@
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
+#   Author: Rodrigo Rosa <rodrigo-rosa@procergs.rs.gov.br>
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,40 +18,51 @@
 
 from elixir import *
 
-metadata.bind = "sqlite:///movies.sqlite" # ?????????????
+
+class Audience(Entity):
+    using_options(shortnames=True)
+
+    title = Field(Unicode(250))
+    description = Field(UnicodeText)
+    date = Field(DateTime)
+    creation_date = Field(DateTime)
+    hashtag = Field(Unicode(45))
+    visible = Field(Boolean)
+    owner = Field(Unicode)
+    themes = ManyToOne('Theme')
+    sources = ManyToOne('StreamingChannel')
+
+    def __str__(self):
+        return '<Audience "%s" (%d)>' % (self.description, self.date)
+
+
+class Theme(Entity):
+    using_options(shortnames=True)
+
+    name = Field(Unicode)
+    register_date = Field(DateTime)
+    creator = Field(Unicode)
+    audience = OneToMany('Audience', inverse='themes')
+
+    def __str__(self):
+        return '<Theme "%s">' % self.name
+
+
+class StreamingChannel(Entity):
+    using_options(shortnames=True)
+
+    source = Field(Unicode(150))
+    format = Field(Unicode(200))
+    register_date = Field(DateTime)
+    creator = Field(Unicode)
+    audience = OneToMany('Audience', inverse='sources')
+
+    def __str__(self):
+        return '<StreamingChannel "%s">' % self.source
+
+
+metadata.bind = "sqlite:///db"
 metadata.bind.echo = True
 
-class Audiencia(Entity):
-    codigo = Field(Integer, primary_key=True)
-    descricao = Field(UnicodeText)
-    data = Field()
-    hashtag = Field(Unicode(45))
-    visivel = Field()
-    data_inclusao = Field()
-    usuario_inclusao = Field()
-    data_alteracao = Field()
-    usuario_alteracao = Field()
-    
-#    def __repr__(self):
-#        return '<Audiencia "%s" (%d)>' % (self.descricao, self.data)
-
-class Tema(Entity):
-    codigo = Field(Integer, primary_key=True)
-    descricao = Field(UnicodeText)
-    data_inclusao = Field()
-    usuario_inclusao = Field()
-    data_alteracao = Field()
-    usuario_alteracao = Field()
-    audiencia = OneToMany('Audiencia')
-    
-    
-class Streaming(Entity):
-    codigo = Field(Integer, primary_key=True)
-    descricao = Field(UnicodeText)
-    link_fonte = Field(Unicode(150))
-    formato = Field(Unicode(200))
-    data_inclusao = Field()
-    usuario_inclusao = Field()
-    data_alteracao = Field()
-    usuario_alteracao = Field()
-    audiencia = OneToMany('Audiencia')
+if __name__ == '__main__':
+    setup_all(True)
