@@ -19,7 +19,8 @@
 interface.
 """
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+from .model import Audience, StreamingChannel, session
 from .utils import _
 
 admin = Blueprint(
@@ -34,13 +35,28 @@ def index():
 @admin.route('/audience')
 def audiences():
     """Main view, lists all registered audiencces"""
-    return render_template('admin/listing.html', title=_(u'Audience'))
+    return render_template('admin/listing.html', title=_(u'Audience'),
+                           audience=Audience)
 
-@admin.route('/audience/new')
+@admin.route('/audience/new', methods=('GET', 'POST'))
 def new():
     """Shows the form that creates new audiences and save collected data
     in the database.
     """
+    if request.method == 'POST':
+        inst = Audience()
+        inst.title = request.form['title']
+        inst.description = request.form['subject']
+        inst.hashtag = request.form['hashtag']
+        inst.owner = 'Admin'
+
+        sources = request.form.getlist('source')
+        formats = request.form.getlist('format')
+        for source, fmt in zip(sources, formats):
+            channel = StreamingChannel(source=source, format=fmt)
+            inst.sources.append(channel)
+
+        session.commit()
     return render_template('admin/new.html', title=_(u'Audience'))
 
 @admin.route('/audience/<int:aid>')

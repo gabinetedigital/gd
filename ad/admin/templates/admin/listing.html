@@ -2,14 +2,12 @@
 {% block content %}
 <div class="subcontent">
   <ul class="listing">
+   {% for i in audience.query.all() %}
     <li class="last">
       <a href="#">
         <strong class="subject">Saúde</strong>
         <em class="date">12/09/2011</em>
-        <p>
-          O que o Governo do Estado deve fazer para facilitar o acesso e
-          melhorar o atendimento na rede de saúde pública?
-        </p>
+        <p>{{ i.title }}</p>
       </a>
 
       <div class="controls">
@@ -23,6 +21,7 @@
         </a>
       </div>
     </li>
+    {% endfor  %}
   </ul>
 </div>
 {% endblock %}

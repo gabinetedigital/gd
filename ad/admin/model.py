@@ -17,6 +17,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from elixir import *
+from datetime import datetime
+
+
+class StreamingChannel(Entity):
+    using_options(shortnames=True)
+
+    source = Field(Unicode(150))
+    format = Field(Unicode(200))
+    creation_date = Field(DateTime, default=datetime.now)
+    creator = Field(Unicode)
+    audience = ManyToOne('Audience')
+
+    def __str__(self):
+        return '<StreamingChannel "%s">' % self.source
 
 
 class Audience(Entity):
@@ -25,44 +39,29 @@ class Audience(Entity):
     title = Field(Unicode(250))
     description = Field(UnicodeText)
     date = Field(DateTime)
-    creation_date = Field(DateTime)
+    creation_date = Field(DateTime, default=datetime.now)
     hashtag = Field(Unicode(45))
-    visible = Field(Boolean)
+    visible = Field(Boolean, default=True)
     owner = Field(Unicode)
-    themes = ManyToOne('Theme')
-    sources = ManyToOne('StreamingChannel')
+    #themes = ManyToOne('Theme')
+    sources = OneToMany('StreamingChannel')
 
     def __str__(self):
         return '<Audience "%s" (%d)>' % (self.description, self.date)
 
 
-class Theme(Entity):
-    using_options(shortnames=True)
+# class Theme(Entity):
+#     using_options(shortnames=True)
 
-    name = Field(Unicode)
-    register_date = Field(DateTime)
-    creator = Field(Unicode)
-    audience = OneToMany('Audience', inverse='themes')
+#     name = Field(Unicode)
+#     creation_date = Field(DateTime, default=datetime.now)
+#     creator = Field(Unicode)
+#     audience = OneToMany('Audience', inverse='themes')
 
-    def __str__(self):
-        return '<Theme "%s">' % self.name
-
-
-class StreamingChannel(Entity):
-    using_options(shortnames=True)
-
-    source = Field(Unicode(150))
-    format = Field(Unicode(200))
-    register_date = Field(DateTime)
-    creator = Field(Unicode)
-    audience = OneToMany('Audience', inverse='sources')
-
-    def __str__(self):
-        return '<StreamingChannel "%s">' % self.source
+#     def __str__(self):
+#         return '<Theme "%s">' % self.name
 
 
-metadata.bind = "sqlite:///db"
+metadata.bind = "sqlite:////tmp/db"
 metadata.bind.echo = True
-
-if __name__ == '__main__':
-    setup_all(True)
+setup_all(__name__ == '__main__')
