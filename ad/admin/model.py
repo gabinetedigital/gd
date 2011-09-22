@@ -18,6 +18,7 @@
 
 from elixir import *
 from datetime import datetime
+import os
 
 
 class StreamingChannel(Entity):
@@ -62,6 +63,7 @@ class Audience(Entity):
 #         return '<Theme "%s">' % self.name
 
 
-metadata.bind = "sqlite:////tmp/db"
+#metadata.bind = "sqlite:///db"
+metadata.bind = "sqlite:///%s" % os.path.join(os.path.dirname(__file__), "db")
 metadata.bind.echo = True
 setup_all(__name__ == '__main__')
