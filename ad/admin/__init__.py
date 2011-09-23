@@ -64,4 +64,8 @@ def edit(aid):
     """Returns a form to edit an audience and saves new params in the
     database.
     """
-    return render_template('admin/new.html', title=_(u'Audience'), id=aid)
+    inst = Audience.query.get(aid)
+
+    # An improved search with more params.
+    # Audience.query.filter(id=aid, outra_chave=valor)
+    return render_template('admin/edit.html', title=_(u'Audience'), inst=inst)

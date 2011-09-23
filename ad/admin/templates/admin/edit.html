@@ -1,0 +1,48 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<form id="new" method="post" action="{{ url_for('.new') }}"
+      class="subcontent">
+  <fieldset class="default">
+    <h3 class="title">General Info</h3>
+    <ul>
+      <li>
+        <label>The audience title</label>
+        <input type="text" name="title" id="title" value="{{ inst.title }}">
+      </li>
+      <li>
+        <label>What this audience is all about?</label>
+        <input type="text" name="subject" id="subject">
+      </li>
+      <li>
+        <label>When it happens?</label>
+        <input type="text" name="date" id="date">
+      </li>
+      <li>
+        <label>Hashtag to be tracked in social networks</label>
+        <input type="text" name="hashtag" id="hashtag">
+      </li>
+    </ul>
+  </fieldset>
+
+  <fieldset class="streaming">
+    <h3 class="title">Streaming</h3>
+    <ul>
+      {% for item in inst.sources %}
+      <li>
+        <div>
+          <label>Source</label> / <label>Format</label>
+        </div>
+        <input type="text" name="source" class="source" value="{{ item.source }}">
+        <input type="text" name="format" class="format" value="{{ item.format }}">
+        <input class="button remove" type="button" value="-">
+      </li>
+      {% endfor %}
+    </ul>
+    <a class="source" href="#">New source</a>
+  </fieldset>
+
+  <div class="submit">
+    <input type="submit" name="submit" value="Submit">
+  </div>
+</form>
+{% endblock %}
