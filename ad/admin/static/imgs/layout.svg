@@ -153,7 +153,7 @@
        x2="474.12674"
        y1="14.729531"
        x1="474.12674"
-       gradientTransform="matrix(0.0509375,0,0,0.27610887,-32.786481,-519.82619)"
+       gradientTransform="matrix(0.0509375,0,0,0.27610887,-12.786481,-523.82619)"
        gradientUnits="userSpaceOnUse"
        id="linearGradient7017"
        xlink:href="#linearGradient2997-7"
@@ -199,7 +199,20 @@
        y1="154.06625"
        x2="509.8746"
        y2="391.4801"
-       gradientTransform="matrix(1.2610144,0,0,1,7.8833024,217.88013)" />
+       gradientTransform="matrix(1.2610144,0,0,1,-112.1167,-2.11987)" />
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter7321-3-1"
+       x="-0.098120533"
+       width="1.1962411"
+       y="-0.11352731"
+       height="1.2270546">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.1824577"
+         id="feGaussianBlur7323-9-7" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -208,11 +221,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.7214868"
-     inkscape:cx="150.20524"
-     inkscape:cy="483.07766"
+     inkscape:zoom="0.77682066"
+     inkscape:cx="532.91624"
+     inkscape:cy="1133.5121"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      showgrid="false"
      showborder="false"
      inkscape:showpageshadow="false"
@@ -573,13 +586,13 @@
        inkscape:export-xdpi="88.800003"
        inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bg_header.png"
        id="path7038"
-       d="m -32.786481,-496.56948 0,10 1,0 0,-10 -1,0 z"
+       d="m -12.786481,-500.56948 0,10 1,0 0,-10 -1,0 z"
        style="fill:#ffffff;fill-opacity:1;stroke:none"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
        style="fill:url(#linearGradient7017);fill-opacity:1;stroke:none"
-       d="m -32.786481,-496.56948 0,10 1,0 0,-10 -1,0 z"
+       d="m -12.786481,-500.56948 0,10 1,0 0,-10 -1,0 z"
        id="rect2987-6"
        inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bg_header.png"
        inkscape:export-xdpi="88.800003"
@@ -587,7 +600,7 @@
     <path
        inkscape:connector-curvature="0"
        id="path7036"
-       d="m -32.782003,-497.06472 0.99342,0"
+       d="m -12.782003,-501.06472 0.99342,0"
        style="fill:#4e9a06;stroke:#4e9a06;stroke-width:0.97843719px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bg_header.png"
@@ -678,8 +691,8 @@
          style="font-size:10px"
          id="tspan7484">You can also access it throug our gitweb interface</tspan></text>
     <rect
-       y="483.11536"
-       x="129.28592"
+       y="263.11536"
+       x="9.2859192"
        height="131.37634"
        width="1"
        id="rect7488"
@@ -692,7 +705,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Listing"
-     style="display:none">
+     style="display:inline">
     <g
        style="display:inline"
        transform="translate(100.09211,-0.01854958)"
@@ -725,12 +738,155 @@
          x="211.3277"
          y="164.55608"
          style="font-size:20px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#eeeeec;font-family:Cantarell;-inkscape-font-specification:Cantarell Bold">Listing</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="130.29337"
+       y="307.61005"
+       id="text3148"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="130.29337"
+         y="307.61005"
+         id="tspan3156"
+         style="font-size:16px">O que o Governo do Estado deve fazer para facilitar o acesso e melhorar o atendimento na</tspan><tspan
+         sodipodi:role="line"
+         x="130.29337"
+         y="327.61005"
+         style="font-size:16px"
+         id="tspan3973">rede de saúde pública?</tspan><tspan
+         sodipodi:role="line"
+         x="130.29337"
+         y="347.61005"
+         id="tspan3152"
+         style="font-size:16px" /><tspan
+         sodipodi:role="line"
+         x="130.29337"
+         y="367.61005"
+         id="tspan3154"
+         style="font-size:16px" /></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3158"
+       y="269.78094"
+       x="210.29337"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#a3a3a3;fill-opacity:1;stroke:none;font-family:Sans"
+       xml:space="preserve"><tspan
+         id="tspan3166"
+         y="269.78094"
+         x="210.29337"
+         sodipodi:role="line"
+         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;fill:#a3a3a3;fill-opacity:1;font-family:Cantarell;-inkscape-font-specification:Cantarell Medium">22/09/2011</tspan></text>
+    <g
+       id="g3975"
+       transform="translate(-84.146076,46.513674)">
+      <rect
+         inkscape:export-ydpi="78.040001"
+         inkscape:export-xdpi="78.040001"
+         inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
+         style="fill:#cc0000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter7321-3-1)"
+         id="rect7313-4"
+         width="28.922575"
+         height="24.997498"
+         x="930.14911"
+         y="301.92184"
+         ry="4.5587482" />
+      <rect
+         inkscape:export-ydpi="78.040001"
+         inkscape:export-xdpi="78.040001"
+         inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
+         ry="4.5587482"
+         y="301.92184"
+         x="930.14911"
+         height="24.997498"
+         width="28.922575"
+         id="rect7315-1"
+         style="fill:#cc0000;fill-opacity:1;stroke:#ef2929;stroke-width:0.45185125;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <rect
+         inkscape:export-ydpi="78.040001"
+         inkscape:export-xdpi="78.040001"
+         inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
+         ry="2.3264575"
+         rx="2.4840147"
+         y="311.71335"
+         x="938.54572"
+         height="5.6396251"
+         width="12.129367"
+         id="rect7365-5"
+         style="fill:#eeeeec;fill-opacity:1;stroke:#ef2929;stroke-width:0.49999997;stroke-miterlimit:4;stroke-dasharray:none;display:inline" />
+    </g>
+    <g
+       transform="translate(2.9053146,-7.5773402)"
+       id="g4001"
+       inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_edit.png"
+       inkscape:export-xdpi="78.040001"
+       inkscape:export-ydpi="78.040001">
+      <rect
+         ry="4.5587482"
+         y="356.01285"
+         x="803.09772"
+         height="24.997498"
+         width="28.922575"
+         id="rect3982"
+         style="fill:#3465a4;fill-opacity:1;stroke:none;display:inline;filter:url(#filter7321-3-1)"
+         inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
+         inkscape:export-xdpi="78.040001"
+         inkscape:export-ydpi="78.040001" />
+      <rect
+         style="fill:#3465a4;fill-opacity:1;stroke:#729fcf;stroke-width:0.45185125;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         id="rect3984"
+         width="28.922575"
+         height="24.997498"
+         x="803.09772"
+         y="356.01285"
+         ry="4.5587482"
+         inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
+         inkscape:export-xdpi="78.040001"
+         inkscape:export-ydpi="78.040001" />
+      <g
+         transform="translate(-0.07333022,-0.46887332)"
+         style="fill:#eeeeec;stroke:#eeeeec;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+         id="g3944">
+        <path
+           style="fill:#eeeeec;stroke:#eeeeec;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 807.72113,362.98047 19.82241,0"
+           id="path3938"
+           inkscape:connector-curvature="0" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3940"
+           d="m 807.72113,368.98047 19.82241,0"
+           style="fill:#eeeeec;stroke:#eeeeec;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <path
+           style="fill:#eeeeec;stroke:#eeeeec;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 807.72113,374.98047 19.82241,0"
+           id="path3942"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4e9a06;fill-opacity:1;stroke:none;font-family:Sans"
+       x="130.29337"
+       y="271.79559"
+       id="text3967"
+       sodipodi:linespacing="125%"><tspan
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;fill:#4e9a06;fill-opacity:1;font-family:Cantarell;-inkscape-font-specification:Cantarell Medium"
+         sodipodi:role="line"
+         x="130.29337"
+         y="271.79559"
+         id="tspan3969">Saúde</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 6;stroke-dashoffset:0"
+       d="m 127.44254,389.93949 751.78228,0"
+       id="path4145"
+       inkscape:connector-curvature="0" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="New"
-     style="display:inline">
+     style="display:none">
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -912,12 +1068,12 @@
        height="24.997498"
        width="28.922575"
        id="rect7313"
-       style="fill:#cc0000;fill-opacity:1;stroke:none;stroke-width:0.45185124999999998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;filter:url(#filter7321)"
+       style="fill:#cc0000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter7321)"
        inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/admin/static/imgs/bt_remove.png"
        inkscape:export-xdpi="78.040001"
        inkscape:export-ydpi="78.040001" />
     <rect
-       style="fill:#cc0000;fill-opacity:1;stroke:#ef2929;stroke-width:0.45185124999999998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#cc0000;fill-opacity:1;stroke:#ef2929;stroke-width:0.45185125;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
        id="rect7315"
        width="28.922575"
        height="24.997498"
@@ -928,7 +1084,7 @@
        inkscape:export-xdpi="78.040001"
        inkscape:export-ydpi="78.040001" />
     <rect
-       style="fill:#eeeeec;fill-opacity:1;stroke:#ef2929;stroke-width:0.53764191;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#eeeeec;fill-opacity:1;stroke:#ef2929;stroke-width:0.53764188;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect7365"
        width="11.116744"
        height="7.1147065"
