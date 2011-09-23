@@ -60,8 +60,8 @@ def new():
     return render_template('admin/new.html', title=_(u'Audience'))
 
 @admin.route('/audience/<int:aid>')
-def audience(aid):
+def edit(aid):
     """Returns a form to edit an audience and saves new params in the
     database.
     """
-    return render_template('admin/edit.html', title=_(u'Audience'))
+    return render_template('admin/new.html', title=_(u'Audience'), id=aid)

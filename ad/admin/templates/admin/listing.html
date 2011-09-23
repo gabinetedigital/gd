@@ -4,7 +4,7 @@
   <ul class="listing">
    {% for i in audience.query.all() %}
     <li class="last">
-      <a href="#">
+      <a href="{{ url_for('.edit', aid=i.id) }}">
         <strong class="subject">Saúde</strong>
         <em class="date">12/09/2011</em>
         <p>{{ i.title }}</p>
