@@ -1,0 +1,148 @@
+/** Reseting **/
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 0;
+}
+
+/** body **/
+
+body {
+    font-size: 11.5px;
+    font-family: sans-serif;
+  /**  background: url(978-grid.png) repeat-y center top; **/
+}
+
+/** Container **/
+
+#container {
+    background: url(imgs/buzz.png) no-repeat 615px 19px;
+}
+
+#container #main {
+    background: url(imgs/main.png) no-repeat -8px 0px;
+    height: 651px;
+}
+
+#container #main .content {
+    margin: 23px;
+}
+
+#container #main .content h2 {
+    color: #CE3316;
+    font-size: 24px;
+    margin-bottom: 11px;
+}
+
+#container #main .content .stream {
+    margin-left: 16px;
+    margin-bottom: 21px;
+}
+
+#container #main .content .stream img {
+    float: left;
+    margin-right: 10px;
+}
+
+#container #main .content .stream .author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#container #main .content .stream a {
+    color: green;
+}
+
+#container #main .content #streaming {
+    background: url(imgs/video.png) ;
+    display: block;
+    width: 606px;
+    height: 356px;
+    margin-bottom: 20px;
+}
+
+#container #main .content #misc .instructions li {
+    font-size: 18px;
+    color: #1a1a1a;
+    margin-bottom: 11px;
+}
+
+#container #main .content #misc .instructions li:first-child {
+    background: url(imgs/filter.png) no-repeat;
+    display: block;
+    height: 25px;
+    padding-left: 36px;
+    line-height: 25px;
+}
+
+#container #main .content #misc .instructions li:last-child {
+    background: url(imgs/chat.png) no-repeat;
+    padding-left: 36px;
+}
+
+#container #main .content #misc #social li {
+    float: left;
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin-left: 6px;
+    margin-top: 7px;
+    overflow: hidden;
+    text-indent: -9999px;
+    margin-bottom: 16px;
+}
+
+#container #main .content #misc h4 {
+    text-align: right;
+}
+
+#container #main .content #misc #social {
+    float: right;
+}
+
+#container #main .content #misc #social .feed {
+    background: url(imgs/feed.png) no-repeat;
+}
+
+#container #main .content #misc #social .twitter {
+    background: url(imgs/twitter.png) no-repeat;
+}
+
+#container #main .content #misc #social .identica {
+    background: url(imgs/identica.png) no-repeat;
+}
+
+#container #main .content #misc #social .facebook {
+    background: url(imgs/facebook.png) no-repeat;
+}
+
+/** Buzz **/
+
+#container #buzz {
+    margin-top: 48px;
+    height: 460px;
+    overflow-y: scroll;
+}
+
+#container #buzz .stream {
+    width: 260px;
+    background: url(imgs/line.png) no-repeat bottom;
+    padding-bottom: 23px;
+    margin-bottom: 10px;
+}
+
+#container #buzz  .stream img {
+    float: left;
+    margin-right: 10px;
+}
+
+#container #buzz  .stream .author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#container #buzz  .stream a {
+    color: green;
+}
