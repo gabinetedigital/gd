@@ -23,6 +23,87 @@ body {
     margin-top: 14px;
 }
 
+#header h1 {
+    background: url("../imgs/logo.png") no-repeat;
+    display: block;
+    width: 213px;
+    height: 97px;
+    text-indent: -9999px;
+    overflow: hidden;
+    margin-top: 22px;
+    margin-left: 28px;
+    position: absolute;
+}
+
+#header .login {
+    float: right;
+    margin-top: 22px;
+    margin-right: 25px;
+    font-size: 13px;
+}
+
+#header .login li {
+    display: inline;
+}
+
+#header #social li {
+    float: left;
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin-left: 6px;
+    margin-top: 7px;
+    overflow: hidden;
+    text-indent: -9999px;
+    margin-bottom: 16px;
+}
+
+#header   h4 {
+    text-align: right;
+    margin-top: 84px;
+    margin-right: 23px;
+}
+
+#header   #social {
+    float: right;
+    margin-right: 23px;
+}
+
+#header  #social .feed {
+    background: url(../imgs/feed.png) no-repeat;
+}
+
+#header  #social .twitter {
+    background: url(../imgs/twitter.png) no-repeat;
+}
+
+#header  #social .identica {
+    background: url(../imgs/identica.png) no-repeat;
+}
+
+#header  #social .facebook {
+    background: url(../imgs/facebook.png) no-repeat;
+}
+
+#header #menu {
+    background: url("../imgs/menu.png") repeat scroll 0 0 transparent;
+    margin: 66px auto 0;
+    width: 922px;
+    height: 37px;
+    line-height: 38px;
+}
+#header #menu li {
+    display: inline;
+    font-size: 14px;
+    padding-left: 17px;
+}
+#header #menu li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
 /** Container **/
 
 #container {
@@ -90,41 +171,6 @@ body {
     padding-left: 36px;
 }
 
-#container #main .content #misc #social li {
-    float: left;
-    display: block;
-    width: 32px;
-    height: 32px;
-    margin-left: 6px;
-    margin-top: 7px;
-    overflow: hidden;
-    text-indent: -9999px;
-    margin-bottom: 16px;
-}
-
-#container #main .content #misc h4 {
-    text-align: right;
-}
-
-#container #main .content #misc #social {
-    float: right;
-}
-
-#container #main .content #misc #social .feed {
-    background: url(../imgs/feed.png) no-repeat;
-}
-
-#container #main .content #misc #social .twitter {
-    background: url(../imgs/twitter.png) no-repeat;
-}
-
-#container #main .content #misc #social .identica {
-    background: url(../imgs/identica.png) no-repeat;
-}
-
-#container #main .content #misc #social .facebook {
-    background: url(../imgs/facebook.png) no-repeat;
-}
 
 /** Buzz **/
 
