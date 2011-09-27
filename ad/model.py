@@ -60,6 +60,7 @@ class Audience(Entity):
         return '<Audience "%s" (%d)>' % (self.description, self.date)
 
 
-metadata.bind = "sqlite:///%s" % os.path.join(os.path.dirname(__file__), "db")
+metadata.bind = "sqlite:///%s" % os.path.join(
+    os.path.dirname(__file__), 'var', 'db')
 metadata.bind.echo = True
 setup_all(__name__ == '__main__')
