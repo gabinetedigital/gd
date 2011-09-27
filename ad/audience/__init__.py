@@ -1,2 +1,35 @@
-__author__="rodrigo-rosa"
-__date__ ="$27/09/2011 10:12:40$"
+# Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+#
+#   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+#   Author: Rodrigo Sebastiao da Rosa <rodrigo-rosa@procergs.rs.gov.br>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+"""Module that uses the Template and Model APIs to build the Audience web
+interface.
+"""
+
+from flask import Blueprint, render_template, request
+#from .model import Audience, StreamingChannel, session
+#from .utils import _
+
+audience = Blueprint(
+    'audience', __name__,
+    template_folder='templates',
+    static_folder='static')
+
+@audience.route('/')
+def index():
+    #return 'Please access the /audience url in your browser!'    
+    return render_template('/index.html')

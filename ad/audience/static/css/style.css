@@ -18,11 +18,11 @@ body {
 /** Container **/
 
 #container {
-    background: url(imgs/buzz.png) no-repeat 615px 19px;
+    background: url(../imgs/buzz.png) no-repeat 615px 19px;
 }
 
 #container #main {
-    background: url(imgs/main.png) no-repeat -8px 0px;
+    background: url(../imgs/main.png) no-repeat -8px 0px;
     height: 651px;
 }
 
@@ -56,7 +56,7 @@ body {
 }
 
 #container #main .content #streaming {
-    background: url(imgs/video.png) ;
+    background: url(../imgs/video.png) ;
     display: block;
     width: 606px;
     height: 356px;
@@ -70,7 +70,7 @@ body {
 }
 
 #container #main .content #misc .instructions li:first-child {
-    background: url(imgs/filter.png) no-repeat;
+    background: url(../imgs/filter.png) no-repeat;
     display: block;
     height: 25px;
     padding-left: 36px;
@@ -78,7 +78,7 @@ body {
 }
 
 #container #main .content #misc .instructions li:last-child {
-    background: url(imgs/chat.png) no-repeat;
+    background: url(../imgs/chat.png) no-repeat;
     padding-left: 36px;
 }
 
@@ -103,19 +103,19 @@ body {
 }
 
 #container #main .content #misc #social .feed {
-    background: url(imgs/feed.png) no-repeat;
+    background: url(../imgs/feed.png) no-repeat;
 }
 
 #container #main .content #misc #social .twitter {
-    background: url(imgs/twitter.png) no-repeat;
+    background: url(../imgs/twitter.png) no-repeat;
 }
 
 #container #main .content #misc #social .identica {
-    background: url(imgs/identica.png) no-repeat;
+    background: url(../imgs/identica.png) no-repeat;
 }
 
 #container #main .content #misc #social .facebook {
-    background: url(imgs/facebook.png) no-repeat;
+    background: url(../imgs/facebook.png) no-repeat;
 }
 
 /** Buzz **/
@@ -128,7 +128,7 @@ body {
 
 #container #buzz .stream {
     width: 260px;
-    background: url(imgs/line.png) no-repeat bottom;
+    background: url(../imgs/line.png) no-repeat bottom;
     padding-bottom: 23px;
     margin-bottom: 10px;
 }

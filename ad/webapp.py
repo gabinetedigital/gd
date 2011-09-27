@@ -17,9 +17,11 @@
 
 from flask import Flask
 from admin import admin
+from audience import audience
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')
+app.register_blueprint(audience, url_prefix='/audience')
 
 if __name__ == '__main__':
     app.run(debug=True)
