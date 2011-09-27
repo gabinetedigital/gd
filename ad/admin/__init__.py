@@ -21,7 +21,7 @@ interface.
 """
 
 from flask import Blueprint, render_template, request
-from .model import Audience, StreamingChannel, session
+from .model import Audience, Term, StreamingChannel, session
 from .utils import _
 
 admin = Blueprint(
@@ -48,7 +48,12 @@ def new():
         inst = Audience()
         inst.title = request.form['title']
         inst.description = request.form['subject']
-        inst.hashtag = request.form['hashtag']
+        terms = request.form.getlist('term')
+        for item in terms:
+            newTerm = Term(hashtag=item)
+            inst.terms.append(newTerm)
+        
+        #inst.hashtag = request.form['hashtag']
         inst.owner = 'Admin'
         
         sources = request.form.getlist('source')
@@ -74,7 +79,16 @@ def edit(aid):
     if request.method == 'POST':
         inst.title = request.form['title']
         inst.description = request.form['subject']
-        inst.hashtag = request.form['hashtag']
+        
+        #delete terms
+        instTerm = Term.query.filter_by(audience=inst)
+        instTerm.delete()
+        terms = request.form.getlist('term')
+        for item in terms:
+            newTerm = Term(hashtag=item)
+            inst.terms.append(newTerm)
+        
+        #inst.hashtag = request.form['hashtag']
         inst.owner = 'Admin'
 
         sources = request.form.getlist('source')
@@ -100,7 +114,9 @@ def remove(aid):
     """
     inst = Audience.query.get(aid)
     inst2 = StreamingChannel.query.filter_by(audience=inst)
+    inst3 = Term.query.filter_by(audience=inst)
     
+    inst3.delete()
     inst2.delete()
     inst.delete()
     

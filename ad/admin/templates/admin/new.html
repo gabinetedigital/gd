@@ -16,10 +16,10 @@
         <label>When it happens?</label>
         <input type="text" name="date" id="date">
       </li>
-      <li>
+<!--      <li>
         <label>Hashtag to be tracked in social networks</label>
         <input type="text" name="hashtag" id="hashtag">
-      </li>
+      </li>-->
     </ul>
   </fieldset>
 
@@ -39,6 +39,22 @@
       </li>
     </ul>
   </fieldset>
+  
+  <fieldset class="streaming">
+    <h3 class="title">Hashtag to be tracked in social networks</h3>
+    <ul>
+      <li>
+        <div>
+          <label>Term</label>
+        </div>
+          <a class="source" href="#" id="addTerm">New term</a>
+                  <p class="listTerm">
+                       <input type='text' name='term' class='source'>
+                       <a href="#" class="deleteTerm" title="Remove term"><input class='button remove' type='button'></a>
+                   </p>
+      </li>
+    </ul>
+  </fieldset>  
 
   <div class="submit">
     <input id="botEnviar" type="submit" name="submit" value="Submit">

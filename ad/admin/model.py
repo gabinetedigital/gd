@@ -1,6 +1,6 @@
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
-#   Author: Rodrigo Rosa <rodrigo-rosa@procergs.rs.gov.br>
+#   Author: Rodrigo Sebastiao da Rosa <rodrigo-rosa@procergs.rs.gov.br>
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -33,6 +33,16 @@ class StreamingChannel(Entity):
     def __str__(self):
         return '<StreamingChannel "%s">' % self.source
 
+class Term(Entity):
+    using_options(shortnames=True)
+
+    hashtag = Field(Unicode(45))
+    creation_date = Field(DateTime, default=datetime.now)
+    creator = Field(Unicode)
+    audience = ManyToOne('Audience')
+
+    def __str__(self):
+        return '<Term "%s">' % self.hashtag
 
 class Audience(Entity):
     using_options(shortnames=True)
@@ -41,7 +51,7 @@ class Audience(Entity):
     description = Field(UnicodeText)
     date = Field(DateTime)
     creation_date = Field(DateTime, default=datetime.now)
-    hashtag = Field(Unicode(45))
+    terms = OneToMany('Term')
     visible = Field(Boolean, default=True)
     owner = Field(Unicode)
     #themes = ManyToOne('Theme')
