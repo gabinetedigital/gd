@@ -16,13 +16,12 @@ Running the app
 First of all, you have to setup the database. To do it, just run the
 following commands in your project directory::
 
- $ cd admin
- $ python model.py
+ $ python ad/model.py
 
 After that, all we have to do is to run the built in development server
-by issuing the following commands::
+by executting the `add' command::
 
- $ python webapp.py
+ $ ./ad-d
 
 After that, you can just point your browser to the http://localhost:5000
 url and see the system running.
