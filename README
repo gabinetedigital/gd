@@ -1,0 +1,34 @@
+README file for the AD project
+==============================
+
+Dependencies
+~~~~~~~~~~~~
+
+If you are running a Debian based system, you just need to install the
+following packages:
+
+ * python-elixir
+ * python-flask
+
+Running the app
+~~~~~~~~~~~~~~~
+
+First of all, you have to setup the database. To do it, just run the
+following commands in your project directory::
+
+ $ cd admin
+ $ python model.py
+
+After that, all we have to do is to run the built in development server
+by issuing the following commands::
+
+ $ python webapp.py
+
+After that, you can just point your browser to the http://localhost:5000
+url and see the system running.
+
+There are currently a few views ready to be tested. Here are some:
+
+ * /admin/audience        (Lists audiences)
+ * /admin/audience/new    (Form that creates a new audience)
+ * /admin/audience/<id>   (See the details/edit an audience)
