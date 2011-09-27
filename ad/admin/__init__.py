@@ -1,6 +1,7 @@
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+#   Author: Rodrigo Sebastiao da Rosa <rodrigo-rosa@procergs.rs.gov.br>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -49,23 +50,59 @@ def new():
         inst.description = request.form['subject']
         inst.hashtag = request.form['hashtag']
         inst.owner = 'Admin'
-
+        
         sources = request.form.getlist('source')
         formats = request.form.getlist('format')
         for source, fmt in zip(sources, formats):
             channel = StreamingChannel(source=source, format=fmt)
             inst.sources.append(channel)
-
         session.commit()
+        # msg
+        
+        return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
+    
     return render_template('admin/new.html', title=_(u'Audience'))
 
-@admin.route('/audience/<int:aid>')
+@admin.route('/audience/<int:aid>', methods=('GET', 'POST'))
 def edit(aid):
     """Returns a form to edit an audience and saves new params in the
     database.
     """
     inst = Audience.query.get(aid)
-
     # An improved search with more params.
     # Audience.query.filter(id=aid, outra_chave=valor)
+    if request.method == 'POST':
+        inst.title = request.form['title']
+        inst.description = request.form['subject']
+        inst.hashtag = request.form['hashtag']
+        inst.owner = 'Admin'
+
+        sources = request.form.getlist('source')
+        formats = request.form.getlist('format')
+        
+        #delete streaming
+        inst2 = StreamingChannel.query.filter_by(audience=inst)
+        inst2.delete()
+        
+        for source, fmt in zip(sources, formats):
+            channel = StreamingChannel(source=source, format=fmt)
+            inst.sources.append(channel)
+        session.commit()
+        #msg
+        return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
+
     return render_template('admin/edit.html', title=_(u'Audience'), inst=inst)
+
+@admin.route('/delete/<int:aid>', methods=['GET', 'POST'])
+def remove(aid):
+    """Delete audience and streaming in the
+    database.
+    """
+    inst = Audience.query.get(aid)
+    inst2 = StreamingChannel.query.filter_by(audience=inst)
+    
+    inst2.delete()
+    inst.delete()
+    
+    session.commit()
+    return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
