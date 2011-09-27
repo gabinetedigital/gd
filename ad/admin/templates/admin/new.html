@@ -1,7 +1,6 @@
 {% extends 'admin/base.html' %}
 {% block content %}
-<form id="new" method="post" action="{{ url_for('.new') }}"
-      class="subcontent">
+<form id="form_new" name="form_new" method="post" action="{{ url_for('.new') }}" class="subcontent">
   <fieldset class="default">
     <h3 class="title">General Info</h3>
     <ul>
@@ -31,16 +30,18 @@
         <div>
           <label>Source</label> / <label>Format</label>
         </div>
-        <input type="text" name="source" class="source">
-        <input type="text" name="format" class="format">
-        <input class="button remove" type="button" value="-">
+          <a class="source" href="#" id="addSourceFormat">New source</a>
+                  <p class="sourceFormat">
+                       <input type='text' name='source' class='source'>
+                       <input type='text' name='format' class='format'>
+                       <a href="#" class="deleteSourceFormat" title="Remove source / format"><input class='button remove' type='button'></a>
+                   </p>
       </li>
     </ul>
-    <a class="source" href="#">New source</a>
   </fieldset>
 
   <div class="submit">
-    <input type="submit" name="submit" value="Submit">
+    <input id="botEnviar" type="submit" name="submit" value="Submit">
   </div>
 </form>
 {% endblock %}

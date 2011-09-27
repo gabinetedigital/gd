@@ -4,18 +4,16 @@
   <ul class="listing">
    {% for i in audience.query.all() %}
     <li class="last">
-      <a href="{{ url_for('.edit', aid=i.id) }}">
         <strong class="subject">Saúde</strong>
         <em class="date">12/09/2011</em>
         <p>{{ i.title }}</p>
-      </a>
-
+      
       <div class="controls">
-        <a href="#">
+        <a href="{{ url_for('.edit', aid=i.id) }}">
           <img src="{{ url_for('.static', filename='imgs/bt_edit.png') }}"
                alt="Edit this audience">
         </a>
-        <a href="#">
+        <a href="{{ url_for('.remove', aid=i.id) }}">
           <img src="{{ url_for('.static', filename='imgs/bt_remove.png') }}"
                alt="Remove this audience">
         </a>

@@ -1,6 +1,6 @@
 {% extends 'admin/base.html' %}
 {% block content %}
-<form id="new" method="post" action="{{ url_for('.new') }}"
+<form id="edit" method="post" action="{{ url_for('.edit', aid=inst.id) }}"
       class="subcontent">
   <fieldset class="default">
     <h3 class="title">General Info</h3>
@@ -11,15 +11,15 @@
       </li>
       <li>
         <label>What this audience is all about?</label>
-        <input type="text" name="subject" id="subject">
+        <input type="text" name="subject" id="subject" value="{{ inst.description }}">
       </li>
       <li>
         <label>When it happens?</label>
-        <input type="text" name="date" id="date">
+        <input type="text" name="date" id="date" value="{{ inst.date }}">
       </li>
       <li>
         <label>Hashtag to be tracked in social networks</label>
-        <input type="text" name="hashtag" id="hashtag">
+        <input type="text" name="hashtag" id="hashtag" value="{{ inst.hashtag }}">
       </li>
     </ul>
   </fieldset>
@@ -27,18 +27,22 @@
   <fieldset class="streaming">
     <h3 class="title">Streaming</h3>
     <ul>
-      {% for item in inst.sources %}
       <li>
         <div>
           <label>Source</label> / <label>Format</label>
         </div>
-        <input type="text" name="source" class="source" value="{{ item.source }}">
-        <input type="text" name="format" class="format" value="{{ item.format }}">
-        <input class="button remove" type="button" value="-">
+           <a class="source" href="#" id="addSourceFormat">New source</a>
+          <div id="box_source_format">
+             {% for item in inst.sources %} 
+              <p class="sourceFormat">
+                    <input type="text" name="source" class="source" value="{{ item.source }}">
+                    <input type="text" name="format" class="format" value="{{ item.format }}">
+                    <a href="#" class="deleteSourceFormat" title="Remove source / format"><input class='button remove' type='button'></a>
+              </p>    
+              {% endfor %}
+           </div>   
       </li>
-      {% endfor %}
     </ul>
-    <a class="source" href="#">New source</a>
   </fieldset>
 
   <div class="submit">
