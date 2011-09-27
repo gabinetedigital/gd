@@ -54,26 +54,12 @@ class Audience(Entity):
     terms = OneToMany('Term')
     visible = Field(Boolean, default=True)
     owner = Field(Unicode)
-    #themes = ManyToOne('Theme')
     sources = OneToMany('StreamingChannel')
 
     def __str__(self):
         return '<Audience "%s" (%d)>' % (self.description, self.date)
 
 
-# class Theme(Entity):
-#     using_options(shortnames=True)
-
-#     name = Field(Unicode)
-#     creation_date = Field(DateTime, default=datetime.now)
-#     creator = Field(Unicode)
-#     audience = OneToMany('Audience', inverse='themes')
-
-#     def __str__(self):
-#         return '<Theme "%s">' % self.name
-
-
-#metadata.bind = "sqlite:///db"
 metadata.bind = "sqlite:///%s" % os.path.join(os.path.dirname(__file__), "db")
 metadata.bind.echo = True
 setup_all(__name__ == '__main__')

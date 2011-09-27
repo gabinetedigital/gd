@@ -31,5 +31,4 @@ audience = Blueprint(
 
 @audience.route('/')
 def index():
-    #return 'Please access the /audience url in your browser!'    
     return render_template('/index.html')
