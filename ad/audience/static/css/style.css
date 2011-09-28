@@ -12,7 +12,7 @@
 body {
     font-size: 11.5px;
     font-family: sans-serif;
-  /**  background: url(978-grid.png) repeat-y center top; **/
+    background: url(../imgs/978-grid.png) repeat-y center top;
 }
 
 /** Headers **/
@@ -107,12 +107,54 @@ body {
 /** Container **/
 
 #container {
-    background: url(../imgs/buzz.png) no-repeat 615px 19px;
+    background: url(../imgs/buzz.png) no-repeat 615px 120px;
+}
+
+#container #title {
+    color: #808080;
+    padding-left: 34px;
+    padding-top: 13px;
+    position: absolute;
+}
+
+#container #title .top {
+    font-size: 40px;
+    padding-left: 20px;
+}
+
+#container #title .bottom {
+    font-size: 27px;
+}
+
+#container #date {
+    color: #B3B3B3;
+    float: right;
+    margin-right: 28px;
+    margin-top: 11px;
+}
+#container #date .day {
+    font-size: 74px;
+    position: absolute;
+}
+#container #date .month {
+    font-size: 40px;
+    margin-left: 100px;
+    margin-top: 2px;
+}
+#container #date .hour {
+    font-size: 22px;
+    margin-left: 99px;
+    position: absolute;
+}
+#container #date .min {
+    font-size: 22px;
+    margin-left: 141px;
 }
 
 #container #main {
     background: url(../imgs/main.png) no-repeat -8px 0px;
     height: 651px;
+    margin-top: 100px;
 }
 
 #container #main .content {
