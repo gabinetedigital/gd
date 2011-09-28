@@ -31,7 +31,7 @@ class StreamingChannel(Entity):
     audience = ManyToOne('Audience')
 
     def __str__(self):
-        return '<StreamingChannel "%s">' % self.source
+        return '<%s "%s">' % (self.__class__.__name__, self.source)
 
 class Term(Entity):
     using_options(shortnames=True)
@@ -42,7 +42,7 @@ class Term(Entity):
     audience = ManyToOne('Audience')
 
     def __str__(self):
-        return '<Term "%s">' % self.hashtag
+        return '<%s "%s">' % (self.__class__.__name__, self.hashtag)
 
 class Audience(Entity):
     using_options(shortnames=True)
@@ -58,30 +58,31 @@ class Audience(Entity):
     buzzes = OneToMany('Buzz')
 
     def __str__(self):
-        return '<Audience "%s" (%d)>' % (self.description, self.date)
+        return '<%s "%s" (%d)>' % (
+            self.__class__.__name__, self.description, self.date)
 
 class Buzz(Entity):
     using_options(shortnames=True)
 
-    description = Field(UnicodeText)
+    content = Field(UnicodeText)
     visible = Field(Boolean, default=True)
     creation_date = Field(DateTime, default=datetime.now)
     audience = ManyToOne('Audience')
     type_ = ManyToOne('BuzzType')
 
     def __str__(self):
-        return '<Buzz "%s">' % self.description
+        return '<%s "%s">' % (self.__class__.__name__, self.content)
 
 class BuzzType(Entity):
     using_options(shortnames=True)
 
-    description = Field(UnicodeText)
+    name = Field(UnicodeText)
     creation_date = Field(DateTime, default=datetime.now)
     creator = Field(Unicode)
     buzzes = OneToMany('Buzz')
 
     def __str__(self):
-        return '<TypeBuzz "%s">' % self.description    
+        return '<%s "%s">' % (self.__class__.__name__, self.name)
 
 metadata.bind = "sqlite:///%s" % os.path.join(
     os.path.dirname(__file__), 'var', 'db')
