@@ -55,6 +55,7 @@ class Audience(Entity):
     visible = Field(Boolean, default=True)
     owner = Field(Unicode)
     sources = OneToMany('StreamingChannel')
+    buzzes = OneToMany('Buzz')
 
     def __str__(self):
         return '<Audience "%s" (%d)>' % (self.description, self.date)
@@ -66,17 +67,18 @@ class Buzz(Entity):
     visible = Field(Boolean, default=True)
     creation_date = Field(DateTime, default=datetime.now)
     audience = ManyToOne('Audience')
+    type_ = ManyToOne('BuzzType')
 
     def __str__(self):
         return '<Buzz "%s">' % self.description
 
-class TypeBuzz(Entity):
+class BuzzType(Entity):
     using_options(shortnames=True)
 
     description = Field(UnicodeText)
     creation_date = Field(DateTime, default=datetime.now)
     creator = Field(Unicode)
-    Buzzes = ManyToOne('Buzz')
+    buzzes = OneToMany('Buzz')
 
     def __str__(self):
         return '<TypeBuzz "%s">' % self.description    
