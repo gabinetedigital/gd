@@ -8,7 +8,7 @@ If you are running a Debian based system, you just need to install the
 following packages:
 
  * python-elixir
- * python-flask
+ * python-flask ( 0.7.2 >= )
 
 Running the app
 ~~~~~~~~~~~~~~~
@@ -31,3 +31,50 @@ There are currently a few views ready to be tested. Here are some:
  * /admin/audience        (Lists audiences)
  * /admin/audience/new    (Form that creates a new audience)
  * /admin/audience/<id>   (See the details/edit an audience)
+
+Troubleshooting
+~~~~~~~~~~~~~~~
+
+- ImportError: cannot import name Blueprint
+
+If you got this error mensage, probably you have an old flask version.
+As of 28 Set 2011 only debian testing and unstable have
+aproprieted version (0.7.2) of flask.
+
+You have two options:
+ - Update your system version ( Good Luck! )
+ - Virtualenv 
+
+Installing virtualenv
+=====================
+ $ sudo easy_install virtualenv
+
+or
+
+ $ sudo pip install virtualenv
+
+or
+
+ $ sudo apt-get install python-virtualenv
+
+Creating your environoment
+==========================
+
+ $ mkdir myproject
+ $ cd myproject
+ $ virtualenv env
+ New python executable in env/bin/python
+ Installing setuptools............done.
+
+Active and enter in the enviromnt
+=================================
+
+ $ . env/bin/activate
+
+Installing Flask
+================
+
+ $ easy_install Flask
+
+Enjoy!
+
