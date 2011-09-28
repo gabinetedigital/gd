@@ -59,6 +59,27 @@ class Audience(Entity):
     def __str__(self):
         return '<Audience "%s" (%d)>' % (self.description, self.date)
 
+class Buzz(Entity):
+    using_options(shortnames=True)
+
+    description = Field(UnicodeText)
+    visible = Field(Boolean, default=True)
+    creation_date = Field(DateTime, default=datetime.now)
+    audience = ManyToOne('Audience')
+
+    def __str__(self):
+        return '<Buzz "%s">' % self.description
+
+class TypeBuzz(Entity):
+    using_options(shortnames=True)
+
+    description = Field(UnicodeText)
+    creation_date = Field(DateTime, default=datetime.now)
+    creator = Field(Unicode)
+    Buzzes = ManyToOne('Buzz')
+
+    def __str__(self):
+        return '<TypeBuzz "%s">' % self.description    
 
 metadata.bind = "sqlite:///%s" % os.path.join(
     os.path.dirname(__file__), 'var', 'db')
