@@ -42,10 +42,11 @@
         </div>
         <div class="row-end"></div>
       </div>
+     {% block content %}   
       <div id="container" class="row">
         <div id="title">
-          <p class="top">Planos de saúde:</p>
-          <p class="bottom">Regulamentação, direitos e deveres</p>
+          <p class="top">{{ inst.title }}</p>
+          <p class="bottom">{{ inst.description }}</p>
         </div>
         <div id="date">
           <p class="day">22</p>
@@ -145,6 +146,7 @@
         </div>
         <div class="row-end"></div>
       </div>
+     {% endblock %}
       <div class="row">
         <div id="footer" class="col12">footer</div>
         <div class="row-end"></div>
