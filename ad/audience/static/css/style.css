@@ -18,9 +18,10 @@ body {
 /** Headers **/
 
 #header {
-    background: url(../imgs/header.png) -10px no-repeat;
-    height: 200px;
-    margin-top: 14px;
+    background: url(../imgs/header.png) 6px 0 no-repeat;
+    height: 371px;
+    position: absolute;
+    z-index: -1;
 }
 
 #header h1 {
@@ -107,7 +108,8 @@ body {
 /** Container **/
 
 #container {
-    background: url(../imgs/buzz.png) no-repeat 615px 120px;
+    background: url(../imgs/buzz.png) no-repeat 615px 334px;
+    padding-top: 216px;
 }
 
 #container #title {
