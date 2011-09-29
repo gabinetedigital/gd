@@ -21,7 +21,7 @@ interface.
 """
 
 from flask import Blueprint, render_template, request
-from ad.model import Audience, Term, session
+from ad.model import Audience, Buzz, Term, session
 from .utils import _
 
 admin = Blueprint(
@@ -59,12 +59,6 @@ def new():
         
         inst.owner = 'Admin'
         
-#        sources = request.form.getlist('source')
-#        formats = request.form.getlist('format')
-#        for source, fmt in zip(sources, formats):
-#            channel = StreamingChannel(source=source, format=fmt)
-#            inst.sources.append(channel)
-#            
         session.commit()
         # msg
         
@@ -98,17 +92,6 @@ def edit(aid):
             
         inst.owner = 'Admin'
 
-#        sources = request.form.getlist('source')
-#        formats = request.form.getlist('format')
-#        
-        #delete streaming
-#       inst2 = StreamingChannel.query.filter_by(audience=inst)
-#       inst2.delete()
-#        
-#       for source, fmt in zip(sources, formats):
-#           channel = StreamingChannel(source=source, format=fmt)
-#           inst.sources.append(channel)
-            
         session.commit()
         #msg
         return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
@@ -121,12 +104,27 @@ def remove(aid):
     database.
     """
     inst = Audience.query.get(aid)
-    inst2 = StreamingChannel.query.filter_by(audience=inst)
-    inst3 = Term.query.filter_by(audience=inst)
+    #inst2 = StreamingChannel.query.filter_by(audience=inst)
+    inst2 = Term.query.filter_by(audience=inst)
     
-    inst3.delete()
+    #inst3.delete()
     inst2.delete()
     inst.delete()
     
     session.commit()
     return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
+
+@admin.route('/moderate/<int:aid>')
+def moderate(aid):
+    """Returns a list of buzzes for moderation.
+    """
+    inst = Audience.query.get(aid)
+    buzz_list = Buzz.query.filter_by(visible=0)
+    return render_template('admin/moderate.html', inst=inst, buzz_list=buzz_list )
+@admin.route('/accept/<int:aid>/<int:bid>')
+def accept(aid, bid):
+    inst = Buzz.query.get(bid)
+    inst2 = Audience.query.get(aid)
+    inst.visible = 1
+    session.commit()
+    return render_template('admin/moderate.html',inst=inst2)

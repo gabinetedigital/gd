@@ -21,18 +21,6 @@ from datetime import datetime
 import os
 
 
-#class StreamingChannel(Entity):
-#    using_options(shortnames=True)
-#
-#    source = Field(Unicode(150))
-#    format = Field(Unicode(200))
-#    creation_date = Field(DateTime, default=datetime.now)
-#    creator = Field(Unicode)
-#    audience = ManyToOne('Audience')
-#
-#    def __str__(self):
-#        return '<%s "%s">' % (self.__class__.__name__, self.source)
-
 class Term(Entity):
     using_options(shortnames=True)
 
@@ -57,7 +45,6 @@ class Audience(Entity):
     visible = Field(Boolean, default=True)
     owner = Field(Unicode)
     embed = Field(Unicode(150))
-#    sources = OneToMany('StreamingChannel')
     buzzes = OneToMany('Buzz')
 
     def __str__(self):
@@ -70,7 +57,7 @@ class Buzz(Entity):
     owner_nick = Field(Unicode)
     owner_email = Field(Unicode)
     content = Field(UnicodeText)
-    visible = Field(Boolean, default=True)
+    visible = Field(Boolean, default=False)
     creation_date = Field(DateTime, default=datetime.now)
     audience = ManyToOne('Audience')
     type_ = ManyToOne('BuzzType')

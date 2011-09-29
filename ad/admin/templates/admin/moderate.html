@@ -1,0 +1,21 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<div class="subcontent">
+  <ul class="listing">
+      <li>
+          <strong class="subject">Moderation</strong>
+      </li>   
+   {% for i in buzz_list %} 
+    <li class="last">
+        <p>{{ i.content }}</p>
+     <div class="controls">
+        <a href="{{ url_for('.accept', aid=inst.id,bid=i.id) }}">
+          <img src="{{ url_for('.static', filename='imgs/bt_edit.png') }}"
+               alt="Accept this buzz">
+        </a>
+      </div>
+    </li>
+    {% endfor  %}
+  </ul>
+</div>
+{% endblock %}
