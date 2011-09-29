@@ -34,9 +34,20 @@ $(function () {
 	$("#addTerm").click(function () {
 		newLine = $("p.listTerm:first").clone();
 		newLine.find("input").val("");
-		newLine.insertAfter("p.listTerm:last");
+                newLine.find("input[type=text]").change(function(){
+                    $(this).parent().find("input[type=radio]").val($(this).val());
+                });
+                newLine.insertAfter("p.listTerm:last");
 		removeTerm();
+                nameRadio();
 	});
+        function nameRadio(){
+             $("p.listTerm").find("input[type=text]").change(function(){
+                    $(this).parent().find("input[type=radio]").val($(this).val());
+                });
+        }
+        nameRadio();
 });
+
 
 

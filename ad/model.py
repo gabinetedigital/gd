@@ -39,6 +39,7 @@ class Term(Entity):
     hashtag = Field(Unicode(45))
     creation_date = Field(DateTime, default=datetime.now)
     creator = Field(Unicode)
+    main = Field(Boolean)
     audience = ManyToOne('Audience')
 
     def __str__(self):

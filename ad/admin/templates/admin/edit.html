@@ -17,10 +17,6 @@
         <label>When it happens?</label>
         <input type="text" name="date" id="date" value="{{ inst.date }}">
       </li>
-<!--      <li>
-        <label>Hashtag to be tracked in social networks</label>
-        <input type="text" name="hashtag" id="hashtag" value="{{ inst.hashtag }}">
-      </li>-->
     </ul>
   </fieldset>
 
@@ -56,6 +52,7 @@
           {% for item in inst.terms %} 
                   <p class="listTerm">
                        <input type='text' name='term' class='source' value="{{ item.hashtag }}">
+                       <input type="radio" name="main" value="{{ item.hashtag }}" {% if item.main %}checked{% endif %}> Main
                        <a href="#" class="deleteTerm" title="Remove term"><input class='button remove' type='button'></a>
                    </p>
            {% endfor %}        

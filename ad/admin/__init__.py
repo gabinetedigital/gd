@@ -49,11 +49,11 @@ def new():
         inst.title = request.form['title']
         inst.description = request.form['subject']
         terms = request.form.getlist('term')
-        for item in terms:
-            newTerm = Term(hashtag=item)
+        main = request.form['main']
+        for term in terms:
+            newTerm = Term(hashtag=term, main=(main==term))
             inst.terms.append(newTerm)
         
-        #inst.hashtag = request.form['hashtag']
         inst.owner = 'Admin'
         
         sources = request.form.getlist('source')
@@ -84,10 +84,16 @@ def edit(aid):
         instTerm = Term.query.filter_by(audience=inst)
         instTerm.delete()
         terms = request.form.getlist('term')
-        for item in terms:
-            newTerm = Term(hashtag=item)
+        main = request.form['main']
+        for term in terms:
+            newTerm = Term(hashtag=term, main=(main==term))
             inst.terms.append(newTerm)
-        
+            
+#        terms = request.form.getlist('term')
+#        for item in terms:
+#            newTerm = Term(hashtag=item)
+#            inst.terms.append(newTerm)
+#        
         #inst.hashtag = request.form['hashtag']
         inst.owner = 'Admin'
 
