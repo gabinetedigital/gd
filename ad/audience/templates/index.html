@@ -42,20 +42,63 @@
       </div>
       <div class="row-end"></div>
     </div>{% block content %} 
-    <div id="container" class="row">
-      <div id="title">
-        <p class="title">{{ inst.title }}</p>
-        <p class="description">{{ inst.description }}</p>
+    <div id="container">
+      <div class="row">
+        <div class="col7">
+          <div id="title">
+            <p class="title">{{ inst.title }}</p>
+            <p class="description">{{ inst.description }}</p>
+          </div>
+        </div>
+        <div class="col5">
+          <div id="date">
+            <p class="day">22</p>
+            <p class="month">nov</p>
+            <p class="hour">10h</p>
+            <p class="min">22</p>
+          </div>
+          <div id="tag">
+            <p>Participe também pela</p>
+            <h3>#GovAovivo</h3>
+          </div>
+        </div>
+        <div class="row-end"></div>
       </div>
-      <div id="date">
-        <p class="day">22</p>
-        <p class="month">nov</p>
-        <p class="hour">10h</p>
-        <p class="min">22</p>
-      </div>
-      <div id="main" class="col8">
-        <div class="content">
-          <h2>Horários postos de saúde</h2>
+      <div class="row">
+        <div id="main" class="col8">
+          <div class="content">
+            <h2>Horários postos de saúde</h2>
+            <ul class="stream">
+              <li class="avatar">
+                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+              </li>
+              <li class="author">@hypschê | identi.ca</li>
+              <li class="answer">Proin lectus orci, venenatis
+              pharetra, egestas id, tincidunt vel, eros. Aenean
+              turpis ipsum, rhoncus vitae, posuere vitae, euismod
+              sed, ligula. Sed a lorem ut est tincidunt
+              consectetuer. Posuere vita. regional</li>
+            </ul>
+            <div id="streaming"></div>
+            <div id="misc">
+              <ul class="instructions">
+                <li>Filtrar</li>
+                <li>Use o chat</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="buzz" class="col4">
+          <ul class="stream">
+            <li class="avatar">
+              <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+            </li>
+            <li class="author">@hypschê | identi.ca</li>
+            <li class="answer">Meu tempo livre é somento na parte
+            da noite, me impossibilitando marcar 
+            <a href="#">consultas</a>no post de saúde da minha
+            regional</li>
+          </ul>
           <ul class="stream">
             <li class="avatar">
               <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
@@ -67,81 +110,51 @@
             sed, ligula. Sed a lorem ut est tincidunt consectetuer.
             Posuere vita. regional</li>
           </ul>
-          <div id="streaming"></div>
-          <div id="misc">
-            <ul class="instructions">
-              <li>Filtrar</li>
-              <li>Use o chat</li>
-            </ul>
-          </div>
+          <ul class="stream">
+            <li class="avatar">
+              <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+            </li>
+            <li class="author">@hypschê | identi.ca</li>
+            <li class="answer">Proin lectus orci, venenatis
+            pharetra, egestas id, tincidunt vel, eros. Aenean
+            turpis ipsum, rhoncus vitae, posuere vitae, euismod
+            sed, ligula. Sed a lorem ut est tincidunt consectetuer.
+            Posuere vita. regional</li>
+          </ul>
+          <ul class="stream">
+            <li class="avatar">
+              <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+            </li>
+            <li class="author">@hypschê | identi.ca</li>
+            <li class="answer">Proin lectus orci, venenatis
+            pharetra, egestas id, tincidunt vel, eros. Aenean
+            turpis ipsum, rhoncus vitae, posuere vitae, euismod
+            sed, ligula. Sed a lorem ut est tincidunt consectetuer.
+            Posuere vita. regional</li>
+          </ul>
+          <ul class="stream">
+            <li class="avatar">
+              <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+            </li>
+            <li class="author">@hypschê | identi.ca</li>
+            <li class="answer">Proin lectus orci, venenatis
+            pharetra, egestas id, tincidunt vel, eros. Aenean
+            turpis ipsum, rhoncus vitae, posuere vitae, euismod
+            sed, ligula. Sed a lorem ut est tincidunt consectetuer.
+            Posuere vita. regional</li>
+          </ul>
+          <ul class="stream">
+            <li class="avatar">
+              <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+            </li>
+            <li class="author">@hypschê | identi.ca</li>
+            <li class="answer">Proin lectus orci, venenatis
+            pharetra, egestas id, tincidunt vel, eros. Aenean
+            turpis ipsum, rhoncus vitae, posuere vitae, euismod
+            sed, ligula. Sed a lorem ut est tincidunt consectetuer.
+            Posuere vita. regional</li>
+          </ul>
         </div>
-      </div>
-      <div id="buzz" class="col4">
-        <ul class="stream">
-          <li class="avatar">
-            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-          </li>
-          <li class="author">@hypschê | identi.ca</li>
-          <li class="answer">Meu tempo livre é somento na parte da
-          noite, me impossibilitando marcar 
-          <a href="#">consultas</a>no post de saúde da minha
-          regional</li>
-        </ul>
-        <ul class="stream">
-          <li class="avatar">
-            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-          </li>
-          <li class="author">@hypschê | identi.ca</li>
-          <li class="answer">Proin lectus orci, venenatis pharetra,
-          egestas id, tincidunt vel, eros. Aenean turpis ipsum,
-          rhoncus vitae, posuere vitae, euismod sed, ligula. Sed a
-          lorem ut est tincidunt consectetuer. Posuere vita.
-          regional</li>
-        </ul>
-        <ul class="stream">
-          <li class="avatar">
-            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-          </li>
-          <li class="author">@hypschê | identi.ca</li>
-          <li class="answer">Proin lectus orci, venenatis pharetra,
-          egestas id, tincidunt vel, eros. Aenean turpis ipsum,
-          rhoncus vitae, posuere vitae, euismod sed, ligula. Sed a
-          lorem ut est tincidunt consectetuer. Posuere vita.
-          regional</li>
-        </ul>
-        <ul class="stream">
-          <li class="avatar">
-            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-          </li>
-          <li class="author">@hypschê | identi.ca</li>
-          <li class="answer">Proin lectus orci, venenatis pharetra,
-          egestas id, tincidunt vel, eros. Aenean turpis ipsum,
-          rhoncus vitae, posuere vitae, euismod sed, ligula. Sed a
-          lorem ut est tincidunt consectetuer. Posuere vita.
-          regional</li>
-        </ul>
-        <ul class="stream">
-          <li class="avatar">
-            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-          </li>
-          <li class="author">@hypschê | identi.ca</li>
-          <li class="answer">Proin lectus orci, venenatis pharetra,
-          egestas id, tincidunt vel, eros. Aenean turpis ipsum,
-          rhoncus vitae, posuere vitae, euismod sed, ligula. Sed a
-          lorem ut est tincidunt consectetuer. Posuere vita.
-          regional</li>
-        </ul>
-        <ul class="stream">
-          <li class="avatar">
-            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-          </li>
-          <li class="author">@hypschê | identi.ca</li>
-          <li class="answer">Proin lectus orci, venenatis pharetra,
-          egestas id, tincidunt vel, eros. Aenean turpis ipsum,
-          rhoncus vitae, posuere vitae, euismod sed, ligula. Sed a
-          lorem ut est tincidunt consectetuer. Posuere vita.
-          regional</li>
-        </ul>
       </div>
       <div class="row-end"></div>
     </div>{% endblock %} 
