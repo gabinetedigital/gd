@@ -17,8 +17,10 @@
 
 from multiprocessing import Queue, cpu_count
 from time import sleep
+
 from ad.model import Audience
 from ad.buzz.worker import Worker
+
 
 class Server(object):
     def __init__(self, workers=cpu_count()):
@@ -54,7 +56,7 @@ class Server(object):
                 .filter_by(visible=True) \
                 .all()
             for i in query:
-                self.queue.put(i)
+                self.queue.put(i.id)
                 self.instances.append(i.id)
             print query
             sleep(10)
