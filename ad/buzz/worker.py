@@ -16,14 +16,29 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import multiprocessing
+"""Module that implements a worker that will call social network
+crawlers in separated processes.
+"""
+
+from time import sleep
+from multiprocessing import Process
 import Queue
 
-class Worker(multiprocessing.Process):
+from ad.buzz.crawlers import Twitter
+from ad.model import Audience, session
+
+class Worker(Process):
+    """Class that inherits from the `multiprocessing.Process' class to
+    be executed in a separated process.
+
+    When it is executed, it looks for an audience given the id received
+    from the queue set by the server and then start looking for messages
+    in the supported social networks and save them in the database.
+    """
     def __init__(self, queue):
         self.queue = queue
         self.alive = False
-        multiprocessing.Process.__init__(self)
+        Process.__init__(self)
 
     def start(self):
         """Sets the internal alive flag to true and starts the proccess.
@@ -41,10 +56,21 @@ class Worker(multiprocessing.Process):
         """
         while self.alive:
             try:
-                audience = self.queue.get_nowait()
+                audience = Audience.query.get(self.queue.get_nowait())
+                profiles, hashtags = [], []
+                for i in audience.terms:
+                    term = str(i)
+                    if term.startswith('@'):
+                        profiles.append(term)
+                    else:
+                        hashtags.append(term)
+                for buzz in Twitter(profiles, hashtags).process():
+                    audience.buzzes.append(buzz)
+                    session.commit()
+
             except Queue.Empty:
                 try:
-                    time.sleep(3)
+                    sleep(3)
                 except KeyboardInterrupt:
                     self.alive = False
                 continue
