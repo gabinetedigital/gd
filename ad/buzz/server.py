@@ -33,6 +33,7 @@ class Server(object):
         self.workers = []
         for i in range(workers):
             self.workers.append(Worker(self.queue))
+            self.workers[i].start()
 
         # Instances being managed. We must avoid processing the same
         # audience twice in the same session
