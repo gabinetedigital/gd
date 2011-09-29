@@ -64,6 +64,8 @@ class Audience(Entity):
 class Buzz(Entity):
     using_options(shortnames=True)
 
+    owner_nick = Field(Unicode)
+    owner_email = Field(Unicode)
     content = Field(UnicodeText)
     visible = Field(Boolean, default=True)
     creation_date = Field(DateTime, default=datetime.now)
