@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""The buzzwatcher server
+"""
+
 from multiprocessing import Queue, cpu_count
 from time import sleep
 
@@ -23,6 +26,13 @@ from ad.buzz.worker import Worker
 
 
 class Server(object):
+    """This class is responsible for queueing the process of tracking
+    social network buzz about an Audience.
+
+    Specifically, this server looks for audiences added to our database
+    from time to time and when it finds one that is `visible', it's id
+    is added to a queue that will be processed by workers.
+    """
     def __init__(self, workers=cpu_count()):
         # Flag to define if our server is up and running or not
         self.alive = False
@@ -42,6 +52,8 @@ class Server(object):
         self.instances = []
 
     def start(self):
+        """Just starts our server
+        """
         self.alive = True
         self.run()
 
