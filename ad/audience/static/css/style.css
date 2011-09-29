@@ -35,15 +35,15 @@ a {
     height: 97px;
     text-indent: -9999px;
     overflow: hidden;
-    margin-top: 22px;
-    margin-left: 28px;
+    margin-top: 39px;
+    margin-left: 54px;
     position: absolute;
 }
 
 #header .login {
     float: right;
     margin-top: 22px;
-    margin-right: 25px;
+    margin-right: 54px;
     font-size: 13px;
 }
 
@@ -66,12 +66,12 @@ a {
 #header   h4 {
     text-align: right;
     margin-top: 84px;
-    margin-right: 23px;
+    margin-right: 54px;
 }
 
 #header   #social {
     float: right;
-    margin-right: 23px;
+    margin-right: 54px;
 }
 
 #header  #social .feed {
@@ -92,10 +92,10 @@ a {
 
 #header #menu {
     background: url("../imgs/menu.png") repeat scroll 0 0 transparent;
-    margin: 66px auto 0;
-    width: 922px;
     height: 37px;
     line-height: 38px;
+    margin: 66px 54px 0 54px;
+    border-radius: 8px;
 }
 #header #menu li {
     display: inline;
