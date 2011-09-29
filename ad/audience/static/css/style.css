@@ -15,6 +15,10 @@ body {
     background: url(../imgs/978-grid.png) repeat-y center top;
 }
 
+a {
+    color: #668000;
+}
+
 /** Headers **/
 
 #header {
@@ -185,7 +189,7 @@ body {
 }
 
 #container #main .content .stream a {
-    color: green;
+    color: #668000;
 }
 
 #container #main .content #streaming {
@@ -242,5 +246,5 @@ body {
 }
 
 #container #buzz  .stream a {
-    color: green;
+    color: #668000;
 }
