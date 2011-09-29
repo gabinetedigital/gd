@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Governador ao vivo</title>
+    <link type="text/css" rel="stylesheet"
+          href="{{ url_for('.static', filename='css/fbapp.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Governador ao vivo</h1>
+      <p>
+        Nullam dictum neque vitae tortor imperdiet eleifend. Pellentesque
+        habitant morbi tristique senectus et netus et malesuada fames ac
+        turpis egestas. Suspendisse sodales leo vitae libero bibendum
+        ullamcorper. In in dui massa, sit amet venenatis lorem. Sed
+        lacinia eleifend ipsum sed cursus. Pellentesque scelerisque ligula
+        vitae felis tempor nec semper massa dignissim. Vivamus ornare
+        ultricies vestibulum.
+      </p>
+
+      <div class="playerContainer">
+        <img src="{{ url_for('.static', filename='imgs/video.png') }}"
+             alt="Video Player">
+      </div>
+
+      <form class="composer" method="post">
+        <a href="#">
+          <img src="">
+        </a>
+
+        <div>
+          <textarea placeholder="Add a comment..."></textarea>
+        </div> 
+        <div class="controls">
+          <label><input type="checkbox" checked="checked"> Post to Facebook</label>
+          <label class="comment"><input type="submit" value="Comment"></label>
+        </div>
+      </form>
+
+      <ul class="buzz">
+        <li>
+          <a href="#">
+            <img src="{{ url_for('.static', filename='imgs/avatar.gif') }}">
+            <strong>John Doe</strong>
+          </a>
+          <div class="wrapper">
+            <p>
+              O problema de permissões é resolvido se as permissões the
+              chave privada (id_rsa) e do arquivo ~/.ssh/config forem 600,
+              caso contrário o servidor ignora a sua chave pois é muito
+              insegura.
+            </p>
+
+            <a href="#">Reply</a> ·
+            <a href="#">Like</a> ·
+            <a href="#">Follow Post</a> ·
+            <abbr>September 23 at 4:06pm</abbr>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">
+            <img src="{{ url_for('.static', filename='imgs/avatar.gif') }}">
+            <strong>Mary Jane</strong>
+          </a>
+          <div class="wrapper">
+            <p>
+              Ut vulputate, lectus in imperdiet venenatis, augue velit
+              iaculis augue, ut pellentesque dui diam ut velit. Quisque
+              in neque risus. Vestibulum ante ipsum primis in faucibus
+              orci luctus et ultrices posuere cubilia Curae; Fusce sit
+              amet nulla erat, quis viverra urna. Donec volutpat
+              porttitor enim vel hendrerit.
+            </p>
+
+            <a href="#">Reply</a> ·
+            <a href="#">Like</a> ·
+            <a href="#">Follow Post</a> ·
+            <abbr>September 23 at 4:06pm</abbr>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
