@@ -48,6 +48,7 @@ def new():
         inst = Audience()
         inst.title = request.form['title']
         inst.description = request.form['subject']
+        inst.visible = request.form['visible']
         terms = request.form.getlist('term')
         main = request.form['main']
         for term in terms:
@@ -79,6 +80,7 @@ def edit(aid):
     if request.method == 'POST':
         inst.title = request.form['title']
         inst.description = request.form['subject']
+        inst.visible = request.form['visible']
         
         #delete terms
         instTerm = Term.query.filter_by(audience=inst)
@@ -89,12 +91,6 @@ def edit(aid):
             newTerm = Term(hashtag=term, main=(main==term))
             inst.terms.append(newTerm)
             
-#        terms = request.form.getlist('term')
-#        for item in terms:
-#            newTerm = Term(hashtag=item)
-#            inst.terms.append(newTerm)
-#        
-        #inst.hashtag = request.form['hashtag']
         inst.owner = 'Admin'
 
         sources = request.form.getlist('source')

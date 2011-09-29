@@ -17,6 +17,11 @@
         <label>When it happens?</label>
         <input type="text" name="date" id="date" value="{{ inst.date }}">
       </li>
+      <li>
+        <label>Visible?</label>
+        <input type="radio" name="visible" id="visible" value="1" {% if inst.visible %}checked{% endif %}> Yes
+        <input type="radio" name="visible" id="visible" value="0" {% if not inst.visible %}checked{% endif %}> No
+      </li>
     </ul>
   </fieldset>
 
