@@ -75,5 +75,5 @@ class Twitter(object):
             # responsible for saving it in the database.
             buzz = Buzz(owner_nick=tweet['user']['screen_name'],
                         content=tweet['text'])
-            buzz.type_ = get_or_create(BuzzType, name='twitter')
+            buzz.type_ = get_or_create(BuzzType, name=u'twitter')[0]
             yield buzz
