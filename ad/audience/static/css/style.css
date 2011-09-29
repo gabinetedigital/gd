@@ -123,11 +123,11 @@ a {
     position: absolute;
 }
 
-#container #title .top {
+#container #title .title {
     font-size: 35px;
 }
 
-#container #title .bottom {
+#container #title .description {
     font-size: 16px;
     padding-left: 20px;
     width: 494px;
