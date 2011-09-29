@@ -84,6 +84,26 @@ class BuzzType(Entity):
     def __str__(self):
         return '<%s "%s">' % (self.__class__.__name__, self.name)
 
+# Helper functions
+
+def get_or_create(model, **kwargs):
+    """Helper function to search for an object or create it otherwise,
+    based on the Django's Model.get_or_create() method.
+    """
+    instance = model.query.filter_by(**kwargs).first()
+    if instance:
+        return instance, False
+    else:
+        params = {}
+        for k, v in kwargs.iteritems():
+            params[k] = v
+        instance = model(**params)
+        session.add(instance)
+        return instance, True
+
+
+# Database setup
+
 metadata.bind = "sqlite:///%s" % os.path.join(
     os.path.dirname(__file__), 'var', 'db')
 metadata.bind.echo = True
