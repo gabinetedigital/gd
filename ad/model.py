@@ -42,7 +42,7 @@ class Term(Entity):
     audience = ManyToOne('Audience')
 
     def __str__(self):
-        return '<%s "%s">' % (self.__class__.__name__, self.hashtag)
+        return self.hashtag
 
 class Audience(Entity):
     using_options(shortnames=True)
