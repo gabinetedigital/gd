@@ -21,7 +21,7 @@ interface.
 """
 
 from flask import Blueprint, render_template, request
-from ad.model import Audience, Term, StreamingChannel, session
+from ad.model import Audience, Term, session
 from .utils import _
 
 admin = Blueprint(
@@ -48,6 +48,7 @@ def new():
         inst = Audience()
         inst.title = request.form['title']
         inst.description = request.form['subject']
+        inst.embed = request.form['embed']
         inst.visible = request.form['visible']
         terms = request.form.getlist('term')
         main = request.form['main']
@@ -57,11 +58,12 @@ def new():
         
         inst.owner = 'Admin'
         
-        sources = request.form.getlist('source')
-        formats = request.form.getlist('format')
-        for source, fmt in zip(sources, formats):
-            channel = StreamingChannel(source=source, format=fmt)
-            inst.sources.append(channel)
+#        sources = request.form.getlist('source')
+#        formats = request.form.getlist('format')
+#        for source, fmt in zip(sources, formats):
+#            channel = StreamingChannel(source=source, format=fmt)
+#            inst.sources.append(channel)
+#            
         session.commit()
         # msg
         
@@ -80,6 +82,7 @@ def edit(aid):
     if request.method == 'POST':
         inst.title = request.form['title']
         inst.description = request.form['subject']
+        inst.embed = request.form['embed']
         inst.visible = request.form['visible']
         
         #delete terms
@@ -93,16 +96,17 @@ def edit(aid):
             
         inst.owner = 'Admin'
 
-        sources = request.form.getlist('source')
-        formats = request.form.getlist('format')
-        
+#        sources = request.form.getlist('source')
+#        formats = request.form.getlist('format')
+#        
         #delete streaming
-        inst2 = StreamingChannel.query.filter_by(audience=inst)
-        inst2.delete()
-        
-        for source, fmt in zip(sources, formats):
-            channel = StreamingChannel(source=source, format=fmt)
-            inst.sources.append(channel)
+#       inst2 = StreamingChannel.query.filter_by(audience=inst)
+#       inst2.delete()
+#        
+#       for source, fmt in zip(sources, formats):
+#           channel = StreamingChannel(source=source, format=fmt)
+#           inst.sources.append(channel)
+            
         session.commit()
         #msg
         return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
