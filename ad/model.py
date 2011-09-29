@@ -49,6 +49,7 @@ class Audience(Entity):
     using_options(shortnames=True)
 
     title = Field(Unicode(250))
+    subject = Field(UnicodeText)
     description = Field(UnicodeText)
     date = Field(DateTime)
     creation_date = Field(DateTime, default=datetime.now)

@@ -47,7 +47,8 @@ def new():
     if request.method == 'POST':
         inst = Audience()
         inst.title = request.form['title']
-        inst.description = request.form['subject']
+        inst.subject = request.form['subject']
+        inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
         terms = request.form.getlist('term')
@@ -81,7 +82,8 @@ def edit(aid):
     # Audience.query.filter(id=aid, outra_chave=valor)
     if request.method == 'POST':
         inst.title = request.form['title']
-        inst.description = request.form['subject']
+        inst.subject = request.form['subject']
+        inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
         
