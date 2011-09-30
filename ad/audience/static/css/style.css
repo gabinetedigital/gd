@@ -220,10 +220,23 @@ a {
     margin-bottom: 20px;
 }
 
-#container #main .content #misc .instructions li {
-    font-size: 18px;
-    color: #1a1a1a;
-    margin-bottom: 11px;
+#container #main .content #misc  {
+    padding-top: 10px;
+}
+
+#container #main .content #misc h2 {
+    background: url(../imgs/govescuta.png) no-repeat;
+    width: 127px;
+    height: 48px;
+    text-indent: -9999px;
+    overflow: hidden;
+    position: absolute;
+}
+
+#container #main .content #misc p {
+    margin-left: 140px;
+    font-size: 12px;
+    width: 454px;
 }
 
 /** Buzz **/
