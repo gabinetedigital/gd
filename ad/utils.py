@@ -19,6 +19,24 @@
 placed anywhere else.
 """
 
+from json import dumps as internal_dumps
+from datetime import date, datetime
+
 # It's gonna be changed by some gettext function when we start to care
 # about translating things
 _ = lambda x:x
+
+
+def _default_handler(value):
+    """Handles usually unserializable objects, currently datetime and
+    date objects, converting them to an isoformatted string
+    """
+    if isinstance(value, (date, datetime)):
+        return datetime.isoformat(value)
+
+
+def dumps(obj):
+    """Replacement for builtin `json.dumps' that handles usual
+    unserializable objects, like `datetime' instances.
+    """
+    return internal_dumps(obj, default=_default_handler)

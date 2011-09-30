@@ -20,6 +20,8 @@ from flask import current_app
 from gevent_zeromq import zmq
 from gevent import spawn, sleep
 
+from ad.utils import dumps
+
 class BuzzApp(object):
     """A WSGI application that serves socketio and proxies all other
     path calls to the main Flask app.
@@ -58,8 +60,7 @@ def notify_new_buzz(buzz):
     context = bool(current_app) and current_app.zcontext or zmq.Context()
     socket = context.socket(zmq.PUB)
     socket.connect('tcp://127.0.0.1:6000')
-    socket.send('We just got a new buzz')
-    print '---- WE`VE GOT THE POWER!'
+    socket.send(dumps(buzz.to_dict()))
 
 
 def setup():
