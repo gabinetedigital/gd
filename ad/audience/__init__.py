@@ -21,8 +21,7 @@ interface.
 """
 
 from flask import Blueprint, render_template, request
-#from ad.model import Audience, Term, StreamingChannel, session
-#from .utils import _
+from ad.model import Audience
 
 audience = Blueprint(
     'audience', __name__,
