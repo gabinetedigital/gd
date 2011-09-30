@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gevent_zeromq import zmq
-from gevent import spawn, sleep, monkey; monkey.patch_all()
+from gevent import spawn, sleep
 
 class BuzzApp(object):
     """A WSGI application that serves socketio and proxies all other
