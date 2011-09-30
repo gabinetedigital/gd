@@ -7,7 +7,9 @@ function Buzz(sockAddr, templateId) {
     });
 
     socket.on('message', function (msg) {
-        console.debug('message received: ' + msg);
+        var parsed = JSON.parse(msg);
+        var $el = $(tmpl(templateId, parsed));
+        $('#buzz').prepend($el);
     });
 
     socket.on('disconnect', function () {
@@ -15,4 +17,3 @@ function Buzz(sockAddr, templateId) {
     });
 }
 
-new Buzz();
