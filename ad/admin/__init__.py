@@ -22,7 +22,7 @@ interface.
 
 from flask import Blueprint, render_template, request
 from ad.model import Audience, Buzz, Term, session
-from .utils import _
+from ad.utils import _
 
 admin = Blueprint(
     'admin', __name__,
