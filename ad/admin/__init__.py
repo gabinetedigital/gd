@@ -123,8 +123,9 @@ def moderate(aid):
     return render_template('admin/moderate.html', inst=inst, buzz_list=buzz_list )
 @admin.route('/accept/<int:aid>/<int:bid>')
 def accept(aid, bid):
-    inst = Buzz.query.get(bid)
-    inst2 = Audience.query.get(aid)
-    inst.visible = 1
+    buzz_list = Buzz.query.filter_by(visible=0)
+    inst_b = Buzz.query.get(bid)
+    inst_a = Audience.query.get(aid)
+    inst_b.visible = 1
     session.commit()
-    return render_template('admin/moderate.html',inst=inst2)
+    return render_template('admin/moderate.html',inst=inst_a, buzz_list=buzz_list)
