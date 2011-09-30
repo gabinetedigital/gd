@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from flask import current_app
 from gevent_zeromq import zmq
 from gevent import spawn, sleep
 
@@ -53,12 +54,12 @@ def server(context):
         sock_outgoing.send(msg)
 
 
-def publisher(context):
+def notify_new_buzz(buzz):
+    context = bool(current_app) and current_app.zcontext or zmq.Context()
     socket = context.socket(zmq.PUB)
     socket.connect('tcp://127.0.0.1:6000')
-    while True:
-        socket.send('hello there')
-        sleep(0.5)
+    socket.send('We just got a new buzz')
+    print '---- WE`VE GOT THE POWER!'
 
 
 def setup():

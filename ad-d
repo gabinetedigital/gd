@@ -32,12 +32,12 @@ def run():
     app.debug = True
 
     context = sio.setup()
+    app.zcontext = context
     server = SocketIOServer(
         ('0.0.0.0', 5000),
         sio.BuzzApp(context, app),
         resource='socket.io')
     server.start()
-    sio.publisher(context)
 
 
 if __name__ == '__main__':

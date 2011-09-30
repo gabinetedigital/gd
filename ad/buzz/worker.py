@@ -24,6 +24,7 @@ from time import sleep
 from multiprocessing import Process
 import Queue
 
+from ad.buzz.sio import notify_new_buzz
 from ad.buzz.crawlers import Twitter
 from ad.model import Audience, session
 
@@ -67,6 +68,7 @@ class Worker(Process):
                 for buzz in Twitter(profiles, hashtags).process():
                     audience.buzzes.append(buzz)
                     session.commit()
+                    notify_new_buzz(buzz)
 
             except Queue.Empty:
                 try:
