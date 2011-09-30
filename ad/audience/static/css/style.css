@@ -242,8 +242,19 @@ a {
 
 /** Buzz **/
 
+#container .filter {
+    margin-top: 58px;
+    display: block;
+    background: url(../imgs/filter.png) no-repeat;
+    width: 23px;
+    height: 23px;
+    float: right;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
 #container #buzz {
-    margin-top: 100px;
+    margin-top: 87px;
     margin-left: 18px;
     height: 460px;
     overflow-y: scroll;
