@@ -116,6 +116,10 @@ a {
     padding-top: 204px;
 }
 
+#container #info-aud {
+    height: 100px;
+}
+
 #container #title {
     color: #999;
     padding-left: 54px;
