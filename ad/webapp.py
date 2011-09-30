@@ -23,6 +23,6 @@ from buzz.facebookapp import fbapp
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')
-app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(buzz, url_prefix='/buzz')
+app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(fbapp, url_prefix='/fbapp')

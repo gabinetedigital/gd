@@ -60,7 +60,7 @@ def notify_new_buzz(buzz):
     context = bool(current_app) and current_app.zcontext or zmq.Context()
     socket = context.socket(zmq.PUB)
     socket.connect('tcp://127.0.0.1:6000')
-    socket.send(dumps(buzz.to_dict()))
+    socket.send(dumps(buzz.to_dict(deep={ 'type_': {} })))
 
 
 def setup():

@@ -88,73 +88,19 @@
         </div>
         <div class="col4">
           <a class="filter" href="#">filtro</a>
-          <div id="buzz">
-            <ul class="stream">
-              <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-              </li>
-              <li class="author">@hypschê | identi.ca</li>
-              <li class="answer">Meu tempo livre é somento na parte
-              da noite, me impossibilitando marcar 
-              <a href="#">consultas</a>no post de saúde da minha
-              regional</li>
-            </ul>
-            <ul class="stream">
-              <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-              </li>
-              <li class="author">@hypschê | identi.ca</li>
-              <li class="answer">Proin lectus orci, venenatis
-              pharetra, egestas id, tincidunt vel, eros. Aenean
-              turpis ipsum, rhoncus vitae, posuere vitae, euismod
-              sed, ligula. Sed a lorem ut est tincidunt
-              consectetuer. Posuere vita. regional</li>
-            </ul>
-            <ul class="stream">
-              <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-              </li>
-              <li class="author">@hypschê | identi.ca</li>
-              <li class="answer">Proin lectus orci, venenatis
-              pharetra, egestas id, tincidunt vel, eros. Aenean
-              turpis ipsum, rhoncus vitae, posuere vitae, euismod
-              sed, ligula. Sed a lorem ut est tincidunt
-              consectetuer. Posuere vita. regional</li>
-            </ul>
-            <ul class="stream">
-              <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-              </li>
-              <li class="author">@hypschê | identi.ca</li>
-              <li class="answer">Proin lectus orci, venenatis
-              pharetra, egestas id, tincidunt vel, eros. Aenean
-              turpis ipsum, rhoncus vitae, posuere vitae, euismod
-              sed, ligula. Sed a lorem ut est tincidunt
-              consectetuer. Posuere vita. regional</li>
-            </ul>
-            <ul class="stream">
-              <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-              </li>
-              <li class="author">@hypschê | identi.ca</li>
-              <li class="answer">Proin lectus orci, venenatis
-              pharetra, egestas id, tincidunt vel, eros. Aenean
-              turpis ipsum, rhoncus vitae, posuere vitae, euismod
-              sed, ligula. Sed a lorem ut est tincidunt
-              consectetuer. Posuere vita. regional</li>
-            </ul>
-            <ul class="stream">
-              <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
-              </li>
-              <li class="author">@hypschê | identi.ca</li>
-              <li class="answer">Proin lectus orci, venenatis
-              pharetra, egestas id, tincidunt vel, eros. Aenean
-              turpis ipsum, rhoncus vitae, posuere vitae, euismod
-              sed, ligula. Sed a lorem ut est tincidunt
-              consectetuer. Posuere vita. regional</li>
-            </ul>
-          </div>
+          <ul id="buzz">
+            {% for buzz in inst.buzzes %}
+            <li>
+              <ul class="stream">
+                <li class="avatar">
+                  <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+                </li>
+                <li class="author">@{{ buzz.owner_nick }} | {{ buzz.type_.name }} </li>
+                <li class="answer">{{ buzz.content|safe }}</li>
+              </ul>
+            </li>
+            {% endfor %}
+          </ul>
           <div id="chat">
             <form>
               <textarea>The cat was playing in the
@@ -170,5 +116,28 @@
       <div id="footer" class="col12">footer</div>
       <div class="row-end"></div>
     </div></div>
+
+    <script type="text/html" id="buzzTemplate">
+      <li>
+        <ul class="stream">
+          <li class="avatar">
+            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+          </li>
+          <li class="author"><%= owner_nick %> | <%= type_.name %></li>
+          <li class="answer"><%= content %></li>
+        </ul>
+      </li>
+    </script>
+
+    <script type="text/javascript">var WEBSOCKET_ADDR = "{{ host }}";</script>
+
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='js/jquery-1.5.1.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='js/template.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
   </body>
 </html>
