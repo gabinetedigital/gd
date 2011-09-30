@@ -21,7 +21,7 @@ interface.
 """
 
 from flask import Blueprint, render_template, request
-from ad.model import Audience
+from ad.model import Audience, Term
 
 audience = Blueprint(
     'audience', __name__,
@@ -31,4 +31,5 @@ audience = Blueprint(
 @audience.route('/<int:aid>')
 def index(aid):
     inst = Audience.query.get(aid)
-    return render_template('/index.html', inst=inst)
+    inst_t = Term.query.filter_by(main=1,audience=inst).one()
+    return render_template('/index.html', inst=inst, inst_t=inst_t)

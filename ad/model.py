@@ -57,7 +57,7 @@ class Buzz(Entity):
     owner_nick = Field(Unicode)
     owner_email = Field(Unicode)
     content = Field(UnicodeText)
-    visible = Field(Boolean, default=False)
+    status = Field(Enum(u'inserted', u'approved', u'selected', u'published'), default=u'inserted')
     creation_date = Field(DateTime, default=datetime.now)
     audience = ManyToOne('Audience')
     type_ = ManyToOne('BuzzType')
