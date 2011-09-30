@@ -4,11 +4,21 @@ README file for the AD project
 Dependencies
 ~~~~~~~~~~~~
 
-If you are running a Debian based system, you just need to install the
+If you are running a Debian based system, you need to install the
 following packages:
 
  * python-elixir
- * python-flask ( 0.7.2 >= )
+ * python-flask (>=0.7.2)
+ * python-pip
+ * python-zmq
+
+And then install some softwares not packaged yet (as of the date of this
+commit)::
+
+ $ pip install gevent-socketio gevent_zeromq
+
+It is very important to notice that our app WILL NOT WORK if you install
+any version different from the 0.2.0 of the `gevent-socketio' library.
 
 Running the app
 ~~~~~~~~~~~~~~~

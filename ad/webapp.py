@@ -18,9 +18,11 @@
 from flask import Flask
 from admin import admin
 from audience import audience
+from buzz import buzz
 from buzz.facebookapp import fbapp
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(audience, url_prefix='/audience')
+app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(fbapp, url_prefix='/fbapp')

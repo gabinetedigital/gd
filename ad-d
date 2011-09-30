@@ -17,5 +17,27 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+import werkzeug.serving
+from socketio import SocketIOServer
+
 from ad.webapp import app
-app.run(host='0.0.0.0', debug=True)
+from ad.buzz import sio
+
+
+@werkzeug.serving.run_with_reloader
+def run():
+    # FIXME: This flag should be set in a config file.
+    app.debug = True
+
+    context = sio.setup()
+    server = SocketIOServer(
+        ('0.0.0.0', 5000),
+        sio.BuzzApp(context, app),
+        resource='socket.io')
+    server.start()
+    sio.publisher(context)
+
+
+if __name__ == '__main__':
+    run()

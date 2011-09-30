@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buzz</title>
+  </head>
+  <body>
+    <ul id="buzz">
+    </ul>
+    <script type="text/javascript">
+      var WEBSOCKET_ADDR = "{{ host }}";
+    </script>
+
+    <script type="text/javascript"
+            src="{{ url_for('.static', filename='js/socket.io.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('.static', filename='js/buzz.js') }}"></script>
+  </body>
+</html>
