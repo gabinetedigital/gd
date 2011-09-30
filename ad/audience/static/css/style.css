@@ -226,24 +226,10 @@ a {
     margin-bottom: 11px;
 }
 
-#container #main .content #misc .instructions li:first-child {
-    background: url(../imgs/filter.png) no-repeat;
-    display: block;
-    height: 25px;
-    padding-left: 36px;
-    line-height: 25px;
-}
-
-#container #main .content #misc .instructions li:last-child {
-    background: url(../imgs/chat.png) no-repeat;
-    padding-left: 36px;
-}
-
-
 /** Buzz **/
 
 #container .filter {
-    margin-top: 58px;
+    margin-top: 50px;
     display: block;
     background: url(../imgs/filter.png) no-repeat;
     width: 23px;
@@ -251,17 +237,19 @@ a {
     float: right;
     text-indent: -9999px;
     overflow: hidden;
+    margin-right: -17px;
 }
 
 #container #buzz {
-    margin-top: 87px;
-    margin-left: 18px;
+    margin-top: 80px;
+    margin-left: 13px;
     height: 460px;
+    width: 307px;
     overflow-y: scroll;
 }
 
 #container #buzz .stream {
-    width: 260px;
+    width: 285px;
     background: url(../imgs/line.png) no-repeat bottom;
     padding-bottom: 23px;
     margin-bottom: 10px;
@@ -279,4 +267,25 @@ a {
 
 #container #buzz  .stream a {
     color: #668000;
+}
+
+#container #chat form textarea {
+    border: 3px solid #999999;
+    height: 70px;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 300px;
+    position: absolute;
+}
+
+#container #chat form input {
+    border: 1px solid #666;
+    border-radius: 4px;
+    padding: 2px;
+    background: #666;
+    color: #FFF;
+    margin-left: 250px;
+    position: absolute;
+    margin-top: 70px;
+    float: right;
 }
