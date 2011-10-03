@@ -1,0 +1,16 @@
+
+Considerations
+~~~~~~~~~~~~~~
+
+ * All messages exchanged are serialized in the JSON format
+
+Messages of the protocol
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Bot server receives a new Audience instance to watch::
+
+  { "message": "new_audience", "data": { "id": 1 } }
+
+
+
+

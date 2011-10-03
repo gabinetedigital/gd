@@ -26,9 +26,21 @@ class BuzzApp(object):
     """A WSGI application that serves socketio and proxies all other
     path calls to the main Flask app.
     """
-    def __init__(self, context, app):
-        self.context = context
+    def __init__(self, app):
+        self.context = zmq.Context()
         self.app = app
+        self.set_server()
+
+    def set_server(self):
+        self.app.server = self.context.socket(zmq.PUB)
+        self.app.server.bind('tcp://127.0.0.1:6000')
+        self.app.send = lambda msg, data: self.send(msg, data)
+
+    def setup(self):
+        spawn(self.server, self.context)
+
+    def send(self, message, data):
+        self.app.server.send(dumps({ 'message': message, 'data': data }))
 
     def __call__(self, environ, start_response):
         # This app just handles socketio stuff, so we need to pass all
@@ -45,25 +57,5 @@ class BuzzApp(object):
             socketio.send(msg)
 
 
-def server(context):
-    sock_incoming = context.socket(zmq.SUB)
-    sock_outgoing = context.socket(zmq.PUB)
-    sock_incoming.bind('tcp://*:6000')
-    sock_outgoing.bind('inproc://queue')
-    sock_incoming.setsockopt(zmq.SUBSCRIBE, "")
-    while True:
-        msg = sock_incoming.recv()
-        sock_outgoing.send(msg)
-
-
-def notify_new_buzz(buzz):
-    context = bool(current_app) and current_app.zcontext or zmq.Context()
-    socket = context.socket(zmq.PUB)
-    socket.connect('tcp://127.0.0.1:6000')
-    socket.send(dumps(buzz.to_dict(deep={ 'type_': {} })))
-
-
-def setup():
-    context = zmq.Context()
-    spawn(server, context)
-    return context
+def send(msg, data):
+    current_app.send(msg, data)

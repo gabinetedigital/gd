@@ -18,7 +18,7 @@
 from flask import Flask
 from admin import admin
 from audience import audience
-from buzz import buzz
+from buzz.webapp import buzz
 from buzz.facebookapp import fbapp
 
 app = Flask(__name__)

@@ -22,22 +22,23 @@ crawlers in separated processes.
 
 from time import sleep
 from multiprocessing import Process
-import Queue
 
-from ad.buzz.sio import notify_new_buzz
-from ad.buzz.crawlers import Twitter
 from ad.model import Audience, session
 
 class Worker(Process):
-    """Class that inherits from the `multiprocessing.Process' class to
-    be executed in a separated process.
+    """Object that actually follows the stream of a social network.
 
-    When it is executed, it looks for an audience given the id received
-    from the queue set by the server and then start looking for messages
-    in the supported social networks and save them in the database.
+    To create a new `Worker', you need to inform the id of the audience
+    and which social network you want to follow. Just like this::
+
+      >>> Worker(1, Twitter).start()
+
+    The second param is a class that can be found in the
+    `ad.buzz.crawlers' module.
     """
-    def __init__(self, queue):
-        self.queue = queue
+    def __init__(self, aid, job):
+        self.aid = aid
+        self.job = job
         self.alive = False
         Process.__init__(self)
 
@@ -56,23 +57,18 @@ class Worker(Process):
         """Starts a social network crawler
         """
         while self.alive:
+            audience = Audience.query.get(self.aid)
+            profiles, hashtags = [], []
+            for i in audience.terms:
+                term = str(i)
+                if term.startswith('@'):
+                    profiles.append(term)
+                else:
+                    hashtags.append(term)
+            for buzz in self.job(profiles, hashtags).process():
+                audience.buzzes.append(buzz)
+                session.commit()
             try:
-                audience = Audience.query.get(self.queue.get_nowait())
-                profiles, hashtags = [], []
-                for i in audience.terms:
-                    term = str(i)
-                    if term.startswith('@'):
-                        profiles.append(term)
-                    else:
-                        hashtags.append(term)
-                for buzz in Twitter(profiles, hashtags).process():
-                    audience.buzzes.append(buzz)
-                    session.commit()
-                    notify_new_buzz(buzz)
-
-            except Queue.Empty:
-                try:
-                    sleep(3)
-                except KeyboardInterrupt:
-                    self.alive = False
-                continue
+                sleep(3)
+            except KeyboardInterrupt:
+                self.alive = False

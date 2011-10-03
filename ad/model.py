@@ -16,10 +16,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from elixir import *
 from datetime import datetime
+from elixir import *
+import elixir.events
 import os
 
+from ad.buzz import sio
 
 class Term(Entity):
     using_options(shortnames=True)
@@ -50,6 +52,11 @@ class Audience(Entity):
     def __str__(self):
         return '<%s "%s" (%d)>' % (
             self.__class__.__name__, self.description, self.date)
+
+    @elixir.events.after_insert
+    def notify(self):
+        sio.send('new_audience', { 'id': self.id })
+
 
 class Buzz(Entity):
     using_options(shortnames=True)

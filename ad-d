@@ -30,12 +30,9 @@ from ad.buzz import sio
 def run():
     # FIXME: This flag should be set in a config file.
     app.debug = True
-
-    context = sio.setup()
-    app.zcontext = context
     server = SocketIOServer(
         ('0.0.0.0', 5000),
-        sio.BuzzApp(context, app),
+        sio.BuzzApp(app),
         resource='socket.io')
     server.start()
 
