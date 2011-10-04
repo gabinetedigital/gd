@@ -16,14 +16,24 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from datetime import datetime
-from elixir import *
-import elixir.events
+"""Module that defines all models used in our app.
+
+All entity mappers are defined using the `Elixir' API and some signals
+are sent using the `sio' module.
+"""
+
 import os
+from datetime import datetime
+from elixir.events import after_insert
+from elixir import using_options, setup_all, metadata, session
+from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
+    Boolean, Enum, ManyToOne, OneToMany
 
 from ad.buzz import sio
 
 class Term(Entity):
+    """Mapper for the `term' entity
+    """
     using_options(shortnames=True)
 
     hashtag = Field(Unicode(45))
@@ -36,6 +46,8 @@ class Term(Entity):
         return self.hashtag
 
 class Audience(Entity):
+    """Mapper for the `audience' entity
+    """
     using_options(shortnames=True)
 
     title = Field(Unicode(250))
@@ -53,18 +65,22 @@ class Audience(Entity):
         return '<%s "%s" (%d)>' % (
             self.__class__.__name__, self.description, self.date)
 
-    @elixir.events.after_insert
+    @after_insert
     def notify(self):
+        """Notify our buzz system that we have a new audience"""
         sio.send('new_audience', { 'id': self.id })
 
 
 class Buzz(Entity):
+    """Mapper for the `buzz' entity
+    """
     using_options(shortnames=True)
 
     owner_nick = Field(Unicode)
     owner_email = Field(Unicode)
     content = Field(UnicodeText)
-    status = Field(Enum(u'inserted', u'approved', u'selected', u'published'), default=u'inserted')
+    status = Field(Enum(u'inserted', u'approved', u'selected', u'published'),
+                   default=u'inserted')
     creation_date = Field(DateTime, default=datetime.now)
     audience = ManyToOne('Audience')
     type_ = ManyToOne('BuzzType')
@@ -72,12 +88,15 @@ class Buzz(Entity):
     def __str__(self):
         return '<%s "%s">' % (self.__class__.__name__, self.content)
 
-    @elixir.events.after_insert
+    @after_insert
     def notify(self):
+        """Notify our buzz system that we have a new audience"""
         sio.send('new_buzz', self.to_dict(deep={ 'type_': {} }))
 
 
 class BuzzType(Entity):
+    """Mapper for the `buzztype' entity
+    """
     using_options(shortnames=True)
 
     name = Field(UnicodeText)
@@ -99,8 +118,8 @@ def get_or_create(model, **kwargs):
         return instance, False
     else:
         params = {}
-        for k, v in kwargs.iteritems():
-            params[k] = v
+        for key, val in kwargs.iteritems():
+            params[key] = val
         instance = model(**params)
         session.add(instance)
         return instance, True

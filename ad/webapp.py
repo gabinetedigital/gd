@@ -15,11 +15,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""Module that instantiates our Flask WSGI app and associates all
+implemented blueprints in various modules to this app.
+"""
+
 from flask import Flask
-from admin import admin
-from audience import audience
-from buzz.webapp import buzz
-from buzz.facebookapp import fbapp
+from ad.admin import admin
+from ad.audience import audience
+from ad.buzz.webapp import buzz
+from ad.buzz.facebookapp import fbapp
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')

@@ -37,7 +37,6 @@ Here's the flow::
 """
 
 import zmq
-from time import sleep
 from json import loads
 
 from ad.model import Audience
@@ -72,6 +71,9 @@ class Server(object):
         self.run()
 
     def process_audience(self, aid):
+        """Receives an audience id and creates a new worker for each
+        social network that should be followed for an audience."""
+
         # Watching all social networks we need here. If
         # you're going to implement a new crawler, it's the
         # best place to run it.
@@ -96,6 +98,10 @@ class Server(object):
             self.process_audience(i.id)
 
     def run(self):
+        """Waits for the `new_audience' message from the bus service
+        and, when it comes, calls the `self.process_audience()' method
+        for it.
+        """
         self.get_initials()
 
         subscriber = self.context.socket(zmq.SUB)

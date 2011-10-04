@@ -15,6 +15,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""Server-side implementation of our facebook app. Currently, it's just
+a stub.
+"""
+
 from flask import Blueprint, render_template
 
 fbapp = Blueprint(
@@ -25,4 +29,5 @@ fbapp = Blueprint(
 
 @fbapp.route('/')
 def index():
+    """Renders the public template that will be added to the facebook UI"""
     return render_template('fbapp/index.html')

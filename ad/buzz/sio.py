@@ -16,9 +16,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""Implements the WSGI app that handles socketio stuff and a bus service
+to provide a comunication layer for the components of our app.
+"""
+
 from flask import current_app
 from gevent_zeromq import zmq
-from gevent import spawn, sleep
+from gevent import spawn
 
 from ad.utils import dumps
 
@@ -33,6 +37,10 @@ class BuzzApp(object):
         self.setup()
 
     def server(self, ctx):
+        """Starts the internal server that publishes messages for the
+        processes running our crawlers. And also proxies received
+        messages for our socketio message queue.
+        """
         self.app.server = ctx.socket(zmq.PUB)
         self.app.server.bind('tcp://127.0.0.1:6000')
         self.app.send = lambda msg, data: self.send(msg, data)
@@ -48,9 +56,11 @@ class BuzzApp(object):
             publishing.send(msg)
 
     def setup(self):
+        """Spawns the internal server through gevent"""
         spawn(self.server, self.context)
 
     def send(self, message, data):
+        """Sends a message to all connected clients"""
         self.app.server.send(dumps({ 'message': message, 'data': data }))
 
     def __call__(self, environ, start_response):
@@ -69,6 +79,9 @@ class BuzzApp(object):
 
 
 def send(msg, data):
+    """Wrapper to send messages to all our connected clients if used
+    from the webapp. Otherwise, sends a message to the socketio bus
+    """
     if bool(current_app):
         return current_app.send(msg, data)
 

@@ -31,6 +31,7 @@ admin = Blueprint(
 
 @admin.route('/')
 def index():
+    """A temporary empty view"""
     return 'Please access the /audience url in your browser!'
 
 @admin.route('/audience')
@@ -54,15 +55,15 @@ def new():
         terms = request.form.getlist('term')
         main = request.form['main']
         for term in terms:
-            newTerm = Term(hashtag=term, main=(main==term))
-            inst.terms.append(newTerm)
+            newterm = Term(hashtag=term, main=(main==term))
+            inst.terms.append(newterm)
         
         inst.owner = 'Admin'
-        
         session.commit()
-        # msg
-        
-        return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
+
+        return render_template(
+            'admin/listing.html', title=_(u'Audience'),
+            audience=Audience)
     
     return render_template('admin/new.html', title=_(u'Audience'))
 
@@ -72,8 +73,6 @@ def edit(aid):
     database.
     """
     inst = Audience.query.get(aid)
-    # An improved search with more params.
-    # Audience.query.filter(id=aid, outra_chave=valor)
     if request.method == 'POST':
         inst.title = request.form['title']
         inst.subject = request.form['subject']
@@ -81,52 +80,59 @@ def edit(aid):
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
         
-        #delete terms
-        instTerm = Term.query.filter_by(audience=inst)
-        instTerm.delete()
+        # deleting all terms
+        term = Term.query.filter_by(audience=inst)
+        term.delete()
+
+        # adding new terms defined by the user
         terms = request.form.getlist('term')
         main = request.form['main']
         for term in terms:
-            newTerm = Term(hashtag=term, main=(main==term))
-            inst.terms.append(newTerm)
-            
+            newterm = Term(hashtag=term, main=(main==term))
+            inst.terms.append(newterm)
+
+        # temporary owner for all objects created in the admin
+        # interface.
         inst.owner = 'Admin'
 
         session.commit()
-        #msg
-        return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
+        return render_template(
+            'admin/listing.html', title=_(u'Audience'),
+            audience=Audience)
 
-    return render_template('admin/edit.html', title=_(u'Audience'), inst=inst)
+    return render_template(
+        'admin/edit.html', title=_(u'Audience'), inst=inst)
 
 @admin.route('/delete/<int:aid>', methods=['GET', 'POST'])
 def remove(aid):
-    """Delete audience and streaming in the
-    database.
-    """
-    inst = Audience.query.get(aid)
-    #inst2 = StreamingChannel.query.filter_by(audience=inst)
-    inst2 = Term.query.filter_by(audience=inst)
-    
-    #inst3.delete()
-    inst2.delete()
-    inst.delete()
-    
+    """Delete an audience instance and its related terms in the
+    database."""
+    audience = Audience.query.get(aid)
+    term = Term.query.filter_by(audience=audience)
+
+    term.delete()
+    audience.delete()
+
     session.commit()
-    return render_template('admin/listing.html', title=_(u'Audience'),audience=Audience)
+    return render_template(
+        'admin/listing.html', title=_(u'Audience'), audience=Audience)
 
 @admin.route('/moderate/<int:aid>')
 def moderate(aid):
-    """Returns a list of buzzes for moderation.
-    """
+    """Returns a list of buzzes for moderation."""
     inst = Audience.query.get(aid)
-    buzz_list = Buzz.query.filter_by(status='inserted',audience=inst)
-    
-    return render_template('admin/moderate.html', inst=inst, buzz_list=buzz_list )
+    buzz_list = Buzz.query.filter_by(status='inserted', audience=inst)
+
+    return render_template(
+        'admin/moderate.html', inst=inst, buzz_list=buzz_list)
+
 @admin.route('/accept/<int:aid>/<int:bid>')
 def accept(aid, bid):
+    """Approve messages to appear in the main buzz area"""
     inst_b = Buzz.query.get(bid)
     inst_a = Audience.query.get(aid)
-    buzz_list = Buzz.query.filter_by(status='inserted',audience=inst_a)
+    buzz_list = Buzz.query.filter_by(status='inserted', audience=inst_a)
     inst_b.status = u'approved'
     session.commit()
-    return render_template('admin/moderate.html',inst=inst_a, buzz_list=buzz_list)
+    return render_template(
+        'admin/moderate.html', inst=inst_a, buzz_list=buzz_list)
