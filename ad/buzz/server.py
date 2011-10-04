@@ -71,9 +71,33 @@ class Server(object):
         self.alive = True
         self.run()
 
-    def run(self):
+    def process_audience(self, aid):
+        # Watching all social networks we need here. If
+        # you're going to implement a new crawler, it's the
+        # best place to run it.
+        worker = Worker(aid, Twitter)
+        worker.start()
+
+        # Saving the just created worker on our workers list
+        # based on the audience id
+        workers = self.workers.get(aid)
+        if workers is None:
+            self.workers[aid] = []
+            self.workers[aid].append(worker)
+        
+
+    def get_initials(self):
         """Finds all visible audiences and add them to be watched
         """
+        query = Audience.query \
+            .filter_by(visible=True) \
+            .all()
+        for i in query:
+            self.process_audience(i.id)
+
+    def run(self):
+        self.get_initials()
+
         subscriber = self.context.socket(zmq.SUB)
         subscriber.setsockopt(zmq.SUBSCRIBE, '')
         subscriber.connect('tcp://127.0.0.1:6000')
@@ -85,20 +109,7 @@ class Server(object):
                 # We're waiting for a single kind of message, that
                 # brings a new audience to be watched.
                 if msg['message'] == 'new_audience':
-                    aid = msg['data']['id']
-
-                    # Watching all social networks we need here. If
-                    # you're going to implement a new crawler, it's the
-                    # best place to run it.
-                    worker = Worker(aid, Twitter)
-                    worker.start()
-
-                    # Saving the just created worker on our workers list
-                    # based on the audience id
-                    workers = self.workers.get(aid)
-                    if workers is None:
-                        self.workers[aid] = []
-                    self.workers[aid].append(worker)
+                    self.process_audience(msg['data']['id'])
 
 
 if __name__ == '__main__':

@@ -72,6 +72,10 @@ class Buzz(Entity):
     def __str__(self):
         return '<%s "%s">' % (self.__class__.__name__, self.content)
 
+    @elixir.events.after_insert
+    def notify(self):
+        sio.send('new_buzz', self.to_dict(deep={ 'type_': {} }))
+
 
 class BuzzType(Entity):
     using_options(shortnames=True)

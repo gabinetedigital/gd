@@ -22,19 +22,30 @@ from gevent import spawn, sleep
 
 from ad.utils import dumps
 
+
 class BuzzApp(object):
     """A WSGI application that serves socketio and proxies all other
     path calls to the main Flask app.
     """
-    def __init__(self, app):
+    def __init__(self, app=None):
         self.context = zmq.Context()
         self.app = app
-        self.set_server()
+        self.setup()
 
-    def set_server(self):
-        self.app.server = self.context.socket(zmq.PUB)
+    def server(self, ctx):
+        self.app.server = ctx.socket(zmq.PUB)
         self.app.server.bind('tcp://127.0.0.1:6000')
         self.app.send = lambda msg, data: self.send(msg, data)
+
+        # Things relative to socketio
+        incoming = ctx.socket(zmq.PULL)
+        incoming.bind('tcp://127.0.0.1:6001')
+
+        publishing = self.context.socket(zmq.PUB)
+        publishing.bind('inproc://queue')
+        while True:
+            msg = incoming.recv()
+            publishing.send(msg)
 
     def setup(self):
         spawn(self.server, self.context)
@@ -58,4 +69,11 @@ class BuzzApp(object):
 
 
 def send(msg, data):
-    current_app.send(msg, data)
+    if bool(current_app):
+        return current_app.send(msg, data)
+
+    # This code will only run when no app is binded. Which means we
+    # don't need to provide any socketio thing
+    server = zmq.Context().socket(zmq.PUSH)
+    server.connect('tcp://127.0.0.1:6001')
+    server.send(dumps({ 'message': msg, 'data': data }))
