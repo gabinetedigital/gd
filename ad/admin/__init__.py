@@ -20,7 +20,7 @@
 interface.
 """
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from ad.model import Audience, Buzz, Term, session
 from ad.utils import _
 
@@ -29,16 +29,19 @@ admin = Blueprint(
     template_folder='templates',
     static_folder='static')
 
+
 @admin.route('/')
 def index():
     """A temporary empty view"""
     return 'Please access the /audience url in your browser!'
+
 
 @admin.route('/audience')
 def audiences():
     """Main view, lists all registered audiencces"""
     return render_template('admin/listing.html', title=_(u'Audience'),
                            audience=Audience)
+
 
 @admin.route('/audience/new', methods=('GET', 'POST'))
 def new():
@@ -66,6 +69,7 @@ def new():
             audience=Audience)
     
     return render_template('admin/new.html', title=_(u'Audience'))
+
 
 @admin.route('/audience/<int:aid>', methods=('GET', 'POST'))
 def edit(aid):
@@ -96,12 +100,11 @@ def edit(aid):
         inst.owner = 'Admin'
 
         session.commit()
-        return render_template(
-            'admin/listing.html', title=_(u'Audience'),
-            audience=Audience)
+        return redirect(url_for('.audiences'))
 
     return render_template(
         'admin/edit.html', title=_(u'Audience'), inst=inst)
+
 
 @admin.route('/delete/<int:aid>', methods=['GET', 'POST'])
 def remove(aid):
@@ -109,30 +112,24 @@ def remove(aid):
     database."""
     audience = Audience.query.get(aid)
     term = Term.query.filter_by(audience=audience)
-
     term.delete()
     audience.delete()
-
     session.commit()
-    return render_template(
-        'admin/listing.html', title=_(u'Audience'), audience=Audience)
+    return redirect(url_for('.audiences'))
+
 
 @admin.route('/moderate/<int:aid>')
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
-    inst = Audience.query.get(aid)
-    buzz_list = Buzz.query.filter_by(status='inserted', audience=inst)
-
+    audience = Audience.query.get(aid)
     return render_template(
-        'admin/moderate.html', inst=inst, buzz_list=buzz_list)
+        'admin/moderate.html', audience=audience)
+
 
 @admin.route('/accept/<int:aid>/<int:bid>')
 def accept(aid, bid):
     """Approve messages to appear in the main buzz area"""
-    inst_b = Buzz.query.get(bid)
-    inst_a = Audience.query.get(aid)
-    buzz_list = Buzz.query.filter_by(status='inserted', audience=inst_a)
-    inst_b.status = u'approved'
+    buzz = Buzz.query.get(bid)
+    buzz.status = u'approved'
     session.commit()
-    return render_template(
-        'admin/moderate.html', inst=inst_a, buzz_list=buzz_list)
+    return redirect(url_for('.moderate', aid=buzz.audience.id))
