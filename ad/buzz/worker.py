@@ -66,6 +66,7 @@ class Worker(Process):
                 else:
                     hashtags.append(term)
             for buzz in self.job(profiles, hashtags).process():
+                buzz.audience = audience
                 audience.buzzes.append(buzz)
                 session.commit()
             try:
