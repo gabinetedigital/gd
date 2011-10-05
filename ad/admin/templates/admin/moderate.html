@@ -1,28 +1,47 @@
 {% extends 'admin/base.html' %}
 {% block content %}
 <div class="subcontent">
+  <form>
   <ul class="listing">
     <li>
       <strong class="subject">Moderation</strong>
     </li>
+    <li class="massive">  o que deseja fazer?
+
+    <select>
+        <option value="">---</option>
+        <option value="accept">Accept</option>
+        <option value="remove">Remove</option>
+        <option value="sugest">Sugest</option>
+    </select>
+</li>
+</li>
     {% for i in buzz_list %}
-    <li class="last">
+    <li class="{{ loop.cycle('dark', 'light') }}">
+     <input type="checkbox">
       <p>{{ i.content }}</p>
       <div class="controls">
-        <a href="{{ url_for('.accept', bid=i.id) }}"
+        <a href="{{ url_for('.accept', bid=i.id) }}" class="accept"
            title="Accept this buzz">
           Accept
         </a>
 
         <a href="{{ url_for('.delete_buzz', bid=i.id) }}"
-           title="Delete this audience"
+           title="Delete this buzz" class="remove"
            class="remove">
           Remove
+        </a>
+        <!-- FIXME Colocar o caminho correto para a função --!>
+        <a href="{{ url_for('.delete_buzz', bid=i.id) }}"
+           title="Suggest this buzz" class="suggest"
+           class="suggest">
+          Suggest
         </a>
 
       </div>
     </li>
     {% endfor  %}
   </ul>
+  </form>
 </div>
 {% endblock %}
