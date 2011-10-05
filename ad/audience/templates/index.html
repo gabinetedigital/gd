@@ -46,8 +46,8 @@
       <div id="info-aud" class="row">
         <div class="col7">
           <div id="title">
-            <p class="title">{{ inst.title }}</p>
-            <p class="description">{{ inst.subject }}</p>
+            <p class="title">{{ audience.title }}</p>
+            <p class="description">{{ audience.subject }}</p>
           </div>
         </div>
         <div class="col5">
@@ -59,7 +59,7 @@
           </div>
           <div id="tag">
             <p>Participe também pela</p>
-            <h3>{{ inst.get_main_term() }}</h3>
+            <h3>{{ audience.get_main_term() }}</h3>
           </div>
         </div>
         <div class="row-end"></div>
@@ -82,14 +82,14 @@
             <div id="streaming"></div>
             <div id="misc">
               <h2>Governo Escuta</h2>
-              <p>{{ inst.description }}</p>
+              <p>{{ audience.description }}</p>
             </div>
           </div>
         </div>
         <div class="col4">
           <a class="filter" href="#">filtro</a>
           <ul id="buzz">
-            {% for buzz in inst.buzzes %}
+            {% for buzz in audience.buzzes %}
             <li>
               <ul class="stream">
                 <li class="avatar">

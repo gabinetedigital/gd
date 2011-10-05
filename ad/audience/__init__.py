@@ -37,4 +37,4 @@ def index(aid):
     host = request.host.split(':')[0]
     audience = Audience.query.get(aid)
     return render_template(
-        '/index.html', inst=audience, host=host)
+        '/index.html', audience=audience, host=host)
