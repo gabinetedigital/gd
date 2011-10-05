@@ -12,5 +12,10 @@ Bot server receives a new Audience instance to watch::
   { "message": "new_audience", "data": { "id": 1 } }
 
 
+Crawlers sends back to the web app the following message when a new buzz
+is created:
 
-
+  { "message": "new_buzz", "data": { "status": "inserted",
+    "owner_nick": "<nick>",
+    "owner_email": null,
+     "creation_date": "2011-10-03T21:03:02.865596", "content": "..." } }
