@@ -1,4 +1,11 @@
 {% extends 'admin/base.html' %}
+
+{% block js %}
+<script type="text/javascript"
+        src="{{ url_for('.static', filename='js/audience.js') }}">
+</script>
+{% endblock %}
+
 {% block content %}
 <form id="form_new" name="form_new" method="post" action="{{ url_for('.new') }}" class="subcontent">
   <fieldset class="default">
