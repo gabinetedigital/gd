@@ -15,7 +15,7 @@ following packages:
 And then install some softwares not packaged yet (as of the date of this
 commit)::
 
- $ pip install gevent-socketio gevent_zeromq
+ $ pip install gevent-socketio gevent_zeromq tweetstream
 
 It is very important to notice that our app WILL NOT WORK if you install
 any version different from the 0.2.0 of the `gevent-socketio' library.
