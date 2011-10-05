@@ -2,16 +2,22 @@
 {% block content %}
 <div class="subcontent">
   <ul class="listing">
-      <li>
-          <strong class="subject">Moderation</strong>
-      </li>   
-   {% for i in buzz_list %} 
+    <li>
+      <strong class="subject">Moderation</strong>
+    </li>
+    {% for i in buzz_list %}
     <li class="last">
-        <p>{{ i.content }}</p>
-     <div class="controls">
-        <a href="{{ url_for('.accept', aid=inst.id,bid=i.id) }}">
-          <img src="{{ url_for('.static', filename='imgs/bt_edit.png') }}"
-               alt="Accept this buzz">
+      <p>{{ i.content }}</p>
+      <div class="controls">
+        <a href="{{ url_for('.accept', aid=audience.id, bid=i.id) }}"
+           title="Accept this buzz">
+          Accept
+        </a>
+
+        <a href="{{ url_for('.remove', aid=i.id) }}"
+           title="Remove this audience"
+           class="remove">
+          Remove
         </a>
         <a href="{{ url_for('.deleteBuzz', aid=inst.id,bid=i.id) }}">
           <img src="{{ url_for('.static', filename='imgs/bt_remove.png') }}"

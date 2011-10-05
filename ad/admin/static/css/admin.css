@@ -73,3 +73,6 @@ ul.listing .subject { font-size:18px; color:#4e9a06; margin-right:20px; }
 ul.listing .date { color:#a3a3a3; font-size:18px; font-weight:bold; font-style:normal; }
 ul.listing p { font-size:18px; margin:10px 0; }
 ul.listing .controls { text-align:right; margin-bottom:10px; }
+ul.listing .controls a { color:#3465a4; font-size:x-small; margin-left:10px; }
+ul.listing .controls a.remove { color:#cc0000; }
+ul.listing .controls a:hover { text-decoration:underline; }

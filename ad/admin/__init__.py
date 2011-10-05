@@ -21,6 +21,7 @@ interface.
 """
 
 from flask import Blueprint, render_template, request, redirect, url_for
+from sqlalchemy import desc
 from ad.model import Audience, Buzz, Term, session
 from ad.utils import _
 
@@ -122,8 +123,11 @@ def remove(aid):
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
     audience = Audience.query.get(aid)
+    buzz_list = Buzz.query \
+        .filter_by(audience=audience) \
+        .order_by(desc('creation_date'))
     return render_template(
-        'admin/moderate.html', audience=audience)
+        'admin/moderate.html', audience=audience, buzz_list=buzz_list)
 
 
 @admin.route('/accept/<int:aid>/<int:bid>')

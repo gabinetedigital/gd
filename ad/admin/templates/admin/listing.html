@@ -9,17 +9,18 @@
         <p>{{ i.title }}</p>
       
       <div class="controls">
-        <a href="{{ url_for('.moderate', aid=i.id) }}">
-          <img src="{{ url_for('.static', filename='imgs/bt_edit.png') }}"
-               alt="Moderate this audience">
+        <a href="{{ url_for('.moderate', aid=i.id) }}"
+           title="Moderate this audience">
+          Moderate
         </a>  
-        <a href="{{ url_for('.edit', aid=i.id) }}">
-          <img src="{{ url_for('.static', filename='imgs/bt_edit.png') }}"
-               alt="Edit this audience">
+        <a href="{{ url_for('.edit', aid=i.id) }}"
+           title="Edit this audience">
+          Edit
         </a>
-        <a href="{{ url_for('.remove', aid=i.id) }}">
-          <img src="{{ url_for('.static', filename='imgs/bt_remove.png') }}"
-               alt="Remove this audience">
+        <a href="{{ url_for('.remove', aid=i.id) }}"
+           title="Remove this audience"
+           class="remove">
+          Remove
         </a>
       </div>
     </li>
