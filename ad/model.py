@@ -70,6 +70,10 @@ class Audience(Entity):
         """Notify our buzz system that we have a new audience"""
         sio.send('new_audience', { 'id': self.id })
 
+    def get_main_term(self):
+        """Returns the main term of the current audience"""
+        return Term.query.filter_by(main=1, audience=self).one().hashtag
+
 
 class Buzz(Entity):
     """Mapper for the `buzz' entity

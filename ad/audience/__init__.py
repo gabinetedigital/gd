@@ -35,7 +35,6 @@ def index(aid):
     # Removing the port from host info. This will be used to bind
     # socket.io client API to our server.
     host = request.host.split(':')[0]
-    inst = Audience.query.get(aid)
-    inst_t = Term.query.filter_by(main=1, audience=inst).one()
+    audience = Audience.query.get(aid)
     return render_template(
-        '/index.html', inst=inst, inst_t=inst_t, host=host)
+        '/index.html', inst=audience, host=host)
