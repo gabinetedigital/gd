@@ -82,6 +82,7 @@ class Buzz(Entity):
 
     owner_nick = Field(Unicode)
     owner_email = Field(Unicode)
+    owner_avatar = Field(Unicode)
     content = Field(UnicodeText)
     status = Field(Enum(u'inserted', u'approved', u'selected', u'published'),
                    default=u'inserted')

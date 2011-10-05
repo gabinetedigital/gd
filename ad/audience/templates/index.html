@@ -93,7 +93,7 @@
             <li>
               <ul class="stream">
                 <li class="avatar">
-                  <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+                  <img src="{{ buzz.owner_avatar }}" />
                 </li>
                 <li class="author">@{{ buzz.owner_nick }} | {{ buzz.type_.name }} </li>
                 <li class="answer">{{ buzz.content|safe }}</li>
@@ -128,7 +128,7 @@
       <li>
         <ul class="stream">
           <li class="avatar">
-            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+            <img src="<%= obj.owner_avatar %>" />
           </li>
           <li class="author"><%= obj.owner_nick %> | <%= obj.type_.name %></li>
           <li class="answer"><%= obj.content %></li>
