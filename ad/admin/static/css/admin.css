@@ -21,7 +21,7 @@ h3.title { font-family:Cantarell; color:#ce5c00; font-size:16px; }
   background:url(../imgs/bg_tbselected.png) 50% 50px no-repeat;
   height:63px; }
 .toolbar li a { display:block; color:#fff; text-decoration:none;
-  padding:12px 28px; }
+  padding:14px 28px; }
 .toolbar li.selected a { background:#729fcf; }
 .toolbar li.selected.first a {
   border-top-left-radius:10px; border-bottom-left-radius:10px; }
