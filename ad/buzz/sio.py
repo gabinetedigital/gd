@@ -90,3 +90,4 @@ def send(msg, data):
     server = zmq.Context().socket(zmq.PUSH)
     server.connect('tcp://127.0.0.1:6001')
     server.send(dumps({ 'message': msg, 'data': data }))
+    server.close()
