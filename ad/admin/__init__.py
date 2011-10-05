@@ -107,7 +107,7 @@ def edit(aid):
         'admin/edit.html', title=_(u'Audience'), inst=inst)
 
 
-@admin.route('/delete/<int:aid>', methods=['GET', 'POST'])
+@admin.route('/audience/<int:aid>/delete', methods=['GET', 'POST'])
 def remove(aid):
     """Delete an audience instance and its related terms in the
     database."""
@@ -119,7 +119,7 @@ def remove(aid):
     return redirect(url_for('.audiences'))
 
 
-@admin.route('/moderate/<int:aid>')
+@admin.route('/audience/<int:aid>/moderate')
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
     audience = Audience.query.get(aid)
@@ -130,21 +130,20 @@ def moderate(aid):
         'admin/moderate.html', audience=audience, buzz_list=buzz_list)
 
 
-@admin.route('/accept/<int:aid>/<int:bid>')
-def accept(aid, bid):
+@admin.route('/buzz/<int:bid>/accept')
+def accept(bid):
     """Approve messages to appear in the main buzz area"""
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
     session.commit()
     return redirect(url_for('.moderate', aid=buzz.audience.id))
 
-@admin.route('/deleteaudience/<int:aid>/<int:bid>')
-def deleteBuzz(aid,bid):
+
+@admin.route('/buzz/<int:bid>/delete')
+def delete_buzz(bid):
     """Delete Buzz.
     """
-    inst_a = Audience.query.get(aid)
-    buzz_list = Buzz.query.filter_by(status='inserted',audience=inst_a)
-    buzzDelete = Buzz.query.get(bid)
-    buzzDelete.delete()
+    buzz = Buzz.query.get(bid)
+    buzz.delete()
     session.commit()
-    return render_template('admin/moderate.html',inst=inst_a, buzz_list=buzz_list)
+    return redirect(url_for('.moderate', aid=buzz.audience.id))

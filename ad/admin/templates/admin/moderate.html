@@ -9,20 +9,17 @@
     <li class="last">
       <p>{{ i.content }}</p>
       <div class="controls">
-        <a href="{{ url_for('.accept', aid=audience.id, bid=i.id) }}"
+        <a href="{{ url_for('.accept', bid=i.id) }}"
            title="Accept this buzz">
           Accept
         </a>
 
-        <a href="{{ url_for('.remove', aid=i.id) }}"
-           title="Remove this audience"
+        <a href="{{ url_for('.delete_buzz', bid=i.id) }}"
+           title="Delete this audience"
            class="remove">
           Remove
         </a>
-        <a href="{{ url_for('.deleteBuzz', aid=inst.id,bid=i.id) }}">
-          <img src="{{ url_for('.static', filename='imgs/bt_remove.png') }}"
-               alt="Delete this buzz">
-        </a> 
+
       </div>
     </li>
     {% endfor  %}
