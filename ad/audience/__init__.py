@@ -22,6 +22,7 @@ interface.
 
 from flask import Blueprint, render_template, request
 from ad.model import Audience, Term
+from ad.utils import dumps
 
 audience = Blueprint(
     'audience', __name__,
@@ -30,11 +31,24 @@ audience = Blueprint(
 
 @audience.route('/<int:aid>')
 def index(aid):
-    """Renders an audience with its public template
-    """
+    """Renders an audience with its public template"""
     # Removing the port from host info. This will be used to bind
     # socket.io client API to our server.
     host = request.host.split(':')[0]
     audience = Audience.query.get(aid)
     return render_template(
         '/index.html', audience=audience, host=host)
+
+
+@audience.route('/<int:aid>/public_buzz')
+def public_buzz(aid):
+    """Returns the public buzz of an audience in JSON format"""
+    return dumps([buzz.to_dict(deep={ 'type_': {} })
+                  for buzz in Audience.query.get(aid).get_public_buzz()])
+
+
+@audience.route('/<int:aid>/moderated_buzz')
+def moderated_buzz(aid):
+    """Returns the moderated buzz of an audience in JSON format"""
+    return dumps([buzz.to_dict(deep={ 'type_': {} })
+                  for buzz in Audience.query.get(aid).get_moderated_buzz()])

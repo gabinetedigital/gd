@@ -87,9 +87,9 @@
           </div>
         </div>
         <div class="col4">
-          <a class="filter" href="#">filtro</a>
+          <a class="filter" href="javascript:;">filtro</a>
           <ul id="buzz">
-            {% for buzz in audience.buzzes %}
+            {% for buzz in audience.get_moderated_buzz() %}
             <li>
               <ul class="stream">
                 <li class="avatar">
@@ -136,6 +136,10 @@
       </li>
     </script>
 
+    <script type="text/javascript">
+      var BASE_URL = "{{ request.url_root }}";
+      var CURRENT_URL = "{{ request.url }}";
+    </script>
     <script type="text/javascript"
             src="{{ url_for('static', filename='js/jquery-1.5.1.min.js') }}"></script>
     <script type="text/javascript"
@@ -145,6 +149,8 @@
     <script type="text/javascript"
             src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
     <script type="text/javascript">new Buzz("{{ host }}", "buzzTemplate");</script>
+    <script type="text/javascript"
+            src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 
   </body>
 </html>

@@ -24,6 +24,7 @@ are sent using the `sio' module.
 
 import os
 from datetime import datetime
+from sqlalchemy import not_, desc
 from elixir.events import after_insert
 from elixir import using_options, setup_all, metadata, session
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
@@ -73,6 +74,21 @@ class Audience(Entity):
     def get_main_term(self):
         """Returns the main term of the current audience"""
         return Term.query.filter_by(main=1, audience=self).one().hashtag
+
+    def get_public_buzz(self):
+        """Returns the public notice buzz"""
+        return Buzz.query \
+            .filter_by(audience=self) \
+            .order_by(desc('creation_date')) \
+            .all()
+
+    def get_moderated_buzz(self):
+        """Returns the moderated notice buzz"""
+        return Buzz.query \
+            .filter_by(audience=self) \
+            .filter(not_(Buzz.status.in_(['inserted']))) \
+            .order_by(desc('creation_date')) \
+            .all()
 
 
 class Buzz(Entity):
