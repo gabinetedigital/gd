@@ -133,3 +133,14 @@ def accept(aid, bid):
     buzz.status = u'approved'
     session.commit()
     return redirect(url_for('.moderate', aid=buzz.audience.id))
+
+@admin.route('/deleteaudience/<int:aid>/<int:bid>')
+def deleteBuzz(aid,bid):
+    """Delete Buzz.
+    """
+    inst_a = Audience.query.get(aid)
+    buzz_list = Buzz.query.filter_by(status='inserted',audience=inst_a)
+    buzzDelete = Buzz.query.get(bid)
+    buzzDelete.delete()
+    session.commit()
+    return render_template('admin/moderate.html',inst=inst_a, buzz_list=buzz_list)
