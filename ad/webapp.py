@@ -19,6 +19,15 @@
 implemented blueprints in various modules to this app.
 """
 
+if __name__ == '__main__':
+    import sys
+    # Ugly but will help us to run the application in debug mode when we
+    # need. This way, the socketio and all the intercommunication stuff
+    # will not be started. The ad-d script will be responsible for that
+    # step when it is needed.
+    sys.path.append('..')
+
+
 from flask import Flask
 from ad.admin import admin
 from ad.audience import audience
@@ -30,3 +39,7 @@ app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
