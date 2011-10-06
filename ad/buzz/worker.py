@@ -20,10 +20,9 @@
 crawlers in separated processes.
 """
 
-from time import sleep
 from multiprocessing import Process
-
 from ad.model import Audience, session
+
 
 class Worker(Process):
     """Object that actually follows the stream of a social network.
@@ -65,11 +64,10 @@ class Worker(Process):
                     profiles.append(term)
                 else:
                     hashtags.append(term)
-            for buzz in self.job(profiles, hashtags).process():
-                buzz.audience = audience
-                audience.buzzes.append(buzz)
-                session.commit()
             try:
-                sleep(3)
+                for buzz in self.job(profiles, hashtags).process():
+                    buzz.audience = audience
+                    audience.buzzes.append(buzz)
+                    session.commit()
             except KeyboardInterrupt:
                 self.alive = False

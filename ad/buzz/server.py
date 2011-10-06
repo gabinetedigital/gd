@@ -109,13 +109,15 @@ class Server(object):
         subscriber.connect('tcp://127.0.0.1:6000')
 
         while self.alive:
-            while True:
+            try:
                 msg = loads(subscriber.recv())
+            except KeyboardInterrupt:
+                break
 
-                # We're waiting for a single kind of message, that
-                # brings a new audience to be watched.
-                if msg['message'] == 'new_audience':
-                    self.process_audience(msg['data']['id'])
+            # We're waiting for a single kind of message, that brings a
+            # new audience to be watched.
+            if msg['message'] == 'new_audience':
+                self.process_audience(msg['data']['id'])
 
 
 if __name__ == '__main__':
