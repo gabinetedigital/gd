@@ -1,7 +1,7 @@
 {% extends 'admin/base.html' %}
 {% block content %}
 <div class="subcontent moderate">
-  <form>
+  <form id="batch" method="post" action="{{ url_for('.batch') }}">
     <h2 class="subject">Moderation</h2>
     <div class="massive">
       <label>Show:</label>
@@ -11,7 +11,7 @@
          href="{{ url_for('.moderate', aid=audience.id) }}?status=accepted">Accepted</a>
 
       <label>Batch actions:
-        <select>
+        <select name="action" onchange="$('#batch').submit()">
           <option value="">---</option>
           <option value="accept">Accept</option>
           <option value="remove">Remove</option>
@@ -23,7 +23,7 @@
     <ul class="listing">
       {% for i in buzz_list %}
       <li class="{{ loop.cycle('dark', 'light') }}">
-        <input type="checkbox">
+        <input name="notice" value="{{ i.id }}" type="checkbox">
         <p>{{ i.content }}</p>
         <div class="controls">
           <a href="{{ url_for('.accept', bid=i.id) }}" class="accept"

@@ -134,6 +134,19 @@ def moderate(aid):
         'admin/moderate.html', audience=audience, buzz_list=buzz_list)
 
 
+@admin.route('/audience/batch', methods=('post',))
+def batch():
+    """Batch processing a list of buzz notices"""
+    action = request.form['action']
+    notices = Buzz.query.filter(Buzz.id.in_(request.form.getlist('notice')))
+    { 'accept': lambda: [setattr(i, 'status', u'approved') for i in notices],
+      'remove': lambda: [i.delete() for i in notices],
+      'suggest': lambda: [setattr(i, 'status', u'selected') for i in notices],
+    }[action]()
+    session.commit()
+    return msg.ok('Notices processed: %s' % action)
+
+
 @admin.route('/buzz/<int:bid>/accept')
 def accept(bid):
     """Approve messages to appear in the main buzz area"""
