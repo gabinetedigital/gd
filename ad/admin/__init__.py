@@ -134,6 +134,19 @@ def moderate(aid):
         'admin/moderate.html', audience=audience, buzz_list=buzz_list)
 
 
+@admin.route('/audience/<int:aid>/publish')
+def publish(aid):
+    """Returns a list of buzzes for publication."""
+    audience = Audience.query.get(aid)
+    status = Buzz.status.in_([u'published'])
+    buzz_list = Buzz.query \
+        .filter_by(audience=audience) \
+        .filter(status) \
+        .order_by(desc('creation_date'))
+    return render_template(
+        'admin/publish.html', audience=audience, buzz_list=buzz_list)
+        
+
 @admin.route('/audience/batch', methods=('post',))
 def batch():
     """Batch processing a list of buzz notices"""
@@ -156,9 +169,27 @@ def accept(bid):
     return msg.ok('Buzz accepted')
 
 
+@admin.route('/buzz/<int:bid>/select')
+def select_buzz(bid):
+    """suggest messages to publish"""
+    buzz = Buzz.query.get(bid)
+    buzz.status = u'selected'
+    session.commit()
+    return msg.ok('Buzz selected')
+
+
 @admin.route('/buzz/<int:bid>/delete')
 def delete_buzz(bid):
     """Delete Buzz"""
     Buzz.query.get(bid).delete()
     session.commit()
     return msg.ok('Buzz deleted successfuly')
+
+
+@admin.route('/buzz/<int:bid>/publish')
+def publish_buzz(bid):
+    """publish messages"""
+    buzz = Buzz.query.get(bid)
+    buzz.status = u'published'
+    session.commit()
+    return msg.ok('Buzz published')

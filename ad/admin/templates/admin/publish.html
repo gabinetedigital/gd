@@ -2,13 +2,13 @@
 {% block content %}
 <div class="subcontent moderate">
   <form id="batch" method="post" action="{{ url_for('.batch') }}">
-    <h2 class="subject">Moderation</h2>
+    <h2 class="subject">Publication</h2>
     <div class="massive">
       <label>Show:</label>
       <a {% if request.values.get('status') == 'new' %}class="selected"{% endif %}
          href="{{ url_for('.moderate', aid=audience.id) }}?status=new">New</a> |
       <a {% if request.values.get('status') != 'new' %}class="selected"{% endif %}
-         href="{{ url_for('.moderate', aid=audience.id) }}?status=accepted">Accepted</a>
+         href="{{ url_for('.moderate', aid=audience.id) }}?status=published">Published</a>
 
       <label>Batch actions:
         <select name="action" onchange="$('#batch').submit()">
@@ -26,23 +26,11 @@
         <input name="notice" value="{{ i.id }}" type="checkbox">
         <p>{{ i.content }}</p>
         <div class="controls">
-          <a href="{{ url_for('.accept', bid=i.id) }}" class="accept"
-             title="Accept this buzz">
-            Accept
+          <a href="{{ url_for('.publish_buzz', bid=i.id) }}" class="accept"
+             title="Publish this buzz">
+            Publish
           </a>
 
-          <!-- FIXME Colocar o caminho correto para a função -->
-          <a href="{{ url_for('.select_buzz', bid=i.id) }}"
-             title="Suggest this buzz to be published" class="suggest"
-             class="suggest">
-            Suggest
-          </a>
-
-          <a href="{{ url_for('.delete_buzz', bid=i.id) }}"
-             title="Delete this buzz" class="remove"
-             class="remove">
-            Remove
-          </a>
         </div>
       </li>
       {% endfor  %}
