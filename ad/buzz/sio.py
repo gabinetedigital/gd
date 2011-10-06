@@ -86,6 +86,8 @@ def send(msg, data):
     """Wrapper to send messages to all our connected clients if used
     from the webapp. Otherwise, sends a message to the socketio bus
     """
+    if not HAVE_SOCKETIO:
+        return
     if bool(current_app):
         return current_app.send(msg, data)
 
