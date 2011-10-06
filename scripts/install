@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+#
+#   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# Intro
+# =====
+#
+# I don't like it, but I had no choice. The dependencies being used by
+# this program are not packaged for the server that will actually run
+# it. Because of it, I had to prepare the following script to install
+# everything we currently need.
+#
+# Dependencies
+# ~~~~~~~~~~~~
+#
+# I have tried this script in a debian stable box (squeeze 6.0.2)
+# without anything previously installed. The only thing I had to install
+# manually before running this script was the `uuid-dev' package that I
+# believe that is quite easy to install in any distro (even in red hat
+# 5).
+#
+# Warning
+# ~~~~~~~
+#
+# Please maintain this script always uptodate. Every new dependency
+# should be at least documented here.
+
+INSTALL_PREFIX=/srv/apps/ad/env
+
+# Installing and setting up virtualenv
+pip install virtualenv
+virtualenv $INSTALL_PREFIX
+echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$INSTALL_PREFIX/lib" >> \
+    $INSTALL_PREFIX/bin/activate
+
+# Installing zmq
+wget http://download.zeromq.org/zeromq-2.1.10.tar.gz
+tar zxf zeromq-2.1.10.tar.gz
+(cd zeromq-2.1.10/ && ./configure --prefix=$INSTALL_PREFIX && make && make install)
+
+# Installing pyzmq
+wget https://github.com/zeromq/pyzmq/downloads/pyzmq-2.1.9.tar.gz
+tar zxf pyzmq-2.1.9.tar.gz
+(cd pyzmq-2.1.9 && $INSTALL_PREFIX/bin/python setup.py install --zmq=$INSTALL_PREFIX)
+
+# Installing libevent
+wget https://github.com/downloads/libevent/libevent/libevent-2.0.14-stable.tar.gz
+tar zxf libevent-2.0.14-stable.tar.gz
+(cd libevent-2.0.14-stable/ && ./configure --prefix=$INSTALL_PREFIX && \
+    make && make install)
+
+# Installing greenlet
+CFLAGS="-O0" pip -E $INSTALL_PREFIX install greenlet
+
+# Installing gevent and gevent modules
+wget http://pypi.python.org/packages/source/g/gevent/gevent-0.13.6.tar.gz
+tar zxf gevent-0.13.6.tar.gz
+(cd gevent-0.13.6 && $INSTALL_PREFIX/bin/python setup.py install \
+    -I$INSTALL_PREFIX/include -L$INSTALL_PREFIX/lib)
+pip -E $INSTALL_PREFIX install 'gevent-socketio==0.2.0' gevent_zeromq
+
+# Installing web stuff
+pip -E $INSTALL_PREFIX install 'Flask==0.7.2' Elixir tweetstream
