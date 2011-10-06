@@ -99,17 +99,10 @@
             {% endfor %}
           </ul>
           <div id="chat">
-            <form>
-              <textarea>The cat was playing in the
-              garden.</textarea>
-              <input type="submit" value="enviar" />
-            </form>
-          </div>
-          <div id="chat">
-            <form>
-              <textarea>The cat was playing in the
-              garden.</textarea>
-              <input type="submit" value="enviar" />
+            <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
+              <input type="hidden" name="aid" value="{{ audience.id }}">
+              <textarea name="message" placeholder="Poste sua mensagem aqui."></textarea>
+              <input type="submit" value="enviar">
             </form>
           </div>
         </div>

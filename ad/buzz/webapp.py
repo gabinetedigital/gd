@@ -19,7 +19,7 @@
 """
 
 from flask import Blueprint, render_template, request
-from ad.model import Buzz, BuzzType, session, get_or_create
+from ad.model import Audience, Buzz, BuzzType, session, get_or_create
 
 buzz = Blueprint(
     'buzz', __name__,
@@ -36,11 +36,18 @@ def index():
     host = request.host.split(':')[0]
     return render_template('buzz/index.html', host=host)
 
+
 @buzz.route('/post', methods=('POST',))
 def post():
     """When ready, this method will post contributions from users that
     choosen to use our internal message service instead of twitter,
     identica or whatever."""
-    newbuzz = Buzz()
-    newbuzz.type_ = get_or_create(BuzzType, name=u'twitter')
+    audience = Audience.get(request.values.get('aid'))
+    newbuzz = Buzz(
+        owner_nick=u'nick',
+        owner_avatar=u'',
+        content=request.values.get('message'))
+    newbuzz.type_ = get_or_create(BuzzType, name=u'internal')[0]
+    newbuzz.audience = audience
     session.commit()
+    return '{ "status": "ok" }'
