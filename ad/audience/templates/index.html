@@ -2,13 +2,10 @@
 <html>
   <head>
     <title>Gabinete Digital - Assêmbleia Digital</title>
-    <meta http-equiv="Content-Type"
-    content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=1024" />
-    <link rel="stylesheet"
-    href="{{ url_for('.static', filename='css/978.css') }}" />
-    <link rel="stylesheet"
-    href="{{ url_for('.static', filename='css/style.css') }}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=1024">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/978.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/style.css') }}">
   </head>
   <body>
     <div class="layout-978">
@@ -70,7 +67,7 @@
             <h2>Horários postos de saúde</h2>
             <ul class="stream">
               <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}" />
+                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
               </li>
               <li class="author">@hypschê | identi.ca</li>
               <li class="answer">Proin lectus orci, venenatis
@@ -93,7 +90,7 @@
             <li>
               <ul class="stream">
                 <li class="avatar">
-                  <img src="{{ buzz.owner_avatar }}" />
+                  <img src="{{ buzz.owner_avatar }}">
                 </li>
                 <li class="author">@{{ buzz.owner_nick }} | {{ buzz.type_.name }} </li>
                 <li class="answer">{{ buzz.content|safe }}</li>
@@ -128,7 +125,7 @@
       <li>
         <ul class="stream">
           <li class="avatar">
-            <img src="<%= obj.owner_avatar %>" />
+            <img src="<%= obj.owner_avatar %>">
           </li>
           <li class="author"><%= obj.owner_nick %> | <%= obj.type_.name %></li>
           <li class="answer"><%= obj.content %></li>
