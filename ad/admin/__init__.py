@@ -138,7 +138,9 @@ def moderate(aid):
 def publish(aid):
     """Returns a list of buzzes for publication."""
     audience = Audience.query.get(aid)
-    status = Buzz.status.in_([u'published'])
+    status = Buzz.status.in_([u'selected']) \
+        if request.values.get('status', 'new') == 'new' \
+        else Buzz.status.in_([u'published'])
     buzz_list = Buzz.query \
         .filter_by(audience=audience) \
         .filter(status) \
@@ -155,6 +157,7 @@ def batch():
     { 'accept': lambda: [setattr(i, 'status', u'approved') for i in notices],
       'remove': lambda: [i.delete() for i in notices],
       'suggest': lambda: [setattr(i, 'status', u'selected') for i in notices],
+      'publish': lambda: [setattr(i, 'status', u'published') for i in notices],
     }[action]()
     session.commit()
     return msg.ok('Notices processed: %s' % action)

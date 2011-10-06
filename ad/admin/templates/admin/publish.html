@@ -6,16 +6,14 @@
     <div class="massive">
       <label>Show:</label>
       <a {% if request.values.get('status') == 'new' %}class="selected"{% endif %}
-         href="{{ url_for('.moderate', aid=audience.id) }}?status=new">New</a> |
+         href="{{ url_for('.publish', aid=audience.id) }}?status=new">New</a> |
       <a {% if request.values.get('status') != 'new' %}class="selected"{% endif %}
-         href="{{ url_for('.moderate', aid=audience.id) }}?status=published">Published</a>
+         href="{{ url_for('.publish', aid=audience.id) }}?status=published">Published</a>
 
       <label>Batch actions:
         <select name="action" onchange="$('#batch').submit()">
           <option value="">---</option>
-          <option value="accept">Accept</option>
-          <option value="remove">Remove</option>
-          <option value="sugest">Sugest</option>
+          <option value="publish">Publish</option>
         </select>
       </label>
     </div>
