@@ -21,9 +21,9 @@ interface.
 """
 
 from flask import Blueprint, render_template, request, redirect, url_for
-from sqlalchemy import desc
+from sqlalchemy import desc, not_
 from ad.model import Audience, Buzz, Term, session
-from ad.utils import _
+from ad.utils import _, msg
 
 admin = Blueprint(
     'admin', __name__,
@@ -123,8 +123,12 @@ def remove(aid):
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
     audience = Audience.query.get(aid)
+    status = Buzz.status.in_([u'inserted']) \
+        if request.values.get('status', 'new') == 'new' \
+        else not_(Buzz.status.in_([u'inserted']))
     buzz_list = Buzz.query \
         .filter_by(audience=audience) \
+        .filter(status) \
         .order_by(desc('creation_date'))
     return render_template(
         'admin/moderate.html', audience=audience, buzz_list=buzz_list)
@@ -136,14 +140,12 @@ def accept(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
     session.commit()
-    return redirect(url_for('.moderate', aid=buzz.audience.id))
+    return msg.ok('Buzz accepted')
 
 
 @admin.route('/buzz/<int:bid>/delete')
 def delete_buzz(bid):
-    """Delete Buzz.
-    """
-    buzz = Buzz.query.get(bid)
-    buzz.delete()
+    """Delete Buzz"""
+    Buzz.query.get(bid).delete()
     session.commit()
-    return redirect(url_for('.moderate', aid=buzz.audience.id))
+    return msg.ok('Buzz deleted successfuly')

@@ -40,3 +40,20 @@ def dumps(obj):
     unserializable objects, like `datetime' instances.
     """
     return internal_dumps(obj, default=_default_handler)
+
+
+# -- JSON Messages --
+
+
+class msg(object):
+    """Namespace to hold message stuff"""
+
+    @staticmethod
+    def ok(msg):
+        """Ok message"""
+        return dumps({ 'status': 'ok', 'msg': msg })
+
+    @staticmethod
+    def error(msg):
+        """Error message"""
+        return dumps({ 'status': 'error', 'msg': msg })

@@ -66,8 +66,8 @@ fieldset.streaming input.remove {
 
 
 /* ---- listing.html customized stuff  ---- */
+.subject { font-size:18px; color:#4e9a06; margin-right:20px; }
 ul.listing a { text-decoration:none; color:#666; }
-ul.listing .subject { font-size:18px; color:#4e9a06; margin-right:20px; }
 ul.listing .date { color:#a3a3a3; font-size:18px; font-weight:bold; font-style:normal; }
 ul.listing p { font-size:18px; margin:10px 0; }
 ul.listing .controls { text-align:right; margin-bottom:10px; }
@@ -77,11 +77,12 @@ ul.listing .controls a:hover { text-decoration:underline; }
 
 
 /* ---- moderation.html customized stuff  ---- */
-ul.listing .massive { text-align: right;}
-ul.listing li.dark { background-color: #F1F1F1; }
-ul.listing li input { float:left; margin-right: 10px; }
-ul.listing li p { font-size: 13px; padding-top: 10px;}
-/*ul.listing li a { display: block;  width: 24px; height: 24px; overflow: hidden; text-indent: 9999px; float: right;}
-ul.listing li a.accept { display: block; background-image: url(../imgs/bt_accept.png); }
-ul.listing li a.remove { display: block; background-image: url(../imgs/bt_remove.png); }
-ul.listing li a.suggest { display: block; background-image: url(../imgs/bt_suggest.png); }*/
+.moderate .massive { text-align: right;}
+.moderate li { padding-top:15px; border-bottom:dotted 1px #a1a1a1; }
+.moderate li input { float:left; margin-right:10px; }
+.moderate li p { font-size: 13px; padding:10px 0 0 45px; margin:0; }
+.moderate ul .controls { visibility:hidden; text-align:left; margin-left:35px; }
+.moderate li:hover .controls { visibility:visible; }
+.moderate label { display:inline; margin-left:70px; }
+.moderate a { color:#3465a4; text-decoration:none; }
+.moderate a.selected { font-weight:bold; }
