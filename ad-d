@@ -19,8 +19,12 @@
 
 
 import werkzeug.serving
-from socketio import SocketIOServer
-from gevent import monkey; monkey.patch_all()
+HAVE_SOCKETIO = True
+try:
+    from socketio import SocketIOServer
+    from gevent import monkey; monkey.patch_all()
+except ImportError:
+    HAVE_SOCKETIO = False
 
 from ad.webapp import app
 from ad.buzz import sio
@@ -30,6 +34,10 @@ from ad.buzz import sio
 def run():
     # FIXME: This flag should be set in a config file.
     app.debug = True
+    if not HAVE_SOCKETIO:
+        app.run(host='0.0.0.0', debug=True)
+        exit(0)
+
     server = SocketIOServer(
         ('0.0.0.0', 5000),
         sio.BuzzApp(app),

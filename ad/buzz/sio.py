@@ -21,8 +21,12 @@ to provide a comunication layer for the components of our app.
 """
 
 from flask import current_app
-from gevent_zeromq import zmq
-from gevent import spawn
+HAVE_SOCKETIO = True
+try:
+    from gevent_zeromq import zmq
+    from gevent import spawn
+except ImportError:
+    HAVE_SOCKETIO = False
 
 from ad.utils import dumps
 
