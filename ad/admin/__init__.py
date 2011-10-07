@@ -164,7 +164,7 @@ def batch():
 
 
 @admin.route('/buzz/<int:bid>/accept')
-def accept(bid):
+def accept_buzz(bid):
     """Approve messages to appear in the main buzz area"""
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'

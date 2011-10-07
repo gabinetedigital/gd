@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/** Toggles the buzz filter status to on/off */
 $(function() {
+    // Toggles the buzz filter status to on/off.
+    //
     // Control var that holds the state of the filter button. Set it to
     // true to show moderated buzz and false for the public messages.
     var filterState = false;
@@ -34,6 +35,7 @@ $(function() {
         });
     });
 
+    // Starts a new instance of the buzz stream
     new Buzz("localhost", {
         new_buzz: function (msg) {
             if (filterState) {

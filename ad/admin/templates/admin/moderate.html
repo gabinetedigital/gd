@@ -1,4 +1,23 @@
 {% extends 'admin/base.html' %}
+
+{% block js %}
+<script type="text/javascript">
+  var BASE_URL = "{{ request.url_root }}";
+  var CURRENT_URL = "{{ request.url }}";
+</script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='js/template.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
+
+<script type="text/javascript"
+        src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('.static', filename='js/admin.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('.static', filename='js/moderate.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="subcontent moderate">
   <form id="batch" method="post" action="{{ url_for('.batch') }}">
@@ -26,12 +45,11 @@
         <input name="notice" value="{{ i.id }}" type="checkbox">
         <p>{{ i.content }}</p>
         <div class="controls">
-          <a href="{{ url_for('.accept', bid=i.id) }}" class="accept"
+          <a href="{{ url_for('.accept_buzz', bid=i.id) }}" class="accept"
              title="Accept this buzz">
             Accept
           </a>
 
-          <!-- FIXME Colocar o caminho correto para a função -->
           <a href="{{ url_for('.select_buzz', bid=i.id) }}"
              title="Suggest this buzz to be published" class="suggest"
              class="suggest">
@@ -49,4 +67,29 @@
     </ul>
   </form>
 </div>
+
+<script type="text/html" id="buzzTemplate">
+  <li>
+    <input name="notice" value="<%= obj.id %>" type="checkbox">
+    <p><%= obj.content %></p>
+    <div class="controls">
+      <a href="<%= url_for('admin.buzz.<bid>.accept', { bid: obj.id }) %>"
+         class="accept" title="Accept this buzz">
+        Accept
+      </a>
+
+      <a href="<%= url_for('admin.buzz.<bid>.select', { bid: obj.id }) %>"
+         title="Suggest this buzz to be published" class="suggest"
+         class="suggest">
+        Suggest
+      </a>
+
+      <a href="<%= url_for('admin.buzz.<bid>.delete', { bid: obj.id }) %>"
+         title="Delete this buzz" class="remove"
+         class="remove">
+        Remove
+      </a>
+    </div>
+  </li>
+</script>
 {% endblock %}
