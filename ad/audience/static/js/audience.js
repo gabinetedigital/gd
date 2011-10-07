@@ -33,4 +33,13 @@ $(function() {
             });
         });
     });
+
+    new Buzz("localhost", {
+        new_buzz: function (msg) {
+            if (filterState) {
+                var $el = $(tmpl("buzzTemplate", msg));
+                $('#buzz').prepend($el);
+            }
+        }
+    });
 });
