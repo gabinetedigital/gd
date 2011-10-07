@@ -26,7 +26,7 @@
       </li>
       <li>
         <label>When it happens?</label>
-        <input type="text" name="date" id="date" value="{{ inst.date }}">
+        <input type="text" name="date" id="date" value="{{ inst.date.strftime('%d/%m/%Y %H:%M') }}"> (dd/mm/aaaa hh:mm)
       </li>
       <li>
         <label>Embed</label>

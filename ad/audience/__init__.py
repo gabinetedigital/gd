@@ -20,9 +20,10 @@
 interface.
 """
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, abort
 from ad.model import Audience, Term
 from ad.utils import dumps
+from sqlalchemy.orm.exc import NoResultFound
 
 audience = Blueprint(
     'audience', __name__,
@@ -35,9 +36,12 @@ def index(aid):
     # Removing the port from host info. This will be used to bind
     # socket.io client API to our server.
     host = request.host.split(':')[0]
-    audience = Audience.query.get(aid)
-    return render_template(
-        '/index.html', audience=audience, host=host)
+    try:
+        audience = Audience.query.filter_by(id=aid, visible=True).one()
+        return render_template(
+            '/index.html', audience=audience, host=host)
+    except NoResultFound:
+        abort(404)
 
 
 @audience.route('/<int:aid>/public_buzz')

@@ -20,6 +20,7 @@
 interface.
 """
 
+from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc, not_
 from ad.model import Audience, Buzz, Term, session
@@ -54,6 +55,7 @@ def new():
         inst = Audience()
         inst.title = request.form['title']
         inst.subject = request.form['subject']
+        inst.date = datetime.strptime(request.form['date'],"%d/%m/%Y %H:%M")
         inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
@@ -82,6 +84,7 @@ def edit(aid):
     if request.method == 'POST':
         inst.title = request.form['title']
         inst.subject = request.form['subject']
+        inst.date = datetime.strptime(request.form['date'],"%d/%m/%Y %H:%M")
         inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
