@@ -132,7 +132,8 @@ def moderate(aid):
         .filter(status) \
         .order_by(desc('creation_date'))
     return render_template(
-        'admin/moderate.html', audience=audience, buzz_list=buzz_list)
+        'admin/moderate.html', audience=audience, buzz_list=buzz_list,
+        title=_(u'Audience'))
 
 
 @admin.route('/audience/<int:aid>/publish')

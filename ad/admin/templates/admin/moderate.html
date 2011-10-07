@@ -20,8 +20,9 @@
 
 {% block content %}
 <div class="subcontent moderate">
+  <h2 class="subject">Moderation</h2>
+
   <form id="batch" method="post" action="{{ url_for('.batch') }}">
-    <h2 class="subject">Moderation</h2>
     <div class="massive">
       <label>Show:</label>
       <a {% if request.values.get('status', 'new') == 'new' %}class="selected"{% endif %}
