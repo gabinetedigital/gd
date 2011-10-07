@@ -82,15 +82,28 @@ class BuzzApp(object):
             socketio.send(msg)
 
 
-def send(msg, data):
-    """Wrapper to send messages to all our connected clients if used
-    from the webapp. Otherwise, sends a message to the socketio bus
-    """
-    if not HAVE_SOCKETIO:
-        return
-    if bool(current_app):
-        return current_app.send(msg, data)
+def checkdep(func):
+    """Just check if we have socketio/zmq deps installed before calling
+    a function"""
+    def wrapper(*args, **kwargs):
+        """The wrapper that actually checks for the dependency"""
+        if HAVE_SOCKETIO:
+            return func(*args, **kwargs)
+    return wrapper
 
+
+@checkdep
+def local_send(msg, data):
+    """Sends messages to the local socket. This makes the app
+    communicate with itself.
+    """
+    return current_app.send(msg, data)
+
+
+@checkdep
+def send(msg, data):
+    """Sends messages to the socketio buzz
+    """
     # This code will only run when no app is binded. Which means we
     # don't need to provide any socketio thing
     server = zmq.Context().socket(zmq.PUSH)
