@@ -17,10 +17,33 @@
  */
 
 $(function () {
+    /* Binding the click of the `control' links to an ajax get instead
+     * of letting the whole page redirect/update. */
+    function updateToAjax () {
+        var $a = $(this);
+        $.getJSON($(this).attr('href'), function (data) {
+            if (data.status === 'ok') {
+                $a
+                    .parent() // div.controls
+                    .parent() // li
+                    .remove();
+            }
+        })
+        return false;
+    }
+    $('div.controls a').click(updateToAjax);
+
+    /* Creates a new instance of the buzz machinery that automatically
+     * updates the buzz list. */
     new Buzz("localhost", {
         new_buzz: function (msg) {
-            var $el = $(tmpl("buzzTemplate", msg));
-            $('.listing').prepend($el);
+            // We'll do nothing if the user is located in the `accepted
+            // buzz' page.
+            if (location.search.indexOf('accepted') < 0) {
+                var $el = $(tmpl("buzzTemplate", msg));
+                $('div.controls a', $el).click(updateToAjax);
+                $('.listing').prepend($el);
+            }
         }
     });
 });
