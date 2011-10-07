@@ -35,15 +35,23 @@ $(function () {
 
     /* Creates a new instance of the buzz machinery that automatically
      * updates the buzz list. */
+    function updateBuzz(msg, show) {
+        if (show) {
+            var $el = $(tmpl("buzzTemplate", msg));
+            $('div.controls a', $el).click(updateToAjax);
+            $('.listing').prepend($el);
+        }
+    }
+
     new Buzz("localhost", {
         new_buzz: function (msg) {
             // We'll do nothing if the user is located in the `accepted
             // buzz' page.
-            if (location.search.indexOf('accepted') < 0) {
-                var $el = $(tmpl("buzzTemplate", msg));
-                $('div.controls a', $el).click(updateToAjax);
-                $('.listing').prepend($el);
-            }
+            updateBuzz(msg, location.search.indexOf('accepted') < 0);
+        },
+
+        buzz_accepted: function (msg) {
+            updateBuzz(msg, location.search.indexOf('accepted') >= 0);
         }
     });
 });

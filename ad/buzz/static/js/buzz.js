@@ -20,7 +20,7 @@ function Buzz(sockAddr, params) {
     var socket = new io.Socket(sockAddr);
     var args = $.extend({
         new_buzz: function (msg) {},
-        approved_buzz: function (msg) {},
+        buzz_accepted: function (msg) {},
         suggested_buzz: function (msg) {},
         removed_buzz: function (msg) {}
     }, params);

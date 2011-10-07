@@ -24,6 +24,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc, not_
 from ad.model import Audience, Buzz, Term, session
 from ad.utils import _, msg
+from ad.buzz import sio
 
 admin = Blueprint(
     'admin', __name__,
@@ -169,6 +170,7 @@ def accept_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
     session.commit()
+    sio.send('buzz_accepted', buzz.to_dict())
     return msg.ok('Buzz accepted')
 
 

@@ -36,12 +36,21 @@ $(function() {
     });
 
     // Starts a new instance of the buzz stream
+
+    function updateBuzz(msg, show) {
+        if (show) {
+            var $el = $(tmpl("buzzTemplate", msg));
+            $('#buzz').prepend($el);
+        }
+    }
+
     new Buzz("localhost", {
         new_buzz: function (msg) {
-            if (filterState) {
-                var $el = $(tmpl("buzzTemplate", msg));
-                $('#buzz').prepend($el);
-            }
+            updateBuzz(msg, filterState);
+        },
+
+        buzz_accepted: function (msg) {
+            updateBuzz(msg, !filterState);
         }
     });
 });
