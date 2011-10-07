@@ -73,9 +73,10 @@ class Twitter(object):
             # tweet received. We are also setting this buzz as a twitter
             # one and yielding it to the caller that will be the
             # responsible for saving it in the database.
+            type_ = get_or_create(BuzzType, name=u'twitter')[0]
             buzz = Buzz(
                 owner_nick=tweet['user']['screen_name'],
                 owner_avatar=tweet['user']['profile_image_url'],
-                content=tweet['text'])
-            buzz.type_ = get_or_create(BuzzType, name=u'twitter')[0]
+                content=tweet['text'],
+                type_=type_)
             yield buzz
