@@ -109,10 +109,18 @@ class Buzz(Entity):
     def __str__(self):
         return '<%s "%s">' % (self.__class__.__name__, self.content)
 
+    def to_dict(self, deep=None):
+        """Just a shortcut for `super.to_dict' passing the `type_' field
+        to the `deep' attribute by default.
+        """
+        if deep is None:
+            deep = { 'type_': {} }
+        return super(Buzz, self).to_dict(deep=deep)
+
     @after_insert
     def notify(self):
         """Notify our buzz system that we have a new audience"""
-        sio.send('new_buzz', self.to_dict(deep={ 'type_': {} }))
+        sio.send('new_buzz', self.to_dict())
 
 
 class BuzzType(Entity):
