@@ -43,6 +43,7 @@
       {% for i in buzz_list %}
       <li class="{{ loop.cycle('dark', 'light') }}">
         <input name="notice" value="{{ i.id }}" type="checkbox">
+        <strong>@{{ i.owner_nick }}</strong>
         <p>{{ i.content }}</p>
         <div class="controls">
           <a href="{{ url_for('.accept_buzz', bid=i.id) }}" class="accept"
@@ -71,6 +72,7 @@
 <script type="text/html" id="buzzTemplate">
   <li>
     <input name="notice" value="<%= obj.id %>" type="checkbox">
+    <strong>@<%= obj.owner_nick %></strong>
     <p><%= obj.content %></p>
     <div class="controls">
       <a href="<%= url_for('admin.buzz.<bid>.accept', { bid: obj.id }) %>"
