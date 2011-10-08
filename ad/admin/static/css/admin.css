@@ -80,9 +80,10 @@ ul.listing .controls a:hover { text-decoration:underline; }
 .moderate .massive { text-align: right;}
 .moderate li { padding-top:15px; border-bottom:dotted 1px #a1a1a1; }
 .moderate li input { float:left; margin-right:10px; }
-.moderate li p { font-size: 13px; padding-left:45px; margin:0; }
+.moderate li p { font-size: 13px; padding:10px 0 10px 45px; margin:0; }
+.moderate li img { width:48px; height:48px; float:left; margin-right:10px; }
 .moderate ul .controls { visibility:hidden; text-align:left; margin-left:35px; }
-.moderate li:hover .controls { visibility:visible; }
+.moderate li:hover .controls { visibility:visible; padding-left:60px; }
 .moderate label { display:inline; margin-left:70px; }
 .moderate a { color:#3465a4; text-decoration:none; }
 .moderate a.selected { font-weight:bold; }
