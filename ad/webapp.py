@@ -40,6 +40,10 @@ app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
 
+# Registering a secret key to be able to work with sessions
+import os
+app.secret_key = os.urandom(24)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

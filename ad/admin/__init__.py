@@ -26,6 +26,8 @@ from sqlalchemy import desc, not_
 from ad.model import Audience, Buzz, Term, session
 from ad.utils import _, msg
 from ad.buzz import sio
+from ad import auth
+
 
 admin = Blueprint(
     'admin', __name__,
@@ -33,13 +35,37 @@ admin = Blueprint(
     static_folder='static')
 
 
+@admin.route('/login', methods=('POST', 'GET'))
+def login():
+    """Renders the login form and calls login machinery"""
+    state = None
+    if request.method == 'POST':
+        reqv = request.values.get
+        state = auth.login(reqv('username'), reqv('password'))
+        nexturl = request.values.get('next')
+        if nexturl:
+            return redirect(nexturl)
+    return render_template(
+        'admin/login.html', title=_(u'Login'), state=state,
+        hide_menu=True)
+
+
+@admin.route('/logout')
+def logout():
+    """Calls the logout API function and redirects to the login form"""
+    auth.logout()
+    return redirect(url_for('.login'))
+
+
 @admin.route('/')
+@auth.checkpermissions(['admin'])
 def index():
     """A temporary empty view"""
     return 'Please access the /audience url in your browser!'
 
 
 @admin.route('/audience')
+@auth.checkpermissions(['admin'])
 def audiences():
     """Main view, lists all registered audiencces"""
     return render_template('admin/listing.html', title=_(u'Audience'),
@@ -47,6 +73,7 @@ def audiences():
 
 
 @admin.route('/audience/new', methods=('GET', 'POST'))
+@auth.checkpermissions(['admin'])
 def new():
     """Shows the form that creates new audiences and save collected data
     in the database.
@@ -77,6 +104,7 @@ def new():
 
 
 @admin.route('/audience/<int:aid>', methods=('GET', 'POST'))
+@auth.checkpermissions(['admin'])
 def edit(aid):
     """Returns a form to edit an audience and saves new params in the
     database.
@@ -114,6 +142,7 @@ def edit(aid):
 
 
 @admin.route('/audience/<int:aid>/delete', methods=['GET', 'POST'])
+@auth.checkpermissions(['admin'])
 def remove(aid):
     """Delete an audience instance and its related terms in the
     database."""
@@ -126,6 +155,7 @@ def remove(aid):
 
 
 @admin.route('/audience/<int:aid>/moderate')
+@auth.checkpermissions(['admin'])
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
     audience = Audience.query.get(aid)
@@ -142,6 +172,7 @@ def moderate(aid):
 
 
 @admin.route('/audience/<int:aid>/publish')
+@auth.checkpermissions(['admin'])
 def publish(aid):
     """Returns a list of buzzes for publication."""
     audience = Audience.query.get(aid)
@@ -157,6 +188,7 @@ def publish(aid):
         
 
 @admin.route('/audience/batch', methods=('post',))
+@auth.checkpermissions(['admin'])
 def batch():
     """Batch processing a list of buzz notices"""
     action = request.form['action']
@@ -171,6 +203,7 @@ def batch():
 
 
 @admin.route('/buzz/<int:bid>/accept')
+@auth.checkpermissions(['admin'])
 def accept_buzz(bid):
     """Approve messages to appear in the main buzz area"""
     buzz = Buzz.query.get(bid)
@@ -181,6 +214,7 @@ def accept_buzz(bid):
 
 
 @admin.route('/buzz/<int:bid>/select')
+@auth.checkpermissions(['admin'])
 def select_buzz(bid):
     """suggest messages to publish"""
     buzz = Buzz.query.get(bid)
@@ -190,6 +224,7 @@ def select_buzz(bid):
 
 
 @admin.route('/buzz/<int:bid>/delete')
+@auth.checkpermissions(['admin'])
 def delete_buzz(bid):
     """Delete Buzz"""
     Buzz.query.get(bid).delete()
@@ -198,6 +233,7 @@ def delete_buzz(bid):
 
 
 @admin.route('/buzz/<int:bid>/publish')
+@auth.checkpermissions(['admin'])
 def publish_buzz(bid):
     """publish messages"""
     buzz = Buzz.query.get(bid)

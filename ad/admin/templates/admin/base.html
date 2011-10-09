@@ -15,12 +15,14 @@
 
     <div id="content" class="container">
       <h2 class="title">{{ title }}</h2>
+      {% if not hide_menu %}
       <ul class="toolbar">
         <li {% if request.url_rule.rule.endswith('/new') %}class="selected first"{% endif %}>
           <a href="{{ url_for('.new') }}">New</a></li>
         <li {% if request.url_rule.rule.endswith('/audience') %}class="selected"{% endif %}>
           <a href="{{ url_for('.audiences') }}">Listing</a></li>
       </ul>
+      {% endif %}
       {% block content %}{% endblock %}
     </div>
 

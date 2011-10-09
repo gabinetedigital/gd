@@ -137,6 +137,12 @@ class BuzzType(Entity):
     def __str__(self):
         return '<%s "%s">' % (self.__class__.__name__, self.name)
 
+
+class User(Entity):
+    """Mapper for the `user' entity"""
+    pass
+
+
 # Helper functions
 
 def get_or_create(model, **kwargs):
