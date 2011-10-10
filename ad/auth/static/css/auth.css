@@ -19,6 +19,8 @@
 #loginoverlay {
     width:315px;
     display:none;
+    border:10px solid rgba(82, 82, 82, 0.4);
+    border-radius:4px;
 }
 
 #loginoverlay .close {
@@ -75,6 +77,7 @@ form#auth .submit input {
     padding:2px 5px;
     color:#000;
     text-shadow:1px 1px 0px #fff;
+    margin-left:70px;
 }
 
 form#auth .sep hr {

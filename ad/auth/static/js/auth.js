@@ -20,7 +20,7 @@
 $(function() {
     $('a[rel]').overlay({
         top: 250,
-        mask: 'gray',
+        mask: '#d1d1d1',
         oneInstance: false,
         speed: 'fast',
         onBeforeLoad: function() {
