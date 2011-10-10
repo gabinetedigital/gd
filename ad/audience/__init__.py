@@ -30,6 +30,7 @@ audience = Blueprint(
     template_folder='templates',
     static_folder='static')
 
+
 @audience.route('/<int:aid>')
 def index(aid):
     """Renders an audience with its public template"""

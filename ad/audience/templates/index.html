@@ -1,142 +1,86 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Gabinete Digital - Assêmbleia Digital</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=1024">
-    <link rel="stylesheet" href="{{ url_for('.static', filename='css/978.css') }}">
-    <link rel="stylesheet" href="{{ url_for('.static', filename='css/style.css') }}">
-  </head>
-  <body>
-    <div class="layout-978">
-      <div id="header" class="row">
-        <div class="col12">
-          <h1>Gabiente Digital - Democracia em Rede</h1>
-          <ul class="login">
-            <li>
-              <a href="#">entrar</a>
-            </li>
-          </ul>
-          <h4>Acompanhe, participe!</h4>
-          <ul id="social">
-            <li class="feed">feed</li>
-            <li class="twitter">twitter</li>
-            <li class="identica">identi.ca</li>
-            <li class="facebook">facebook</li>
-          </ul>
-          <div id="menu">
-            <ul class="main-menu">
-              <li>
-                <a href="#">inicio</a>
-              </li>
-              <li>
-                <a href="#">sobre</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="row-end"></div>
-      </div>{% block content %}
-      <div id="container">
-        <div id="info-aud" class="row">
-          <div class="col7">
-            <div id="title">
-              <p class="title">{{ audience.title }}</p>
-              <p class="description">{{ audience.subject }}</p>
-            </div>
-          </div>
-          <div class="col5">
-            <div id="date">
-              <p class="day">{{ audience.date.strftime('%d') }}</p>
-              <p class="month">{{ audience.date.strftime('%b') }}</p>
-              <p class="hour">{{ audience.date.strftime('%H') }}h</p>
-              <p class="min">{{ audience.date.strftime('%M') }}</p>
-            </div>
-            <div id="tag">
-              <p>Use a hashtag</p>
-              <h3>{{ audience.get_main_term() }}</h3>
-            </div>
-          </div>
-          <div class="row-end"></div>
-        </div>
-        <div class="row">
-          <div id="main" class="col8">
-            <div class="content">
-              <ul class="stream">
-                <li class="avatar">
-                  <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
-                </li>
-                <li class="author">@hypschê | identi.ca</li>
-                <li class="answer">Proin lectus orci, venenatis
-                  pharetra, egestas id, tincidunt vel, eros. Aenean
-                  turpis ipsum, rhoncus vitae, posuere vitae, euismod
-                  sed, ligula. Sed a lorem ut est tincidunt
-                  consectetuer. Posuere vita. regional</li>
-              </ul>
-              <div id="streaming"></div>
-              <div id="misc">
-                <h2>Governo Escuta</h2>
-                <p>{{ audience.description }}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col4">
-            <a class="filter" href="javascript:;">filtro</a>
-            <ul id="buzz">
-              {% for buzz in audience.get_moderated_buzz() %}
-              <li>
-                <ul class="stream">
-                  <li class="avatar">
-                    <img src="{{ buzz.owner_avatar }}">
-                  </li>
-                  <li class="author">@{{ buzz.owner_nick }} | {{ buzz.type_.name }} </li>
-                  <li class="answer">{{ buzz.content|safe }}</li>
-                </ul>
-              </li>
-              {% endfor %}
-            </ul>
-            <div id="chat">
-              <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
-                <input type="hidden" name="aid" value="{{ audience.id }}">
-                <textarea name="message" placeholder="Poste sua mensagem aqui."></textarea>
-                <input type="submit" value="enviar">
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="row-end"></div>
-      </div>{% endblock %}
-      <div class="row">
-        <div id="footer" class="col12">footer</div>
-        <div class="row-end"></div>
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript"
+        src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('.static', filename='js/audience.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="container">
+  <div id="info-aud" class="row">
+    <div class="col7">
+      <div id="title">
+        <p class="title">{{ audience.title }}</p>
+        <p class="description">{{ audience.subject }}</p>
       </div>
     </div>
-
-    <script type="text/html" id="buzzTemplate">
-      <li>
+    <div class="col5">
+      <div id="date">
+        <p class="day">{{ audience.date.strftime('%d') }}</p>
+        <p class="month">{{ audience.date.strftime('%b') }}</p>
+        <p class="hour">{{ audience.date.strftime('%H') }}h</p>
+        <p class="min">{{ audience.date.strftime('%M') }}</p>
+      </div>
+      <div id="tag">
+        <p>Use a hashtag</p>
+        <h3>{{ audience.get_main_term() }}</h3>
+      </div>
+    </div>
+    <div class="row-end"></div>
+  </div>
+  <div class="row">
+    <div id="main" class="col8">
+      <div class="content">
         <ul class="stream">
           <li class="avatar">
-            <img src="<%= obj.owner_avatar %>">
+            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
           </li>
-          <li class="author">@<%= obj.owner_nick %> | <%= obj.type_.name %></li>
-          <li class="answer"><%= obj.content %></li>
+          <li class="author">@hypschê | identi.ca</li>
+          <li class="answer">Proin lectus orci, venenatis
+            pharetra, egestas id, tincidunt vel, eros. Aenean
+            turpis ipsum, rhoncus vitae, posuere vitae, euismod
+            sed, ligula. Sed a lorem ut est tincidunt
+            consectetuer. Posuere vita. regional</li>
         </ul>
-      </li>
-    </script>
-
-    <script type="text/javascript">
-      var BASE_URL = "{{ request.url_root }}";
-      var CURRENT_URL = "{{ request.url }}";
-    </script>
-    <script type="text/javascript"
-            src="{{ url_for('static', filename='js/jquery-1.5.1.min.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ url_for('static', filename='js/template.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ url_for('.static', filename='js/audience.js') }}"></script>
-  </body>
-</html>
+        <div id="streaming"></div>
+        <div id="misc">
+          <h2>Governo Escuta</h2>
+          <p>{{ audience.description }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col4">
+      <a class="filter" href="javascript:;">filtro</a>
+      <ul id="buzz">
+        {% for buzz in audience.get_moderated_buzz() %}
+        <li>
+          <ul class="stream">
+            <li class="avatar">
+              <img src="{{ buzz.owner_avatar }}">
+            </li>
+            <li class="author">@{{ buzz.owner_nick }} | {{ buzz.type_.name }} </li>
+            <li class="answer">{{ buzz.content|safe }}</li>
+          </ul>
+        </li>
+        {% endfor %}
+      </ul>
+      <div id="chat">
+        <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
+          <input type="hidden" name="aid" value="{{ audience.id }}">
+          <textarea name="message" placeholder="Poste sua mensagem aqui."></textarea>
+          <input type="submit" value="enviar">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row-end"></div>
+</div>
+{% endblock %}
