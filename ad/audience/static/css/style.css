@@ -23,9 +23,8 @@ a {
 
 #header {
     background: url(../imgs/header.png) 6px 0 no-repeat;
-    height: 371px;
+    height: 200px;
     position: absolute;
-    z-index: -1;
 }
 
 #header h1 {

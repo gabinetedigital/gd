@@ -9,109 +9,107 @@
   </head>
   <body>
     <div class="layout-978">
-    <div id="header" class="row">
-      <div class="col12">
-        <h1>Gabiente Digital - Democracia em Rede</h1>
-        <ul class="login">
-        <li>
-          <a href="#">login</a>
-        </li>| 
-        <li>
-          <a href="#">entrar</a>
-        </li></ul>
-        <h4>Acompanhe, participe!</h4>
-        <ul id="social">
-          <li class="feed">feed</li>
-          <li class="twitter">twitter</li>
-          <li class="identica">identi.ca</li>
-          <li class="facebook">facebook</li>
-        </ul>
-        <div id="menu">
-          <ul class="main-menu">
+      <div id="header" class="row">
+        <div class="col12">
+          <h1>Gabiente Digital - Democracia em Rede</h1>
+          <ul class="login">
             <li>
-              <a href="#">inicio</a>
-            </li>
-            <li>
-              <a href="#">sobre</a>
+              <a href="#">entrar</a>
             </li>
           </ul>
-        </div>
-      </div>
-      <div class="row-end"></div>
-    </div>{% block content %} 
-    <div id="container">
-      <div id="info-aud" class="row">
-        <div class="col7">
-          <div id="title">
-            <p class="title">{{ audience.title }}</p>
-            <p class="description">{{ audience.subject }}</p>
-          </div>
-        </div>
-        <div class="col5">
-          <div id="date">
-            <p class="day">22</p>
-            <p class="month">nov</p>
-            <p class="hour">10h</p>
-            <p class="min">22</p>
-          </div>
-          <div id="tag">
-            <p>Participe também pela</p>
-            <h3>{{ audience.get_main_term() }}</h3>
+          <h4>Acompanhe, participe!</h4>
+          <ul id="social">
+            <li class="feed">feed</li>
+            <li class="twitter">twitter</li>
+            <li class="identica">identi.ca</li>
+            <li class="facebook">facebook</li>
+          </ul>
+          <div id="menu">
+            <ul class="main-menu">
+              <li>
+                <a href="#">inicio</a>
+              </li>
+              <li>
+                <a href="#">sobre</a>
+              </li>
+            </ul>
           </div>
         </div>
         <div class="row-end"></div>
-      </div>
-      <div class="row">
-        <div id="main" class="col8">
-          <div class="content">
-            <h2>Horários postos de saúde</h2>
-            <ul class="stream">
-              <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
+      </div>{% block content %}
+      <div id="container">
+        <div id="info-aud" class="row">
+          <div class="col7">
+            <div id="title">
+              <p class="title">{{ audience.title }}</p>
+              <p class="description">{{ audience.subject }}</p>
+            </div>
+          </div>
+          <div class="col5">
+            <div id="date">
+              <p class="day">22</p>
+              <p class="month">nov</p>
+              <p class="hour">10h</p>
+              <p class="min">22</p>
+            </div>
+            <div id="tag">
+              <p>Participe também pela</p>
+              <h3>{{ audience.get_main_term() }}</h3>
+            </div>
+          </div>
+          <div class="row-end"></div>
+        </div>
+        <div class="row">
+          <div id="main" class="col8">
+            <div class="content">
+              <h2>Horários postos de saúde</h2>
+              <ul class="stream">
+                <li class="avatar">
+                  <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
+                </li>
+                <li class="author">@hypschê | identi.ca</li>
+                <li class="answer">Proin lectus orci, venenatis
+                  pharetra, egestas id, tincidunt vel, eros. Aenean
+                  turpis ipsum, rhoncus vitae, posuere vitae, euismod
+                  sed, ligula. Sed a lorem ut est tincidunt
+                  consectetuer. Posuere vita. regional</li>
+              </ul>
+              <div id="streaming"></div>
+              <div id="misc">
+                <h2>Governo Escuta</h2>
+                <p>{{ audience.description }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col4">
+            <a class="filter" href="javascript:;">filtro</a>
+            <ul id="buzz">
+              {% for buzz in audience.get_moderated_buzz() %}
+              <li>
+                <ul class="stream">
+                  <li class="avatar">
+                    <img src="{{ buzz.owner_avatar }}">
+                  </li>
+                  <li class="author">@{{ buzz.owner_nick }} | {{ buzz.type_.name }} </li>
+                  <li class="answer">{{ buzz.content|safe }}</li>
+                </ul>
               </li>
-              <li class="author">@hypschê | identi.ca</li>
-              <li class="answer">Proin lectus orci, venenatis
-              pharetra, egestas id, tincidunt vel, eros. Aenean
-              turpis ipsum, rhoncus vitae, posuere vitae, euismod
-              sed, ligula. Sed a lorem ut est tincidunt
-              consectetuer. Posuere vita. regional</li>
+              {% endfor %}
             </ul>
-            <div id="streaming"></div>
-            <div id="misc">
-              <h2>Governo Escuta</h2>
-              <p>{{ audience.description }}</p>
+            <div id="chat">
+              <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
+                <input type="hidden" name="aid" value="{{ audience.id }}">
+                <textarea name="message" placeholder="Poste sua mensagem aqui."></textarea>
+                <input type="submit" value="enviar">
+              </form>
             </div>
           </div>
         </div>
-        <div class="col4">
-          <a class="filter" href="javascript:;">filtro</a>
-          <ul id="buzz">
-            {% for buzz in audience.get_moderated_buzz() %}
-            <li>
-              <ul class="stream">
-                <li class="avatar">
-                  <img src="{{ buzz.owner_avatar }}">
-                </li>
-                <li class="author">@{{ buzz.owner_nick }} | {{ buzz.type_.name }} </li>
-                <li class="answer">{{ buzz.content|safe }}</li>
-              </ul>
-            </li>
-            {% endfor %}
-          </ul>
-          <div id="chat">
-            <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
-              <input type="hidden" name="aid" value="{{ audience.id }}">
-              <textarea name="message" placeholder="Poste sua mensagem aqui."></textarea>
-              <input type="submit" value="enviar">
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="row-end"></div>
-    </div>{% endblock %} 
-    <div class="row">
-      <div id="footer" class="col12">footer</div>
-      <div class="row-end"></div>
+        <div class="row-end"></div>
+      </div>{% endblock %}
+      <div class="row">
+        <div id="footer" class="col12">footer</div>
+        <div class="row-end"></div>
     </div></div>
 
     <script type="text/html" id="buzzTemplate">
