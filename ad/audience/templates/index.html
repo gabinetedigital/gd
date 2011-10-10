@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Gabinete Digital - Assêmbleia Digital</title>
@@ -37,45 +37,45 @@
         </div>
         <div class="row-end"></div>
       </div>{% block content %}
-    <div id="container">
-      <div id="info-aud" class="row">
-        <div class="col7">
-          <div id="title">
-            <p class="title">{{ audience.title }}</p>
-            <p class="description">{{ audience.subject }}</p>
+      <div id="container">
+        <div id="info-aud" class="row">
+          <div class="col7">
+            <div id="title">
+              <p class="title">{{ audience.title }}</p>
+              <p class="description">{{ audience.subject }}</p>
+            </div>
           </div>
+          <div class="col5">
+            <div id="date">
+              <p class="day">{{ audience.date.strftime('%d') }}</p>
+              <p class="month">{{ audience.date.strftime('%b') }}</p>
+              <p class="hour">{{ audience.date.strftime('%H') }}h</p>
+              <p class="min">{{ audience.date.strftime('%M') }}</p>
+            </div>
+            <div id="tag">
+              <p>Use a hashtag</p>
+              <h3>{{ audience.get_main_term() }}</h3>
+            </div>
+          </div>
+          <div class="row-end"></div>
         </div>
-        <div class="col5">
-          <div id="date">
-            <p class="day">{{ audience.date.strftime('%d') }}</p>
-            <p class="month">{{ audience.date.strftime('%b') }}</p>
-            <p class="hour">{{ audience.date.strftime('%H') }}h</p>
-            <p class="min">{{ audience.date.strftime('%M') }}</p>
-          </div>
-          <div id="tag">
-            <p>Use a hashtag</p>
-            <h3>{{ audience.get_main_term() }}</h3>
-          </div>
-        </div>
-        <div class="row-end"></div>
-      </div>
-      <div class="row">
-        <div id="main" class="col8">
-          <div class="content">
-            <ul class="stream">
-              <li class="avatar">
-                <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
-              </li>
-              <li class="author">@hypschê | identi.ca</li>
-              <li class="answer">Proin lectus orci, venenatis
-              pharetra, egestas id, tincidunt vel, eros. Aenean
-              turpis ipsum, rhoncus vitae, posuere vitae, euismod
-              sed, ligula. Sed a lorem ut est tincidunt
-              consectetuer. Posuere vita. regional</li>
-            </ul>
-            <div id="streaming"></div>
-            <div id="misc">
-              <h2>Governo Escuta</h2>
+        <div class="row">
+          <div id="main" class="col8">
+            <div class="content">
+              <ul class="stream">
+                <li class="avatar">
+                  <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
+                </li>
+                <li class="author">@hypschê | identi.ca</li>
+                <li class="answer">Proin lectus orci, venenatis
+                  pharetra, egestas id, tincidunt vel, eros. Aenean
+                  turpis ipsum, rhoncus vitae, posuere vitae, euismod
+                  sed, ligula. Sed a lorem ut est tincidunt
+                  consectetuer. Posuere vita. regional</li>
+              </ul>
+              <div id="streaming"></div>
+              <div id="misc">
+                <h2>Governo Escuta</h2>
                 <p>{{ audience.description }}</p>
               </div>
             </div>
@@ -109,7 +109,8 @@
       <div class="row">
         <div id="footer" class="col12">footer</div>
         <div class="row-end"></div>
-    </div></div>
+      </div>
+    </div>
 
     <script type="text/html" id="buzzTemplate">
       <li>
