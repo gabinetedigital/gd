@@ -59,6 +59,7 @@ def new():
         inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
+        inst.live = request.form['live']
         terms = request.form.getlist('term')
         main = request.form['main']
         for term in terms:
@@ -88,6 +89,7 @@ def edit(aid):
         inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
+        inst.live = request.form['live']
         
         # deleting all terms
         term = Term.query.filter_by(audience=inst)

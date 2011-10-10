@@ -37,6 +37,11 @@
         <input type="radio" name="visible" id="visible" value="1" {% if inst.visible %}checked{% endif %}> Yes
         <input type="radio" name="visible" id="visible" value="0" {% if not inst.visible %}checked{% endif %}> No
       </li>
+       <li>
+        <label>Begin audience?</label>
+        <input type="radio" name="live" id="live" value="1" {% if inst.live %}checked{% endif %}> Yes
+        <input type="radio" name="live" id="live" value="0" {% if not inst.live %}checked{% endif %}> No
+      </li>
     </ul>
   </fieldset>
 
