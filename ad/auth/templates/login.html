@@ -1,0 +1,31 @@
+<div id="fb-root"></div>
+<script>
+  FB.init({
+    appId:'156696711063060',
+    cookie:true,
+    status:true,
+    xfbml:true
+  });
+</script>
+
+<form method="post" id="auth" action="">
+  <div class="wrapper">
+    <ul>
+      <li>
+        <label for="username">Usuário</label>
+        <input id="username" type="text" name="username">
+      </li>
+      <li>
+        <label for="password">Senha</label>
+        <input id="password" type="password" name="password">
+      </li>
+      <li class="submit">
+        <input type="submit" name="submit" value="Entrar">
+      </li>
+      <li class="sep"><hr></li>
+      <li>
+        <fb:login-button>Entrar via Facebook</fb:login-button>
+      </li>
+    </ul>
+  </div>
+</form>

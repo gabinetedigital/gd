@@ -31,14 +31,17 @@ if __name__ == '__main__':
 from flask import Flask
 from ad.admin import admin
 from ad.audience import audience
+from ad.auth.webapp import auth
 from ad.buzz.webapp import buzz
 from ad.buzz.facebookapp import fbapp
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
+app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
+
 
 # Registering a secret key to be able to work with sessions
 import os
