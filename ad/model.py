@@ -187,6 +187,19 @@ class User(Entity):
         hasher = phpass.PasswordHash(8, False)
         self.password = hasher.hash_password(self.password)
 
+    def public_dict(self):
+        """Returns all public items about the user in a dict format"""
+        # It's easier to create a new dict than selecting each public
+        # field from the `.to_dict()' return.
+        return dict(
+            id=self.id,
+            name=self.name,
+            nickname=self.nickname,
+            username=self.username,
+            creation_date=self.creation_date,
+            url=self.url,
+        )
+
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(session, flush_context):

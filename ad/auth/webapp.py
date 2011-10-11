@@ -19,7 +19,7 @@
 
 from flask import Blueprint, render_template, request
 from ad.utils import msg, _
-from ad.auth import login
+from ad import auth as authapi
 
 
 auth = Blueprint(
@@ -41,8 +41,11 @@ def login_json():
     username = request.values.get('username')
     password = request.values.get('password')
     if username and password:
-        user = login(username, password)
-        if user is None:
+        try:
+            user = authapi.login(username, password)
+        except authapi.UserNotFound:
+            return msg.error(_(u'User does not exist'))
+        except authapi.UserAndPasswordMissmatch:
             return msg.error(_(u'User or password mismatch'))
         return msg.ok({ 'user': user })
     return msg.error(_(u'Username or password missing'))

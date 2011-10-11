@@ -61,8 +61,10 @@ def login(username, password):
         raise UserAndPasswordMissmatch()
 
     # Everything seems to be ok here, let's register the user in our
-    # session
+    # session and return its data (but the password, of course) to the
+    # caller.
     session['username'] = username
+    return user.public_dict()
 
 
 def logout():
