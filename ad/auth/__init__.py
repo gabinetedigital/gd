@@ -34,6 +34,7 @@ def is_authenticated():
 def login(username, password):
     """Logs a user in"""
     session['username'] = username
+    return 1
 
 
 def logout():

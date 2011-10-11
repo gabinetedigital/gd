@@ -16,6 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from flask import Blueprint, render_template, request, abort
+from ad.utils import msg, _
+from ad.auth import login
 
 
 auth = Blueprint(
@@ -27,3 +29,15 @@ auth = Blueprint(
 @auth.route('/login')
 def login_form():
     return render_template('login.html')
+
+
+@auth.route('/login_json')
+def login_json():
+    username = request.values.get('username')
+    password = request.values.get('password')
+    if username and password:
+        user = login(username, password)
+        if user is None:
+            return msg.error(_(u'User or password mismatch'))
+        return msg.ok({ 'user': user })
+    return msg.error(_(u'Username or password missing'))

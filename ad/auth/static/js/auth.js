@@ -20,7 +20,10 @@
 $(function() {
     $('a[rel]').overlay({
         top: 250,
-        mask: '#d1d1d1',
+        mask: {
+            color: '#fff',
+            opacity: 0.5
+        },
         oneInstance: false,
         speed: 'fast',
         onBeforeLoad: function() {
@@ -28,7 +31,26 @@ $(function() {
 	    wrap.load(this.getTrigger().attr("href"));
 	},
         onLoad: function() {
-            this.getOverlay().find('input[name=username]').focus();
+            var overlay = this.getOverlay();
+            var closeMethod = this.close;
+
+            overlay.find('input[name=username]').focus();
+            overlay.find('form').submit(function () {
+                var params = {
+                    username: overlay.find('input[name=username]').val(),
+                    password: overlay.find('input[name=password]').val()
+                };
+
+                $.getJSON(url_for('auth.login_json'), params, function (data) {
+                    if (data.status !== 'ok') {
+                        overlay.find('input[type!=submit]').css(
+                            'border', 'solid 1px #e00');
+                    } else {
+                        closeMethod();
+                    }
+                });
+                return false;
+            });
         }
     });
 });
