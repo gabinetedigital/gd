@@ -15,7 +15,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template, request, abort
+"""Web application definitions for the `auth' module"""
+
+from flask import Blueprint, render_template, request
 from ad.utils import msg, _
 from ad.auth import login
 
@@ -28,11 +30,14 @@ auth = Blueprint(
 
 @auth.route('/login')
 def login_form():
+    """Renders the login form"""
     return render_template('login.html')
 
 
 @auth.route('/login_json')
 def login_json():
+    """Logs the user in (through ajax) and returns the user object in
+    JSON format"""
     username = request.values.get('username')
     password = request.values.get('password')
     if username and password:

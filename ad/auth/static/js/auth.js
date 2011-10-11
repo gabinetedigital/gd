@@ -18,6 +18,7 @@
 
 
 $(function() {
+    /* Overlay for all <a> tags with a `rel' attribute */
     $('a[rel]').overlay({
         top: 250,
         mask: {
@@ -34,7 +35,11 @@ $(function() {
             var overlay = this.getOverlay();
             var closeMethod = this.close;
 
+            /* Just focus the username when overlay shows up */
             overlay.find('input[name=username]').focus();
+
+            /* The submit button does its miracles of cancelling the usual
+             * form submit and send data via ajax */
             overlay.find('form').submit(function () {
                 var params = {
                     username: overlay.find('input[name=username]').val(),
