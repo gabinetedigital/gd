@@ -25,6 +25,7 @@ are sent using the `sio' module.
 from hashlib import md5
 from datetime import datetime
 from sqlalchemy import not_, desc, event
+from sqlalchemy.orm.exc import NoResultFound
 from elixir.events import after_insert, before_insert
 from elixir import using_options, setup_all, metadata, session
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
@@ -186,6 +187,31 @@ class User(Entity):
         """Converts the password field into an md5 hashed string"""
         hasher = phpass.PasswordHash(8, False)
         self.password = hasher.hash_password(self.password)
+
+    def has_roles(self, roles):
+        """Returns True if the current user has one of the given roles.
+
+        This method uses the `OR' logic. If the user has _AT LEAST ONE_
+        of the specified roles, it'll return True.
+        """
+
+        # Making sure we're handling lists or tuples
+        if not isinstance(roles, (list, tuple)):
+            raise TypeError('has_roles() does not handle any thing but '
+                            'lists and tuples')
+
+        # So, let's query for the usermeta object. Once we don't handle
+        # wordpress registered rows, let's make sure that it will never
+        # raise an unexpected exception.
+        query = UserMeta.query.filter_by(user_id=1, meta_key='wp_capabilities')
+        try:
+            meta = query.one()
+        except NoResultFound:
+            return False
+
+        # Now it is tome to make sure that the user has _AT LEAST ONE_
+        # of the roles specified in the `roles' param.
+        return True in [i.lower() in meta.meta_value for i in roles]
 
     def public_dict(self):
         """Returns all public items about the user in a dict format"""
