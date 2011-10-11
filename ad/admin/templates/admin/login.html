@@ -1,6 +1,9 @@
 {% extends 'admin/base.html' %}
 {% block content %}
 <div class="subcontent login">
+  {% if error %}
+  <div class="error"><strong>Error:</strong> {{ error }}</div>
+  {% endif %}
   <form id="login" method="post" action="{{ url_for('.login') }}">
     <input type="hidden" name="next" value="{{ request.values.next }}">
     <ul>

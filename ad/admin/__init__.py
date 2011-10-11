@@ -38,15 +38,18 @@ admin = Blueprint(
 @admin.route('/login', methods=('POST', 'GET'))
 def login():
     """Renders the login form and calls login machinery"""
-    state = None
+    error = None
     if request.method == 'POST':
         reqv = request.values.get
-        state = auth.login(reqv('username'), reqv('password'))
-        nexturl = request.values.get('next')
-        if nexturl:
-            return redirect(nexturl)
+        try:
+            auth.login(reqv('username'), reqv('password'))
+            nexturl = request.values.get('next')
+            if nexturl:
+                return redirect(nexturl)
+        except auth.AuthError, exc:
+            error = exc.__class__.__name__
     return render_template(
-        'admin/login.html', title=_(u'Login'), state=state,
+        'admin/login.html', title=_(u'Login'), error=error,
         hide_menu=True)
 
 
@@ -93,7 +96,7 @@ def new():
             newterm = Term(hashtag=term, main=(main==term))
             inst.terms.append(newterm)
         
-        inst.owner = 'Admin'
+        inst.owner = 'administrator'
         session.commit()
 
         return render_template(
@@ -132,7 +135,7 @@ def edit(aid):
 
         # temporary owner for all objects created in the admin
         # interface.
-        inst.owner = 'Admin'
+        inst.owner = 'administrator'
 
         session.commit()
         return redirect(url_for('.audiences'))
