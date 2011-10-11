@@ -22,15 +22,17 @@ All entity mappers are defined using the `Elixir' API and some signals
 are sent using the `sio' module.
 """
 
-import os
+from hashlib import md5
 from datetime import datetime
-from sqlalchemy import not_, desc
-from elixir.events import after_insert
+from sqlalchemy import not_, desc, event
+from elixir.events import after_insert, before_insert
 from elixir import using_options, setup_all, metadata, session
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
-    Boolean, Enum, ManyToOne, OneToMany
+    Boolean, Integer, Enum, ManyToOne, OneToMany
 
+from ad import conf
 from ad.buzz import sio
+from ad.utils import phpass
 
 class Term(Entity):
     """Mapper for the `term' entity
@@ -39,7 +41,7 @@ class Term(Entity):
 
     hashtag = Field(Unicode(45))
     creation_date = Field(DateTime, default=datetime.now)
-    creator = Field(Unicode)
+    creator = Field(Unicode(64))
     main = Field(Boolean)
     audience = ManyToOne('Audience')
 
@@ -51,7 +53,7 @@ class Audience(Entity):
     """
     using_options(shortnames=True)
 
-    title = Field(Unicode(250))
+    title = Field(Unicode(256))
     subject = Field(UnicodeText)
     description = Field(UnicodeText)
     date = Field(DateTime)
@@ -59,8 +61,8 @@ class Audience(Entity):
     terms = OneToMany('Term')
     visible = Field(Boolean, default=True)
     live = Field(Boolean, default=True)
-    owner = Field(Unicode)
-    embed = Field(Unicode(150))
+    owner = Field(Unicode(64))
+    embed = Field(Unicode(256))
     buzzes = OneToMany('Buzz')
 
     def __str__(self):
@@ -97,10 +99,10 @@ class Buzz(Entity):
     """
     using_options(shortnames=True)
 
-    owner_nick = Field(Unicode)
-    owner_email = Field(Unicode)
-    owner_avatar = Field(Unicode)
-    content = Field(UnicodeText)
+    owner_nick = Field(Unicode(64))
+    owner_email = Field(Unicode(128))
+    owner_avatar = Field(Unicode(256))
+    content = Field(Unicode(512))
     status = Field(Enum(u'inserted', u'approved', u'selected', u'published'),
                    default=u'inserted')
     creation_date = Field(DateTime, default=datetime.now)
@@ -129,18 +131,83 @@ class BuzzType(Entity):
     """
     using_options(shortnames=True)
 
-    name = Field(UnicodeText)
+    name = Field(Unicode(64))
     creation_date = Field(DateTime, default=datetime.now)
-    creator = Field(Unicode)
+    creator = Field(Unicode(64))
     buzzes = OneToMany('Buzz')
 
     def __str__(self):
         return '<%s "%s">' % (self.__class__.__name__, self.name)
 
 
+class UserMeta(Entity):
+    """Mapper for the wp_usermeta entity, the same used by wordpress"""
+    using_options(tablename='wp_usermeta')
+
+    umeta = Field(Integer, primary_key=True)
+    user_id = Field(Integer)
+    meta_key = Field(Unicode(256))
+    meta_value = Field(UnicodeText)
+
+
 class User(Entity):
-    """Mapper for the `user' entity"""
-    pass
+    """Mapper for the `user' entity that is the same table used by
+    wordpress"""
+    using_options(tablename='wp_users')
+
+    id = Field(Integer, primary_key=True)
+    name = Field(Unicode(64), colname='user_nicename')
+    nickname = Field(Unicode(64), colname='display_name')
+    username = Field(Unicode(64), colname='user_login')
+    password = Field(Unicode(256), colname='user_pass')
+    email = Field(Unicode(64), colname='user_email')
+    creation_date = Field(
+        DateTime, colname='user_registered',
+        default=datetime.now)
+    status = Field(
+        Boolean, colname='user_status',
+        default=True)
+    url = Field(
+        Unicode(256),
+        colname='user_url',
+        default=u'')
+
+    @before_insert
+    def set_defaults(self):
+        """Sets default values to fields that depends on other field
+        values to be set before inserting"""
+        if not self.name:
+            self.name = unicode(self.username)
+        if not self.nickname:
+            self.nickname = unicode(self.name)
+
+    @before_insert
+    def hash_password(self):
+        """Converts the password field into an md5 hashed string"""
+        hasher = phpass.PasswordHash(8, False)
+        self.password = hasher.hash_password(self.password)
+
+
+@event.listens_for(session, "after_flush")
+def _set_user_meta(session, flush_context):
+    """Sets all meta information needed by wordpress, such as
+    nickname and capabilities"""
+    if not session.is_active:
+        # Let's do nothing if the session is not ready
+        return
+    for inst in session.new:
+        if not isinstance(inst, User):
+            # We're not interested in anything different from a new user
+            continue
+        UserMeta(
+            user_id=inst.id, meta_key=u'nickname',
+            meta_value=inst.username)
+        UserMeta(
+            user_id=inst.id, meta_key=u'wp_capabilities',
+            meta_value=u'a:1:{s:10:"subscriber";s:1:"1";}')
+        UserMeta(
+            user_id=inst.id, meta_key=u'wp_user_level',
+            meta_value=u'0')
 
 
 # Helper functions
@@ -163,7 +230,6 @@ def get_or_create(model, **kwargs):
 
 # Database setup
 
-metadata.bind = "sqlite:///%s" % os.path.join(
-    os.path.dirname(__file__), 'var', 'db')
+metadata.bind = conf.DATABASE_URI
 metadata.bind.echo = True
 setup_all(__name__ == '__main__')

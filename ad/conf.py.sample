@@ -1,0 +1,1 @@
+DATABASE_URI = 'mysql://gd:gd@localhost/gd'

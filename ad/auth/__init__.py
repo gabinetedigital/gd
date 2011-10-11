@@ -24,6 +24,22 @@ refer to the `ad.admin' module.
 
 from flask import request, session, redirect, url_for
 from functools import wraps
+from sqlalchemy.orm.exc import NoResultFound
+
+from ad.utils import phpass
+from ad.model import User
+
+
+class LoginError(Exception):
+    """Base class for login errors"""
+
+
+class UserNotFound(LoginError):
+    """Exception raised when an user is not found by its username"""
+
+
+class UserAndPasswordMissmatch(LoginError):
+    """Exception raised when user and password missmatches"""
 
 
 def is_authenticated():
@@ -32,9 +48,21 @@ def is_authenticated():
 
 
 def login(username, password):
-    """Logs a user in"""
+    """Logs a user in the current session"""
+    # Testing if the user exists
+    try:
+        user = User.query.filter_by(username=username).one()
+    except NoResultFound:
+        raise UserNotFound()
+
+    # Testing user's password
+    hasher = phpass.PasswordHash(8, True)
+    if not hasher.check_password(password, user.password):
+        raise UserAndPasswordMissmatch()
+
+    # Everything seems to be ok here, let's register the user in our
+    # session
     session['username'] = username
-    return 1
 
 
 def logout():
