@@ -44,8 +44,9 @@ def login_json():
         try:
             user = authapi.login(username, password)
         except authapi.UserNotFound:
-            return msg.error(_(u'User does not exist'))
+            return msg.error(_(u'User does not exist'), 'UserNotFound')
         except authapi.UserAndPasswordMissmatch:
-            return msg.error(_(u'User or password mismatch'))
+            return msg.error(_(u'User or password mismatch'),
+                             'UserAndPasswordMissmatch')
         return msg.ok({ 'user': user })
-    return msg.error(_(u'Username or password missing'))
+    return msg.error(_(u'Username or password missing'), 'EmptyFields')

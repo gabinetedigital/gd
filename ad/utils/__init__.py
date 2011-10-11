@@ -54,6 +54,9 @@ class msg(object):
         return dumps({ 'status': 'ok', 'msg': msg })
 
     @staticmethod
-    def error(msg):
+    def error(msg, code=None):
         """Error message"""
-        return dumps({ 'status': 'error', 'msg': msg })
+        data = { 'status': 'error', 'msg': msg }
+        if code is not None:
+            data.update({ 'code': code })
+        return dumps(data)
