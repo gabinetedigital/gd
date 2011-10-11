@@ -144,7 +144,7 @@ class UserMeta(Entity):
     """Mapper for the wp_usermeta entity, the same used by wordpress"""
     using_options(tablename='wp_usermeta')
 
-    umeta = Field(Integer, primary_key=True)
+    umeta_id = Field(Integer, primary_key=True)
     user_id = Field(Integer)
     meta_key = Field(Unicode(256))
     meta_value = Field(UnicodeText)
