@@ -48,8 +48,7 @@ $(function() {
 
                 $.getJSON(url_for('auth.login_json'), params, function (data) {
                     if (data.status !== 'ok') {
-                        overlay.find('input[type!=submit]').css(
-                            'border', 'solid 1px #e00');
+                        overlay.find('div.error').html(data.msg).fadeIn('fast');
                     } else {
                         closeMethod();
                     }
