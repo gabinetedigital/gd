@@ -20,6 +20,9 @@
 
 from flask import Blueprint, render_template, request
 from ad.model import Audience, Buzz, BuzzType, session, get_or_create
+from ad.utils import msg
+from ad import auth
+
 
 buzz = Blueprint(
     'buzz', __name__,
@@ -38,6 +41,7 @@ def index():
 
 
 @buzz.route('/post', methods=('POST',))
+@auth.checkroles(['subscriber'], redirect_on_error=False)
 def post():
     """When ready, this method will post contributions from users that
     choosen to use our internal message service instead of twitter,
@@ -50,4 +54,4 @@ def post():
     newbuzz.type_ = get_or_create(BuzzType, name=u'internal')[0]
     newbuzz.audience = audience
     session.commit()
-    return '{ "status": "ok" }'
+    return msg.ok('Notice posted successfuly')
