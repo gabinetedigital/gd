@@ -26,25 +26,40 @@ from flask import request, session, redirect, url_for
 from functools import wraps
 from sqlalchemy.orm.exc import NoResultFound
 
-from ad.utils import phpass
+from ad.utils import phpass, msg, _
 from ad.model import User
 
 
-class LoginError(Exception):
+class AuthError(Exception):
     """Base class for login errors"""
 
 
-class UserNotFound(LoginError):
+class UserNotFound(AuthError):
     """Exception raised when an user is not found by its username"""
 
 
-class UserAndPasswordMissmatch(LoginError):
+class UserAndPasswordMissmatch(AuthError):
     """Exception raised when user and password missmatches"""
+
+
+class NobodyHome(AuthError):
+    """Exception raised when the trying to get the authenticated user
+    with nobody logged in"""
+
+
 
 
 def is_authenticated():
     """Boolean func that says if the current user is authenticated"""
     return 'username' in session
+
+
+def authenticated_user():
+    """Returns the authenticated user instance"""
+    try:
+        return User.query.filter_by(username=session['username']).one()
+    except KeyError:
+        raise NobodyHome()
 
 
 def login(username, password):
@@ -73,18 +88,33 @@ def logout():
         session.pop('username')
 
 
-class checkpermissions(object):
+class checkroles(object):
     """Decorator factory to check if an user accessing a flask
-    controller has a specific set of permissions"""
-    def __init__(self, permissions):
-        self.permissions = permissions
+    controller has one of the received roles"""
+    def __init__(self, roles, redirect_on_error=True):
+        self.roles = roles
+        self.redirect_on_error = redirect_on_error
 
     def __call__(self, func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             """Wrapper that actually tests the user permissions"""
-            if not is_authenticated():
+            if not is_authenticated() and self.redirect_on_error:
                 return redirect(
                     '%s?next=%s' % (url_for('admin.login'), request.url))
+            elif not is_authenticated():
+                return msg.error(
+                    _(u'No user authenticated.'),
+                    NobodyHome.__name__)
+            try:
+                user = authenticated_user()
+            except AuthError, exc:
+                return msg.error(
+                    unicode(exc.message),
+                    exc.__class__.__name__)
+            if not user.has_roles(self.roles):
+                return msg.error(
+                    _(u'The currently logged user don\'t have suficient '
+                      u'privileges to access this resource'))
             return func(*args, **kwargs)
         return wrapper

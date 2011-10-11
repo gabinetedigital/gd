@@ -58,14 +58,14 @@ def logout():
 
 
 @admin.route('/')
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def index():
     """A temporary empty view"""
     return 'Please access the /audience url in your browser!'
 
 
 @admin.route('/audience')
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def audiences():
     """Main view, lists all registered audiencces"""
     return render_template('admin/listing.html', title=_(u'Audience'),
@@ -73,7 +73,7 @@ def audiences():
 
 
 @admin.route('/audience/new', methods=('GET', 'POST'))
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def new():
     """Shows the form that creates new audiences and save collected data
     in the database.
@@ -104,7 +104,7 @@ def new():
 
 
 @admin.route('/audience/<int:aid>', methods=('GET', 'POST'))
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def edit(aid):
     """Returns a form to edit an audience and saves new params in the
     database.
@@ -142,7 +142,7 @@ def edit(aid):
 
 
 @admin.route('/audience/<int:aid>/delete', methods=['GET', 'POST'])
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def remove(aid):
     """Delete an audience instance and its related terms in the
     database."""
@@ -155,7 +155,7 @@ def remove(aid):
 
 
 @admin.route('/audience/<int:aid>/moderate')
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
     audience = Audience.query.get(aid)
@@ -172,7 +172,7 @@ def moderate(aid):
 
 
 @admin.route('/audience/<int:aid>/publish')
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def publish(aid):
     """Returns a list of buzzes for publication."""
     audience = Audience.query.get(aid)
@@ -188,7 +188,7 @@ def publish(aid):
         
 
 @admin.route('/audience/batch', methods=('post',))
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def batch():
     """Batch processing a list of buzz notices"""
     action = request.form['action']
@@ -203,7 +203,7 @@ def batch():
 
 
 @admin.route('/buzz/<int:bid>/accept')
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def accept_buzz(bid):
     """Approve messages to appear in the main buzz area"""
     buzz = Buzz.query.get(bid)
@@ -214,7 +214,7 @@ def accept_buzz(bid):
 
 
 @admin.route('/buzz/<int:bid>/select')
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def select_buzz(bid):
     """suggest messages to publish"""
     buzz = Buzz.query.get(bid)
@@ -224,7 +224,7 @@ def select_buzz(bid):
 
 
 @admin.route('/buzz/<int:bid>/delete')
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def delete_buzz(bid):
     """Delete Buzz"""
     Buzz.query.get(bid).delete()
@@ -233,7 +233,7 @@ def delete_buzz(bid):
 
 
 @admin.route('/buzz/<int:bid>/publish')
-@auth.checkpermissions(['admin'])
+@auth.checkroles(['administrator'])
 def publish_buzz(bid):
     """publish messages"""
     buzz = Buzz.query.get(bid)
