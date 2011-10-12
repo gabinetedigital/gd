@@ -199,6 +199,10 @@
     position: absolute;
 }
 
+#container #chat form textarea.error {
+    border:3px solid #ef2929;
+}
+
 #container #chat form input {
     border: 1px solid #666;
     border-radius: 4px;
