@@ -50,8 +50,8 @@ def post():
     newbuzz = Buzz(
         owner_nick=auth.authenticated_user().username,
         owner_avatar=u'',
-        content=request.values.get('message'))
-    newbuzz.type_ = get_or_create(BuzzType, name=u'site')[0]
+        content=request.values.get('message'),
+        type_=get_or_create(BuzzType, name=u'site')[0])
     newbuzz.audience = audience
     session.commit()
     return msg.ok('Notice posted successfuly')
