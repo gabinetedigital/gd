@@ -226,6 +226,12 @@ class User(Entity):
             url=self.url,
         )
 
+    @property
+    def display_name(self):
+        """Just a shortcut to decide which value should be exposed to
+        identify a user"""
+        return self.nickname or self.name or self.username
+
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(session, flush_context):
