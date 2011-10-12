@@ -34,10 +34,7 @@ buzz = Blueprint(
 def index():
     """Shows socket io interation. For debugging purposes at the moment.
     """
-    # Removing the port from host info. This will be used to bind
-    # socket.io client API to our server.
-    host = request.host.split(':')[0]
-    return render_template('buzz/index.html', host=host)
+    return render_template('buzz/index.html')
 
 
 @buzz.route('/post', methods=('POST',))

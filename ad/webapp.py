@@ -28,12 +28,14 @@ if __name__ == '__main__':
     sys.path.append('..')
 
 
-from flask import Flask
+from flask import Flask, request
 from ad.admin import admin
 from ad.audience import audience
 from ad.auth.webapp import auth
 from ad.buzz.webapp import buzz
 from ad.buzz.facebookapp import fbapp
+
+from ad.auth import authenticated_user, NobodyHome
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')
@@ -41,6 +43,28 @@ app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
+
+
+@app.context_processor
+def extend_context():
+    """This function is a context processor. It injects variables such
+    as `user' and `host' variable in all templates that will be rendered
+    for this application"""
+
+    context = {}
+
+    # This will be used to bind socket.io client API to our
+    # server. Without the port information.
+    context['host'] = request.host.split(':')[0]
+
+    # Time to add the `user' var
+    try:
+        context['user'] = authenticated_user()
+    except NobodyHome:
+        context['user'] = None
+
+    # Job done!
+    return context
 
 
 # Registering a secret key to be able to work with sessions
