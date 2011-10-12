@@ -47,7 +47,7 @@ $(function() {
                 // again. It's not actually usual to happen but better
                 // being safe than sorry.
                 if (parsedData.code === 'NobodyHome') {
-                    auth.shpowLoginForm({
+                    auth.showLoginForm({
                         success: function (userData) {
                             postNotice(message);
                         }
