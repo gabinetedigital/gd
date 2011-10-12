@@ -87,12 +87,13 @@ var auth = (function() {
                     password: overlay.find('input[name=password]').val()
                 };
 
-                $.getJSON(url_for('auth.login_json'), params, function (data) {
-                    if (data.status !== 'ok') {
-                        overlay.find('div.error').html(data.msg).fadeIn('fast');
+                $.post(url_for('auth.login_json'), params, function (data) {
+                    var pData = $.parseJSON(data);
+                    if (pData.status !== 'ok') {
+                        overlay.find('div.error').html(pData.msg).fadeIn('fast');
                     } else {
                         closeMethod();
-                        auth.userAuthenticated(data.msg.user);
+                        auth.userAuthenticated(pData.msg.user);
                     }
                 });
                 return false;

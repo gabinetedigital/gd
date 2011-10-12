@@ -34,7 +34,7 @@ def login_form():
     return render_template('login.html')
 
 
-@auth.route('/login_json')
+@auth.route('/login_json', methods=('POST',))
 def login_json():
     """Logs the user in (through ajax) and returns the user object in
     JSON format"""
