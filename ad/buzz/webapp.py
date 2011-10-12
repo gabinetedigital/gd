@@ -41,17 +41,17 @@ def index():
 
 
 @buzz.route('/post', methods=('POST',))
-@auth.checkroles(['subscriber'], redirect_on_error=False)
+@auth.checkroles(['administrator', 'subscriber'], redirect_on_error=False)
 def post():
     """When ready, this method will post contributions from users that
     choosen to use our internal message service instead of twitter,
     identica or whatever."""
     audience = Audience.get(request.values.get('aid'))
     newbuzz = Buzz(
-        owner_nick=u'nick',
+        owner_nick=auth.authenticated_user().username,
         owner_avatar=u'',
         content=request.values.get('message'))
-    newbuzz.type_ = get_or_create(BuzzType, name=u'internal')[0]
+    newbuzz.type_ = get_or_create(BuzzType, name=u'site')[0]
     newbuzz.audience = audience
     session.commit()
     return msg.ok('Notice posted successfuly')
