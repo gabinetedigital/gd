@@ -74,7 +74,7 @@
       </ul>
       <div id="chat">
         <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
-          <input type="hidden" name="aid" value="{{ audience.id }}">
+          <input type="hidden" id="aid" name="aid" value="{{ audience.id }}">
           <textarea name="message" placeholder="Poste sua mensagem aqui."></textarea>
           <input type="submit" value="enviar">
         </form>
