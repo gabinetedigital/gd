@@ -83,4 +83,17 @@
   </div>
   <div class="row-end"></div>
 </div>
+
+<script type="text/html" id="buzzTemplate">
+  <li>
+    <ul class="stream">
+      <li class="avatar">
+        <img src="<%= obj.owner_avatar %>">
+      </li>
+      <li class="author">@<%= obj.owner_nick %> | <%= obj.type_.name %></li>
+      <li class="answer"><%= obj.content %></li>
+    </ul>
+  </li>
+</script>
+
 {% endblock %}
