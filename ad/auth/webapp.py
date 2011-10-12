@@ -50,3 +50,10 @@ def login_json():
                              'UserAndPasswordMissmatch')
         return msg.ok({ 'user': user })
     return msg.error(_(u'Username or password missing'), 'EmptyFields')
+
+
+@auth.route('/logout_json')
+def logout_json():
+    """Logs the user out and returns an ok message"""
+    authapi.logout()
+    return msg.ok(_(u'User loged out'))
