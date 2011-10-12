@@ -36,6 +36,28 @@ $(function() {
     });
 
 
+    /** Shows a tooltip of an element with manual control of show/hide
+     *  operations */
+    function showTooltip(elementOrSelector) {
+        if (typeof elementOrSelector === 'string') {
+            $element = $(elementOrSelector);
+        } else {
+            $element = elementOrSelector;
+        }
+
+        var $tooltip = $element.tooltip({
+            effect: "fade",
+            delay: 4200,
+            opacity: 0.7,
+            events: {
+                input: 'customOpenEvent,customOpenEvent'
+            }
+        });
+        $tooltip.trigger('customOpenEvent');
+        return $tooltip;
+    }
+
+
     /** Posts a new notice on the message buzz */
     function postNotice(message) {
         var params = { aid: $('#aid').val(), message: message };
@@ -53,14 +75,23 @@ $(function() {
                         }
                     });
                     return;
+                } else {
+                    // Feedback the user. something wrong happened.
+                    showTooltip(
+                        $("#internal_chat textarea")
+                            .attr('title', parsedData.msg));
                 }
-
-                // Feedback the user. something wrong happened.
             } else {
                 // Everything' fine, let's just clear the message box
                 // and thank the user
-                var $textbox = $("#internal_chat textarea");
-                $textbox.val('');
+                var $textbox = $("#internal_chat textarea")
+                    .val('')
+                    .attr('title', parsedData.msg);
+                showTooltip($textbox);
+
+                window.setTimeout(function () {
+                    $textbox.attr('title', '');
+                }, 10000);
             }
         });
     }

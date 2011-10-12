@@ -124,3 +124,15 @@ a {
     text-decoration: none;
     font-weight: bold;
 }
+
+/** Extras **/
+.tooltip {
+    background-color:#000;
+    border:1px solid #fff;
+    padding:10px 15px;
+    width:200px;
+    display:none;
+    color:#fff;
+    text-align:left;
+    font-size:12px;
+}

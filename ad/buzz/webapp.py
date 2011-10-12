@@ -20,7 +20,7 @@
 
 from flask import Blueprint, render_template, request
 from ad.model import Audience, Buzz, BuzzType, session, get_or_create
-from ad.utils import msg
+from ad.utils import msg, _
 from ad import auth
 
 
@@ -54,4 +54,5 @@ def post():
         type_=get_or_create(BuzzType, name=u'site')[0])
     newbuzz.audience = audience
     session.commit()
-    return msg.ok('Notice posted successfuly')
+    return msg.ok(_('Notice posted successfuly. Please wait a few while '
+                    'your message is approved.'))
