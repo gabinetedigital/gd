@@ -39,6 +39,7 @@
   <div class="row">
     <div id="main" class="col8">
       <div class="content">
+        {% if audience.started %}
         <ul class="stream">
           <li class="avatar">
             <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
@@ -51,6 +52,7 @@
             consectetuer. Posuere vita. regional</li>
         </ul>
         <div id="streaming">{{ audience.embed|safe }}</div>
+        {% endif %}
         <div id="misc">
           <h2>Governo Escuta</h2>
           <p>{{ audience.description|safe }}</p>
