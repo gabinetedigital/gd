@@ -26,7 +26,7 @@ from sqlalchemy import desc, not_
 from ad.model import Audience, Buzz, Term, session
 from ad.utils import _, msg
 from ad.buzz import sio
-from ad import auth
+from ad import auth, conf
 
 
 admin = Blueprint(
@@ -85,7 +85,7 @@ def new():
         inst = Audience()
         inst.title = request.form['title']
         inst.subject = request.form['subject']
-        inst.date = datetime.strptime(request.form['date'],"%d/%m/%Y %H:%M")
+        inst.date = datetime.strptime(request.form['date'], conf.DATEFORMAT)
         inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
@@ -112,7 +112,7 @@ def edit(aid):
     if request.method == 'POST':
         inst.title = request.form['title']
         inst.subject = request.form['subject']
-        inst.date = datetime.strptime(request.form['date'],"%d/%m/%Y %H:%M")
+        inst.date = datetime.strptime(request.form['date'], conf.DATEFORMAT)
         inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']

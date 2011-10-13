@@ -1,1 +1,3 @@
 DATABASE_URI = 'mysql://gd:gd@localhost/gd'
+
+DATEFORMAT = "%d/%m/%Y %H:%M"
