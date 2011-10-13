@@ -44,8 +44,11 @@ a:hover {
 
 /** Headers **/
 
-#header {
+.layout-978 {
     background: url(../imgs/header.png) 6px 0 no-repeat;
+}
+
+#header {
     height: 200px;
     position: absolute;
 }
@@ -69,10 +72,15 @@ a:hover {
     font-size: 13px;
     width:150px;
     text-align:right;
+    color:#668000;
 }
 
 #header .login li {
     display: inline;
+}
+
+#header .login li.avatar {
+    color:#333;
 }
 
 #header .login li.avatar img {

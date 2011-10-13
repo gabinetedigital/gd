@@ -22,8 +22,9 @@
               <div>Olá {{ user.display_name }}</div>
             </li>
             <li>
-              <a href="#">editar perfil |</a>
+              <a href="#">editar perfil</a>
             </li>
+            <li>|</li>
             <li>
               <a href="{{ url_for('auth.logout_json') }}"
                  onclick="auth.logout(); return false;">sair</a>
@@ -31,9 +32,10 @@
             {% else %}
             <li>
               <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
-                entrar |
+                entrar
               </a>
             </li>
+            <li>|</li>
             <li>
               <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
                 cadastre-se
@@ -76,8 +78,9 @@
         <div>Olá <%= obj.display_name %></div>
       </li>
       <li>
-        <a href="#">editar perfil |</a>
+        <a href="#">editar perfil</a>
       </li>
+      <li>|</li>
       <li>
         <a href="{{ url_for('auth.logout_json') }}"
            onclick="auth.logout(); return false;">sair</a>
@@ -87,9 +90,10 @@
     <script type="text/html" id="loggedoutTemplate">
       <li>
         <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
-          entrar |
+          entrar
         </a>
       </li>
+      <li>|</li>
       <li>
         <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
           cadastre-se
