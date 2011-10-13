@@ -15,7 +15,7 @@
    id="svg7268"
    version="1.1"
    inkscape:version="0.48.1 r9760"
-   sodipodi:docname="ask.svg">
+   sodipodi:docname="audience.svg">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -23,11 +23,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="552.282"
-     inkscape:cy="1314.1055"
+     inkscape:zoom="1.1378547"
+     inkscape:cx="830.06091"
+     inkscape:cy="1180.6905"
      inkscape:document-units="px"
-     inkscape:current-layer="svg7268"
+     inkscape:current-layer="g3895"
      showgrid="false"
      showborder="false"
      inkscape:showpageshadow="false"
@@ -35,7 +35,7 @@
      inkscape:guide-bbox="true"
      inkscape:window-width="1362"
      inkscape:window-height="730"
-     inkscape:window-x="0"
+     inkscape:window-x="1440"
      inkscape:window-y="18"
      inkscape:window-maximized="0">
     <sodipodi:guide
@@ -3860,7 +3860,10 @@
   </g>
   <g
      id="g54241"
-     transform="translate(-57.5,529.13782)">
+     transform="translate(-57.5,529.13782)"
+     inkscape:export-filename="/home/lincoln/Work/GabineteDigital/Projects/AssembleiaDigital/code/ad/ad/audience/static/imgs/filter_off.png"
+     inkscape:export-xdpi="91.370003"
+     inkscape:export-ydpi="91.370003">
     <path
        sodipodi:type="arc"
        style="fill:#ffffff;fill-opacity:1;stroke:#cccccc;stroke-width:1.18638265;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
