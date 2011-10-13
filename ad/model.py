@@ -205,7 +205,9 @@ class User(Entity):
         # So, let's query for the usermeta object. Once we don't handle
         # wordpress registered rows, let's make sure that it will never
         # raise an unexpected exception.
-        query = UserMeta.query.filter_by(user_id=1, meta_key='wp_capabilities')
+        query = UserMeta.query.filter_by(
+            user_id=self.id,
+            meta_key='wp_capabilities')
         try:
             meta = query.one()
         except NoResultFound:
