@@ -35,6 +35,11 @@ body {
 
 a {
     color: #668000;
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:underline;
 }
 
 /** Headers **/
@@ -62,10 +67,18 @@ a {
     margin-top: 22px;
     margin-right: 54px;
     font-size: 13px;
+    width:150px;
+    text-align:right;
 }
 
 #header .login li {
     display: inline;
+}
+
+#header .login li.avatar img {
+    float:right;
+    margin-left:10px;
+    width:30px;
 }
 
 #header #social li {

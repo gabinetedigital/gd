@@ -16,9 +16,30 @@
           <h1>Gabiente Digital - Democracia em Rede</h1>
           <div id="loginoverlay"><div class="contentWrap"></div></div>
           <ul class="login">
-            <li>
-              <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">entrar</a>
+            {% if user is not none %}
+            <li class="avatar">
+              <img src="{{ user.avatar_url }}" alt="User avatar">
+              <div>Olá {{ user.display_name }}</div>
             </li>
+            <li>
+              <a href="#">editar perfil |</a>
+            </li>
+            <li>
+              <a href="{{ url_for('auth.logout_json') }}"
+                 onclick="auth.logout(); return false;">sair</a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
+                entrar |
+              </a>
+            </li>
+            <li>
+              <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
+                cadastre-se
+              </a>
+            </li>
+            {% endif %}
           </ul>
           <h4>Acompanhe, participe!</h4>
           <ul id="social">
@@ -48,6 +69,33 @@
         <div class="row-end"></div>
       </div>
     </div>
+
+    <script type="text/html" id="loggedinTemplate">
+      <li class="avatar">
+        <img src="<%= obj.avatar_url %>" alt="User avatar">
+        <div>Olá <%= obj.display_name %></div>
+      </li>
+      <li>
+        <a href="#">editar perfil |</a>
+      </li>
+      <li>
+        <a href="{{ url_for('auth.logout_json') }}"
+           onclick="auth.logout(); return false;">sair</a>
+      </li>
+    </script>
+
+    <script type="text/html" id="loggedoutTemplate">
+      <li>
+        <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
+          entrar |
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
+          cadastre-se
+        </a>
+      </li>
+    </script>
 
     <script type="text/javascript">
       var BASE_URL = "{{ request.url_root }}";

@@ -56,50 +56,75 @@ var auth = (function() {
         , userAuthenticated: function (user) {
             this.user = user;
             this.success();
+            this.updateLoginWidget();
+        }
+
+        /** This method updates the login widget to show links that
+         *  only makes sense to be shown after logged in or logged out */
+        , updateLoginWidget: function () {
+            $('ul.login li').fadeOut('slow', function () {
+                var $ul = $('ul.login');
+                var template = (auth.isAuthenticated() ? 'loggedin' : 'loggedout');
+                template += 'Template';
+                $ul.html('');
+                $(tmpl(template, auth.user || {})).appendTo($ul);
+                setOverlayWidget();
+            });
+        }
+
+        /** Logs the user out */
+        , logout: function () {
+            $.get(url_for('auth.logout_json'), function () {
+                auth.user = null;
+                auth.updateLoginWidget();
+            });
         }
     };
 
     /* Overlay for all <a> tags with a `rel' attribute */
-    $('a[rel=#loginoverlay]').overlay({
-        top: 250,
-        mask: {
-            color: '#fff',
-            opacity: 0.5
-        },
-        oneInstance: false,
-        speed: 'fast',
-        onBeforeLoad: function() {
-	    var wrap = this.getOverlay().find(".contentWrap");
-	    wrap.load(this.getTrigger().attr("href"));
-	},
-        onLoad: function() {
-            var overlay = this.getOverlay();
-            var closeMethod = this.close;
+    function setOverlayWidget() {
+        $('a[rel=#loginoverlay]').overlay({
+            top: 250,
+            mask: {
+                color: '#fff',
+                opacity: 0.5
+            },
+            oneInstance: false,
+            speed: 'fast',
+            onBeforeLoad: function() {
+	        var wrap = this.getOverlay().find(".contentWrap");
+	        wrap.load(this.getTrigger().attr("href"));
+	    },
+            onLoad: function() {
+                var overlay = this.getOverlay();
+                var closeMethod = this.close;
 
-            /* Just focus the username when overlay shows up */
-            overlay.find('input[name=username]').focus();
+                /* Just focus the username when overlay shows up */
+                overlay.find('input[name=username]').focus();
 
-            /* The submit button does its miracles of cancelling the usual
-             * form submit and send data via ajax */
-            overlay.find('form').submit(function () {
-                var params = {
-                    username: overlay.find('input[name=username]').val(),
-                    password: overlay.find('input[name=password]').val()
-                };
+                /* The submit button does its miracles of cancelling the usual
+                 * form submit and send data via ajax */
+                overlay.find('form').submit(function () {
+                    var params = {
+                        username: overlay.find('input[name=username]').val(),
+                        password: overlay.find('input[name=password]').val()
+                    };
 
-                $.post(url_for('auth.login_json'), params, function (data) {
-                    var pData = $.parseJSON(data);
-                    if (pData.status !== 'ok') {
-                        overlay.find('div.error').html(pData.msg).fadeIn('fast');
-                    } else {
-                        closeMethod();
-                        auth.userAuthenticated(pData.msg.user);
-                    }
+                    $.post(url_for('auth.login_json'), params, function (data) {
+                        var pData = $.parseJSON(data);
+                        if (pData.status !== 'ok') {
+                            overlay.find('div.error').html(pData.msg).fadeIn('fast');
+                        } else {
+                            closeMethod();
+                            auth.userAuthenticated(pData.msg.user);
+                        }
+                    });
+                    return false;
                 });
-                return false;
-            });
-        }
-    });
+            }
+        });
+    }
 
+    setOverlayWidget();
     return new Auth();
 })();

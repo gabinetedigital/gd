@@ -30,6 +30,7 @@ from elixir.events import after_insert, before_insert
 from elixir import using_options, setup_all, metadata, session
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
     Boolean, Integer, Enum, ManyToOne, OneToMany
+from flask import url_for
 
 from ad import conf
 from ad.buzz import sio
@@ -162,6 +163,7 @@ class User(Entity):
     username = Field(Unicode(64), colname='user_login')
     password = Field(Unicode(256), colname='user_pass')
     email = Field(Unicode(64), colname='user_email')
+    avatar = Field(Unicode(256))
     creation_date = Field(
         DateTime, colname='user_registered',
         default=datetime.now)
@@ -222,9 +224,16 @@ class User(Entity):
             name=self.name,
             nickname=self.nickname,
             username=self.username,
+            display_name=self.display_name,
+            avatar_url=self.avatar_url,
             creation_date=self.creation_date,
             url=self.url,
         )
+
+    @property
+    def avatar_url(self):
+        """Returns the avatar image of this user or the default one"""
+        return self.avatar or url_for('static', filename='imgs/avatar.png')
 
     @property
     def display_name(self):
