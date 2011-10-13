@@ -133,6 +133,8 @@ $(function() {
         return false;
     });
 
+    $('a.filter').tooltip({ opacity: 0.7 });
+
     // Starts a new instance of the buzz stream
 
     function updateBuzz(msg, show) {
