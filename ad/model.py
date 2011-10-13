@@ -287,3 +287,13 @@ def get_or_create(model, **kwargs):
 metadata.bind = conf.DATABASE_URI
 metadata.bind.echo = True
 setup_all(__name__ == '__main__')
+
+
+if __name__ == '__main__':
+    import sys; import os
+    if len(sys.argv) > 2:
+        User(
+            username=unicode(sys.argv[1]),
+            password=unicode(sys.argv[2]),
+            email=os.getenv('EMAIL') or sys.argv[3])
+        session.commit()
