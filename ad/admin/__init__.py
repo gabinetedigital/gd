@@ -98,11 +98,7 @@ def new():
         
         inst.owner = 'administrator'
         session.commit()
-
-        return render_template(
-            'admin/listing.html', title=_(u'Audience'),
-            audience=Audience)
-    
+        return redirect(url_for('.audiences'))
     return render_template('admin/new.html', title=_(u'Audience'))
 
 
