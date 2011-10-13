@@ -42,6 +42,7 @@
         {% if audience.started %}
         {% set notice = audience.get_last_published_notice() %}
         {% if notice %}
+        <div id="comofunciona"></div>
         <ul class="stream">
           <li class="avatar">
             <img src="{{ notice.owner_avatar }}">

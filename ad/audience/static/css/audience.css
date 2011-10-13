@@ -129,6 +129,18 @@
     color: #668000;
 }
 
+#container #main .content .stream .answer {
+    width: 450px;
+}
+
+#container #main .content #comofunciona {
+    background: #73d216;
+    width: 148px;
+    height: 50px;
+    float: right;
+    margin-right: -10px;
+}
+
 #container #main .content #streaming {
     background: url(../imgs/video.png) ;
     display: block;
