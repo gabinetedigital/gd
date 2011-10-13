@@ -135,6 +135,7 @@
 }
 
 #container #main .content #how-it-works {
+    background: #73d216;
     width: 148px;
     height: 50px;
     float: right;
