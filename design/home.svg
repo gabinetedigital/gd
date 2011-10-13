@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="472.76395"
-     inkscape:cy="1312.107"
+     inkscape:zoom="0.5"
+     inkscape:cx="480.89777"
+     inkscape:cy="1108.442"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="svg7268"
      showgrid="false"
      showborder="false"
      inkscape:showpageshadow="false"
@@ -251,18 +251,6 @@
        position="209,1381.25"
        orientation="0,1" />
     <sodipodi:guide
-       orientation="0,1"
-       position="654,610.25"
-       id="guide4360" />
-    <sodipodi:guide
-       id="guide5629"
-       position="590,1148.75"
-       orientation="0,1" />
-    <sodipodi:guide
-       id="guide5638"
-       position="631.25,1118.75"
-       orientation="0,1" />
-    <sodipodi:guide
        orientation="1,0"
        position="32,1484"
        id="guide7901" />
@@ -282,6 +270,14 @@
        orientation="1,0"
        position="1688.75,1105.75"
        id="guide5771" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="264,1172.383"
+       id="guide4985" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="997.03125,1178.4688"
+       id="guide5618" />
   </sodipodi:namedview>
   <defs
      id="defs7270">
@@ -2544,16 +2540,6 @@
          offset="1"
          id="stop40420-2-6-9-8-7" />
     </linearGradient>
-    <linearGradient
-       y2="824"
-       x2="152"
-       y1="978.86591"
-       x1="151"
-       gradientTransform="matrix(2.9495416,0,0,2.2966292,-103.0321,-1636.5985)"
-       gradientUnits="userSpaceOnUse"
-       id="linearGradient7492"
-       xlink:href="#linearGradient40416-1-8-2-56-80"
-       inkscape:collect="always" />
     <clipPath
        clipPathUnits="userSpaceOnUse"
        id="clipPath9890-2-60-0-7-4-2-8">
@@ -2565,6 +2551,16 @@
          id="rect9892-0-0-8-8-3-99-2"
          style="fill:#ffffff;fill-opacity:1;stroke:#808080;stroke-width:0.99966317" />
     </clipPath>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient40416-1-8-2-56-80"
+       id="linearGradient5461"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.9629561,0,0,2.3463583,-106.9492,-1140.6506)"
+       x1="151"
+       y1="978.86591"
+       x2="152"
+       y2="824" />
   </defs>
   <metadata
      id="metadata7273">
@@ -3100,7 +3096,7 @@
     <g
        id="g5168"
        transform="translate(0,8)"
-       style="display:none">
+       style="display:inline">
       <rect
          transform="matrix(1.0000045,0,-0.00748914,0.98216617,1.9963204,-0.6374251)"
          y="-29.924664"
@@ -3215,7 +3211,7 @@
      inkscape:groupmode="layer"
      id="layer8"
      inkscape:label="footer"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
     <rect
        style="fill:#e6e6e6;fill-opacity:1;stroke:none"
@@ -4021,7 +4017,7 @@
            transform="matrix(0.73333333,0,0,0.73333333,35.866667,107.36325)">
           <path
              transform="translate(0,-545.13782)"
-             d="m 1192,246.5 c 0,4.14214 -3.3579,7.5 -7.5,7.5 -4.1421,0 -7.5,-3.35786 -7.5,-7.5 0,-4.14214 3.3579,-7.5 7.5,-7.5 4.1421,0 7.5,3.35786 7.5,7.5 z"
+             d="m 1192,246.5 a 7.5,7.5 0 1 1 -15,0 7.5,7.5 0 1 1 15,0 z"
              sodipodi:ry="7.5"
              sodipodi:rx="7.5"
              sodipodi:cy="246.5"
@@ -4030,7 +4026,7 @@
              style="opacity:0.72065992;fill:#babdb6;fill-opacity:1;stroke:none"
              sodipodi:type="arc" />
           <path
-             d="m 1192,246.5 c 0,4.14214 -3.3579,7.5 -7.5,7.5 -4.1421,0 -7.5,-3.35786 -7.5,-7.5 0,-4.14214 3.3579,-7.5 7.5,-7.5 4.1421,0 7.5,3.35786 7.5,7.5 z"
+             d="m 1192,246.5 a 7.5,7.5 0 1 1 -15,0 7.5,7.5 0 1 1 15,0 z"
              sodipodi:ry="7.5"
              sodipodi:rx="7.5"
              sodipodi:cy="246.5"
@@ -4040,7 +4036,7 @@
              sodipodi:type="arc"
              transform="translate(24.833362,-545.13782)" />
           <path
-             d="m 1192,246.5 c 0,4.14214 -3.3579,7.5 -7.5,7.5 -4.1421,0 -7.5,-3.35786 -7.5,-7.5 0,-4.14214 3.3579,-7.5 7.5,-7.5 4.1421,0 7.5,3.35786 7.5,7.5 z"
+             d="m 1192,246.5 a 7.5,7.5 0 1 1 -15,0 7.5,7.5 0 1 1 15,0 z"
              sodipodi:ry="7.5"
              sodipodi:rx="7.5"
              sodipodi:cy="246.5"
@@ -4050,7 +4046,7 @@
              sodipodi:type="arc"
              transform="translate(49.666736,-545.13782)" />
           <path
-             d="m 1192,246.5 c 0,4.14214 -3.3579,7.5 -7.5,7.5 -4.1421,0 -7.5,-3.35786 -7.5,-7.5 0,-4.14214 3.3579,-7.5 7.5,-7.5 4.1421,0 7.5,3.35786 7.5,7.5 z"
+             d="m 1192,246.5 a 7.5,7.5 0 1 1 -15,0 7.5,7.5 0 1 1 15,0 z"
              sodipodi:ry="7.5"
              sodipodi:rx="7.5"
              sodipodi:cy="246.5"
@@ -4658,39 +4654,35 @@
   <g
      inkscape:groupmode="layer"
      id="layer14"
-     inkscape:label="Interna"
-     style="display:inline">
-    <g
-       style="display:inline"
-       id="g8227-0"
-       transform="matrix(1.004548,0,0,1.0216531,-7.7684869,293.7974)">
-      <path
-         style="fill:#cccccc;fill-opacity:1;stroke:none;filter:url(#filter14314-5-6-6-7-8)"
-         d="m 659.9844,-462.63782 0,13.0625 0,441.9387933 0,13.0625 13.0312,0 22.5,0 288.8438,0 c 7.2331,0 11.6562,-5.82928998 11.6562,-13.0625 l 0,-441.9387933 c 0,-7.23321 -4.423,-13.0625 -11.6562,-13.0625 l -288.8438,0 -22.5,0 z"
-         id="rect12162-8-1-4-8-9-6"
-         inkscape:connector-curvature="0"
-         transform="matrix(1.8982775,0,0,1.3415567,-1233.4086,568.86076)"
-         sodipodi:nodetypes="ccccccssssccc" />
-      <rect
-         style="fill:#ffffff;fill-opacity:1;stroke:none"
-         id="rect15598-7-1-4-9"
-         width="638.46252"
-         height="629.31476"
-         x="17.373291"
-         y="-52.600182" />
-      <rect
-         y="251.23056"
-         x="12"
-         height="326.12131"
-         width="643"
-         id="rect40406-4-0-7-2"
-         style="fill:url(#linearGradient7492);fill-opacity:1;stroke:none" />
-    </g>
+     inkscape:label="interna blog"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <path
+       sodipodi:nodetypes="ccccccssssccc"
+       transform="matrix(1.9069109,0,0,1.3706056,-1246.7866,874.97576)"
+       inkscape:connector-curvature="0"
+       id="rect12162-8-1-4-8-9-6"
+       d="m 659.9844,-462.63782 0,13.0625 0,619.41124 0,13.0625 13.0312,0 22.5,0 288.8438,0 c 7.2331,0 11.6562,-5.82929 11.6562,-13.0625 l 0,-619.41124 c 0,-7.23321 -4.423,-13.0625 -11.6562,-13.0625 l -288.8438,0 -22.5,0 z"
+       style="fill:#cccccc;fill-opacity:1;stroke:none;filter:url(#filter14314-5-6-6-7-8)" />
+    <rect
+       y="240.05826"
+       x="10.885109"
+       height="879.11499"
+       width="641.36627"
+       id="rect15598-7-1-4-9"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <rect
+       style="fill:url(#linearGradient5461);fill-opacity:1;stroke:none"
+       id="rect40406-4-0-7-2"
+       width="645.92438"
+       height="333.18283"
+       x="8.6060562"
+       y="788.05579" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot7525"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2e3436;fill-opacity:1;stroke:none;font-family:Sansation;-inkscape-font-specification:Sansation"
-       transform="translate(2,6)"><flowRegion
+       transform="translate(2,20)"><flowRegion
          id="flowRegion7527"><rect
            id="rect7529"
            width="538"
@@ -4702,10 +4694,10 @@
        xml:space="preserve"
        id="flowRoot7569"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       transform="translate(0,40)"><flowRegion
+       transform="translate(1.46875,54)"><flowRegion
          id="flowRegion7571"><rect
            id="rect7573"
-           width="599"
+           width="573.54413"
            height="454"
            x="32"
            y="332"
@@ -4722,7 +4714,7 @@
        xml:space="preserve"
        id="flowRoot7569-3"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#808080;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
-       transform="translate(219.65771,-1.48606)"><flowRegion
+       transform="translate(195.65771,12.51394)"><flowRegion
          id="flowRegion7571-9"><rect
            id="rect7573-1"
            width="599"
@@ -4732,7 +4724,7 @@
            style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#808080;fill-opacity:1;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
          id="flowPara7579-4">11 de outubro de 2011 | GovernadorResponde, Segurança</flowPara></flowRoot>    <g
        id="g9432-2-2-6"
-       transform="translate(15.000061,480.82437)">
+       transform="translate(-8.999939,494.82437)">
       <flowRoot
          transform="matrix(0.95606605,0,0,0.95606605,147.34276,-418.02523)"
          style="font-size:13.59730816px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#808080;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
@@ -4779,93 +4771,391 @@
            width="16" />
       </g>
     </g>
+    <g
+       id="g3944"
+       transform="matrix(1.3104168,0,0,1.3104168,-212.72781,-20.73467)">
+      <g
+         id="g4967"
+         transform="matrix(0.89637644,0,0,0.89637644,67.615579,211.71175)">
+        <g
+           id="g5465">
+          <text
+             sodipodi:linespacing="125%"
+             id="text7870"
+             y="275.65088"
+             x="721.48523"
+             style="font-size:17.1406498px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#8ae234;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="275.65088"
+               x="721.48523"
+               id="tspan7872"
+               sodipodi:role="line">Segurança</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text7870-5"
+             y="306.42847"
+             x="697.64172"
+             style="font-size:16.82077789px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#8ae234;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="306.42847"
+               x="697.64172"
+               id="tspan7872-7"
+               sodipodi:role="line">Liberdade</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text7870-5-4"
+             y="310.59674"
+             x="788.44043"
+             style="font-size:30.96786118px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4e9a06;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="310.59674"
+               x="788.44043"
+               id="tspan7872-7-2"
+               sodipodi:role="line">Governo</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text7870-2"
+             y="276.16135"
+             x="819.94318"
+             style="font-size:23.9622364px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4e9a06;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="276.16135"
+               x="819.94318"
+               id="tspan7872-72"
+               sodipodi:role="line">Internet</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text7870-2-0"
+             y="337.17819"
+             x="706.01141"
+             style="font-size:23.9622364px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#73d216;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="337.17819"
+               x="706.01141"
+               id="tspan7872-72-1"
+               sodipodi:role="line">Participação</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text7870-2-0-6"
+             y="370.28842"
+             x="807.31726"
+             style="font-size:31.95492554px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4e9a06;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="370.28842"
+               x="807.31726"
+               id="tspan7872-72-1-1"
+               sodipodi:role="line">Saúde</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text7870-2-0-6-2"
+             y="366.54947"
+             x="696.27454"
+             style="font-size:21.84215355px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#73d216;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="366.54947"
+               x="696.27454"
+               id="tspan7872-72-1-1-0"
+               sodipodi:role="line">Educação</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text7870-5-2"
+             y="395.15417"
+             x="721.29938"
+             style="font-size:19.77059364px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#73d216;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="395.15417"
+               x="721.29938"
+               id="tspan7872-7-3"
+               sodipodi:role="line">GabineteDigital</tspan></text>
+        </g>
+      </g>
+    </g>
     <text
        xml:space="preserve"
-       style="font-size:17.1406498px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#8ae234;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="721.48523"
-       y="275.65088"
-       id="text7870"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="712.76361"
+       y="504.69159"
+       id="text5508"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7872"
-         x="721.48523"
-         y="275.65088">Segurança</tspan></text>
+         id="tspan5510"
+         x="712.76361"
+         y="504.69159"></tspan></text>
+    <g
+       id="g5858">
+      <text
+         sodipodi:linespacing="125%"
+         id="text5483-7-8"
+         y="979.95667"
+         x="684.25244"
+         style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#4e9a06;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="979.95667"
+           x="684.25244"
+           id="tspan5485-3-2"
+           sodipodi:role="line">2011</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5483-7-8-5"
+         y="1005.9041"
+         x="680.59729"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#555753;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="1005.9041"
+           x="680.59729"
+           id="tspan5485-3-2-3"
+           sodipodi:role="line">    Outubro (<tspan
+   id="tspan5764"
+   style="fill:#4e9a06">4</tspan>)</tspan><tspan
+           id="tspan5596"
+           y="1023.4041"
+           x="680.59729"
+           sodipodi:role="line">    Setembro (<tspan
+   id="tspan5768"
+   style="fill:#4e9a06">14</tspan>)</tspan><tspan
+           id="tspan5598"
+           y="1040.9041"
+           x="680.59729"
+           sodipodi:role="line">    Agosto (<tspan
+   id="tspan5770"
+   style="fill:#4e9a06">27</tspan>)</tspan><tspan
+           id="tspan5600"
+           y="1058.4041"
+           x="680.59729"
+           sodipodi:role="line">    Julho (<tspan
+   id="tspan5772"
+   style="fill:#4e9a06">18</tspan>)</tspan><tspan
+           id="tspan5602"
+           y="1075.9041"
+           x="680.59729"
+           sodipodi:role="line">    Junho (<tspan
+   id="tspan5774"
+   style="fill:#4e9a06">5</tspan>)</tspan><tspan
+           id="tspan5604"
+           y="1093.4041"
+           x="680.59729"
+           sodipodi:role="line">    Maio (<tspan
+   id="tspan5776"
+   style="fill:#4e9a06">6</tspan>)</tspan><tspan
+           id="tspan5606"
+           y="1110.9041"
+           x="680.59729"
+           sodipodi:role="line"></tspan><tspan
+           id="tspan5608"
+           y="1128.4041"
+           x="680.59729"
+           sodipodi:role="line" /></text>
+    </g>
     <text
        xml:space="preserve"
-       style="font-size:16.82077789px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#8ae234;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
-       x="697.64172"
-       y="306.42847"
-       id="text7870-5"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="898.99219"
+       y="947.21277"
+       id="text5483-7-8-0"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7872-7"
-         x="697.64172"
-         y="306.42847">Liberdade</tspan></text>
+         id="tspan5485-3-2-8"
+         x="898.99219"
+         y="947.21277">arquivo</tspan></text>
+    <path
+       style="fill:none;stroke:#888a85;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 684,761.16469 274,0"
+       id="path5778"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#888a85;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 684,947.22925 274,0"
+       id="path5778-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:30.96786118px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4e9a06;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
-       x="788.44043"
-       y="310.59674"
-       id="text7870-5-4"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="875.16406"
+       y="759.51758"
+       id="text5483-7-8-0-2"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7872-7-2"
-         x="788.44043"
-         y="310.59674">Governo</tspan></text>
+         id="tspan5485-3-2-8-7"
+         x="875.16406"
+         y="759.51758">categorias</tspan></text>
+    <path
+       style="fill:none;stroke:#888a85;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 684.1875,256.89822 274,0"
+       id="path5778-3"
+       inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-size:23.9622364px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4e9a06;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
-       x="819.94318"
-       y="276.16135"
-       id="text7870-2"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="827.16406"
+       y="255.25111"
+       id="text5483-7-8-0-2-7"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7872-72"
-         x="819.94318"
-         y="276.16135">Internet</tspan></text>
+         id="tspan5485-3-2-8-7-0"
+         x="827.16406"
+         y="255.25111">tópicos recentes</tspan></text>
+    <path
+       style="fill:none;stroke:#888a85;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 684,532.06117 274,0"
+       id="path5778-0"
+       inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-size:23.9622364px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#73d216;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
-       x="706.01141"
-       y="337.17819"
-       id="text7870-2-0"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="919.16406"
+       y="530.41406"
+       id="text5483-7-8-0-2-4"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7872-72-1"
-         x="706.01141"
-         y="337.17819">Participação</tspan></text>
+         id="tspan5485-3-2-8-7-9"
+         x="919.16406"
+         y="530.41406">tag's</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5946"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#4e9a06;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       transform="translate(0,-4)"><flowRegion
+         id="flowRegion5948"><rect
+           id="rect5950"
+           width="273.52063"
+           height="353.55341"
+           x="684.47937"
+           y="279.12454"
+           style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#4e9a06;font-family:Sans;-inkscape-font-specification:Sans" /></flowRegion><flowPara
+         id="flowPara5952">Segurança Pública deve ser o tema da </flowPara><flowPara
+         id="flowPara5960">pergunta do mês no Governador </flowPara><flowPara
+         id="flowPara5962">Responde</flowPara><flowPara
+         id="flowPara5982"></flowPara><flowPara
+         id="flowPara5984">Gabinete Digital lançará nova forma de participação no próximo mês</flowPara><flowPara
+         id="flowPara5986"></flowPara><flowPara
+         id="flowPara5988">“A realização da Copa no </flowPara><flowPara
+         id="flowPara5966">RS vai colocar novamente o nosso </flowPara><flowPara
+         id="flowPara5970">Estado no cenário mundial”</flowPara><flowPara
+         id="flowPara5990"></flowPara><flowPara
+         id="flowPara5992">Uma nova utopia democrática</flowPara><flowPara
+         id="flowPara5964"> </flowPara><flowPara
+         id="flowPara5954" /><flowPara
+         id="flowPara5956" /><flowPara
+         id="flowPara5958" /></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 32,673 598,0"
+       id="path5994"
+       inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-size:31.95492554px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4e9a06;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
-       x="807.31726"
-       y="370.28842"
-       id="text7870-2-0-6"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="30.867188"
+       y="672.41406"
+       id="text5483-7-8-0-2-9"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7872-72-1-1"
-         x="807.31726"
-         y="370.28842">Saúde</tspan></text>
+         id="tspan5485-3-2-8-7-5"
+         x="30.867188"
+         y="672.41406">deixe seu comentário</tspan></text>
+    <rect
+       style="fill:none;stroke:#2e3436;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect6017"
+       width="370"
+       height="30.833334"
+       x="32"
+       y="699" />
     <text
        xml:space="preserve"
-       style="font-size:21.84215355px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#73d216;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
-       x="696.27454"
-       y="366.54947"
-       id="text7870-2-0-6-2"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="42.554688"
+       y="719.28516"
+       id="text5483-7-8-0-2-9-9"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7872-72-1-1-0"
-         x="696.27454"
-         y="366.54947">Educação</tspan></text>
+         id="tspan5485-3-2-8-7-5-3"
+         x="42.554688"
+         y="719.28516">nome</tspan></text>
+    <rect
+       style="fill:none;stroke:#2e3436;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+       id="rect6017-2"
+       width="370"
+       height="30.833334"
+       x="32"
+       y="753.58331" />
     <text
        xml:space="preserve"
-       style="font-size:19.77059364px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#73d216;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans"
-       x="721.29938"
-       y="395.15417"
-       id="text7870-5-2"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="42.554688"
+       y="773.86847"
+       id="text5483-7-8-0-2-9-9-8"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7872-7-3"
-         x="721.29938"
-         y="395.15417">GabineteDigital</tspan></text>
+         id="tspan5485-3-2-8-7-5-3-8"
+         x="42.554688"
+         y="773.86847">email</tspan></text>
+    <rect
+       style="fill:none;stroke:#2e3436;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+       id="rect6017-2-4"
+       width="370"
+       height="177.16669"
+       x="32"
+       y="812.58331" />
+    <g
+       id="g6137"
+       transform="translate(297.5,-11.889087)">
+      <rect
+         y="1009.75"
+         x="32"
+         height="30.833334"
+         width="72.5"
+         id="rect6017-2-3"
+         style="fill:none;stroke:#2e3436;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text5483-7-8-0-2-9-9-8-0"
+         y="1030.4648"
+         x="42.742188"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="1030.4648"
+           x="42.742188"
+           id="tspan5485-3-2-8-7-5-3-8-3"
+           sodipodi:role="line">enviar</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:138.99999857%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#4e9a06;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
+       x="684"
+       y="788.82422"
+       id="text6142"
+       sodipodi:linespacing="139%"><tspan
+         sodipodi:role="line"
+         id="tspan6144"
+         x="684"
+         y="788.82422">Governo</tspan><tspan
+         sodipodi:role="line"
+         x="684"
+         y="808.28424"
+         id="tspan6146">Secretárias</tspan><tspan
+         sodipodi:role="line"
+         x="684"
+         y="827.7442"
+         id="tspan6148">Educação</tspan><tspan
+         sodipodi:role="line"
+         x="684"
+         y="847.20422"
+         id="tspan6150">Saúde</tspan><tspan
+         sodipodi:role="line"
+         x="684"
+         y="866.66425"
+         id="tspan6154">Tecnologia</tspan><tspan
+         sodipodi:role="line"
+         x="684"
+         y="886.12421"
+         id="tspan6156">Transporte</tspan><tspan
+         sodipodi:role="line"
+         x="684"
+         y="905.58423"
+         id="tspan6158">Software Livre</tspan><tspan
+         sodipodi:role="line"
+         x="684"
+         y="925.04419"
+         id="tspan6152" /></text>
   </g>
 </svg>
