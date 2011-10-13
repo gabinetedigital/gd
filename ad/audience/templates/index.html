@@ -43,7 +43,7 @@
           <li class="avatar">
             <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
           </li>
-          <li class="author">@hypschê | identi.ca</li>
+          <li class="author">@hypschê <em>| identi.ca</em></li>
           <li class="answer">Proin lectus orci, venenatis
             pharetra, egestas id, tincidunt vel, eros. Aenean
             turpis ipsum, rhoncus vitae, posuere vitae, euismod
@@ -66,7 +66,7 @@
             <li class="avatar">
               <img src="{{ buzz.owner_avatar }}">
             </li>
-            <li class="author">@{{ buzz.owner_nick }} | {{ buzz.type_.name }} </li>
+            <li class="author">@{{ buzz.owner_nick }} <em>| {{ buzz.type_.name }}</em> </li>
             <li class="answer">{{ buzz.content|safe }}</li>
           </ul>
         </li>
@@ -90,7 +90,7 @@
       <li class="avatar">
         <img src="<%= obj.owner_avatar %>">
       </li>
-      <li class="author">@<%= obj.owner_nick %> | <%= obj.type_.name %></li>
+      <li class="author">@<%= obj.owner_nick %> <em>| <%= obj.type_.name %></em></li>
       <li class="answer"><%= obj.content %></li>
     </ul>
   </li>

@@ -26,6 +26,11 @@ $(function() {
         var url = CURRENT_URL + (
             filterState ? '/moderated_buzz' : '/public_buzz');
         filterState = !filterState;
+        if (filterState) {
+            $(this).addClass('off');
+        } else {
+            $(this).removeClass('off');
+        }
         $.getJSON(url, function (data) {
             var $root = $('#buzz');
             $root.html('');
