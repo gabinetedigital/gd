@@ -4,6 +4,7 @@
 * { margin:0; padding:0; list-style:none; }
 body { font:normal 10pt Sans, Helvetica, sans-serif; color:#4f5b66; }
 .container { width:968px; margin:0 auto; }
+.clear { display:block; height:1px; clear:both; }
 
 /* Header and main title */
 #header { height:50px; padding:5px 0:;
@@ -76,11 +77,14 @@ ul.listing .controls a:hover { text-decoration:underline; }
 
 
 /* ---- moderation.html customized stuff  ---- */
-.moderate .massive { text-align: right;}
-.moderate li { padding-top:15px; border-bottom:dotted 1px #a1a1a1; }
+.moderate .massive { text-align: right; }
+.moderate .listing { font-size:16px; }
+.moderate li { padding:15px 0 5px 0; border-bottom:dotted 1px #a1a1a1; }
 .moderate li input { float:left; margin-right:10px; }
-.moderate li p { font-size: 13px; padding:10px 0 10px 45px; margin:0; }
+.moderate li p { font-size: 16px; padding:10px 0 10px 45px; margin:0 0 0 60px; }
 .moderate li img { width:48px; height:48px; float:left; margin-right:10px; }
+.moderate ul .controls a { display:block; float:left; padding:2px 5px }
+.moderate ul .controls a { font-size:15px; background:#d9f9f9; }
 .moderate ul .controls { visibility:hidden; text-align:left; margin-left:35px; }
 .moderate li:hover .controls { visibility:visible; padding-left:60px; }
 .moderate label { display:inline; margin-left:70px; }
