@@ -18,74 +18,60 @@
       </li>
       <li>
         <label>What this audience is all about?</label>
-        <input type="text" name="subject" id="subject" value="{{ inst.subject }}">
+        <textarea name="subject" id="subject">{{ inst.subject }}</textarea>
       </li>
       <li>
         <label>Enter more details about this audience</label>
-        <input type="text" name="description" id="description" value="{{ inst.description }}">
+        <textarea name="description"
+                  id="description">{{ inst.description }}</textarea>
       </li>
       <li>
         <label>When it happens?</label>
-        <input type="text" name="date" id="date" value="{{ inst.date.strftime('%d/%m/%Y %H:%M') }}"> (dd/mm/aaaa hh:mm)
+        <input type="text" name="date" id="date"
+               value="{{ inst.date.strftime('%d/%m/%Y %H:%M') }}"> (dd/mm/aaaa hh:mm)
       </li>
       <li>
         <label>Embed</label>
-        <input type="text" name="embed" id="embed" value="{{ inst.embed }}">
+        <input type="text" name="embed" id="embed"
+               value="{{ inst.embed }}">
       </li>
       <li>
         <label>Visible?</label>
-        <input type="radio" name="visible" id="visible" value="1" {% if inst.visible %}checked{% endif %}> Yes
-        <input type="radio" name="visible" id="visible" value="0" {% if not inst.visible %}checked{% endif %}> No
+        <input type="radio" name="visible" id="visible" value="1"
+               {% if inst.visible %}checked{% endif %}> Yes
+        <input type="radio" name="visible" id="visible" value="0"
+               {% if not inst.visible %}checked{% endif %}> No
       </li>
        <li>
         <label>Begin audience?</label>
-        <input type="radio" name="live" id="live" value="1" {% if inst.live %}checked{% endif %}> Yes
-        <input type="radio" name="live" id="live" value="0" {% if not inst.live %}checked{% endif %}> No
+        <input type="radio" name="live" id="live" value="1"
+               {% if inst.live %}checked{% endif %}> Yes
+        <input type="radio" name="live" id="live" value="0"
+               {% if not inst.live %}checked{% endif %}> No
       </li>
     </ul>
   </fieldset>
 
-<!--  <fieldset class="streaming">
-    <h3 class="title">Streaming</h3>
-    <ul>
-      <li>
-        <div>
-          <label>Source</label> / <label>Format</label>
-        </div>
-           <a class="source" href="#" id="addSourceFormat">New source</a>
-          <div id="box_source_format">
-             {% for item in inst.sources %} 
-              <p class="sourceFormat">
-                    <input type="text" name="source" class="source" value="{{ item.source }}">
-                    <input type="text" name="format" class="format" value="{{ item.format }}">
-                    <a href="#" class="deleteSourceFormat" title="Remove source / format"><input class='button remove' type='button'></a>
-              </p>    
-              {% endfor %}
-           </div>   
-      </li>
-    </ul>
-  </fieldset>-->
-    
-    <fieldset class="streaming">
+  <fieldset class="streaming">
     <h3 class="title">Hashtag to be tracked in social networks</h3>
     <ul>
       <li>
         <div>
           <label>Term</label>
         </div>
-          <a class="source" href="#" id="addTerm">New term</a>
-          {% for item in inst.terms %} 
-                  <p class="listTerm">
-                       <input type='text' name='term' class='source' value="{{ item.hashtag }}">
-                       <input type="radio" name="main" value="{{ item.hashtag }}" {% if item.main %}checked{% endif %}> Main
-                       <a href="#" class="deleteTerm" title="Remove term"><input class='button remove' type='button'></a>
-                   </p>
-           {% endfor %}        
+        {% for item in inst.terms %}
+        <p class="listTerm">
+          <input type="radio" name="main" value="{{ item.hashtag }}"
+                 {% if item.main %}checked{% endif %}> Main
+          <input type="text" name="term" class="source" value="{{ item.hashtag }}">
+          <a href="#" class="deleteTerm" title="Remove term">
+            <input class="button remove" type="button"></a>
+        </p>
+        {% endfor %}
+        <a class="source" href="javascript:;" id="addTerm">New term</a>
       </li>
     </ul>
-  </fieldset> 
-    
-    
+  </fieldset>
 
   <div class="submit">
     <input type="submit" name="submit" value="Submit">

@@ -52,8 +52,14 @@ h3.title { font-family:Cantarell; color:#ce5c00; font-size:16px; }
 
 
 /* Form fields are organized inside fieldsets */
-input { border:solid 1px #999; background:#fff; padding:3px; margin:10px 0 0 20px;
-        border-radius:5px; }
+textarea, input {
+    border:solid 1px #999; background:#fff; padding:3px;
+    margin:10px 0 0 20px;
+    border-radius:5px;
+}
+
+textarea { min-width:300px; height:65px; }
+
 input.button { background:#333; color:#fff; }
 fieldset { margin:10px 0; border:0; }
 fieldset ul { padding-left:10px; }
@@ -69,6 +75,10 @@ div#footer .wrapper { padding:30px 20px; }
 
 /* ----  new.html customized stuff  ---- */
 fieldset.default { display:block; width:45%; float:left; }
+textarea#description { height:150px; }
+fieldset.default input[type=text],input[type=password] {
+    min-width:300px;
+}
 
 fieldset.streaming { display:block; float:left; }
 fieldset.streaming input.add { margin-left:5px; }
@@ -77,7 +87,9 @@ fieldset.streaming input.format { width:25%; margin-left:5px; }
 fieldset.streaming input.button { padding:3px 10px; margin-left:5px; }
 fieldset.streaming label { display:inline; }
 fieldset.streaming a.source {
-  padding:10px 0 0 60px; display:block; text-decoration:none; font-size:x-small; }
+    padding:10px 0 0 90px; display:block;
+    text-decoration:none; font-size:x-small;
+}
 fieldset.streaming input.remove {
   background:url(../imgs/bt_remove.png) no-repeat 0 0;
   padding:0; border:0; width:30px; height:27px; cursor:pointer; }
