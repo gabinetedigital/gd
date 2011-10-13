@@ -4,9 +4,18 @@
   <ul class="listing">
    {% for i in audience.query.all() %}
     <li class="last">
-        <strong class="subject">Saúde</strong>
-        <em class="date">12/09/2011</em>
-        <p>{{ i.title }}</p>
+      <div class="supercontrols">
+      {% if i.started %}
+      <a href="{{ url_for('.audience_status', aid=i.id, status='false') }}">Stop</a>
+      {% else %}
+      <a href="{{ url_for('.audience_status', aid=i.id, status='true') }}">Start</a>
+      {% endif %}
+      this audience
+      </div>
+
+      <strong class="subject">{{ i.title }}</strong>
+      <em class="date">12/09/2011</em>
+      <p>{{ i.subject }}</p>
       
       <div class="controls">
         <a href="{{ url_for('.moderate', aid=i.id) }}"
@@ -22,6 +31,7 @@
            class="remove">
           Remove
         </a>
+        <span class="clear"></span>
       </div>
     </li>
     {% endfor  %}

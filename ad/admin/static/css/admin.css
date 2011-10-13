@@ -18,37 +18,49 @@
 
 /* General stuff */
 @font-face { font-family:'Cantarell';
-  src:url(../../../static/fonts/Cantarell-Bold.ttf); }
+    src:url(../../../static/fonts/Cantarell-Bold.ttf);
+}
 * { margin:0; padding:0; list-style:none; }
 body { font:normal 10pt Sans, Helvetica, sans-serif; color:#4f5b66; }
 .container { width:968px; margin:0 auto; }
 .clear { display:block; height:1px; clear:both; }
 
 /* Header and main title */
-#header { height:50px; padding:5px 0:;
-          background:url(../imgs/bg_header.png) repeat-x bottom #73d216; }
+#header { background:url(../imgs/bg_header.png) repeat-x bottom #73d216; }
+#header { height:50px; padding:5px 0; }
 #header a { color:#fff; text-decoration:none; }
 #header h1 { font-size:18px; padding:7px 0; }
 h2.title { font-family:Cantarell; color:#204a87; font-size:32px; margin:14px 0; }
 h3.title { font-family:Cantarell; color:#ce5c00; font-size:16px; }
-.toolbar { display:block; height:52px; background:#3465a4; border-radius:10px;
-           margin-bottom:20px; }
+
+/* Toolbar */
+.toolbar {
+    display:block; height:52px; background:#3465a4;
+    border-radius:10px; margin-bottom:20px;
+}
 .toolbar li {
-  display:block; float:left; margin-right:10px; font-size:18px;
-  font-family:Cantarell; }
+    display:block; float:left; margin-right:10px; font-size:18px;
+    font-family:Cantarell;
+}
 .toolbar li.selected {
-  background:url(../imgs/bg_tbselected.png) 50% 50px no-repeat;
-  height:63px; }
-.toolbar li a { display:block; color:#fff; text-decoration:none;
-  height:30px; padding:11px 28px; }
+    background:url(../imgs/bg_tbselected.png) 50% 50px no-repeat;
+    height:63px;
+}
+.toolbar li a {
+    display:block; color:#fff; text-decoration:none;
+    height:30px; padding:11px 28px;
+}
 .toolbar li.selected a { background:#729fcf; }
 .toolbar li.selected.first a {
-  border-top-left-radius:10px; border-bottom-left-radius:10px; }
+  border-top-left-radius:10px; border-bottom-left-radius:10px;
+}
 
 
 /* content */
-.subcontent { background-color:#fafafa; padding:10px 20px 40px 20px;
-              margin-top:40px; border-radius:10px; box-shadow:0px 0px 25px #ccc; }
+.subcontent {
+    background-color:#fafafa; padding:10px 20px 40px 20px;
+    margin-top:40px; border-radius:10px; box-shadow:0px 0px 25px #ccc;
+}
 
 
 /* Form fields are organized inside fieldsets */
@@ -58,9 +70,8 @@ textarea, input {
     border-radius:5px;
 }
 
-textarea { min-width:300px; height:65px; }
-
 input.button { background:#333; color:#fff; }
+textarea { min-width:300px; height:65px; }
 fieldset { margin:10px 0; border:0; }
 fieldset ul { padding-left:10px; }
 fieldset ul li { margin:10px 0; }
@@ -69,17 +80,17 @@ label { display:block; padding:3px 0; font-weight:bold; }
 
 
 /* Footer stuff */
-div#footer { border-top:solid 2px #d3d7cf; margin-top:30px; height:140px;
-             background:url(../imgs/footer.png) repeat-x 0 10px; }
 div#footer .wrapper { padding:30px 20px; }
-
-/* ----  new.html customized stuff  ---- */
-fieldset.default { display:block; width:45%; float:left; }
-textarea#description { height:150px; }
-fieldset.default input[type=text],input[type=password] {
-    min-width:300px;
+div#footer {
+    border-top:solid 2px #d3d7cf; margin-top:30px; height:140px;
+    background:url(../imgs/footer.png) repeat-x 0 10px;
 }
 
+/* ----  {new,edit}.html customized stuff  ---- */
+textarea#description { height:150px; }
+fieldset.default { display:block; width:45%; float:left; }
+fieldset.default input[type=text],
+fieldset.default input[type=password] { min-width:300px; }
 fieldset.streaming { display:block; float:left; }
 fieldset.streaming input.add { margin-left:5px; }
 fieldset.streaming input.source { width:50%; }
@@ -92,32 +103,38 @@ fieldset.streaming a.source {
 }
 fieldset.streaming input.remove {
   background:url(../imgs/bt_remove.png) no-repeat 0 0;
-  padding:0; border:0; width:30px; height:27px; cursor:pointer; }
+  padding:0; border:0; width:30px; height:27px; cursor:pointer;
+}
+
+
+/* ---- Controls ---- */
+.controls { text-align:right; margin-bottom:10px; }
+.controls a:hover { background:#babdb6; }
+.controls a.remove { background:#cc0000; }
+.controls a.remove:hover { background:#a40000; }
+.controls a { color:#fff; margin-right:10px; }
+.controls a { display:block; float:left; padding:2px 5px }
+.controls a { font-size:15px; background:#888a85; border-radius:4px; }
+.controls { visibility:hidden; text-align:left; }
+li:hover .controls { visibility:visible; }
 
 
 /* ---- listing.html customized stuff  ---- */
 .subject { font-size:18px; color:#4e9a06; margin-right:20px; }
-ul.listing a { text-decoration:none; color:#666; }
-ul.listing .date { color:#a3a3a3; font-size:18px; font-weight:bold; font-style:normal; }
-ul.listing p { font-size:18px; margin:10px 0; }
-ul.listing .controls { text-align:right; margin-bottom:10px; }
-ul.listing .controls a { color:#3465a4; font-size:x-small; margin-left:10px; }
-ul.listing .controls a.remove { color:#cc0000; }
-ul.listing .controls a:hover { text-decoration:underline; }
+.listing a { text-decoration:none; }
+.listing .date { color:#a3a3a3; font-size:18px; font-weight:bold; font-style:normal; }
+.listing p { font-size:14px; margin:10px 0; }
+.listing .supercontrols { float:right; }
 
 
 /* ---- moderation.html customized stuff  ---- */
 .moderate .massive { text-align: right; }
 .moderate .listing { font-size:16px; }
 .moderate li { padding:15px 0 5px 0; border-bottom:dotted 1px #a1a1a1; }
-.moderate li input { float:left; margin-right:10px; }
 .moderate li p { font-size: 16px; padding:10px 0 10px 45px; margin:0 0 0 60px; }
 .moderate li img { width:48px; height:48px; float:left; margin-right:10px; }
-.moderate ul .controls a { display:block; float:left; padding:2px 5px }
-.moderate ul .controls a { font-size:15px; background:#d9f9f9; }
-.moderate ul .controls { visibility:hidden; text-align:left; margin-left:35px; }
-.moderate li:hover .controls { visibility:visible; padding-left:60px; }
-.moderate label { display:inline; margin-left:70px; }
-.moderate a { color:#3465a4; text-decoration:none; }
-.moderate a.selected { font-weight:bold; }
+.moderate li input { float:left; margin-right:10px; }
 .moderate li strong { padding-top:10px; }
+.moderate label { display:inline; margin-left:70px; }
+.moderate a.selected { font-weight:bold; }
+.moderate .controls { margin-left:105px; }
