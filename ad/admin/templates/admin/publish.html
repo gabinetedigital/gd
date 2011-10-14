@@ -1,29 +1,27 @@
 {% extends 'admin/base.html' %}
 {% block content %}
-<div class="subcontent moderate">
+{% set isnew = request.values.get('status', 'new') == 'new' %}
+
+<div class="subcontent moderate publish">
   <form id="batch" method="post" action="{{ url_for('.batch') }}">
     <h2 class="subject">Publication</h2>
     <div class="massive">
       <label>Show:</label>
-      <a {% if request.values.get('status') == 'new' %}class="selected"{% endif %}
+      <a {% if isnew %}class="selected"{% endif %}
          href="{{ url_for('.publish', aid=audience.id) }}?status=new">New</a> |
-      <a {% if request.values.get('status') != 'new' %}class="selected"{% endif %}
+      <a {% if not isnew %}class="selected"{% endif %}
          href="{{ url_for('.publish', aid=audience.id) }}?status=published">Published</a>
-
-      <label>Batch actions:
-        <select name="action" onchange="$('#batch').submit()">
-          <option value="">---</option>
-          <option value="publish">Publish</option>
-        </select>
-      </label>
     </div>
 
     <ul class="listing">
       {% for i in buzz_list %}
       <li class="{{ loop.cycle('dark', 'light') }}">
-        <input name="notice" value="{{ i.id }}" type="checkbox">
         <img src="{{ i.owner_avatar }}">
+        <strong>@{{ i.owner_nick }}</strong>
+        {% if not isnew %}<em>{{ i.date_published }}</em>{% endif %}
         <p>{{ i.content }}</p>
+
+        {% if isnew %}
         <div class="controls">
           <a href="{{ url_for('.publish_buzz', bid=i.id) }}" class="accept"
              title="Publish this buzz">
@@ -31,6 +29,7 @@
           </a>
           <span class="clear"></span>
         </div>
+        {% endif %}
       </li>
       {% endfor  %}
     </ul>

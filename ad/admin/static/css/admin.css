@@ -138,3 +138,7 @@ li:hover .controls { visibility:visible; }
 .moderate label { display:inline; margin-left:70px; }
 .moderate a.selected { font-weight:bold; }
 .moderate .controls { margin-left:105px; }
+
+/* ---- publish.html customized stuff  ---- */
+.moderate.publish li p { padding-left:0; }
+.moderate.publish .controls { margin-left:65px; }
