@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Gabinete Digital - Assêmbleia Digital</title>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=1024" />
+    <link rel="stylesheet" href="../static/css/978.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
+  <body>
+    <div class="layout-978">
+      <div id="header" class="row">
+        <div class="col12">
+          <h1>Gabiente Digital - Democracia em Rede</h1>
+          <div id="loginoverlay">
+            <div class="contentWrap"></div>
+          </div>
+          <ul class="login">
+            <li>
+              <a href="{{ url_for('auth.login_form') }}"
+              rel="#loginoverlay">entrar</a>
+            </li>
+            <li>|</li>
+            <li>
+              <a href="{{ url_for('auth.login_form') }}"
+              rel="#loginoverlay">cadastre-se</a>
+            </li>
+          </ul>
+          <h4>Acompanhe, participe!</h4>
+          <ul id="social">
+            <li class="feed">feed</li>
+            <li class="twitter">twitter</li>
+            <li class="identica">identi.ca</li>
+            <li class="facebook">facebook</li>
+          </ul>
+          <div id="menu">
+            <ul crass="main-menu">
+              <li>
+                <a href="#">inicio</a>
+              </li>
+              <li>
+                <a href="#">sobre</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row-end"></div>
+      </div>
+      <div id="container">
+        <div class="row">
+          <div id="slideshow" class="col12"></div>
+        </div>
+        <div class="row-end"></div>
+        <div class="row">
+          <div id="news" class="col8"></div>
+          <div id="sidebar" class="col4"></div>
+        </div>
+        <div class="row-end"></div>
+      </div>
+      <div class="row">
+        <div id="footer" class="col12">footer</div>
+        <div class="row-end"></div>
+      </div>
+    </div>
+  </body>
+</html>
