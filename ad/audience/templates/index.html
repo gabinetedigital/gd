@@ -42,9 +42,12 @@
         {% set notice = audience.get_last_published_notice() %}
         {% if notice %}
         <div id="how-it-works">
-          <img src="{{ url_for('.static', filename='imgs/big_gear.png') }}" id="how-it-works-big-gear" class="big-gear">
-          <img src="{{ url_for('.static', filename='imgs/small_gear.png') }}" id="how-it-works-small-gear" class="small-gear">
-          <img class="how-it-works-text" src="{{ url_for('.static', filename='imgs/como_funciona.png') }}" onclick="audience_how_it_works()">
+          <img src="{{ url_for('.static', filename='imgs/big_gear.png') }}"
+               id="how-it-works-big-gear" class="big-gear">
+          <img src="{{ url_for('.static', filename='imgs/small_gear.png') }}"
+               id="how-it-works-small-gear" class="small-gear">
+          <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}"
+               class="how-it-works-text" onclick="audience_how_it_works()">
         </div>
         <div id="funciona-assim"></div>
         <ul class="stream">
