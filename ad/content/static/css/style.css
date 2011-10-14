@@ -25,6 +25,14 @@
     border: 0;
 }
 
+@font-face {
+    font-family: 'Sansation';
+    src: url('../fonts/Sansation_Regular-webfont.ttf') format('truetype'),
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 /** body **/
 
 body {
@@ -178,99 +186,39 @@ a:hover {
     margin-bottom: 20px;
 }
 
-#container #main .content #misc  {
-    padding-top: 10px;
-}
 
-#container #main .content #misc h2 {
-    background: url(../imgs/govescuta.png) no-repeat;
-    width: 127px;
-    height: 48px;
-    text-indent: -9999px;
-    overflow: hidden;
-    position: absolute;
-}
-
-#container #main .content #misc p {
-    margin-left: 140px;
+#container #news .news {
+    color: #808080;
+    margin: 33px 50px 0px 21px;
     font-size: 12px;
-    width: 454px;
-    margin-top: 3px;
 }
 
-/** Buzz **/
-
-#container .filter {
-    margin-top: 50px;
-    display: block;
-    background: url(../imgs/filter.png) no-repeat;
-    width: 23px;
-    height: 23px;
-    float: right;
-    text-indent: -9999px;
-    overflow: hidden;
-    margin-right: -17px;
-}
-
-#container .filter.off {
-    background: url(../imgs/filter_off.png) no-repeat;
-}
-
-#container #buzz {
-    margin-top: 80px;
-    margin-left: 13px;
-    height: 460px;
-    width: 307px;
-    overflow-y: scroll;
-}
-
-#container #buzz .stream {
-    width: 285px;
-    background: url(../imgs/line.png) no-repeat bottom;
-    padding-bottom: 23px;
-    margin-bottom: 10px;
-}
-
-#container #buzz  .stream img {
+#container #news .news li img {
     float: left;
-    margin-right: 10px;
+    margin-right: 30px;
 }
 
-#container #buzz  .stream .author {
-    font-weight: bold;
-    margin-bottom: 5px;
+#container #news .news h2 {
+    color: #2e3436;
+    font-size: 15pt;
+    font-family: 'Sansation';
+    font-weight: normal;
+    margin-bottom: 8px;
 }
 
-#container #buzz  .stream .author em {
-    font-style:normal;
-    color:#999;
+#container #news .news .meta {
+    text-align: right;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #555753;
 }
 
-#container #buzz  .stream a {
-    color: #668000;
-}
+#container #videogallery {
+    margin: 30px 20px;
+} 
 
-#container #chat form textarea {
-    border: 3px solid #999999;
-    height: 70px;
-    margin-left: 10px;
-    margin-top: 10px;
-    width: 300px;
-    position: absolute;
-}
-
-#container #chat form textarea.error {
-    border:3px solid #ef2929;
-}
-
-#container #chat form input {
-    border: 1px solid #666;
-    border-radius: 4px;
-    padding: 2px;
-    background: #666;
-    color: #FFF;
-    margin-left: 250px;
-    position: absolute;
-    margin-top: 70px;
-    float: right;
+#container #videogallery li{
+    background-color: #333;
+    padding: 18px;
+    width: 286px;
 }

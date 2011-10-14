@@ -1,80 +1,141 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
 <html>
-  <head>
-    <title>Gabinete Digital - Assêmbleia Digital</title>
-    <meta http-equiv="Content-Type"
-    content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=1024" />
-    <link rel="stylesheet" href="../static/css/978.css" />
-    <link rel="stylesheet" href="../static/css/style.css" />
-  </head>
-  <body>
-    <div class="layout-978">
-      <div id="gs-overlay"></div>
-      <div id="header" class="row">
-        <div class="col12">
-          <h1>Gabiente Digital - Democracia em Rede</h1>
-          <div id="loginoverlay">
-            <div class="contentWrap"></div>
-          </div>
-          <ul class="login">
-            <li>
-              <a href="{{ url_for('auth.login_form') }}"
-              rel="#loginoverlay">entrar</a>
-            </li>
-            <li>|</li>
-            <li>
-              <a href="{{ url_for('auth.login_form') }}"
-              rel="#loginoverlay">cadastre-se</a>
-            </li>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org">
+
+  <title>Gabinete Digital - Assêmbleia Digital</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+  <meta name="viewport" content="width=1024">
+  <link rel="stylesheet" href="../static/css/978.css" type=
+  "text/css">
+  <link rel="stylesheet" href="../static/css/style.css" type=
+  "text/css">
+</head>
+
+<body>
+  <div class="layout-978">
+    <div id="gs-overlay"></div>
+
+    <div id="header" class="row">
+      <div class="col12">
+        <h1>Gabiente Digital - Democracia em Rede</h1>
+
+        <div id="loginoverlay">
+          <div class="contentWrap"></div>
+        </div>
+
+        <ul class="login">
+          <li><a href="{{%20url_for('auth.login_form')%20}}" rel=
+          "#loginoverlay">entrar</a></li>
+
+          <li>|</li>
+
+          <li><a href="{{%20url_for('auth.login_form')%20}}" rel=
+          "#loginoverlay">cadastre-se</a></li>
+        </ul>
+
+        <h4>Acompanhe, participe!</h4>
+
+        <ul id="social">
+          <li class="feed">feed</li>
+
+          <li class="twitter">twitter</li>
+
+          <li class="identica">identi.ca</li>
+
+          <li class="facebook">facebook</li>
+        </ul>
+
+        <div id="menu">
+          <ul class="main-menu">
+            <li><a href="#">inicio</a></li>
+
+            <li><a href="#">sobre</a></li>
           </ul>
-          <h4>Acompanhe, participe!</h4>
-          <ul id="social">
-            <li class="feed">feed</li>
-            <li class="twitter">twitter</li>
-            <li class="identica">identi.ca</li>
-            <li class="facebook">facebook</li>
-          </ul>
-          <div id="menu">
-            <ul crass="main-menu">
-              <li>
-                <a href="#">inicio</a>
-              </li>
-              <li>
-                <a href="#">sobre</a>
-              </li>
-            </ul>
-          </div>
         </div>
-        <div class="row-end"></div>
       </div>
-      <div id="container">
-        <div class="row">
-          <div id="slideshow" class="col12"></div>
-        </div>
-        <div class="row-end"></div>
-        <div class="row">
-          <div id="news" class="col8"></div>
-          <div id="sidebar" class="col4"></div>
-        </div>
-        <div class="row-end"></div>
-      </div>
-      <div class="row">
-        <div id="footer" class="col12">footer</div>
-        <div class="row-end"></div>
-      </div>
-      <a href="http://978.gs" id="gs-overlay-badge"
-      style="outline: 0;">grid</a>
+
+      <div class="row-end"></div>
     </div>
-    <script type="text/javascript"
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js">
-    </script>
-    <script type="text/javascript"
-    src="http://978.gs/resources/js/jquery.gs-overlay.min.js">
-    </script>
-    <script type="text/javascript">jQuery(function() {
+
+    <div id="container">
+      <div class="row">
+        <div id="slideshow" class="col12"></div>
+      </div>
+
+      <div class="row-end"></div>
+
+      <div class="row">
+        <div id="news" class="col8">
+          <ul>
+            <li>
+              <ul class="news">
+                <li><img src="../static/imgs/newsimg.png" alt=
+                "blah"></li>
+
+                <li>
+                  <h2>"a realização da copa no rs vai colocar
+                  novamente o nosso estado no cenário mundial"</h2>
+                </li>
+
+                <li>com essa expectativa, o governador tarso genro
+                fala, em vídeo, sobre o le1gado da copa 2014 para
+                ...com essa expectativa, o governador tarso genro
+                fala, em vídeo, sobre o le1gado da copa 2014 para
+                ...</li>
+
+                <li class="meta">comentário(30) | share</li>
+              </ul>
+            </li>
+
+            <li>
+              <ul class="news">
+                <li>
+                  <h2>"a realização da copa no rs vai colocar
+                  novamente o nosso estado no cenário mundial"</h2>
+                </li>
+
+                <li>com essa expectativa, o governador tarso genro
+                fala, em vídeo, sobre o le1gado da copa 2014 para
+                ...com essa expectativa, o governador tarso genro
+                fala, em vídeo, sobre o le1gado da copa 2014 para
+                ...</li>
+
+                <li class="meta">comentário(30) | share</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div id="sidebar" class="col4"></div>
+      </div>
+
+      <div class="row-end"></div>
+    </div>
+
+    <div class="row">
+      <div id="footer" class="col12">
+        footer
+      </div>
+
+      <div class="row-end"></div>
+    </div><a href="http://978.gs" id="gs-overlay-badge" style=
+    "outline: 0;" name="gs-overlay-badge"><img src=
+    "http://978.gs/resources/img/978-badge.png" alt=
+    "This site is built with 978 grid system" width="59" height=
+    "25" style="border: 0;"></a>
+  </div><script type="text/javascript" src=
+  "http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js">
+</script><script type="text/javascript" src=
+"http://978.gs/resources/js/jquery.gs-overlay.min.js">
+</script><script type="text/javascript">
+jQuery(function() {
     jQuery('div#gs-overlay').gsoverlay({ trigger:
     jQuery('a#gs-overlay-badge'), grid: 978, color: '#aa1b4a',
-    opacity: 0.15 }); });</script>
-  </body>
+    opacity: 0.15 }); });
+  </script>
+</body>
 </html>
