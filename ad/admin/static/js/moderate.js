@@ -1,6 +1,6 @@
 /* Copyright (C) 2011 Governo do Estado do Rio Grande do Sul
  *
- *   Author: Rodrigo Sebastiao da Rosa <rodrigo-rosa@procergs.rs.gov.br>
+ *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -28,7 +28,7 @@ $(function () {
                     .parent() // li
                     .remove();
             }
-        })
+        });
         return false;
     }
     $('div.controls a').click(updateToAjax);
@@ -43,7 +43,7 @@ $(function () {
         }
     }
 
-    new Buzz("localhost", {
+    new Buzz(SIO_BASE, {
         new_buzz: function (msg) {
             // We'll do nothing if the user is located in the `accepted
             // buzz' page.

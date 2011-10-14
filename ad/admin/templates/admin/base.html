@@ -38,6 +38,11 @@
     <script type="text/javascript"
             src="{{ url_for('.static', filename='js/jquery-1.5.1.min.js') }}">
     </script>
+    <script>
+      var SIO_BASE = "{{ host }}";
+      var BASE_URL = "{{ request.url_root }}";
+      var CURRENT_URL = "{{ request.url }}";
+    </script>
     {% block js %}{% endblock %}
   </body>
 </html>

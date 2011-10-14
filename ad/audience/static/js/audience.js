@@ -166,7 +166,7 @@ $(function() {
       });
   })();
 
-    new Buzz("localhost", {
+    new Buzz(SIO_BASE, {
         new_buzz: function (msg) {
             updateBuzz(msg, filterState);
         },
