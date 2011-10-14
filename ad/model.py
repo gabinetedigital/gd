@@ -108,6 +108,7 @@ class Buzz(Entity):
     content = Field(Unicode(512))
     status = Field(Enum(u'inserted', u'approved', u'selected', u'published'),
                    default=u'inserted')
+    date_published = Field(DateTime)
     creation_date = Field(DateTime, default=datetime.now)
     audience = ManyToOne('Audience')
     type_ = ManyToOne('BuzzType')

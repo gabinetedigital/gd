@@ -247,5 +247,6 @@ def publish_buzz(bid):
     """publish messages"""
     buzz = Buzz.query.get(bid)
     buzz.status = u'published'
+    buzz.date_published = datetime.now()
     session.commit()
     return msg.ok('Buzz published')
