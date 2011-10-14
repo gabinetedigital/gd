@@ -81,6 +81,16 @@ class Audience(Entity):
         """Returns the main term of the current audience"""
         return Term.query.filter_by(main=1, audience=self).one().hashtag
 
+    def get_last_published_notice(self):
+        """Returns the last published notice about this audience"""
+        try:
+            return Buzz.query \
+                .filter_by(audience=self) \
+                .order_by(desc('date_published')) \
+                .first()
+        except NoResultFound:
+            return None
+
     def get_public_buzz(self):
         """Returns the public notice buzz"""
         return Buzz.query \

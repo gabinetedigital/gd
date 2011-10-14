@@ -40,17 +40,18 @@
     <div id="main" class="col8">
       <div class="content">
         {% if audience.started %}
+        {% set notice = audience.get_last_published_notice() %}
+        {% if notice %}
         <ul class="stream">
           <li class="avatar">
-            <img src="{{ url_for('.static', filename='imgs/thiago.jpg') }}">
+            <img src="{{ notice.owner_avatar }}">
           </li>
-          <li class="author">@hypschê <em>| identi.ca</em></li>
-          <li class="answer">Proin lectus orci, venenatis
-            pharetra, egestas id, tincidunt vel, eros. Aenean
-            turpis ipsum, rhoncus vitae, posuere vitae, euismod
-            sed, ligula. Sed a lorem ut est tincidunt
-            consectetuer. Posuere vita. regional</li>
+          <li class="author">
+            @{{ notice.owner_nick }} <em>| {{ notice.type_ }}</em>
+          </li>
+          <li class="answer">{{ notice.content }}</li>
         </ul>
+        {% endif %}
         <div id="streaming">{{ audience.embed|safe }}</div>
         {% endif %}
         <div id="misc">
@@ -69,7 +70,9 @@
             <li class="avatar">
               <img src="{{ buzz.owner_avatar }}">
             </li>
-            <li class="author">@{{ buzz.owner_nick }} <em>| {{ buzz.type_.name }}</em> </li>
+            <li class="author">
+              @{{ buzz.owner_nick }} <em>| {{ buzz.type_.name }}</em>
+            </li>
             <li class="answer">{{ buzz.content|safe }}</li>
           </ul>
         </li>
