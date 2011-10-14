@@ -245,6 +245,10 @@
     float: right;
 }
 
+#how-it-works {
+    cursor:pointer;
+}
+
 #how-it-works .small-gear {
     position: relative;
     top: 18px;
