@@ -140,7 +140,7 @@ class BuzzType(Entity):
     buzzes = OneToMany('Buzz')
 
     def __str__(self):
-        return '<%s "%s">' % (self.__class__.__name__, self.name)
+        return self.name
 
 
 class UserMeta(Entity):
