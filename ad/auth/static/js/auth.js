@@ -27,63 +27,9 @@ var auth = (function() {
          * whole authenticated user information. */
         user: null
 
-        /** Callback that will be fired after a successful
-         *  authentication */
-        , success: function () {}
-
-        /** Returns True if there is someone authenticated */
-        , isAuthenticated: function () {
-            return this.user !== null;
-        }
-
-        /** Returns the current authenticated user */
-        , authenticatedUser: function () {
-            return this.user;
-        }
-
-        /** Shows the login form and register callbacks to be called when
-         *  it returns successfuly or not */
-        , showLoginForm: function (params) {
-            $('a[rel=#loginoverlay]').click();
-            if (typeof params.success === 'function') {
-                this.success = params.success;
-            }
-        }
-
-        /** Method called after a successful authentication. It saves
-         *  the authentication information and makes sure that the user
-         *  interface will be updated showing authentication info. */
-        , userAuthenticated: function (user) {
-            this.user = user;
-            this.success();
-            this.updateLoginWidget();
-        }
-
-        /** This method updates the login widget to show links that
-         *  only makes sense to be shown after logged in or logged out */
-        , updateLoginWidget: function () {
-            $('ul.login li').fadeOut('slow', function () {
-                var $ul = $('ul.login');
-                var template = (auth.isAuthenticated() ? 'loggedin' : 'loggedout');
-                template += 'Template';
-                $ul.html('');
-                $(tmpl(template, auth.user || {})).appendTo($ul);
-                setOverlayWidget();
-            });
-        }
-
-        /** Logs the user out */
-        , logout: function () {
-            $.get(url_for('auth.logout_json'), function () {
-                auth.user = null;
-                auth.updateLoginWidget();
-            });
-        }
-    };
-
-    /* Overlay for all <a> tags with a `rel' attribute */
-    function setOverlayWidget() {
-        $('a[rel=#loginoverlay]').overlay({
+        /** Configuring the DOM element that holds the login form */
+        , $loginOverlay: $('#loginoverlay').overlay({
+            api: true,
             top: 250,
             mask: {
                 color: '#fff',
@@ -92,9 +38,10 @@ var auth = (function() {
             oneInstance: false,
             speed: 'fast',
             onBeforeLoad: function() {
-	        var wrap = this.getOverlay().find(".contentWrap");
-	        wrap.load(this.getTrigger().attr("href"));
-	    },
+                var wrap = this.getOverlay().find(".contentWrap");
+                wrap.load(url_for('auth.login'));
+                // wrap.load(this.getTrigger().attr("href"));
+            },
             onLoad: function() {
                 var overlay = this.getOverlay();
                 var closeMethod = this.close;
@@ -122,9 +69,61 @@ var auth = (function() {
                     return false;
                 });
             }
-        });
-    }
+        })
 
-    setOverlayWidget();
+        /** Callback that will be fired after a successful
+         *  authentication */
+        , success: function () {}
+
+        /** Returns True if there is someone authenticated */
+        , isAuthenticated: function () {
+            return this.user !== null;
+        }
+
+        /** Returns the current authenticated user */
+        , authenticatedUser: function () {
+            return this.user;
+        }
+
+        /** Shows the login form and register callbacks to be called when
+         *  it returns successfuly or not */
+        , showLoginForm: function (params) {
+            this.$loginOverlay.load();
+            if (params && typeof params.success === 'function') {
+                this.success = params.success;
+            }
+            return false;
+        }
+
+        /** Method called after a successful authentication. It saves
+         *  the authentication information and makes sure that the user
+         *  interface will be updated showing authentication info. */
+        , userAuthenticated: function (user) {
+            this.user = user;
+            this.success();
+            this.updateLoginWidget();
+        }
+
+        /** This method updates the login widget to show links that
+         *  only makes sense to be shown after logged in or logged out */
+        , updateLoginWidget: function () {
+            $('ul.login li').fadeOut('slow', function () {
+                var $ul = $('ul.login');
+                var template = (auth.isAuthenticated() ? 'loggedin' : 'loggedout');
+                template += 'Template';
+                $ul.html('');
+                $(tmpl(template, auth.user || {})).appendTo($ul);
+            });
+        }
+
+        /** Logs the user out */
+        , logout: function () {
+            $.get(url_for('auth.logout_json'), function () {
+                auth.user = null;
+                auth.updateLoginWidget();
+            });
+        }
+    };
+
     return new Auth();
 })();

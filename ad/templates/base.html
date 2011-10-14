@@ -31,7 +31,7 @@
             </li>
             {% else %}
             <li>
-              <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
+              <a href="javascript:;" onclick="auth.showLoginForm()">
                 entrar
               </a>
             </li>
@@ -89,7 +89,7 @@
 
     <script type="text/html" id="loggedoutTemplate">
       <li>
-        <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
+        <a href="javascript:;" onclick="auth.showLoginForm()">
           entrar
         </a>
       </li>
