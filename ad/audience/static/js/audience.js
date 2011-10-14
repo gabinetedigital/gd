@@ -58,7 +58,7 @@ $(function() {
                 input: 'customOpenEvent,customOpenEvent'
             }
         });
-        $tooltip.trigger('customOpenEvent');
+        $element.trigger('customOpenEvent');
         return $tooltip;
     }
 
