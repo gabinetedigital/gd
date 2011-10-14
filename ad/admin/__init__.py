@@ -81,6 +81,8 @@ def audience_status(aid, status):
     """Changes the status of an audience"""
     inst = Audience.query.get(aid)
     inst.started = status == 'true'
+    if status == 'true':
+        inst.date_started = datetime.now()
     session.commit()
     return redirect(url_for('.audiences'))
     

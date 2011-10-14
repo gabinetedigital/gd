@@ -63,6 +63,7 @@ class Audience(Entity):
     terms = OneToMany('Term')
     visible = Field(Boolean, default=False)
     started = Field(Boolean, default=False)
+    date_started = Field(DateTime)
     owner = Field(Unicode(64))
     embed = Field(Unicode(256))
     buzzes = OneToMany('Buzz')
