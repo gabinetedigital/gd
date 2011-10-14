@@ -244,3 +244,15 @@
     margin-top: 70px;
     float: right;
 }
+
+#how-it-works .small-gear {
+    position: relative;
+    top: 18px;
+    left: -13px;
+}
+
+#how-it-works .how-it-works-text {
+    position: relative;
+    top: -32px;
+    left: 38px;
+}

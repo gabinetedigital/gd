@@ -144,6 +144,28 @@ $(function() {
         }
     }
 
+  //how it works spinning gears
+  (function() {
+    var spining_timeout;
+    var i = 1;
+    var big_gear = $("#how-it-works-big-gear");
+    var small_gear = $("#how-it-works-small-gear");
+    var how_it_works = $("#how-it-works");
+    how_it_works.hover(
+      function() {
+        if (how_it_works.data("is-rotating"))
+          return;
+        spining_timeout = setInterval(function() {
+          big_gear.rotate(i);
+          small_gear.rotate(-i);
+          i = (i+1) % 360;
+        }, 13);
+      },
+      function() {
+        clearInterval(spining_timeout);
+      });
+  })();
+
     new Buzz("localhost", {
         new_buzz: function (msg) {
             updateBuzz(msg, filterState);
