@@ -4,11 +4,11 @@
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
 {% endblock %}
 
-{% block javascript_head %}
-<script type="text/javascript"
-        src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
-<script type="text/javascript"
-        src="{{ url_for('.static', filename='js/audience.js') }}"></script>
+{% block javascript %}
+<script src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
+<script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 {% endblock %}
 
 {% block content %}
