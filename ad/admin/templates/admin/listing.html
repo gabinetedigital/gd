@@ -21,7 +21,13 @@
         <a href="{{ url_for('.moderate', aid=i.id) }}"
            title="Moderate this audience">
           Moderate
-        </a>  
+        </a>
+
+        <a href="{{ url_for('.publish', aid=i.id) }}"
+           title="Publish posts for this audience">
+          Publish posts
+        </a>
+
         <a href="{{ url_for('.edit', aid=i.id) }}"
            title="Edit this audience">
           Edit
