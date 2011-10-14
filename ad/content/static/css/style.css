@@ -214,11 +214,18 @@ a:hover {
 }
 
 #container #videogallery {
-    margin: 30px 20px;
+    margin: 30px 21px;
+    color: white;
+    font-size: 14px;
 } 
 
-#container #videogallery li{
+#container #videogallery .video {
     background-color: #333;
+    float: left;
+    margin-right: 30px;
     padding: 18px;
-    width: 286px;
+}
+
+#container #videogallery .video img {
+    margin-bottom: 10px;
 }
