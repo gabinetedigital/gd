@@ -38,11 +38,12 @@
 }
 
 #container #title .description {
-    font-size: 16px;
+    font-size: 17px;
     padding-left: 20px;
     width: 494px;
     padding-top: 7px;
     color:#ce3316;
+    font-weight:bold
 }
 
 #container #tag {
