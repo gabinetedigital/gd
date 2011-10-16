@@ -144,25 +144,106 @@ $(function() {
         }
     }
 
+  function Timer(interval) {
+    var self = this;
+    self._fns = [];
+    self._idx = 0;
+    self._current = null;
+    //self._step = 0;
+    self._flag = null
+    self._stepper = null;
+    self._running = false;
+
+    self.then = function(fn) {
+      self._fns.push(fn);
+      return self;
+    }
+
+    self.stepper = function(fn) {
+      self._stepper = fn;
+    }
+
+    self.run = function() {
+      self._running = true;
+      self._idx = 0;
+      self.exec();
+    }
+
+    self.exec = function() {
+
+      self._current = setInterval(function() {
+        self._fns[self._idx](self, self._stepper(), self._flag)
+      }, interval);
+    }
+
+    self.next = function() {
+      clearInterval(self._current);
+      self._idx++;
+      self.exec();
+    }
+
+    self.flag = function(arg) {
+      self._flag = arg;
+    }
+
+    self.stepper = function(fn) {
+      self._stepper = fn;
+    }
+
+    self.isRunning = function() {
+      return self._running;
+    }
+
+    self.stop = function() {
+      self._running = false;
+      clearInterval(self._current);
+    }
+  }
+
   //how it works spinning gears
   (function() {
-    var spining_timeout;
-    var i = 1;
+
     var big_gear = $("#how-it-works-big-gear");
     var small_gear = $("#how-it-works-small-gear");
     var how_it_works = $("#how-it-works");
+    var interval = 13;
+
+    big_gear.data("angle",0);
+    small_gear.data("angle",0);
+
+    timer = new Timer(interval);
+    timer.then(function(timer,accel) {
+      //console.log(accel);
+      var big_current_angle = big_gear.data("angle");
+      var small_current_angle = small_gear.data("angle");
+
+      var big_angle = (big_current_angle + (Math.log(accel+2))) % 360;
+      var small_angle = (small_current_angle - (Math.log(accel+2))) % 360;
+
+      big_gear.data("angle",big_angle);
+      small_gear.data("angle",small_angle);
+
+      big_gear.rotate(big_angle);
+      small_gear.rotate(small_angle);
+
+      if (accel == 0) timer.stop()
+    });
+
+    var accel = 0;
+    var max_accel = 100;
     how_it_works.hover(
       function() {
-        if (how_it_works.data("is-rotating"))
-          return;
-        spining_timeout = setInterval(function() {
-          big_gear.rotate(i);
-          small_gear.rotate(-i);
-          i = (i+1) % 360;
-        }, 13);
+        timer.stepper(function() {
+          if (accel < max_accel) accel++;
+          return accel;
+        });
+        if (!timer.isRunning()) timer.run();
       },
       function() {
-        clearInterval(spining_timeout);
+        timer.stepper(function() {
+          if (accel > 0) accel--;
+          return accel;
+        })
       });
   })();
 
