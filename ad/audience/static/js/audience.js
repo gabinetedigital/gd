@@ -145,52 +145,7 @@ $(function() {
     }
 
 
-  //how it works spinning gears
-  (function() {
-
-    var big_gear = $("#how-it-works-big-gear");
-    var small_gear = $("#how-it-works-small-gear");
-    var how_it_works = $("#how-it-works");
-    var interval = 13;
-
-    big_gear.data("angle",0);
-    small_gear.data("angle",0);
-
-    var timer = new Timer(interval);
-    timer.then(function(timer,accel) {
-      //console.log(accel);
-      var big_current_angle = big_gear.data("angle");
-      var small_current_angle = small_gear.data("angle");
-
-      var big_angle = (big_current_angle + (Math.log(accel+2))) % 360;
-      var small_angle = (small_current_angle - (Math.log(accel+2))) % 360;
-
-      big_gear.data("angle",big_angle);
-      small_gear.data("angle",small_angle);
-
-      big_gear.rotate(big_angle);
-      small_gear.rotate(small_angle);
-
-      if (accel == 0) timer.stop()
-    });
-
-    var accel = 0;
-    var max_accel = 100;
-    how_it_works.hover(
-      function() {
-        timer.stepper(function() {
-          if (accel < max_accel) accel++;
-          return accel;
-        });
-        if (!timer.isRunning()) timer.run();
-      },
-      function() {
-        timer.stepper(function() {
-          if (accel > 0) accel--;
-          return accel;
-        })
-      });
-  })();
+  audience_how_it_works_spinning_gears_setup();
 
     new Buzz(SIO_BASE, {
         new_buzz: function (msg) {
@@ -202,6 +157,52 @@ $(function() {
         }
     });
 });
+
+
+function audience_how_it_works_spinning_gears_setup() {
+  var big_gear = $("#how-it-works-big-gear");
+  var small_gear = $("#how-it-works-small-gear");
+  var how_it_works = $("#how-it-works");
+  var interval = 13;
+
+  big_gear.data("angle",0);
+  small_gear.data("angle",0);
+
+  var timer = new Timer(interval);
+  timer.then(function(timer,accel) {
+    //console.log(accel);
+    var big_current_angle = big_gear.data("angle");
+    var small_current_angle = small_gear.data("angle");
+
+    var big_angle = (big_current_angle + (Math.log(accel+2))) % 360;
+    var small_angle = (small_current_angle - (Math.log(accel+2))) % 360;
+
+    big_gear.data("angle",big_angle);
+    small_gear.data("angle",small_angle);
+
+    big_gear.rotate(big_angle);
+    small_gear.rotate(small_angle);
+
+    if (accel == 0) timer.stop()
+  });
+
+  var accel = 0;
+  var max_accel = 100;
+  how_it_works.hover(
+    function() {
+      timer.stepper(function() {
+        if (accel < max_accel) accel++;
+        return accel;
+      });
+      if (!timer.isRunning()) timer.run();
+    },
+    function() {
+      timer.stepper(function() {
+        if (accel > 0) accel--;
+        return accel;
+      })
+    });
+}
 
 
 function audience_show_how_it_works() {
