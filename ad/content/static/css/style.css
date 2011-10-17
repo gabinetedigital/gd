@@ -255,8 +255,25 @@ a:hover {
 }
 
 #container #sidebar #picday {
-    height: 444px;
-    background-color: #ccc;
     margin-top: 30px;
-    width: 272px;
 }
+
+#container #sidebar #picday h3 {
+    color: #c4a000;
+    font-family: Sansation;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+#container #sidebar #picday #picedge {
+    border: 1px solid #2e3436;
+    width: 262px;
+    height: 342px;
+    padding: 6px 5px;
+}
+
+#container #sidebar #picday p{
+    color: #555753;
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 8px;
+    width: 260px;}
