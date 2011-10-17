@@ -226,6 +226,8 @@ function audience_show_how_it_works() {
 
 
   //the function to spin the step-2 gears
+  //TODO: when the how-it-works dialog closes
+  //      stop this interval
   var spinning_gears = null;
   function spin_gears() {
       spinning_gears = setInterval(function() {
