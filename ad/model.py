@@ -22,7 +22,6 @@ All entity mappers are defined using the `Elixir' API and some signals
 are sent using the `sio' module.
 """
 
-from hashlib import md5
 from datetime import datetime
 from sqlalchemy import not_, desc, event
 from sqlalchemy.orm.exc import NoResultFound
@@ -198,7 +197,7 @@ class User(Entity):
 
     @before_insert
     def hash_password(self):
-        """Converts the password field into an md5 hashed string"""
+        """Converts the password field into a phpass hashed string"""
         hasher = phpass.PasswordHash(8, False)
         self.password = hasher.hash_password(self.password)
 
@@ -257,13 +256,13 @@ class User(Entity):
 
 
 @event.listens_for(session, "after_flush")
-def _set_user_meta(session, flush_context):
+def _set_user_meta(lsession, flush_context):
     """Sets all meta information needed by wordpress, such as
     nickname and capabilities"""
-    if not session.is_active:
+    if not lsession.is_active:
         # Let's do nothing if the session is not ready
         return
-    for inst in session.new:
+    for inst in lsession.new:
         if not isinstance(inst, User):
             # We're not interested in anything different from a new user
             continue
@@ -304,7 +303,8 @@ setup_all(__name__ == '__main__')
 
 
 if __name__ == '__main__':
-    import sys; import os
+    import sys
+    import os
     if len(sys.argv) > 2:
         User(
             username=unicode(sys.argv[1]),

@@ -38,9 +38,9 @@ def index(aid):
     # socket.io client API to our server.
     host = request.host.split(':')[0]
     try:
-        audience = Audience.query.filter_by(id=aid, visible=True).one()
+        inst = Audience.query.filter_by(id=aid, visible=True).one()
         return render_template(
-            'audience.html', audience=audience, host=host)
+            'audience.html', audience=inst, host=host)
     except NoResultFound:
         abort(404)
 

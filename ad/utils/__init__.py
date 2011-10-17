@@ -49,14 +49,14 @@ class msg(object):
     """Namespace to hold message stuff"""
 
     @staticmethod
-    def ok(msg):
+    def ok(data):
         """Ok message"""
-        return dumps({ 'status': 'ok', 'msg': msg })
+        return dumps({ 'status': 'ok', 'msg': data })
 
     @staticmethod
-    def error(msg, code=None):
+    def error(data, code=None):
         """Error message"""
-        data = { 'status': 'error', 'msg': msg }
+        ret = { 'status': 'error', 'msg': data }
         if code is not None:
-            data.update({ 'code': code })
-        return dumps(data)
+            ret.update({ 'code': code })
+        return dumps(ret)

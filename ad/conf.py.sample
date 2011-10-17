@@ -1,3 +1,5 @@
+"""File that holds all configurable parameters of our application"""
+
 # HTTP config vars
 HTTP_HOST = '0.0.0.0'
 HTTP_PORT = 5000
