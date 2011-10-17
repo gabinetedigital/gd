@@ -277,3 +277,13 @@
     left: -56px;
     position: relative;
 }
+
+.step-2 {
+    opacity: 0;
+}
+
+.step-2-small-gear {
+    position: relative;
+    top: 14px;
+    left: -8px;
+}

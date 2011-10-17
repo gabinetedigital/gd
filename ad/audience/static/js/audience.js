@@ -210,6 +210,28 @@ function audience_show_how_it_works() {
   var mail = $(".step-1-mail");
   var trail = $(".step-1-mail-trail");
 
+  big_gear = $(".step-2-big-gear");
+  small_gear = $(".step-2-small-gear");
+
+  big_gear.data("angle",0);
+  small_gear.data("angle",0);
+
+  var step_2 = $(".step-2");
+
+  var spinning_gears = null;
+  function spin_gears() {
+      spinning_gears = setInterval(function() {
+      var big_angle = (big_gear.data("angle")+1) % 360;
+      var small_angle = (small_gear.data("angle")-1) % 360;
+
+      big_gear.data("angle",big_angle);
+      small_gear.data("angle",small_angle);
+
+      big_gear.rotate(big_angle);
+      small_gear.rotate(small_angle);
+      }, 13);
+    }
+
   var timer = new Timer();
 
   timer.then(function(timer, step) {   /* step 1 */
@@ -229,9 +251,16 @@ function audience_show_how_it_works() {
     trail.css("opacity", opacity/2);
 
     if (left == 0) timer.next();
-  }).then(function(timer,step) { /* step 2 */
-    //opacity+ li
-    //spin gears
+  }).then(function(timer) { /* step 2 */
+    if (!spinning_gears) spin_gears();
+
+    var opacity = parseFloat(step_2.css("opacity")) + 0.05;
+    if (opacity > 1) opacity = 1;
+    step_2.css("opacity", opacity);
+
+    if (opacity == 1) timer.next();
+  }).then(function(timer,step) { /* step 3 */
+
   });
   timer.run();
 }
