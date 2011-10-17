@@ -287,3 +287,11 @@
     top: 14px;
     left: -8px;
 }
+
+.mustache-gentleman {
+    opacity: 0;
+}
+
+.mustache-gentleman-dialog {
+    display: none;
+}

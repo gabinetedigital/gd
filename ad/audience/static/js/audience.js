@@ -206,6 +206,9 @@ function audience_how_it_works_spinning_gears_setup() {
 
 
 function audience_show_how_it_works() {
+
+  //lots of inicialization vars...
+
   var couple = $(".step-1-couple");
   var mail = $(".step-1-mail");
   var trail = $(".step-1-mail-trail");
@@ -218,6 +221,11 @@ function audience_show_how_it_works() {
 
   var step_2 = $(".step-2");
 
+  var gentleman = $(".mustache-gentleman");
+  var dialog = $(".mustache-gentleman-dialog");
+
+
+  //the function to spin the step-2 gears
   var spinning_gears = null;
   function spin_gears() {
       spinning_gears = setInterval(function() {
@@ -231,6 +239,10 @@ function audience_show_how_it_works() {
       small_gear.rotate(small_angle);
       }, 13);
     }
+
+  //the function to show the dialog in step-3
+
+  // the animation...
 
   var timer = new Timer();
 
@@ -259,8 +271,19 @@ function audience_show_how_it_works() {
     step_2.css("opacity", opacity);
 
     if (opacity == 1) timer.next();
-  }).then(function(timer,step) { /* step 3 */
+  }).then(function(timer) { /* step 3 */
+    var opacity = parseFloat(gentleman.css("opacity")) + 0.05;
+    if (opacity > 1) opacity = 1;
+    gentleman.css("opacity", opacity);
+    dialog.css("opacity",opacity);
+    if (opacity == 1) timer.next();
 
+    if (!dialog.is(":visible")) {
+      dialog.animate({
+        width: 'toggle',
+      }, 500, 'swing');
+    }
   });
+
   timer.run();
 }
