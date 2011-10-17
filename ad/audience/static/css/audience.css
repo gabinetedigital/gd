@@ -262,3 +262,18 @@
     top: -32px;
     left: 38px;
 }
+
+.step-1-couple {
+    opacity:0;
+}
+
+.step-1-mail-trail {
+    opacity:0;
+}
+
+
+.step-1-mail {
+    opacity:0;
+    left: -56px;
+    position: relative;
+}

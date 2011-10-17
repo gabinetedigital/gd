@@ -144,61 +144,6 @@ $(function() {
         }
     }
 
-  function Timer(interval) {
-    var self = this;
-    self._fns = [];
-    self._idx = 0;
-    self._current = null;
-    //self._step = 0;
-    self._flag = null
-    self._stepper = null;
-    self._running = false;
-
-    self.then = function(fn) {
-      self._fns.push(fn);
-      return self;
-    }
-
-    self.stepper = function(fn) {
-      self._stepper = fn;
-    }
-
-    self.run = function() {
-      self._running = true;
-      self._idx = 0;
-      self.exec();
-    }
-
-    self.exec = function() {
-
-      self._current = setInterval(function() {
-        self._fns[self._idx](self, self._stepper(), self._flag)
-      }, interval);
-    }
-
-    self.next = function() {
-      clearInterval(self._current);
-      self._idx++;
-      self.exec();
-    }
-
-    self.flag = function(arg) {
-      self._flag = arg;
-    }
-
-    self.stepper = function(fn) {
-      self._stepper = fn;
-    }
-
-    self.isRunning = function() {
-      return self._running;
-    }
-
-    self.stop = function() {
-      self._running = false;
-      clearInterval(self._current);
-    }
-  }
 
   //how it works spinning gears
   (function() {
@@ -211,7 +156,7 @@ $(function() {
     big_gear.data("angle",0);
     small_gear.data("angle",0);
 
-    timer = new Timer(interval);
+    var timer = new Timer(interval);
     timer.then(function(timer,accel) {
       //console.log(accel);
       var big_current_angle = big_gear.data("angle");
@@ -257,3 +202,35 @@ $(function() {
         }
     });
 });
+
+
+function audience_show_how_it_works() {
+  var couple = $(".step-1-couple");
+  var mail = $(".step-1-mail");
+  var trail = $(".step-1-mail-trail");
+
+  var timer = new Timer();
+
+  timer.then(function(timer, step) {   /* step 1 */
+    var opacity = step * 4 / 100.0;
+    if (opacity > 1) opacity = 1;
+    couple.css("opacity", opacity);
+    if (opacity == 1) timer.next();
+
+  }).then(function(timer,step) {
+    var left = parseInt(mail.css("left"))+1;
+    mail.css("left", left+"px");
+
+    var opacity = parseFloat(mail.css("opacity")) + 0.05;
+    if (opacity > 1) opacity = 1;
+
+    mail.css("opacity", opacity);
+    trail.css("opacity", opacity/2);
+
+    if (left == 0) timer.next();
+  }).then(function(timer,step) { /* step 2 */
+    //opacity+ li
+    //spin gears
+  });
+  timer.run();
+}

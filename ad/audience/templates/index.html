@@ -9,6 +9,7 @@
 <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -49,7 +50,19 @@
           <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}"
                class="how-it-works-text" onclick="audience_how_it_works()">
         </div>
-        <div id="funciona-assim"></div>
+        <div id="works-like-this">
+          <ol>
+            <li class="step-1">
+              <img src="{{ url_for('.static', filename='imgs/couple.png') }}" class="step-1-couple">
+              <div>
+                <img src="{{ url_for('.static', filename='imgs/mail_trail.png') }}" class="step-1-mail-trail">
+                <img src="{{ url_for('.static', filename='imgs/mail.png') }}" class="step-1-mail">
+              </div>
+            </li>
+            <li class="step-2"> dup </li>
+            <li class="step-3"> tre </li>
+          </ol>
+        </div>
         <ul class="stream">
           <li class="avatar">
             <img src="{{ notice.owner_avatar }}">
