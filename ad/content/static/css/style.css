@@ -181,7 +181,7 @@ a:hover {
 #container #news {
     background: url(../imgs/news.png) -12px no-repeat;
     display: block;
-    width: 676px;
+    width: 672px;
     height: 667px;
     margin-bottom: 20px;
 }
@@ -223,9 +223,40 @@ a:hover {
     background-color: #333;
     float: left;
     margin-right: 30px;
-    padding: 18px;
+    padding: 17px;
 }
 
 #container #videogallery .video img {
     margin-bottom: 10px;
+}
+
+#container #sidebar #lasttweet {
+    background: url(../imgs/bgtweet.png) no-repeat 282px bottom;
+    padding-bottom: 20px;
+    margin-top: 30px;
+}
+
+#container #sidebar #lasttweet .tweet {
+    padding: 15px 10px 11px 11px;
+    background-color: #55ddff;
+    width: 281px;
+    color: #FFF;
+    font-size: 12px;
+}
+
+#container #sidebar #lasttweet .tweet a {
+    color: #006680;
+}
+
+#container #sidebar #lasttweet h3 {
+    color: #006680;
+    text-align: right;
+    margin-top: 15px;
+}
+
+#container #sidebar #picday {
+    height: 444px;
+    background-color: #ccc;
+    margin-top: 30px;
+    width: 272px;
 }
