@@ -287,10 +287,59 @@
     left: -8px;
 }
 
-.mustache-gentleman {
+.mustache-gentleman, .step-3 p {
     opacity: 0;
 }
 
 .mustache-gentleman-dialog {
     display: none;
+}
+
+/* -- How it works -- */
+
+#works-like-this {
+    padding:50px 40px 50px 60px;
+    width:580px;
+}
+
+#works-like-this li {
+    float:left;
+    margin-right:70px;
+}
+
+#works-like-this p { 
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+    clear:both;
+    text-align:center;
+}
+
+#works-like-this li {
+    height:150px;
+}
+
+#works-like-this li.step-3 {
+    margin-right:0;
+}
+
+#works-like-this .gears {
+    margin-left:50px;
+}
+
+.step-3 {
+    display:block;
+    width:170px;
+}
+
+.step-3 img {
+    float:left;
+}
+
+.mustache-gentleman {
+    margin-top:40px;
+}
+
+#works-like-this .wrapper {
+    height:130px;
 }

@@ -45,27 +45,51 @@
           <img src="{{ url_for('.static', filename='imgs/small_gear.png') }}"
                id="how-it-works-small-gear" class="small-gear">
           <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}"
-               class="how-it-works-text" onclick="audience_show_how_it_works()">
+               class="how-it-works-text" rel="#works-like-this">
         </div>
-        <div id="works-like-this">
+        <div id="works-like-this" class="overlay">
           <ol>
             <li class="step-1">
-              <img src="{{ url_for('.static', filename='imgs/couple.png') }}" class="step-1-couple">
+              <img
+                 src="{{ url_for('.static', filename='imgs/couple.png') }}"
+                 class="step-1-couple">
               <div>
-                <img src="{{ url_for('.static', filename='imgs/mail_trail.png') }}" class="step-1-mail-trail">
-                <img src="{{ url_for('.static', filename='imgs/mail.png') }}" class="step-1-mail">
+                <img
+                   src="{{ url_for('.static', filename='imgs/mail_trail.png') }}"
+                   class="step-1-mail-trail">
+                <img
+                   src="{{ url_for('.static', filename='imgs/mail.png') }}"
+                   class="step-1-mail">
               </div>
+
+              <p>Blah blah blah bleh</p>
             </li>
             <li class="step-2">
-              <div>
-                <img src="{{ url_for('.static', filename='imgs/step_2_big_gear.png') }}" class="step-2-big-gear">
-                <img src="{{ url_for('.static', filename='imgs/step_2_small_gear.png') }}" class="step-2-small-gear">
+              <div class="wrapper">
+                <div class="gears">
+                  <img
+                     src="{{ url_for('.static', filename='imgs/step_2_big_gear.png') }}"
+                     class="step-2-big-gear">
+                  <img
+                     src="{{ url_for('.static', filename='imgs/step_2_small_gear.png') }}"
+                     class="step-2-small-gear">
+                </div>
+                <img src="{{ url_for('.static', filename='imgs/networked_cpus.png') }}">
               </div>
-              <img src="{{ url_for('.static', filename='imgs/networked_cpus.png') }}">
+
+              <p>Blah blah blah bleh</p>
+
             </li>
             <li class="step-3">
-              <img src="{{ url_for('.static', filename='imgs/mustache_gentleman.png') }}" class="mustache-gentleman">
-              <img src="{{ url_for('.static', filename='imgs/empty_dialog.png') }}" class="mustache-gentleman-dialog">
+              <div class="wrapper">
+                <img
+                   src="{{ url_for('.static', filename='imgs/mustache_gentleman.png') }}"
+                   class="mustache-gentleman">
+                <img
+                   src="{{ url_for('.static', filename='imgs/empty_dialog.png') }}"
+                   class="mustache-gentleman-dialog">
+              </div>
+              <p>Blah blah blah bleh</p>
             </li>
           </ol>
         </div>

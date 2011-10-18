@@ -158,3 +158,21 @@ a:hover {
     text-align:left;
     font-size:12px;
 }
+
+/** Overlay **/
+.overlay {
+    display:none;
+    border:10px solid rgba(82, 82, 82, 0.4);
+    border-radius:4px;
+    background:#fff;
+}
+
+.overlay .close {
+    background-image:url(../imgs/close.png);
+    position:absolute;
+    right:-15px;
+    top:-15px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}

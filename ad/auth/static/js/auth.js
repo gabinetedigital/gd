@@ -40,7 +40,6 @@ var auth = (function() {
             onBeforeLoad: function() {
                 var wrap = this.getOverlay().find(".contentWrap");
                 wrap.load(url_for('auth.login'));
-                // wrap.load(this.getTrigger().attr("href"));
             },
             onLoad: function() {
                 var overlay = this.getOverlay();

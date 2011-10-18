@@ -1,6 +1,7 @@
 /* Copyright (C) 2011 Governo do Estado do Rio Grande do Sul
  *
  *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+ *   Author: Thiago Silva <thiago@metareload.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -144,9 +145,6 @@ $(function() {
         }
     }
 
-
-  audience_how_it_works_spinning_gears_setup();
-
     new Buzz(SIO_BASE, {
         new_buzz: function (msg) {
             updateBuzz(msg, filterState);
@@ -154,6 +152,26 @@ $(function() {
 
         buzz_accepted: function (msg) {
             updateBuzz(msg, !filterState);
+        }
+    });
+
+    // Initializing "how it works" stuff
+    audience_how_it_works_spinning_gears_setup();
+
+    $('img[rel]').overlay({
+        oneInstance: false,
+        speed: 'fast',
+        top: 250,
+        mask: {
+            color: '#fff',
+            opacity: 0.5
+        },
+
+        onLoad: function () {
+            if ($(this.getOverlay()).data('firstRun') === undefined) {
+                audience_show_how_it_works();
+                $(this.getOverlay()).data('firstRun', 1);
+            }
         }
     });
 });
@@ -170,7 +188,6 @@ function audience_how_it_works_spinning_gears_setup() {
 
   var timer = new Timer(interval);
   timer.then(function(timer,accel) {
-    //console.log(accel);
     var big_current_angle = big_gear.data("angle");
     var small_current_angle = small_gear.data("angle");
 
@@ -183,7 +200,7 @@ function audience_how_it_works_spinning_gears_setup() {
     big_gear.rotate(big_angle);
     small_gear.rotate(small_angle);
 
-    if (accel == 0) timer.stop()
+    if (accel == 0) timer.stop();
   });
 
   var accel = 0;
@@ -200,14 +217,14 @@ function audience_how_it_works_spinning_gears_setup() {
       timer.stepper(function() {
         if (accel > 0) accel--;
         return accel;
-      })
+      });
     });
 }
 
 
 function audience_show_how_it_works() {
 
-  //lots of inicialization vars...
+  // lots of inicialization vars...
 
   var couple = $(".step-1-couple");
   var mail = $(".step-1-mail");
@@ -222,6 +239,7 @@ function audience_show_how_it_works() {
   var step_2 = $(".step-2");
 
   var gentleman = $(".mustache-gentleman");
+  var step_3_text = $(".step-3 p");
   var dialog = $(".mustache-gentleman-dialog");
 
 
@@ -277,13 +295,14 @@ function audience_show_how_it_works() {
     var opacity = parseFloat(gentleman.css("opacity")) + 0.05;
     if (opacity > 1) opacity = 1;
     gentleman.css("opacity", opacity);
+    step_3_text.css("opacity", opacity);
     dialog.css("opacity",opacity);
     if (opacity == 1) timer.next();
 
     if (!dialog.is(":visible")) {
       dialog.animate({
-        width: 'toggle',
-      }, 500, 'swing');
+        width: 'toggle'
+      }, 1000, 'swing');
     }
   });
 

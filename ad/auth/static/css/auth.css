@@ -18,19 +18,6 @@
 
 #loginoverlay {
     width:315px;
-    display:none;
-    border:10px solid rgba(82, 82, 82, 0.4);
-    border-radius:4px;
-}
-
-#loginoverlay .close {
-    background-image:url(../imgs/close.png);
-    position:absolute;
-    right:-15px;
-    top:-15px;
-    cursor:pointer;
-    height:35px;
-    width:35px;
 }
 
 form#auth {
