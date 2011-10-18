@@ -37,7 +37,7 @@ facebook = OAuth().remote_app('facebook',
 @fbauth.route('/')
 def login():
     """Entry point for the facebook login feature"""
-    next_url = request.args.get('next') or request.referrer or None
+    next_url = request.values.get('next') or request.referrer or None
     return facebook.authorize(callback=url_for(
             '.facebook_authorized', next=next_url, _external=True))
 
@@ -48,13 +48,12 @@ def facebook_authorized(resp):
     """Callback that is fired by facebook after user acceptance"""
     if resp is None:
         return 'Access denied: reason=%s error=%s' % (
-            request.args['error_reason'],
-            request.args['error_description']
+            request.values['error_reason'],
+            request.values['error_description']
         )
     session['oauth_token'] = (resp['access_token'], '')
-    me = facebook.get('/me')
-    return 'Logged in as id=%s name=%s redirect=%s' % \
-        (me.data['id'], me.data['name'], request.args.get('next'))
+    user = facebook.get('/me')
+    return str(user)
 
 
 @facebook.tokengetter
