@@ -24,3 +24,7 @@ WORDPRESS_XMLRPC = 'http://example.com/wordpress/xmlrpc.php'
 WORDPRESS_BLOGID = 1
 WORDPRESS_USER = 'user'
 WORDPRESS_PASSWORD = 'password'
+
+# Facebook access configuration
+FACEBOOK_APP_ID = ''
+FACEBOOK_APP_SECRET = ''
