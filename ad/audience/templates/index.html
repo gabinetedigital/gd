@@ -39,9 +39,6 @@
   <div class="row">
     <div id="main" class="col8">
       <div class="content">
-        {% if audience.started %}
-        {% set notice = audience.get_last_published_notice() %}
-        {% if notice %}
         <div id="how-it-works">
           <img src="{{ url_for('.static', filename='imgs/big_gear.png') }}"
                id="how-it-works-big-gear" class="big-gear">
@@ -72,6 +69,9 @@
             </li>
           </ol>
         </div>
+        {% if audience.started %}
+        {% set notice = audience.get_last_published_notice() %}
+        {% if notice %}
         <ul class="stream">
           <li class="avatar">
             <img src="{{ notice.owner_avatar }}">
