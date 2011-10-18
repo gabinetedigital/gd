@@ -24,14 +24,14 @@ from gevent import monkey; monkey.patch_all()
 
 from ad.webapp import app
 from ad.buzz import sio
+from ad import conf
 
 
 @werkzeug.serving.run_with_reloader
 def run():
-    # FIXME: This flag should be set in a config file.
-    app.debug = True
+    app.debug = conf.HTTP_DEBUG
     server = SocketIOServer(
-        ('0.0.0.0', 5000),
+        (conf.HTTP_HOST, conf.HTTP_PORT),
         sio.BuzzApp(app),
         resource='socket.io')
     server.start()

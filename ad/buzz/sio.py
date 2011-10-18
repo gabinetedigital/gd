@@ -29,6 +29,7 @@ except ImportError:
     HAVE_SOCKETIO = False
 
 from ad.utils import dumps
+from ad import conf
 
 
 class BuzzApp(object):
@@ -46,12 +47,12 @@ class BuzzApp(object):
         messages for our socketio message queue.
         """
         self.app.server = ctx.socket(zmq.PUB)
-        self.app.server.bind('tcp://127.0.0.1:6000')
+        self.app.server.bind(conf.SOCK_LOCAL_SERVER)
         self.app.send = lambda msg, data: self.send(msg, data)
 
         # Things relative to socketio
         incoming = ctx.socket(zmq.PULL)
-        incoming.bind('tcp://127.0.0.1:6001')
+        incoming.bind(conf.SOCK_INCOMING_PULL)
 
         publishing = self.context.socket(zmq.PUB)
         publishing.bind('inproc://queue')
@@ -107,6 +108,6 @@ def send(msg, data):
     # This code will only run when no app is binded. Which means we
     # don't need to provide any socketio thing
     server = zmq.Context().socket(zmq.PUSH)
-    server.connect('tcp://127.0.0.1:6001')
+    server.connect(conf.SOCK_INCOMING_PULL)
     server.send(dumps({ 'message': msg, 'data': data }))
     server.close()
