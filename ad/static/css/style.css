@@ -30,7 +30,6 @@
 body {
     font-size: 11.5px;
     font-family: arial, helvetica, sans-serif;
-/*    background: url(../imgs/978-grid.png) repeat-y center top; */
 }
 
 a {
@@ -45,12 +44,11 @@ a:hover {
 /** Headers **/
 
 .layout-978 {
-    background: url(../imgs/header.png) 6px 0 no-repeat;
+    background: url(../imgs/header.png) no-repeat;
 }
 
 #header {
     height: 200px;
-    position: absolute;
 }
 
 #header h1 {
@@ -147,6 +145,12 @@ a:hover {
     font-weight: bold;
 }
 
+/** Container **/
+
+#container {
+    background: url(../imgs/bg.png) repeat-y;
+}
+
 /** Extras **/
 .tooltip {
     background-color:#000;
@@ -158,6 +162,7 @@ a:hover {
     text-align:left;
     font-size:12px;
 }
+
 
 /** Overlay **/
 .overlay {
@@ -175,4 +180,25 @@ a:hover {
     cursor:pointer;
     height:35px;
     width:35px;
+}
+
+#footer {
+    width: 938px;
+    margin-left: 16px;
+}
+
+#footer #photogallery {
+    border-top: 12px solid #A40000;
+    background-color: #2e3436;
+    height: 130px;
+}
+
+#footer #photogallery li {
+    float: left;
+    margin-left: 27px;
+    margin-top: 14px;
+}
+
+#footer #photogallery li img {
+    border: 5px solid #FFF;
 }

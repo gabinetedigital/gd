@@ -1,191 +1,103 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+{% extends "base.html" %}
 
-<html>
-<head>
-  <meta name="generator" content=
-  "HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org">
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/home.css') }}">
+{% endblock %}
 
-  <title>Gabinete Digital - Assêmbleia Digital</title>
-  <meta http-equiv="Content-Type" content=
-  "text/html; charset=utf-8">
-  <meta name="viewport" content="width=1024">
-  <link rel="stylesheet" href="../static/css/978.css" type=
-  "text/css">
-  <link rel="stylesheet" href="../static/css/style.css" type=
-  "text/css">
-</head>
+{% block content %}
+<div id="container">
+  <div class="row">
+    <div id="slideshow" class="col12"></div>
+  </div>
 
-<body>
-  <div class="layout-978">
-    <div id="header" class="row">
-      <div class="col12">
-        <h1>Gabiente Digital - Democracia em Rede</h1>
+  <div class="row-end"></div>
 
-        <div id="loginoverlay">
-          <div class="contentWrap"></div>
-        </div>
+  <div class="row">
+    <div id="news" class="col8">
+      <ul>
+        <li>
+          <ul class="news">
+            <li><img src="../static/imgs/newsimg.png" alt=
+                     "blah"></li>
 
-        <ul class="login">
-          <li><a href="{{%20url_for('auth.login_form')%20}}" rel=
-          "#loginoverlay">entrar</a></li>
+            <li>
+              <h2>"a realização da copa no rs vai colocar
+                novamente o nosso estado no cenário mundial"</h2>
+            </li>
 
-          <li>|</li>
+            <li>com essa expectativa, o governador tarso genro
+              fala, em vídeo, sobre o le1gado da copa 2014 para
+              ...com essa expectativa, o governador tarso genro
+              fala, em vídeo, sobre o le1gado da copa 2014 para
+              ...</li>
 
-          <li><a href="{{%20url_for('auth.login_form')%20}}" rel=
-          "#loginoverlay">cadastre-se</a></li>
-        </ul>
-
-        <h4>Acompanhe, participe!</h4>
-
-        <ul id="social">
-          <li class="feed">feed</li>
-
-          <li class="twitter">twitter</li>
-
-          <li class="identica">identi.ca</li>
-
-          <li class="facebook">facebook</li>
-        </ul>
-
-        <div id="menu">
-          <ul class="main-menu">
-            <li><a href="#">inicio</a></li>
-
-            <li><a href="#">sobre</a></li>
+            <li class="meta">comentário(30) | share</li>
           </ul>
-        </div>
-      </div>
+        </li>
 
-      <div class="row-end"></div>
-    </div>
+        <li>
+          <ul class="news">
+            <li>
+              <h2>"a realização da copa no rs vai colocar
+                novamente o nosso estado no cenário mundial"</h2>
+            </li>
 
-    <div id="container">
-      <div class="row">
-        <div id="slideshow" class="col12"></div>
-      </div>
+            <li>com essa expectativa, o governador tarso genro
+              fala, em vídeo, sobre o le1gado da copa 2014 para
+              ...com essa expectativa, o governador tarso genro
+              fala, em vídeo, sobre o le1gado da copa 2014 para
+              ...</li>
 
-      <div class="row-end"></div>
+            <li class="meta">comentário(30) | share</li>
+          </ul>
+        </li>
+      </ul>
 
-      <div class="row">
-        <div id="news" class="col8">
+      <ul id="videogallery">
+        <li class="video">
           <ul>
-            <li>
-              <ul class="news">
-                <li><img src="../static/imgs/newsimg.png" alt=
-                "blah"></li>
-
-                <li>
-                  <h2>"a realização da copa no rs vai colocar
-                  novamente o nosso estado no cenário mundial"</h2>
-                </li>
-
-                <li>com essa expectativa, o governador tarso genro
-                fala, em vídeo, sobre o le1gado da copa 2014 para
-                ...com essa expectativa, o governador tarso genro
-                fala, em vídeo, sobre o le1gado da copa 2014 para
-                ...</li>
-
-                <li class="meta">comentário(30) | share</li>
-              </ul>
-            </li>
-
-            <li>
-              <ul class="news">
-                <li>
-                  <h2>"a realização da copa no rs vai colocar
-                  novamente o nosso estado no cenário mundial"</h2>
-                </li>
-
-                <li>com essa expectativa, o governador tarso genro
-                fala, em vídeo, sobre o le1gado da copa 2014 para
-                ...com essa expectativa, o governador tarso genro
-                fala, em vídeo, sobre o le1gado da copa 2014 para
-                ...</li>
-
-                <li class="meta">comentário(30) | share</li>
-              </ul>
-            </li>
+            <li><img src="../static/imgs/video.png" alt=
+                     "video"></li>
+            <li>desc</li>
           </ul>
+        </li>
 
-          <ul id="videogallery">
-            <li class="video">
-              <ul>
-                <li><img src="../static/imgs/video.png" alt=
-                "video"></li>
-
-                <li>desc</li>
-              </ul>
-            </li>
-
-            <li class="video">
-              <ul>
-                <li><img src="../static/imgs/video.png" alt=
-                "video"></li>
-
-                <li>desc</li>
-              </ul>
-            </li>
+        <li class="video">
+          <ul>
+            <li><img src="../static/imgs/video.png" alt=
+                     "video"></li>
+            <li>desc</li>
           </ul>
-        </div>
+        </li>
+      </ul>
+    </div>
 
-        <div id="sidebar" class="col4">
-          <div id="lasttweet">
-            <div class="shadow">
-              <div class="tweet">
-                "Governador Pergunta", nova ferramenta do vai
-                @gabinetedigital, vai receber propostas sobre temas
-                de grande relevância. <a href=
-                "http://ur1.ca/5d1vq">http://ur1.ca/5d1vq</a>
-
-                <h3>@tarsogenro</h3>
-              </div>
-            </div>
-          </div>
-
-          <div id="picday">
-            <h3>Foto do dia</h3>
-
-            <div id="picedge"><img src="../static/imgs/picday.png"
-            alt="tarso"></div>
-
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing
-            elit. Quisque arcu ante, cursus in, ornare quis,
-            viverra ut, justo. Nullam libero nunc, tristique
-            eget.</p>
+    <div id="sidebar" class="col4">
+      <div id="lasttweet">
+        <div class="shadow">
+          <div class="tweet">
+            "Governador Pergunta", nova ferramenta do vai
+            @gabinetedigital, vai receber propostas sobre temas
+            de grande relevância.
+            <a href="http://ur1.ca/5d1vq">http://ur1.ca/5d1vq</a>
+            <h3>@tarsogenro</h3>
           </div>
         </div>
       </div>
 
-      <div class="row-end"></div>
-    </div>
-
-    <div id="footer" class="row">
-      <div id="photogallery">
-        <ul>
-          <li class="photo"><img src="../static/imgs/photo.png"
-          alt="tarso"></li>
-
-          <li class="photo"><img src="../static/imgs/photo.png"
-          alt="tarso"></li>
-
-          <li class="photo"><img src="../static/imgs/photo.png"
-          alt="tarso"></li>
-
-          <li class="photo"><img src="../static/imgs/photo.png"
-          alt="tarso"></li>
-
-          <li class="photo"><img src="../static/imgs/photo.png"
-          alt="tarso"></li>
-
-          <li class="photo"><img src="../static/imgs/photo.png"
-          alt="tarso"></li>
-
-          <li class="photo"><img src="../static/imgs/photo.png"
-          alt="tarso"></li>
-        </ul>
+      <div id="picday">
+        <h3>Foto do dia</h3>
+        <div id="picedge">
+          <img src="../static/imgs/picday.png"
+               alt="tarso"></div>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing
+          elit. Quisque arcu ante, cursus in, ornare quis,
+          viverra ut, justo. Nullam libero nunc, tristique
+          eget.</p>
       </div>
-
-      <div class="row-end"></div>
     </div>
-  </body>
-</html>
+  </div>
+
+  <div class="row-end"></div>
+</div>
+{% endblock %}

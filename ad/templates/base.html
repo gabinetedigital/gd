@@ -3,6 +3,9 @@
   <head>
     <title>Gabinete Digital - Assêmbleia Digital</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta
+       content="HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org"
+       name="generator">
     <meta name="viewport" content="width=1024">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/978.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -14,6 +17,7 @@
       <div id="header" class="row">
         <div class="col12">
           <h1>Gabiente Digital - Democracia em Rede</h1>
+
           <div id="loginoverlay" class="overlay"><div class="contentWrap"></div></div>
           <ul class="login">
             {% if user is not none %}
@@ -66,8 +70,33 @@
 
       {% block content %}{% endblock %}
 
-      <div class="row">
-        <div id="footer" class="col12">footer</div>
+      <div id="footer" class="row">
+        <div id="photogallery">
+          <ul>
+            <li class="photo">
+              <img src="../static/imgs/photo.png"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="../static/imgs/photo.png"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="../static/imgs/photo.png"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="../static/imgs/photo.png"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="../static/imgs/photo.png"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="../static/imgs/photo.png"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="../static/imgs/photo.png"
+                   alt="tarso"></li>
+          </ul>
+        </div>
+
         <div class="row-end"></div>
       </div>
     </div>

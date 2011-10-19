@@ -18,11 +18,6 @@
 
 /** Container **/
 
-#container {
-    background: url(../imgs/buzz.png) no-repeat 615px 334px;
-    padding-top: 204px;
-}
-
 #container #info-aud {
     height: 100px;
 }
@@ -31,6 +26,11 @@
     color: #999;
     padding-left: 54px;
     margin-top: 11px;
+}
+
+#container .buzzbg {
+    background:url(../imgs/buzz.png) no-repeat 615px 32px;
+    height:658px;
 }
 
 #container #title .title {
