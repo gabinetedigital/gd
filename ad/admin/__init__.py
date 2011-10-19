@@ -250,3 +250,13 @@ def publish_buzz(bid):
     buzz.date_published = datetime.now()
     session.commit()
     return msg.ok('Buzz published')
+
+
+@admin.route('/buzz/<int:bid>/notpublish')
+@auth.checkroles(['administrator'])
+def not_publish_buzz(bid):
+    """not publish messages"""
+    buzz = Buzz.query.get(bid)
+    buzz.status = u'approved'
+    session.commit()
+    return msg.ok('Unpublished buzz')

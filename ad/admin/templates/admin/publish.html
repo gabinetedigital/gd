@@ -27,6 +27,10 @@
              title="Publish this buzz">
             Publish
           </a>
+          <a href="{{ url_for('.not_publish_buzz', bid=i.id) }}" class="remove"
+             title="Don't Publish this buzz">
+            Don't Publish
+          </a>  
           <span class="clear"></span>
         </div>
         {% endif %}
