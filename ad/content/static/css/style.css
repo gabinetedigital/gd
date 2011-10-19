@@ -288,9 +288,31 @@ a:hover {
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#CCC');
 }
 
-#container #sidebar #picday p{
+#container #sidebar #picday p {
     color: #555753;
     font-style: italic;
     font-size: 12px;
     margin-top: 8px;
-    width: 260px;}
+    width: 260px;
+}
+
+#footer {
+    width: 938px;
+    margin-left: 16px;
+}
+
+#footer #photogallery {
+    border-top: 12px solid #A40000;
+    background-color: #2e3436;
+    height: 130px;
+}
+
+#footer #photogallery li {
+    float: left;
+    margin-left: 27px;
+    margin-top: 14px;
+}
+
+#footer #photogallery li img {
+    border: 5px solid #FFF;
+}
