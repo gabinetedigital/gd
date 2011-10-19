@@ -40,7 +40,7 @@ def index(aid):
     try:
         audience = Audience.query.filter_by(id=aid, visible=True).one()
         return render_template(
-            '/index.html', audience=audience, host=host)
+            'audience.html', audience=audience, host=host)
     except NoResultFound:
         abort(404)
 
