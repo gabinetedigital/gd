@@ -38,6 +38,7 @@
         <input name="notice" value="{{ i.id }}" type="checkbox">
         <img src="{{ i.owner_avatar }}">
         <strong>@{{ i.owner_nick }}</strong>
+        <em>{{ i.creation_date.strftime('%d/%m/%Y %H:%M') }}</em>
         <p>{{ i.content }}</p>
         <div class="controls">
           {% if isnew %}
