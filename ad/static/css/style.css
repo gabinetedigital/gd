@@ -182,14 +182,21 @@ a:hover {
     width:35px;
 }
 
+/** Footer **/
+
 #footer {
-    width: 938px;
-    margin-left: 16px;
+    width: 970px;
+    background:url(../imgs/bg.png) repeat-y;
 }
 
 #footer #photogallery {
     border-top: 12px solid #A40000;
+    margin:0 16px;
     background-color: #2e3436;
+    height: 130px;
+}
+
+#footer #photogallery ul {
     height: 130px;
 }
 
@@ -201,4 +208,53 @@ a:hover {
 
 #footer #photogallery li img {
     border: 5px solid #FFF;
+}
+
+#footer .wrapper {
+    padding:20px 16px 0 16px;
+}
+
+#footer .logo {
+    float:left;
+    margin-left:16px;
+}
+
+.use-the-content-luke {
+    float:left;
+    width:310px;
+    padding-left:25px;
+}
+
+.use-the-source-luke {
+    float:left;
+    width:390px;
+    border-left:dotted 1px #333;
+    margin-left:25px;
+    padding-left:35px;
+    padding-bottom:20px;
+}
+
+.use-the-source-luke img,
+.use-the-content-luke img {
+    display:block;
+    margin-bottom:20px;
+}
+
+.use-the-content-luke img {
+    margin-bottom:40px;
+}
+
+.use-the-source-luke pre {
+    margin:10px 0;
+    padding:2px;
+    background:#babdb6;
+    text-shadow:1px 1px 0px #ddd;
+    box-shadow:1px 1px 3px #666;
+}
+
+#footer .contact {
+    background:#e6e6e6;
+    text-align:center;
+    padding:10px;
+    margin-top:20px;
 }
