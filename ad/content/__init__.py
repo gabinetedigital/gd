@@ -17,6 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from flask import Blueprint, render_template
+from ad.content.wp import wordpress
+
 
 content = Blueprint(
     'content', __name__,
@@ -27,4 +29,4 @@ content = Blueprint(
 @content.route('/')
 def index():
     """Renders the index template"""
-    return render_template('index.html')
+    return render_template('index.html', wp=wordpress)

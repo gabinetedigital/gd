@@ -15,42 +15,27 @@
   <div class="row">
     <div id="news" class="col8">
       <ul>
-        <li>
-          <ul class="news">
-            <li><img src="../static/imgs/newsimg.png" alt=
-                     "blah"></li>
-
-            <li>
-              <h2>"a realização da copa no rs vai colocar
-                novamente o nosso estado no cenário mundial"</h2>
-            </li>
-
-            <li>com essa expectativa, o governador tarso genro
-              fala, em vídeo, sobre o le1gado da copa 2014 para
-              ...com essa expectativa, o governador tarso genro
-              fala, em vídeo, sobre o le1gado da copa 2014 para
-              ...</li>
-
-            <li class="meta">comentário(30) | share</li>
-          </ul>
-        </li>
-
+        {% for post in wp.getRecentPosts(
+               category_name='news',
+               numposts=2,
+               post_status='published')%}
         <li>
           <ul class="news">
             <li>
-              <h2>"a realização da copa no rs vai colocar
-                novamente o nosso estado no cenário mundial"</h2>
+              <img
+                 src="{{ post.thumb.url }}"
+                 alt="{{ post.title }}"
+                 width="{{ post.thumb.width }}"
+                 height="{{ post.thumb.height }}">
             </li>
-
-            <li>com essa expectativa, o governador tarso genro
-              fala, em vídeo, sobre o le1gado da copa 2014 para
-              ...com essa expectativa, o governador tarso genro
-              fala, em vídeo, sobre o le1gado da copa 2014 para
-              ...</li>
-
+            <li>
+              <h2>{{ post.title }}</h2>
+            </li>
+            <li>{{ post.content|safe }}</li>
             <li class="meta">comentário(30) | share</li>
           </ul>
         </li>
+        {% endfor %}
       </ul>
 
       <ul id="videogallery">
