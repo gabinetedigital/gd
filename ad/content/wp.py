@@ -21,6 +21,7 @@ interface and our system.
 
 from xmlrpclib import Server
 from datetime import datetime
+from ad import conf
 
 
 class Wordpress(object):
@@ -50,3 +51,9 @@ class Wordpress(object):
             return super(Wordpress, self).__getattribute__(attr)
         except AttributeError:
             return self.wrap(getattr(self.server.exapi, attr))
+
+
+wordpress = Wordpress(
+    conf.WORDPRESS_XMLRPC, conf.WORDPRESS_BLOGID,
+    conf.WORDPRESS_USER, conf.WORDPRESS_PASSWORD
+)

@@ -14,3 +14,9 @@ DATABASE_URI = 'mysql://gd:gd@localhost/gd'
 
 # Application specific configuration
 DATEFORMAT = "%d/%m/%Y %H:%M"
+
+# Wordpress integration parameters
+WORDPRESS_XMLRPC = 'http://example.com/wordpress/xmlrpc.php'
+WORDPRESS_BLOGID = 1
+WORDPRESS_USER = 'user'
+WORDPRESS_PASSWORD = 'password'
