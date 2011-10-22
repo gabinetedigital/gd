@@ -21,18 +21,28 @@
                post_status='published')%}
         <li>
           <ul class="news">
+            {% if post.thumb and loop.index == 1 %}
             <li>
               <img
                  src="{{ post.thumb.url }}"
                  alt="{{ post.title }}"
                  width="{{ post.thumb.width }}"
-                 height="{{ post.thumb.height }}">
+                 height="{{ post.thumb.height }}"
+                 {% if post.thumb.width > 120 %}class="wide"{% endif %}
+                 >
             </li>
+            {% endif %}
+
+            {% if loop.index == 1 and post.thumb and post.thumb.width > 120 %}
+            <li class="title">{{ post.title }}</li>
+            <li class="meta"></li>
+            {% else %}
             <li>
               <h2>{{ post.title }}</h2>
             </li>
-            <li>{{ post.content|safe }}</li>
-            <li class="meta">comentário(30) | share</li>
+            <li>{{ post.excerpt|safe }}</li>
+            <li class="meta">Comentários (<strong>30</strong>) | share</li>
+            {% endif %}
           </ul>
         </li>
         {% endfor %}
