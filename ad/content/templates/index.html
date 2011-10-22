@@ -41,7 +41,9 @@
               <h2>{{ post.title }}</h2>
             </li>
             <li>{{ post.excerpt|safe }}</li>
-            <li class="meta">Comentários (<strong>30</strong>) | share</li>
+            <li class="meta">
+              Comentários (<strong>{{ post.comments_count }}</strong>) | share
+            </li>
             {% endif %}
           </ul>
         </li>
