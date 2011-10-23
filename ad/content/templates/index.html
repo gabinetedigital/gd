@@ -30,6 +30,7 @@
         </li>
         {% endfor %}
       </ul>
+      {% if slideshow.__len__() > 1 %}
       <ol class="controls">
         {% for i in slideshow %}
         <li>
@@ -37,6 +38,7 @@
         </li>
         {% endfor %}
       </ol>
+      {% endif %}
     </div>
   </div>
 
