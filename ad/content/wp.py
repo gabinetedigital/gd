@@ -47,8 +47,7 @@ class Wordpress(object):
             # to the XMLRPC server and there they'll be expanded.  Maybe
             # it will change in the future, if I find any function that
             # doesn't fit this strategy
-            return method(self.blogid, self.user, self.password,
-                          kwargs, *args)
+            return method(self.user, self.password, kwargs, *args)
         return wrapper
 
     def __getattribute__(self, attr):
