@@ -33,6 +33,11 @@ class Wordpress(object):
         self.password = password
         self.server = Server(self.address)
 
+    def wrap_post(self, data):
+        """Wrapps a dictionary that contains data that represents a
+        wordpress post into a python class with some helper methods"""
+        return Post(data)
+
     def wrap(self, method):
         """Wrapper that decorates XMLRPC methods that needs the user,
         password and blog id to be passed before anything"""
@@ -51,6 +56,25 @@ class Wordpress(object):
             return super(Wordpress, self).__getattribute__(attr)
         except AttributeError:
             return self.wrap(getattr(self.server.exapi, attr))
+
+
+class Post(object):
+    """Wordpress post wrapper class
+
+    This class that makes it more natural and easy to work with posts
+    received from the wordpress source in a dictionary format."""
+    def __init__(self, data):
+        self.data = data
+
+    def __getattribute__(self, attr):
+        try:
+            return super(Post, self).__getattribute__(attr)
+        except AttributeError:
+            return self.data[attr]
+
+    def has_category(self, slug):
+        """Returns true if the post has a given category"""
+        return bool([i for i in self.data['categories'] if i['slug'] == slug])
 
 
 wordpress = Wordpress(

@@ -15,25 +15,34 @@
   <div class="row">
     <div id="news" class="col8">
       <ul>
-        {% for post in wp.getRecentPosts(
+        {% for iter in wp.getRecentPosts(
                category_name='news',
+               post_status='published',
                numposts=2,
-               post_status='published')%}
+               thumbsizes=['newsbox', 'widenewsbox']) %}
+        {% set post = wp.wrap_post(iter) %}
         <li>
           <ul class="news">
-            {% if post.thumb and loop.index == 1 %}
+            {% if post.thumbs and loop.index == 1 %}
             <li>
+              {% if post.has_category('wide') %}
               <img
-                 src="{{ post.thumb.url }}"
+                 src="{{ post.thumbs.widenewsbox.url }}"
                  alt="{{ post.title }}"
-                 width="{{ post.thumb.width }}"
-                 height="{{ post.thumb.height }}"
-                 {% if post.thumb.width > 120 %}class="wide"{% endif %}
-                 >
+                 width="{{ post.thumbs.widenewsbox.width }}"
+                 height="{{ post.thumbs.widenewsbox.height }}"
+                 class="wide">
+              {% elif post.thumbs %}
+              <img
+                 src="{{ post.thumbs.newsbox.url }}"
+                 alt="{{ post.title }}"
+                 width="{{ post.thumbs.newsbox.width }}"
+                 height="{{ post.thumbs.newsbox.height }}">
+              {% endif %}
             </li>
             {% endif %}
 
-            {% if loop.index == 1 and post.thumb and post.thumb.width > 120 %}
+            {% if loop.index == 1 and post.has_category('wide') %}
             <li class="title">{{ post.title }}</li>
             <li class="meta"></li>
             {% else %}
@@ -42,7 +51,7 @@
             </li>
             <li>{{ post.excerpt|safe }}</li>
             <li class="meta">
-              Comentários (<strong>{{ post.comments_count }}</strong>) | share
+              Comentários (<strong>{{ post.comments.count }}</strong>) | share
             </li>
             {% endif %}
           </ul>
