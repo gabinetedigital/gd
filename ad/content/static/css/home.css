@@ -3,6 +3,59 @@
 #container #slideshow {
     height: 278px;
     background: url(../imgs/slideshow.png) -12px no-repeat;
+    overflow:hidden;
+}
+
+#container #slideshow .jcarousel-container {
+    padding:30px;
+}
+
+#container #slideshow li {
+    display:block;
+    float:left;
+    width:920px;
+    margin-right:30px;
+}
+
+#container #slideshow img {
+    float:left;
+    margin-right:30px;
+}
+
+#container #slideshow .title {
+    color:#4e9a06;
+}
+
+#container #slideshow .excerpt {
+    margin-left:355px;
+    padding:15px 30px 10px 30px;
+    font-size:16px;
+}
+
+#container #slideshow .controls {
+    float:right;
+    font-size:36px;
+    position:relative;
+    top:-60px;
+    right:20px;
+}
+
+#container #slideshow .controls a {
+    color:#babdb6;
+}
+
+#container #slideshow .controls a:hover {
+    text-decoration:none;
+}
+
+#container #slideshow .controls a.selected {
+    color:#2e3436;
+}
+
+#container #slideshow .controls li {
+    display:block;
+    width:15px;
+    margin-right:0;
 }
 
 #container #news {

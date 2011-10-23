@@ -29,4 +29,16 @@ content = Blueprint(
 @content.route('/')
 def index():
     """Renders the index template"""
-    return render_template('index.html', wp=wordpress)
+    slideshow = wordpress.getRecentPosts(
+        category_name='highlights',
+        post_status='published',
+        numposts=4,
+        thumbsizes=['slideshow'])
+    news = wordpress.getRecentPosts(
+        category_name='news',
+        post_status='published',
+        numposts=2,
+        thumbsizes=['newsbox', 'widenewsbox'])
+    return render_template(
+        'index.html', wp=wordpress,
+        slideshow=slideshow, news=news)

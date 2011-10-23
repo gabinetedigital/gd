@@ -1,13 +1,43 @@
 {% extends "base.html" %}
 
 {% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/carousel.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/jquery.jcarousel.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/home.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 <div id="container">
   <div class="row">
-    <div id="slideshow" class="col12"></div>
+    <div id="slideshow" class="col12">
+      <ul class="carousel">
+        {% for iter in slideshow %}
+        {% set post = wp.wrap_post(iter) %}
+        <li>
+          {% if post.thumbs %}
+          <img
+             src="{{ post.thumbs.slideshow.url }}"
+             alt="{{ post.title }}"
+             width="{{ post.thumbs.slideshow.width }}"
+             height="{{ post.thumbs.slideshow.height }}">
+          {% endif %}
+          <h2 class="title">{{ post.title }}</h2>
+          <div class="excerpt">{{ post.excerpt|safe }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+      <ol class="controls">
+        {% for i in slideshow %}
+        <li>
+          <a href="#{{ loop.index }}">•</a>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
   </div>
 
   <div class="row-end"></div>
@@ -15,11 +45,7 @@
   <div class="row">
     <div id="news" class="col8">
       <ul>
-        {% for iter in wp.getRecentPosts(
-               category_name='news',
-               post_status='published',
-               numposts=2,
-               thumbsizes=['newsbox', 'widenewsbox']) %}
+        {% for iter in news %}
         {% set post = wp.wrap_post(iter) %}
         <li>
           <ul class="news">
