@@ -32,7 +32,7 @@ var auth = (function() {
             api: true,
             top: 250,
             mask: {
-                color: '#fff',
+                color: '#333',
                 opacity: 0.5
             },
             oneInstance: false,
