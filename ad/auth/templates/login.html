@@ -1,17 +1,14 @@
-<div id="fb-root"></div>
-<script>
-  FB.init({
-    appId:'156696711063060',
-    cookie:true,
-    status:true,
-    xfbml:true
-  });
-</script>
-
-<form method="post" id="auth" action="">
+<form class="auth" method="post" id="auth" action="">
+  <div class="header">
+    <h1>Login</h1>
+    <ul>
+      <li><a href="#">Esqueci minha senha</a></li>
+      <li><a href="#">Ainda não sou cadastrado</a></li>
+    </ul>
+  </div>
   <div class="wrapper">
     <div class="error"></div>
-    <ul>
+    <ol>
       <li>
         <label for="username">Usuário</label>
         <input id="username" type="text" name="username">
@@ -21,12 +18,13 @@
         <input id="password" type="password" name="password">
       </li>
       <li class="submit">
-        <input type="submit" name="submit" value="Entrar">
+        <button class="awesome">Entrar</button>
       </li>
       <li class="sep"><hr></li>
       <li>
-        <fb:login-button>Entrar via Facebook</fb:login-button>
+        <img src="{{ url_for('static', filename='imgs/btn-facebook.png') }}"
+             alt="Entrar via facebook">
       </li>
-    </ul>
+    </ol>
   </div>
 </form>
