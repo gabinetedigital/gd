@@ -70,6 +70,24 @@ var auth = (function() {
             }
         })
 
+        /** Configuring the DOM element that holds the signup form */
+        , $signOverlay: $('#signupoverlay').overlay({
+            api: true,
+            top: 50,
+            mask: {
+                color: '#333',
+                opacity: 0.5
+            },
+            oneInstance: false,
+            speed: 'fast',
+            onBeforeLoad: function() {
+                var wrap = this.getOverlay().find(".contentWrap");
+                wrap.load(url_for('auth.signup'));
+            },
+            onLoad: function() {
+            }
+        })
+
         /** Callback that will be fired after a successful
          *  authentication */
         , success: function () {}
@@ -91,6 +109,12 @@ var auth = (function() {
             if (params && typeof params.success === 'function') {
                 this.success = params.success;
             }
+            return false;
+        }
+
+        /** Shows the signup form */
+        , showSignupForm: function (params) {
+            this.$signOverlay.load();
             return false;
         }
 

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=1024">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/978.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/awesome.css') }}">
     <link rel="stylesheet" href="{{ url_for('auth.static', filename='css/auth.css') }}">
     {% block css %}{% endblock %}
   </head>
@@ -16,9 +17,10 @@
     <div class="layout-978">
       <div id="header" class="row">
         <div class="col12">
-          <h1>Gabiente Digital - Democracia em Rede</h1>
+          <h1 class="title">Gabiente Digital - Democracia em Rede</h1>
 
           <div id="loginoverlay" class="overlay"><div class="contentWrap"></div></div>
+          <div id="signupoverlay" class="overlay"><div class="contentWrap"></div></div>
           <ul class="login">
             {% if user is not none %}
             <li class="avatar">
@@ -41,7 +43,7 @@
             </li>
             <li>|</li>
             <li>
-              <a href="{{ url_for('auth.login_form') }}" rel="#loginoverlay">
+              <a href="javascript:;" onclick="auth.showSignupForm()">
                 cadastre-se
               </a>
             </li>

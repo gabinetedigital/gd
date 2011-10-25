@@ -51,7 +51,7 @@ a:hover {
     height: 200px;
 }
 
-#header h1 {
+#header h1.title {
     background: url("../imgs/logo.png") no-repeat;
     display: block;
     width: 213px;

@@ -1,0 +1,45 @@
+/* Awesome buttons. Thanks to:
+ * http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
+ */
+
+.awesome, .awesome:visited {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.awesome, .awesome:visited {
+    background: url("../imgs/alert-overlay.png") repeat-x scroll 0 0 #222222;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.awesome:hover {
+    background-color: #111;
+    color: #fff;
+}
+
+.red.awesome, .red.awesome:visited {
+    background-color:#E33100;
+}
+
+red.awesome:hover {
+    background-color:#872300;
+}
+
+.subOptions {
+    margin-left:110px;
+}
+
+.subOptions li {
+    margin:0;
+}

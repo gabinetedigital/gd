@@ -19,6 +19,7 @@
 
 from flask import Blueprint, render_template, request
 from ad.utils import msg, _
+from ad.auth import forms
 from ad import auth as authapi
 
 
@@ -32,6 +33,13 @@ auth = Blueprint(
 def login_form():
     """Renders the login form"""
     return render_template('login.html')
+
+
+@auth.route('/signup')
+def signup_form():
+    """Renders the signup form"""
+    form = forms.SignupForm()
+    return render_template('signup.html', form=form)
 
 
 @auth.route('/login_json', methods=('POST',))
