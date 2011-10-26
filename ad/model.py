@@ -174,7 +174,7 @@ class User(Entity):
     username = Field(Unicode(64), colname='user_login')
     password = Field(Unicode(256), colname='user_pass')
     email = Field(Unicode(64), colname='user_email')
-    avatar = Field(Unicode(256))
+    avatar = Field(Unicode(256), default='')
     creation_date = Field(
         DateTime, colname='user_registered',
         default=datetime.now)
