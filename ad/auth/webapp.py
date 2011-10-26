@@ -93,16 +93,25 @@ def signup_json():
     # Proceeding with the validation of the user fields
     if form.validate_on_submit():
         try:
-            dget = form.data.get
+            meta = form.data.copy()
+            dget = meta.pop
+            password = dget('password')
+
+            # Removing unwanted fields. The others are going to be used
+            # as meta fields in the user instance
+            for i in 'csrf', 'password_confirmation', 'accept_tos':
+                dget(i)
+
+            # Finally, it's time to create the user
             user = authapi.create_user(
-                dget('name'), dget('email'),
-                dget('password'), dget('email'))
+                dget('name'), dget('email'), password,
+                dget('email_confirmation'), meta)
         except authapi.UserExists:
             return format_error(_(u'User already exists'), 'UserExists')
         except authapi.EmailAddressExists:
             return format_error(_(u'The email address informed is being used '
                                   u'by another person'), 'EmailAddressExists')
-        data = authapi.login_user_instance(user, dget('password'))
+        data = authapi.login_user_instance(user, password)
         return msg.ok({ 'user': data })
     else:
         return format_error(form.errors, 'ValidationError')
