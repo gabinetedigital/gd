@@ -1,0 +1,32 @@
+#container #appbase {
+    background: white;
+    height: 300px;
+    -moz-box-shadow: 0px 5px 14px 2px #ccc;
+    -webkit-box-shadow: 0px 5px 14px 2px #ccc;
+    box-shadow: 0px 5px 14px 2px #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+#container #appbase #applogo h1 {
+    background: url('../imgs/applogo.png') no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+    height: 77px;
+    width: 208px;
+    margin-top: 15px;
+}
+
+
+#container #appbase #question p {
+    background: url("../imgs/balao.png") no-repeat;
+    color: #A40000;
+    width: 317px;
+    height: 95px;
+    font-size: 18px;
+    font-family: Arial, helvetica, sans-serif;
+    padding: 14px 0px 0px 29px;
+}
+
+

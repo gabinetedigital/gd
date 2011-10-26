@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/carousel.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/govpergunta.css') }}">
 {% endblock %}
 
 {% block javascript %}
@@ -12,94 +11,24 @@
 
 {% block content %}
 <div id="container">
-  <div class="row">
-    <div id="news" class="col8">
-      <ul>
-        {% for iter in news %}
-        {% set post = wp.wrap_post(iter) %}
-        <li>
-          <ul class="news">
-            {% if post.thumbs and loop.index == 1 %}
-            <li>
-              {% if post.has_category('wide') %}
-              <img
-                 src="{{ post.thumbs.widenewsbox.url }}"
-                 alt="{{ post.title }}"
-                 width="{{ post.thumbs.widenewsbox.width }}"
-                 height="{{ post.thumbs.widenewsbox.height }}"
-                 class="wide">
-              {% elif post.thumbs %}
-              <img
-                 src="{{ post.thumbs.newsbox.url }}"
-                 alt="{{ post.title }}"
-                 width="{{ post.thumbs.newsbox.width }}"
-                 height="{{ post.thumbs.newsbox.height }}">
-              {% endif %}
-            </li>
-            {% endif %}
-
-            {% if loop.index == 1 and post.has_category('wide') %}
-            <li class="title">{{ post.title }}</li>
-            <li class="meta"></li>
-            {% else %}
-            <li>
-              <h2>{{ post.title }}</h2>
-            </li>
-            <li>{{ post.excerpt|safe }}</li>
-            <li class="meta">
-              Comentários (<strong>{{ post.comments.count }}</strong>) | share
-            </li>
-            {% endif %}
-          </ul>
-        </li>
-        {% endfor %}
-      </ul>
-
-      <ul id="videogallery">
-        <li class="video">
-          <ul>
-            <li><img src="../static/imgs/video.png" alt=
-                     "video"></li>
-            <li>desc</li>
-          </ul>
-        </li>
-
-        <li class="video">
-          <ul>
-            <li><img src="../static/imgs/video.png" alt=
-                     "video"></li>
-            <li>desc</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    <div id="sidebar" class="col4">
-      <div id="lasttweet">
-        <div class="shadow">
-          <div class="tweet">
-            "Governador Pergunta", nova ferramenta do vai
-            @gabinetedigital, vai receber propostas sobre temas
-            de grande relevância.
-            <a href="http://ur1.ca/5d1vq">http://ur1.ca/5d1vq</a>
-            <h3>@tarsogenro</h3>
-          </div>
-        </div>
-      </div>
-
-      <div id="picday">
-        <h3>Foto do dia</h3>
-        <div id="picedge">
-          <img src="../static/imgs/picday.png"
-               alt="tarso"></div>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing
-          elit. Quisque arcu ante, cursus in, ornare quis,
-          viverra ut, justo. Nullam libero nunc, tristique
-          eget.</p>
-      </div>
+    <div id="appbase">
+        <div class="row">
+            <div id="applogo" class="col3">
+                <h1>Governador Pergunta</h1>
+            </div> 
+            <div id="question" class="col4">
+                <p>Como podemos melhorar o atendimento  e o acesso à saúde pública ?</p>
+            </div>
+            <div id="step" class="col5">
+                <ol>
+                    <li><img src=""><strong>o que é?</strong>
+                    <li><img src=""><strong>como funciona?</strong>
+                    <li><img src=""><strong>temas</strong>
+                    <li><img src=""><strong>contribua</strong>
+                </ol>
+            </div>
+        <div class="row-end"></div>
     </div>
   </div>
-
-  <div class="row-end"></div>
 </div>
 {% endblock %}
