@@ -16,7 +16,7 @@ following packages:
 And then install some softwares not packaged yet (as of the date of this
 commit)::
 
- $ pip install 'gevent-socketio==0.2.0' gevent_zeromq tweetstream
+ $ pip install 'gevent-socketio==0.2.0' gevent_zeromq tweetstream Flask-WTF
 
 It is very important to notice that our app WILL NOT WORK if you install
 any version different from the 0.2.0 of the `gevent-socketio' library.
