@@ -27,7 +27,7 @@ from functools import wraps
 from sqlalchemy.orm.exc import NoResultFound
 
 from ad.utils import phpass, msg, _
-from ad.model import User
+from ad.model import User, session as dbsession
 
 
 class AuthError(Exception):
@@ -46,6 +46,14 @@ class NobodyHome(AuthError):
     """Exception raised when the trying to get the authenticated user
     with nobody logged in"""
 
+
+class UserExists(AuthError):
+    """Exception raised when the user already exists in the database"""
+
+
+class EmailAddressExists(AuthError):
+    """Exception raised when an email address already exists in the
+    database"""
 
 
 
@@ -123,3 +131,25 @@ class checkroles(object):
                       u'privileges to access this resource'))
             return func(*args, **kwargs)
         return wrapper
+
+
+def create_user(name, username, password, email, meta=None):
+    """Create a new user in the database"""
+    # There will be one and only one user with a given username
+    if User.query.filter_by(username=username).count():
+        raise UserExists()
+    if User.query.filter_by(email=email).count():
+        raise EmailAddressExists()
+
+    # Creating an user instance and getting its id by commiting the
+    # chage to the database
+    user = User(
+        name=name, username=username, password=password, email=email)
+    dbsession.commit()
+
+    # Time to save all meta attributes that we received
+    for key, value in (meta or {}).items():
+        UserMeta(user_id=user.id, meta_key=key, meta_value=value)
+    dbsession.commit()
+
+    return user
