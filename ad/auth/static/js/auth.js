@@ -84,6 +84,39 @@ var auth = (function() {
                 wrap.load(url_for('auth.signup'));
             },
             onLoad: function() {
+                var overlay = this.getOverlay();
+                var closeMethod = this.close;
+
+                /* focus the name field */
+                overlay.find('input[name=name]').focus();
+
+                $(overlay.find('form')).ajaxForm({
+                    beforeSubmit: function () {
+                        /* Maybe it's not the first time the user is
+                         * trying to send the form, let's clear the
+                         * error state for now to allow him to try
+                         * again */
+                        overlay.find('input,select').removeClass('error');
+                    },
+
+                    success: function (data) {
+                        var pData = $.parseJSON(data);
+                        console.debug(pData);
+                        return;
+                        if (pData.status !== 'ok' && pData.code === 'ValidationError') {
+                            for (var f in pData.msg.errors) {
+                                overlay
+                                    .find('[name=' + f  + ']')
+                                    .addClass('error');
+                            }
+                        } else if (pData.code !== 'ValidationError') {
+                            overlay.find('div.error').html(pData.msg).fadeIn('fast');
+                        } else {
+                            closeMethod();
+                            auth.userAuthenticated(pData.msg.user);
+                        }
+                    }
+                });
             }
         })
 
