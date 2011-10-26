@@ -35,13 +35,6 @@ def login_form():
     return render_template('login.html')
 
 
-@auth.route('/signup')
-def signup_form():
-    """Renders the signup form"""
-    form = forms.SignupForm()
-    return render_template('signup.html', form=form)
-
-
 @auth.route('/login_json', methods=('POST',))
 def login_json():
     """Logs the user in (through ajax) and returns the user object in
@@ -65,3 +58,32 @@ def logout_json():
     """Logs the user out and returns an ok message"""
     authapi.logout()
     return msg.ok(_(u'User loged out'))
+
+
+@auth.route('/signup')
+def signup_form():
+    """Renders the signup form"""
+    form = forms.SignupForm()
+    return render_template('signup.html', form=form)
+
+
+@auth.route('/signup_json', methods=('POST',))
+def signup_json():
+    """Register a new user that sent his/her informations through the
+    signup form"""
+    form = forms.SignupForm()
+    if form.validate_on_submit():
+        try:
+            dget = form.data.get
+            user = authapi.create_user(
+                dget('name'), dget('email'),
+                dget('password'), dget('email'))
+        except authapi.UserExists:
+            return msg.error(_(u'User already exists'), 'UserExists')
+        except authapi.EmailAddressExists:
+            return msg.error(_(u'The email address informed is being used '
+                               u'by another person'), 'EmailAddressExists')
+        data = authapi.login_user_instance(user, dget('password'))
+        return msg.ok({ 'user': data })
+    else:
+        return msg.error(form.errors, 'ValidationError')
