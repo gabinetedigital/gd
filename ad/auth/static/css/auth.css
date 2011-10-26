@@ -108,7 +108,7 @@ form.auth hr {
     margin:20px 0;
 }
 
-form.auth .error {
+form.auth div.error {
     background:#ce3316;
     border-radius: 4px 4px 4px 4px;
     color:#fff;
@@ -116,6 +116,11 @@ form.auth .error {
     padding:8px;
     display:none;
 }
+
+form.auth .error {
+    border:1px solid #ef2929;
+}
+
 
 /* specific things to the signup form */
 
@@ -155,6 +160,6 @@ form.auth select#country, form.auth select#age_group {
     width:120px;
 }
 
-form.auth select#city {
+form.auth select#city, form.auth select#income_group {
     width:210px;
 }
