@@ -38,7 +38,6 @@ $(document).ready(function () {
         itemVisibleInCallback: function (carousel, item, idx, state) {
             $('.controls a').removeClass('selected');
             $('.controls a[href=#' + (idx) +']').addClass('selected');
-            console.debug(idx);
         }
     });
 });
