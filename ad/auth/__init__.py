@@ -66,7 +66,7 @@ def authenticated_user():
     """Returns the authenticated user instance"""
     try:
         return User.query.filter_by(username=session['username']).one()
-    except KeyError:
+    except (KeyError, NoResultFound):
         raise NobodyHome()
 
 
