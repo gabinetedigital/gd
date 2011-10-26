@@ -30,10 +30,9 @@ var auth = (function() {
         /** Configuring the DOM element that holds the login form */
         , $loginOverlay: $('#loginoverlay').overlay({
             api: true,
-            top: 250,
             mask: {
                 color: '#333',
-                opacity: 0.5
+                opacity: 0.8
             },
             oneInstance: false,
             speed: 'fast',
@@ -73,10 +72,10 @@ var auth = (function() {
         /** Configuring the DOM element that holds the signup form */
         , $signOverlay: $('#signupoverlay').overlay({
             api: true,
-            top: 50,
+            fixed: false,
             mask: {
                 color: '#333',
-                opacity: 0.5
+                opacity: 0.8
             },
             oneInstance: false,
             speed: 'fast',
