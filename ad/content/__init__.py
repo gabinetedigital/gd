@@ -31,13 +31,13 @@ def index():
     """Renders the index template"""
     slideshow = wordpress.getRecentPosts(
         category_name='highlights',
-        post_status='published',
-        numposts=4,
+        post_status='publish',
+        numberposts=4,
         thumbsizes=['slideshow'])
     news = wordpress.getRecentPosts(
         category_name='news',
-        post_status='published',
-        numposts=2,
+        post_status='publish',
+        numberposts=2,
         thumbsizes=['newsbox', 'widenewsbox'])
     return render_template(
         'index.html', wp=wordpress,
