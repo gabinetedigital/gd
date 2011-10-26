@@ -27,7 +27,7 @@ from functools import wraps
 from sqlalchemy.orm.exc import NoResultFound
 
 from ad.utils import phpass, msg, _
-from ad.model import User, session as dbsession
+from ad.model import User, UserMeta, session as dbsession
 
 
 class AuthError(Exception):

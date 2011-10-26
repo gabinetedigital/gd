@@ -101,19 +101,34 @@ var auth = (function() {
 
                     success: function (data) {
                         var pData = $.parseJSON(data);
-                        console.debug(pData);
-                        return;
-                        if (pData.status !== 'ok' && pData.code === 'ValidationError') {
-                            for (var f in pData.msg.errors) {
+                        if (pData.status === 'ok') {
+                            closeMethod();
+                            auth.userAuthenticated(pData.msg.user);
+                            return;
+                        }
+
+                        /* Here we're sure that things didn't work :( */
+                        var errors = pData.msg.data;
+                        var code = pData.code;
+                        var csrfToken = pData.msg.csrf;
+
+                        /* The first step now is to set the new csrf token to
+                         * our form. If we don't do it, we can't try to
+                         * register again. */
+                        overlay.find('[name=csrf]').val(csrfToken);
+
+                        /* The user made a mistake when filling the form */
+                        if (code === 'ValidationError') {
+                            for (var f in errors) {
                                 overlay
                                     .find('[name=' + f  + ']')
                                     .addClass('error');
                             }
-                        } else if (pData.code !== 'ValidationError') {
-                            overlay.find('div.error').html(pData.msg).fadeIn('fast');
                         } else {
-                            closeMethod();
-                            auth.userAuthenticated(pData.msg.user);
+                            console.debug(pData);
+                            overlay
+                                .find('div.error')
+                                .html(pData.msg.data).fadeIn('fast');
                         }
                     }
                 });

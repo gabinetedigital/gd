@@ -72,6 +72,25 @@ def signup_json():
     """Register a new user that sent his/her informations through the
     signup form"""
     form = forms.SignupForm()
+    def format_error(orig, code):
+        """This function wraps an error message and, instead of
+        returning the data content, it adds the a new field: a new csrf
+        token.
+
+        It's safe to do it here because only people that sent a valid
+        csrf token in the first time can get a new one.
+        """
+        data = { 'data': orig }
+        data.update({ 'csrf': form.csrf.data })
+        return msg.error(data, code)
+
+    # This field is special, it must be validated before anything. If it
+    # doesn't work, the action must be aborted.
+    csrf = request.form['csrf']
+    if not csrf or not form.csrf.validate(csrf):
+        return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
+
+    # Proceeding with the validation of the user fields
     if form.validate_on_submit():
         try:
             dget = form.data.get
@@ -79,11 +98,11 @@ def signup_json():
                 dget('name'), dget('email'),
                 dget('password'), dget('email'))
         except authapi.UserExists:
-            return msg.error(_(u'User already exists'), 'UserExists')
+            return format_error(_(u'User already exists'), 'UserExists')
         except authapi.EmailAddressExists:
-            return msg.error(_(u'The email address informed is being used '
-                               u'by another person'), 'EmailAddressExists')
+            return format_error(_(u'The email address informed is being used '
+                                  u'by another person'), 'EmailAddressExists')
         data = authapi.login_user_instance(user, dget('password'))
         return msg.ok({ 'user': data })
     else:
-        return msg.error(form.errors, 'ValidationError')
+        return format_error(form.errors, 'ValidationError')
