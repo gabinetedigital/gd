@@ -17,6 +17,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""This module holds all of the choices used by the `forms.SignupForm'
+class to avoid messing up that module, things were done here in a
+separated place.
+"""
+
 from ad.utils import _
 
 GENDER = (
@@ -26,9 +31,8 @@ GENDER = (
 )
 
 
-AGE = [
+AGE = [('', '--')] + [
     (i, i) for i in (
-        _('--'),
         _('80 years old or more'),
         _('75 to 79'),
         _('70 to 74'),
@@ -51,7 +55,7 @@ AGE = [
 
 
 INCOME = (
-    ('--', '--'),
+    ('', '--'),
     ('x<=0.5', u'Até meio salário mínimo'),
     ('0.5<x<1', u'Entre meio e um salário'),
     ('1<x<2', u'Entre um e dois salários'),
@@ -61,7 +65,7 @@ INCOME = (
 )
 
 
-STATES = [
+STATES = [('', '--')] + [
     (i, i) for i in (
         'AC', 'AL', 'AM', 'AP',  'BA', 'CE', 'DF', 'ES',
         'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE',
@@ -69,7 +73,7 @@ STATES = [
         'SE', 'SP', 'TO')
 ]
 
-CITIES = [
+CITIES = [('', '--')] + [
     (i, i) for i in (
         u'Acegua',
         u'Afonso Rodrigues',
