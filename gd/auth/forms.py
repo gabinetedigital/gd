@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from ad.utils import _
-from ad.auth import choices
+from gd.utils import _
+from gd.auth import choices
 from flaskext.wtf import validators, ValidationError
 from flaskext.wtf import Form, TextField, PasswordField, SelectField, \
     BooleanField

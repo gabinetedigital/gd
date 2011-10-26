@@ -21,7 +21,7 @@ crawlers in separated processes.
 """
 
 from multiprocessing import Process
-from ad.model import Audience, session
+from gd.model import Audience, session
 
 
 class Worker(Process):

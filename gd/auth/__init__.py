@@ -26,8 +26,8 @@ from flask import request, session, redirect, url_for
 from functools import wraps
 from sqlalchemy.orm.exc import NoResultFound
 
-from ad.utils import phpass, msg, _
-from ad.model import User, UserMeta, session as dbsession
+from gd.utils import phpass, msg, _
+from gd.model import User, UserMeta, session as dbsession
 
 
 class AuthError(Exception):

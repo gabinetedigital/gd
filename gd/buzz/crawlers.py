@@ -24,7 +24,7 @@ from time import sleep
 from json import loads
 from tweetstream import FilterStream, ConnectionError
 
-from ad.model import Buzz, BuzzType, get_or_create
+from gd.model import Buzz, BuzzType, get_or_create
 
 USER_API_URL = 'http://api.twitter.com/1/users/show.json?screen_name=%s'
 

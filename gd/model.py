@@ -31,9 +31,9 @@ from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
     Boolean, Integer, Enum, ManyToOne, OneToMany
 from flask import url_for
 
-from ad import conf
-from ad.buzz import sio
-from ad.utils import phpass
+from gd import conf
+from gd.buzz import sio
+from gd.utils import phpass
 
 class Term(Entity):
     """Mapper for the `term' entity

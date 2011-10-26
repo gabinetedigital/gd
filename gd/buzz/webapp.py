@@ -19,9 +19,9 @@
 """
 
 from flask import Blueprint, render_template, request
-from ad.model import Audience, Buzz, BuzzType, session, get_or_create
-from ad.utils import msg, _
-from ad import auth
+from gd.model import Audience, Buzz, BuzzType, session, get_or_create
+from gd.utils import msg, _
+from gd import auth
 
 
 buzz = Blueprint(

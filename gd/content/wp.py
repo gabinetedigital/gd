@@ -21,7 +21,7 @@ interface and our system.
 
 from xmlrpclib import Server
 from datetime import datetime
-from ad import conf
+from gd import conf
 
 
 class Wordpress(object):

@@ -18,9 +18,9 @@
 """Web application definitions for the `auth' module"""
 
 from flask import Blueprint, render_template, request
-from ad.utils import msg, _
-from ad.auth import forms
-from ad import auth as authapi
+from gd.utils import msg, _
+from gd.auth import forms
+from gd import auth as authapi
 
 
 auth = Blueprint(

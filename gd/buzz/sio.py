@@ -28,8 +28,8 @@ try:
 except ImportError:
     HAVE_SOCKETIO = False
 
-from ad.utils import dumps
-from ad import conf
+from gd.utils import dumps
+from gd import conf
 
 
 class BuzzApp(object):

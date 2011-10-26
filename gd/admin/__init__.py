@@ -23,10 +23,10 @@ interface.
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc, not_
-from ad.model import Audience, Buzz, Term, session
-from ad.utils import _, msg
-from ad.buzz import sio
-from ad import auth, conf
+from gd.model import Audience, Buzz, Term, session
+from gd.utils import _, msg
+from gd.buzz import sio
+from gd import auth, conf
 
 
 admin = Blueprint(

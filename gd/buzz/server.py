@@ -39,9 +39,9 @@ Here's the flow::
 import zmq
 from json import loads
 
-from ad.model import Audience
-from ad.buzz.worker import Worker
-from ad.buzz.crawlers import Twitter
+from gd.model import Audience
+from gd.buzz.worker import Worker
+from gd.buzz.crawlers import Twitter
 
 
 class Server(object):

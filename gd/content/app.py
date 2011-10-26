@@ -21,14 +21,14 @@ implemented blueprints in various modules to this app.
 
 from flask import Flask, request
 
-from ad.auth import authenticated_user, NobodyHome
-from ad import conf
+from gd.auth import authenticated_user, NobodyHome
+from gd import conf
 
-from ad.admin import admin
-from ad.audience import audience
-from ad.auth.webapp import auth
-from ad.buzz.webapp import buzz
-from ad.buzz.facebookapp import fbapp
+from gd.admin import admin
+from gd.audience import audience
+from gd.auth.webapp import auth
+from gd.buzz.webapp import buzz
+from gd.buzz.facebookapp import fbapp
 
 
 app = Flask(__name__)

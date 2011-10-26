@@ -22,7 +22,7 @@ class to avoid messing up that module, things were done here in a
 separated place.
 """
 
-from ad.utils import _
+from gd.utils import _
 
 GENDER = (
     ('', _('--')),

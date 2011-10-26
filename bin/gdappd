@@ -24,9 +24,9 @@ from gevent import monkey
 monkey.patch_thread()
 monkey.patch_time()
 
-from ad.content import app
-from ad.buzz import sio
-from ad import conf
+from gd.content import app
+from gd.buzz import sio
+from gd import conf
 
 
 @werkzeug.serving.run_with_reloader

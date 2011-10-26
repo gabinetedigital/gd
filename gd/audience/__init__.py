@@ -21,8 +21,8 @@ interface.
 """
 
 from flask import Blueprint, render_template, request, abort
-from ad.model import Audience, Term
-from ad.utils import dumps
+from gd.model import Audience, Term
+from gd.utils import dumps
 from sqlalchemy.orm.exc import NoResultFound
 
 audience = Blueprint(
