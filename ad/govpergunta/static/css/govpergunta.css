@@ -1,6 +1,6 @@
 #container #appbase {
     background: white;
-    height: 300px;
+    min-height: 582px;
     -moz-box-shadow: 0px 5px 14px 2px #ccc;
     -webkit-box-shadow: 0px 5px 14px 2px #ccc;
     box-shadow: 0px 5px 14px 2px #ccc;
@@ -29,4 +29,20 @@
     padding: 14px 0px 0px 29px;
 }
 
+#container #content #maintext {
+    background: url('../imgs/que.png') no-repeat bottom right; 
+    min-height: 400px;
+}   
 
+#container #content #maintext h2 {
+    color: #888a85;
+    font-size: 36px;
+    font-weight: normal;
+    padding: 10px;
+}
+
+#container #content #maintext p {
+    color: #2e3436;
+    font-size: 16px;
+    padding: 10px 190px 0px 50px;
+}
