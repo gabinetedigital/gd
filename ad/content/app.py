@@ -34,13 +34,11 @@ from ad.audience import audience
 from ad.auth.webapp import auth
 from ad.buzz.webapp import buzz
 from ad.buzz.facebookapp import fbapp
-from ad.content import content
 
 from ad.auth import authenticated_user, NobodyHome
 from ad import conf
 
 app = Flask(__name__)
-app.register_blueprint(content, url_prefix='/content')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(auth, url_prefix='/auth')

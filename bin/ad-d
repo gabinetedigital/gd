@@ -24,7 +24,7 @@ from gevent import monkey
 monkey.patch_thread()
 monkey.patch_time()
 
-from ad.webapp import app
+from ad.content import app
 from ad.buzz import sio
 from ad import conf
 
