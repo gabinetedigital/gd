@@ -69,7 +69,12 @@ def login(username, password):
         user = User.query.filter_by(username=username).one()
     except NoResultFound:
         raise UserNotFound()
+    return login_user_instance(user, password)
 
+
+def login_user_instance(user, password):
+    """Logs an user instance in, instead of receiving it's username as a
+    string"""
     # Testing user's password
     hasher = phpass.PasswordHash(8, True)
     if not hasher.check_password(password, user.password):
@@ -78,7 +83,7 @@ def login(username, password):
     # Everything seems to be ok here, let's register the user in our
     # session and return its data (but the password, of course) to the
     # caller.
-    session['username'] = username
+    session['username'] = user.username
     return user.public_dict()
 
 
