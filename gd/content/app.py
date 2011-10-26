@@ -28,17 +28,17 @@ from gd.admin import admin
 from gd.audience import audience
 from gd.auth.webapp import auth
 from gd.buzz.webapp import buzz
-from gd.auth.fbauth import fbauth
 from gd.buzz.facebookapp import fbapp
+from gd.govpergunta import govpergunta
 
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(auth, url_prefix='/auth')
-app.register_blueprint(fbauth, url_prefix='/auth/fb')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
+app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 
 
 # Registering a secret key to be able to work with sessions
