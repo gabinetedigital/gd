@@ -1,4 +1,5 @@
-<form class="auth" method="post" id="signup" action="">
+<form class="auth" method="post" id="signup" action="{{ url_for('.signup_json') }}">
+  {{ form.csrf }}
   <div class="header">
     <h1>Signup</h1>
     <ul>
