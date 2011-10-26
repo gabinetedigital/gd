@@ -17,7 +17,7 @@
 
 from ad.utils import _
 from ad.auth import choices
-from flaskext.wtf import validators
+from flaskext.wtf import validators, ValidationError
 from flaskext.wtf import Form, TextField, PasswordField, SelectField, \
     BooleanField
 
@@ -44,26 +44,33 @@ class SignupForm(Form):
 
     password = PasswordField(
         _('Password'),
+        [validators.Required(),
+         ]
     )
 
     password_confirmation = PasswordField(
         _('Password confirmation'),
+        [validators.Required(),
+         ]
     )
 
     country = SelectField(
         _('Country'),
+        [validators.Required()],
         choices=choices.COUNTRIES,
         default=u'Brasil',
     )
 
     state = SelectField(
         _('State'),
+        [validators.Required()],
         choices=choices.STATES,
         default='RS',
     )
 
     city = SelectField(
         _('City'),
+        [validators.Required()],
         choices=choices.CITIES,
         default=u'Porto Alegre',
     )
@@ -96,4 +103,19 @@ class SignupForm(Form):
           #FIXME: We don't have this url defined yet
           #url_for('content.page', name='tos'))
           ''),
+        [validators.Required(),
+         ]
     )
+
+    def validate_email_confirmation(form, field):
+        """Compound validation between email and its confirmation"""
+        if field.data != form.email.data:
+            raise ValidationError(
+                _(u'Email does not match its confirmation'))
+
+
+    def validate_password_confirmatiokn(form, field):
+        """Compound validation between password and its confirmation"""
+        if field.data != form.password.data:
+            raise ValidationError(
+                _(u'Password does not match its confirmation'))
