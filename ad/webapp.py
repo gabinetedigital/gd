@@ -37,6 +37,7 @@ from ad.buzz.facebookapp import fbapp
 from ad.content import content
 
 from ad.auth import authenticated_user, NobodyHome
+from ad import conf
 
 app = Flask(__name__)
 app.register_blueprint(content, url_prefix='/content')
@@ -71,7 +72,7 @@ def extend_context():
 
 # Registering a secret key to be able to work with sessions
 import os
-app.secret_key = os.urandom(24)
+app.secret_key = conf.SECRET_KEY
 
 
 if __name__ == '__main__':

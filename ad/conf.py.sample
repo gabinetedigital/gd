@@ -1,9 +1,13 @@
+# -*- coding:utf-8; -*-
 """File that holds all configurable parameters of our application"""
 
 # HTTP config vars
 HTTP_HOST = '0.0.0.0'
 HTTP_PORT = 5000
 HTTP_DEBUG = True
+
+# Session secret key. Change it on your server!!!
+SECRET_KEY = '\xf9\nP\xb0\x03%\xd3\xd5"\xf9g\x81\x89\xac\x9f\xb5\xce\x14b\xcb\xce\xda\xf7:'
 
 # Interprocess and message queue configuration (zmq/greenlet stuff)
 SOCK_LOCAL_SERVER = 'tcp://127.0.0.1:6000'
