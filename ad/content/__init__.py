@@ -42,3 +42,16 @@ def index():
     return render_template(
         'index.html', wp=wordpress,
         slideshow=slideshow, news=news)
+
+
+@content.route('/post/<int:pid>')
+def post(pid):
+    """Renders the post template"""
+    recent_posts = wordpress.getRecentPosts(
+        post_status='publish',
+        numberposts=4)
+    return render_template(
+        'post.html',
+        post=wordpress.getPost(pid),
+        tags=wordpress.getTagCloud(),
+        recent_posts=recent_posts)

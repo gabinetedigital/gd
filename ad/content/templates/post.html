@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/blog.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+  <div class="row">
+    <div id="post" class="col8">
+      <h2>{{ post.title }}</h2>
+      <div class="postcontent">
+        {{ post.content|safe }}
+      </div>
+    </div>
+
+    <div id="sidebar" class="col4">
+      <div id="recent-topics">
+        <h3>Tópicos Recentes</h3>
+        <ol>
+          {% for p in recent_posts %}
+          <li>{{ p.excerpt|safe }}</li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <div id="tag-cloud">
+        <h3>Tags</h3>
+        <ul>
+          {% for t in tags %}
+          <li>
+            <a
+               href="#{{ t.slug }}"
+               style="font-size:{{ t.size }};">{{ t.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row-end"></div>
+</div>
+{% endblock %}

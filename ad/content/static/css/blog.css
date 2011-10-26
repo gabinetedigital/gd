@@ -1,0 +1,16 @@
+#container #post {
+    margin-top: 20px;
+    background:white;
+}
+
+#container #post h2 {
+    margin-bottom:20px;
+}
+
+#container #post p {
+    margin:10px 0;
+}
+
+#container #sidebar {
+    margin-top:20px;
+}
