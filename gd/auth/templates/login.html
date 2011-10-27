@@ -48,8 +48,10 @@
         </li>
         <li class="sep"><hr></li>
         <li>
-          <img src="{{ url_for('static', filename='imgs/btn-facebook.png') }}"
-               alt="Entrar via facebook">
+          <a href="{{ url_for('fbauth.login') }}">
+            <img src="{{ url_for('static', filename='imgs/btn-facebook.png') }}"
+                 alt="Entrar via facebook">
+          </a>
         </li>
       </ol>
     </div>

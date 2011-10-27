@@ -20,8 +20,8 @@
 from flask import Blueprint, render_template, request
 from gd.utils import msg, _
 from gd.auth import forms
+from gd.auth.fbauth import checkfblogin
 from gd import auth as authapi
-
 
 auth = Blueprint(
     'auth', __name__,
@@ -63,7 +63,9 @@ def logout_json():
 @auth.route('/signup')
 def signup_form():
     """Renders the signup form"""
-    form = forms.SignupForm()
+    # The user is trying to authenticate with his/her facebook id
+    facebook = checkfblogin() or {}
+    form = forms.SignupForm(**facebook)
     return render_template('signup.html', form=form)
 
 

@@ -73,6 +73,37 @@ STATES = [('', '--')] + [
         'SE', 'SP', 'TO')
 ]
 
+
+FULL_STATES = (
+    ('AC', 'Acre'),
+    ('AL', 'Alagoas'),
+    ('AP', u'Amapá'),
+    ('AM', 'Amazonas'),
+    ('BA', 'Bahia'),
+    ('CE', u'Ceará'),
+    ('DF', 'Distrito Federal'),
+    ('ES', u'Espírito Santo'),
+    ('GO', u'Goiás'),
+    ('MA', u'Maranhão'),
+    ('MT', 'Mato Grosso'),
+    ('MS', 'Mato Grosso do Sul'),
+    ('MG', 'Minas Gerais'),
+    ('PA', u'Pará'),
+    ('PB', u'Paraíba'),
+    ('PR', u'Paraná'),
+    ('PE', 'Pernambuco'),
+    ('PI', u'Piauí'),
+    ('RJ', 'Rio de Janeiro'),
+    ('RN', 'Rio Grande do Norte'),
+    ('RS', 'Rio Grande do Sul'),
+    ('RO', u'Rondônia'),
+    ('RR', 'Roraima'),
+    ('SC', 'Santa Catarina'),
+    ('SP', u'São Paulo'),
+    ('SE', 'Sergipe'),
+    ('TO', 'Tocantins'),
+)
+
 CITIES = [('', '--')] + [
     (i, i) for i in (
         u'Acegua',

@@ -17,9 +17,11 @@
 
 """Authentication machinery for facebook"""
 
-from flask import Blueprint, url_for, session, request
+from flask import Blueprint, url_for, session, request, redirect
 from flaskext.oauth import OAuth
-from ad import conf
+
+from gd import conf
+from gd.auth import choices
 
 
 fbauth = Blueprint('fbauth', __name__)
@@ -30,7 +32,7 @@ facebook = OAuth().remote_app('facebook',
     authorize_url='https://www.facebook.com/dialog/oauth',
     consumer_key=conf.FACEBOOK_APP_ID,
     consumer_secret=conf.FACEBOOK_APP_SECRET,
-    request_token_params={'scope': 'email'}
+    request_token_params={'scope': 'email,user_location'}
 )
 
 
@@ -40,6 +42,11 @@ def login():
     next_url = request.values.get('next') or request.referrer or None
     return facebook.authorize(callback=url_for(
             '.facebook_authorized', next=next_url, _external=True))
+
+
+@fbauth.route('/data')
+def data():
+    return str(facebook.get('/me').data)
 
 
 @fbauth.route('/authorized')
@@ -52,11 +59,34 @@ def facebook_authorized(resp):
             request.values['error_description']
         )
     session['oauth_token'] = (resp['access_token'], '')
-    user = facebook.get('/me')
-    return str(user)
+    return redirect(url_for('index'))
 
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
     """Function responsible for getting the facebook token"""
     return session.get('oauth_token')
+
+
+
+def checkfblogin():
+    req = facebook.get('/me')
+    if 'error' in req.data:
+        return {}
+
+    # The following data will be used to fill a part of the signup form
+    # in the first user's login.
+    user = req.data
+    location = user['location']['name'].split(', ', 1) + ['']
+    states = dict((x[1], x[0]) for x in choices.FULL_STATES)
+    city, state = city, state = location[:2]
+    return {
+        'id': user['id'],
+        'name': user['name'],
+        'email': user['email'],
+        'email_confirmation': user['email'],
+        'gender': user.get('gender'),
+        'facebook': user['link'],
+        'city': city,
+        'state': states.get(state),
+    }
