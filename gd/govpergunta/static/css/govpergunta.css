@@ -34,6 +34,21 @@
     padding: 14px 0px 0px 29px;
 }
 
+#container #appbase #step {
+    margin-left: 40px;
+    margin-top: 13px;
+}
+
+#container #appbase #step ol li {
+    display: block;
+    float: left;
+    margin-right: 29px;
+    color: #babdb6;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
 #container #content #maintext {
     background: url('../imgs/que.png') no-repeat bottom right; 
     min-height: 400px;
