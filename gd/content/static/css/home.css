@@ -22,7 +22,7 @@
     margin-right:30px;
 }
 
-#container #slideshow .title {
+#container #slideshow .title a {
     color:#4e9a06;
 }
 
@@ -30,6 +30,10 @@
     margin-left:355px;
     padding:15px 30px 10px 30px;
     font-size:16px;
+}
+
+#container #slideshow .excerpt a {
+    color:#2E3436
 }
 
 #container #slideshow .controls {
@@ -66,6 +70,13 @@
     margin-bottom: 20px;
 }
 
+#container #news h2 a {
+    color: #2e3436;
+}
+
+#container #news a {
+    color: #808080;
+}
 
 #container #news .news {
     color: #808080;

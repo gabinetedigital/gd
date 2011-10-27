@@ -19,14 +19,24 @@
         {% set post = wp.wrap_post(iter) %}
         <li>
           {% if post.thumbs %}
-          <img
-             src="{{ post.thumbs.slideshow.url }}"
-             alt="{{ post.title }}"
-             width="{{ post.thumbs.slideshow.width }}"
-             height="{{ post.thumbs.slideshow.height }}">
+          <a href="{{ post.permalink }}">
+            <img
+               src="{{ post.thumbs.slideshow.url }}"
+               alt="{{ post.title }}"
+               width="{{ post.thumbs.slideshow.width }}"
+               height="{{ post.thumbs.slideshow.height }}">
+          </a>
           {% endif %}
-          <h2 class="title">{{ post.title }}</h2>
-          <div class="excerpt">{{ post.excerpt|safe }}</div>
+          <h2 class="title">
+            <a href="{{ post.permalink }}">
+              {{ post.title }}
+            </a>
+          </h2>
+          <div class="excerpt">
+            <a href="{{ post.permalink }}">
+              {{ post.excerpt|safe }}
+            </a>
+          </div>
         </li>
         {% endfor %}
       </ul>
@@ -53,33 +63,50 @@
           <ul class="news">
             {% if post.thumbs and loop.index == 1 %}
             <li>
-              {% if post.has_category('wide') %}
-              <img
-                 src="{{ post.thumbs.widenewsbox.url }}"
-                 alt="{{ post.title }}"
-                 width="{{ post.thumbs.widenewsbox.width }}"
-                 height="{{ post.thumbs.widenewsbox.height }}"
-                 class="wide">
-              {% elif post.thumbs %}
-              <img
-                 src="{{ post.thumbs.newsbox.url }}"
-                 alt="{{ post.title }}"
-                 width="{{ post.thumbs.newsbox.width }}"
-                 height="{{ post.thumbs.newsbox.height }}">
-              {% endif %}
+              <a href="{{ post.permalink }}">
+                {% if post.has_category('wide') %}
+                <img
+                   src="{{ post.thumbs.widenewsbox.url }}"
+                   alt="{{ post.title }}"
+                   width="{{ post.thumbs.widenewsbox.width }}"
+                   height="{{ post.thumbs.widenewsbox.height }}"
+                   class="wide">
+                {% elif post.thumbs %}
+                <img
+                   src="{{ post.thumbs.newsbox.url }}"
+                   alt="{{ post.title }}"
+                   width="{{ post.thumbs.newsbox.width }}"
+                   height="{{ post.thumbs.newsbox.height }}">
+                {% endif %}
+              </a>
             </li>
             {% endif %}
 
             {% if loop.index == 1 and post.has_category('wide') %}
-            <li class="title">{{ post.title }}</li>
+            <li class="title">
+              <a href="{{ post.permalink }}">
+                {{ post.title }}
+              </a>
+            </li>
             <li class="meta"></li>
             {% else %}
             <li>
-              <h2>{{ post.title }}</h2>
+              <h2>
+                <a href="{{ post.permalink }}">
+                  {{ post.title }}
+                </a>
+              </h2>
             </li>
-            <li>{{ post.excerpt|safe }}</li>
+            <li>
+              <a href="{{ post.permalink }}">
+                {{ post.excerpt|safe }}
+              </a>
+            </li>
             <li class="meta">
-              Comentários (<strong>{{ post.comments.count }}</strong>) | share
+              <a href="{{ post.permalink }}#comments">
+                Comentários (<strong>{{ post.comments.count }}</strong>)
+              </a>
+              | share
             </li>
             {% endif %}
           </ul>

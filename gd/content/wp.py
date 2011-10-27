@@ -21,6 +21,8 @@ interface and our system.
 
 from xmlrpclib import Server
 from datetime import datetime
+
+from flask import url_for
 from gd import conf
 
 
@@ -70,6 +72,11 @@ class Post(object):
             return super(Post, self).__getattribute__(attr)
         except AttributeError:
             return self.data[attr]
+
+    @property
+    def permalink(self):
+        """Returns the permanent link for this post"""
+        return url_for('post', pid=self.id)
 
     def has_category(self, slug):
         """Returns true if the post has a given category"""
