@@ -122,6 +122,13 @@ form.auth .error {
 }
 
 
+/* specific things to the login form */
+
+form.auth div.passwordReminder {
+    display:none;
+}
+
+
 /* specific things to the signup form */
 
 form.auth .accept_tos input {

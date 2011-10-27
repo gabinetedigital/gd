@@ -202,6 +202,25 @@ var auth = (function() {
                 auth.showSignupForm();
             }, 300);
         }
+
+        /** Toggles the visibility of the "password reminder" screen in
+         *  the login form */
+        , togglePasswordReminder: function () {
+            var $prForm = $('div.passwordReminder');
+            var $lgForm = $('div.loginForm');
+
+            if ($lgForm.is(':visible')) {
+                $lgForm.fadeOut('fast', function () {
+                    $prForm.fadeIn();
+                    $prForm.find('input[name=email]').focus();
+                });
+            } else {
+                $prForm.fadeOut('fast', function () {
+                    $lgForm.fadeIn();
+                    $lgForm.find('input[name=username]').focus();
+                });
+            }
+        }
     };
 
     return new Auth();
