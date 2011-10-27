@@ -84,3 +84,15 @@
     font-size: 22px;
     color: #73d216;
 }
+
+#controler a, a:visited, a:hover {
+    color: #73d216;
+    text-decoration: none;
+}
+
+#controller .next {
+    background: url('../imgs/dir.png') no-repeat right bottom;
+    height: 26px;
+    padding-right: 56px;
+    font-weight: 600;
+}
