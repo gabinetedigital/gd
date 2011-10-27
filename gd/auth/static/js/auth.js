@@ -193,6 +193,15 @@ var auth = (function() {
                 auth.updateLoginWidget();
             });
         }
+
+        /** Method called in the login form, by the user that is not
+         *  yet signed up to our site */
+        , swapLoginToSignup: function () {
+            this.$loginOverlay.close();
+            window.parent.setTimeout(function () {
+                auth.showSignupForm();
+            }, 300);
+        }
     };
 
     return new Auth();
