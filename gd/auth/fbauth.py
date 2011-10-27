@@ -17,6 +17,7 @@
 
 """Authentication machinery for facebook"""
 
+from httplib2 import ServerNotFoundError
 from flask import Blueprint, url_for, session, request, redirect
 from flaskext.oauth import OAuth
 
@@ -68,9 +69,12 @@ def get_facebook_oauth_token():
     return session.get('oauth_token')
 
 
-
 def checkfblogin():
-    req = facebook.get('/me')
+    try:
+        req = facebook.get('/me')
+    except ServerNotFoundError:
+        return {}
+
     if 'error' in req.data:
         return {}
 
