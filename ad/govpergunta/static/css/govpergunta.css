@@ -1,3 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,700italic,400italic);
+
+#container {
+    font-family: 'Open Sans', sans-serif;
+}
+
 #container #appbase {
     background: white;
     min-height: 582px;
@@ -25,7 +31,6 @@
     width: 317px;
     height: 95px;
     font-size: 18px;
-    font-family: Arial, helvetica, sans-serif;
     padding: 14px 0px 0px 29px;
 }
 
@@ -45,4 +50,22 @@
     color: #2e3436;
     font-size: 16px;
     padding: 10px 190px 0px 50px;
+}
+
+#container #content #maintext a {
+    color: #888a85;
+    border: 2px solid #888a85;
+    font-size: 18px;
+    padding: 10px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 28px -35px 10px 50px;
+}
+
+#controller {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 22px;
+    color: #73d216;
 }
