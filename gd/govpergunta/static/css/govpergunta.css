@@ -31,7 +31,8 @@
     width: 317px;
     height: 95px;
     font-size: 18px;
-    padding: 14px 0px 0px 29px;
+    padding: 11px 0px 0px 29px;
+    font-weight: 600;
 }
 
 #container #appbase #step {
@@ -76,6 +77,41 @@
     border-radius: 8px;
     display: inline-block;
     margin: 28px -35px 10px 50px;
+}
+
+#container #content #maintext #howworks {
+    padding-left: 40px;
+}
+
+#container #content #maintext #howworks p {
+    margin-left: 19px;
+}
+
+#container #content #maintext #howworks li img {
+    position: absolute;
+}
+
+#container #content #maintext #howworks .how1 {
+    clip: rect(0px, 56px, 56px, 0px);
+}
+
+#container #content #maintext #howworks .how2 {
+    clip: rect(0px, 128px, 56px, 69px);
+    margin-left: -69px;
+}
+
+#container #content #maintext #howworks .how3 {
+    clip: rect(0px, 200px, 56px, 137px);
+    margin-left: -140px;
+}
+
+#container #content #maintext #howworks .how4 {
+    clip: rect(0px, 270px, 56px, 210px);
+    margin-left: -210px;
+}
+
+#container #content #maintext #howworks li {
+    height: 100px;
 }
 
 #controller {

@@ -27,4 +27,4 @@ govpergunta = Blueprint(
 @govpergunta.route('/')
 def index():
     """Renders the index template"""
-    return render_template('govpergunta.html')
+    return render_template('como.html')
