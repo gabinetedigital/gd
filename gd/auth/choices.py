@@ -25,83 +25,83 @@ separated place.
 from gd.utils import _
 
 GENDER = (
-    ('', _('--')),
-    ('m', _('Male')),
-    ('f', _('Female')),
+    (u'', _(u'--')),
+    (u'm', _(u'Male')),
+    (u'f', _(u'Female')),
 )
 
 
-AGE = [('', '--')] + [
+AGE = [(u'', u'--')] + [
     (i, i) for i in (
-        _('80 years old or more'),
-        _('75 to 79'),
-        _('70 to 74'),
-        _('65 to 69'),
-        _('60 to 64'),
-        _('55 to 59'),
-        _('50 to 54'),
-        _('45 to 49'),
-        _('40 to 44'),
-        _('35 to 39'),
-        _('30 to 34'),
-        _('25 to 29'),
-        _('20 to 24'),
-        _('15 to 19'),
-        _('10 to 14'),
-        _('5 to 9'),
-        _('0 to 4'),
+        _(u'80 years old or more'),
+        _(u'75 to 79'),
+        _(u'70 to 74'),
+        _(u'65 to 69'),
+        _(u'60 to 64'),
+        _(u'55 to 59'),
+        _(u'50 to 54'),
+        _(u'45 to 49'),
+        _(u'40 to 44'),
+        _(u'35 to 39'),
+        _(u'30 to 34'),
+        _(u'25 to 29'),
+        _(u'20 to 24'),
+        _(u'15 to 19'),
+        _(u'10 to 14'),
+        _(u'5 to 9'),
+        _(u'0 to 4'),
     )
 ]
 
 
 INCOME = (
-    ('', '--'),
-    ('x<=0.5', u'Até meio salário mínimo'),
-    ('0.5<x<1', u'Entre meio e um salário'),
-    ('1<x<2', u'Entre um e dois salários'),
-    ('2<x<3', u'Entre dois e três salários'),
-    ('3<x<5', u'Entre três e cinco salários'),
-    ('5<x', u'Acima de cinco salários'),
+    (u'', u'--'),
+    (u'x<=0.5', u'Até meio salário mínimo'),
+    (u'0.5<x<1', u'Entre meio e um salário'),
+    (u'1<x<2', u'Entre um e dois salários'),
+    (u'2<x<3', u'Entre dois e três salários'),
+    (u'3<x<5', u'Entre três e cinco salários'),
+    (u'5<x', u'Acima de cinco salários'),
 )
 
 
 STATES = [('', '--')] + [
     (i, i) for i in (
-        'AC', 'AL', 'AM', 'AP',  'BA', 'CE', 'DF', 'ES',
-        'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE',
-        'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC',
-        'SE', 'SP', 'TO')
+        u'AC', u'AL', u'AM', u'AP', u'BA', u'CE', u'DF', u'ES',
+        u'GO', u'MA', u'MG', u'MS', u'MT', u'PA', u'PB', u'PE',
+        u'PI', u'PR', u'RJ', u'RN', u'RO', u'RR', u'RS', u'SC',
+        u'SE', u'SP', u'TO')
 ]
 
 
 FULL_STATES = (
-    ('AC', 'Acre'),
-    ('AL', 'Alagoas'),
+    ('AC', u'Acre'),
+    ('AL', u'Alagoas'),
     ('AP', u'Amapá'),
-    ('AM', 'Amazonas'),
-    ('BA', 'Bahia'),
+    ('AM', u'Amazonas'),
+    ('BA', u'Bahia'),
     ('CE', u'Ceará'),
-    ('DF', 'Distrito Federal'),
+    ('DF', u'Distrito Federal'),
     ('ES', u'Espírito Santo'),
     ('GO', u'Goiás'),
     ('MA', u'Maranhão'),
-    ('MT', 'Mato Grosso'),
-    ('MS', 'Mato Grosso do Sul'),
-    ('MG', 'Minas Gerais'),
+    ('MT', u'Mato Grosso'),
+    ('MS', u'Mato Grosso do Sul'),
+    ('MG', u'Minas Gerais'),
     ('PA', u'Pará'),
     ('PB', u'Paraíba'),
     ('PR', u'Paraná'),
-    ('PE', 'Pernambuco'),
+    ('PE', u'Pernambuco'),
     ('PI', u'Piauí'),
-    ('RJ', 'Rio de Janeiro'),
-    ('RN', 'Rio Grande do Norte'),
-    ('RS', 'Rio Grande do Sul'),
+    ('RJ', u'Rio de Janeiro'),
+    ('RN', u'Rio Grande do Norte'),
+    ('RS', u'Rio Grande do Sul'),
     ('RO', u'Rondônia'),
-    ('RR', 'Roraima'),
-    ('SC', 'Santa Catarina'),
+    ('RR', u'Roraima'),
+    ('SC', u'Santa Catarina'),
     ('SP', u'São Paulo'),
-    ('SE', 'Sergipe'),
-    ('TO', 'Tocantins'),
+    ('SE', u'Sergipe'),
+    ('TO', u'Tocantins'),
 )
 
 CITIES = [('', '--')] + [
