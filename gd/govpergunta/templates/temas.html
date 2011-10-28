@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/govpergunta.css') }}">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,700italic,400italic' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/jquery.jcarousel.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/home.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/webfonts.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="container">
+    <div id="appbase">
+        <div class="row">
+            <div id="applogo" class="col3">
+                <h1>Governador Pergunta</h1>
+            </div> 
+            <div id="question" class="col4">
+                <p>Como podemos melhorar o atendimento na saúde pública?</p>
+            </div>
+            <div id="step" class="col5">
+                <ol>
+                    <li><img src="{{ url_for('.static', filename='imgs/1.png') }}"><p>o que é?</p>
+                    <li><img src="{{ url_for('.static', filename='imgs/2.png') }}"><p>como funciona?</p>
+                    <li><img src="{{ url_for('.static', filename='imgs/3.png') }}"><p>temas</p>
+                    <li><img src="{{ url_for('.static', filename='imgs/4.png') }}"><p>contribua</p>
+                </ol>
+            </div>
+        <div class="row-end"></div>
+
+        <div id="content">
+            <div class="row">
+                <div id="maintext" class="col11">
+                    <h2>Como funciona?</h2>
+                    <ul id="themes">
+                        <li class="cuidado"><img src="{{ url_for('.static', filename='imgs/cuidadointegral128.png') }}"><em>Cuidado Integral</em></li>
+                        <li class="familia"><img src="{{ url_for('.static', filename='imgs/familia128.png') }}"><em>Saúde da Família</em></li>
+                        <li class="emergencia"><img src="{{ url_for('.static', filename='imgs/emergencia128.png') }}"><em>Urgência e Emergência</em></li>
+                        <li class="medicamentos"><img src="{{ url_for('.static', filename='imgs/medicamentos128.png') }}"><em>Acesso a Medicamentos</em></li>
+                        <li class="regional"><img src="{{ url_for('.static', filename='imgs/regional128.png') }}"><em>Saúde na sua Região</em></li>
+                    </ul>
+               </div>
+            </div>
+            <div class="row-end"></div>
+        
+            <div id="controller" class="row">
+               <div class="col6" id="back">
+                <a href="" class="back">o que é ?</a>
+               </div>
+               <div class="col6" id="next">
+                   <a href="" class="next">temas</a>
+               </div> 
+            </div>
+            <div class="row-end"></div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
