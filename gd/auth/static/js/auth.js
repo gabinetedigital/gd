@@ -31,8 +31,8 @@ var auth = (function() {
         , $loginOverlay: $('#loginoverlay').overlay({
             api: true,
             mask: {
-                color: '#333',
-                opacity: 0.8
+                color: '#111',
+                opacity: 0.7
             },
             oneInstance: false,
             speed: 'fast',

@@ -161,10 +161,10 @@ $(function() {
     $('img[rel]').overlay({
         oneInstance: false,
         speed: 'fast',
-        top: 250,
+        top: '30%',
         mask: {
-            color: '#fff',
-            opacity: 0.5
+            color: '#111',
+            opacity: 0.7
         },
 
         onLoad: function () {
