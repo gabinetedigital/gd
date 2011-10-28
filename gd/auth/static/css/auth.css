@@ -53,6 +53,10 @@ form.auth .header li {
 
 form.auth .header a {
     color:#fff;
+}
+
+form.auth .header a.awesomelink {
+    color:#fff;
     background: url(../imgs/alert-overlay.png) repeat-x #323232;
     border-bottom:1px solid rgba(0, 0, 0, 0.25);
     padding: 5px 10px 6px;
@@ -169,4 +173,13 @@ form.auth select#country, form.auth select#age_group {
 
 form.auth select#city, form.auth select#income_group {
     width:210px;
+}
+
+form.auth div.readmore,
+form.auth div.tos {
+    display:none;
+}
+
+form.auth button.back {
+    margin-top:20px;
 }

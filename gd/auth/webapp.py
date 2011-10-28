@@ -19,6 +19,7 @@
 
 from flask import Blueprint, render_template, request
 from gd.utils import msg, _
+from gd.content.wp import wordpress
 from gd.auth import forms
 from gd.auth.fbauth import checkfblogin
 from gd import auth as authapi
@@ -66,7 +67,11 @@ def signup_form():
     # The user is trying to authenticate with his/her facebook id
     facebook = checkfblogin() or {}
     form = forms.SignupForm(**facebook)
-    return render_template('signup.html', form=form)
+    return render_template(
+        'signup.html', form=form,
+        tos=wordpress.getPageByPath('tos'),
+        readmore=wordpress.getPageByPath('signup/read-more'),
+    )
 
 
 @auth.route('/signup_json', methods=('POST',))

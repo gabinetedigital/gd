@@ -221,6 +221,21 @@ var auth = (function() {
                 });
             }
         }
+
+        /** Toggles tabs of the signup overlay (readmore, tos, form) */
+        , toggleSignupTab: function (tabName) {
+            var $target = $('div.tab.' + tabName);
+            if (!$target.is(':visible')) {
+                $('div.tab').each(function () {
+                    if (!$(this).hasClass(tabName)) {
+                        $(this).fadeOut(200);
+                    }
+                });
+                window.setTimeout(function () {
+                    $target.fadeIn();
+                }, 200);
+            }
+        }
     };
 
     return new Auth();
