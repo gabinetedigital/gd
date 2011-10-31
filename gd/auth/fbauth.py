@@ -69,7 +69,7 @@ def facebook_authorized(resp):
     try:
         auth.login(username, None)
     except auth.UserNotFound:
-        return redirect(url_for('index'))
+        return redirect('%s?signup' % url_for('index'))
     return redirect(url_for('index'))
 
 

@@ -198,6 +198,9 @@
     <script src="{{ url_for('static', filename='js/template.js') }}"></script>
     <script src="{{ url_for('static', filename='js/urls.js') }}"></script>
     <script src="{{ url_for('auth.static', filename='js/auth.js') }}"></script>
+    {% if 'signup' in request.values %}
+    <script> $(function () { auth.showSignupForm(); }); </script>
+    {% endif %}
     {% block javascript %}
     {% endblock %}
   </body>
