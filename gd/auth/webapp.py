@@ -17,6 +17,7 @@
 
 """Web application definitions for the `auth' module"""
 
+from os import urandom
 from flask import Blueprint, render_template, request
 from gd.utils import msg, _
 from gd.content.wp import wordpress
@@ -28,6 +29,40 @@ auth = Blueprint(
     'auth', __name__,
     template_folder='templates',
     static_folder='static')
+
+
+def social(form, show=True):
+    """This function prepares a signup form to be used from a social
+    network.
+
+    This version is currently facebook only, but it's easy to extend it
+    to support other social networks."""
+    # Here's the line that says that we're social or not
+    facebook = checkfblogin() or {}
+    inst = form(**facebook) if show else form()
+
+    # Preparing form meta data
+    inst.social = bool(facebook)
+    inst.meta = inst.data.copy()
+
+    # Cleaning unwanted metafields (they are not important after
+    # validating the form)
+    del inst.meta['csrf']
+    del inst.meta['accept_tos']
+    del inst.meta['password_confirmation']
+
+    if facebook:
+        # Removing the password field. It's not needed by a social login
+        del inst.password
+        del inst.password_confirmation
+
+        # Setting up meta extra fields
+        inst.meta['fbid'] = facebook['id']
+        inst.meta['fromsocial'] = True
+        inst.meta['password'] = urandom(10)
+
+    # We're not social right now
+    return inst
 
 
 @auth.route('/login')
@@ -64,9 +99,7 @@ def logout_json():
 @auth.route('/signup')
 def signup_form():
     """Renders the signup form"""
-    # The user is trying to authenticate with his/her facebook id
-    facebook = checkfblogin() or {}
-    form = forms.SignupForm(**facebook)
+    form = social(forms.SignupForm)
     return render_template(
         'signup.html', form=form,
         tos=wordpress.getPageByPath('tos'),
@@ -78,7 +111,8 @@ def signup_form():
 def signup_json():
     """Register a new user that sent his/her informations through the
     signup form"""
-    form = forms.SignupForm()
+    form = social(forms.SignupForm, False)
+
     def format_error(orig, code):
         """This function wraps an error message and, instead of
         returning the data content, it adds the a new field: a new csrf
@@ -100,24 +134,14 @@ def signup_json():
     # Proceeding with the validation of the user fields
     if form.validate_on_submit():
         try:
-            meta = form.data.copy()
+            meta = form.meta
             dget = meta.pop
             password = dget('password')
-
-            # Removing unwanted fields. The others are going to be used
-            # as meta fields in the user instance
-            for i in 'csrf', 'password_confirmation', 'accept_tos':
-                dget(i)
-
-            # Not sure if it's needed, but saving it anyway
-            facebook = checkfblogin()
-            if facebook:
-                meta['fbid'] = facebook['id']
 
             # Finally, it's time to create the user
             user = authapi.create_user(
                 dget('name'), dget('email'), password,
-                dget('email_confirmation'), meta)
+                dget('email_confirmation'), form.meta)
         except authapi.UserExists:
             return format_error(_(u'User already exists'), 'UserExists')
         except authapi.EmailAddressExists:

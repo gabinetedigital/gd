@@ -31,17 +31,25 @@
     <div class="tab form">
       <div class="error"></div>
       <ol>
+        {% if form.social %}
+        <li class="help">
+          Você está se autenticando através de uma rede social. Para
+          terminar o processo falta apenas preencher os campos abaixo.
+        </li>
+        {% endif %}
         <li class="field name">{{ form.name.label }} {{ form.name }}</li>
         <li class="field email frmcol1">{{ form.email.label  }} {{ form.email }}</li>
         <li class="field email_confirmation">
           {{ form.email_confirmation.label }} {{ form.email_confirmation }}
         </li>
+        {% if not form.social %}
         <li class="field password frmcol1">
           {{ form.password.label }} {{ form.password }}
         </li>
         <li class="field password_confirmation">
           {{ form.password_confirmation.label }} {{ form.password_confirmation }}
         </li>
+        {% endif %}
         <li class="sep"><hr></li>
         <li class="field country frmcol2">{{ form.country.label }} {{ form.country }}</li>
         <li class="field state frmcol2">{{ form.state.label }} {{ form.state }}</li>
