@@ -52,8 +52,15 @@
     text-align: center;
 }
 
+#container #appbase #step ol li a, a:visited {
+    color: #babdb6;
+}
+
+#container #appbase #step ol li a:hover {
+    color: #668000;
+}
+
 #container #content #maintext {
-    background: url('../imgs/que.png') no-repeat bottom right; 
     min-height: 400px;
 }   
 
