@@ -84,12 +84,13 @@ def checkfblogin():
     location = user['location']['name'].split(', ', 1) + ['']
     states = dict((x[1], x[0]) for x in choices.FULL_STATES)
     city, state = city, state = location[:2]
+    gender = user.get('gender') and user['gender'][0] or None
     return {
         'id': user['id'],
         'name': user['name'],
         'email': user['email'],
         'email_confirmation': user['email'],
-        'gender': user.get('gender'),
+        'gender': gender,
         'facebook': user['link'],
         'city': city,
         'state': states.get(state),
