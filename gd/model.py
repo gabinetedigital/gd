@@ -279,7 +279,7 @@ def _set_user_meta(lsession, flush_context):
         if not isinstance(inst, User):
             # We're not interested in anything different from a new user
             continue
-        inst.set_meta(u'nickname', inst.username)
+        inst.set_meta(u'nickname', inst.name or inst.username)
         inst.set_meta(u'wp_capabilities', u'a:1:{s:10:"subscriber";s:1:"1";}')
         inst.set_meta(u'wp_user_level', u'0')
 
