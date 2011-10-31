@@ -126,8 +126,72 @@
     height: 100px;
 }
 
+#container #content #maintext #themes {
+    text-align: center;
+}
+
+#container #content #maintext #themes li {
+    margin-bottom: 40px;
+    font-size: 20px;
+    text-align: center;
+    float: left;
+    margin-left: 120px;
+}
+
+#container #content #maintext #themes .cuidado p {
+    color: #204a87;
+}
+
+#container #content #maintext #themes .familia p {
+    color: #f57900;
+}
+
+#container #content #maintext #themes .emergencia p {
+    color: #cc0000;
+}
+
+#container #content #maintext #themes .medicamentos p {
+    color: #75507b;
+}
+
+#container #content #maintext #themes .regional p {
+    color: #4e9a06;
+}
+
+#container #content #maintext h3 {
+    color: #888a85;
+    font-size: 25px;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+#container #content #maintext .title {
+    border: 1px solid #ccc;
+    color: #ccc;
+    font-size: 22px;
+    display: block;
+    width: 610px;
+}
+
+#container #content #maintext textarea {
+    border: 1px solid #ccc;
+    font-size: 14px;
+    display: block;
+    width: 610px;
+    height: 200px;
+    color: #888a85;
+}
+
+#container #content #maintext .send {
+    padding: 5px;
+    color: #888a85;
+    border: 1px solid #ccc;
+    background-color: white;
+    float: right;
+    
+}
+
 #controller {
-    text-align: right;
     margin-top: 20px;
     font-size: 22px;
     color: #73d216;
@@ -143,5 +207,12 @@
     background: url('../imgs/dir.png') no-repeat right bottom;
     height: 26px;
     padding-right: 56px;
+    font-weight: 600;
+}
+
+#controller .back {
+    background: url('../imgs/esq.png') no-repeat left bottom;
+    height: 26px;
+    padding-left: 56px;
     font-weight: 600;
 }
