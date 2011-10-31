@@ -19,7 +19,7 @@
 
 """The entry point for the buzzwatcher application"""
 
-from ad.buzz.server import Server
+from gd.buzz.server import Server
 
 
 def main():
