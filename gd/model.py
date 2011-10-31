@@ -254,6 +254,22 @@ class User(Entity):
         identify a user"""
         return self.nickname or self.name or self.username
 
+    def get_meta(self, key):
+        """Returns a value of a meta var of a user"""
+        try:
+            return UserMeta.query \
+                .filter_by(user_id=self.id, meta_key=key) \
+                .one() \
+                .meta_value
+        except NoResultFound:
+            return None
+
+    def set_meta(self, key, value):
+        """Set a meta value for the user instance"""
+        meta = get_or_create(UserMeta, user_id=self.id, meta_key=key)[0]
+        meta.meta_value = value
+        session.commit()
+
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(lsession, flush_context):
@@ -266,15 +282,9 @@ def _set_user_meta(lsession, flush_context):
         if not isinstance(inst, User):
             # We're not interested in anything different from a new user
             continue
-        UserMeta(
-            user_id=inst.id, meta_key=u'nickname',
-            meta_value=inst.username)
-        UserMeta(
-            user_id=inst.id, meta_key=u'wp_capabilities',
-            meta_value=u'a:1:{s:10:"subscriber";s:1:"1";}')
-        UserMeta(
-            user_id=inst.id, meta_key=u'wp_user_level',
-            meta_value=u'0')
+        inst.set_meta(u'nickname', inst.username)
+        inst.set_meta(u'wp_capabilities', u'a:1:{s:10:"subscriber";s:1:"1";}')
+        inst.set_meta(u'wp_user_level', u'0')
 
 
 # Helper functions
