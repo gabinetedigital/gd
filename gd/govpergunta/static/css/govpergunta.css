@@ -165,7 +165,12 @@
     margin-top: 10px;
 }
 
-#container #content #maintext .title {
+#container #content #maintext #form {
+    padding: 10px 4px 8px 10px;
+    border-right: 3px dotted #ccc;
+}
+
+#container #content #maintext #form .title {
     border: 1px solid #ccc;
     color: #ccc;
     font-size: 22px;
@@ -173,22 +178,35 @@
     width: 610px;
 }
 
-#container #content #maintext textarea {
+#container #content #maintext #form textarea {
     border: 1px solid #ccc;
     font-size: 14px;
     display: block;
     width: 610px;
     height: 200px;
     color: #888a85;
+    padding: 5px;
 }
 
-#container #content #maintext .send {
+#container #content #maintext #form .send {
     padding: 5px;
     color: #888a85;
     border: 1px solid #ccc;
     background-color: white;
     float: right;
-    
+    margin: -15px 54px;
+    display: block;
+    cursor: pointer;
+}
+
+#container #content #maintext #faq {
+    padding-left: 10px;
+    color: #888a85;
+}
+
+#container #content #maintext #faq h4{
+    font-size: 14px;
+    color: #2e3436;
 }
 
 #controller {
