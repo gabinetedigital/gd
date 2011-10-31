@@ -81,56 +81,55 @@ var auth = (function() {
             speed: 'fast',
             onBeforeLoad: function() {
                 var wrap = this.getOverlay().find(".contentWrap");
-                wrap.load(url_for('auth.signup'));
-            },
-            onLoad: function() {
                 var overlay = this.getOverlay();
                 var closeMethod = this.close;
 
-                /* focus the name field */
-                overlay.find('input[name=name]').focus();
+                wrap.load(url_for('auth.signup'), function () {
+                    /* focus the name field */
+                    overlay.find('input[name=name]').focus();
 
-                $(overlay.find('form')).ajaxForm({
-                    beforeSubmit: function () {
-                        /* Maybe it's not the first time the user is
-                         * trying to send the form, let's clear the
-                         * error state for now to allow him to try
-                         * again */
-                        overlay.find('input,select').removeClass('error');
-                    },
+                    $(overlay.find('form')).ajaxForm({
+                        beforeSubmit: function () {
+                            /* Maybe it's not the first time the user is
+                             * trying to send the form, let's clear the
+                             * error state for now to allow him to try
+                             * again */
+                            overlay.find('input,select').removeClass('error');
+                        },
 
-                    success: function (data) {
-                        var pData = $.parseJSON(data);
-                        if (pData.status === 'ok') {
-                            closeMethod();
-                            auth.userAuthenticated(pData.msg.user);
-                            return;
-                        }
-
-                        /* Here we're sure that things didn't work :( */
-                        var errors = pData.msg.data;
-                        var code = pData.code;
-                        var csrfToken = pData.msg.csrf;
-
-                        /* The first step now is to set the new csrf token to
-                         * our form. If we don't do it, we can't try to
-                         * register again. */
-                        overlay.find('[name=csrf]').val(csrfToken);
-
-                        /* The user made a mistake when filling the form */
-                        if (code === 'ValidationError') {
-                            for (var f in errors) {
-                                overlay
-                                    .find('[name=' + f  + ']')
-                                    .addClass('error');
+                        success: function (data) {
+                            var pData = $.parseJSON(data);
+                            if (pData.status === 'ok') {
+                                closeMethod();
+                                auth.userAuthenticated(pData.msg.user);
+                                return;
                             }
-                        } else {
-                            console.debug(pData);
-                            overlay
-                                .find('div.error')
-                                .html(pData.msg.data).fadeIn('fast');
+
+                            /* Here we're sure that things didn't work :( */
+                            var errors = pData.msg.data;
+                            var code = pData.code;
+                            var csrfToken = pData.msg.csrf;
+
+                            /* The first step now is to set the new csrf token to
+                             * our form. If we don't do it, we can't try to
+                             * register again. */
+                            overlay.find('[name=csrf]').val(csrfToken);
+
+                            /* The user made a mistake when filling the form */
+                            if (code === 'ValidationError') {
+                                for (var f in errors) {
+                                    overlay
+                                        .find('[name=' + f  + ']')
+                                        .addClass('error');
+                                }
+                            } else {
+                                console.debug(pData);
+                                overlay
+                                    .find('div.error')
+                                    .html(pData.msg.data).fadeIn('fast');
+                            }
                         }
-                    }
+                    });
                 });
             }
         })
