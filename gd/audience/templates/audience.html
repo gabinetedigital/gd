@@ -94,17 +94,15 @@
           </ol>
         </div>
         {% if audience.started %}
-        {% if notice %}
-        <ul class="stream">
-          <li class="avatar">
-            <img src="{{ notice.avatar }}">
-          </li>
-          <li class="author">
-            @{{ notice.owner_nick }} <em>| {{ notice.type_ }}</em>
-          </li>
-          <li class="answer">{{ notice.content }}</li>
-        </ul>
-        {% endif %}
+        <div id="beingAnswered">
+          {% if notice %}
+          <ul class="stream">
+            <li class="avatar"><img src="{{ notice.avatar }}"></li>
+            <li class="author">@{{ notice.owner_nick }} <em>| {{ notice.type_ }}</em></li>
+            <li class="answer">{{ notice.content }}</li>
+          </ul>
+          {% endif %}
+        </div>
         <div id="streaming">{{ audience.embed|safe }}</div>
         {% endif %}
         <div id="misc">
@@ -153,6 +151,14 @@
       <li class="answer"><%= obj.content %></li>
     </ul>
   </li>
+</script>
+
+<script type="text/html" id="selectedNotice">
+  <ul class="stream">
+    <li class="avatar"><img src="<%= obj.avatar %>"></li>
+    <li class="author">@<%= obj.owner_nick %><em> | <%= obj.type_.name %></em></li>
+    <li class="answer"><%= obj.content %></li>
+  </ul>
 </script>
 
 {% endblock %}

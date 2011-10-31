@@ -152,6 +152,15 @@ $(function() {
 
         buzz_accepted: function (msg) {
             updateBuzz(msg, !filterState);
+        },
+
+        buzz_published: function (msg) {
+            var $el = $(tmpl("selectedNotice", msg));
+            $('#beingAnswered').fadeOut(function () {
+                $(this).html('');
+                $(this).append($el);
+                $(this).fadeIn();
+            });
         }
     });
 
