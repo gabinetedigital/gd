@@ -1,91 +1,95 @@
-README file for the AD project
+README file for the GD project
 ==============================
 
 Dependencies
 ~~~~~~~~~~~~
 
-If you are running a Debian based system, you need to install the
-following packages:
+Ah, there are _A LOT_ of them. You can read a _very_ detailed list in
+the `DEPS' file. Most of these deps are easy to instal, but please send
+us an email if you find something really hard to be installed and we'll
+try to help you.
 
- * python-elixir
- * python-flask (>=0.7.2)
- * python-pip
- * python-zmq
- * python-dev
+If you are running a Debian based system, I suggest you to install
+everything you can from apt (you obviously have to respect the version
+numbers that are present in the DEPS file). And then use the
+'''virtualenv''' package to install the others.
 
-And then install some softwares not packaged yet (as of the date of this
-commit)::
+To use virtualenv, install it (the package name is python-virtualenv in
+Debian) and then do the following::
 
- $ pip install 'gevent-socketio==0.2.0' gevent_zeromq tweetstream Flask-WTF
+ $ virtualenv /home/<youruser>/gabdigital
+ $ source /home/<youruser>/gabdigital/bin/activate
 
-It is very important to notice that our app WILL NOT WORK if you install
-any version different from the 0.2.0 of the `gevent-socketio' library.
+After sourcing the '''activate''' script, you'll be inside your virtual
+env. So you can easily install packages using the '''pip''' tool (you
+can also use '''easy_install''', choose at your will).
 
-Running the app
-~~~~~~~~~~~~~~~
 
-First of all, you have to setup the database. To do it, just run the
-following commands in your project directory::
+Configuration Setup
+~~~~~~~~~~~~~~~~~~~
 
- $ python ad/model.py
+First of all, you'll have to define the settings of your app. It's quite
+easy. Just copy the '''gd/conf.py.sample''' file to '''gd/conf.py''' and
+then edit it as you wish. It's quite simple to understand it. You just
+have to remember that it's a python file, so you have to follow it's
+sintax and other rules.
+
+
+Wordpress integration
+~~~~~~~~~~~~~~~~~~~~~
+
+Our application is integrated with wordpress in two points: the user
+database and the content management. To acomplish both points correctly
+setup, you'll need to follow the following steps:
+
+ * Setup a wordpress site (no, I'm not gonna tell you how, please refer
+   to the wordpress documentation)
+
+ * Install both '''exapi''' and '''wpgd''' plugins available in our
+   repositories as wordpress plugins. (yes, just copy them to the
+   wp-content/plugins dir and enable them in the '''plugins''' screen)
+
+ * Enable the xmlrpc interface for the wordpress site you just
+   setup. You'll find it in "Settings > Writing > XML-RPC".
+
+
+The python application
+~~~~~~~~~~~~~~~~~~~~~~
+
+The next step is the setup the rest of the database. Another easy step,
+just run the following command in your project directory::
+
+ $ python ./gd/model.py
 
 After that, all we have to do is to run the built in development server
 by executting the `add' command::
 
- $ ./ad-d
+ $ ./bin/gdappd
 
 After that, you can just point your browser to the http://localhost:5000
 url and see the system running.
 
 There are currently a few views ready to be tested. Here are some:
 
- * /admin/audience        (Lists audiences)
- * /admin/audience/new    (Form that creates a new audience)
- * /admin/audience/<id>   (See the details/edit an audience)
+ * /                (The project index)
+ * /admin           (The user administration)
 
-Troubleshooting
-~~~~~~~~~~~~~~~
 
-- ImportError: cannot import name Blueprint
+Buzzwatcher
+~~~~~~~~~~~
 
-If you got this error mensage, probably you have an old flask version.
-As of 28 Set 2011 only debian testing and unstable have
-aproprieted version (0.7.2) of flask.
+We have another python program called '''buzzwatcher'''. It's main
+responsibility is to grab information from various social networks about
+running audiences. Currently the only supported social network is
+twitter. It's gonna change in the future, we have plans to support
+identica too.
 
-You have two options:
- - Update your system version ( Good Luck! )
- - Virtualenv 
+Anyway, to run it, you will have to run the following command::
 
-Installing virtualenv
-=====================
- $ sudo easy_install virtualenv
+ $ ./bin/buzzwatcherd
 
-or
-
- $ sudo pip install virtualenv
-
-or
-
- $ sudo apt-get install python-virtualenv
-
-Creating your environoment
-==========================
-
- $ mkdir myproject
- $ cd myproject
- $ virtualenv env
- New python executable in env/bin/python
- Installing setuptools............done.
-
-Active and enter in the enviromnt
-=================================
-
- $ . env/bin/activate
-
-Installing Flask
-================
-
- $ easy_install Flask
+Remember that it'll not do anything before you create a new audience in
+the admin interface. Make sure your configuration parameters are right,
+including your twitter account information.
 
 Enjoy!
-
