@@ -12,7 +12,6 @@
     box-shadow: 0px 5px 14px 2px #ccc;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 10px;
 }
 
 #container #appbase #applogo h1 {
@@ -21,22 +20,25 @@
     overflow: hidden;
     height: 77px;
     width: 208px;
-    margin-top: 15px;
+    margin: 15px;
 }
 
 
-#container #appbase #question p {
+#container #appbase #question {
     background: url("../imgs/balao.png") no-repeat;
     color: #A40000;
-    width: 317px;
     height: 95px;
-    font-size: 18px;
-    padding: 11px 0px 0px 29px;
-    font-weight: 600;
+    font-size: 21px;
+    padding: 4px 0px 0px 32px;
+    font-style: italic;
+    margin: 10px;
+}
+
+#container #appbase #question p {
+    width: 266px;
 }
 
 #container #appbase #step {
-    margin-left: 40px;
     margin-top: 13px;
 }
 
@@ -62,13 +64,13 @@
     padding: 10px;
 }
 
-#container #content #maintext p {
+#container #content #maintext .blocktext {
     color: #2e3436;
     font-size: 16px;
     padding: 10px 190px 0px 50px;
 }
 
-#container #content #maintext a {
+#container #content #maintext #more a {
     color: #888a85;
     border: 2px solid #888a85;
     font-size: 18px;
@@ -84,7 +86,10 @@
 }
 
 #container #content #maintext #howworks p {
-    margin-left: 19px;
+         color: #2e3436;
+    font-size: 16px;
+    padding: 10px 190px 0px 50px;
+   margin-left: 19px;
 }
 
 #container #content #maintext #howworks li img {
@@ -119,6 +124,7 @@
     margin-top: 20px;
     font-size: 22px;
     color: #73d216;
+    text-align: center;
 }
 
 #controler a, a:visited, a:hover {
