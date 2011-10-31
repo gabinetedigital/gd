@@ -38,6 +38,7 @@ def index(aid):
     return render_template(
         'audience.html',
         audience=inst,
+        notice=inst.get_last_published_notice(),
     )
 
 
