@@ -27,4 +27,19 @@ govpergunta = Blueprint(
 @govpergunta.route('/')
 def index():
     """Renders the index template"""
+    return render_template('oque.html')
+
+@govpergunta.route('/contribua')
+def contribua():
+    """Renders the index template"""
+    return render_template('contribua.html')
+
+@govpergunta.route('/como')
+def como():
+    """Renders the index template"""
     return render_template('como.html')
+
+@govpergunta.route('/temas')
+def temas():
+    """Renders the index template"""
+    return render_template('temas.html')
