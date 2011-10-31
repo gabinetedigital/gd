@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/govpergunta.css') }}">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,700italic,400italic' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/jquery.jcarousel.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/home.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/webfonts.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="container">
+    <div id="appbase">
+        <div class="row">
+            <div id="applogo" class="col3">
+                <h1>Governador Pergunta</h1>
+            </div> 
+            <div id="question" class="col4">
+                <p>Como podemos melhorar o atendimento na saúde pública ?</p>
+            </div>
+            <div id="step" class="col5">
+                <ol>
+                    <li><a href="/govpergunta"><img src="{{ url_for('.static', filename='imgs/1.png') }}"><p>o que é?</p></a></li>
+                    <li><a href="como"><img src="{{ url_for('.static', filename='imgs/2.png') }}"><p>como funciona?</p></a></li>
+                    <li><a href="temas"><img src="{{ url_for('.static', filename='imgs/3.png') }}"><p>temas</p></a></li>
+                    <li><a href="contribua"><img src="{{ url_for('.static', filename='imgs/4.png') }}"><p>contribua</p></a></li>
+                </ol>
+            </div>
+        <div class="row-end"></div>
+
+        <div id="content">
+            <div class="row">
+                <div id="maintext" class="col11">
+                   <h2>Como funciona?</h2>
+                 <ol id="howworks">
+                    <li>
+                        <img src="{{ url_for('.static', filename='imgs/listcomo.png') }}" 
+                        class="how1">
+                        <p> 
+                            O governador Tarso Genro apresenta a ferramenta ao
+                            vivo na internet. Os cidadãos podem enviar (como???) dúvidas e 
+                            perguntas sobre a ferramenta, que serão
+                        </p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('.static', filename='imgs/listcomo.png') }}" 
+                        class="how2">
+                        <p>
+                            Período de envio de propostas. As propostas podem ser encaminhadas 
+                            dentro de cinco temas estratégicos para a Saúde. São 
+                            disponibilizadas informações
+                        </p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('.static', filename='imgs/listcomo.png') }}" 
+                        class="how3">
+                        <p>
+                            Após a sistematização das propostas recebidas, os participantes 
+                            escolhem aquelas que consideram mais importantes. 
+                            Duas sugestões sobre o mesmo tema são apresentadas 
+                        </p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('.static', filename='imgs/listcomo.png') }}" 
+                        class="how4">
+                        <p>
+                            Após a sistematização das propostas recebidas, os participantes 
+                            escolhem aquelas que consideram mais importantes. Duas sugestões 
+                            sobre o mesmo tema são apresentadas 
+                        </p>
+                    </li>
+                </ol>
+                </div>
+            </div>
+            <div class="row-end"></div>
+        
+            <div id="controller" class="row">
+               <div class="col6" id="back">
+                <a href="" class="back">o que é ?</a>
+               </div>
+               <div class="col6" id="next">
+                   <a href="" class="next">temas</a>
+               </div> 
+            </div>
+            <div class="row-end"></div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
