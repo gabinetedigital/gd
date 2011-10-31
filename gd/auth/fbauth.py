@@ -19,7 +19,7 @@
 
 from httplib2 import ServerNotFoundError
 from flask import Blueprint, url_for, session, request, redirect
-from flaskext.oauth import OAuth
+from flaskext.oauth import OAuth, OAuthException
 
 from gd import conf
 from gd.auth import choices
@@ -75,7 +75,7 @@ def get_facebook_oauth_token():
 def checkfblogin():
     try:
         req = facebook.get('/me')
-    except ServerNotFoundError:
+    except (ServerNotFoundError, OAuthException):
         return {}
 
     if 'error' in req.data:
