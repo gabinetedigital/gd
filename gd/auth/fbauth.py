@@ -59,6 +59,9 @@ def facebook_authorized(resp):
             request.values['error_reason'],
             request.values['error_description']
         )
+
+    # This is the flag that says that a user is logged in from a social
+    # network!
     session['oauth_token'] = (resp['access_token'], '')
     return redirect(url_for('index'))
 

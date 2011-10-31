@@ -83,10 +83,13 @@ def login(username, password):
 def login_user_instance(user, password):
     """Logs an user instance in, instead of receiving it's username as a
     string"""
-    # Testing user's password
-    hasher = phpass.PasswordHash(8, True)
-    if not hasher.check_password(password, user.password):
-        raise UserAndPasswordMissmatch()
+
+    # If user is not logging in from a social network, let's verify
+    # his/her local password information.
+    if not (user.get_meta('fromsocial') and 'oauth_token' in session):
+        hasher = phpass.PasswordHash(8, True)
+        if not hasher.check_password(password, user.password):
+            raise UserAndPasswordMissmatch()
 
     # Everything seems to be ok here, let's register the user in our
     # session and return its data (but the password, of course) to the
