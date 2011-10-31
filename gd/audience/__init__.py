@@ -20,8 +20,8 @@
 interface.
 """
 
-from flask import Blueprint, render_template, request, abort
-from gd.model import Audience, Term
+from flask import Blueprint, render_template, request
+from gd.model import Audience, Term, get_or_404
 from gd.utils import dumps
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -34,15 +34,11 @@ audience = Blueprint(
 @audience.route('/<int:aid>')
 def index(aid):
     """Renders an audience with its public template"""
-    # Removing the port from host info. This will be used to bind
-    # socket.io client API to our server.
-    host = request.host.split(':')[0]
-    try:
-        inst = Audience.query.filter_by(id=aid, visible=True).one()
-        return render_template(
-            'audience.html', audience=inst, host=host)
-    except NoResultFound:
-        abort(404)
+    inst = get_or_404(Audience, id=aid, visible=True)
+    return render_template(
+        'audience.html',
+        audience=inst,
+    )
 
 
 @audience.route('/<int:aid>/public_buzz')

@@ -29,7 +29,7 @@ from elixir.events import after_insert, before_insert
 from elixir import using_options, setup_all, metadata, session
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
     Boolean, Integer, Enum, ManyToOne, OneToMany
-from flask import url_for
+from flask import url_for, abort
 
 from gd import conf
 from gd.buzz import sio
@@ -300,6 +300,18 @@ def get_or_create(model, **kwargs):
         instance = model(**params)
         session.add(instance)
         return instance, True
+
+
+def get_or_404(model, **kwargs):
+    """Similar to the get_or_404 Django shortcut.
+
+    Returns an instance of a given model that can be found with `kwargs'
+    filter params or calls the `abort' function with a 404 error.
+    """
+    try:
+        return model.query.filter_by(**kwargs).one()
+    except NoResultFound:
+        abort(404)
 
 
 # Database setup
