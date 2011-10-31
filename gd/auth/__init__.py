@@ -27,7 +27,7 @@ from functools import wraps
 from sqlalchemy.orm.exc import NoResultFound
 
 from gd.utils import phpass, msg, _
-from gd.model import User, UserMeta, session as dbsession
+from gd.model import User, session as dbsession
 
 
 class AuthError(Exception):
@@ -152,7 +152,7 @@ def create_user(name, username, password, email, meta=None):
 
     # Time to save all meta attributes that we received
     for key, value in (meta or {}).items():
-        UserMeta(user_id=user.id, meta_key=key, meta_value=value)
+        user.set_meta(key, value)
     dbsession.commit()
 
     return user
