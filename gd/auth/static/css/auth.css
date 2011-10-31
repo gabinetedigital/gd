@@ -57,7 +57,7 @@ form.auth .header a {
 
 form.auth .header a.awesomelink {
     color:#fff;
-    background: url(../imgs/alert-overlay.png) repeat-x #323232;
+    background: url(../../../static/imgs/alert-overlay.png) repeat-x #323232;
     border-bottom:1px solid rgba(0, 0, 0, 0.25);
     padding: 5px 10px 6px;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
