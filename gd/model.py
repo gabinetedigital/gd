@@ -174,17 +174,12 @@ class User(Entity):
     username = Field(Unicode(64), colname='user_login')
     password = Field(Unicode(256), colname='user_pass')
     email = Field(Unicode(64), colname='user_email')
-    avatar = Field(Unicode(256), default='')
     creation_date = Field(
         DateTime, colname='user_registered',
         default=datetime.now)
     status = Field(
         Boolean, colname='user_status',
         default=True)
-    url = Field(
-        Unicode(256),
-        colname='user_url',
-        default=u'')
 
     @before_insert
     def set_defaults(self):
@@ -240,13 +235,13 @@ class User(Entity):
             display_name=self.display_name,
             avatar_url=self.avatar_url,
             creation_date=self.creation_date,
-            url=self.url,
         )
 
     @property
     def avatar_url(self):
         """Returns the avatar image of this user or the default one"""
-        return self.avatar or url_for('static', filename='imgs/avatar.png')
+        return self.get_meta('avatar') or \
+            url_for('static', filename='imgs/avatar.png')
 
     @property
     def display_name(self):
