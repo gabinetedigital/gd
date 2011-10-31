@@ -229,6 +229,7 @@ def select_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'selected'
     session.commit()
+    sio.send('buzz_selected', buzz.to_dict())
     return msg.ok('Buzz selected')
 
 
@@ -238,6 +239,7 @@ def delete_buzz(bid):
     """Delete Buzz"""
     Buzz.query.get(bid).delete()
     session.commit()
+    sio.send('buzz_deleted', buzz.to_dict())
     return msg.ok('Buzz deleted successfuly')
 
 
@@ -249,14 +251,15 @@ def publish_buzz(bid):
     buzz.status = u'published'
     buzz.date_published = datetime.now()
     session.commit()
+    sio.send('buzz_published', buzz.to_dict())
     return msg.ok('Buzz published')
 
 
-@admin.route('/buzz/<int:bid>/notpublish')
+@admin.route('/buzz/<int:bid>/dontpublish')
 @auth.checkroles(['administrator'])
-def not_publish_buzz(bid):
+def dont_publish_buzz(bid):
     """not publish messages"""
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
     session.commit()
-    return msg.ok('Unpublished buzz')
+    return msg.ok('Buzz unpublished')

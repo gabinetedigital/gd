@@ -1,4 +1,13 @@
 {% extends 'admin/base.html' %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/template.js') }}"></script>
+<script src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
+<script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
+<script src="{{ url_for('static', filename='js/urls.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/moderate.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 {% set isnew = request.values.get('status', 'new') == 'new' %}
 
@@ -18,8 +27,11 @@
       <li class="{{ loop.cycle('dark', 'light') }}">
         <img src="{{ i.avatar }}">
         <strong>@{{ i.owner_nick }}</strong>
-        {% if isnew %}<em>{{ i.creation_date.strftime('%d/%m/%Y %H:%M') }}</em>{% endif %}
-        {% if not isnew %}<em>{{ i.date_published.strftime('%d/%m/%Y %H:%M') }}</em>{% endif %}
+        {% if isnew %}
+        <em>{{ i.creation_date.strftime('%d/%m/%Y %H:%M') }}</em>
+        {% else %}
+        <em>{{ i.date_published.strftime('%d/%m/%Y %H:%M') }}</em>
+        {% endif %}
         <p>{{ i.content }}</p>
 
         {% if isnew %}
@@ -28,10 +40,10 @@
              title="Publish this buzz">
             Publish
           </a>
-          <a href="{{ url_for('.not_publish_buzz', bid=i.id) }}" class="remove"
+          <a href="{{ url_for('.dont_publish_buzz', bid=i.id) }}" class="remove"
              title="Don't Publish this buzz">
             Don't Publish
-          </a>  
+          </a>
           <span class="clear"></span>
         </div>
         {% endif %}
@@ -40,4 +52,26 @@
     </ul>
   </form>
 </div>
+
+<script type="text/html" id="buzzTemplate">
+  <li>
+    <img src="<%= obj.avatar %>">
+    <strong>@<%= obj.owner_nick %></strong>
+    <p><%= obj.content %></p>
+    <div class="controls">
+      <a href="<%= url_for('admin.buzz.<bid>.publish_buzz', { bid: obj.id }) %>"
+         class="accept" title="Publish this buzz">
+        Publish
+      </a>
+
+      <a href="<%= url_for('admin.buzz.<bid>.dont_publish_buzz', { bid: obj.id }) %>"
+         title="Suggest this buzz to be published" class="suggest"
+         class="suggest">
+        Don't Publish
+      </a>
+
+      <span class="clear"></span>
+    </div>
+  </li>
+</script>
 {% endblock %}

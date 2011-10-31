@@ -21,9 +21,12 @@ function Buzz(sockAddr, params) {
     var args = $.extend({
         new_buzz: function (msg) {},
         buzz_accepted: function (msg) {},
-        suggested_buzz: function (msg) {},
-        removed_buzz: function (msg) {}
+        buzz_selected: function (msg) {},
+        buzz_removed: function (msg) {},
+        buzz_published: function (msg) {},
+        buzz_unpublished: function (msg) {}
     }, params);
+
     socket.connect();
 
     socket.on('connect', function () {

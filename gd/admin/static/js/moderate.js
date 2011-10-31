@@ -45,13 +45,23 @@ $(function () {
 
     new Buzz(SIO_BASE, {
         new_buzz: function (msg) {
-            // We'll do nothing if the user is located in the `accepted
-            // buzz' page.
-            updateBuzz(msg, location.search.indexOf('accepted') < 0);
+            updateBuzz(msg, location.search.indexOf('moderate') >= 0) &&
+                location.search.indexOf('accepted') < 0;
         },
 
         buzz_accepted: function (msg) {
-            updateBuzz(msg, location.search.indexOf('accepted') >= 0);
+            updateBuzz(msg, location.search.indexOf('moderate') >= 0) &&
+                location.search.indexOf('accepted') >= 0;
+        },
+
+        buzz_selected: function (msg) {
+            updateBuzz(msg, location.href.indexOf('publish') >= 0) &&
+                location.search.indexOf('published') < 0;
+        },
+
+        buzz_published: function (msg) {
+            updateBuzz(msg, location.href.indexOf('publish') >= 0) &&
+                location.search.indexOf('published') >= 0;
         }
     });
 });
