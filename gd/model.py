@@ -84,7 +84,7 @@ class Audience(Entity):
         """Returns the last published notice about this audience"""
         try:
             return Buzz.query \
-                .filter_by(audience=self) \
+                .filter_by(audience=self, status=u'published') \
                 .order_by(desc('date_published')) \
                 .first()
         except NoResultFound:
