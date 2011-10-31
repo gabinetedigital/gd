@@ -260,10 +260,12 @@ class User(Entity):
             return None
 
     def set_meta(self, key, value):
-        """Set a meta value for the user instance"""
+        """Set a meta value for the user instance.
+
+        This method does not flush to the database! So you have to call
+        the `session.commit()' method after calling it."""
         meta = get_or_create(UserMeta, user_id=self.id, meta_key=key)[0]
         meta.meta_value = value
-        session.commit()
 
 
 @event.listens_for(session, "after_flush")
