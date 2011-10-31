@@ -16,7 +16,7 @@
     <ul class="listing">
       {% for i in buzz_list %}
       <li class="{{ loop.cycle('dark', 'light') }}">
-        <img src="{{ i.owner_avatar }}">
+        <img src="{{ i.avatar }}">
         <strong>@{{ i.owner_nick }}</strong>
         {% if isnew %}<em>{{ i.creation_date.strftime('%d/%m/%Y %H:%M') }}</em>{% endif %}
         {% if not isnew %}<em>{{ i.date_published.strftime('%d/%m/%Y %H:%M') }}</em>{% endif %}

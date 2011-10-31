@@ -36,7 +36,7 @@
       {% for i in buzz_list %}
       <li class="{{ loop.cycle('dark', 'light') }}">
         <input name="notice" value="{{ i.id }}" type="checkbox">
-        <img src="{{ i.owner_avatar }}">
+        <img src="{{ i.avatar }}">
         <strong>@{{ i.owner_nick }}</strong>
         <em>{{ i.creation_date.strftime('%d/%m/%Y %H:%M') }}</em>
         <p>{{ i.content }}</p>
@@ -70,7 +70,7 @@
 <script type="text/html" id="buzzTemplate">
   <li>
     <input name="notice" value="<%= obj.id %>" type="checkbox">
-    <img src="<%= obj.owner_avatar %>">
+    <img src="<%= obj.avatar %>">
     <strong>@<%= obj.owner_nick %></strong>
     <p><%= obj.content %></p>
     <div class="controls">

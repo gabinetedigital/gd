@@ -121,6 +121,7 @@ class Buzz(Entity):
     creation_date = Field(DateTime, default=datetime.now)
     audience = ManyToOne('Audience')
     type_ = ManyToOne('BuzzType')
+    user = ManyToOne('User')
 
     def __str__(self):
         return '<%s "%s">' % (self.__class__.__name__, self.content)
@@ -131,12 +132,19 @@ class Buzz(Entity):
         """
         if deep is None:
             deep = { 'type_': {} }
-        return super(Buzz, self).to_dict(deep=deep)
+        base = super(Buzz, self).to_dict(deep=deep)
+        base['avatar'] = self.avatar
+        return base
 
     @after_insert
     def notify(self):
         """Notify our buzz system that we have a new audience"""
         sio.send('new_buzz', self.to_dict())
+
+    @property
+    def avatar(self):
+        """Returns the avatar of the user that posted a notice"""
+        return self.owner_avatar or self.user.avatar_url
 
 
 class BuzzType(Entity):
@@ -174,6 +182,7 @@ class User(Entity):
     username = Field(Unicode(64), colname='user_login')
     password = Field(Unicode(256), colname='user_pass')
     email = Field(Unicode(64), colname='user_email')
+    buzzes = OneToMany('Buzz')
     creation_date = Field(
         DateTime, colname='user_registered',
         default=datetime.now)

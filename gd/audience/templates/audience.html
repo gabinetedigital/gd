@@ -98,7 +98,7 @@
         {% if notice %}
         <ul class="stream">
           <li class="avatar">
-            <img src="{{ notice.owner_avatar }}">
+            <img src="{{ notice.avatar }}">
           </li>
           <li class="author">
             @{{ notice.owner_nick }} <em>| {{ notice.type_ }}</em>
@@ -122,7 +122,7 @@
         <li>
           <ul class="stream">
             <li class="avatar">
-              <img src="{{ buzz.owner_avatar }}">
+              <img src="{{ buzz.avatar }}">
             </li>
             <li class="author">
               @{{ buzz.owner_nick }} <em>| {{ buzz.type_.name }}</em>
@@ -148,7 +148,7 @@
   <li>
     <ul class="stream">
       <li class="avatar">
-        <img src="<%= obj.owner_avatar %>">
+        <img src="<%= obj.avatar %>">
       </li>
       <li class="author">@<%= obj.owner_nick %> <em>| <%= obj.type_.name %></em></li>
       <li class="answer"><%= obj.content %></li>
