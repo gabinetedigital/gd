@@ -22,7 +22,7 @@ from flask import Blueprint, url_for, session, request, redirect
 from flaskext.oauth import OAuth, OAuthException
 
 from gd import conf
-from gd.auth import choices
+from gd import auth
 
 
 fbauth = Blueprint('fbauth', __name__)
@@ -63,6 +63,13 @@ def facebook_authorized(resp):
     # This is the flag that says that a user is logged in from a social
     # network!
     session['oauth_token'] = (resp['access_token'], '')
+
+    # Let's log the user in if he/she has already signed up.
+    username = facebook.get('/me').data['email']
+    try:
+        auth.login(username, None)
+    except auth.UserNotFound:
+        return redirect(url_for('index'))
     return redirect(url_for('index'))
 
 
@@ -85,7 +92,7 @@ def checkfblogin():
     # in the first user's login.
     user = req.data
     location = user['location']['name'].split(', ', 1) + ['']
-    states = dict((x[1], x[0]) for x in choices.FULL_STATES)
+    states = dict((x[1], x[0]) for x in auth.choices.FULL_STATES)
     city, state = city, state = location[:2]
     gender = user.get('gender') and user['gender'][0] or None
     return {
