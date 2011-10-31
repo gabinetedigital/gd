@@ -109,6 +109,11 @@ def signup_json():
             for i in 'csrf', 'password_confirmation', 'accept_tos':
                 dget(i)
 
+            # Not sure if it's needed, but saving it anyway
+            facebook = checkfblogin()
+            if facebook:
+                meta['fbid'] = facebook['id']
+
             # Finally, it's time to create the user
             user = authapi.create_user(
                 dget('name'), dget('email'), password,
