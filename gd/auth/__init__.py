@@ -102,6 +102,8 @@ def logout():
     """Logs the current online user out"""
     if is_authenticated():
         session.pop('username')
+    if 'oauth_token' in session:
+        session.pop('oauth_token')
 
 
 class checkroles(object):

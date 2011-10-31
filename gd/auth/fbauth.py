@@ -85,7 +85,7 @@ def checkfblogin():
     except (ServerNotFoundError, OAuthException):
         return {}
 
-    if 'error' in req.data:
+    if 'error' in req.data or not 'oauth_token' in session:
         return {}
 
     # The following data will be used to fill a part of the signup form
