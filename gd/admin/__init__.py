@@ -237,7 +237,8 @@ def select_buzz(bid):
 @auth.checkroles(['administrator'])
 def delete_buzz(bid):
     """Delete Buzz"""
-    Buzz.query.get(bid).delete()
+    buzz = Buzz.query.get(bid)
+    buzz.delete()
     session.commit()
     sio.send('buzz_deleted', buzz.to_dict())
     return msg.ok('Buzz deleted successfuly')
