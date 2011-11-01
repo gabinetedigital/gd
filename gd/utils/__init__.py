@@ -21,6 +21,9 @@ placed anywhere else.
 
 from json import dumps as internal_dumps
 from datetime import date, datetime
+from StringIO import StringIO
+from PIL import Image, ImageOps
+
 
 # It's gonna be changed by some gettext function when we start to care
 # about translating things
@@ -60,3 +63,18 @@ class msg(object):
         if code is not None:
             ret.update({ 'code': code })
         return dumps(ret)
+
+
+# -- Image manipulation --
+
+
+def thumbnail(data, size, fit=True):
+    """Generates a thumbnail for an image `data'"""
+    output = StringIO()
+    img = Image.open(data)
+    if fit: # Means that we'll have to respect the size
+        img = ImageOps.fit(img, size, Image.ANTIALIAS)
+    img.thumbnail(size, Image.ANTIALIAS)
+    img.save(output, 'PNG')
+    output.seek(0)
+    return output
