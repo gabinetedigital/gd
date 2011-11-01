@@ -48,7 +48,7 @@ def post():
         owner_nick=auth.authenticated_user().username,
         owner_avatar=u'',
         user=auth.authenticated_user(),
-        content=request.values.get('message'),
+        content=request.values.get('message')[:300],
         type_=get_or_create(BuzzType, name=u'site')[0])
     newbuzz.audience = audience
     session.commit()
