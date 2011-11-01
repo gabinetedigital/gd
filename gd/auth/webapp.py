@@ -156,3 +156,40 @@ def signup_json():
         return msg.ok({ 'user': data })
     else:
         return format_error(form.errors, 'ValidationError')
+
+
+@auth.route('/profile')
+def profile_form():
+    """Shows the user profile form"""
+    data = authapi.authenticated_user().metadata()
+    profile = social(forms.ProfileForm, default=data)
+    passwd = forms.ChangePasswordForm()
+    return render_template(
+        'profile.html', profile=profile, passwd=passwd)
+
+
+@auth.route('/profile_json', methods=('POST',))
+def profile_json():
+    """Validate the request of the update of a profile.
+
+    This method will not operate in any user instance but the
+    authenticated one. If there's nobody authenticated, there's no way
+    to execute it successfuly.
+    """
+    form = social(forms.ProfileForm, False)
+    if not form.validate_on_submit():
+        return msg.error(form.errors, 'ValidationError')
+
+    # Let's save the authenticated user's meta data
+    mget = form.meta.get
+    user = authapi.authenticated_user()
+
+    # First, the specific ones
+    user.name = mget('name')
+    user.email = mget('email')
+
+    # And then, the meta ones, stored in `UserMeta'
+    for key, val in form.meta.items():
+        user.set_meta(key, val)
+
+    return msg.ok(_('User profile updated successfuly'))
