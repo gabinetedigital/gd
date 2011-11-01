@@ -16,10 +16,60 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import render_template
+"""Module that instantiates our Flask WSGI app and associates all
+implemented blueprints in various modules to this app.
+"""
 
-from .wp import wordpress
-from .app import app
+from flask import Flask, request, render_template
+
+from gd import conf
+from gd.auth import authenticated_user, NobodyHome
+from gd.content.wp import wordpress
+
+from gd.admin import admin
+from gd.audience import audience
+from gd.auth.fbauth import fbauth
+from gd.auth.webapp import auth
+from gd.buzz.webapp import buzz
+from gd.buzz.facebookapp import fbapp
+from gd.govpergunta import govpergunta
+
+app = Flask(__name__)
+app.register_blueprint(admin, url_prefix='/admin')
+app.register_blueprint(buzz, url_prefix='/buzz')
+app.register_blueprint(auth, url_prefix='/auth')
+app.register_blueprint(fbauth, url_prefix='/auth/fb')
+app.register_blueprint(audience, url_prefix='/audience')
+app.register_blueprint(fbapp, url_prefix='/fbapp')
+app.register_blueprint(govpergunta, url_prefix='/govpergunta')
+
+# Registering a secret key to be able to work with sessions
+app.secret_key = conf.SECRET_KEY
+
+# Loading the config variables from our `gd.conf' module
+app.config.from_object(conf)
+
+
+@app.context_processor
+def extend_context():
+    """This function is a context processor. It injects variables such
+    as `user' and `host' variable in all templates that will be rendered
+    for this application"""
+
+    context = {}
+
+    # This will be used to bind socket.io client API to our
+    # server. Without the port information.
+    context['host'] = request.host.split(':')[0]
+
+    # Time to add the `user' var
+    try:
+        context['user'] = authenticated_user()
+    except NobodyHome:
+        context['user'] = None
+
+    # Job done!
+    return context
 
 
 @app.route('/')
