@@ -276,6 +276,28 @@ class User(Entity):
         meta = get_or_create(UserMeta, user_id=self.id, meta_key=key)[0]
         meta.meta_value = value
 
+    def metadata(self):
+        """Returns _all_ metadata set for an user instance.
+
+        This method is here to clean a mess created by using the
+        wordpress scheme. Because of this choice, we have user metadata
+        split between the `wp_users' and `wp_user_meta' tables (and,
+        sometimes, coming from a social network).
+
+        So, to fix this situation, I've at least wrote this method to
+        provide an encapsulated method to get all metadata associated
+        with an user instance.
+
+        Be careful exposing this method to the end users. It will return
+        all the information about an user, including his/her (hashed)
+        password string, mail address, etc.
+        """
+        data = self.to_dict()
+        data.update(dict((i.meta_key, i.meta_value) for i in
+                     UserMeta.query.filter_by(user_id=self.id).all()))
+        return data
+
+
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(lsession, flush_context):
