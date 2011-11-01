@@ -55,3 +55,11 @@
 #container #sidebar #recent-topics .light a, a:visited, a:hover {
     color: #888a85;
 }
+
+#container #sidebar #tag-cloud {
+    margin-top: 20px;
+}
+
+#container #sidebar #tag-cloud li {
+    display: inline;
+}
