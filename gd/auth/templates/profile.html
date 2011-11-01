@@ -18,7 +18,8 @@
 <div class="panes">
   <form
      class="auth" method="post" id="profile"
-     action="{{ url_for('.profile_json') }}">
+     action="{{ url_for('.profile_json') }}"
+     enctype="multipart/form-data">
 
     {{ profile.csrf }}
 

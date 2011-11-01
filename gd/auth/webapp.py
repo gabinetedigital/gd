@@ -19,10 +19,13 @@
 
 from os import urandom
 from flask import Blueprint, render_template, request
-from gd.utils import msg, _
+from werkzeug import FileStorage
+
+from gd.utils import thumbnail, msg, _
 from gd.content.wp import wordpress
 from gd.auth import forms
 from gd.auth.fbauth import checkfblogin
+from gd.model import Upload
 from gd import auth as authapi
 
 auth = Blueprint(
@@ -187,6 +190,15 @@ def profile_json():
     # First, the specific ones
     user.name = mget('name')
     user.email = mget('email')
+
+    # Saving the thumbnail
+    form.meta.pop('avatar')
+    if bool(form.avatar.file):
+        flike = form.avatar.file
+        thumb = thumbnail(flike, (48, 48))
+        form.meta['avatar'] = Upload.imageset.save(
+            FileStorage(thumb, flike.filename, flike.name),
+            'thumbs/%s' % user.name[0].lower())
 
     # And then, the meta ones, stored in `UserMeta'
     for key, val in form.meta.items():

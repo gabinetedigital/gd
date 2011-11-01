@@ -47,7 +47,7 @@ def _configuploadset(name, constraint):
 
 
 class Upload(object):
-    imageset = _configuploadset('images', IMAGES)
+    imageset = _configuploadset('images', IMAGES + ('',))
 
 
 class Term(Entity):

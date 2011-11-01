@@ -15,9 +15,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from gd import conf
 from gd.utils import _
 from gd.auth import choices
-from flaskext.uploads import UploadSet, IMAGES
+from gd.model import Upload
+
 from flaskext.wtf import validators, ValidationError
 from flaskext.wtf import Form, TextField, PasswordField, SelectField, \
     BooleanField, FileField, file_allowed
@@ -129,9 +131,6 @@ class SignupForm(BaseDataForm, BasePasswordForm):
                 _(u'Email does not match its confirmation'))
 
 
-IMAGES = UploadSet("images", IMAGES)
-
-
 class ProfileForm(BaseDataForm):
     """Wtform that allows the user to change his/her profile"""
 
@@ -139,7 +138,7 @@ class ProfileForm(BaseDataForm):
         _('User avatar'),
         validators=[
             file_allowed(
-                IMAGES,
+                Upload.imageset,
                 _('Only images are allowed in this field!')),
         ]
     )
@@ -153,5 +152,3 @@ class ChangePasswordForm(BasePasswordForm):
         [validators.Required(),
          ]
     )
-
-
