@@ -31,7 +31,7 @@ auth = Blueprint(
     static_folder='static')
 
 
-def social(form, show=True):
+def social(form, show=True, default=None):
     """This function prepares a signup form to be used from a social
     network.
 
@@ -39,7 +39,9 @@ def social(form, show=True):
     to support other social networks."""
     # Here's the line that says that we're social or not
     facebook = checkfblogin() or {}
-    inst = form(**facebook) if show else form()
+    data = default or {}
+    data.update(facebook)
+    inst = form(**data) if show else form()
 
     # Preparing form meta data
     inst.social = bool(facebook)
