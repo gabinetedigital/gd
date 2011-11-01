@@ -3,6 +3,19 @@
     background:white;
 }
 
+#container #post #wrapper-top {
+    background: url(../imgs/wrapper-top.png) -9px no-repeat;
+    height: 44px;
+}
+#container #post #wrapper {
+    background: url(../imgs/wrapper.png) -9px repeat-y;
+    padding: 0px 40px 20px 20px;
+}
+#container #post #wrapper-bottom {
+    background: url(../imgs/wrapper-bottom.png) -9px no-repeat;
+    height: 62px;
+}
+
 #container #post h2 {
     margin-bottom:20px;
 }

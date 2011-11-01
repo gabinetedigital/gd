@@ -8,10 +8,14 @@
 <div id="container">
   <div class="row">
     <div id="post" class="col8">
-      <h2>{{ post.title }}</h2>
-      <div class="postcontent">
-        {{ post.content|safe }}
+      <div id="wrapper-top"></div>
+      <div id="wrapper">
+          <h2>{{ post.title }}</h2>
+          <div class="postcontent">
+            {{ post.content|safe }}
+          </div>
       </div>
+      <div id="wrapper-bottom"></div>
     </div>
 
     <div id="sidebar" class="col4">
