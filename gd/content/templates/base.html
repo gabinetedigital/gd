@@ -33,7 +33,7 @@
               <div>Olá {{ user.display_name }}</div>
             </li>
             <li>
-              <a href="#">editar perfil</a>
+              <a href="{{ url_for('auth.profile_form') }}">editar perfil</a>
             </li>
             <li>|</li>
             <li>
@@ -164,7 +164,7 @@
         <div>Olá <%= obj.display_name %></div>
       </li>
       <li>
-        <a href="#">editar perfil</a>
+        <a href="{{ url_for('auth.profile_form') }}">editar perfil</a>
       </li>
       <li>|</li>
       <li>
