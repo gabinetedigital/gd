@@ -1,6 +1,14 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+}
+
 #container #post {
     margin-top: 20px;
     background:white;
+    font-family: 'Open Sans';
 }
 
 #container #post #wrapper-top {
@@ -26,4 +34,24 @@
 
 #container #sidebar {
     margin-top:20px;
+    font-family: 'Open Sans';
+}
+
+#container #sidebar h3 {
+    font-size: 22px;
+    font-weight: normal;
+    color: #2e3436;
+}
+
+#container #sidebar #recent-topics li {
+    margin: 10px;
+    font-size: 14px;
+}
+
+#container #sidebar #recent-topics .dark a, a:visited, a:hover {
+    color: #555753;
+}
+
+#container #sidebar #recent-topics .light a, a:visited, a:hover {
+    color: #888a85;
 }

@@ -23,7 +23,9 @@
         <h3>Tópicos Recentes</h3>
         <ol>
           {% for p in recent_posts %}
-          <li>{{ p.excerpt|safe }}</li>
+            <li class="{{ loop.cycle('dark', 'light')}}">
+                <a href="/post/{{p.id}}">{{ p.title|safe }}</a>
+            </li>
           {% endfor %}
         </ol>
       </div>
