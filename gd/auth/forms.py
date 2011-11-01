@@ -16,8 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gd import conf
-from gd.utils import _
-from gd.auth import choices
+from gd.utils import phpass, _
+from gd.auth import choices, authenticated_user
 from gd.model import Upload
 
 from flaskext.wtf import validators, ValidationError
@@ -99,9 +99,9 @@ class BasePasswordForm(Form):
          ]
     )
 
-    def validate_password_confirmatiokn(form, field):
+    def validate_password_confirmation(self, field):
         """Compound validation between password and its confirmation"""
-        if field.data != form.password.data:
+        if field.data != self.password.data:
             raise ValidationError(
                 _(u'Password does not match its confirmation'))
 
@@ -124,7 +124,7 @@ class SignupForm(BaseDataForm, BasePasswordForm):
          ]
     )
 
-    def validate_email_confirmation(form, field):
+    def validate_email_confirmation(self, field):
         """Compound validation between email and its confirmation"""
         if field.data != form.email.data:
             raise ValidationError(
@@ -152,3 +152,11 @@ class ChangePasswordForm(BasePasswordForm):
         [validators.Required(),
          ]
     )
+
+    def validate_current_password(self, field):
+        """Validates the current password of the logged in user"""
+        hasher = phpass.PasswordHash(8, True)
+        user = authenticated_user()
+        if not hasher.check_password(field.data, user.password):
+            raise ValidationError(
+                _('The current password is wrong'))

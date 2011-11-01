@@ -220,6 +220,15 @@ class User(Entity):
         hasher = phpass.PasswordHash(8, False)
         self.password = hasher.hash_password(self.password)
 
+    def set_password(self, passwd):
+        """Updates the user's password
+
+        This method does _not_ update the database itself, please call
+        the '''session.commit()''' method.
+        """
+        self.password = passwd
+        self.hash_password()
+
     def has_roles(self, roles):
         """Returns True if the current user has one of the given roles.
 

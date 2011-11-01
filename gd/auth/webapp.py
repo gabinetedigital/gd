@@ -25,7 +25,7 @@ from gd.utils import thumbnail, msg, _
 from gd.content.wp import wordpress
 from gd.auth import forms
 from gd.auth.fbauth import checkfblogin
-from gd.model import Upload
+from gd.model import Upload, session
 from gd import auth as authapi
 
 auth = Blueprint(
@@ -205,3 +205,16 @@ def profile_json():
         user.set_meta(key, val)
 
     return msg.ok(_('User profile updated successfuly'))
+
+
+@auth.route('/profile_passwd_json', methods=('POST',))
+def profile_passwd_json():
+    """Update the user password"""
+    form = forms.ChangePasswordForm()
+    if form.validate_on_submit():
+        user = authapi.authenticated_user()
+        user.set_password(form.password.data)
+        session.commit()
+        return msg.ok(_('Password updated successful'))
+    else:
+        return msg.error(form.errors, 'ValidationError')
