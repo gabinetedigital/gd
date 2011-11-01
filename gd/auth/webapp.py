@@ -49,9 +49,12 @@ def social(form, show=True, default=None):
 
     # Cleaning unwanted metafields (they are not important after
     # validating the form)
-    del inst.meta['csrf']
-    del inst.meta['accept_tos']
-    del inst.meta['password_confirmation']
+    if 'csrf' in inst.meta:
+        del inst.meta['csrf']
+    if 'accept_tos' in inst.meta:
+        del inst.meta['accept_tos']
+    if 'password_confirmation' in inst.meta:
+        del inst.meta['password_confirmation']
 
     if facebook:
         # Removing the password field. It's not needed by a social login
