@@ -221,8 +221,8 @@ function audience_show_how_it_works() {
   var mail = $(".step-1-mail");
   var trail = $(".step-1-mail-trail");
 
-  big_gear = $(".step-2-big-gear");
-  small_gear = $(".step-2-small-gear");
+  var big_gear = $(".step-2-big-gear");
+  var small_gear = $(".step-2-small-gear");
 
   big_gear.data("angle",0);
   small_gear.data("angle",0);
