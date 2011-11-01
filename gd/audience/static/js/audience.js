@@ -38,9 +38,9 @@ $(function() {
             $(data).each(function (index, item) {
                 $(tmpl('buzzTemplate', item)).appendTo($root);
             });
+            $root.jScrollPane({showArrows: true});
         });
     });
-
 
     /** Shows a tooltip of an element with manual control of show/hide
      *  operations */

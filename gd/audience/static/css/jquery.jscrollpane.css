@@ -23,7 +23,6 @@
 	right: 0;
 	width: 16px;
 	height: 100%;
-	background: red;
 }
 
 .jspHorizontalBar
@@ -33,7 +32,6 @@
 	left: 0;
 	width: 100%;
 	height: 16px;
-	background: red;
 }
 
 .jspVerticalBar *,
@@ -55,17 +53,22 @@
 
 .jspTrack
 {
-	background: #dde;
+	background: white;
 	position: relative;
 }
 
 .jspDrag
 {
-	background: #bbd;
+	background: #CE3316;
 	position: relative;
 	top: 0;
 	left: 0;
 	cursor: pointer;
+        width: 7px;
+        float: right;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        padding-left: 2px;
 }
 
 .jspHorizontalBar .jspTrack,
@@ -77,21 +80,19 @@
 
 .jspArrow
 {
-	background: #50506d;
-	text-indent: -20000px;
 	display: block;
 	cursor: pointer;
+        margin-left: 5px;
 }
 
 .jspArrow.jspDisabled
 {
 	cursor: default;
-	background: #80808d;
 }
 
 .jspVerticalBar .jspArrow
 {
-	height: 16px;
+	height: 11px;
 }
 
 .jspHorizontalBar .jspArrow
@@ -99,6 +100,16 @@
 	width: 16px;
 	float: left;
 	height: 100%;
+}
+
+a.jspArrowUp {
+    width: 11px;
+    background-image: url('../imgs/arrow_up.png');
+}
+
+a.jspArrowDown {
+    width: 11px;
+    background-image: url('../imgs/arrow_down.png');
 }
 
 .jspVerticalBar .jspArrow:focus
