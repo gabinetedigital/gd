@@ -17,13 +17,14 @@
 
 from gd.utils import _
 from gd.auth import choices
+from flaskext.uploads import UploadSet, IMAGES
 from flaskext.wtf import validators, ValidationError
 from flaskext.wtf import Form, TextField, PasswordField, SelectField, \
-    BooleanField
+    BooleanField, FileField, file_allowed
 
 
-class SignupForm(Form):
-    """Wtform that builds the signup form"""
+class BaseDataForm(Form):
+    """Form that holds fields used by more forms bellow"""
 
     name = TextField(
         _('Name'),
@@ -34,24 +35,6 @@ class SignupForm(Form):
         _('Email'),
         [validators.Email(message=_(u'That\'s not a valid email address.')),
         ]
-    )
-
-    email_confirmation = TextField(
-        _('Email confirrmation'),
-        [validators.Email(message=_(u'That\'s not a valid email address.')),
-        ]
-    )
-
-    password = PasswordField(
-        _('Password'),
-        [validators.Required(),
-         ]
-    )
-
-    password_confirmation = PasswordField(
-        _('Password confirmation'),
-        [validators.Required(),
-         ]
     )
 
     country = SelectField(
@@ -98,6 +81,38 @@ class SignupForm(Form):
         _('Facebook'),
     )
 
+
+class BasePasswordForm(Form):
+    """Form that holds password fields"""
+
+    password = PasswordField(
+        _('Password'),
+        [validators.Required(),
+         ]
+    )
+
+    password_confirmation = PasswordField(
+        _('Password confirmation'),
+        [validators.Required(),
+         ]
+    )
+
+    def validate_password_confirmatiokn(form, field):
+        """Compound validation between password and its confirmation"""
+        if field.data != form.password.data:
+            raise ValidationError(
+                _(u'Password does not match its confirmation'))
+
+
+class SignupForm(BaseDataForm, BasePasswordForm):
+    """Wtform that builds the signup form"""
+
+    email_confirmation = TextField(
+        _('Email confirrmation'),
+        [validators.Email(message=_(u'That\'s not a valid email address.')),
+        ]
+    )
+
     accept_tos = BooleanField(
         _('Have you read and accepted our <a href="%s">Terms of use</a>?' %
           #FIXME: We don't have this url defined yet
@@ -114,8 +129,29 @@ class SignupForm(Form):
                 _(u'Email does not match its confirmation'))
 
 
-    def validate_password_confirmatiokn(form, field):
-        """Compound validation between password and its confirmation"""
-        if field.data != form.password.data:
-            raise ValidationError(
-                _(u'Password does not match its confirmation'))
+IMAGES = UploadSet("images", IMAGES)
+
+
+class ProfileForm(BaseDataForm):
+    """Wtform that allows the user to change his/her profile"""
+
+    avatar = FileField(
+        _('User avatar'),
+        validators=[
+            file_allowed(
+                IMAGES,
+                _('Only images are allowed in this field!')),
+        ]
+    )
+
+
+class ChangePasswordForm(BasePasswordForm):
+    """Form to change the password of an user"""
+
+    current_password = PasswordField(
+        _('Your current password'),
+        [validators.Required(),
+         ]
+    )
+
+
