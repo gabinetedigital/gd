@@ -9,16 +9,54 @@
     margin-top: 20px;
     background:white;
     font-family: 'Open Sans';
+    font-size: 13px;
 }
 
 #container #post #wrapper-top {
     background: url(../imgs/wrapper-top.png) -9px no-repeat;
     height: 44px;
 }
+
 #container #post #wrapper {
     background: url(../imgs/wrapper.png) -9px repeat-y;
     padding: 0px 40px 20px 20px;
 }
+
+#container #post blockquote {
+    background: url("../imgs/quote.png") top right no-repeat ;
+    padding: 5px 38px 10px 10px;
+    text-align: justify;
+    color: #555753;
+    font-style: italic;
+}
+
+#container #post h1 {
+    margin-bottom: 10px;
+}
+
+#container #post h2, h3, h4 {
+    color: #A40000;
+}
+
+/* #container #post .wp-caption-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    margin-top: -41px;
+    width: 279px;
+    padding: 10px;
+    position: absolute;
+} */
+
+#container #post ul {
+    margin-left: 20px;
+    list-style-type: circle;
+}
+
+#container #post ol {
+    margin-left: 20px;
+    list-style: decimal;
+}
+
 #container #post #wrapper-bottom {
     background: url(../imgs/wrapper-bottom.png) -9px no-repeat;
     height: 62px;
