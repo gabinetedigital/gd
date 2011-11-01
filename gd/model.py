@@ -30,10 +30,25 @@ from elixir import using_options, setup_all, metadata, session
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
     Boolean, Integer, Enum, ManyToOne, OneToMany
 from flask import url_for, abort
+from flaskext.uploads import UploadConfiguration, UploadSet, IMAGES
 
 from gd import conf
 from gd.buzz import sio
 from gd.utils import phpass
+
+
+def _configuploadset(name, constraint):
+    uset = UploadSet(name, constraint)
+    uset._config = UploadConfiguration(
+        conf.UPLOADS_DEFAULT_DEST,
+        conf.UPLOADED_FILES_URL,
+    )
+    return uset
+
+
+class Upload(object):
+    imageset = _configuploadset('images', IMAGES)
+
 
 class Term(Entity):
     """Mapper for the `term' entity
@@ -249,7 +264,8 @@ class User(Entity):
     @property
     def avatar_url(self):
         """Returns the avatar image of this user or the default one"""
-        return self.get_meta('avatar') or \
+        fname = self.get_meta('avatar')
+        return fname and Upload.imageset.url(fname) or \
             url_for('static', filename='imgs/avatar.png')
 
     @property
