@@ -116,6 +116,12 @@ Link:       http://pypi.python.org/packages/source/F/Flask-WTF/Flask-WTF-0.5.2.t
 Install:    python setup.py install
 
 
+Lib:        flask-uploads
+Version:    0.1.3
+Link:       http://pypi.python.org/packages/source/F/Flask-Uploads/Flask-Uploads-0.1.3.tar.gz
+Install:    python setup.py install
+
+
 Lib:        oauth2
 Version:    1.5.170
 Link:       http://pypi.python.org/packages/source/o/oauth2/oauth2-1.5.170.tar.gz
