@@ -18,29 +18,16 @@
  */
 
 $(function() {
-    // Toggles the buzz filter status to on/off.
-    //
-    // Control var that holds the state of the filter button. Set it to
-    // true to show moderated buzz and false for the public messages.
-    var filterState = false;
-    $('a.filter').click(function() {
-        var url = CURRENT_URL + (
-            filterState ? '/moderated_buzz' : '/public_buzz');
-        filterState = !filterState;
-        if (filterState) {
-            $(this).addClass('off');
-        } else {
-            $(this).removeClass('off');
-        }
-        $.getJSON(url, function (data) {
-            var $root = $('#buzz');
-            $root.html('');
-            $(data).each(function (index, item) {
-                $(tmpl('buzzTemplate', item)).appendTo($root);
-            });
-            $root.jScrollPane({showArrows: true});
+    var moderatedBuzz = $("#buzz-moderated")
+    var publicBuzz = $("#buzz-public");
+
+    $("a.filter").click(
+        function() {
+            $(this).toggleClass('off');
+            moderatedBuzz.toggle();
+            publicBuzz.toggle();
+
         });
-    });
 
     /** Shows a tooltip of an element with manual control of show/hide
      *  operations */
@@ -138,20 +125,15 @@ $(function() {
 
     // Starts a new instance of the buzz stream
 
-    function updateBuzz(msg, show) {
-        if (show) {
-            var $el = $(tmpl("buzzTemplate", msg));
-            $('#buzz').prepend($el);
-        }
-    }
-
     new Buzz(SIO_BASE, {
         new_buzz: function (msg) {
-            updateBuzz(msg, filterState);
+            var $el = $(tmpl("buzzTemplate", msg));
+            $('#buzz-public').prepend($el);
         },
 
         buzz_accepted: function (msg) {
-            updateBuzz(msg, !filterState);
+            var $el = $(tmpl("buzzTemplate", msg));
+            $('#buzz-moderated').prepend($el);
         },
 
         buzz_published: function (msg) {

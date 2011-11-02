@@ -115,7 +115,22 @@
     <div class="col4">
       <a class="filter" href="javascript:;"
          title="Alternar a exibição de mensagens moderadas">filtro</a>
-      <ul id="buzz">
+      <ul id="buzz-public" class="buzz" style="display:none">
+        {% for buzz in audience.get_public_buzz() %}
+        <li>
+          <ul class="stream">
+            <li class="avatar">
+              <img src="{{ buzz.avatar }}">
+            </li>
+            <li class="author">
+              @{{ buzz.owner_nick }} <em>| {{ buzz.type_.name }}</em>
+            </li>
+            <li class="answer">{{ buzz.content|safe }}</li>
+          </ul>
+        </li>
+        {% endfor %}
+      </ul>
+      <ul id="buzz-moderated" class="buzz">
         {% for buzz in audience.get_moderated_buzz() %}
         <li>
           <ul class="stream">

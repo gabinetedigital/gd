@@ -187,7 +187,7 @@
     background: url(../imgs/filter_off.png) no-repeat;
 }
 
-#container #buzz {
+#container .buzz {
     margin-top: 80px;
     margin-left: 13px;
     height: 460px;
@@ -195,29 +195,29 @@
     overflow-y: scroll;
 }
 
-#container #buzz .stream {
+#container .buzz .stream {
     width: 285px;
     background: url(../imgs/line.png) no-repeat bottom;
     padding-bottom: 23px;
     margin-bottom: 10px;
 }
 
-#container #buzz  .stream img {
+#container .buzz  .stream img {
     float: left;
     margin-right: 10px;
 }
 
-#container #buzz  .stream .author {
+#container .buzz  .stream .author {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-#container #buzz  .stream .author em {
+#container .buzz  .stream .author em {
     font-style:normal;
     color:#999;
 }
 
-#container #buzz  .stream a {
+#container .buzz  .stream a {
     color: #668000;
 }
 
