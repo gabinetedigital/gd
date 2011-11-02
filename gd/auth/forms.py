@@ -126,7 +126,7 @@ class SignupForm(BaseDataForm, BasePasswordForm):
 
     def validate_email_confirmation(self, field):
         """Compound validation between email and its confirmation"""
-        if field.data != form.email.data:
+        if field.data != self.email.data:
             raise ValidationError(
                 _(u'Email does not match its confirmation'))
 
