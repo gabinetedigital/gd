@@ -3,9 +3,6 @@
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
 
-<!-- styles needed by jScrollPane -->
-<link rel="stylesheet"  href="{{ url_for('.static', filename='css/jquery.jscrollpane.css') }}"/>
-
 {% endblock %}
 
 {% block javascript %}
@@ -14,20 +11,6 @@
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
-
-<!-- the mousewheel plugin - optional to provide mousewheel support -->
-<script src="{{ url_for('.static', filename='js/jquery.mousewheel.js') }}"></script>
-
-<!-- the jScrollPane script -->
-<script src="{{ url_for('.static', filename='js/jquery.jscrollpane.min.js') }}"></script>
-
-<script>
-$(function()
-{
-	$('#buzz').jScrollPane({showArrows: true});
-});
-</script>
-
 {% endblock %}
 
 {% block content %}
