@@ -1,0 +1,104 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+}
+
+
+* {
+    border: 0 none;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans';
+}
+
+body {
+    background: url(../imgs/bg2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.col7 h1 {
+    background: url(../imgs/logo_govpergunta.png) no-repeat;
+    width: 222px;
+    height: 87px;
+    text-indent: -9999px;
+    overflow: hidden;
+    margin-top: 5%;
+}
+
+.col7 #info {
+    margin-left: 115px;
+    margin-top: 7%;
+}
+
+.col7 h3 {
+    color: #FFF;
+    background: #A40000;
+    padding: 10px;
+    font-size: 40px;
+    width: 411px;
+}
+
+.col7 h4 {
+    color: #FFF;
+    background: #A40000;
+    padding: 10px;
+    font-size: 30px;
+    width: 306px;
+    margin-left: 74px;
+}
+
+.col7 p {
+    color: #FFF;
+    text-shadow: 1px 1px 0 #101010;
+    margin-top: 6%;
+    background-color: rgba(0,0,0,0.6);
+    padding: 10px;
+    text-align: justify;
+    font-size: 14px;
+    
+}   
+
+.col7 h5 {
+    text-shadow: 1px 1px 0 #101010;
+    color: #FFF;
+    font-size: 15px;
+    margin-top: 10%;
+    margin-bottom: 10px;
+}
+
+.col7 ul li {
+    float: left;
+    margin-right: 10px;
+}
+
+.col5 a {
+    text-shadow: 1px 1px 0 #101010;
+    color: #FFF;
+    font-size: 14px;
+    margin-top: 10%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    float: right;
+}
+
+.col5 #streaming {
+    float: right;
+    width: 390px;
+    height: 230px;
+    margin-bottom: 40%;
+}
+
+.col5 h1 {
+    background: url(../imgs/logo_gd.png) no-repeat;
+    width: 324px;
+    height: 147px;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+

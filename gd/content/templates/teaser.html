@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org">
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Gabinete Digital - Governador Pergunta</title>
+  <meta name="viewport" content="width=1024">
+  <link rel="stylesheet" href="css/978.css" type="text/css">
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <script type="text/javascript" src="js/jquery.js"></script>
+<script>
+                $(function() {   
+                
+                        var theWindow        = $(window),
+                            $bg              = $("#bg"),
+                            aspectRatio      = $bg.width() / $bg.height();
+                                                                
+                        function resizeBg() {
+                                
+                                if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
+                                    $bg
+                                        .removeClass()
+                                        .addClass('bgheight');
+                                } else {
+                                    $bg
+                                        .removeClass()
+                                        .addClass('bgwidth');
+                                }
+                                                        
+                        }
+                                                                
+                        theWindow.resize(function() {
+                                resizeBg();
+                        }).trigger("resize");
+                
+                });
+        </script>
+
+</head>
+
+<body>
+  <div class="layout-978" id="container">
+    <div class="row">
+      <div class="col7">
+        <h1>Governador Pergunta</h1>
+
+        <div id="info">
+            <h3>Dia 9 de Novembro</h3>
+            <h4>10h - Memorial RS</h4>
+        </div>
+    
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Maecenas purus nunc, fermentum eu porta et, sodales eu
+        velit. Fusce ut neque quis turpis vulputate dapibus sit
+        amet vitae tellus. Suspendisse tristique aliquam lacus, in
+        tristique est mattis eu. Duis odio ipsum, commodo non
+        pulvinar vitae, ornare sit amet nulla. Pellentesque
+        fermentum dui gravida nulla auctor vel luctus urna
+        pellentesque. Quisque ut nunc mauris. Nam convallis erat ut
+        mauris. Phasellus aliquet tincidunt placerat.</p>
+
+
+        <h5>Acompanhe, siga, participe</h5>
+        <ul>
+            <li><img src="imgs/feed48.png"></li>
+            <li><img src="imgs/identica48.png"></li>
+            <li><img src="imgs/facebook48.png"></li>
+            <li><img src="imgs/twitter48.png"></li>
+        </ul>
+      </div>
+
+      <div class="col5">
+        <a href="#">Acessar site antigo</a>
+        <div id="streaming">
+          <iframe src=
+          "http://labs.gabinetedigital.rs.gov.br/video/20/embed/"
+          frameborder="0" scrolling="no" height="230" width="390"></iframe>
+        </div>
+        <h1>Gabinete Digital</h1>
+      </div>
+
+      <div class="row-end">
+        &nbsp;
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
