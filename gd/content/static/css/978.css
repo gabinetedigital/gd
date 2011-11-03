@@ -31,7 +31,7 @@ div.layout-978 { width: 978px; margin: 0px auto; }
 div.row { height: 1%; }
 div.row-end { clear: both; font: 1px/1px sans-serif; height: 1px; overflow: hidden; }
 
-div.col1, div.col2, div.col3, div.col4, div.col5, div.col6, div.col7, div.col8, div.col9, div.col10, div.col11, div.col12 { float: left; margin-left: 0px; }
+div.col1, div.col2, div.col3, div.col4, div.col5, div.col6, div.col7, div.col8, div.col9, div.col10, div.col11, div.col12 { float: left; margin-left: 30px; }
 div.col1:first-child, div.col2:first-child, div.col3:first-child, div.col4:first-child, div.col5:first-child, div.col6:first-child, div.col7:first-child, div.col8:first-child, div.col9:first-child, div.col10:first-child, div.col11:first-child, div.col12:first-child { margin-left: 0px; }
 div.col1 { width: 54px; }
 div.col2 { width: 138px; }
