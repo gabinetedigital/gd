@@ -20,8 +20,6 @@ interface and our system.
 """
 
 from xmlrpclib import Server
-from datetime import datetime
-
 from flask import url_for
 from gd import conf
 

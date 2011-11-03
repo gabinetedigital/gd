@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gd import conf
 from gd.utils import phpass, _
 from gd.auth import choices, authenticated_user
 from gd.model import Upload
