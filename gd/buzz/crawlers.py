@@ -24,8 +24,7 @@ from time import sleep
 from json import loads
 from tweetstream import FilterStream, ConnectionError
 
-from gd.model import Buzz, BuzzType, get_or_create
-
+from gd.model import Buzz, BuzzType, get_or_create, conf
 USER_API_URL = 'http://api.twitter.com/1/users/show.json?screen_name=%s'
 
 class Twitter(object):
@@ -59,24 +58,29 @@ class Twitter(object):
         print 'processing %s, %s' % (self.profileids, self.hashtags)
         try:
             stream = FilterStream(
-                'blah220214', 'blah220214blah220214blah220214',
+                conf.TWITTER_STREAM_USERNAME,
+                conf.TWITTER_STREAM_PASSWORD,
                 follow=self.profileids, track=self.hashtags)
+
+            for tweet in stream:
+                # We're creating a new entry in our buzz entity for each
+                # tweet received. We are also setting this buzz as a
+                # twitter one and yielding it to the caller that will be
+                # the responsible for saving it in the database.
+                if tweet.has_key('user'):
+                    type_ = get_or_create(BuzzType, name=u'twitter')[0]
+                    buzz = Buzz(
+                        owner_nick=tweet['user']['screen_name'],
+                        owner_avatar=tweet['user']['profile_image_url'],
+                        content=tweet['text'],
+                        type_=type_)
+                    yield buzz
+
         except ConnectionError:
             # Something got screwed, let's try some seconds late.
             # FIXME: We really should limit the number of tries here and
             # warning the sysadmin that something is wrong.
+            print 'Crawler::ConnectionError trying again soon...'
             sleep(3)
             self.process()
 
-        for tweet in stream:
-            # We're creating a new entry in our buzz entity for each
-            # tweet received. We are also setting this buzz as a twitter
-            # one and yielding it to the caller that will be the
-            # responsible for saving it in the database.
-            type_ = get_or_create(BuzzType, name=u'twitter')[0]
-            buzz = Buzz(
-                owner_nick=tweet['user']['screen_name'],
-                owner_avatar=tweet['user']['profile_image_url'],
-                content=tweet['text'],
-                type_=type_)
-            yield buzz

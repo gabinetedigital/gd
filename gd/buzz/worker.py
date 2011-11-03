@@ -21,7 +21,60 @@ crawlers in separated processes.
 """
 
 from multiprocessing import Process
-from gd.model import Audience, session
+from gd.model import Audience, session, set_mayor_last_tweet
+
+# shitty mess'up class ahead
+from urllib import urlopen
+from time import sleep
+from json import loads
+from tweetstream import FilterStream, ConnectionError
+from gd import conf
+
+TWITTER_JSON_TIMELINE_URL = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%s"
+
+class MayorWatcher(Process):
+    def __init__(self):
+        self.alive = False
+        Process.__init__(self)
+
+    def start(self):
+        """Sets the internal alive flag to true and starts the proccess.
+        """
+        self.alive = True
+        super(MayorWatcher, self).start()
+
+    def stop(self):
+        """Sets the internal alive flag to false.
+        """
+        self.alive = False
+
+    def run(self):
+        """Starts a social network crawler
+        """
+        self.process()
+
+    def save_current(self):
+
+        json = urlopen(
+            TWITTER_JSON_TIMELINE_URL %
+            conf.TWITTER_MAYOR_USERNAME).read()
+
+        tweet_text = loads(json)[0]['text']
+        set_mayor_last_tweet(tweet_text)
+
+    def process(self):
+        """this is supposed to update the last micro-post/status from a
+        twitter account so it appears on the front-page of the site.
+        Therefore, we don't really need real-time feedback"""
+        while self.alive:
+            try:
+                self.save_current()
+                sleep(60)
+            except KeyboardInterrupt:
+                self.alive = False
+            except:
+                print 'uops...something wrong. trying again soon...'
+                self.process()
 
 
 class Worker(Process):

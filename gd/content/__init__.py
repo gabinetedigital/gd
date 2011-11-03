@@ -33,6 +33,7 @@ from gd.auth.webapp import auth
 from gd.buzz.webapp import buzz
 from gd.buzz.facebookapp import fbapp
 from gd.govpergunta import govpergunta
+from gd.model import get_mayor_last_tweet
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')
@@ -93,7 +94,8 @@ def index():
         thumbsizes=['newsbox', 'widenewsbox'])
     return render_template(
         'index.html', wp=wordpress,
-        slideshow=slideshow, news=news)
+        slideshow=slideshow, news=news,
+        last_tweet=get_mayor_last_tweet())
 
 
 @app.route('/post/<int:pid>')

@@ -40,7 +40,7 @@ import zmq
 from json import loads
 
 from gd.model import Audience
-from gd.buzz.worker import Worker
+from gd.buzz.worker import Worker, MayorWatcher
 from gd.buzz.crawlers import Twitter
 
 
@@ -59,7 +59,7 @@ class Server(object):
         # Workers that actually process audience instances. It's a
         # dictionary that each key is the ID of an audience and the
         # value of such a key is a list with workers.
-        self.workers = {}
+        self.audience_workers = {}
 
         # Zmq context
         self.context = zmq.Context()
@@ -79,14 +79,16 @@ class Server(object):
         # best place to run it.
         worker = Worker(aid, Twitter)
         worker.start()
+        self.add_audience_worker(worker, aid)
 
-        # Saving the just created worker on our workers list
-        # based on the audience id
-        workers = self.workers.get(aid)
+    def add_audience_worker(self, worker, aid):
+        """Saving the just created worker on our workers list
+        based on the audience id"""
+
+        workers = self.audience_workers.get(aid)
         if workers is None:
-            self.workers[aid] = []
-            self.workers[aid].append(worker)
-        
+            self.audience_workers[aid] = []
+            self.audience_workers[aid].append(worker)
 
     def get_initials(self):
         """Finds all visible audiences and add them to be watched
@@ -98,6 +100,13 @@ class Server(object):
             self.process_audience(i.id)
 
     def run(self):
+        self.init_general_watchers()
+        self.init_audience_watchers()
+
+    def init_general_watchers(self):
+        MayorWatcher().start()
+
+    def init_audience_watchers(self):
         """Waits for the `new_audience' message from the bus service
         and, when it comes, calls the `self.process_audience()' method
         for it.

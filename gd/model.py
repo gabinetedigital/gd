@@ -46,6 +46,27 @@ def _configuploadset(name, constraint):
     return uset
 
 
+
+class MayorTweet(Entity):
+    """Mapper for the `governor_last_tweet' entity
+    """
+    using_options(shortnames=True)
+    text = Field(Unicode(140))
+
+    @staticmethod
+    def save_tweet(text):
+        gt = MayorTweet.get_current()
+        if gt is None:
+            gt = MayorTweet()
+
+        # Making sure we'll not save anything but unicode text.
+        gt.text = unicode(text)
+        session.commit()
+
+    @staticmethod
+    def get_current():
+        return MayorTweet.query.get(1)
+
 class Upload(object):
     imageset = _configuploadset('images', IMAGES + ('',))
 
@@ -369,6 +390,12 @@ def get_or_404(model, **kwargs):
     except NoResultFound:
         abort(404)
 
+def set_mayor_last_tweet(data):
+    print 'Mayor tweet: %s' % data
+    MayorTweet.save_tweet(data)
+
+def get_mayor_last_tweet():
+    return MayorTweet.get_current().text
 
 # Database setup
 
