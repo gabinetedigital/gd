@@ -152,11 +152,8 @@
     -moz-box-shadow: -3px 3px 4px #CCC;
     -webkit-box-shadow: -3px 3px 4px #CCC;
     box-shadow: -3px 3px 4px #CCC;
-    /* For IE 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=225, Color='#CCC')";
-    /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=225, Color='#CCC');
 }
+
 #container #sidebar #lasttweet .tweet {
     padding: 15px 10px 11px 11px;
     background-color: #55ddff;
@@ -193,10 +190,6 @@
      -moz-box-shadow: 3px 3px 4px #CCC;
     -webkit-box-shadow: 3px 3px 4px #CCC;
     box-shadow: 3px 3px 4px #CCC;
-    /* For IE 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#CCC')";
-    /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#CCC');
 }
 
 #container #sidebar #picday p {
