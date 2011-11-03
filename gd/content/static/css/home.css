@@ -152,14 +152,16 @@
     -moz-box-shadow: -3px 3px 4px #CCC;
     -webkit-box-shadow: -3px 3px 4px #CCC;
     box-shadow: -3px 3px 4px #CCC;
+    border-radius: 30px 30px 30px 0px;
 }
 
 #container #sidebar #lasttweet .tweet {
-    padding: 15px 10px 11px 11px;
+    padding: 20px 12px 15px 14px;
     background-color: #55ddff;
     width: 281px;
     color: #FFF;
     font-size: 12px;
+    border-radius: 30px 30px 30px 0px;
 }
 
 #container #sidebar #lasttweet .tweet a {
