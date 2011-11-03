@@ -14,19 +14,32 @@
     {% block css %}{% endblock %}
   </head>
   <body>
+
     <div class="layout-978">
-      <div id="header" class="row">
-        <div class="col12">
+        
+        <div id="header" class="row">
+        
+        <div class="col3">
           <h1 class="title">
             <a title="Gabinete Digital - Democracia em Rede"
                href="{{ url_for('index') }}">
               Gabiente Digital - Democracia em Rede
             </a>
           </h1>
-
-          <div id="loginoverlay" class="overlay"><div class="contentWrap"></div></div>
-          <div id="signupoverlay" class="overlay"><div class="contentWrap"></div></div>
-          <ul class="login">
+        </div>
+        
+        <div class="col5">
+            <input type="text" value="procurar...">
+        </div>
+        
+        <div class="col4">
+            <div id="loginoverlay" class="overlay"><div class="contentWrap"></div></div>
+            <div id="signupoverlay" class="overlay"><div class="contentWrap"></div></div>
+            <ul class="main-menu">
+                <li><a href="">INÍCIO</a></li>
+                <li><a href="">SOBRE</a></li>
+            </ul>
+            <ul class="login">
             {% if user is not none %}
             <li class="avatar">
               <img src="{{ user.avatar_url }}" alt="User avatar">
@@ -43,38 +56,21 @@
             {% else %}
             <li>
               <a href="javascript:;" onclick="auth.showLoginForm()">
-                entrar
-              </a>
-            </li>
-            <li>|</li>
-            <li>
-              <a href="javascript:;" onclick="auth.showSignupForm()">
-                cadastre-se
+                ENTRAR
               </a>
             </li>
             {% endif %}
-          </ul>
-          <h4>Acompanhe, participe!</h4>
-          <ul id="social">
-            <li class="feed">feed</li>
-            <li class="twitter">twitter</li>
-            <li class="identica">identi.ca</li>
-            <li class="facebook">facebook</li>
-          </ul>
-          <div id="menu">
-            <ul class="main-menu">
-              <li>
-                <a href="{{ url_for('index') }}">inicio</a>
-              </li>
-              <li>
-                <a href="#">sobre</a>
-              </li>
             </ul>
-          </div>
+    
+            <ul id="social">
+                <li class="feed">feed</li>
+                <li class="twitter">twitter</li>
+                <li class="identica">identi.ca</li>
+                <li class="facebook">facebook</li>
+            </ul>
         </div>
         <div class="row-end"></div>
       </div>
-
       {% block content %}{% endblock %}
 
       <div id="footer" class="row">

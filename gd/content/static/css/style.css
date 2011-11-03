@@ -43,38 +43,61 @@ a:hover {
 
 /** Headers **/
 
-.layout-978 {
-    background: url(../imgs/header.png) no-repeat;
-}
-
 #header {
-    height: 200px;
+    height: 117px;
+    background-color: #232324;
 }
 
 #header h1.title a {
     background: url("../imgs/logo.png") no-repeat;
     display: block;
-    width: 213px;
-    height: 97px;
+    width: 200px;
+    height: 91px;
     text-indent: -9999px;
     overflow: hidden;
-    margin-top: 39px;
-    margin-left: 54px;
-    position: absolute;
+    margin-top: 12px;
+    margin-left: 24px;
+}
+
+#header .col5 {
+    text-align: center;
+}
+
+#header .col5 input {
+    border: 2px solid #2e3436;
+    background-color: #232324;
+    color: #babdb6;
+    border-radius: 6px;
+    padding: 5px;
+    margin-top: 50px;
+}
+
+#header .col4 {
+    margin-top: 12px;
+}
+
+#header .login li, #header .main-menu li {
+    float: left;
+    margin-right: 20px;
+}
+
+
+#header .login li a , #header .main-menu li a  {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-shadow: 1px 1px #555753;
 }
 
 #header .login {
-    float: right;
-    margin-top: 30px;
-    margin-right: 54px;
-    font-size: 13px;
-    width:250px;
-    text-align:right;
-    color:#668000;
+    margin-left: 150px;
 }
 
-#header .login li {
-    display: inline;
+#header #social {
+    display: block;
+    clear: both;
+    margin-top: 57px;
+    margin-left: 57px;
 }
 
 #header .login li.avatar {
@@ -93,23 +116,11 @@ a:hover {
     width: 32px;
     height: 32px;
     margin-left: 6px;
-    margin-top: 7px;
     overflow: hidden;
-    text-indent: -9999px;
+    text-indent: 9999px;
     margin-bottom: 16px;
 }
 
-#header   h4 {
-    text-align: right;
-    margin-top: 84px;
-    margin-right: 54px;
-    color:#808080;
-}
-
-#header   #social {
-    float: right;
-    margin-right: 54px;
-}
 
 #header  #social .feed {
     background: url(../imgs/feed.png) no-repeat;
@@ -127,29 +138,8 @@ a:hover {
     background: url(../imgs/facebook.png) no-repeat;
 }
 
-#header #menu {
-    background: url("../imgs/menu.png") repeat scroll 0 0 transparent;
-    height: 37px;
-    line-height: 38px;
-    margin: 66px 54px 0 54px;
-    border-radius: 8px;
-}
-#header #menu li {
-    display: inline;
-    font-size: 14px;
-    padding-left: 17px;
-}
-#header #menu li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
 
 /** Container **/
-
-#container {
-    background: url(../imgs/bg.png) repeat-y;
-}
 
 /** Extras **/
 .tooltip {
