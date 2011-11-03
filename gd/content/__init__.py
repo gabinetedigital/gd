@@ -72,6 +72,12 @@ def extend_context():
     return context
 
 
+@app.route('/teaser')
+def teaser():
+    """Renders the teaser template"""
+    return render_template('teaser.html')
+
+
 @app.route('/')
 def index():
     """Renders the index template"""

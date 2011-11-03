@@ -9,8 +9,10 @@
 
   <title>Gabinete Digital - Governador Pergunta</title>
   <meta name="viewport" content="width=1024">
-  <link rel="stylesheet" href="css/978.css" type="text/css">
-  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/978.css') }}"
+        type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/teaser.css') }}"
+        type="text/css">
   <script type="text/javascript" src="js/jquery.js"></script>
 <script>
                 $(function() {   
@@ -66,10 +68,10 @@
 
         <h5>Acompanhe, siga, participe</h5>
         <ul>
-            <li><img src="imgs/feed48.png"></li>
-            <li><img src="imgs/identica48.png"></li>
-            <li><img src="imgs/facebook48.png"></li>
-            <li><img src="imgs/twitter48.png"></li>
+            <li><img src="{{ url_for('.static', filename='imgs/feed48.png') }}"></li>
+            <li><img src="{{ url_for('.static', filename='imgs/identica48.png') }}"></li>
+            <li><img src="{{ url_for('.static', filename='imgs/facebook48.png') }}"></li>
+            <li><img src="{{ url_for('.static', filename='imgs/twitter48.png') }}"></li>
         </ul>
       </div>
 
