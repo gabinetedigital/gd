@@ -70,29 +70,52 @@
 }
 
 #container #menu {
-    background: url(../imgs/participe.png) no-repeat;
     text-align: center;
     margin-top: -14px;
     height: 69px;
 }
-    
+
 #container #menu ul {
-    padding-top: 19px;
+    width:665px;
+    margin:0 auto;
 }
 
 #container #menu li {
-    display: inline;
-    margin: 44px;
+    display:block;
+    float:left;
 }
 
 #container #menu .basic a {
     color: #FFF;
     font-size: 24px;
+    display:block;
+    float:left;
+    padding:12px 75px;
+    margin-top:12px;
+    width:80px;
+}
+
+#container #menu .basic.first a {
+    background:url(../imgs/participe_corner1.png) no-repeat bottom right #ff2a2a;;
+}
+
+#container #menu .basic.last a {
+    margin-left:-20px;
+    background:url(../imgs/participe_corner2.png) no-repeat bottom left #ff2a2a;;
+}
+
+#container #menu .basic a:hover {
+    background-color:yellow;
 }
 
 #container #menu .special a {
     color: #FFF;
     font-size: 28px;
+    background:#d40000;
+    padding:12px 65px;
+    margin-left:-20px;
+    position:relative;
+    top:10px;
 }
 
 #container #news {
