@@ -3,6 +3,13 @@
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/blog.css') }}">
 {% endblock %}
+{% block slideshow %}
+      <div class="row">
+            <div id="slideshow" class="col12">
+            </div>
+      <div class="row-end"></div>
+  </div>
+{% endblock %}
 
 {% block content %}
 <div id="container">
@@ -28,19 +35,7 @@
       <div id="wordpress-sidebar-1">
         {{ sidebar|safe }}
       </div>
-      <div id="recent-topics">
-        <h3>Tópicos Recentes</h3>
-        <ol>
-          {% for p in recent_posts %}
-            <li class="{{ loop.cycle('dark', 'light')}}">
-                <a href="/post/{{p.id}}">{{ p.title|safe }}</a>
-            </li>
-          {% endfor %}
-        </ol>
-      </div>
-
       <div id="tag-cloud">
-        <h3>Tags</h3>
         <ul>
           {% for t in tags %}
           <li>

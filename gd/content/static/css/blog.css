@@ -5,6 +5,11 @@
   src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
 }
 
+#header #slideshow {
+    height: 26px;
+    background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
+}
+
 #container #post {
     margin-top: 20px;
     background:white;
@@ -71,7 +76,8 @@
 }
 
 #container #sidebar {
-    margin-top: 20px;
+    margin-top: 60px;
+    margin-bottom: 20px;
     font-family: 'Open Sans';
 }
 
@@ -93,7 +99,7 @@
 }
 
 #container #sidebar #tag-cloud {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 #container #sidebar #tag-cloud li {
