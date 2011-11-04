@@ -15,10 +15,9 @@
   </head>
   <body>
 
+    <div id="header-wrapper"> 
     <div class="layout-978">
-        
         <div id="header" class="row">
-        
         <div class="col3">
           <h1 class="title">
             <a title="Gabinete Digital - Democracia em Rede"
@@ -70,9 +69,66 @@
             </ul>
         </div>
         <div class="row-end"></div>
-      </div>
-      {% block content %}{% endblock %}
+      <div class="row">  
+            <div id="slideshow" class="col12">
+              <ul class="carousel">
+                {% for iter in slideshow %}
+                {% set post = wp.wrap_post(iter) %}
+                <li>
+                  {% if post.thumbs %}
+                  <a href="{{ post.permalink }}">
+                  <img
+                   src="{{ post.thumbs.slideshow.url }}"
+                   alt="{{ post.title }}"
+                   width="{{ post.thumbs.slideshow.width }}"
+                   height="{{ post.thumbs.slideshow.height }}">
+                  </a>
+                {% endif %}
+              <h2 class="title">
+                <a href="{{ post.permalink }}">
+                  {{ post.title }}
+                </a>
+              </h2>
+              <div class="excerpt">
+                <a href="{{ post.permalink }}">
+                  {{ post.excerpt|safe }}
+                </a>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+          {% if slideshow.__len__() > 1 %}
+              <ol class="controls">
+                {% for i in slideshow %}
+                <li>
+              <a href="#{{ loop.index }}">•</a>
+            </li>
+            {% endfor %}
+          </ol>
+          {% endif %}
+        </div>
+      <div class="row-end"></div>
+  </div>
 
+<div class="row">
+ <div id="menu" class="col12">
+        <ul>
+            <li class="basic first"><a href="">Notícias</a></li>
+            <li class="special"><a href="">Participe</a></li>
+            <li class="basic last"><a href="">Galeria</a></li>
+        </ul>
+  </div>
+  <div class="row-end"></div> 
+</div>
+      </div>
+    </div>
+    </div>
+    <div class="layout-978">
+      {% block content %}{% endblock %}
+    </div>
+    <div id="footer-wrapper">
+      
+      <div class="layout-978">
       <div id="footer" class="row">
         <div id="photogallery">
           <h3>Galeria de fotos</h3>
@@ -137,7 +193,8 @@
 
         </div>
     </div>
-
+    </div>
+    </div>
     <script type="text/html" id="loggedinTemplate">
       <li class="avatar">
         <img src="<%= obj.avatar_url %>" alt="User avatar">

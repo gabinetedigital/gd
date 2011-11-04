@@ -51,8 +51,12 @@ a:hover {
 
 /** Headers **/
 
+#header-wrapper {
+    background-color: #232324;
+}
+
 #header {
-    height: 117px;
+    height: 118px;
     background-color: #232324;
 }
 
@@ -232,10 +236,16 @@ a:hover {
 
 /** Footer **/
 
+#footer-wrapper {
+    background-color: #555753;
+    border-top: 4px solid #4e9a06;
+}
+
 #footer {
     background: #555753;
     color: #d3d7cf;
     padding-bottom: 20px;
+        
 }
 
 #footer h3 {

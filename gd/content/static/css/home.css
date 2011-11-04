@@ -5,45 +5,42 @@
   src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
 }
 
-/** Container **/
-
-#container #slideshow {
+#header #slideshow {
     height: 233px;
     background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
     overflow:hidden;
 }
-
-#container #slideshow .jcarousel-container {
+#header #slideshow .jcarousel-container {
     padding:30px;
 }
 
-#container #slideshow li {
+#header #slideshow li {
     display:block;
     float:left;
     width:920px;
     margin-right:30px;
 }
 
-#container #slideshow img {
+#header #slideshow img {
     float:left;
     margin-right:30px;
 }
 
-#container #slideshow .title a {
+#header #slideshow .title a {
     color:#4e9a06;
 }
 
-#container #slideshow .excerpt {
+#header #slideshow .excerpt {
     margin-left:355px;
     padding:15px 30px 10px 30px;
     font-size:16px;
 }
 
-#container #slideshow .excerpt a {
+#header #slideshow .excerpt a {
     color:#2E3436
 }
 
-#container #slideshow .controls {
+#header #slideshow .controls {
     float:right;
     font-size:36px;
     position:relative;
@@ -51,72 +48,26 @@
     right:20px;
 }
 
-#container #slideshow .controls a {
+#header #slideshow .controls a {
     color:#babdb6;
 }
 
-#container #slideshow .controls a:hover {
+#header #slideshow .controls a:hover {
     text-decoration:none;
 }
 
-#container #slideshow .controls a.selected {
+#header #slideshow .controls a.selected {
     color:#2e3436;
 }
 
-#container #slideshow .controls li {
+#header #slideshow .controls li {
     display:block;
     width:15px;
     margin-right:0;
 }
+/** Container **/
 
-#container #menu {
-    text-align: center;
-    margin-top: -14px;
-    height: 69px;
-}
 
-#container #menu ul {
-    width:665px;
-    margin:0 auto;
-}
-
-#container #menu li {
-    display:block;
-    float:left;
-}
-
-#container #menu .basic a {
-    color: #FFF;
-    font-size: 24px;
-    display:block;
-    float:left;
-    padding:12px 75px;
-    margin-top:12px;
-    width:80px;
-}
-
-#container #menu .basic.first a {
-    background:url(../imgs/participe_corner1.png) no-repeat bottom right #ff2a2a;;
-}
-
-#container #menu .basic.last a {
-    margin-left:-20px;
-    background:url(../imgs/participe_corner2.png) no-repeat bottom left #ff2a2a;;
-}
-
-#container #menu .basic a:hover {
-    background-color:yellow;
-}
-
-#container #menu .special a {
-    color: #FFF;
-    font-size: 28px;
-    background:#d40000;
-    padding:12px 65px;
-    margin-left:-20px;
-    position:relative;
-    top:10px;
-}
 
 #container #news {
     padding-bottom: 25px;
