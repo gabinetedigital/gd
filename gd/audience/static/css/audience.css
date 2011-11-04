@@ -189,9 +189,9 @@
 
 #container .buzz {
     margin-top: 88px;
-    margin-left: 13px;
+    margin-left: -16px;
     height: 460px;
-    width: 273px;
+    width: 303px;
     overflow-y: scroll;
 }
 
@@ -242,7 +242,7 @@
     color: #FFF;
     margin-left: 228px;
     position: absolute;
-    margin-top: 7px;
+    margin-top: 67px;
     float: right;
 }
 
