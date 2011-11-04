@@ -13,6 +13,13 @@
           <h1>{{ post.title }}</h1>
           <div class="postcontent">
             {{ post.content|safe }}
+            {% for comment in comments %}
+                {{ comment.author|safe }} <br>
+                {{ comment.author_email|safe }} <br>
+                {{ comment.date_created_gmt|safe }} <br>
+                {{ comment.link|safe }} <br>
+                {{ comment.content|safe }} <br>
+            {% endfor %}
           </div>
       </div>
       <div id="wrapper-bottom"></div>

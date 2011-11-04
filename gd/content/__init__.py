@@ -108,4 +108,5 @@ def post(pid):
         'post.html',
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
+        comments=wordpress.getComments(post_id=pid),
         recent_posts=recent_posts)

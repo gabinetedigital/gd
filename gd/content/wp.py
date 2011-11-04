@@ -32,13 +32,14 @@ class Wordpress(object):
         self.user = user
         self.password = password
         self.server = Server(self.address)
+        self.remote_methods = self.server.system.listMethods()
 
     def wrap_post(self, data):
         """Wrapps a dictionary that contains data that represents a
         wordpress post into a python class with some helper methods"""
         return Post(data)
 
-    def wrap(self, method):
+    def wrap(self, attr, method):
         """Wrapper that decorates XMLRPC methods that needs the user,
         password and blog id to be passed before anything"""
         def wrapper(*args, **kwargs):
@@ -47,15 +48,33 @@ class Wordpress(object):
             # to the XMLRPC server and there they'll be expanded.  Maybe
             # it will change in the future, if I find any function that
             # doesn't fit this strategy
-            return method(self.user, self.password, kwargs, *args)
+            ret = method(0,self.user, self.password, kwargs, *args)
+            converter = 'convert_'+attr
+            if globals().has_key(converter):
+                return globals()[converter](ret)
+            else:
+                return ret
         return wrapper
+
+    def get_remote(self, attr):
+        try:
+            idx = self.remote_methods.index('wp.'+attr)
+        except:
+            idx = self.remote_methods.index('exapi.'+attr)
+        return getattr(self.server, self.remote_methods[idx])
 
     def __getattribute__(self, attr):
         try:
             return super(Wordpress, self).__getattribute__(attr)
         except AttributeError:
-            return self.wrap(getattr(self.server.exapi, attr))
+            return self.wrap(attr, self.get_remote(attr))
 
+def convert_getComments(comments):
+    for comment in comments:
+        link = url_for('post', pid=comment['post_id'])
+        link = link + "#comment-" + comment['comment_id']
+        comment['link'] = link
+    return comments
 
 class Post(object):
     """Wordpress post wrapper class
