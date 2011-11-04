@@ -69,47 +69,7 @@
             </ul>
         </div>
         <div class="row-end"></div>
-      <div class="row">  
-            <div id="slideshow" class="col12">
-              <ul class="carousel">
-                {% for iter in slideshow %}
-                {% set post = wp.wrap_post(iter) %}
-                <li>
-                  {% if post.thumbs %}
-                  <a href="{{ post.permalink }}">
-                  <img
-                   src="{{ post.thumbs.slideshow.url }}"
-                   alt="{{ post.title }}"
-                   width="{{ post.thumbs.slideshow.width }}"
-                   height="{{ post.thumbs.slideshow.height }}">
-                  </a>
-                {% endif %}
-              <h2 class="title">
-                <a href="{{ post.permalink }}">
-                  {{ post.title }}
-                </a>
-              </h2>
-              <div class="excerpt">
-                <a href="{{ post.permalink }}">
-                  {{ post.excerpt|safe }}
-                </a>
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
-          {% if slideshow.__len__() > 1 %}
-              <ol class="controls">
-                {% for i in slideshow %}
-                <li>
-              <a href="#{{ loop.index }}">•</a>
-            </li>
-            {% endfor %}
-          </ol>
-          {% endif %}
-        </div>
-      <div class="row-end"></div>
-  </div>
-
+      {% block slideshow %}{% endblock %}
 <div class="row">
  <div id="menu" class="col12">
         <ul>

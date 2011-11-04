@@ -9,6 +9,13 @@
 <script src="{{ url_for('.static', filename='js/jquery.jcarousel.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/about.js') }}"></script>
 {% endblock %}
+{% block slideshow %}
+      <div class="row">  
+            <div id="slideshow" class="col12">
+            </div>
+      <div class="row-end"></div>
+  </div>
+{% endblock %}
 
 {% block content %}
 <div id="container">
