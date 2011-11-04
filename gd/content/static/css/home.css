@@ -8,8 +8,8 @@
 /** Container **/
 
 #container #slideshow {
-    height: 278px;
-    background: url(../imgs/slideshow.png) -12px no-repeat;
+    height: 233px;
+    background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
     overflow:hidden;
 }
 
@@ -129,7 +129,7 @@
 #container #news .news h2 {
     color: #2e3436;
     font-size: 15pt;
-    font-family: 'Sansation';
+    font-family: 'Open Sans';
     font-weight: normal;
     margin-bottom: 8px;
 }
@@ -166,8 +166,9 @@
 #container #videogallery .video {
     background-color: #333;
     float: left;
-    margin-right: 30px;
-    padding: 17px;
+    margin-right: 21px;
+    padding: 14px;
+    border-radius: 8px;
 }
 
 #container #videogallery .video img {
