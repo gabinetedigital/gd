@@ -79,6 +79,12 @@ def teaser():
     return render_template('teaser.html')
 
 
+@app.route('/sobre')
+def sobre():
+    """Renders the teaser template"""
+    return render_template('about.html')
+
+
 @app.route('/')
 def index():
     """Renders the index template"""
