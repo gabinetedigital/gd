@@ -71,31 +71,29 @@
 }
 
 #container #sidebar {
-    margin-top:20px;
+    margin-top: 20px;
     font-family: 'Open Sans';
 }
 
 #container #sidebar h3 {
-    font-size: 22px;
+    font-size: 16px;
     font-weight: normal;
-    color: #2e3436;
+    color: #4e9a06;
 }
 
 #container #sidebar #recent-topics li {
     margin: 10px;
     font-size: 14px;
+    border-bottom: 1px dotted #babdb6;
+    padding-bottom: 6px;
 }
 
-#container #sidebar #recent-topics .dark a, a:visited, a:hover {
-    color: #555753;
-}
-
-#container #sidebar #recent-topics .light a, a:visited, a:hover {
-    color: #888a85;
+#container #sidebar #recent-topics a, a:visited, a:hover {
+    color: #2e3436;
 }
 
 #container #sidebar #tag-cloud {
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #container #sidebar #tag-cloud li {
