@@ -1,0 +1,213 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+}
+
+/** Container **/
+
+#container #slideshow {
+    height: 233px;
+    background: url(../imgs/sobre.jpg) #4e9a06 center center no-repeat;
+    overflow:hidden;
+}
+
+#container #slideshow .jcarousel-container {
+    padding:30px;
+}
+
+#container #slideshow li {
+    display:block;
+    float:left;
+    width:920px;
+    margin-right:30px;
+}
+
+#container #slideshow img {
+    float:left;
+    margin-right:30px;
+}
+
+#container #slideshow .title a {
+    color:#4e9a06;
+}
+
+#container #slideshow .excerpt {
+    margin-left:355px;
+    padding:15px 30px 10px 30px;
+    font-size:16px;
+}
+
+#container #slideshow .excerpt a {
+    color:#2E3436
+}
+
+#container #slideshow .controls {
+    float:right;
+    font-size:36px;
+    position:relative;
+    top:-60px;
+    right:20px;
+}
+
+#container #slideshow .controls a {
+    color:#babdb6;
+}
+
+#container #slideshow .controls a:hover {
+    text-decoration:none;
+}
+
+#container #slideshow .controls a.selected {
+    color:#2e3436;
+}
+
+#container #slideshow .controls li {
+    display:block;
+    width:15px;
+    margin-right:0;
+}
+
+#container #menu {
+    background: url(../imgs/participe.png) no-repeat;
+    text-align: center;
+    margin-top: -14px;
+    height: 69px;
+}
+    
+#container #menu ul {
+    padding-top: 19px;
+}
+
+#container #menu li {
+    display: inline;
+    margin: 44px;
+}
+
+#container #menu .basic a {
+    color: #FFF;
+    font-size: 24px;
+}
+
+#container #menu .special a {
+    color: #FFF;
+    font-size: 28px;
+}
+
+#container #content {
+    padding-bottom: 25px;
+    -moz-box-shadow: 0px 0px 6px 1px #CCC;
+    -webkit-box-shadow: 0px 0px 6px 1px #CCC;
+    box-shadow: 0px 0px 6px 1px #CCC;
+    background-color: #FFF;
+}
+
+#container #page h2 a {
+    color: #2e3436;
+}
+
+#container #page a {
+    color: #808080;
+}
+
+#container #content #page {
+    color: #808080;
+    margin: 33px 50px 0px 21px;
+    font-size: 14px;
+}
+
+#container #content #page p {
+    margin-top: 10px;
+}
+
+#container #page .page li img {
+    float: left;
+    margin-right: 30px;
+}
+
+#container #page .page li img.wide {
+    float:none;
+}
+
+#container #page .page h2 {
+    color: #2e3436;
+    font-size: 15pt;
+    font-family: 'Open Sans';
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+#container #page .page li.title {
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    padding:5px;
+    position:relative;
+    margin-top:-48px;
+    width:590px;
+}
+
+#container #page .page .meta {
+    text-align: right;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #999;
+}
+
+#container #page .page .meta strong {
+    font-weight:normal;
+    color:#4e9a06;
+}
+
+
+#container #sidebar #contacts {
+    padding-bottom: 20px;
+    margin-top: 30px;
+}
+
+
+#container #sidebar #contacts .address {
+    padding: 20px 12px 15px 14px;
+    font-size: 13px;
+    color: #2e3436;
+}
+
+#container #sidebar #lasttweet .tweet a {
+    color: #006680;
+}
+
+#container #sidebar #contacts h3 {
+    color: #555753;
+    margin-top: 15px;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+#container #sidebar #picday {
+    margin-top: 30px;
+}
+
+#container #sidebar #picday h3 {
+    color: #c4a000;
+    font-family: 'Open Sans';
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+#container #sidebar #picday #picedge {
+    border: 1px solid #2e3436;
+    padding: 4px 4px;
+    width: 262px;
+    height: 171px;
+     -moz-box-shadow: 3px 3px 4px #CCC;
+    -webkit-box-shadow: 3px 3px 4px #CCC;
+    box-shadow: 3px 3px 4px #CCC;
+}
+
+#container #sidebar #picday p {
+    color: #555753;
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 8px;
+    width: 260px;
+}
