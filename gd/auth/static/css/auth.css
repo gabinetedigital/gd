@@ -16,6 +16,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pedit {
+    padding-bottom: 25px;
+    -moz-box-shadow: 0px 0px 6px 1px #CCC;
+    -webkit-box-shadow: 0px 0px 6px 1px #CCC;
+    box-shadow: 0px 0px 6px 1px #CCC;
+    background-color: #FFF;
+    color: #2e3436;
+}
+
+#pedit #content {
+    margin: 20px;
+}
+
+#pedit #content h2 {
+    border-right: 2px solid black;
+    padding-right: 16px;
+    float: left;
+}
+
+#pedit #content #tab {
+    display: block;
+    margin-bottom: 20px;
+    padding: 4px;
+}
+
+#pedit #content .tabs li {
+    margin-left: 14px;
+    display: inline;
+}
+
 #loginoverlay {
     width:345px;
 }
@@ -90,8 +120,13 @@ form.auth ul li {
 
 form.auth label {
     display:block;
-    color:#4e9a06;
     padding-top:8px;
+}
+
+form img {
+    float: left;
+    margin-right: 7px;
+    padding-top: 5px;
 }
 
 form.auth input, form.auth select {

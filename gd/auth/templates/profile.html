@@ -5,14 +5,19 @@
 {% endblock %}
 
 {% block content %}
-
+<div id="container">
+      <div class="row">
+<div id="pedit" class="col12">
+<div id="content">
 <h2>Editar perfil</h2>
 
 {% if not profile.social %}
+<div id="tab">
 <ul class="tabs">
   <li><a href="#">Geral</a></li>
   <li><a href="#">Alterar senha</a></li>
 </ul>
+</div>
 {% endif %}
 
 <div class="panes">
@@ -86,5 +91,9 @@
   {% endif %}
 
 </div>
-
+</div>
+</div>
+    <div class="row-end"></div>
+</div>
+</div>
 {% endblock %}
