@@ -34,11 +34,6 @@ class Wordpress(object):
         self.server = Server(self.address)
         self.remote_methods = self.server.system.listMethods()
 
-    def wrap_post(self, data):
-        """Wrapps a dictionary that contains data that represents a
-        wordpress post into a python class with some helper methods"""
-        return Post(data)
-
     def wrap(self, attr, method):
         """Wrapper that decorates XMLRPC methods that needs the user,
         password and blog id to be passed before anything"""
@@ -75,6 +70,12 @@ def convert_getComments(comments):
         link = link + "#comment-" + comment['comment_id']
         comment['link'] = link
     return comments
+
+def convert_getRecentPosts(posts):
+    ret = []
+    for post in posts:
+        ret.append(Post(post))
+    return ret
 
 class Post(object):
     """Wordpress post wrapper class
