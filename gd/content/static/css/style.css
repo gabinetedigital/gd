@@ -53,6 +53,7 @@ a:hover {
 
 #header-wrapper {
     background-color: #232324;
+    border-bottom: 4px solid #4e9a06;
 }
 
 #header {
@@ -67,21 +68,21 @@ a:hover {
     height: 91px;
     text-indent: -9999px;
     overflow: hidden;
-    margin-top: 12px;
+    margin-top: 2px;
     margin-left: 24px;
 }
 
-#header .col5 {
+#header #search {
     text-align: center;
 }
 
-#header .col5 input {
+#header #search input {
     border: 2px solid #2e3436;
     background-color: #232324;
     color: #babdb6;
     border-radius: 6px;
     padding: 5px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 #header .col4 {
@@ -166,6 +167,7 @@ a:hover {
     text-align: center;
     margin-top: -14px;
     height: 69px;
+    margin-bottom: 20px;
 }
 
 #header #menu ul {
