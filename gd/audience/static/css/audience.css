@@ -29,8 +29,8 @@
 }
 
 #container .buzzbg {
-    background:url(../imgs/buzz.png) no-repeat 615px 32px;
-    height:658px;
+    background:url(../imgs/buzz.png) no-repeat 612px 123px;
+    height: 742px;
 }
 
 #container #title .title {
@@ -172,7 +172,7 @@
 /** Buzz **/
 
 #container .filter {
-    margin-top: 50px;
+    margin-top: 56px;
     display: block;
     background: url(../imgs/filter.png) no-repeat;
     width: 23px;
@@ -180,7 +180,7 @@
     float: right;
     text-indent: -9999px;
     overflow: hidden;
-    margin-right: -17px;
+    margin-right: 16px;
 }
 
 #container .filter.off {
@@ -188,10 +188,10 @@
 }
 
 #container .buzz {
-    margin-top: 80px;
+    margin-top: 88px;
     margin-left: 13px;
     height: 460px;
-    width: 307px;
+    width: 273px;
     overflow-y: scroll;
 }
 
@@ -224,8 +224,8 @@
 #container #chat form textarea {
     border: 3px solid #999999;
     height: 70px;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin-left: -18px;
+    margin-top: 5px;
     width: 300px;
     position: absolute;
 }
@@ -240,9 +240,9 @@
     padding: 2px;
     background: #666;
     color: #FFF;
-    margin-left: 250px;
+    margin-left: 228px;
     position: absolute;
-    margin-top: 70px;
+    margin-top: 7px;
     float: right;
 }
 
