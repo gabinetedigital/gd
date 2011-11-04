@@ -3,20 +3,12 @@
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/blog.css') }}">
 {% endblock %}
-{% block slideshow %}
-      <div class="row">
-            <div id="slideshow" class="col12">
-            </div>
-      <div class="row-end"></div>
-  </div>
-{% endblock %}
 
 {% block content %}
 <div id="container">
   <div class="row">
     <div id="post" class="col8">
-      <div id="wrapper-top"></div>
-      <div id="wrapper">
+      <div id="news">
           <h1>{{ post.title }}</h1>
           <div class="postcontent">
             {{ post.content|safe }}
@@ -29,7 +21,6 @@
             {% endfor %}
           </div>
       </div>
-      <div id="wrapper-bottom"></div>
     </div>
     <div id="sidebar" class="col4">
       <div id="wordpress-sidebar-1">
