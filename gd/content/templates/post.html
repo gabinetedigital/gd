@@ -26,6 +26,9 @@
     </div>
 
     <div id="sidebar" class="col4">
+      <div id="wordpress-sidebar-1">
+        {{ sidebar|safe }}
+      </div>
       <div id="recent-topics">
         <h3>Tópicos Recentes</h3>
         <ol>
@@ -43,7 +46,7 @@
           {% for t in tags %}
           <li>
             <a
-               href="#{{ t.slug }}"
+               href="{{ url_for('tag', slug=t.slug) }}"
                style="font-size:{{ t.size }};">{{ t.name }}</a>
           </li>
           {% endfor %}

@@ -22,7 +22,7 @@ interface and our system.
 from xmlrpclib import Server
 from flask import url_for
 from gd import conf
-
+import re
 
 class Wordpress(object):
     """Wordpress XMLRPC client"""
@@ -76,6 +76,36 @@ def convert_getRecentPosts(posts):
     for post in posts:
         ret.append(Post(post))
     return ret
+
+def getPostsByCategory(posts):
+    ret = []
+    for post in posts:
+        ret.append(Post(post))
+    return ret
+
+def getPostsByTag(posts):
+    ret = []
+    for post in posts:
+        ret.append(Post(post))
+    return ret
+
+def convert_getMainSidebar(sidebar):
+    subs = {}
+    for href in re.findall('"http://.*?"', sidebar):
+        subs[href] = wp_link_to_flask(href)
+    for original,translated in subs.iteritems():
+        sidebar = sidebar.replace(original,translated)
+    return sidebar
+
+def wp_link_to_flask(href):
+    if href.find("cat=") <> -1:
+        cat = re.search('cat=(\d+)', href).group(1)
+        return url_for('category', id=cat)
+    elif href.find("tag=") <> -1:
+        tag = re.search('tag=(\w)', href).group(1)
+        return url_for('tag', tag=tag)
+    else:
+        return href
 
 class Post(object):
     """Wordpress post wrapper class

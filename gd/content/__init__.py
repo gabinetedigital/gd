@@ -98,6 +98,21 @@ def index():
         last_tweet=get_mayor_last_tweet())
 
 
+@app.route('/cat/<int:id>')
+@app.route('/cat/<int:id>/<int:page>')
+def category(id,page=0):
+    posts = wordpress.getPostsByCategory(cat=id,page=page)
+    return render_template(
+        'archive.html', posts=posts)
+
+@app.route('/tag/<string:slug>')
+@app.route('/tag/<string:slug>/<int:page>')
+def tag(slug,page=0):
+    posts = wordpress.getPostsByTag(tag=slug,page=page)
+    return render_template(
+        'archive.html', posts=posts)
+
+
 @app.route('/post/<int:pid>')
 def post(pid):
     """Renders the post template"""
@@ -108,5 +123,6 @@ def post(pid):
         'post.html',
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
+        sidebar=wordpress.getMainSidebar(),
         comments=wordpress.getComments(post_id=pid),
         recent_posts=recent_posts)
