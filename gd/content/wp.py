@@ -32,7 +32,6 @@ class Wordpress(object):
         self.user = user
         self.password = password
         self.server = Server(self.address)
-        self.remote_methods = self.server.system.listMethods()
 
     def wrap(self, attr, method):
         """Wrapper that decorates XMLRPC methods that needs the user,
@@ -51,18 +50,11 @@ class Wordpress(object):
                 return ret
         return wrapper
 
-    def get_remote(self, attr):
-        try:
-            idx = self.remote_methods.index('wp.'+attr)
-        except:
-            idx = self.remote_methods.index('exapi.'+attr)
-        return getattr(self.server, self.remote_methods[idx])
-
     def __getattribute__(self, attr):
         try:
             return super(Wordpress, self).__getattribute__(attr)
         except AttributeError:
-            return self.wrap(attr, self.get_remote(attr))
+            return self.wrap(attr, getattr(self.server, 'exapi.'+attr))
 
 def convert_getComments(comments):
     for comment in comments:
