@@ -147,6 +147,55 @@ a:hover {
 }
 
 
+#header #menu {
+    text-align: center;
+    margin-top: -14px;
+    height: 69px;
+}
+
+#header #menu ul {
+    width:665px;
+    margin:0 auto;
+}
+
+#header #menu li {
+    display:block;
+    float:left;
+}
+
+#header #menu .basic a {
+    color: #FFF;
+    font-size: 24px;
+    display:block;
+    float:left;
+    padding:12px 75px;
+    margin-top:12px;
+    width:80px;
+}
+
+#header #menu .basic.first a {
+    background:url(../imgs/participe_corner1.png) no-repeat bottom right #ff2a2a;;
+}
+
+#header #menu .basic.last a {
+    margin-left:-20px;
+    background:url(../imgs/participe_corner2.png) no-repeat bottom left #ff2a2a;;
+}
+
+#header #menu .basic a:hover {
+    background-color: #ff0000;
+}
+
+#header #menu .special a {
+    color: #FFF;
+    font-size: 28px;
+    background:#d40000;
+    padding:12px 65px;
+    margin-left:-20px;
+    position:relative;
+    top:10px;
+}
+
 /** Container **/
 
 /** Extras **/
