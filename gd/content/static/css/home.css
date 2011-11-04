@@ -142,7 +142,6 @@
     position:relative;
     margin-top:-48px;
     width:590px;
-    background:url(../imgs/newsbg.png) repeat-x;
 }
 
 #container #news .news .meta {
@@ -175,8 +174,8 @@
     margin-bottom: 10px;
 }
 
+
 #container #sidebar #lasttweet {
-    background: url(../imgs/bgtweet.png) no-repeat 282px bottom;
     padding-bottom: 20px;
     margin-top: 30px;
 }
@@ -214,7 +213,7 @@
 
 #container #sidebar #picday h3 {
     color: #c4a000;
-    font-family: Sansation;
+    font-family: 'Open Sans';
     font-size: 16px;
     margin-bottom: 10px;
 }
@@ -222,7 +221,7 @@
     border: 1px solid #2e3436;
     padding: 4px 4px;
     width: 262px;
-    height: 342px;
+    height: 171px;
      -moz-box-shadow: 3px 3px 4px #CCC;
     -webkit-box-shadow: 3px 3px 4px #CCC;
     box-shadow: 3px 3px 4px #CCC;
