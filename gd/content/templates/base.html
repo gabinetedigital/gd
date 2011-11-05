@@ -31,15 +31,16 @@
           {% set term = search_term if search_term else "procurar..." %}
           <input id="search_form" type="text" value="{{term}}">
         </div>
-        
-        <div class="col4">
-            <div id="user-space">
-            <div id="loginoverlay" class="overlay"><div class="contentWrap"></div></div>
-            <div id="signupoverlay" class="overlay"><div class="contentWrap"></div></div>
-            <ul class="main-menu">
+        <div class="col2">
+           <ul class="main-menu">
                 <li><a href="">INÍCIO</a></li>
                 <li><a href="">SOBRE</a></li>
             </ul>
+        </div>       
+        <div class="col2">
+            <div id="user-space">
+            <div id="loginoverlay" class="overlay"><div class="contentWrap"></div></div>
+            <div id="signupoverlay" class="overlay"><div class="contentWrap"></div></div>
             <ul class="login">
             {% if user is not none %}
             <li class="avatar">
