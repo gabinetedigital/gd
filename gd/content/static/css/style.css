@@ -81,61 +81,83 @@ a {
     margin-top: 40px;
 }
 
-#header .col4 {
-    margin-top: 12px;
-}
-
-#header .col4 #user-space {
-    float: right;
+#header .col4, #header .col2 {
+    margin-top: 10px;
 }
 
 #header .main-menu {
-    margin-left: -30px;
+    float: right;
 }
 
 #header .main-menu li {
     margin-left: 17px;
 }
 
-#header .login li, #header .main-menu li {
+#header .main-menu li {
     float: left;
 }
 
+#header .login { 
+    margin-bottom: 49px;
+    margin-left: 35px;
+}
 
-#header .login li a , #header .main-menu li a  {
+#header .login li a { 
+    color: #FFF;
+}
+
+#header .login li a:hover { 
+    color: #FFF;
+    text-decoration: underline;
+}
+
+#header .login li.welcome a , #header .main-menu li a  {
     color: white;
     font-weight: bold;
     font-size: 14px;
     text-shadow: 1px 1px #555753;
 }
 
-#header .login {
-    margin-left: 150px;
+#header .login li.avatar img {
+    float:right;
+    width:30px;
+}
+
+#header .login li.avatar {
+    color:#fff;
+}
+
+
+#header .login li.pipe, #header .login li.profile { 
+    float: left;
+    color: #FFF;
+    margin-right: 3px;
+}
+
+#header .login li.logout {
+    float: left;
+}
+
+#header .login li.welcome {
+    margin-left: -22px;
+}
+
+#header .login li.welcome a:hover {
+    text-decoration: none;
 }
 
 #header #social {
     display: block;
     clear: both;
-    margin-top: 57px;
-    margin-left: 57px;
-}
-
-#header .login li.avatar {
-    color:#333;
-}
-
-#header .login li.avatar img {
-    float:right;
-    margin-left:10px;
-    width:30px;
+    float: right;
 }
 
 #header #social li {
     float: left;
     display: block;
-    width: 32px;
-    height: 32px;
-    margin-left: 6px;
+    width: 27px;
+    height: 27px;
+    margin-right: 4px;
     overflow: hidden;
     text-indent: 9999px;
     margin-bottom: 16px;
