@@ -156,3 +156,13 @@ def new_comment():
             return redirect(url_for('post',
                                     pid=request.form['post_id'],
                                     error_msg=err.faultString))
+
+@app.route('/search/<string:s>')
+@app.route('/search/<string:s>/<int:page>')
+def search(s,page=0):
+    posts = wordpress.search(s=s)
+    return render_template(
+        'archive.html',
+        search_term=s,
+        posts=posts,
+        page=page)

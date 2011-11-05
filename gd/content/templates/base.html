@@ -28,7 +28,8 @@
         </div>
         
         <div class="col4" id="search">
-            <input type="text" value="procurar...">
+          {% set term = search_term if search_term else "procurar..." %}
+          <input id="search_form" type="text" value="{{term}}">
         </div>
         
         <div class="col4">
@@ -197,6 +198,27 @@
     <script src="{{ url_for('static', filename='js/template.js') }}"></script>
     <script src="{{ url_for('static', filename='js/urls.js') }}"></script>
     <script src="{{ url_for('auth.static', filename='js/auth.js') }}"></script>
+    <script>
+      $(function() {
+        var form = $("<form name='search'></form>");
+        var input = $("#search_form");
+
+        var current_term = "{{term}}";
+        input.focusin(function() {
+          current_term = $(this).val();
+          $(this).val("");
+        });
+        input.focusout(function() {
+          $(this).val(current_term);
+        });
+
+        form.submit(function() {
+          document.location = "{{ url_for('search',s='') }}"+input.val()
+          return false;
+        });
+        input.wrap(form)
+      });
+    </script>
     {% if 'signup' in request.values %}
     <script> $(function () { auth.showSignupForm(); }); </script>
     {% endif %}
