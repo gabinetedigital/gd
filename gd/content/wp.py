@@ -24,14 +24,14 @@ from flask import url_for
 from gd import conf
 import re
 
-class Wordpress(object):
-    """Wordpress XMLRPC client"""
-    def __init__(self, address, blogid, user, password):
-        self.blogid = blogid
-        self.address = address
-        self.user = user
-        self.password = password
-        self.server = Server(self.address)
+
+class Namespace(object):
+    """Abstracts an XMLRPC namespace available in wordpress"""
+    def __init__(self, name, conf):
+        self.name = name
+        self.conf = conf
+        self.server = Server(conf['address'])
+        print conf
 
     def wrap(self, attr, method):
         """Wrapper that decorates XMLRPC methods that needs the user,
@@ -42,7 +42,9 @@ class Wordpress(object):
             # to the XMLRPC server and there they'll be expanded.  Maybe
             # it will change in the future, if I find any function that
             # doesn't fit this strategy
-            ret = method(0, self.user, self.password, kwargs, *args)
+            ret = method(
+                self.conf['user'], self.conf['password'],
+                kwargs, *args)
             converter = 'convert_%s' % attr
             if converter in globals():
                 return globals()[converter](ret)
@@ -51,9 +53,34 @@ class Wordpress(object):
 
     def __getattribute__(self, attr):
         try:
+            return super(Namespace, self).__getattribute__(attr)
+        except AttributeError:
+            return self.wrap(
+                attr, getattr(self.server, '%s.%s' % (self.name, attr)))
+
+
+class Wordpress(object):
+    """Wordpress XMLRPC client"""
+    def __init__(self, address, blogid, user, password):
+        self.default_namespace = 'exapi'
+        self.known_namespaces = 'exapi', 'wpgd', 'wp'
+        self.conf = {
+            'address': address,
+            'user': user,
+            'password': password
+        }
+
+    def __getattribute__(self, attr):
+        try:
             return super(Wordpress, self).__getattribute__(attr)
         except AttributeError:
-            return self.wrap(attr, getattr(self.server, 'exapi.%s' % attr))
+            pass
+
+        if attr in self.known_namespaces:
+            return Namespace(attr, self.conf)
+
+        # Falling back to our default namespace
+        return getattr(Namespace(self.default_namespace, self.conf), attr)
 
 
 def convert_getComments(comments):
