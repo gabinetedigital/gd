@@ -95,6 +95,7 @@ def login_user_instance(user, password):
     # session and return its data (but the password, of course) to the
     # caller.
     session['username'] = user.username
+    session['password'] = password #we need this for RPC
     return user.public_dict()
 
 

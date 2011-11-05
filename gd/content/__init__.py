@@ -20,7 +20,8 @@
 implemented blueprints in various modules to this app.
 """
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, session, \
+     redirect, url_for
 
 from gd import conf
 from gd.auth import authenticated_user, NobodyHome
@@ -43,6 +44,8 @@ app.register_blueprint(fbauth, url_prefix='/auth/fb')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
+
+import xmlrpclib
 
 # Registering a secret key to be able to work with sessions
 app.secret_key = conf.SECRET_KEY
@@ -131,4 +134,25 @@ def post(pid):
         tags=wordpress.getTagCloud(),
         sidebar=wordpress.getMainSidebar(),
         comments=wordpress.getComments(post_id=pid),
+        error_msg=request.args.get('error_msg',''),
+        show_comment_form=session.has_key('username'),
         recent_posts=recent_posts)
+
+@app.route('/new_comment', methods=('POST',))
+def new_comment():
+    # "session.user_is_logged()" ?
+    if 'username' not in session:
+        redirect(url_for('post', pid=request.form['post_id']))
+    else:
+        try:
+            wordpress.newComment(
+                username=session['username'],
+                password=session['password'],
+                post_id=request.form['post_id'],
+                content=request.form['content']
+            )
+            return redirect(url_for('post', pid=request.form['post_id']))
+        except xmlrpclib.Fault, err:
+            return redirect(url_for('post',
+                                    pid=request.form['post_id'],
+                                    error_msg=err.faultString))

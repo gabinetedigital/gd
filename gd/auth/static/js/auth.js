@@ -62,6 +62,7 @@ var auth = (function() {
                         } else {
                             closeMethod();
                             auth.userAuthenticated(pData.msg.user);
+                            $("#blog_comment_form").show() //show the hidden blog comment form
                         }
                     });
                     return false;
@@ -190,6 +191,7 @@ var auth = (function() {
             $.get(url_for('auth.logout_json'), function () {
                 auth.user = null;
                 auth.updateLoginWidget();
+                $("#blog_comment_form").hide() //hide the blog comment form
             });
         }
 

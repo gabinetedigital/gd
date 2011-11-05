@@ -19,6 +19,21 @@
                 {{ comment.link|safe }} <br>
                 {{ comment.content|safe }} <br>
             {% endfor %}
+            {% if post.comments.allow_comments == 1 %}
+              {% set display_form = 'inline' if show_comment_form else 'None' %}
+              <!-- the comemnt error msg -->
+              {{ error_msg|safe }}
+
+              <form style="display:{{ display_form }}"
+                    id="blog_comment_form"
+                    action="{{ url_for('new_comment') }}"
+                    method="POST">
+
+                <input type="hidden" name="post_id" value="{{post.id}}">
+                Comentário:<textarea name="content"></textarea>
+                <input type="submit" value="Enviar">
+              </form>
+            {% endif %}
           </div>
       </div>
     </div>
@@ -37,7 +52,7 @@
           {% endfor %}
         </ul>
       </div>
- 
+
       <div id="recent-topics">
         <h3>Outras notícias</h3>
         <ol>
@@ -48,7 +63,6 @@
           {% endfor %}
         </ol>
       </div>
-
    </div>
   </div>
   <div class="row-end"></div>
