@@ -292,12 +292,13 @@ function audience_show_how_it_works() {
     step_3_text.css("opacity", opacity);
     dialog.css("opacity",opacity);
     if (opacity == 1) timer.next();
-
+  }).then(function(timer) {
     if (!dialog.is(":visible")) {
       dialog.animate({
         width: 'toggle'
       }, 1000, 'swing');
     }
+    timer.next();
   });
 
   timer.run();
