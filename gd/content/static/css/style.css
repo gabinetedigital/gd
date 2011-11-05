@@ -45,10 +45,6 @@ a {
     text-decoration:none;
 }
 
-a:hover {
-    text-decoration:underline;
-}
-
 /** Headers **/
 
 #header-wrapper {
@@ -168,6 +164,7 @@ a:hover {
     margin-top: -14px;
     height: 69px;
     margin-bottom: 20px;
+    background: url('../imgs/menu.png');
 }
 
 #header #menu ul {
@@ -203,6 +200,11 @@ a:hover {
     background-color: #ff0000;
 }
 
+#header #menu .special {
+    background: #FFF;
+    height: 69px;
+}
+
 #header #menu .special a {
     color: #FFF;
     font-size: 28px;
@@ -211,6 +213,10 @@ a:hover {
     margin-left:-20px;
     position:relative;
     top:10px;
+}
+
+#header #menu .special a:hover {
+    background: #aa0000;
 }
 
 /** Container **/
