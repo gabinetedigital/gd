@@ -68,6 +68,11 @@ body {
 
 .col7 #text p.modal {
     display: none;
+    margin-top: 10px;
+}
+
+.col7 #text a{
+    color: #A40000;
 }
 
 .col7 #social {
@@ -111,8 +116,14 @@ body {
     font-size: 12px;
 }
 
-.col5 .embed {
-    display: none;
+.col5 #embed-code {
+    width: 388px;
+    border: 1px solid black;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px;
+    margin-bottom: 5px;
 }
 
 .col5 h1 {
