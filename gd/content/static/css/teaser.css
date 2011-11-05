@@ -107,6 +107,10 @@ body {
     margin-bottom: 10%;
 }
 
+.col5 .share {
+    font-size: 12px;
+}
+
 .col5 .embed {
     display: none;
 }
