@@ -121,9 +121,7 @@ def tag(slug,page=0):
     return render_template(
         'archive.html', posts=posts)
 
-
-@app.route('/post/<int:pid>')
-def post(pid):
+def post_page(pid,error_msg=''):
     """Renders the post template"""
     recent_posts = wordpress.getRecentPosts(
         post_status='publish',
@@ -134,15 +132,19 @@ def post(pid):
         tags=wordpress.getTagCloud(),
         sidebar=wordpress.getMainSidebar(),
         comments=wordpress.getComments(post_id=pid),
-        error_msg=request.args.get('error_msg',''),
+        error_msg=error_msg,
         show_comment_form=session.has_key('username'),
         recent_posts=recent_posts)
+
+@app.route('/post/<int:pid>')
+def post(pid):
+    return post_page(pid)
 
 @app.route('/new_comment', methods=('POST',))
 def new_comment():
     # "session.user_is_logged()" ?
     if 'username' not in session:
-        redirect(url_for('post', pid=request.form['post_id']))
+        return post_page(request.form['post_id'])
     else:
         try:
             wordpress.newComment(
@@ -153,9 +155,7 @@ def new_comment():
             )
             return redirect(url_for('post', pid=request.form['post_id']))
         except xmlrpclib.Fault, err:
-            return redirect(url_for('post',
-                                    pid=request.form['post_id'],
-                                    error_msg=err.faultString))
+            return post_page(request.form['post_id'],err.faultString)
 
 @app.route('/search/<string:s>')
 @app.route('/search/<string:s>/<int:page>')
