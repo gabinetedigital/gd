@@ -255,7 +255,7 @@ function audience_show_how_it_works() {
       big_gear.rotate(big_angle);
       small_gear.rotate(small_angle);
       }, 13);
-    }
+  }
 
   // the animation...
   var timer = new Timer();
