@@ -22,7 +22,7 @@
             {% if post.comments.allow_comments == 1 %}
               {% set display_form = 'inline' if show_comment_form else 'None' %}
               <!-- the comemnt error msg -->
-              {{ error_msg|safe }}
+              <p class="comment-error">{{ error_msg|safe }}</p>
 
               <form style="display:{{ display_form }}"
                     id="blog_comment_form"

@@ -191,7 +191,8 @@ var auth = (function() {
             $.get(url_for('auth.logout_json'), function () {
                 auth.user = null;
                 auth.updateLoginWidget();
-                $("#blog_comment_form").hide() //hide the blog comment form
+              $("#blog_comment_form").hide(); //hide the blog comment form
+              $(".comment-error").show();
             });
         }
 
