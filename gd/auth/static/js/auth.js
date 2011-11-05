@@ -62,7 +62,7 @@ var auth = (function() {
                         } else {
                             closeMethod();
                             auth.userAuthenticated(pData.msg.user);
-                            $("#blog_comment_form").show() //show the hidden blog comment form
+                            $("#blog_comment_form").show(); //show the hidden blog comment form
                         }
                     });
                     return false;
