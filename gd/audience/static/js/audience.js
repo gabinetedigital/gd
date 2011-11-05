@@ -185,12 +185,11 @@ function audience_how_it_works_spinning_gears_setup() {
   var big_gear = $("#how-it-works-big-gear");
   var small_gear = $("#how-it-works-small-gear");
   var how_it_works = $("#how-it-works");
-  var interval = 13;
 
   big_gear.data("angle",0);
   small_gear.data("angle",0);
 
-  var timer = new Timer(interval);
+  var timer = new Timer();
   timer.then(function(timer,accel) {
     var big_current_angle = big_gear.data("angle");
     var small_current_angle = small_gear.data("angle");
