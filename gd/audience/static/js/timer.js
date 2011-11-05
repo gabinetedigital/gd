@@ -23,7 +23,6 @@ function Timer(interval) {
   self._fns = [];
   self._idx = 0;
   self._current = null;
-  self._flag = null
   self._running = false;
 
   //initial stepper
@@ -50,7 +49,7 @@ function Timer(interval) {
   self.exec = function() {
 
     self._current = setInterval(function() {
-      self._fns[self._idx](self, self._stepper(), self._flag)
+      self._fns[self._idx](self, self._stepper())
     }, self._interval);
   }
 
@@ -58,10 +57,6 @@ function Timer(interval) {
     clearInterval(self._current);
     self._idx++;
     self._fns[self._idx] ? self.exec() : self.stop();
-  }
-
-  self.flag = function(arg) {
-    self._flag = arg;
   }
 
   self.stepper = function(fn) {
