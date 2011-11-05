@@ -42,62 +42,65 @@ class Wordpress(object):
             # to the XMLRPC server and there they'll be expanded.  Maybe
             # it will change in the future, if I find any function that
             # doesn't fit this strategy
-            ret = method(0,self.user, self.password, kwargs, *args)
-            converter = 'convert_'+attr
-            if globals().has_key(converter):
+            ret = method(0, self.user, self.password, kwargs, *args)
+            converter = 'convert_%s' % attr
+            if converter in globals():
                 return globals()[converter](ret)
-            else:
-                return ret
+            return ret
         return wrapper
 
     def __getattribute__(self, attr):
         try:
             return super(Wordpress, self).__getattribute__(attr)
         except AttributeError:
-            return self.wrap(attr, getattr(self.server, 'exapi.'+attr))
+            return self.wrap(attr, getattr(self.server, 'exapi.%s' % attr))
+
 
 def convert_getComments(comments):
+    """Converts the comments coming from wordpress API"""
     for comment in comments:
         link = url_for('post', pid=comment['post_id'])
-        link = link + "#comment-" + comment['comment_id']
-        comment['link'] = link
+        comment['link'] = '%s#coment-%s' % (link, comment['comment_id'])
     return comments
 
+
 def convert_getRecentPosts(posts):
-    ret = []
-    for post in posts:
-        ret.append(Post(post))
-    return ret
+    """Convert JSON dictionaries in Post instances"""
+    return [Post(i) for i in posts]
+
 
 def getPostsByCategory(posts):
-    ret = []
-    for post in posts:
-        ret.append(Post(post))
-    return ret
+    """Convert JSON dictionaries in Post instances"""
+    return [Post(i) for i in posts]
+
 
 def getPostsByTag(posts):
-    ret = []
-    for post in posts:
-        ret.append(Post(post))
-    return ret
+    """Convert JSON dictionaries in Post instances"""
+    return [Post(i) for i in posts]
+
 
 def convert_getMainSidebar(sidebar):
+    """Converts all links found in the html of the sidebar to flask
+    links"""
     subs = {}
     for href in re.findall('"http://.*?"', sidebar):
         subs[href] = wp_link_to_flask(href)
-    for original,translated in subs.iteritems():
+    for original, translated in subs.iteritems():
         sidebar = sidebar.replace(original,translated)
     return sidebar
 
+
 def wp_link_to_flask(href):
-    if href.find("cat=") <> -1:
+    """Converts wordpress urls in flask urls"""
+    if href.find("cat=") != -1:
         cat = re.search('cat=(\d+)', href).group(1)
         return url_for('category', id=cat)
-    elif href.find("tag=") <> -1:
+    elif href.find("tag=") != -1:
         tag = re.search('tag=(\w)', href).group(1)
         return url_for('tag', tag=tag)
     else:
         return href
+
 
 class Post(object):
     """Wordpress post wrapper class
