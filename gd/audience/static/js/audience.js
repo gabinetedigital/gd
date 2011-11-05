@@ -226,9 +226,6 @@ function audience_how_it_works_spinning_gears_setup() {
 
 
 function audience_show_how_it_works() {
-
-  // lots of inicialization vars...
-
   var couple = $(".step-1-couple");
   var mail = $(".step-1-mail");
   var trail = $(".step-1-mail-trail");
@@ -246,9 +243,6 @@ function audience_show_how_it_works() {
   var dialog = $(".mustache-gentleman-dialog");
 
 
-  //the function to spin the step-2 gears
-  //TODO: when the how-it-works dialog closes
-  //      stop this interval
   var spinning_gears = null;
   function spin_gears() {
       spinning_gears = setInterval(function() {
@@ -263,10 +257,7 @@ function audience_show_how_it_works() {
       }, 13);
     }
 
-  //the function to show the dialog in step-3
-
   // the animation...
-
   var timer = new Timer();
 
   timer.then(function(timer, step) {   /* step 1 */
