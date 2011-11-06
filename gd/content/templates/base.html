@@ -34,7 +34,7 @@
         <div class="col2">
            <ul class="main-menu">
                 <li><a href="{{ url_for('index') }}">INÍCIO</a></li>
-                <li><a href="{{ url_for('sobre') }}">SOBRE</a></li>
+                <li><a href="{{ url_for('sobre') }}">O QUE É?</a></li>
             </ul>
         </div>
         <div class="col2">
@@ -164,26 +164,20 @@
         <img src="<%= obj.avatar_url %>" alt="User avatar">
         <div>Olá <%= obj.display_name %></div>
       </li>
-      <li>
-        <a href="{{ url_for('auth.profile_form') }}">editar perfil</a>
+      <li class="profile">
+        <a href="{{ url_for('auth.profile_form') }}">perfil</a>
       </li>
-      <li>|</li>
-      <li>
+      <li class="pipe">|</li>
+      <li class="logout">
         <a href="{{ url_for('auth.logout_json') }}"
            onclick="auth.logout(); return false;">sair</a>
       </li>
     </script>
 
     <script type="text/html" id="loggedoutTemplate">
-      <li>
+      <li class="welcome">
         <a href="javascript:;" onclick="auth.showLoginForm()">
-          entrar
-        </a>
-      </li>
-      <li>|</li>
-      <li>
-        <a href="javascript:;" onclick="auth.showSignupForm()">
-          cadastre-se
+          ENTRAR
         </a>
       </li>
     </script>

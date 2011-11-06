@@ -78,12 +78,8 @@ a {
     margin-top: 10px;
 }
 
-#header .main-menu {
-    float: right;
-}
-
 #header .main-menu li {
-    margin-left: 17px;
+    margin-left: 8px;
 }
 
 #header .main-menu li {
