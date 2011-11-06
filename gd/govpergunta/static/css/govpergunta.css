@@ -69,6 +69,7 @@
     color: #babdb6;
 }
 
+#container #appbase #step ol li a.current,
 #container #appbase #step ol li a:hover {
     color: #73d216;
     background: url(../imgs/numhover.png) no-repeat 50% 7px;
@@ -224,26 +225,26 @@
     color: #2e3436;
 }
 
-#controller {
+.controller {
     margin-top: 20px;
     font-size: 22px;
     color: #73d216;
     text-align: center;
 }
 
-#controler a, a:visited, a:hover {
+.controller a, a:visited, a:hover {
     color: #73d216;
     text-decoration: none;
 }
 
-#controller .next {
+.controller .next {
     background: url('../imgs/dir.png') no-repeat right bottom;
     height: 26px;
     padding-right: 56px;
     font-weight: 600;
 }
 
-#controller .back {
+.controller .prev {
     background: url('../imgs/esq.png') no-repeat left bottom;
     height: 26px;
     padding-left: 56px;
