@@ -131,6 +131,12 @@
     color:#4e9a06;
 }
 
+#container #sidebar h2 {
+    color: #555753;
+    margin-top: 10px;
+    font-size: 28px;
+    font-weight: normal;
+}
 
 #container #sidebar #contacts {
     padding-bottom: 20px;
@@ -144,40 +150,26 @@
     color: #2e3436;
 }
 
-#container #sidebar #lasttweet .tweet a {
-    color: #006680;
-}
-
-#container #sidebar #contacts h3 {
-    color: #555753;
-    margin-top: 15px;
-    font-size: 28px;
+#container #sidebar #equipe h3 {
+    font-size: 20px;
     font-weight: normal;
+    margin-left: -10px;
 }
-
-#container #sidebar #picday {
-    margin-top: 30px;
-}
-
-#container #sidebar #picday h3 {
-    color: #c4a000;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-#container #sidebar #picday #picedge {
-    border: 1px solid #2e3436;
-    padding: 4px 4px;
-    width: 262px;
-    height: 171px;
-     -moz-box-shadow: 3px 3px 4px #CCC;
-    -webkit-box-shadow: 3px 3px 4px #CCC;
-    box-shadow: 3px 3px 4px #CCC;
-}
-
-#container #sidebar #picday p {
+#container #sidebar #equipe h4 {
     color: #555753;
-    font-style: italic;
-    font-size: 12px;
-    margin-top: 8px;
-    width: 260px;
+    font-size: 16px;
+    margin-left: -10px;
+}
+#container #sidebar #equipe h5 {
+    color: #555753;
+    font-size: 13px;
+    margin-left: -10px;
+}
+#container #sidebar #equipe ul {
+    margin-bottom: 19px;
+    margin-left: 10px;
+}
+#container #sidebar #equipe li {
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
