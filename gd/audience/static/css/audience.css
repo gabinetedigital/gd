@@ -29,8 +29,8 @@
 }
 
 #container .buzzbg {
-    background:url(../imgs/buzz.png) no-repeat 612px 123px;
-    height: 742px;
+    background:url(../imgs/buzz.png) no-repeat 612px 145px;
+    height: 762px;
 }
 
 #container #title .title {
@@ -153,7 +153,7 @@
     padding-top: 10px;
 }
 
-#container #main .content #misc h2 {
+#container #main .content #misc h5 {
     background: url(../imgs/govescuta.png) no-repeat;
     width: 127px;
     height: 48px;
