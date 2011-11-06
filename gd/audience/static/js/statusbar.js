@@ -44,23 +44,30 @@ $(function() {
     var statusbars = {};
     $.fn.status_bar = function(name) {
         statusbars[name] = $(this);
+        statusbars[name].hide();
     },
 
     $.status_message = function(spec) {
-        var target = spec.target; //the bar name
+        var name = spec.tag; //the bar name
         var msg = spec.message;
-        var name = spec.name;
         var interval = spec.interval || 10000;
 
-        var bar = name ? $("#"+name) : statusbars[target];
+        var bar = statusbars[name];
         var msg_node = $("<p>"+msg+"</p>").hide();
 
         bar.append(msg_node);
         msg_node.slideDown();
 
+        if (!bar.is(":visible")) {
+            bar.slideDown();
+        }
+
         function dismiss() {
             msg_node.slideUp(300, function() {
                 msg_node.detach();
+                if (bar.children().length == 0) {
+                    bar.slideUp();
+                }
             });
         }
 

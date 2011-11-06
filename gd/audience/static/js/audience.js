@@ -32,11 +32,13 @@ $(function() {
 
         });
 
+    //initializing status bar
+    $("#message-statusbar").status_bar("message-statusbar");
 
     /** Posts a new notice on the message buzz */
     function postNotice(message) {
         var close_msg = $.status_message({
-            name: 'message-statusbar',
+            tag: 'message-statusbar',
             message: 'Enviando mensagem...aguarde',
             interval: 0
         });
@@ -49,7 +51,7 @@ $(function() {
             error: function(_,text,err) {
                 close_msg();
                 $.status_message({
-                    name: 'message-statusbar',
+                    tag: 'message-statusbar',
                     message: 'Houve um erro ao enviar a mensagem'
                 });
             },
@@ -71,14 +73,14 @@ $(function() {
                     } else {
                         // Feedback the user. something wrong happened.
                         $.status_message({
-                            name: 'message-statusbar',
+                            tag: 'message-statusbar',
                             message: parsedData.msg
                         });
                     }
                 } else {
                     // delivery ok
                     $.status_message({
-                        name: 'message-statusbar',
+                        tag: 'message-statusbar',
                         message: parsedData.msg
                     });
                     clear_message_area();

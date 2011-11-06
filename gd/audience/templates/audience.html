@@ -133,11 +133,8 @@
         </li>
         {% endfor %}
       </ul>
-      <div class="alert">
-
-      </div>
+      <div id="message-statusbar" class="alert"></div>
       <div id="chat">
-        <div id="message-statusbar"></div>
         <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
           <input type="hidden" id="aid" name="aid" value="{{ audience.id }}">
           <textarea id="message-area" name="message" placeholder="Poste sua mensagem aqui."></textarea>
