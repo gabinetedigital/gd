@@ -34,7 +34,7 @@ from flaskext.uploads import UploadConfiguration, UploadSet, IMAGES
 
 from gd import conf
 from gd.buzz import sio
-from gd.utils import phpass
+from gd.utils import phpass, dumps
 
 
 def _configuploadset(name, constraint):
@@ -290,6 +290,11 @@ class User(Entity):
             avatar_url=self.avatar_url,
             creation_date=self.creation_date,
         )
+
+    def public_json(self):
+        """Returns the same content as `public_dict()', but in JSON
+        format"""
+        return dumps(self.public_dict())
 
     @property
     def avatar_url(self):
