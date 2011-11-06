@@ -144,14 +144,33 @@
 
 #container #content #maintext #themes {
     text-align: center;
+    padding:40px 0;
 }
 
 #container #content #maintext #themes li {
-    margin-bottom: 40px;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
+    margin-bottom: 40px;
+    margin-left: 70px;
+    width:108px;
     float: left;
-    margin-left: 120px;
+}
+
+#container #content #maintext #themes li img {
+    width:90px;
+}
+
+#container #content #maintext #themes a {
+    width:90px;
+    display:block;
+}
+
+#container #content #maintext #themes a:hover {
+    background:url(../imgs/baseci.png) no-repeat center 60%;
+}
+
+#container #content #maintext #themes p {
+    margin-top:10px;
 }
 
 #container #content #maintext #themes .cuidado p {
