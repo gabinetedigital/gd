@@ -24,6 +24,7 @@ from flask import Blueprint, render_template, request
 from gd.model import Audience, Term, get_or_404
 from gd.utils import dumps
 from sqlalchemy.orm.exc import NoResultFound
+from gd.content.wp import wordpress
 
 audience = Blueprint(
     'audience', __name__,
@@ -35,9 +36,11 @@ audience = Blueprint(
 def index(aid):
     """Renders an audience with its public template"""
     inst = get_or_404(Audience, id=aid, visible=True)
+    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
     return render_template(
         'audience.html',
         audience=inst,
+        how_to=how_to.content,
         notice=inst.get_last_published_notice(),
     )
 

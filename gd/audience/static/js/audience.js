@@ -307,3 +307,8 @@ function audience_show_how_it_works() {
 
   timer.run();
 }
+
+function show_how_to() {
+    $("#saiba-mais-link").hide();
+    $("#saiba-mais-text").show();
+}

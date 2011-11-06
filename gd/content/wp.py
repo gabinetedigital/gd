@@ -89,6 +89,8 @@ def convert_getComments(comments):
         comment['link'] = '%s#coment-%s' % (link, comment['comment_id'])
     return comments
 
+def convert_getPageByPath(post):
+    return Post(post)
 
 def convert_getRecentPosts(posts):
     """Convert JSON dictionaries in Post instances"""

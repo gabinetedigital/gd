@@ -94,6 +94,13 @@
               <p>O Governador comenta as contribuições selecionadas</p>
             </li>
           </ol>
+
+          <a id="saiba-mais-link" href="javascript:show_how_to()"> Saiba mais </a>
+          <div id="saiba-mais-text" style="display:none">
+            {{ how_to|safe }}
+          </div>
+
+
         </div>
         {% if audience.started %}
         <div id="beingAnswered">
