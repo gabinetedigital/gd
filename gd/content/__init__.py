@@ -80,7 +80,7 @@ def extend_context():
     return context
 
 
-@app.route('/teaser')
+@app.route('/')
 def teaser():
     """Renders the teaser template"""
     return render_template('teaser.html')
@@ -92,7 +92,7 @@ def sobre():
     return render_template('about.html')
 
 
-@app.route('/')
+@app.route('/home')
 def index():
     """Renders the index template"""
     slideshow = wordpress.getRecentPosts(
