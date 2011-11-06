@@ -148,7 +148,6 @@ a {
 
 #header #social {
     display: block;
-    clear: both;
     float: right;
 }
 
@@ -159,11 +158,10 @@ a {
     height: 27px;
     margin-right: 4px;
     overflow: hidden;
-    text-indent: 9999px;
     margin-bottom: 16px;
 }
 
-
+/*
 #header  #social .feed {
     background: url(../imgs/feed.png) no-repeat;
 }
@@ -179,7 +177,7 @@ a {
 #header  #social .facebook {
     background: url(../imgs/facebook.png) no-repeat;
 }
-
+*/
 
 #header #menu {
     text-align: center;
