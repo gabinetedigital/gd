@@ -112,21 +112,22 @@
       </ul>
 
       <ul id="videogallery">
-        <li class="video">
+        {% for video in videos %}
+        <li class="video{% if loop.last %} last {% endif %}">
           <ul>
-            <li><img src="../static/imgs/video.png" alt=
-                     "video"></li>
-            <li>desc</li>
+            <li>
+              <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
+                <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
+              </a>
+            </li>
+            <li>
+              <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
+                {{ video.title }}
+              </a>
+            </li>
           </ul>
         </li>
-
-        <li class="video">
-          <ul>
-            <li><img src="../static/imgs/video.png" alt=
-                     "video"></li>
-            <li>desc</li>
-          </ul>
-        </li>
+        {% endfor %}
       </ul>
     </div>
 

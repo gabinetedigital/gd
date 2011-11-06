@@ -134,14 +134,19 @@
     margin: 30px 21px;
     color: white;
     font-size: 14px;
-} 
+}
 
 #container #videogallery .video {
     background-color: #333;
     float: left;
-    margin-right: 21px;
-    padding: 14px;
+    margin-right: 28px;
+    padding: 18px;
+    width:250px;
     border-radius: 8px;
+}
+
+#container #videogallery .video.last {
+    margin-right:0px;
 }
 
 #container #videogallery .video img {

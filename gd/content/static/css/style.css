@@ -275,6 +275,21 @@ a {
     width:35px;
 }
 
+.overlay.video {
+    width:520px;
+    padding:10px;
+}
+
+.overlay.video .contentWrap {
+    width:492px;
+    margin:0 auto;
+}
+
+.overlay.video .videoContainer {
+    margin:10px 0;
+    border:solid 1px #ccc;
+}
+
 /** Footer **/
 
 #footer-wrapper {

@@ -188,6 +188,12 @@
       </li>
     </script>
 
+    <script type="text/html" id="videoTemplate">
+      <h1><%= obj.title %></h1>
+      <div class="videoContainer"></div>
+      <p><%= obj.description %></p>
+    </script>
+
     <script type="text/javascript">
       var SIO_BASE = "{{ host }}";
       var BASE_URL = "{{ request.url_root }}";
@@ -198,6 +204,8 @@
     <script src="{{ url_for('static', filename='js/jquery.form.js') }}"></script>
     <script src="{{ url_for('static', filename='js/template.js') }}"></script>
     <script src="{{ url_for('static', filename='js/urls.js') }}"></script>
+    <script src="{{ conf.WORDPRESS_ADDRESS }}?wpgd/video/embedjs"></script>
+    <script src="{{ url_for('static', filename='js/video.js') }}"></script>
     <script src="{{ url_for('auth.static', filename='js/auth.js') }}"></script>
     <script>
       $(function() {

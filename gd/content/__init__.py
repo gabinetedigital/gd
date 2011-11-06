@@ -66,6 +66,10 @@ def extend_context():
     # server. Without the port information.
     context['host'] = request.host.split(':')[0]
 
+    # It's also useful to be able to access the configuration module
+    # from some templates
+    context['conf'] = conf
+
     # Time to add the `user' var
     try:
         context['user'] = authenticated_user()
@@ -104,7 +108,9 @@ def index():
     return render_template(
         'index.html', wp=wordpress,
         slideshow=slideshow, news=news,
-        last_tweet=get_mayor_last_tweet())
+        last_tweet=get_mayor_last_tweet(),
+        videos=wordpress.wpgd.getHighlightedVideos(2),
+    )
 
 
 @app.route('/cat/<int:id>')
