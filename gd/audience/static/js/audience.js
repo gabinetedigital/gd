@@ -149,7 +149,7 @@ $(function() {
     // Initializing "how it works" stuff
     audience_how_it_works_spinning_gears_setup();
 
-    $('img[rel]').overlay({
+    $('div[rel]').overlay({
         oneInstance: false,
         speed: 'fast',
         top: '30%',
