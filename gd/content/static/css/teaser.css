@@ -1,17 +1,10 @@
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
-}
-
+@import url('font.css');
 
 * {
     border: 0 none;
     list-style: none outside none;
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans';
 }
 
 body {
@@ -20,6 +13,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    font-family: 'OpenSansRegular';
 }
 
 .col7 h1 {

@@ -1,8 +1,7 @@
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+@import url('font.css');
+
+* {
+    font-family: 'OpenSansRegular';
 }
 
 #header #slideshow {
@@ -27,7 +26,7 @@
 }
 
 #header #slideshow .title a {
-    color:#4e9a06;
+    color:#FFF;
 }
 
 #header #slideshow .excerpt {
@@ -37,7 +36,7 @@
 }
 
 #header #slideshow .excerpt a {
-    color:#2E3436
+    color:#2e3436;
 }
 
 #header #slideshow .controls {
@@ -103,8 +102,6 @@
 #container #news .news h2 {
     color: #2e3436;
     font-size: 15pt;
-    font-family: 'Open Sans';
-    font-weight: normal;
     margin-bottom: 8px;
 }
 
@@ -192,7 +189,6 @@
 
 #container #sidebar #picday h3 {
     color: #c4a000;
-    font-family: 'Open Sans';
     font-size: 16px;
     margin-bottom: 10px;
 }
