@@ -31,7 +31,6 @@ class Namespace(object):
         self.name = name
         self.conf = conf
         self.server = Server(conf['address'])
-        print conf
 
     def wrap(self, attr, method):
         """Wrapper that decorates XMLRPC methods that needs the user,
