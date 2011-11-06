@@ -210,15 +210,15 @@
     color: #ccc;
     font-size: 22px;
     display: block;
-    width: 610px;
+    width: 530px;
 }
 
 #container #content #maintext #form textarea {
     border: 1px solid #ccc;
     font-size: 14px;
     display: block;
-    width: 610px;
-    height: 200px;
+    width: 520px;
+    height: 160px;
     color: #888a85;
     padding: 5px;
 }
@@ -235,7 +235,6 @@
 }
 
 #container #content #maintext #faq {
-    padding-left: 10px;
     color: #888a85;
 }
 
