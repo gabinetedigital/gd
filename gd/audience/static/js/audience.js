@@ -21,6 +21,9 @@ $(function() {
     var moderatedBuzz = $("#buzz-moderated")
     var publicBuzz = $("#buzz-public");
 
+    //max length of message a user can send
+    var MAX_LENGTH = 300;
+
     $("a.filter").click(
         function() {
             $(this).toggleClass('off');
@@ -29,64 +32,63 @@ $(function() {
 
         });
 
-    /** Shows a tooltip of an element with manual control of show/hide
-     *  operations */
-    function showTooltip(elementOrSelector) {
-        if (typeof elementOrSelector === 'string') {
-            $element = $(elementOrSelector);
-        } else {
-            $element = elementOrSelector;
-        }
-
-        var $tooltip = $element.tooltip({
-            effect: "fade",
-            delay: 4200,
-            opacity: 0.7,
-            events: {
-                input: 'customOpenEvent,customOpenEvent'
-            }
-        });
-        $element.trigger('customOpenEvent');
-        return $tooltip;
-    }
-
 
     /** Posts a new notice on the message buzz */
     function postNotice(message) {
-        var params = { aid: $('#aid').val(), message: message };
-        $.post(url_for('buzz.post'), params, function (data) {
-            var parsedData = $.parseJSON(data);
-            if (parsedData.status !== 'ok') {
-                // For any reason, the user got loged out, so, as it's
-                // an async call, we have to request login credentials
-                // again. It's not actually usual to happen but better
-                // being safe than sorry.
-                if (parsedData.code === 'NobodyHome') {
-                    auth.showLoginForm({
-                        success: function (userData) {
-                            postNotice(message);
-                        }
-                    });
-                    return;
-                } else {
-                    // Feedback the user. something wrong happened.
-                    showTooltip(
-                        $("#internal_chat textarea")
-                            .attr('title', parsedData.msg));
-                }
-            } else {
-                // Everything' fine, let's just clear the message box
-                // and thank the user
-                var $textbox = $("#internal_chat textarea")
-                    .val('')
-                    .attr('title', parsedData.msg);
-                showTooltip($textbox);
-
-                window.setTimeout(function () {
-                    $textbox.attr('title', '');
-                }, 10000);
-            }
+        var close_msg = $.status_message({
+            name: 'message-statusbar',
+            message: 'Enviando mensagem...aguarde',
+            interval: 0
         });
+
+        var params = { aid: $('#aid').val(), message: message };
+        $.ajax({
+            url: url_for('buzz.post'),
+            data: params,
+            type:'post',
+            error: function(_,text,err) {
+                close_msg();
+                $.status_message({
+                    name: 'message-statusbar',
+                    message: 'Houve um erro ao enviar a mensagem'
+                });
+            },
+            success: function (data) {
+                close_msg();
+                var parsedData = $.parseJSON(data);
+                if (parsedData.status !== 'ok') {
+                    // For any reason, the user got loged out, so, as it's
+                    // an async call, we have to request login credentials
+                    // again. It's not actually usual to happen but better
+                    // being safe than sorry.
+                    if (parsedData.code === 'NobodyHome') {
+                        auth.showLoginForm({
+                            success: function (userData) {
+                                postNotice(message);
+                            }
+                        });
+                        return;
+                    } else {
+                        // Feedback the user. something wrong happened.
+                        $.status_message({
+                            name: 'message-statusbar',
+                            message: parsedData.msg
+                        });
+                    }
+                } else {
+                    // delivery ok
+                    $.status_message({
+                        name: 'message-statusbar',
+                        message: parsedData.msg
+                    });
+                    clear_message_area();
+                }
+            }});
+    }
+
+    function clear_message_area() {
+        $(".current-msg-length").text(MAX_LENGTH);
+        $("#message-area").val('');
     }
 
 
@@ -169,8 +171,8 @@ $(function() {
 
   var msg_area = $("textarea[name=message]");
   msg_area[0].onkeydown = msg_area[0].onkeyup = (function() {
-    $(".current-msg-length").text(300-msg_area.val().length);
-    if (msg_area.val().length > 300) {
+    $(".current-msg-length").text(MAX_LENGTH-msg_area.val().length);
+    if (msg_area.val().length > MAX_LENGTH) {
       $("#send_comment").enable(false)
       msg_area.addClass("error");
     } else {

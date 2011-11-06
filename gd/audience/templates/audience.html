@@ -9,6 +9,7 @@
 <script src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
 <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/statusbar.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
 {% endblock %}
@@ -133,9 +134,10 @@
         {% endfor %}
       </ul>
       <div id="chat">
+        <div id="message-statusbar"></div>
         <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
           <input type="hidden" id="aid" name="aid" value="{{ audience.id }}">
-          <textarea name="message" placeholder="Poste sua mensagem aqui."></textarea>
+          <textarea id="message-area" name="message" placeholder="Poste sua mensagem aqui."></textarea>
           <span class="current-msg-length">300</span>
           <input id="send_comment" type="submit" value="enviar">
         </form>
