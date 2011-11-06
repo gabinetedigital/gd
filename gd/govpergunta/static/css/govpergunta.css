@@ -35,7 +35,7 @@
     -webkit-box-shadow: 0px 5px 14px 2px #ccc;
     box-shadow: 0px 5px 14px 2px #ccc;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 #container #appbase #step {
@@ -78,6 +78,7 @@
 #container #content #maintext {
     min-height: 400px;
     padding-left:40px;
+    margin-bottom:40px;
 }
 
 #container #content #maintext h2 {
@@ -226,15 +227,18 @@
 }
 
 .controller {
-    margin-top: 20px;
+    width:450px;
+    margin:20px auto;
     font-size: 22px;
     color: #73d216;
     text-align: center;
+    clear:both;
 }
 
-.controller a, a:visited, a:hover {
+.controller a, a:visited, .controller a:hover {
     color: #73d216;
     text-decoration: none;
+    line-height:22px;
 }
 
 .controller .next {
@@ -242,6 +246,8 @@
     height: 26px;
     padding-right: 56px;
     font-weight: 600;
+    display:block;
+    float:right;
 }
 
 .controller .prev {
@@ -249,4 +255,6 @@
     height: 26px;
     padding-left: 56px;
     font-weight: 600;
+    display:block;
+    float:left;
 }
