@@ -269,6 +269,8 @@ a {
 .overlay.video {
     width:520px;
     padding:10px;
+    background:#222;
+    color:#999;
 }
 
 .overlay.video .contentWrap {
@@ -278,7 +280,7 @@ a {
 
 .overlay.video .videoContainer {
     margin:10px 0;
-    border:solid 1px #ccc;
+    border:solid 1px #999;
 }
 
 /** Footer **/

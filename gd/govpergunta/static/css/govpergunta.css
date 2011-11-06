@@ -2,6 +2,30 @@
 
 #container {
     font-family: 'Open Sans', sans-serif;
+    clear:both;
+}
+
+#applogo h1 {
+    background: url('../imgs/applogo.png') no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+    height: 77px;
+    width: 208px;
+    margin: 15px;
+}
+
+#question {
+    background: url("../imgs/balao.png") no-repeat 24px 0;
+    color: #A40000;
+    height: 95px;
+    font-size: 21px;
+    font-style: italic;
+    margin: 10px;
+}
+
+#question p {
+    padding: 4px 0px 0px 55px;
+    width: 230px;
 }
 
 #container #appbase {
@@ -14,42 +38,31 @@
     margin-bottom: 20px;
 }
 
-#container #appbase #applogo h1 {
-    background: url('../imgs/applogo.png') no-repeat;
-    text-indent: -9999px;
-    overflow: hidden;
-    height: 77px;
-    width: 208px;
-    margin: 15px;
-}
-
-
-#container #appbase #question {
-    background: url("../imgs/balao.png") no-repeat;
-    color: #A40000;
-    height: 95px;
-    font-size: 21px;
-    padding: 4px 0px 0px 32px;
-    font-style: italic;
-    margin: 10px;
-}
-
-#container #appbase #question p {
-    width: 266px;
-}
-
 #container #appbase #step {
-    margin-top: 13px;
+    margin-top:13px;
+    background: url(../imgs/stepbg.png) no-repeat 25px 25px;
 }
 
-#container #appbase #step ol li {
+#container #appbase #step ol li a {
+    background: url(../imgs/num.png) no-repeat 50% 10px;
     display: block;
     float: left;
-    margin-right: 29px;
+    margin-right: 15px;
     color: #babdb6;
     font-size: 14px;
     font-weight: 600;
     text-align: center;
+    padding-top:16px;
+    width:75px;
+}
+
+#container #appbase #step ol li span {
+    display:block;
+    padding-bottom:15px;
+}
+
+#container #appbase #step ol li.last {
+    margin-right:0;
 }
 
 #container #appbase #step ol li a, a:visited {
@@ -57,12 +70,14 @@
 }
 
 #container #appbase #step ol li a:hover {
-    color: #668000;
+    color: #73d216;
+    background: url(../imgs/numhover.png) no-repeat 50% 7px;
 }
 
 #container #content #maintext {
     min-height: 400px;
-}   
+    padding-left:40px;
+}
 
 #container #content #maintext h2 {
     color: #888a85;
