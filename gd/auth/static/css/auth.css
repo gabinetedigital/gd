@@ -47,7 +47,7 @@
 }
 
 #loginoverlay {
-    width:345px;
+    width:420px;
 }
 
 #signupoverlay {
@@ -62,7 +62,7 @@ form.auth {
 form.auth .header {
     background:#333;
     color:#fff;
-    padding:20px;
+    padding:20px 20px 28px;
 }
 
 form.auth .header h1 {
@@ -93,6 +93,7 @@ form.auth .header a.awesomelink {
     display: inline-block;
     box-shadow: inset -2px -0.9px 3px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+    font-size: 14px;
 }
 
 form.auth .header a:hover {
@@ -121,12 +122,6 @@ form.auth ul li {
 form.auth label {
     display:block;
     padding-top:8px;
-}
-
-form img {
-    float: left;
-    margin-right: 7px;
-    padding-top: 5px;
 }
 
 form.auth input, form.auth select {
