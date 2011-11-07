@@ -45,23 +45,23 @@ $(function () {
 
     new Buzz(SIO_BASE, {
         new_buzz: function (msg) {
-            updateBuzz(msg, location.search.indexOf('moderate') >= 0) &&
-                location.search.indexOf('accepted') < 0;
+            updateBuzz(msg, location.href.indexOf('moderate') >= 0 &&
+                location.search.indexOf('accepted') < 0);
         },
 
         buzz_accepted: function (msg) {
-            updateBuzz(msg, location.search.indexOf('moderate') >= 0) &&
-                location.search.indexOf('accepted') >= 0;
+            updateBuzz(msg, location.href.indexOf('moderate') >= 0 &&
+                location.search.indexOf('accepted') >= 0);
         },
 
         buzz_selected: function (msg) {
-            updateBuzz(msg, location.href.indexOf('publish') >= 0) &&
-                location.search.indexOf('published') < 0;
+            updateBuzz(msg, location.href.indexOf('publish') >= 0 &&
+                location.search.indexOf('published') < 0);
         },
 
         buzz_published: function (msg) {
-            updateBuzz(msg, location.href.indexOf('publish') >= 0) &&
-                location.search.indexOf('published') >= 0;
+            updateBuzz(msg, location.href.indexOf('publish') >= 0 &&
+                location.search.indexOf('published') >= 0);
         }
     });
 });
