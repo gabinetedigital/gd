@@ -275,3 +275,140 @@
     display:block;
     float:left;
 }
+
+
+/* -- Theme detail overlay -- */
+
+
+#themed {
+    width:700px;
+    height:400px;
+    background:#fff;
+    border:none;
+    border-radius:8px;
+}
+
+#themed .close {
+    top:2px;
+    right:4px;
+}
+
+#themed .head {
+    padding:30px 20px 0 20px;
+}
+
+#themed h1 {
+    padding-left:100px;
+}
+
+#themed ul.internal {
+    float:left;
+    margin:10px 0 0 20px;
+    padding-left:80px;
+}
+
+#themed ul.internal li {
+    display:block;
+    float:left;
+    margin-right:18px;
+}
+
+#themed ul.internal li a {
+    display:block;
+    float:left;
+    color:#888a85;
+}
+
+#themed ul.internal li a.current,
+#themed ul.internal li a:hover {
+    text-decoration:underline;
+}
+
+#themed ul.allThemes {
+    float:right;
+}
+
+#themed ul.allThemes li {
+    display:block;
+    float:left;
+}
+
+#themed hr {
+    border-bottom:solid 1px #888;
+}
+
+#themed .ptpanes {
+    padding:20px;
+}
+
+#themed .ptpanes h2 {
+    color:#babdb6;
+    font-size:30px;
+}
+
+#themed .ptpanes p {
+    margin:15px 0 0 25px;
+    color:#2e3436;
+}
+
+#themed .ptpanes .control {
+    text-align:right;
+    margin-top:20px;
+}
+
+#themed .ptpanes .control a {
+    color:#888a85;
+    padding:0 20px;
+}
+
+#themed .ptpanes .control .prev {
+    padding-right:15px;
+    background: url('../imgs/smallleft.png') no-repeat left 57%;
+}
+
+#themed .ptpanes .control .next {
+    padding-left:15px;
+    background: url('../imgs/smallright.png') no-repeat right 57%;
+}
+
+/*- per-theme icons and colors -*/
+
+#themed span.icon {
+    width:90px;
+    height:90px;
+    display:block;
+    float:left;
+    position:absolute;
+}
+
+/* cuidado integral */
+#themed.cuidado h1 { color:#204a87; }
+#themed.cuidado span.icon {
+    background:url('../imgs/cuidadointegral90.png') no-repeat;
+}
+
+/* medicamentos */
+#themed.medicamentos h1 { color:#75507b; }
+#themed.medicamentos span.icon {
+    background:url('../imgs/medicamentos90.png') no-repeat;
+}
+
+/* familia */
+#themed.familia h1 { color:#f57900; }
+#themed.familia span.icon {
+    background:url('../imgs/familia90.png') no-repeat;
+}
+
+/* regional */
+#themed.regional h1 { color:#4e9a06; }
+#themed.regional span.icon {
+    background:url('../imgs/regional90.png') no-repeat;
+}
+
+/* emergencia */
+#themed.emergencia h1 { color:#cc0000; }
+#themed.emergencia span.icon {
+    background:url('../imgs/emergencia90.png') no-repeat;
+}
+
+

@@ -19,8 +19,7 @@ var navapi = null;
 $(function () {
     var wizard = $('.wizard').data('isLoaded', false);
 
-    $('#maintext, .tabs').click(function() {
-        wizard.expose({ color:'#ddd', lazy:true });
+    $('#maintext, .tabs', wizard).click(function() {
         $('html,body').animate({ scrollTop: 320 }, 150);
     });
 
@@ -49,4 +48,59 @@ $(function () {
         $('html,body').animate({ scrollTop: 320 }, 100);
 	navapi.prev();
     });
+
+
+    /* -- Setting up the per-theme description overlays --*/
+    (function () {
+        $('a.theme').overlay({
+            top: '20%',
+            speed: 'fast',
+            fixed: false,
+            oneInstance: false,
+            mask: {
+                color: '#111',
+                opacity: 0.7
+            }
+        }).click(function () {
+            themeapi.change(
+                $(this).parent().attr('class'),
+                $(this).attr('title')
+            );
+        });
+ 
+        var $t1 = $('#themed');
+        $('ul.internal', $t1).tabs(
+            "div.ptpanes > div", { effect: 'fade' });
+
+        var api = $('ul.internal', $t1).data('tabs');
+        $('.next', $t1).click(function () { api.next(); });
+        $('.prev', $t1).click(function () { api.prev(); });
+    })();
 });
+
+
+var themeapi = (function () {
+
+    function ThemeApi() {
+        this.current = '';
+    }
+
+    ThemeApi.prototype = {
+        change: function(name, label) {
+            console.debug('pica no cu de satã');
+            $('#themed')
+                .attr('class', '')
+                .addClass('overlay')
+                .addClass(name);
+
+            console.debug(this.current);
+            $('#themed h1').html(label);
+            $('#themed ul.allThemes li.' + name).hide();
+            $('#themed ul.allThemes li[class~=' +
+              this.current + ']').fadeIn();
+            this.current = name;
+        }
+    };
+
+    return new ThemeApi();
+})();
