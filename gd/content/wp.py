@@ -22,6 +22,7 @@ interface and our system.
 from xmlrpclib import Server
 from flask import url_for
 from gd import conf
+from gd.model import User
 import re
 
 
@@ -102,14 +103,21 @@ def convert_getRecentPosts(posts):
     return [Post(i) for i in posts]
 
 
-def getPostsByCategory(posts):
+def convert_getPostsByCategory(posts):
     """Convert JSON dictionaries in Post instances"""
     return [Post(i) for i in posts]
 
 
-def getPostsByTag(posts):
+def convert_getPostsByTag(posts):
     """Convert JSON dictionaries in Post instances"""
     return [Post(i) for i in posts]
+
+
+def convert_getComments(comments):
+    """Insert an user instance in the comment dictionary"""
+    for i in comments:
+        i.update({'user': User.get(i['user_id'])})
+    return comments
 
 
 def convert_getMainSidebar(sidebar):
