@@ -20,6 +20,7 @@
 crawlers in separated processes.
 """
 
+from traceback import print_exc
 from multiprocessing import Process
 from gd.model import Audience, session, set_mayor_last_tweet
 
@@ -63,7 +64,7 @@ class MayorWatcher(Process):
         message = loads(json)
         # Making sure twitter will let me watch the mayor!
         if 'error' not in message:
-            set_mayor_last_tweet(loaded[0]['text'])
+            set_mayor_last_tweet(message[0]['text'])
 
     def process(self):
         """this is supposed to update the last micro-post/status from a
@@ -78,7 +79,7 @@ class MayorWatcher(Process):
             except Exception, exc:
                 print '(%s) uops...something wrong. trying again soon.' % (
                     exc.__class__.__name__)
-                self.process()
+                print_exc()
 
 
 class Worker(Process):
