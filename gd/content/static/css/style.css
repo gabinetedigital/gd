@@ -177,7 +177,7 @@ a {
 }
 
 #header #menu ul {
-    width:665px;
+    width: 552px;
     margin:0 auto;
 }
 
@@ -188,10 +188,10 @@ a {
 
 #header #menu .basic a {
     color: #FFF;
-    font-size: 24px;
+    font-size: 20px;
     display:block;
     float:left;
-    padding:12px 75px;
+    padding:15px 42px;
     margin-top:12px;
     width:80px;
 }
