@@ -47,7 +47,7 @@
                   {% if user is not none %}
                   <li class="avatar">
                     <img src="{{ user.avatar_url }}" alt="User avatar">
-                    <div>Olá {{ user.display_name }}</div>
+                    <div>Olá, {{ user.display_name }}</div>
                   </li>
                   <li class="profile">
                     <a href="{{ url_for('auth.profile_form') }}">perfil</a>
@@ -192,7 +192,7 @@
     <script type="text/html" id="loggedinTemplate">
       <li class="avatar">
         <img src="<%= obj.avatar_url %>" alt="User avatar">
-        <div>Olá <%= obj.display_name %></div>
+        <div>Olá, <%= obj.display_name %></div>
       </li>
       <li class="profile">
         <a href="{{ url_for('auth.profile_form') }}">perfil</a>

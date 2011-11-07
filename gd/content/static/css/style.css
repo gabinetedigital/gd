@@ -98,23 +98,22 @@ a {
 }
 
 #header .main-menu li {
-    margin-left: 8px;
+    margin-right: 18px;
 }
 
 #header .main-menu li {
     float: left;
 }
 
-#header .login { 
-    margin-bottom: 49px;
-    margin-left: 35px;
+#header .login {
+    margin-bottom: 35px;
 }
 
 #header .login li a { 
     color: #FFF;
 }
 
-#header .login li a:hover { 
+#header .login li a:hover {
     color: #FFF;
     text-decoration: underline;
 }
@@ -122,13 +121,14 @@ a {
 #header .login li.welcome a , #header .main-menu li a  {
     color: white;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     text-shadow: 1px 1px #555753;
 }
 
 #header .login li.avatar img {
-    float:right;
+    float:left;
     width:30px;
+    margin-right: 10px
 }
 
 #header .login li.avatar {
@@ -156,7 +156,7 @@ a {
 
 #header #social {
     display: block;
-    float: right;
+    float: left;
 }
 
 #header #social li {
