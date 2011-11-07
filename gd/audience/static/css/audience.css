@@ -19,7 +19,7 @@
 /** Container **/
 
 #container #info-aud {
-    height: 100px;
+    height: 122px;
 }
 
 #container #title {
@@ -29,7 +29,7 @@
 }
 
 #container .buzzbg {
-    background:url(../imgs/buzz.png) no-repeat 612px 71px;
+    background:url(../imgs/buzz.png) no-repeat 612px 28px;
     height: 762px;
 }
 
@@ -172,7 +172,7 @@
 /** Buzz **/
 
 #container .filter {
-    margin-top: 56px;
+    margin-top: 49px;
     display: block;
     background: url(../imgs/filter.png) no-repeat;
     width: 23px;
@@ -188,8 +188,8 @@
 }
 
 #container .buzz {
-    margin-top: 88px;
-    margin-left: -16px;
+    margin-top: 80px;
+    margin-left: -18px;
     height: 355px;
     width: 304px;
     overflow-y: scroll;
@@ -224,7 +224,7 @@
 #container #chat form textarea {
     border: 1px solid #999999;
     height: 153px;
-    margin-left: -18px;
+    margin-left: -19px;
     margin-top: 5px;
     width: 300px;
     position: absolute;
