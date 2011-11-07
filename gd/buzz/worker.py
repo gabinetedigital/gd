@@ -54,13 +54,16 @@ class MayorWatcher(Process):
         self.process()
 
     def save_current(self):
-
+        """Opens the twitter api requesting the last tweet of the
+        configured account"""
         json = urlopen(
             TWITTER_JSON_TIMELINE_URL %
             conf.TWITTER_MAYOR_USERNAME).read()
 
-        tweet_text = loads(json)[0]['text']
-        set_mayor_last_tweet(tweet_text)
+        message = loads(json)
+        # Making sure twitter will let me watch the mayor!
+        if 'error' not in message:
+            set_mayor_last_tweet(loaded[0]['text'])
 
     def process(self):
         """this is supposed to update the last micro-post/status from a
@@ -69,11 +72,12 @@ class MayorWatcher(Process):
         while self.alive:
             try:
                 self.save_current()
-                sleep(60)
+                sleep(60 * 8)   # Waiting 5 minutes before trying again
             except KeyboardInterrupt:
                 self.alive = False
-            except:
-                print 'uops...something wrong. trying again soon...'
+            except Exception, exc:
+                print '(%s) uops...something wrong. trying again soon.' % (
+                    exc.__class__.__name__)
                 self.process()
 
 
