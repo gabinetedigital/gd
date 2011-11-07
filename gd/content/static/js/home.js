@@ -18,26 +18,13 @@
  */
 
 $(document).ready(function () {
-    $('.carousel').jcarousel({
-        scroll: 1,
-        auto: 5,
-        wrap: 'last',
-        buttonNextHTML: null,
-        buttonPrevHTML: null,
-        initCallback: function (carousel) {
-            $('.controls a[href=#1]').addClass('selected');
+    $('#slideshow .controls').tabs('ul.carousel > li', {
+        effect: 'fade',
+        event: null,
+        rotate: true
+    }).slideshow();
 
-            $('.controls a').bind('click', function() {
-                // Actually selecting the current item
-                var pos = $(this).attr('href').replace('#', '');
-                carousel.scroll($.jcarousel.intval(pos));
-                return false;
-            });
-        },
-
-        itemVisibleInCallback: function (carousel, item, idx, state) {
-            $('.controls a').removeClass('selected');
-            $('.controls a[href=#' + (idx) +']').addClass('selected');
-        }
-    });
+    window.setInterval(function () {
+        $("#slideshow .controls").data("tabs").next();
+    }, 7000);
 });

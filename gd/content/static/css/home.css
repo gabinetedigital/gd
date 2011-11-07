@@ -9,12 +9,14 @@
     background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
     overflow:hidden;
 }
-#header #slideshow .jcarousel-container {
+
+#header #slideshow .carousel {
     padding-top:20px;
+    height:185px;
 }
 
 #header #slideshow li {
-    display:block;
+    display:none;
     float:left;
     width:978px;
     margin-right:30px;
@@ -42,27 +44,32 @@
 
 #header #slideshow .controls {
     float:right;
-    font-size:36px;
     position:relative;
-    top:-60px;
+    top:-10px;
     right:20px;
 }
 
 #header #slideshow .controls a {
     color:#babdb6;
+    font-weight:bold;
+    font-size:14px;
+    display:block;
+    float:left;
+    padding:0 6px;
 }
 
 #header #slideshow .controls a:hover {
     text-decoration:none;
 }
 
-#header #slideshow .controls a.selected {
-    color:#2e3436;
+#header #slideshow .controls a.current {
+    background:#8ae234;
+    color:#fff;
 }
 
 #header #slideshow .controls li {
     display:block;
-    width:15px;
+    width:20px;
     margin-right:0;
 }
 /** Container **/

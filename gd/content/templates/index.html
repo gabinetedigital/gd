@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/jquery.jcarousel.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/home.js') }}"></script>
 {% endblock %}
 
@@ -16,9 +15,9 @@
 <div class="row">
   <div id="slideshow" class="col12">
     <ul class="carousel">
-      {% for post in slideshow %}
+      {%- for post in slideshow %}
       <li>
-        {% if post.thumbs %}
+        {%- if post.thumbs %}
         <a href="{{ post.permalink }}">
           <img
              src="{{ post.thumbs.slideshow.url }}"
@@ -26,7 +25,7 @@
              width="{{ post.thumbs.slideshow.width }}"
              height="{{ post.thumbs.slideshow.height }}">
         </a>
-        {% endif %}
+        {%- endif %}
         <h2 class="title">
           <a href="{{ post.permalink }}">
             {{ post.title }}
@@ -38,17 +37,16 @@
           </a>
         </div>
       </li>
-      {% endfor %}
+      {%- endfor %}
     </ul>
-    {% if slideshow.__len__() > 1 %}
+
+    {%- if slideshow.__len__() > 1 %}
     <ol class="controls">
-      {% for i in slideshow %}
-      <li>
-        <a href="#{{ loop.index }}">•</a>
-      </li>
-      {% endfor %}
+      {%- for i in slideshow %}
+      <li><a href="#{{ loop.index }}">{{ loop.index }}</a></li>
+      {%- endfor %}
     </ol>
-    {% endif %}
+    {%- endif %}
   </div>
 </div>
 {% endblock %}
