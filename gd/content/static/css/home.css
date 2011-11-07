@@ -5,24 +5,25 @@
 }
 
 #header #slideshow {
-    height: 233px;
+    height: 223px;
     background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
     overflow:hidden;
 }
 #header #slideshow .jcarousel-container {
-    padding:30px;
+    padding-top:20px;
 }
 
 #header #slideshow li {
     display:block;
     float:left;
-    width:920px;
+    width:978px;
     margin-right:30px;
 }
 
 #header #slideshow img {
     float:left;
     margin-right:30px;
+    border:solid 1px #fff;
 }
 
 #header #slideshow .title a {

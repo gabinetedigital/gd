@@ -13,80 +13,110 @@
     <link rel="stylesheet" href="{{ url_for('auth.static', filename='css/auth.css') }}">
     {% block css %}{% endblock %}
   </head>
-  <body>
-
-    <div id="header-wrapper"> 
-    <div class="layout-978">
-        <div id="header" class="row">
-        <div class="col4">
-          <h1 class="title">
-            <a title="Gabinete Digital - Democracia em Rede"
-               href="{{ url_for('index') }}">
-              Gabiente Digital - Democracia em Rede
-            </a>
-          </h1>
-        </div>
-        
-        <div class="col4" id="search">
-          {% set term = search_term if search_term else "procurar..." %}
-          <input id="search_form" type="text" value="{{term}}">
-        </div>
-        <div class="col2">
-           <ul class="main-menu">
+  <body class="{% block bodyclass %}{% endblock %}">
+    <div id="header">
+      <div id="header-wrapper">
+        <div class="layout-978">
+          <div class="row">
+            <div class="col4">
+              <h1 class="title">
+                <a title="Gabinete Digital - Democracia em Rede"
+                   href="{{ url_for('index') }}">
+                  Gabiente Digital - Democracia em Rede
+                </a>
+              </h1>
+            </div>
+            
+            <div class="col4" id="search">
+              {% set term = search_term if search_term else "procurar..." %}
+              <input id="search_form" type="text" value="{{term}}">
+            </div>
+            <div class="col2">
+              <ul class="main-menu">
                 <li><a href="{{ url_for('index') }}">INÍCIO</a></li>
                 <li><a href="{{ url_for('sobre') }}">O QUE É?</a></li>
-            </ul>
-        </div>
-        <div class="col2">
-            <div id="user-space">
-            <div id="loginoverlay" class="overlay"><div class="contentWrap"></div></div>
-            <div id="signupoverlay" class="overlay"><div class="contentWrap"></div></div>
-            <ul class="login">
-            {% if user is not none %}
-            <li class="avatar">
-              <img src="{{ user.avatar_url }}" alt="User avatar">
-              <div>Olá {{ user.display_name }}</div>
-            </li>
-            <li class="profile">
-              <a href="{{ url_for('auth.profile_form') }}">perfil</a>
-            </li>
-            <li class="pipe">|</li>
-            <li class="logout">
-              <a href="{{ url_for('auth.logout_json') }}"
-                 onclick="auth.logout(); return false;">sair</a>
-            </li>
-            {% else %}
-            <li class="welcome">
-              <a href="javascript:;" onclick="auth.showLoginForm()">
-                ENTRAR
-              </a>
-            </li>
-            {% endif %}
-            </ul>
-    
-            <ul id="social">
-                <li><a href="http://identi.ca/gabinetedigital"><img src="{{ url_for('static', filename='imgs/feed.png') }}"></a></li>
-                <li><a href="http://identi.ca/gabinetedigital"><img src="{{ url_for('static', filename='imgs/identica.png') }}"></a></li>
-                <li><a href="http://www.facebook.com/gabinetedigital"><img src="{{ url_for('static', filename='imgs/facebook.png') }}"></a></li>
-                <li><a href="http://twitter.com/#!/gabinetedigital"><img src="{{ url_for('static', filename='imgs/twitter.png') }}"></a></li>
-            </ul>
+              </ul>
             </div>
+            <div class="col2">
+              <div id="user-space">
+                <div id="loginoverlay" class="overlay">
+                  <div class="contentWrap"></div></div>
+                <div id="signupoverlay" class="overlay">
+                  <div class="contentWrap"></div></div>
+                <ul class="login">
+                  {% if user is not none %}
+                  <li class="avatar">
+                    <img src="{{ user.avatar_url }}" alt="User avatar">
+                    <div>Olá {{ user.display_name }}</div>
+                  </li>
+                  <li class="profile">
+                    <a href="{{ url_for('auth.profile_form') }}">perfil</a>
+                  </li>
+                  <li class="pipe">|</li>
+                  <li class="logout">
+                    <a href="{{ url_for('auth.logout_json') }}"
+                       onclick="auth.logout(); return false;">sair</a>
+                  </li>
+                  {% else %}
+                  <li class="welcome">
+                    <a href="javascript:;" onclick="auth.showLoginForm()">
+                      ENTRAR
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+                
+                <ul id="social">
+                  <li>
+                    <a href="#">
+                      <img src="{{ url_for('static', filename='imgs/feed.png') }}">
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://identi.ca/gabinetedigital">
+                      <img src="{{ url_for('static', filename='imgs/identica.png') }}">
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.facebook.com/gabinetedigital">
+                      <img src="{{ url_for('static', filename='imgs/facebook.png') }}">
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://twitter.com/#!/gabinetedigital">
+                      <img src="{{ url_for('static', filename='imgs/twitter.png') }}">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div><!-- .row -->
+        </div><!-- .layout-978 -->
+      </div><!-- #header-wrapper -->
+
+      <div id="header-wrapper-2">
+        <div class="layout-978">
+          {% block slideshow %}{% endblock %}
         </div>
-        <div class="row-end"></div>
-      {% block slideshow %}{% endblock %}
-<div class="row">
- <div id="menu" class="col12">
-        <ul>
-            <li class="basic first"><a href="">Notícias</a></li>
-            <li class="special"><a href="">Participe</a></li>
-            <li class="basic last"><a href="">Galeria</a></li>
-        </ul>
-  </div>
-  <div class="row-end"></div> 
-</div>
       </div>
-    </div>
-    </div>
+
+      <div id="header-wrapper-3">
+        <div class="layout-978">
+          <div class="row">
+            <div id="menu" class="col12">
+              <ul>
+                <li class="basic first"><a href="">Notícias</a></li>
+                <li class="special"><a href="">Participe</a></li>
+                <li class="basic last"><a href="">Galeria</a></li>
+              </ul>
+            </div>
+            <div class="row-end"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row-end"></div>
+    </div> <!-- #header -->
+
     <div class="layout-978">
       {% block content %}{% endblock %}
     </div>
