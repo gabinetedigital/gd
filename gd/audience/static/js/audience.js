@@ -129,28 +129,47 @@ $(function() {
 
     $('a.filter').tooltip({ opacity: 0.7 });
 
-    // Starts a new instance of the buzz stream
 
-    new Buzz(SIO_BASE, {
-        new_buzz: function (msg) {
-            var $el = $(tmpl("buzzTemplate", msg));
-            $('#buzz-public').prepend($el);
-        },
+    if (navigator.userAgent.indexOf('MSIE') > -1) {
+        // IE uses polling+ajax, that's it.
+        window.setInterval(function () {
+            var element = $('#buzz-public').is(':visible') ?
+                { url:'/public_buzz', target: $('#buzz-public') } :
+                { url:'/moderated_buzz', target: $('#buzz-moderated') };
 
-        buzz_accepted: function (msg) {
-            var $el = $(tmpl("buzzTemplate", msg));
-            $('#buzz-moderated').prepend($el);
-        },
-
-        buzz_published: function (msg) {
-            var $el = $(tmpl("selectedNotice", msg));
-            $('#beingAnswered').fadeOut(function () {
-                $(this).html('');
-                $(this).append($el);
-                $(this).fadeIn();
+            $.getJSON(CURRENT_URL + element.url, function (data) {
+                element.target.html('');
+                $(data).each(function (index, item) {
+                    $(tmpl('buzzTemplate', item)).appendTo(element.target);
+                });
             });
-        }
-    });
+        }, 9000);
+    } else {
+        // Thank god we're not in IE, so let's just
+        // starts an instance of the buzz stream that works through
+        // socket.io.
+
+        new Buzz(SIO_BASE, {
+            new_buzz: function (msg) {
+                var $el = $(tmpl("buzzTemplate", msg));
+                $('#buzz-public').prepend($el);
+            },
+
+            buzz_accepted: function (msg) {
+                var $el = $(tmpl("buzzTemplate", msg));
+                $('#buzz-moderated').prepend($el);
+            },
+
+            buzz_published: function (msg) {
+                var $el = $(tmpl("selectedNotice", msg));
+                $('#beingAnswered').fadeOut(function () {
+                    $(this).html('');
+                    $(this).append($el);
+                    $(this).fadeIn();
+                });
+            }
+        });
+    }
 
     // Initializing "how it works" stuff
     audience_how_it_works_spinning_gears_setup();

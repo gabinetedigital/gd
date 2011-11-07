@@ -20,9 +20,10 @@
 $(document).ready(function () {
     $('#slideshow .controls').tabs('ul.carousel > li', {
         effect: 'fade',
-        event: null,
         rotate: true
-    }).slideshow();
+    }).slideshow({
+        clickable: false
+    });
 
     window.setInterval(function () {
         $("#slideshow .controls").data("tabs").next();
