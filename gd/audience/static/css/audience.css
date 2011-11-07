@@ -48,16 +48,44 @@
 
 #container #tag {
     color: #CCC;
-    margin-top: 90px;
+    margin-top: -23px;
     margin-left: 113px;
-    position: absolute;
+    float: left;
     font-size:26px;
 }
 
 #container #date {
     color: #CCC;
-    float: right;
-    margin-right: 22px;
+    float: left;
+    margin-left: 200px;
+    overflow: hidden;
+    height: 109px;
+    margin-top: -15px;
+}
+
+#container #date .day {
+    font-size: 74px;
+    float: left;
+}
+
+#container #date .month {
+    font-size: 40px;
+    float: left;
+    margin-top: 11px;
+}
+
+#container #date .hour {
+    font-size: 22px;
+    margin-left: -76px;
+    margin-top: 56px;
+    float: left;
+}
+
+#container #date .min {
+    font-size: 22px;
+    margin-left: -35px;
+    float: left;
+    margin-top: 56px;
 }
 
 #container #tag h3 {
@@ -69,25 +97,6 @@
 #container #tag p {
     font-size: 14px;
     color:#888;
-}
-
-#container #date .day {
-    font-size: 74px;
-    position: absolute;
-}
-#container #date .month {
-    font-size: 40px;
-    margin-left: 100px;
-    margin-top: 2px;
-}
-#container #date .hour {
-    font-size: 22px;
-    margin-left: 99px;
-    position: absolute;
-}
-#container #date .min {
-    font-size: 22px;
-    margin-left: 141px;
 }
 
 #container #main {
