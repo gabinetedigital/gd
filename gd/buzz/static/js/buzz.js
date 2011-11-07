@@ -27,19 +27,25 @@ function Buzz(sockAddr, params) {
         buzz_unpublished: function (msg) {}
     }, params);
 
+    /* Just starting the show */
     socket.connect();
 
-    socket.on('connect', function () {
-        console.debug('connected');
-    });
+    /* Should we do anything here? */
+    socket.on('connect', function () { });
 
+    /* This method receives the message from the socketio provider and
+     * after that, calls the appropriated callback */
     socket.on('message', function (msg) {
         var parsed = JSON.parse(msg);
-        args[parsed.message](parsed.data);
+        var callback = args[parsed.message];
+        if (callback !== undefined) {
+            callback(parsed.data);
+        }
     });
 
+    /* Tries to reconnect if, for any reason, the user gets
+     * disconnected. */
     socket.on('disconnect', function () {
-        console.debug('disconnected');
         socket.connect();
     });
 }
