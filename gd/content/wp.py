@@ -90,7 +90,12 @@ def convert_getComments(comments):
     return comments
 
 def convert_getPageByPath(post):
-    return Post(post)
+    """Converts a json that represents a wordpress page into a Post
+    instance.
+
+    If the requested page does not exist in the wordpress database,
+    this function will return None"""
+    return post and Post(post) or None
 
 def convert_getRecentPosts(posts):
     """Convert JSON dictionaries in Post instances"""
