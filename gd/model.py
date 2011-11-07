@@ -126,12 +126,12 @@ class Audience(Entity):
         except NoResultFound:
             return None
 
-    def get_public_buzz(self):
+    def get_public_buzz(self, offset=0, limit=-1):
         """Returns the public notice buzz"""
-        return Buzz.query \
+        query = Buzz.query \
             .filter_by(audience=self) \
-            .order_by(desc('creation_date')) \
-            .all()
+            .order_by(desc('creation_date'))
+        return limit > 0 and query[offset:limit] or query.all()
 
     def get_moderated_buzz(self):
         """Returns the moderated notice buzz"""
