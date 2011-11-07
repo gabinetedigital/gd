@@ -156,7 +156,7 @@ $(function() {
     $('div[rel]').overlay({
         oneInstance: false,
         speed: 'fast',
-        top: '30%',
+        fixed: false,
         mask: {
             color: '#111',
             opacity: 0.7

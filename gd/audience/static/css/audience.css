@@ -29,7 +29,7 @@
 }
 
 #container .buzzbg {
-    background:url(../imgs/buzz.png) no-repeat 612px 145px;
+    background:url(../imgs/buzz.png) no-repeat 612px 71px;
     height: 762px;
 }
 
@@ -357,4 +357,18 @@
 
 #works-like-this .mustache-gentleman {
     margin-top:40px;
+}
+
+#works-like-this #saiba-mais-link {
+    margin-top: 40px;
+    float: left;
+}
+
+#works-like-this #saiba-mais-text {
+    margin-top: 40px;
+    float: left;
+}
+
+.boverlay {
+    border-radius: 30px;
 }
