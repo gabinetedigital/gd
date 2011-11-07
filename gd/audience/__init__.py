@@ -40,7 +40,7 @@ def index(aid):
     return render_template(
         'audience.html',
         audience=inst,
-        how_to=how_to.content,
+        how_to=getattr(how_to, 'content', ''),
         notice=inst.get_last_published_notice(),
     )
 
