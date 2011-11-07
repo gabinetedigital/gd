@@ -411,7 +411,7 @@ def get_mayor_last_tweet():
 # Database setup
 
 metadata.bind = conf.DATABASE_URI
-metadata.bind.echo = True
+metadata.bind.echo = conf.DEBUG
 setup_all(__name__ == '__main__')
 
 
