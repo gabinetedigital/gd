@@ -1,4 +1,6 @@
-/* Copyright (C) 2011 Governo do Estado do Rio Grande do Sul
+/* -*- Mode: js2; c-basic-offset:4; -*-
+ *
+ * Copyright (C) 2011 Governo do Estado do Rio Grande do Sul
  *
  *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
  *   Author: Thiago Silva <thiago@metareload.com>
@@ -18,7 +20,7 @@
  */
 
 $(function() {
-    var moderatedBuzz = $("#buzz-moderated")
+    var moderatedBuzz = $("#buzz-moderated");
     var publicBuzz = $("#buzz-public");
 
     //max length of message a user can send
@@ -32,7 +34,7 @@ $(function() {
 
         });
 
-    //initializing status bar
+    // initializing status bar
     $("#message-statusbar").status_bar("message-statusbar");
 
     /** Posts a new notice on the message buzz */
@@ -175,13 +177,13 @@ $(function() {
   msg_area[0].onkeydown = msg_area[0].onkeyup = (function() {
     $(".current-msg-length").text(MAX_LENGTH-msg_area.val().length);
     if (msg_area.val().length > MAX_LENGTH) {
-      $("#send_comment").enable(false)
+      $("#send_comment").enable(false);
       msg_area.addClass("error");
     } else {
-      $("#send_comment").enable(true)
+      $("#send_comment").enable(true);
       msg_area.removeClass("error");
     }
-  })
+  });
 });
 
 
