@@ -26,6 +26,7 @@ from flask import Flask, request, render_template, session, \
 from gd import conf
 from gd.auth import authenticated_user, NobodyHome
 from gd.content.wp import wordpress
+from gd.model import session as dbsession
 
 from gd.admin import admin
 from gd.audience import audience
@@ -78,6 +79,14 @@ def extend_context():
 
     # Job done!
     return context
+
+
+@app.after_request
+def cleanup(response):
+    """Closes the database session that will be open once again in the
+    next request"""
+    dbsession.close()
+    return response
 
 
 @app.route('/')
