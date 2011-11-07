@@ -191,8 +191,11 @@ var auth = (function() {
             $.get(url_for('auth.logout_json'), function () {
                 auth.user = null;
                 auth.updateLoginWidget();
-              $("#blog_comment_form").hide(); //hide the blog comment form
-              $(".comment-error").show();
+                $("#blog_comment_form").hide(); //hide the blog comment form
+                $(".comment-error").show();
+                if (window.location.href.indexOf('profile') > 0) {
+                    window.location.href = INDEX_URL;
+                }
             });
         }
 
