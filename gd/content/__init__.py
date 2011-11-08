@@ -219,3 +219,8 @@ def search(s, page=0):
         search_term=query,
         posts=posts,
         page=page)
+
+@app.route('/feed')
+def feed():
+    header = {'Content-Type': 'application/rss+xml; charset=utf-8'}
+    return wordpress.getRSS(), 200, header

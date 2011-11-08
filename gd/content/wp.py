@@ -25,6 +25,7 @@ from gd import conf
 from gd.model import User
 import re
 import datetime
+from urllib import urlopen
 
 class Namespace(object):
     """Abstracts an XMLRPC namespace available in wordpress"""
@@ -60,7 +61,8 @@ class Namespace(object):
 
 
 class Wordpress(object):
-    """Wordpress XMLRPC client"""
+    """Represents the Wordpress from which we consume
+    mostly via XML-RPC"""
     def __init__(self, address, blogid, user, password):
         self.default_namespace = 'exapi'
         self.known_namespaces = 'exapi', 'wpgd', 'wp'
@@ -69,6 +71,9 @@ class Wordpress(object):
             'user': user,
             'password': password
         }
+
+    def getRSS(self):
+        return wp_links_to_flask(urlopen(conf.WORDPRESS_RSS).read())
 
     def __getattribute__(self, attr):
         try:
@@ -135,22 +140,34 @@ def convert_getMainSidebar(sidebar):
 # Other wp links might not be appropriately
 # converted!
 def wp_links_to_flask(text):
+    print text
     subs = {}
-    for href in re.findall('"http://.*?"', text):
-        subs[href] = wp_link_to_flask(href)
+
+    wp_url = conf.WORDPRESS_ADDRESS[:-1] # no trailing slashes
+    site_url = conf.BASE_URL[:-1]        # no trailing slashes
+
+    for href in re.findall('[\'">]('+wp_url+'.*?)["\'<]', text):
+        print href
+        subs[href] = wp_link_style_to_flask(href)
     for original, translated in subs.iteritems():
         text = text.replace(original,translated)
-    return text
+    return text.replace(wp_url, site_url)
 
 
-def wp_link_to_flask(href):
-    """Converts wordpress urls in flask urls"""
+def wp_link_style_to_flask(href):
+    """Converts wordpress url style to flask urlws"""
+    base = conf.BASE_URL[:-1]
     if href.find("cat=") != -1:
         cat = re.search('cat=(\d+)', href).group(1)
-        return url_for('category', cid=cat)
+        return base+url_for('category', cid=cat)
     elif href.find("tag=") != -1:
-        tag = re.search('tag=(\w)', href).group(1)
-        return url_for('tag', tag=tag)
+        tag = re.search('tag=(\w+)', href).group(1)
+        return base+url_for('tag', slug=tag)
+    elif href.find("p=") != -1:
+        p = re.search('p=(\d+)', href).group(1)
+        return base+url_for('post', pid=p)
+    elif href.find("feed=rss2") != -1:
+        return base+url_for('feed')
     else:
         return href
 

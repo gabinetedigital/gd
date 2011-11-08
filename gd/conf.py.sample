@@ -1,6 +1,8 @@
 # -*- coding:utf-8; -*-
 """File that holds all configurable parameters of our application"""
 
+BASE_URL  = 'http://localhost:5000/'
+
 # HTTP config vars
 HTTP_HOST = '0.0.0.0'
 HTTP_PORT = 5000
