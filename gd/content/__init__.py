@@ -202,9 +202,9 @@ def new_comment():
 
 @app.route('/search/<string:s>')
 @app.route('/search/<string:s>/<int:page>')
-def search(query, page=0):
+def search(s, page=0):
     """Renders the search template"""
-    posts = wordpress.search(s=query)
+    posts = wordpress.search(s=s)
     return render_template(
         'archive.html',
         sidebar=wordpress.getMainSidebar(),
