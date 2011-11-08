@@ -240,4 +240,4 @@ def remember_password():
     except:
         return msg.error(
             _(u'There was an error sending the e-mail'), 'UnknownError')
-    return msg.ok(_('Senha enviada para o email'))
+    return msg.ok(_('Password sent to the email'))
