@@ -91,6 +91,7 @@ a {
     border-radius: 6px;
     padding: 5px;
     margin-top: 40px;
+    margin-left: -20px;
 }
 
 #header .col4, #header .col2 {
