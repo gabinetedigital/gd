@@ -145,7 +145,13 @@ $(function() {
             });
 
             $.getJSON(CURRENT_URL + '/last_published', function (data) {
+                /* The last notice still the same */
+                if ($('#beingAnswered').data('lastnotice') == data.id) {
+                    return;
+                }
+
                 var $el = $(tmpl("selectedNotice", data));
+                $('#beingAnswered').data('lastnotice', data.id);
                 $('#beingAnswered').fadeOut(function () {
                     $(this).html('');
                     $(this).append($el);
