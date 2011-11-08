@@ -101,24 +101,29 @@ var themeapi = (function () {
             $('#themed ul.allThemes li[class~=' +
               this.current + ']').fadeIn();
             this.current = name;
+            console.debug('clicking');
+            $('#themed ul.internal').data('tabs').click(0);
             this.update(0);
         },
 
         update: function (idx) {
-            if (themeapi.current === '')
-                return;
+            if (this.current === '')
+                return null;
 
-            var target = $('a', $('ul.internal li').get(idx)).attr('target');
+            var $el = $('a', $('ul.internal li').get(idx));
+            var $target = $('div.' + $el.attr('target') + ' .cont',
+                            $('.ptpanes')).html('');
             var url =
                     BASE_URL + 'pages/govpergunta/' +
                     themeapi.current + '/' +
-                    target + '.json';
+                    $el.attr('target') + '.json';
             $.getJSON(url, function (data) {
                 /* Yes, if none is retrieved, we'll clean the
                  * element content. */
                 var ct = (data !== null) ? data.content : '';
-                $('div.' + target + ' .cont', $('.ptpanes')).html(ct);
+                $target.html(ct);
             });
+            return $el;
         }
     };
 
