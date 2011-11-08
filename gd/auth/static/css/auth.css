@@ -165,6 +165,10 @@ form.auth div.passwordReminder {
 
 /* specific things to the signup form */
 
+form.auth p {
+    margin-bottom:20px;
+}
+
 form.auth .accept_tos input {
     width:auto;
 }

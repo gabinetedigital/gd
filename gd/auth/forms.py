@@ -115,10 +115,9 @@ class SignupForm(BaseDataForm, BasePasswordForm):
     )
 
     accept_tos = BooleanField(
-        _('Have you read and accepted our <a href="%s">Terms of use</a>?' %
-          #FIXME: We don't have this url defined yet
-          #url_for('content.page', name='tos'))
-          ''),
+        _('Have you read and accepted our '
+          '<a href="javascript:auth.toggleSignupTab(\'tos\')">'
+          'Terms of use</a>?'),
         [validators.Required(),
          ]
     )
