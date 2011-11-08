@@ -156,11 +156,11 @@
           <div id="contact" class="col4">
             <h3>Contatos</h3>
             <p>Gabinete do Governador
-            Palácio Piratini, Praça Marechal Deodoro s/n
-            Porto Alegre - RS. CEP 90010-282
+              Palácio Piratini, Praça Marechal Deodoro s/n
+              Porto Alegre - RS. CEP 90010-282
 
-            Telefone (51) 3210 4100
-            gabinetedigital@gg.rs.gov.br</p>
+              Telefone (51) 3210 4100
+              gabinetedigital@gg.rs.gov.br</p>
 
             <img src="../static/imgs/gd.png" class="gd">
 
@@ -169,14 +169,22 @@
           <div id="licencas" class="col4">
             <h3>Licenças</h3>
             <img src="../static/imgs/cc.png">
-            <p><a href="http://creativecommons.org/licenses/by-sa/3.0/" taget="_blank">Todo o conteúdo do site está disponível sobre a licença Creative Commons Attribution 3.0 não adaptada.</a></p>
+            <p>
+              <a href="http://creativecommons.org/licenses/by-sa/3.0/"
+                 taget="_blank"> Todo o conteúdo do site está disponível
+                sobre a licença Creative Commons Attribution 3.0 não
+                adaptada.
+              </a>
+            </p>
 
             <img src="../static/imgs/agpl.png" class="agpl">
-            <p><a href="http://git.gabinetedigital.rs.gov.br/" target="_blank">
-            O código deste site é livre, licenciado sob
-            a Affero GPL. Para saber mais sobre isso,
-            veja a nossa página sobre desenvolvimento.</a></p>
-
+            <p>
+              <a href="http://git.gabinetedigital.rs.gov.br/"
+                 target="_blank"> O código deste site é livre,
+                 licenciado sob a Affero GPL. Para saber mais sobre
+                 isso, veja a nossa página sobre
+                 desenvolvimento.</a>
+            </p>
           </div>
           
           <div id="logos" class="col4">
@@ -188,25 +196,30 @@
         <div id="map" class="row">
           <div id="apps" class="col8">
             <ul>
-                <li><a href="">Governador Responde</a></li>
-                <li><a href="">Governador Pergunta</a></li>
-                <li><a href="">Governo Escuta</a></li>
-                <li><a href="">Agenda Colaborativa</a></li>
+              <li><a href="">Governador Responde</a></li>
+              <li><a href="">Governador Pergunta</a></li>
+              <li><a href="">Governador Ao Vivo</a></li>
+              <li><a href="">Agenda Colaborativa</a></li>
             </ul>
           </div>
           <div id="sitemap" class="col4">
             <ul>
-                <li><a href="">topo^</a></li>
-                <li><a href="">termos de uso</a></li>
-                <li><a href="">o que é?</a></li>
-                <li><a href="">início</a></li>
+              <li>
+                <a href="javascript:;"
+                   onclick="$('html,body').animate({scrollTop:0}, 'fast')">
+                  topo^</a></li>
+              <li>
+                <a href="{{ url_for('pages', path='tos') }}">
+                  termos de uso</a></li>
+              <li><a href="{{ url_for('sobre') }}">o que é?</a></li>
+              <li><a href="{{ url_for('index') }}">início</a></li>
             </ul>
           </div>
 
           <div class="row-end"></div>
-          </div>
-    </div>
-    </div>
+        </div>
+      </div>
+      </div>
     </div>
     <script type="text/html" id="loggedinTemplate">
       <li class="avatar">
