@@ -10,10 +10,9 @@
     <div id="post" class="col8">
       <div id="news">
           <h1>{{ post.title }}</h1>
+          {{ post.content|safe }}
           <div id="comments">
           <div class="postcontent">
-            {{ post.content|safe }}
-            <div id="comments">
 
             {% if post.comments.allow_comments == 1 %}
 
