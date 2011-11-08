@@ -109,7 +109,7 @@ class SignupForm(BaseDataForm, BasePasswordForm):
     """Wtform that builds the signup form"""
 
     email_confirmation = TextField(
-        _('Email confirrmation'),
+        _('Email confirmation'),
         [validators.Email(message=_(u'That\'s not a valid email address.')),
         ]
     )
