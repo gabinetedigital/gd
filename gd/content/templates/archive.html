@@ -19,8 +19,8 @@
                            {{ post.title }}
                         </a>
                         </h2>
-           {{post.the_date.day}}/{{post.the_date.month}}{{post.the_date.year}}
-           as {{post.the_date.hour}}:{{post.the_date.minute}}
+           <p class="date">{{post.the_date.day}}/{{post.the_date.month}}/{{post.the_date.year}}
+           as {{post.the_date.hour}}:{{post.the_date.minute}}</p>
                     </li>
                     <li>
                      <p>{{ post.excerpt|safe }}</p>
@@ -36,29 +36,7 @@
       <div id="wordpress-sidebar-1">
         {{ sidebar|safe }}
       </div>
-      <div id="tag-cloud">
-        <ul>
-          {% for t in tags %}
-          <li>
-            <a
-               href="{{ url_for('tag', slug=t.slug) }}"
-               style="font-size:{{ t.size }};">{{ t.name }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div id="recent-topics">
-        <h3>Outras notícias</h3>
-        <ol>
-          {% for p in recent_posts %}
-            <li>
-                <a href="/post/{{p.id}}">{{ p.title|safe }}</a>
-            </li>
-          {% endfor %}
-        </ol>
-      </div>
-   </div>
+    </div>
   </div>
   <div class="row-end"></div>
 </div>
