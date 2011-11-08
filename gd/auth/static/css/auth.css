@@ -175,17 +175,29 @@ form.auth .accept_tos label {
 }
 
 .frmcol1 {
-    width:24.5%;
+    width:50%;
     float:left;
     margin-right:15px;
 }
 
+.profile .frmcol1 {
+    width:24.5%;
+}
+
 .frmcol2 {
-    width:16%;
+    width:33%;
     float:left;
 }
 
+.profile .frmcol2 {
+    width:16%;
+}
+
 .frmcol2.gender, .frmcol2.state {
+    width:20%;
+}
+
+.profile .frmcol2.gender, .profile .frmcol2.state {
     width:10%;
 }
 
