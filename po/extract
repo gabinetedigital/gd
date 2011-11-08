@@ -1,0 +1,2 @@
+#!/bin/bash
+pygettext -d gabinetedigital ../gd

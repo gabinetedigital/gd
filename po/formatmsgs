@@ -1,0 +1,2 @@
+#!/bin/bash
+msgfmt --output-file=pt_BR/LC_MESSAGES/gabinetedigital.mo pt_BR.po

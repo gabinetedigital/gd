@@ -20,6 +20,8 @@
 implemented blueprints in various modules to this app.
 """
 
+import gettext
+import xmlrpclib
 from flask import Flask, request, render_template, session, \
      redirect, url_for
 
@@ -47,13 +49,16 @@ app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 
-import xmlrpclib
-
 # Registering a secret key to be able to work with sessions
 app.secret_key = conf.SECRET_KEY
 
 # Loading the config variables from our `gd.conf' module
 app.config.from_object(conf)
+
+# Gettext setup
+app.jinja_env = app.jinja_env.overlay(extensions=['jinja2.ext.i18n'])
+app.jinja_env.install_gettext_callables(
+    gettext.gettext, gettext.ngettext, newstyle=True)
 
 
 @app.context_processor

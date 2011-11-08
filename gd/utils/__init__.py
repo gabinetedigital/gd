@@ -27,11 +27,10 @@ from PIL import Image, ImageOps
 import string
 import random
 from email.mime.text import MIMEText
+from gettext import gettext
 import smtplib
 
-# It's gonna be changed by some gettext function when we start to care
-# about translating things
-_ = lambda x:x
+_ = gettext
 
 
 def _default_handler(value):

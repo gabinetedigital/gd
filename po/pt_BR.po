@@ -1,0 +1,250 @@
+# Gabinete Digital.
+# Copyright (C)  2011  Governo do Estado do Rio Grande do Sul
+# Lincoln de Sousa <lincoln@gg.rs.gov.br>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GabineteDigital 0.1\n"
+"POT-Creation-Date: 2011-11-08 17:57+BRST\n"
+"PO-Revision-Date: 2011-11-08 18:25-0200\n"
+"Last-Translator: Lincoln de Sousa <lincoln@gg.rs.gov.br>\n"
+"Language-Team: LANGUAGE <pt-br@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: ../gd/admin/__init__.py:52
+msgid "Login"
+msgstr "Entrar"
+
+#: ../gd/admin/__init__.py:74 ../gd/admin/__init__.py:113
+#: ../gd/admin/__init__.py:150 ../gd/admin/__init__.py:180
+msgid "Audience"
+msgstr "Audiência"
+
+#: ../gd/auth/__init__.py:126
+msgid "No user authenticated."
+msgstr "Nenhum usuário autenticado"
+
+#: ../gd/auth/__init__.py:136
+msgid "The currently logged user don't have suficient privileges to access this resource"
+msgstr "O usuário autenticado atualmente não tem privilégios suficientes para acessar este recurso"
+
+#: ../gd/auth/choices.py:28
+msgid "--"
+msgstr "--"
+
+#: ../gd/auth/choices.py:29
+msgid "Male"
+msgstr "Masculino"
+
+#: ../gd/auth/choices.py:30
+msgid "Female"
+msgstr "Feminino"
+
+#: ../gd/auth/choices.py:36
+msgid "80 years old or more"
+msgstr "80 anos ou mais"
+
+#: ../gd/auth/choices.py:37
+msgid "75 to 79"
+msgstr "75 a 79"
+
+#: ../gd/auth/choices.py:38
+msgid "70 to 74"
+msgstr "70 a 74"
+
+#: ../gd/auth/choices.py:39
+msgid "65 to 69"
+msgstr "65 a 69"
+
+#: ../gd/auth/choices.py:40
+msgid "60 to 64"
+msgstr "60 a 64"
+
+#: ../gd/auth/choices.py:41
+msgid "55 to 59"
+msgstr "55 a 59"
+
+#: ../gd/auth/choices.py:42
+msgid "50 to 54"
+msgstr "50 a 54"
+
+#: ../gd/auth/choices.py:43
+msgid "45 to 49"
+msgstr "45 a 49"
+
+#: ../gd/auth/choices.py:44
+msgid "40 to 44"
+msgstr "40 a 44"
+
+#: ../gd/auth/choices.py:45
+msgid "35 to 39"
+msgstr "35 a 39"
+
+#: ../gd/auth/choices.py:46
+msgid "30 to 34"
+msgstr "30 a 34"
+
+#: ../gd/auth/choices.py:47
+msgid "25 to 29"
+msgstr "25 a 29"
+
+#: ../gd/auth/choices.py:48
+msgid "20 to 24"
+msgstr "20 a 24"
+
+#: ../gd/auth/choices.py:49
+msgid "15 to 19"
+msgstr "15 a 19"
+
+#: ../gd/auth/choices.py:50
+msgid "10 to 14"
+msgstr "10 a 14"
+
+#: ../gd/auth/choices.py:51
+msgid "5 to 9"
+msgstr "5 a 9"
+
+#: ../gd/auth/choices.py:52
+msgid "0 to 4"
+msgstr "0 a 4"
+
+#: ../gd/auth/forms.py:31
+msgid "Name"
+msgstr "Nome"
+
+#: ../gd/auth/forms.py:36
+msgid "Email"
+msgstr "Email"
+
+#: ../gd/auth/forms.py:37 ../gd/auth/forms.py:113
+msgid "That's not a valid email address."
+msgstr "Este não é um endereço de email válido"
+
+#: ../gd/auth/forms.py:42
+msgid "Country"
+msgstr "País"
+
+#: ../gd/auth/forms.py:49
+msgid "State"
+msgstr "Estado"
+
+#: ../gd/auth/forms.py:56
+msgid "City"
+msgstr "Cidade"
+
+#: ../gd/auth/forms.py:63
+msgid "Age group"
+msgstr "Faixa etária"
+
+#: ../gd/auth/forms.py:68
+msgid "Gender"
+msgstr "Gênero"
+
+#: ../gd/auth/forms.py:73
+msgid "Income group"
+msgstr "Faixa salarial"
+
+#: ../gd/auth/forms.py:78
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ../gd/auth/forms.py:82
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ../gd/auth/forms.py:90
+msgid "Password"
+msgstr "Senha"
+
+#: ../gd/auth/forms.py:96
+msgid "Password confirmation"
+msgstr "Confirmação da senha"
+
+#: ../gd/auth/forms.py:105
+msgid "Password does not match its confirmation"
+msgstr "A senha não bate com sua confirmação"
+
+#: ../gd/auth/forms.py:112
+msgid "Email confirmation"
+msgstr "Email confirmation"
+
+#: ../gd/auth/forms.py:118
+msgid "Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab('tos')\">Terms of use</a>?"
+msgstr "Você leu e aceitou nossos <a href=\"javascript:auth.toggleSignupTab('tos')\">Termos de uso</a>?"
+
+#: ../gd/auth/forms.py:129
+msgid "Email does not match its confirmation"
+msgstr "O endereço de email não bate com a sua confirmação"
+
+#: ../gd/auth/forms.py:136
+msgid "User avatar"
+msgstr "Avatar"
+
+#: ../gd/auth/forms.py:140
+msgid "Only images are allowed in this field!"
+msgstr "Só imagens são aceitas neste campo!"
+
+#: ../gd/auth/forms.py:149
+msgid "Your current password"
+msgstr "Sua senha atual"
+
+#: ../gd/auth/forms.py:160
+msgid "The current password is wrong"
+msgstr "A senha atual está incorreta"
+
+#: ../gd/auth/webapp.py:93
+msgid "User does not exist"
+msgstr "Usuário não existe"
+
+#: ../gd/auth/webapp.py:95
+msgid "User or password mismatch"
+msgstr "Usuário e senha não batem"
+
+#: ../gd/auth/webapp.py:98
+msgid "Username or password missing"
+msgstr "Usuário ou senha faltando"
+
+#: ../gd/auth/webapp.py:105
+msgid "User loged out"
+msgstr "O Usuário saiu"
+
+#: ../gd/auth/webapp.py:141
+msgid "Invalid csrf token"
+msgstr "Token csrf token inválido"
+
+#: ../gd/auth/webapp.py:155
+msgid "User already exists"
+msgstr "O usuário já existe"
+
+#: ../gd/auth/webapp.py:157
+msgid "The email address informed is being used by another person"
+msgstr "O endereço de email informado já está sendo usuado por outra pessoa"
+
+#: ../gd/auth/webapp.py:208
+msgid "User profile updated successfuly"
+msgstr "Perfil de usuário atualizado com sucesso"
+
+#: ../gd/auth/webapp.py:219
+msgid "Password updated successful"
+msgstr "Senha atualizada com sucesso"
+
+#: ../gd/auth/webapp.py:239
+msgid "E-mail not found in the database"
+msgstr "Email não encontrado em nossa base de dados"
+
+#: ../gd/auth/webapp.py:242
+msgid "There was an error sending the e-mail"
+msgstr "Houve um erro ao enviar o email"
+
+#: ../gd/auth/webapp.py:243
+msgid "Password sent to the email"
+msgstr "Senha enviada para o email"
+
+#: ../gd/buzz/webapp.py:55
+msgid "Notice posted successfuly. Please wait a few while your message is approved."
+msgstr "Contribuição postada com sucesso. Por favor aguarde até que sua mensagem seja aprovada."
+
