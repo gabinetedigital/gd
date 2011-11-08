@@ -342,10 +342,54 @@ a {
     padding-left: 30px;
 }
 
+#footer #licencas a, #licencas a:hover, #licencas a:visited {
+    color: #FFF;
+}
+
+#footer #licencas  a:hover {
+    text-decoration: underline;
+}
+
 #footer #licencas .agpl {
     margin-top: 20px;
 }
 
 #footer #logos .rs {
     padding-left: 30px;
+}
+
+#footer #map {
+    border-top: 2px solid #666;
+    margin-top: 58px;
+    padding-top: 8px;
+}
+
+#footer #map li {
+    display: inline;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#footer #map li a {
+    color: #fff;
+}
+
+#footer #map li a:hover {
+    color: #A40000;
+}
+
+#footer #map #sitemap ul {
+    float: right;
+}
+
+#footer #map #sitemap li {
+    float: right;
+}
+
+#footer #map #sitemap li {
+    margin-left: 15px;
+}
+
+#footer #map #apps li {
+    margin-right: 15px;
 }
