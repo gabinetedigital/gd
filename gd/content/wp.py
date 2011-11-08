@@ -119,6 +119,10 @@ def convert_getPostsByTag(data):
     return posts_and_pagination(data)
 
 
+def convert_getPosts(data):
+    return posts_and_pagination(data)
+
+
 def convert_getPost(post):
     return Post(post)
 

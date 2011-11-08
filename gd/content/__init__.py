@@ -108,6 +108,18 @@ def sobre():
         'about.html', page=wordpress.getPageByPath('about'))
 
 
+@app.route('/news')
+@app.route('/news/<int:page>')
+def news(page=0):
+    """List posts in chronological order"""
+    pagination, posts = wordpress.getPosts(page=page)
+    return render_template(
+        'archive.html',
+        sidebar=wordpress.getMainSidebar(),
+        pagination=pagination,
+        posts=posts)
+
+
 @app.route('/home')
 def index():
     """Renders the index template"""
