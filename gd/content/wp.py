@@ -103,14 +103,18 @@ def convert_getRecentPosts(posts):
     return [Post(i) for i in posts]
 
 
-def convert_getPostsByCategory(posts):
+def convert_getPostsByCategory(data):
     """Convert JSON dictionaries in Post instances"""
-    return [Post(i) for i in posts]
+    pagination = data['pagination']
+    posts = [Post(i) for i in data['posts']]
+    return pagination, posts
 
 
-def convert_getPostsByTag(posts):
+def convert_getPostsByTag(data):
     """Convert JSON dictionaries in Post instances"""
-    return [Post(i) for i in posts]
+    pagination = data['pagination']
+    posts = [Post(i) for i in data['posts']]
+    return pagination, posts
 
 def convert_getPost(post):
     return Post(post)
@@ -125,12 +129,18 @@ def convert_getComments(comments):
 def convert_getMainSidebar(sidebar):
     """Converts all links found in the html of the sidebar to flask
     links"""
+    return wp_links_to_flask(sidebar)
+
+# This is really just used for the sidebar links.
+# Other wp links might not be appropriately
+# converted!
+def wp_links_to_flask(text):
     subs = {}
-    for href in re.findall('"http://.*?"', sidebar):
+    for href in re.findall('"http://.*?"', text):
         subs[href] = wp_link_to_flask(href)
     for original, translated in subs.iteritems():
-        sidebar = sidebar.replace(original,translated)
-    return sidebar
+        text = text.replace(original,translated)
+    return text
 
 
 def wp_link_to_flask(href):
