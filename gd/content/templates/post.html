@@ -12,13 +12,7 @@
           <h1>{{ post.title }}</h1>
           <div class="postcontent">
             {{ post.content|safe }}
-            {% for comment in comments %}
-                {{ comment.author|safe }} <br>
-                {{ comment.author_email|safe }} <br>
-                {{ comment.date_created_gmt|safe }} <br>
-                {{ comment.link|safe }} <br>
-                {{ comment.content|safe }} <br>
-            {% endfor %}
+            <div id="comments">
             {% if post.comments.allow_comments == 1 %}
               {% set display_form = 'inline' if show_comment_form else 'None' %}
               <!-- the comemnt error msg -->
@@ -30,10 +24,24 @@
                     method="POST">
 
                 <input type="hidden" name="post_id" value="{{post.id}}">
-                Comentário:<textarea name="content"></textarea>
+                <h4>Comentários</h4>
+
+                Deixe seu comentário<br>
+                <textarea name="content"></textarea>
                 <input type="submit" value="Enviar">
               </form>
             {% endif %}
+
+                {% for comment in comments %}
+                    <div class="comment">
+                        <img src="{{ comment.user.avatar_url }}">
+                        <div class="content">
+                        <h3>{{ comment.author|safe }} em {{ comment.date_created_gmt|safe }} </h3>
+                        {{ comment.content|safe }} <br>
+                    </div>
+            </div>
+            {% endfor %}
+                      </div>
           </div>
       </div>
     </div>
