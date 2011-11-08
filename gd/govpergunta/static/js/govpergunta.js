@@ -70,7 +70,11 @@ $(function () {
  
         var $t1 = $('#themed');
         $('ul.internal', $t1).tabs(
-            "div.ptpanes > div", { effect: 'fade' });
+            "div.ptpanes > div", {
+                effect: 'fade', onBeforeClick: function (evt, idx) {
+                    themeapi.update(idx);
+                }
+            });
 
         var api = $('ul.internal', $t1).data('tabs');
         $('.next', $t1).click(function () { api.next(); });
@@ -87,18 +91,34 @@ var themeapi = (function () {
 
     ThemeApi.prototype = {
         change: function(name, label) {
-            console.debug('pica no cu de satã');
             $('#themed')
                 .attr('class', '')
                 .addClass('overlay')
                 .addClass(name);
 
-            console.debug(this.current);
             $('#themed h1').html(label);
             $('#themed ul.allThemes li.' + name).hide();
             $('#themed ul.allThemes li[class~=' +
               this.current + ']').fadeIn();
             this.current = name;
+            this.update(0);
+        },
+
+        update: function (idx) {
+            if (themeapi.current === '')
+                return;
+
+            var target = $('a', $('ul.internal li').get(idx)).attr('target');
+            var url =
+                    BASE_URL + 'pages/govpergunta/' +
+                    themeapi.current + '/' +
+                    target + '.json';
+            $.getJSON(url, function (data) {
+                /* Yes, if none is retrieved, we'll clean the
+                 * element content. */
+                var ct = (data !== null) ? data.content : '';
+                $('div.' + target + ' .cont', $('.ptpanes')).html(ct);
+            });
         }
     };
 

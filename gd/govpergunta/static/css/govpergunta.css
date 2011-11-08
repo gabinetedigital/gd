@@ -282,7 +282,7 @@
 
 #themed {
     width:700px;
-    height:400px;
+    min-height:400px;
     background:#fff;
     border:none;
     border-radius:8px;
@@ -349,6 +349,10 @@
 #themed .ptpanes p {
     margin:15px 0 0 25px;
     color:#2e3436;
+}
+
+#themed .ptpanes h3 {
+    margin:15px 0 0 25px;
 }
 
 #themed .ptpanes .control {

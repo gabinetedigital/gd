@@ -27,6 +27,7 @@ from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
 from gd.model import session as dbsession
+from gd.utils import dumps
 
 from gd.admin import admin
 from gd.audience import audience
@@ -149,6 +150,13 @@ def pages(path):
         page=wordpress.getPageByPath(path),
         sidebar=wordpress.getMainSidebar(),
     )
+
+
+@app.route('/pages/<path:path>.json')
+def page_json(path):
+    """Returns a page data in the JSON format"""
+    page = wordpress.getPageByPath(path)
+    return dumps(page and page.data or None)
 
 
 def post_page(pid, error_msg=''):
