@@ -21,12 +21,13 @@ from os import urandom
 from flask import Blueprint, render_template, request
 from werkzeug import FileStorage
 
-from gd.utils import thumbnail, msg, _
+from gd.utils import thumbnail, msg, _, send_password, generate_random_password
 from gd.content.wp import wordpress
 from gd.auth import forms
 from gd.auth.fbauth import checkfblogin
-from gd.model import Upload, session
+from gd.model import Upload, session, User
 from gd import auth as authapi
+from sqlalchemy.orm.exc import NoResultFound
 
 auth = Blueprint(
     'auth', __name__,
@@ -218,3 +219,25 @@ def profile_passwd_json():
         return msg.ok(_('Password updated successful'))
     else:
         return msg.error(form.errors, 'ValidationError')
+
+
+@auth.route('/remember_password', methods=('POST',))
+def remember_password():
+    try:
+        print 'getting user'
+        user = User.query.filter_by(email=request.values['email']).one()
+        print 'got user'
+        print user
+        new_pass = generate_random_password()
+        print 'generated pass' + new_pass
+        user.set_password(new_pass)
+        session.commit()
+        print 'commited'
+        send_password(request.values['email'],new_pass);
+    except NoResultFound:
+        return msg.error(
+            _(u'E-mail not found in the database'), 'UserNotFound')
+    except:
+        return msg.error(
+            _(u'There was an error sending the e-mail'), 'UnknownError')
+    return msg.ok(_('Senha enviada para o email'))

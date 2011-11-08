@@ -18,12 +18,16 @@
 """This module holds general useful functions that are too generic to be
 placed anywhere else.
 """
+from gd import conf
 
 from json import dumps as internal_dumps
 from datetime import date, datetime
 from StringIO import StringIO
 from PIL import Image, ImageOps
-
+import string
+import random
+from email.mime.text import MIMEText
+import smtplib
 
 # It's gonna be changed by some gettext function when we start to care
 # about translating things
@@ -78,3 +82,26 @@ def thumbnail(data, size, fit=True):
     img.save(output, 'PNG')
     output.seek(0)
     return output
+
+# -- E-mail password
+
+def generate_random_password():
+    return ''.join(random.choice(
+        string.ascii_uppercase + string.digits) for x in range(8))
+
+
+def send_password(to, password):
+    print 'sending password to ' + to + '[' + password + ']'
+
+    msg = MIMEText(conf.PASSWORD_REMAINDER_MSG % password)
+    msg['Subject'] = conf.PASSWORD_REMAINDER_SUBJECT
+    msg['From'] = conf.PASSWORD_REMAINDER_FROM
+    msg['To'] = to
+
+    print msg
+
+    print '...sending ...'
+    s = smtplib.SMTP(conf.SMTP)
+    s.sendmail(conf.PASSWORD_REMAINDER_FROM, to, msg.as_string())
+    s.quit()
+    print 'sent'

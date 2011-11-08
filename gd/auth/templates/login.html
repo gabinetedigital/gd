@@ -1,24 +1,26 @@
-<form class="auth" method="post" id="auth" action="">
-  <div class="header">
-    <h1>Entrar</h1>
-    <ul>
-      <li>
-        <a class="awesomelink" href="javascript:auth.togglePasswordReminder()">
-          Esqueci minha senha
-        </a>
-      </li>
-      <li>
-        <a class="awesomelink" href="javascript:auth.swapLoginToSignup()">
-          Ainda não sou cadastrado
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div class="wrapper">
-    <div class="passwordReminder">
-      Por favor, informe seu endereço de email para que possamos
-      lembrá-lo(a) de sua senha.
+<div class="header">
+  <h1>Entrar</h1>
+  <ul>
+    <li>
+      <a class="awesomelink" href="javascript:auth.togglePasswordReminder()">
+        Esqueci minha senha
+      </a>
+    </li>
+    <li>
+      <a class="awesomelink" href="javascript:auth.swapLoginToSignup()">
+        Ainda não sou cadastrado
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="wrapper">
+  <div class="passwordReminder">
+    Por favor, informe seu endereço de email para que possamos
+    enviar sua senha.
 
+    <div id="remember-password-error" class="error"></div>
+    <div id="remember-password-success" class="success"></div>
+    <form class="auth" method="post" id="remember_password" action="">
       <ol>
         <li>
           <label for="email">Email</label>
@@ -30,10 +32,12 @@
           </button>
         </li>
       </ol>
-    </div>
+    </form>
+  </div>
 
-    <div class="loginForm">
-      <div class="error"></div>
+  <div class="loginForm">
+    <div id="auth-error" class="error"></div>
+    <form class="auth" method="post" id="login" action="">
       <ol>
         <li>
           <label for="username">Email</label>
@@ -54,6 +58,6 @@
           </a>
         </li>
       </ol>
-    </div>
+    </form>
   </div>
-</form>
+</div>

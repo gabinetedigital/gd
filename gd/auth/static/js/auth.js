@@ -49,7 +49,7 @@ var auth = (function() {
 
                 /* The submit button does its miracles of cancelling the usual
                  * form submit and send data via ajax */
-                overlay.find('form').submit(function () {
+                overlay.find('#login').submit(function () {
                     var params = {
                         username: overlay.find('input[name=username]').val(),
                         password: overlay.find('input[name=password]').val()
@@ -58,13 +58,28 @@ var auth = (function() {
                     $.post(url_for('auth.login_json'), params, function (data) {
                         var pData = $.parseJSON(data);
                         if (pData.status !== 'ok') {
-                            overlay.find('div.error').html(pData.msg).fadeIn('fast');
+                            overlay.find('#auth-error').html(pData.msg).fadeIn('fast');
                         } else {
                             closeMethod();
                             auth.userAuthenticated(pData.msg.user);
                             $("#blog_comment_form").show(); //show the hidden blog comment form
                         }
                     });
+                    return false;
+                });
+
+                overlay.find('#remember_password').submit(function () {
+                    var params = {email: overlay.find("input[name=email]").val()};
+                    $.post(url_for('auth.remember_password'),
+                           params,
+                           function (data) {
+                               var pData = $.parseJSON(data);
+                               if (pData.status !== 'ok') {
+                                   overlay.find('#remember-password-error').html(pData.msg).fadeIn('fast');
+                               } else {
+                                   overlay.find('#remember-password-success').html(pData.msg).fadeIn('fast');
+                               }
+                           });
                     return false;
                 });
             }

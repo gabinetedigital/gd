@@ -37,3 +37,9 @@ FACEBOOK_APP_SECRET = ''
 TWITTER_STREAM_USERNAME='username'
 TWITTER_STREAM_PASSWORD='password'
 TWITTER_MAYOR_USERNAME='themayor'
+
+# E-mail
+SMTP='localhost'
+PASSWORD_REMAINDER_MSG = "Sua senha: %s"
+PASSWORD_REMAINDER_SUBJECT = '<site>: sua senha'
+PASSWORD_REMAINDER_FROM = 'mailer@mailer'
