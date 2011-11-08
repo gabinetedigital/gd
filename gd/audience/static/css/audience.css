@@ -115,8 +115,9 @@
 
 #container #main .content h2 {
     color: #CE3316;
-    font-size: 24px;
-    margin-bottom: 11px;
+    font-size: 21px;
+    margin-bottom: 12px;
+    margin-left: 140px;
 }
 
 #container #main .content .stream {
@@ -162,10 +163,6 @@
     margin-bottom: 20px;
 }
 
-#container #main .content #misc  {
-    padding-top: 10px;
-}
-
 #container #main .content #misc h5 {
     background: url(../imgs/govescuta.png) no-repeat;
     width: 127px;
@@ -177,9 +174,9 @@
 
 #container #main .content #misc p {
     margin-left: 140px;
-    font-size: 12px;
+    font-size: 13px;
     width: 454px;
-    margin-top: 3px;
+    margin-top: 20px;
 }
 
 /** Buzz **/
