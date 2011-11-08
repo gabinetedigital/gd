@@ -53,6 +53,28 @@
     margin-bottom: 8px;
 }
 
+#container #paginator {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#container #paginator .page-numbers {
+    border: 1px solid #ddd;
+    padding: 1px 7px;
+    margin-left: 4px;
+}
+
+#container #paginator .current {
+    background: #ccc;
+}
+
+#container #paginator .next, #container #paginator .prev {
+    padding: 2px;
+    border: 1px solid #fff;
+}
+
+
 /** Sidebar **/
 
 #container #sidebar {
