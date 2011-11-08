@@ -122,6 +122,7 @@ form.auth ul li {
 form.auth label {
     display:block;
     padding-top:8px;
+    font-size: 14px;
 }
 
 form.auth input, form.auth select {
@@ -190,6 +191,7 @@ form.auth .accept_tos label {
 
 form.auth input {
     width:200px;
+    border: 1px solid #999;
 }
 
 form.auth select#state, form.auth select#gender {

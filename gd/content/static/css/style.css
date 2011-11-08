@@ -146,10 +146,6 @@ a {
     float: left;
 }
 
-#header .login li.welcome {
-    margin-left: -22px;
-}
-
 #header .login li.welcome a:hover {
     text-decoration: none;
 }
