@@ -128,18 +128,20 @@ def index():
 @app.route('/cat/<int:cid>/<int:page>')
 def category(cid, page=0):
     """List posts of a given category"""
-    posts = wordpress.getPostsByCategory(cat=cid, page=page)
     return render_template(
-        'archive.html', posts=posts)
+        'archive.html',
+        sidebar=wordpress.getMainSidebar(),
+        posts=wordpress.getPostsByCategory(cat=cid, page=page))
 
 
 @app.route('/tag/<string:slug>')
 @app.route('/tag/<string:slug>/<int:page>')
 def tag(slug, page=0):
     """List posts of a given tag"""
-    posts = wordpress.getPostsByTag(tag=slug, page=page)
     return render_template(
-        'archive.html', posts=posts)
+        'archive.html',
+        sidebar=wordpress.getMainSidebar(),
+        posts=wordpress.getPostsByTag(tag=slug, page=page))
 
 
 @app.route('/pages/<path>')
@@ -205,6 +207,7 @@ def search(query, page=0):
     posts = wordpress.search(s=query)
     return render_template(
         'archive.html',
+        sidebar=wordpress.getMainSidebar(),
         search_term=query,
         posts=posts,
         page=page)
