@@ -243,6 +243,66 @@ a {
     background: #aa0000;
 }
 
+#participe {
+    height: 233px;
+    background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
+    overflow:hidden;
+    display: none;
+}
+
+#participe .col3 {
+    text-align: center;
+}
+
+ #participe .col3 div {
+    text-align: center;
+    background: url(../imgs/participe_base.png) no-repeat;
+    width: 205px;
+    height: 110px;
+    margin: 0 auto;
+    margin-top: 12px;
+    padding-top: 34px;
+}
+
+ #participe h1 {
+    overflow: hidden;
+    text-indent: -9999px;
+    margin: 0 auto;
+    height: 66px;
+}
+
+ #participe #govresponde h1 {
+    text-align: center;
+    background: url(../imgs/govresponde.png) no-repeat;
+    width: 188px
+}
+
+ #participe #govpergunta h1 {
+    text-align: center;
+    background: url(../imgs/govpergunta.png) no-repeat;
+    width: 187px;
+}
+
+ #participe #govescuta h1 {
+    text-align: center;
+    background: url(../imgs/govescuta.png) no-repeat;
+    width: 146px;
+}
+
+ #participe #agenda h1 {
+    text-align: center;
+    background: url(../imgs/agenda.png) no-repeat;
+    width: 189px;
+}
+
+ #participe #desc {
+    color: white;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+}
+
 /** Container **/
 
 /** Extras **/

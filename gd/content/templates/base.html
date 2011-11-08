@@ -97,6 +97,30 @@
       <div id="header-wrapper-2">
         <div class="layout-978">
           {% block slideshow %}{% endblock %}
+          <div class="row" id="participe">
+            <div class="col3">
+              <div id="govresponde">
+                <h1>Governador Responde</h1>
+              </div>
+            </div>
+            <div class="col3">
+              <div id="govpergunta" >
+                <h1><a>Governador Pergunta</a></h1>
+              </div>
+            </div>
+            <div class="col3">
+              <div id="govescuta" >
+                <h1>Governo Escuta</h1>
+              </div>
+            </div>
+            <div class="col3">
+              <div id="agenda" >
+                <h1>Agenda Colaborativa</h1>
+              </div>
+            </div>
+            <p id="desc"> </p>
+            <div class="row-end"></div>
+          </div>
         </div>
       </div>
 
@@ -106,7 +130,7 @@
             <div id="menu" class="col12">
               <ul>
                 <li class="basic first"><a href="">Notícias</a></li>
-                <li class="special"><a href="">Participe</a></li>
+                <li class="special"><a href="#" id="a-participe">Participe</a></li>
                 <li class="basic last"><a href="">Galeria</a></li>
               </ul>
             </div>
@@ -264,8 +288,14 @@
     <script src="{{ conf.WORDPRESS_ADDRESS }}?wpgd/video/embedjs"></script>
     <script src="{{ url_for('static', filename='js/video.js') }}"></script>
     <script src="{{ url_for('auth.static', filename='js/auth.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/site.js') }}"></script>
     <script>
       $(function() {
+      $("#govpergunta").click(goto("{{url_for('govpergunta.index')}}"));
+      //$("#govresponde").click(goto("..."));
+      //$("#agenda").click(goto("..."));
+      //$("#govescuta").click(goto("..."));
+
         var form = $("<form name='search'></form>");
         var input = $("#search_form");
 
