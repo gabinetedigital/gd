@@ -65,7 +65,7 @@ class Twitter(object):
                 return False
 
             # Now everything seems to be nice. Let's keep working
-            self.profileids.append(['id'])
+            self.profileids.append(parsed['id'])
 
         # All received ids resolved, let's go ahead and wait for tweets!
         print 'IDs resolved successful'
