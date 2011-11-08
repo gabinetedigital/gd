@@ -93,7 +93,9 @@ def convert_getComments(comments):
     for comment in comments:
         link = url_for('post', pid=comment['post_id'])
         comment['link'] = '%s#coment-%s' % (link, comment['comment_id'])
+        comment['user'] = User.get(comment['user_id'])
     return comments
+
 
 def convert_getPageByPath(post):
     """Converts a json that represents a wordpress page into a Post
@@ -103,38 +105,35 @@ def convert_getPageByPath(post):
     this function will return None"""
     return post and Post(post) or None
 
+
 def convert_getRecentPosts(posts):
     """Convert JSON dictionaries in Post instances"""
     return [Post(i) for i in posts]
 
 
 def convert_getPostsByCategory(data):
-    """Convert JSON dictionaries in Post instances"""
-    pagination = data['pagination']
-    posts = [Post(i) for i in data['posts']]
-    return pagination, posts
+    posts_and_pagination(data)
 
 
 def convert_getPostsByTag(data):
-    """Convert JSON dictionaries in Post instances"""
-    pagination = data['pagination']
-    posts = [Post(i) for i in data['posts']]
-    return pagination, posts
+    posts_and_pagination(data)
+
 
 def convert_getPost(post):
     return Post(post)
-
-def convert_getComments(comments):
-    """Insert an user instance in the comment dictionary"""
-    for i in comments:
-        i.update({'user': User.get(i['user_id'])})
-    return comments
 
 
 def convert_getMainSidebar(sidebar):
     """Converts all links found in the html of the sidebar to flask
     links"""
     return wp_links_to_flask(sidebar)
+
+
+def posts_and_pagination(data):
+    """Convert JSON dictionaries in Post instances"""
+    pagination = data['pagination']
+    posts = [Post(i) for i in data['posts']]
+    return pagination, posts
 
 # This is really just used for the sidebar links.
 # Other wp links might not be appropriately
