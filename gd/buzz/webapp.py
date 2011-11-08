@@ -45,7 +45,7 @@ def post():
     identica or whatever."""
     audience = Audience.get(request.values.get('aid'))
     newbuzz = Buzz(
-        owner_nick=auth.authenticated_user().username,
+        owner_nick=auth.authenticated_user().display_name,
         owner_avatar=u'',
         user=auth.authenticated_user(),
         content=request.values.get('message')[:300],

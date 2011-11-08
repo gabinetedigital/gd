@@ -167,9 +167,11 @@ class Buzz(Entity):
         to the `deep' attribute by default.
         """
         if deep is None:
-            deep = { 'type_': {} }
+            deep = { 'type_': {}, 'user': {} }
         base = super(Buzz, self).to_dict(deep=deep)
         base['avatar'] = self.avatar
+        if base['user'] and self.user:
+            base['user'] = self.user.public_dict()
         return base
 
     @after_insert
@@ -285,7 +287,6 @@ class User(Entity):
             id=self.id,
             name=self.name,
             nickname=self.nickname,
-            username=self.username,
             display_name=self.display_name,
             avatar_url=self.avatar_url,
             creation_date=self.creation_date,
@@ -307,7 +308,7 @@ class User(Entity):
     def display_name(self):
         """Just a shortcut to decide which value should be exposed to
         identify a user"""
-        return self.nickname or self.name or self.username
+        return self.nickname or self.name
 
     def get_meta(self, key):
         """Returns a value of a meta var of a user"""

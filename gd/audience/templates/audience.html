@@ -131,7 +131,12 @@
               <img src="{{ buzz.avatar }}">
             </li>
             <li class="author">
-              @{{ buzz.owner_nick }} <em>| {{ buzz.type_.name }}</em>
+              {%- if buzz.user %}
+                {{ buzz.user.display_name }}
+              {% else %}
+                @{{ buzz.owner_nick }}
+              {% endif %}
+              <em>|{{ buzz.type_.name }}</em>
             </li>
             <li class="answer">{{ buzz.content|safe }}</li>
           </ul>
@@ -146,7 +151,12 @@
               <img src="{{ buzz.avatar }}">
             </li>
             <li class="author">
-              @{{ buzz.owner_nick }} <em>| {{ buzz.type_.name }}</em>
+              {%- if buzz.user %}
+                {{ buzz.user.display_name }}
+              {% else %}
+                @{{ buzz.owner_nick }}
+              {% endif %}
+              <em>| {{ buzz.type_.name }}</em>
             </li>
             <li class="answer">{{ buzz.content|safe }}</li>
           </ul>
@@ -173,7 +183,14 @@
       <li class="avatar">
         <img src="<%= obj.avatar %>">
       </li>
-      <li class="author">@<%= obj.owner_nick %> <em>| <%= obj.type_.name %></em></li>
+      <li class="author">
+        <% if (obj.user) { %>
+          <%= obj.user.display_name %>
+        <% } else { %>
+          @<%= obj.owner_nick %>
+        <% } %>
+        <em>| <%= obj.type_.name %></em>
+      </li>
       <li class="answer"><%= obj.content %></li>
     </ul>
   </li>
