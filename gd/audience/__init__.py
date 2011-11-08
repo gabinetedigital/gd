@@ -57,3 +57,10 @@ def moderated_buzz(aid):
     """Returns the moderated buzz of an audience in JSON format"""
     return dumps([buzz.to_dict()
                   for buzz in Audience.query.get(aid).get_moderated_buzz()])
+
+
+@audience.route('/<int:aid>/last_published')
+def last_published(aid):
+    """Returns the last published notice of an audience"""
+    notice = Audience.get(aid).get_last_published_notice()
+    return dumps(notice and notice.to_dict() or None)

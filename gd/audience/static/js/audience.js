@@ -143,6 +143,15 @@ $(function() {
                     $(tmpl('buzzTemplate', item)).appendTo(element.target);
                 });
             });
+
+            $.getJSON(CURRENT_URL + '/last_published', function (data) {
+                var $el = $(tmpl("selectedNotice", data));
+                $('#beingAnswered').fadeOut(function () {
+                    $(this).html('');
+                    $(this).append($el);
+                    $(this).fadeIn();
+                });
+            });
         }, 9000);
     } else {
         // Thank god we're not in IE, so let's just
