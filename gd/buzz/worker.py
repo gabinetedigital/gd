@@ -61,7 +61,12 @@ class MayorWatcher(Process):
             TWITTER_JSON_TIMELINE_URL %
             conf.TWITTER_MAYOR_USERNAME).read()
 
-        message = loads(json)
+        try:
+            message = loads(json)
+        except ValueError:
+            print 'Invalid JSON content, look: %s' % json
+            raise
+
         # Making sure twitter will let me watch the mayor!
         if 'error' not in message:
             set_mayor_last_tweet(message[0]['text'])

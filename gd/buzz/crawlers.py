@@ -20,6 +20,7 @@ profiles and hashtags in different social networks.
 """
 
 from urllib import urlopen
+from urllib2 import HTTPError
 from time import sleep
 from json import loads
 from tweetstream import FilterStream, ConnectionError
@@ -35,7 +36,12 @@ class Twitter(object):
         self.profiles = profiles
         self.hashtags = hashtags
         self.profileids = []
-        self.resolve_profile_ids()
+
+        # We have to resolve these ID's before doing anything else. This
+        # function will be called until things works properly
+        while not self.resolve_profile_ids():
+            print 'Unable to resolve profile ids, trying again soon!'
+            sleep(30)
 
     def resolve_profile_ids(self):
         """We need to resolve the screen names to user ids to use the
@@ -44,8 +50,26 @@ class Twitter(object):
         json content.
         """
         for screen_name in self.profiles:
-            self.profileids.append(
-                loads(urlopen(USER_API_URL % screen_name).read())['id'])
+            try:
+                # Catching any connection or json parsing error here. We
+                # have to make sure that no error will escape from this
+                # cage!
+                content = urlopen(USER_API_URL % screen_name).read()
+                parsed = loads(content)
+            except Exception, exc:
+                return False
+
+            # Everything ok with the request, but the retrieved content
+            # is not what we want!
+            if not 'id' in parsed:
+                return False
+
+            # Now everything seems to be nice. Let's keep working
+            self.profileids.append(['id'])
+
+        # All received ids resolved, let's go ahead and wait for tweets!
+        print 'IDs resolved successful'
+        return True
 
     def process(self):
         """Here's the place that we actually call the stream API and
@@ -76,11 +100,12 @@ class Twitter(object):
                         type_=type_)
                     yield buzz
 
-        except ConnectionError:
+        except (ConnectionError, HTTPError), exc:
             # Something got screwed, let's try some seconds late.
             # FIXME: We really should limit the number of tries here and
             # warning the sysadmin that something is wrong.
-            print 'Crawler::ConnectionError trying again soon...'
-            sleep(3)
+            name = exc.__class__.__name__
+            print 'Crawler::%s trying again soon...' % name
+            sleep(30)
             self.process()
 
