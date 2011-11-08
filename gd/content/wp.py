@@ -112,11 +112,11 @@ def convert_getRecentPosts(posts):
 
 
 def convert_getPostsByCategory(data):
-    posts_and_pagination(data)
+    return posts_and_pagination(data)
 
 
 def convert_getPostsByTag(data):
-    posts_and_pagination(data)
+    return posts_and_pagination(data)
 
 
 def convert_getPost(post):
