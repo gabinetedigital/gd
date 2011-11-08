@@ -97,8 +97,9 @@ def teaser():
 
 @app.route('/sobre')
 def sobre():
-    """Renders the teaser template"""
-    return render_template('about.html')
+    """Renders the about template"""
+    return render_template(
+        'about.html', page=wordpress.getPageByPath('about'))
 
 
 @app.route('/home')
@@ -135,6 +136,17 @@ def tag(slug,page=0):
     posts = wordpress.getPostsByTag(tag=slug,page=page)
     return render_template(
         'archive.html', posts=posts)
+
+
+@app.route('/pages/<path>')
+def pages(path):
+    """Renders a wordpress page"""
+    return render_template(
+        'page.html',
+        page=wordpress.getPageByPath(path),
+        sidebar=wordpress.getMainSidebar(),
+    )
+
 
 def post_page(pid,error_msg=''):
     """Renders the post template"""
