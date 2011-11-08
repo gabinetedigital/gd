@@ -135,7 +135,7 @@ def wp_link_to_flask(href):
     """Converts wordpress urls in flask urls"""
     if href.find("cat=") != -1:
         cat = re.search('cat=(\d+)', href).group(1)
-        return url_for('category', id=cat)
+        return url_for('category', cid=cat)
     elif href.find("tag=") != -1:
         tag = re.search('tag=(\w)', href).group(1)
         return url_for('tag', tag=tag)

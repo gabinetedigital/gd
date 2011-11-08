@@ -124,8 +124,8 @@ def index():
     )
 
 
-@app.route('/cat/<int:id>')
-@app.route('/cat/<int:id>/<int:page>')
+@app.route('/cat/<int:cid>')
+@app.route('/cat/<int:cid>/<int:page>')
 def category(cid, page=0):
     """List posts of a given category"""
     posts = wordpress.getPostsByCategory(cat=cid, page=page)
