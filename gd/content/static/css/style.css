@@ -393,6 +393,14 @@ a {
     padding-left: 30px;
 }
 
+#footer #contact a {
+    color: #FFF
+}
+
+#footer #contact a:hover {
+    text-decoration: underline;
+}
+
 #footer #contact .gd {
     padding-left: 30px;
     padding-top: 40px;
