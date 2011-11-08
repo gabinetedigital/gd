@@ -21,6 +21,19 @@ h1 {
     margin-top: 5%;
 }
 
+body.buzz {
+    margin:10px;
+}
+
+#container {
+    width:90%;
+    margin:0 auto;
+}
+
+.buzz h1 {
+    margin-top:0;
+}
+
 .notice {
     margin-top:30px;
 }
@@ -43,3 +56,31 @@ h1 {
     font-size:30px;
 }
 
+
+/* buzz */
+
+.buzz #notices {
+    margin:40px 5% 0 5%;
+}
+
+.buzz #notices img {
+    float:left;
+    margin-right:20px;
+}
+
+.buzz #notices li {
+    clear:both;
+    display:block;
+    margin-bottom:20px;
+    padding-bottom:20px;
+    border-bottom:dotted 1px #333;
+}
+
+.buzz #notices li .content {
+    color:#ddd;
+}
+
+.buzz #notices .author {
+    color:#fff;
+    margin-bottom:5px;
+}

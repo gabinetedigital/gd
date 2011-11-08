@@ -8,50 +8,40 @@
        rel="stylesheet" type="text/css"
        href="{{ url_for('.static', filename='css/tv.css') }}">
   </head>
-  <body>
-    <div id="container">
-      <div class="row">
-        <div class="col12">
-          <h1>Governador Pergunta</h1>
-        </div>
-        <div class="row-end"></div>
+  <body class="buzz">
+    <h1>Governador Pergunta</h1>
 
-        <div class="row notice">
-          <div class="col2 avatar">
-            <img src="{{ notice.avatar }}">
-          </div>
-          <div class="col9">
-            <h2>
-              {%- if notice.user %}
-                {{ notice.user.display_name }}
-              {% else %}
-                @{{ notice.owner_nick }}
-              {% endif %}
-              <em>| {{ notice.type_.name }}</em>
-            </h2>
-            <p>{{ notice.content|safe }}</p>
-          </div>
+    <ul id="notices">
+      {% for notice in buzz %}
+      <li>
+        <img src="{{ notice.avatar }}">
+        <div class="author">
+          {% if notice.user %}
+            {{ notice.user.display_name }}
+          {% else %}
+            @{{ notice.owner_nick }}
+          {% endif %}
+          <em>| {{ notice.type_.name }}</em>
         </div>
+        <div class="content">{{ notice.content }}</div>
         <div class="row-end"></div>
-
-      </div>
-    </div>
+      </li>
+      {% endfor %}
+    </ul>
 
     <script type="text/html" id="noticeTemplate">
-      <div class="col2 avatar">
+      <li>
         <img src="<%= obj.avatar %>">
-      </div>
-      <div class="col9">
-        <h2>
+        <div class="author">
           <% if (obj.user) { %>
             <%= obj.user.display_name %>
           <% } else { %>
             @<%= obj.owner_nick %>
           <% } %>
           <em>| <%= obj.type_.name %></em>
-        </h2>
-        <p><%= obj.content %></p>
-      </div>
+        </div>
+        <div class="content"><%= obj.content %></div>
+      </li>
     </script>
 
     <script type="text/javascript">var SIO_BASE = "{{ host }}";</script>
@@ -59,6 +49,14 @@
     <script src="{{ url_for('static', filename='js/template.js') }}"></script>
     <script src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
     <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
-    <script src="{{ url_for('.static', filename='js/tv.js') }}"></script>
+    <script>
+      $(function () {
+          new Buzz(SIO_BASE, {
+              buzz_accepted: function (msg) {
+                  $('#notices').prepend($(tmpl("noticeTemplate", msg)));
+              }
+          });
+      });
+    </script>
   </body>
 </html>
