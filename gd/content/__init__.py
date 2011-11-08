@@ -224,13 +224,13 @@ def new_comment():
 @app.route('/search/<string:s>/<int:page>')
 def search(s, page=0):
     """Renders the search template"""
-    posts = wordpress.search(s=s)
+    pagination, posts = wordpress.search(s=s, page=page)
     return render_template(
         'archive.html',
         sidebar=wordpress.getMainSidebar(),
-        search_term=query,
-        posts=posts,
-        page=page)
+        pagination=pagination,
+        search_term=s,
+        posts=posts)
 
 @app.route('/feed')
 def feed():
