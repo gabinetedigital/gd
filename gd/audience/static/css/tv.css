@@ -1,0 +1,45 @@
+@import url('../../../static/css/font.css');
+
+* {
+    border: 0 none;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background:#222;
+}
+
+
+h1 {
+    background: url(../../../static/imgs/logo_govpergunta.png) no-repeat;
+    width: 222px;
+    height: 87px;
+    text-indent: -9999px;
+    overflow: hidden;
+    margin-top: 5%;
+}
+
+.notice {
+    margin-top:30px;
+}
+
+.notice .avatar {
+    text-align:right;
+}
+
+.notice h2 {
+    color:#fff;
+    padding-bottom:20px;
+}
+
+.notice h2 em {
+    color:#111;
+}
+
+.notice p {
+    color:#ddd;
+    font-size:30px;
+}
+

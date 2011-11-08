@@ -64,3 +64,11 @@ def last_published(aid):
     """Returns the last published notice of an audience"""
     notice = Audience.get(aid).get_last_published_notice()
     return dumps(notice and notice.to_dict() or None)
+
+
+@audience.route('/<int:aid>/tv')
+def tv(aid):
+    """Visualization for the last notice published"""
+    inst = get_or_404(Audience, id=aid, visible=True)
+    return render_template(
+        'tv.html', notice=inst.get_last_published_notice())
