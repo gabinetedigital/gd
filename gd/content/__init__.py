@@ -24,7 +24,7 @@ from flask import Flask, request, render_template, session, \
      redirect, url_for
 
 from gd import conf
-from gd.auth import authenticated_user, NobodyHome
+from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
 from gd.model import session as dbsession
 
@@ -125,15 +125,18 @@ def index():
 
 @app.route('/cat/<int:id>')
 @app.route('/cat/<int:id>/<int:page>')
-def category(id,page=0):
-    posts = wordpress.getPostsByCategory(cat=id,page=page)
+def category(cid, page=0):
+    """List posts of a given category"""
+    posts = wordpress.getPostsByCategory(cat=cid, page=page)
     return render_template(
         'archive.html', posts=posts)
 
+
 @app.route('/tag/<string:slug>')
 @app.route('/tag/<string:slug>/<int:page>')
-def tag(slug,page=0):
-    posts = wordpress.getPostsByTag(tag=slug,page=page)
+def tag(slug, page=0):
+    """List posts of a given tag"""
+    posts = wordpress.getPostsByTag(tag=slug, page=page)
     return render_template(
         'archive.html', posts=posts)
 
@@ -148,8 +151,8 @@ def pages(path):
     )
 
 
-def post_page(pid,error_msg=''):
-    """Renders the post template"""
+def post_page(pid, error_msg=''):
+    """A generic function that renders a post template"""
     recent_posts = wordpress.getRecentPosts(
         post_status='publish',
         numberposts=4)
@@ -160,36 +163,40 @@ def post_page(pid,error_msg=''):
         sidebar=wordpress.getMainSidebar(),
         comments=wordpress.getComments(post_id=pid),
         error_msg=error_msg,
-        show_comment_form=session.has_key('username'),
+        show_comment_form=is_authenticated(),
         recent_posts=recent_posts)
+
 
 @app.route('/post/<int:pid>')
 def post(pid):
+    """View that proxies the `post_page' function"""
     return post_page(pid)
+
 
 @app.route('/new_comment', methods=('POST',))
 def new_comment():
-    # "session.user_is_logged()" ?
-    if 'username' not in session:
+    """Posts new comments to the blog"""
+    if not is_authenticated():
         return post_page(request.form['post_id'])
-    else:
-        try:
-            wordpress.newComment(
-                username=session['username'],
-                password=session['password'],
-                post_id=request.form['post_id'],
-                content=request.form['content']
-            )
-            return redirect(url_for('post', pid=request.form['post_id']))
-        except xmlrpclib.Fault, err:
-            return post_page(request.form['post_id'],err.faultString)
+    try:
+        wordpress.newComment(
+            username=session['username'],
+            password=session['password'],
+            post_id=request.form['post_id'],
+            content=request.form['content']
+        )
+        return redirect(url_for('post', pid=request.form['post_id']))
+    except xmlrpclib.Fault, err:
+        return post_page(request.form['post_id'], err.faultString)
+
 
 @app.route('/search/<string:s>')
 @app.route('/search/<string:s>/<int:page>')
-def search(s,page=0):
-    posts = wordpress.search(s=s)
+def search(query, page=0):
+    """Renders the search template"""
+    posts = wordpress.search(s=query)
     return render_template(
         'archive.html',
-        search_term=s,
+        search_term=query,
         posts=posts,
         page=page)
