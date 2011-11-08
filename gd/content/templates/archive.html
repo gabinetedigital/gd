@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/blog.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/archive.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -9,11 +9,25 @@
   <div class="row">
     <div id="post" class="col8">
       <div id="news">
-{% for post in posts %}
-          <h1>{{ post.title }}</h1>
-{% endfor %}
+        <ul>
+          {% for post in posts %}
+            <li>
+                <ul class="news">
+                    <li class="title">
+                        <h2>
+                        <a href="{{ post.permalink }}">
+                           {{ post.title }}
+                        </a>
+                        </h2>
+                    </li>
+                    <li>
+                     <p>{{ post.excerpt|safe }}</p>
+                    </li>
+                </ul>
+           </li>
+        {% endfor %}
+        </ul>
       </div>
-    </div>
     </div>
     <div id="sidebar" class="col4">
       <div id="wordpress-sidebar-1">
