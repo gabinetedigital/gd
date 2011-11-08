@@ -10,6 +10,9 @@
     <div id="post" class="col8">
       <div id="news">
           <h1>{{ post.title }}</h1>
+           {{post.the_date.day}}/{{post.the_date.month}}{{post.the_date.year}}
+           as {{post.the_date.hour}}:{{post.the_date.minute}}
+
           {{ post.content|safe }}
           <div id="comments">
           <div class="postcontent">

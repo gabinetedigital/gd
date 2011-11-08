@@ -19,6 +19,8 @@
                            {{ post.title }}
                         </a>
                         </h2>
+           {{post.the_date.day}}/{{post.the_date.month}}{{post.the_date.year}}
+           as {{post.the_date.hour}}:{{post.the_date.minute}}
                     </li>
                     <li>
                      <p>{{ post.excerpt|safe }}</p>

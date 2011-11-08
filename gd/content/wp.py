@@ -24,7 +24,7 @@ from flask import url_for
 from gd import conf
 from gd.model import User
 import re
-
+import datetime
 
 class Namespace(object):
     """Abstracts an XMLRPC namespace available in wordpress"""
@@ -112,6 +112,8 @@ def convert_getPostsByTag(posts):
     """Convert JSON dictionaries in Post instances"""
     return [Post(i) for i in posts]
 
+def convert_getPost(post):
+    return Post(post)
 
 def convert_getComments(comments):
     """Insert an user instance in the comment dictionary"""
@@ -150,6 +152,8 @@ class Post(object):
     received from the wordpress source in a dictionary format."""
     def __init__(self, data):
         self.data = data
+        self.datetime =  datetime.datetime.strptime(
+            data['date']['date'].value, "%Y%m%dT%H:%M:%S")
 
     def __getattribute__(self, attr):
         try:
@@ -161,6 +165,10 @@ class Post(object):
     def permalink(self):
         """Returns the permanent link for this post"""
         return url_for('post', pid=self.id)
+
+    @property
+    def the_date(self):
+        return self.datetime
 
     def has_category(self, slug):
         """Returns true if the post has a given category"""
