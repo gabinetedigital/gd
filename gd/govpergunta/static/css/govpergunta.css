@@ -5,13 +5,14 @@
     clear:both;
 }
 
-#applogo h1 {
+#applogo h1 a {
     background: url('../imgs/applogo.png') no-repeat;
     text-indent: -9999px;
     overflow: hidden;
     height: 77px;
     width: 208px;
     margin: 15px;
+    display:block;
 }
 
 #question {
