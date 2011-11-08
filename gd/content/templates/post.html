@@ -10,10 +10,13 @@
     <div id="post" class="col8">
       <div id="news">
           <h1>{{ post.title }}</h1>
+          <div id="comments">
           <div class="postcontent">
             {{ post.content|safe }}
             <div id="comments">
+
             {% if post.comments.allow_comments == 1 %}
+
               {% set display_form = 'inline' if show_comment_form else 'None' %}
               <!-- the comemnt error msg -->
               <p class="comment-error">{{ error_msg|safe }}</p>
@@ -22,7 +25,7 @@
                     id="blog_comment_form"
                     action="{{ url_for('new_comment') }}"
                     method="POST">
-
+                
                 <input type="hidden" name="post_id" value="{{post.id}}">
                 <h4>Comentários</h4>
 
@@ -41,6 +44,7 @@
                     </div>
             </div>
             {% endfor %}
+                      </div>
                       </div>
           </div>
       </div>

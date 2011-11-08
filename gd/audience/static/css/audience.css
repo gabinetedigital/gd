@@ -30,7 +30,7 @@
 
 #container .buzzbg {
     background:url(../imgs/buzz.png) no-repeat 612px 28px;
-    height: 762px;
+    height: 692px;
 }
 
 #container #title .title {
@@ -100,13 +100,17 @@
 }
 
 #container #main {
-    background: url(../imgs/main.png) no-repeat -8px 0px;
-    height: 651px;
     margin-top: 14px;
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 0 6px 1px #CCCCCC;
+    background-color: #FFF;
+    width: 640px;
+    maring: 0 auto;
+    border: 1px solid #ccc;
 }
 
 #container #main .content {
-    margin: 23px;
+    margin: 20px 29px 20px 17px;
 }
 
 #container #main .content h2 {
