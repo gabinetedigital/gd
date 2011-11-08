@@ -48,8 +48,8 @@ def index(aid):
 @audience.route('/<int:aid>/public_buzz')
 def public_buzz(aid):
     """Returns the public buzz of an audience in JSON format"""
-    return dumps([buzz.to_dict()
-                  for buzz in Audience.query.get(aid).get_public_buzz()])
+    buzz = Audience.query.get(aid).get_public_buzz(0, 10)
+    return dumps([notice.to_dict() for notice in buzz])
 
 
 @audience.route('/<int:aid>/moderated_buzz')
