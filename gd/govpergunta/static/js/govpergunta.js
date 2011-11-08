@@ -17,6 +17,11 @@
 var navapi = null;
 
 $(function () {
+   $("#question-writer").ghost_typer({
+     text:'Como podemos melhorar o atendimento na saúde pública?',
+     speed: 80
+   });
+
     var wizard = $('.wizard').data('isLoaded', false);
 
     $('#maintext, .tabs', wizard).click(function() {

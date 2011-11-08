@@ -6,6 +6,7 @@
 
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/webfonts.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/jquery.ghost-0.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/govpergunta.js') }}"></script>
 {% endblock %}
 
@@ -19,7 +20,7 @@
       </h1>
     </div>
     <div id="question" class="col9">
-      <p>Como podemos melhorar o atendimento na saúde pública?</p>
+      <p id="question-writer"></p>
     </div>
   </div>
 
