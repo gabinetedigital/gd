@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from flask import Blueprint, render_template
+from gd.content.wp import wordpress
 
 govpergunta = Blueprint(
     'govpergunta', __name__,
@@ -27,19 +28,6 @@ govpergunta = Blueprint(
 @govpergunta.route('/')
 def index():
     """Renders the index template"""
-    return render_template('govpergunta.html')
+    faq = wordpress.getPageByPath('govpergunta/faq')
+    return render_template('govpergunta.html', faq=faq)
 
-@govpergunta.route('/contribua')
-def contribua():
-    """Renders the index template"""
-    return render_template('contribua.html')
-
-@govpergunta.route('/como')
-def como():
-    """Renders the index template"""
-    return render_template('como.html')
-
-@govpergunta.route('/temas')
-def temas():
-    """Renders the index template"""
-    return render_template('temas.html')

@@ -228,9 +228,9 @@
                   </fieldset>
                 </div>
                 <div id="faq" class="col3">
-                  <h4> Para onde vai a minha contribuição? </h4>
-                  Após inserir sua contribuição, ela é processada e adicionada ao nosso
-                  banco de dados.
+                  {% if faq %}
+                  {{ faq.content|safe }}
+                  {% endif %}
                 </div>
 
                 <div class="row-end"></div>
