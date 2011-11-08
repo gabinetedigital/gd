@@ -175,18 +175,18 @@ form.auth .accept_tos label {
 }
 
 .frmcol1 {
-    width:50%;
+    width:24.5%;
     float:left;
     margin-right:15px;
 }
 
 .frmcol2 {
-    width:33%;
+    width:16%;
     float:left;
 }
 
 .frmcol2.gender, .frmcol2.state {
-    width:20%;
+    width:10%;
 }
 
 form.auth input {
