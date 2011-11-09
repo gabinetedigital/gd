@@ -1,13 +1,13 @@
 $(function () {
 
   $("#participe .govresponde")
-        .data('text','Quer saber o que o governador pensa? Pergunte para ele. ' +
+        .data('text','Quer saber o que o Governador pensa? Pergunte para ele. ' +
               'A questão mais votada do mês é respondida em vídeo.');
   $("#participe .govpergunta")
         .data('text', 'O Governador pergunta e a sociedade responde com novas ' +
               'idéias.');
   $("#participe .agenda")
-        .data('text', 'Quer fazer parte da agenda do governador na sua cidade?' +
+        .data('text', 'Quer fazer parte da agenda do Governador na sua cidade?' +
               ' Indique uma pauta na agenda colaborativa.');
   $("#participe .govescuta")
         .data('text','Audiências públicas digitais transmitidas via internet  ' +
