@@ -44,9 +44,10 @@ TWITTER_MAYOR_USERNAME='themayor'
 # E-mail
 SMTP='localhost'
 PASSWORD_REMAINDER_MSG = "Sua senha: %s"
-PASSWORD_REMAINDER_SUBJECT = '<site>: sua senha'
-PASSWORD_REMAINDER_FROM = 'mailer@mailer'
+PASSWORD_REMAINDER_SUBJECT = '[GabineteDigital]: sua senha'
+PASSWORD_REMAINDER_FROM = 'gabinetedigital@gg.rs.gov.br'
 
-PASSWORD_CONFORMATION_MSG="Confirme aqui: http://localhost:5000/confirm_signup/%s"
-PASSWORD_CONFIRMATION_SUBJECT="Confirmação de inscrição"
-PASSWORD_CONFIRMATION_FROM="mailer@mailer.com"
+PASSWORD_CONFIRMATION_SUBJECT="[GabineteDigital] Confirmação de inscrição"
+PASSWORD_CONFIRMATION_FROM="gabinetedigital@gg.rs.gov.br"
+PASSWORD_CONFORMATION_MSG="""Por favor, siga o seguinte link para efetivar o
+seu cadastro no nosso site: http://localhost:5000/confirm_signup/%s"""
