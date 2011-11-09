@@ -37,17 +37,20 @@
           terminar o processo falta apenas preencher os campos abaixo.
         </li>
         {% endif %}
-        <li class="field name">{{ form.name.label }} {{ form.name }}</li>
-        <li class="field email frmcol1">{{ form.email.label  }} {{ form.email }}</li>
+        <li class="field name">{{ form.name.label }} {{ form.name }}<div name="name-error"></div></li>
+        <li class="field email frmcol1">{{ form.email.label  }} {{ form.email }}<div name="email-error"></div></li>
         <li class="field email_confirmation">
           {{ form.email_confirmation.label }} {{ form.email_confirmation }}
+          <div name="email_confirmation-error"></div>
         </li>
         {% if not form.social %}
         <li class="field password frmcol1">
           {{ form.password.label }} {{ form.password }}
+          <div name="password-error"></div>
         </li>
         <li class="field password_confirmation">
           {{ form.password_confirmation.label }} {{ form.password_confirmation }}
+          <div name="password_confirmation-error"></div>
         </li>
         {% endif %}
         <li class="sep"><hr></li>
@@ -65,7 +68,9 @@
         <li class="field twitter frmcol1">{{ form.twitter.label }} {{ form.twitter }}</li>
         <li class="field facebook">{{ form.facebook.label }} {{ form.facebook }}</li>
         <li class="sep"><hr></li>
-        <li class="field accept_tos">{{ form.accept_tos }} {{ form.accept_tos.label }}</li>
+        <li class="field accept_tos">{{ form.accept_tos }} {{ form.accept_tos.label }}
+          <div name="accept_tos-error"></div>
+        </li>
         <li class="submit"><button class="awesome">Signup</button></li>
       </ol>
     </div>

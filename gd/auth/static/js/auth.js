@@ -137,6 +137,9 @@ var auth = (function() {
                                     overlay
                                         .find('[name=' + f  + ']')
                                         .addClass('error');
+                                    overlay
+                                        .find('[name='+ f + '-error]')
+                                        .html(errors[f][0]);
                                 }
                             } else {
                                 overlay
