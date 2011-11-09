@@ -427,6 +427,21 @@
 
 /* -- contribute page -- */
 
+div.contribute div.error {
+    display:none;
+    background:#ce3316;
+    color:#fff;
+    margin-bottom:14px;
+    padding:8px;
+    width:95%;
+    border-radius: 4px 4px 4px 4px;
+}
+
+div.contribute input.error,
+div.contribute textarea.error {
+    border:solid 1px red !important;
+}
+
 div.contribute #form label {
     float:left;
     width:20%;

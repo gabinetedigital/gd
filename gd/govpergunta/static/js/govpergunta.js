@@ -154,12 +154,47 @@ var themeapi = (function () {
 
     $('.contribute form').ajaxForm({
         beforeSubmit: function () {
-            
+            var form = $('.contribute form');
+            form.find('input,textarea').removeClass('error');
+            form.find('.error').fadeOut();
         },
+
         success: function (data) {
             var pData = $.parseJSON(data);
-            if () {
+            if (pData.status === 'ok') {
+                return $('div.success').fadeIn();
             }
+
+            /* Here we know that something is wrong */
+            var form = $('.contribute form');
+            var errors = pData.msg.data;
+            var code = pData.code;
+            var csrfToken = pData.msg.csrf;
+
+            /* The first step now is to set the new csrf token to
+             * our form. If we don't do it, we can't try to
+             * register again. */
+            form.find('[name=csrf]').val(csrfToken);
+
+            /* The user made a mistake when filling the form */
+            if (code === 'ValidationError') {
+                for (var f in errors) {
+                    form
+                        .find('[name=' + f  + ']')
+                        .addClass('error');
+
+                    form.find('div.error')
+                        .html('Erros na validação do formulário')
+                        .fadeIn('fast');
+                }
+            } else {
+                form.find('div.error').html(pData.msg.data).fadeIn('fast');
+            }
+
+            console.debug(pData);
+            // if () {
+            // }
+            return null;
         }
     });
 
