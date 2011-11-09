@@ -95,11 +95,15 @@
 #container #content #maintext .blocktext {
     color: #2e3436;
     font-size: 16px;
-    padding: 10px 190px 0px 50px;
+    padding: 10px 0px 0px 50px;
 }
 
 #container #content #maintext .blocktext p {
     margin-top:20px;
+}
+
+#container #content .whatisit {
+    background: url(../imgs/what.png) no-repeat bottom right;
 }
 
 #container #content #maintext #more a {
@@ -113,18 +117,18 @@
     margin: 28px -35px 10px 50px;
 }
 
-#container #content #maintext #howworks {
-    padding-left: 40px;
+#container #content #maintext .howitworks {
+    background: url(../imgs/gears.png) no-repeat bottom right;
 }
 
-#container #content #maintext #howworks p {
+#container #content #maintext .howitworks p {
          color: #2e3436;
     font-size: 16px;
     padding: 10px 190px 0px 50px;
    margin-left: 19px;
 }
 
-#container #content #maintext #howworks li img {
+#container #content #maintext .howitworks li img {
     position: absolute;
 }
 
@@ -175,7 +179,7 @@
 }
 
 #container #content #maintext #themes a:hover {
-    background:url(../imgs/baseci.png) no-repeat center 60%;
+    margin-top: -10px;
 }
 
 #container #content #maintext #themes p {
@@ -459,9 +463,9 @@ div.contribute #form label a {
     color:#333;
 }
 
-div.contribute #form label.selected {
+div.contribute #form label.selected a {
     font-weight:bold;
-    border-bottom:solid 2px;
+    color:#4e9a06;
 }
 
 div.contribute #form label a:hover {
