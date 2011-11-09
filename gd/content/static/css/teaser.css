@@ -128,3 +128,39 @@ body {
     overflow: hidden;
 }
 
+#dialog {
+    width: 820px;
+    margin: 0 auto;
+    border-radius: 20px;
+    height: 200px;
+    background-color: #FFF;
+    padding: 20px;
+}
+
+#dialog .perg {
+    background: url(../imgs/dialog.png) 0 10px no-repeat #fff;
+    font-size: 40px;
+    color: #2e3436;
+    padding-left: 120px;
+}   
+
+#dialog .perg a { 
+    float: right;
+    margin-right: 20px;
+    background-color: #4e9a06;
+    padding: 10px 30px;
+    color: #FFF;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 20px;
+
+}
+
+#dialog .resp {
+    font-size: 50px;
+    margin-left: 120px;
+    color: #4e9a06;
+    padding-top: 40px;
+    display: none;
+}   
+
