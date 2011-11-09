@@ -147,14 +147,10 @@ def home_page(json='{}'):
     )
 
 
-@app.route('/home')
+@app.route('/')
 def index():
     return home_page()
 
-
-@app.route('/')
-def index():
-    return redirect(url_for('audience.index'))
 
 @app.route('/confirm_signup/<string:key>', methods=('GET',))
 def confirm_signup(key):

@@ -20,7 +20,7 @@
 interface.
 """
 
-from flask import Blueprint, render_template, request, abort
+from flask import Blueprint, render_template, request, abort, redirect
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy import desc
 
@@ -37,6 +37,7 @@ audience = Blueprint(
 
 @audience.route('/')
 def index():
+    return redirect('/')
     """Returns the last published audience page"""
     inst = Audience.query.order_by(desc('date')).first()
     try:
