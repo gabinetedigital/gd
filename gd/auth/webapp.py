@@ -144,15 +144,16 @@ def signup_json():
             send_confirmation_email(user)
         except authapi.UserExists:
             return utils.format_csrf_error(
-                _(u'User already exists'), 'UserExists')
+                form, _(u'User already exists'), 'UserExists')
         except authapi.EmailAddressExists:
             return utils.format_csrf_error(
+                form,
                 _(u'The email address informed is being used '
                   u'by another person'), 'EmailAddressExists')
         data = authapi.login_user_instance(user, password)
         return msg.ok({ 'user': data })
     else:
-        return utils.format_csrf_error(form.errors, 'ValidationError')
+        return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
 
 @auth.route('/profile')
