@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=1024">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/978.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/awesome.css') }}">
     <link rel="stylesheet" href="{{ url_for('auth.static', filename='css/auth.css') }}">
     {% block css %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/awesome.css') }}">
   </head>
   <body class="{% block bodyclass %}{% endblock %}">
     <div id="header">
