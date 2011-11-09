@@ -41,7 +41,7 @@ facebook = OAuth().remote_app('facebook',
 def login():
     """Entry point for the facebook login feature"""
     next_url = request.values.get('next') or request.referrer or None
-    return facebook.authorize(callback=url_for(
+    return facebook.authorize(callback=conf.BASE_URL+url_for(
             '.facebook_authorized', next=next_url, _external=True))
 
 
