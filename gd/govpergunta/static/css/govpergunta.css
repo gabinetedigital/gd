@@ -491,3 +491,18 @@ div.contribute #form .medicamentos a {
 div.contribute #form .regional a {
     background:url('../imgs/regional32.png') no-repeat;
 }
+
+div.contribute #form .success {
+    background:white;
+    color:#333;
+    padding:100px 0;
+}
+
+div.contribute #form .success h3 {
+    color:#4e9a06;
+}
+
+div.contribute #form .success p {
+    color:#333;
+    padding:10px;
+}

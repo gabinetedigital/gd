@@ -159,12 +159,12 @@ form.auth hr {
     border:1px solid #ef2929;
 }
 
-form.auth input.fielderror {
-    border:1px solid #ef2929;
+.fielderror, form.auth input.fielderror {
+    border:1px solid #ef2929 !important;
 }
 
-form.auth p.errmsg {
-    color:#ef2929;
+p.errmsg {
+    color:#ef2929 !important;
     margin-bottom:0;
 }
 

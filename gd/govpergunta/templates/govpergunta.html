@@ -162,7 +162,15 @@
                   {{ form.csrf }}
 
                   <div id="form" class="col7">
-                    <div class="error"></div>
+                    <div class="msg error"></div>
+                    <div class="msg success envio">
+                      <h3>Contribuição enviada com sucesso</h3>
+
+                      <p>
+                        Para mais informações, veja as opções da barra à
+                        direita ou entre em contato conosco.
+                      </p>
+                    </div>
 
                     <fieldset>
                       <label class="cuidado">
@@ -200,16 +208,20 @@
                         <a>Saúde na sua Região</a>
                       </label>
                     </fieldset>
+                    <p class="errmsg theme-error"></p>
+
                     
                     <fieldset>
                       <h3>Titulo de contribuição</h3>
                       <input type="text" class="title" name="title">
+                      <p class="errmsg title-error"></p>
                     </fieldset>
                     
                     <fieldset>
                       <h3>Contribuição</h3>
                       <textarea name="content"></textarea>
                       <input type="submit" value="Enviar" class="send">
+                      <p class="errmsg content-error"></p>
                     </fieldset>
                   </div>
                   <div id="faq" class="col3">

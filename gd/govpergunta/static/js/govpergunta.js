@@ -155,13 +155,26 @@ var themeapi = (function () {
     $('.contribute form').ajaxForm({
         beforeSubmit: function () {
             var form = $('.contribute form');
-            form.find('input,textarea').removeClass('error');
+            form.find('input,textarea').removeClass('fielderror');
             form.find('.error').fadeOut();
+            form.find('.errmsg').html('');
+
+
+            if (!auth.isAuthenticated()) {
+                auth.showLoginForm({
+                    success: function () {
+                        form.submit();
+                    }
+                });
+                return false;
+            }
+            return true;
         },
 
         success: function (data) {
             var pData = $.parseJSON(data);
             if (pData.status === 'ok') {
+                $('#form fieldset').fadeOut();
                 return $('div.success').fadeIn();
             }
 
@@ -181,8 +194,10 @@ var themeapi = (function () {
                 for (var f in errors) {
                     form
                         .find('[name=' + f  + ']')
-                        .addClass('error');
-
+                        .addClass('fielderror');
+                    form
+                        .find('.'+ f + '-error')
+                        .html(errors[f][0]);
                     form.find('div.error')
                         .html('Erros na validação do formulário')
                         .fadeIn('fast');
