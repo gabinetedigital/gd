@@ -139,7 +139,6 @@ var auth = (function() {
                                         .addClass('error');
                                 }
                             } else {
-                                console.debug(pData);
                                 overlay
                                     .find('div.error')
                                     .html(pData.msg.data).fadeIn('fast');
