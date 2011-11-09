@@ -42,7 +42,7 @@ def login():
     """Entry point for the facebook login feature"""
     next_url = request.values.get('next') or request.referrer or None
     return facebook.authorize(callback=conf.BASE_URL+url_for(
-            '.facebook_authorized', next=next_url, _external=True))
+            '.facebook_authorized', next=next_url))
 
 
 @fbauth.route('/data')
