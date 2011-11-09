@@ -71,12 +71,20 @@
     <div id="dialog">
         <div class="perg">
             <p>Deseja publicar os códigos do portal e lançar o governador pergunta ?</p>
-            <a href="" id="sim">Sim</a>
+            <a href="javascript:;" id="sim">Sim</a>
         </div>
         <div class="resp">
             <p>Site lançado com sucesso!</p>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/jquery-1.5.1.min.js') }}"></script>
+    <script>
+      $(function () {
+        $('#sim').click(function () {
+          $('.perg').fadeOut();
+          $('.resp').fadeIn();
+        });
+      });
+    </script>
 </body>
 </html>
