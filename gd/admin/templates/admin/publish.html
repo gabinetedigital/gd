@@ -24,6 +24,7 @@
 
     <ul class="listing">
       {% for i in buzz_list %}
+      <!-- {{ i.id }} -->
       <li class="{{ loop.cycle('dark', 'light') }}">
         <img src="{{ i.avatar }}">
         <strong>@{{ i.owner_nick }}</strong>
