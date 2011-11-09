@@ -151,5 +151,17 @@ var themeapi = (function () {
         $(this).addClass('selected');
     });
 
+
+    $('.contribute form').ajaxForm({
+        beforeSubmit: function () {
+            
+        },
+        success: function (data) {
+            var pData = $.parseJSON(data);
+            if () {
+            }
+        }
+    });
+
     return new ThemeApi();
 })();

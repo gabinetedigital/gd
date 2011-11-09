@@ -16,9 +16,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template
+from flask import Blueprint, request, render_template
 from gd.content.wp import wordpress
+from gd.utils import _, msg, format_csrf_error, format_csrf_error
 from gd import auth
+from gd.govpergunta.forms import ContribForm
+from gd.model import Contrib, session
+
 
 govpergunta = Blueprint(
     'govpergunta', __name__,
@@ -29,4 +33,36 @@ govpergunta = Blueprint(
 @govpergunta.route('/')
 def index():
     """Renders the index template"""
-    return render_template('govpergunta.html', wp=wordpress)
+    form = ContribForm()
+    return render_template('govpergunta.html', wp=wordpress, form=form)
+
+
+@govpergunta.route('/contrib_json', methods=('POST',))
+def contrib_json():
+    """Receives a user contribution and saves to the database
+
+    This function will return a JSON format with the result of the
+    operation. That can be successful or an error, if it finds any
+    problem in data received or the lack of the authentication.
+    """
+    if not auth.is_authenticated():
+        return msg.error(_(u'User not authenticated'))
+
+    form = ContribForm()
+
+    # This field is special, it must be validated before anything. If it
+    # doesn't work, the action must be aborted.
+    csrf = request.form['csrf']
+    if not csrf or not form.csrf.validate(csrf):
+        return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
+
+    if form.validate_on_submit():
+        Contrib(
+            title=form.data['title'],
+            content=form.data['content'],
+            theme=form.data['theme'],
+            user=auth.authenticated_user())
+        session.commit()
+        return msg.ok(_('Contribution received successful'))
+    else:
+        return format_csrf_error(form, form.errors, 'ValidationError')

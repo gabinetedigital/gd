@@ -18,18 +18,18 @@
 """Web application definitions for the `auth' module"""
 
 from os import urandom
+from sqlalchemy.orm.exc import NoResultFound
 from flask import Blueprint, render_template, request
 from werkzeug import FileStorage
 
-from gd.utils import thumbnail, msg, _, send_password, \
-     generate_random_password, send_confirmation_email
-
-from gd.content.wp import wordpress
-from gd.auth import forms
-from gd.auth.fbauth import checkfblogin
-from gd.model import Upload, session, User
+from gd import utils
+from gd.utils import _, msg
 from gd import auth as authapi
-from sqlalchemy.orm.exc import NoResultFound
+from gd.auth.fbauth import checkfblogin
+from gd.auth import forms
+from gd.model import Upload, session, User
+from gd.content.wp import wordpress
+
 
 auth = Blueprint(
     'auth', __name__,
@@ -124,18 +124,6 @@ def signup_json():
     signup form"""
     form = social(forms.SignupForm, False)
 
-    def format_error(orig, code):
-        """This function wraps an error message and, instead of
-        returning the data content, it adds the a new field: a new csrf
-        token.
-
-        It's safe to do it here because only people that sent a valid
-        csrf token in the first time can get a new one.
-        """
-        data = { 'data': orig }
-        data.update({ 'csrf': form.csrf.data })
-        return msg.error(data, code)
-
     # This field is special, it must be validated before anything. If it
     # doesn't work, the action must be aborted.
     csrf = request.form['csrf']
@@ -155,15 +143,16 @@ def signup_json():
                 dget('email_confirmation'), form.meta)
             send_confirmation_email(user)
         except authapi.UserExists:
-            return format_error(_(u'User already exists'), 'UserExists')
+            return utils.format_csrf_error(
+                _(u'User already exists'), 'UserExists')
         except authapi.EmailAddressExists:
-            return format_error(_(u'The email address informed is being used '
-                                  u'by another person'), 'EmailAddressExists')
-        return msg.ok({
-            'message':
-            _('A confirmation e-mail has been sent to your e-mail address.')})
+            return utils.format_csrf_error(
+                _(u'The email address informed is being used '
+                  u'by another person'), 'EmailAddressExists')
+        data = authapi.login_user_instance(user, password)
+        return msg.ok({ 'user': data })
     else:
-        return format_error(form.errors, 'ValidationError')
+        return utils.format_csrf_error(form.errors, 'ValidationError')
 
 
 @auth.route('/profile')
@@ -200,7 +189,7 @@ def profile_json():
     form.meta.pop('avatar')
     if bool(form.avatar.file):
         flike = form.avatar.file
-        thumb = thumbnail(flike, (48, 48))
+        thumb = utils.thumbnail(flike, (48, 48))
         form.meta['avatar'] = Upload.imageset.save(
             FileStorage(thumb, flike.filename, flike.name),
             'thumbs/%s' % user.name[0].lower())
@@ -228,10 +217,10 @@ def profile_passwd_json():
 def remember_password():
     try:
         user = User.query.filter_by(email=request.values['email']).one()
-        new_pass = generate_random_password()
+        new_pass = utils.generate_random_password()
         user.set_password(new_pass)
         session.commit()
-        send_password(request.values['email'],new_pass);
+        utils.send_password(request.values['email'],new_pass);
     except NoResultFound:
         return msg.error(
             _(u'E-mail not found in the database'), 'UserNotFound')

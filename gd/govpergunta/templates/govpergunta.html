@@ -155,48 +155,65 @@
               <div class="contribute">
                 <h2>Contribua</h2>
 
-                <div id="form" class="col7">
-                  <fieldset>
-                    <label class="cuidado">
-                      <input class="theme" type="radio" name="theme">
-                      <a>Cuidado Integral</a>
-                    </label>
+                <form
+                   id="contribute" method="post"
+                   action="{{ url_for('.contrib_json') }}">
 
-                    <label class="familia">
-                      <input class="theme" type="radio" name="theme">
-                      <a>Saúde da Família</a>
-                    </label>
+                  {{ form.csrf }}
 
-                    <label class="emergencia">
-                      <input class="theme" type="radio" name="theme">
-                      <a>Urgência Emergencia</a>
-                    </label>
+                  <div id="form" class="col7">
+                    <fieldset>
+                      <label class="cuidado">
+                        <input
+                           class="theme" type="radio" name="theme"
+                           value="cuidado">
+                        <a>Cuidado Integral</a>
+                      </label>
 
-                    <label class="medicamentos">
-                      <input class="theme" type="radio" name="theme">
-                      <a>Acesso a Medicamentos</a>
-                    </label>
+                      <label class="familia">
+                        <input
+                           class="theme" type="radio" name="theme"
+                           value="familia">
+                        <a>Saúde da Família</a>
+                      </label>
 
-                    <label class="regional">
-                      <input class="theme" type="radio" name="theme">
-                      <a>Saúde na sua Região</a>
-                    </label>
-                  </fieldset>
-                  
-                  <fieldset>
-                    <h3>Titulo de contribuição</h3>
-                    <input type="text" class="title" name="title">
-                  </fieldset>
-                  
-                  <fieldset>
-                    <h3>Contribuição</h3>
-                    <textarea></textarea>
-                    <input type="submit" value="Enviar" class="send">
-                  </fieldset>
-                </div>
-                <div id="faq" class="col3">
-                  {{ wp.getPageByPath('govpergunta/faq').content|safe }}
-                </div>
+                      <label class="emergencia">
+                        <input
+                           class="theme" type="radio" name="theme"
+                           value="emergencia">
+                        <a>Urgência Emergencia</a>
+                      </label>
+
+                      <label class="medicamentos">
+                        <input
+                           class="theme" type="radio" name="theme"
+                           value="medicamentos">
+                        <a>Acesso a Medicamentos</a>
+                      </label>
+
+                      <label class="regional">
+                        <input
+                           class="theme" type="radio" name="theme"
+                           value="regional">
+                        <a>Saúde na sua Região</a>
+                      </label>
+                    </fieldset>
+                    
+                    <fieldset>
+                      <h3>Titulo de contribuição</h3>
+                      <input type="text" class="title" name="title">
+                    </fieldset>
+                    
+                    <fieldset>
+                      <h3>Contribuição</h3>
+                      <textarea name="content"></textarea>
+                      <input type="submit" value="Enviar" class="send">
+                    </fieldset>
+                  </div>
+                  <div id="faq" class="col3">
+                    {{ wp.getPageByPath('govpergunta/faq').content|safe }}
+                  </div>
+                </form>
 
                 <div class="row-end"></div>
 

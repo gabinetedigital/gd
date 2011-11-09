@@ -82,6 +82,23 @@ def thumbnail(data, size, fit=True):
     output.seek(0)
     return output
 
+
+
+# -- Form handling --
+
+def format_csrf_error(form, orig, code):
+    """This function wraps an error message and, instead of
+    returning the data content, it adds the a new field: a new csrf
+    token.
+
+    It's safe to do it here because only people that sent a valid
+    csrf token in the first time can get a new one.
+    """
+    data = { 'data': orig }
+    data.update({ 'csrf': form.csrf.data })
+    return msg.error(data, code)
+
+
 # -- E-mail password
 
 def generate_random_password():

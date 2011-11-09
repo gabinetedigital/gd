@@ -223,6 +223,7 @@ class User(Entity):
     user_activation_key = Field(Unicode(60))
 
     buzzes = OneToMany('Buzz')
+    contribs = OneToMany('Contrib')
     creation_date = Field(
         DateTime, colname='user_registered',
         default=datetime.now)
@@ -351,6 +352,20 @@ class User(Entity):
                      UserMeta.query.filter_by(user_id=self.id).all()))
         return data
 
+
+class Contrib(Entity):
+    """Mapper for the `contrib' entity
+    """
+    using_options(shortnames=True)
+
+    title = Field(Unicode(256))
+    content = Field(Unicode(400))
+    user = ManyToOne('User')
+    creation_date = Field(DateTime, default=datetime.now)
+    theme = Enum(
+        u'cuidado', u'familia', u'emergencia',
+        u'medicamentos', u'regional'
+    )
 
 
 @event.listens_for(session, "after_flush")
