@@ -72,3 +72,7 @@
     margin-right: 14px;
     margin-top: 10px;
 }
+
+#container .wall li.last {
+    margin-right:0;
+}
