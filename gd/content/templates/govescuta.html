@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/govescuta.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+  <div class="row head">
+    <div id="logo" class="col4">
+        <h1>Governador Escuta</h1>
+    </div>
+    <div class="col8">
+        <p>Audiências públicas digitais transmitidas via internet onde você pode enviar sua contribuição</p>
+    </div>
+    <div class="row-end"></div>
+  </div>
+
+  <div class="row content">
+    <h2>Audiências</h2>
+     <ul>
+        <li>
+            <ul class="audiencia">
+                <li class="video"><img src="{{ url_for('.static', filename='imgs/video.jpg') }}" width="222" height="166"></li>
+                <li class="titulo"><h4>Saúde - 9 Nov</h4></li>
+                <li class="desc">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</li>
+            </ul>
+        </li>
+        <li>
+            <ul class="audiencia">
+                <li class="video"><img src="{{ url_for('.static', filename='imgs/video.jpg') }}" width="222" height="166"></li>
+                <li class="titulo"><h4>Saúde - 9 Nov</h4></li>
+                <li class="desc">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</li>
+            </ul>
+        </li>
+        <li>
+            <ul class="audiencia">
+                <li class="video"><img src="{{ url_for('.static', filename='imgs/video.jpg') }}" width="222" height="166"></li>
+                <li class="titulo"><h4>Saúde - 9 Nov</h4></li>
+                <li class="desc">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</li>
+            </ul>
+        </li>
+
+    </ul>
+   <div class="row-end"></div>
+   </div>
+
+          <div id="comments">
+          <div class="content">
+
+            {# if ..allow_ == 1 #}
+
+              {# set display_form = 'inline' if show__form else 'None' #}
+              <!-- the comemnt error msg -->
+              <p class="-error">{{ error_msg|safe }}</p>
+
+              <form style="display:{{ display_form }}"
+                    id="blog__form"
+                    action="{{ url_for }}"
+                    method="">
+                
+                <input type="hidden" name="_id" value="{{id}}">
+                <h4>Comentários</h4>
+
+                Deixe seu comentário<br>
+                <textarea name="content"></textarea>
+                <input type="submit" value="Enviar">
+              </form>
+            {# endif #}
+
+                {# for  in  #}
+                    <div class="">
+                    <img src="{{ avatar_url }}">
+                        <div class="content">
+                        <h3>{{ author|safe }} em {{ date_created_gmt|safe }} </h3>
+                        {{ content|safe }} <br>
+                    </div>
+            </div>
+            {# endfor #}
+                      </div>
+                      </div>
+          </div>
+ 
+</div>
+{% endblock %}

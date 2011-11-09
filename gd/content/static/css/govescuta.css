@@ -1,0 +1,134 @@
+#container {
+    background:white;
+    font-size: 13px;
+    -moz-box-shadow: 0px 0px 6px 1px #CCC;
+    -webkit-box-shadow: 0px 0px 6px 1px #CCC;
+    box-shadow: 0px 0px 6px 1px #CCC;
+    background-color: #FFF;
+    color: #2E3436;
+}
+
+#container .head {
+    border-bottom: 1px solid #999;
+}
+
+#container #logo h1 {
+    background: url(../imgs/logo_govescuta.png) no-repeat;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 222px;
+    height: 100px;
+    margin: 30px auto 0;
+    
+}
+
+#container .col8 p {
+    font-size: 18px;
+    padding: 54px;
+}
+
+#container h2 {
+    color: #2e3436;
+    font-size: 33px;
+    margin-top: 27px;
+    margin-left: 20px;
+    margin-bottom: 40px;
+}
+
+#container .audiencia {
+    padding-bottom: 56px;
+    border-bottom: 1px dotted #999;
+    margin: 25px auto;
+    width: 900px;
+}
+
+#container .audiencia img {
+    background-color: #808080;
+    float: left;
+    display: block;
+    margin-right: 20px;
+}
+
+#container .audiencia .titulo {
+    font-size: 20px;       
+}
+
+#container .audiencia .desc {
+    font-size: 14px;       
+    margin-top: 20px;
+    text-align: justify;
+}
+
+
+#container #paginator {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#container #paginator .page-numbers {
+    border: 1px solid #ddd;
+    padding: 1px 7px;
+    margin-left: 4px;
+}
+
+#container #paginator .current {
+    background: #ccc;
+}
+
+#container #paginator .next, #container #paginator .prev {
+    padding: 2px;
+    border: 1px solid #fff;
+}
+
+#container  #comments {
+    border-top: 1px dotted #999;
+    padding-top: 12px;
+    margin-top: 30px;
+}
+
+#container  #comments h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+#container  #comments textarea {
+    border: 1px solid #eee;
+    width: 80%;
+    float: left;
+    height: 70px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+#container  #comments input {
+    height: 70px;
+    padding: 20px;
+    margin-left: 10px;
+    border: 2px solid #eee;
+    background: #FFF:
+}
+
+#container  .comment {
+    margin-bottom: 20px;
+    float: left;
+}
+
+#container  .comment img {
+    float: left;
+    margin-right: 20px;
+}
+
+#container  .comment .content {
+    border-radius: 0px 20px 20px 20px;
+    background: #eee;
+    padding: 6px;
+    width: 500px;
+    float: right;
+    padding: 16px;
+}
+
+#container  .comment .content h3 {
+    margin-bottom: 12px;
+}
+
