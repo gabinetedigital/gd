@@ -82,16 +82,35 @@ var auth = (function() {
                 });
 
                 overlay.find('#remember_password').submit(function () {
-                    var params = {email: overlay.find("input[name=email]").val()};
+                    var params = { email: overlay.find("input[name=email]").val() };
+                    overlay.find('.msg').fadeOut();
+
                     $.post(url_for('auth.remember_password'),
                            params,
                            function (data) {
                                var pData = $.parseJSON(data);
                                if (pData.status !== 'ok') {
-                                   overlay.find('#remember-password-error').html(pData.msg).fadeIn('fast');
+                                   overlay
+                                       .find('#remember-password-error')
+                                       .html(pData.msg)
+                                       .fadeIn('fast');
+                                   overlay
+                                       .find('#remember-password-success')
+                                       .hide();
                                } else {
-                                   overlay.find('#remember-password-success').html(pData.msg).fadeIn('fast');
+                                   overlay
+                                       .find('#remember-password-success')
+                                       .html(pData.msg)
+                                       .fadeIn('fast');
+                                   overlay
+                                       .find('#remember-password-error')
+                                       .hide();
+                                   overlay.find('input[name=email]').val('');
                                }
+                               window.setTimeout(function () {
+                                   overlay.find('.msg').fadeOut();
+                               }, 10000);
+
                            });
                     return false;
                 });
@@ -124,7 +143,8 @@ var auth = (function() {
                              * trying to send the form, let's clear the
                              * error state for now to allow him to try
                              * again */
-                            overlay.find('input,select').removeClass('error');
+                            overlay.find('input,select').removeClass('fielderror');
+                            overlay.find('.errmsg').html('');
                         },
 
                         success: function (data) {
@@ -132,7 +152,7 @@ var auth = (function() {
                             if (pData.status === 'ok') {
                                 overlay
                                     .find('.success')
-                                    .html(pData.msg.message)
+                                    .html(pData.msg.message);
                                 overlay.find(".signup-form").slideUp();
                                 overlay.find('.header').slideUp();
                                 return;
@@ -153,9 +173,9 @@ var auth = (function() {
                                 for (var f in errors) {
                                     overlay
                                         .find('[name=' + f  + ']')
-                                        .addClass('error');
+                                        .addClass('fielderror');
                                     overlay
-                                        .find('[name='+ f + '-error]')
+                                        .find('.'+ f + '-error')
                                         .html(errors[f][0]);
                                 }
                             } else {

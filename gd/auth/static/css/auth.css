@@ -142,19 +142,31 @@ form.auth hr {
     margin:20px 0;
 }
 
-form.auth div.error {
-    background:#ce3316;
-    border-radius: 4px 4px 4px 4px;
-    color:#fff;
-    margin-bottom:8px;
-    padding:8px;
+.msg {
     display:none;
+    margin:10px 0;
+    padding:8px;
+    color:#fff;
+    border-radius: 4px 4px 4px 4px;
 }
 
-form.auth .error {
+.success {
+    background:#4E9A06;
+}
+
+.error {
+    background:#ce3316;
     border:1px solid #ef2929;
 }
 
+form.auth input.fielderror {
+    border:1px solid #ef2929;
+}
+
+form.auth p.errmsg {
+    color:#ef2929;
+    margin-bottom:0;
+}
 
 /* specific things to the login form */
 

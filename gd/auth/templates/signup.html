@@ -29,52 +29,59 @@
     </div>
 
     <div class="tab form">
-      <div class="error"></div>
-      <div class="success"></div>
+      <div class="msg error"></div>
+      <div class="msg success"></div>
       <div class="signup-form">
-      <ol>
-        {% if form.social %}
-        <li class="help">
-          Você está se autenticando através de uma rede social. Para
-          terminar o processo falta apenas preencher os campos abaixo.
-        </li>
-        {% endif %}
-        <li class="field name">{{ form.name.label }} {{ form.name }}<div name="name-error"></div></li>
-        <li class="field email frmcol1">{{ form.email.label  }} {{ form.email }}<div name="email-error"></div></li>
-        <li class="field email_confirmation">
-          {{ form.email_confirmation.label }} {{ form.email_confirmation }}
-          <div name="email_confirmation-error"></div>
-        </li>
-        {% if not form.social %}
-        <li class="field password frmcol1">
-          {{ form.password.label }} {{ form.password }}
-          <div name="password-error"></div>
-        </li>
-        <li class="field password_confirmation">
-          {{ form.password_confirmation.label }} {{ form.password_confirmation }}
-          <div name="password_confirmation-error"></div>
-        </li>
-        {% endif %}
-        <li class="sep"><hr></li>
-        <li class="field country frmcol2">{{ form.country.label }} {{ form.country }}</li>
-        <li class="field state frmcol2">{{ form.state.label }} {{ form.state }}</li>
-        <li class="field city">{{ form.city.label }} {{ form.city }}</li>
-        <li class="field age_group frmcol2">
-          {{ form.age_group.label }} {{ form.age_group }}
-        </li>
-        <li class="field gender frmcol2">{{ form.gender.label }} {{ form.gender }}</li>
-        <li class="field income_group">
-          {{ form.income_group.label }} {{ form.income_group }}
-        </li>
-        <li class="sep"><hr></li>
-        <li class="field twitter frmcol1">{{ form.twitter.label }} {{ form.twitter }}</li>
-        <li class="field facebook">{{ form.facebook.label }} {{ form.facebook }}</li>
-        <li class="sep"><hr></li>
-        <li class="field accept_tos">{{ form.accept_tos }} {{ form.accept_tos.label }}
-          <div name="accept_tos-error"></div>
-        </li>
-        <li class="submit"><button class="awesome">Signup</button></li>
-      </ol>
+        <ol>
+          {% if form.social %}
+          <li class="help">
+            Você está se autenticando através de uma rede social. Para
+            terminar o processo falta apenas preencher os campos abaixo.
+          </li>
+          {% endif %}
+
+          <li class="field name">
+            {{ form.name.label }} {{ form.name }}
+            <p class="errmsg name-error"></p></li>
+
+          <li class="field email frmcol1">{{ form.email.label  }} {{ form.email }}
+            <p class="errmsg email-error"></p></li>
+
+          <li class="field email_confirmation">
+            {{ form.email_confirmation.label }} {{ form.email_confirmation }}
+            <p class="errmsg email_confirmation-error"></p></li>
+
+          {% if not form.social %}
+          <li class="field password frmcol1">
+            {{ form.password.label }} {{ form.password }}
+            <p class="errmsg password-error"></p>
+          </li>
+          <li class="field password_confirmation">
+            {{ form.password_confirmation.label }} {{ form.password_confirmation }}
+            <p class="errmsg password_confirmation-error"></p>
+          </li>
+          {% endif %}
+
+          <li class="sep"><hr></li>
+          <li class="field country frmcol2">{{ form.country.label }} {{ form.country }}</li>
+          <li class="field state frmcol2">{{ form.state.label }} {{ form.state }}</li>
+          <li class="field city">{{ form.city.label }} {{ form.city }}</li>
+          <li class="field age_group frmcol2">
+            {{ form.age_group.label }} {{ form.age_group }}
+          </li>
+          <li class="field gender frmcol2">{{ form.gender.label }} {{ form.gender }}</li>
+          <li class="field income_group">
+            {{ form.income_group.label }} {{ form.income_group }}
+          </li>
+          <li class="sep"><hr></li>
+          <li class="field twitter frmcol1">{{ form.twitter.label }} {{ form.twitter }}</li>
+          <li class="field facebook">{{ form.facebook.label }} {{ form.facebook }}</li>
+          <li class="sep"><hr></li>
+          <li class="field accept_tos">{{ form.accept_tos }} {{ form.accept_tos.label }}
+            <p class="errmsg accept_tos-error"></p>
+          </li>
+          <li class="submit"><button class="awesome">Signup</button></li>
+        </ol>
       </div>
     </div>
   </div>
