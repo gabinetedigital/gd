@@ -135,10 +135,16 @@ $(function() {
 
         function url(resource) {
             var s = window.location.href;
+            var base = CURRENT_URL;
+
+            if (base.charAt(base.length-1) === '/') {
+                base = base.slice(0, base.length-1);
+            }
+
             if (!isNaN(parseInt(s.charAt(s.length-1))))
-                return CURRENT_URL + '/' + resource;
+                return base + '/' + resource;
             else
-                return CURRENT_URL + '/' + $('aid').val() + '/' + resource;
+                return base + '/' + $('#aid').val() + '/' + resource;
         }
 
         window.setInterval(function () {
