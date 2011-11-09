@@ -251,52 +251,43 @@ a {
     display: none;
 }
 
-#participe .col3 {
-    text-align: center;
+#participe div.col3 {
+    text-align:center;
+    background:url(../imgs/participe_base.png) no-repeat;
+    height:140px;
+    margin:20px 10px;
+    overflow:hidden;
 }
 
- #participe .col3 div {
-    text-align: center;
-    background: url(../imgs/participe_base.png) no-repeat;
-    width: 205px;
-    height: 110px;
-    margin: 0 auto;
-    margin-top: 12px;
-    padding-top: 34px;
+#participe div.col3.selected {
+    background:url(../imgs/participe_selected.png) no-repeat;
 }
 
- #participe h1 {
+#participe a {
     overflow: hidden;
-    text-indent: -9999px;
-    margin: 0 auto;
-    height: 66px;
-}
-
- #participe #govresponde h1 {
+    display:block;
     text-align: center;
-    background: url(../imgs/govresponde.png) no-repeat;
-    width: 188px
+    height:135px;
+    padding-top:135px;
 }
 
- #participe #govpergunta h1 {
-    text-align: center;
-    background: url(../imgs/govpergunta.png) no-repeat;
-    width: 187px;
+#participe .govresponde a {
+    background: url(../imgs/govresponde.png) no-repeat 25% 17%;
 }
 
- #participe #govescuta h1 {
-    text-align: center;
-    background: url(../imgs/govescuta.png) no-repeat;
-    width: 146px;
+#participe .govpergunta a {
+    background: url(../imgs/govpergunta.png) no-repeat 25% 20%;
 }
 
- #participe #agenda h1 {
-    text-align: center;
-    background: url(../imgs/agenda.png) no-repeat;
-    width: 189px;
+#participe .govescuta a {
+    background: url(../imgs/govescuta.png) no-repeat 40% 16%;
 }
 
- #participe #desc {
+#participe .agenda a {
+    background:url(../imgs/agenda.png) no-repeat 25% 15%;
+}
+
+#participe .desc {
     color: white;
     width: 900px;
     margin: 0 auto;

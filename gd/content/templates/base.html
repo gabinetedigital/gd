@@ -97,29 +97,25 @@
       <div id="header-wrapper-2">
         <div class="layout-978">
           {% block slideshow %}{% endblock %}
+
           <div class="row" id="participe">
-            <div class="col3">
-              <div id="govresponde">
-                <h1>Governador Responde</h1>
-              </div>
+            <div class="col3 govresponde">
+              <a href="http://antigo.gabinetedigital.rs.gov.br/govresponde">
+                Governador Responde</a>
             </div>
-            <div class="col3">
-              <div id="govpergunta" >
-                <h1><a>Governador Pergunta</a></h1>
-              </div>
+            <div class="col3 govpergunta" >
+              <a href="{{ url_for('govpergunta.index') }}">
+                Governador Pergunta</a>
             </div>
-            <div class="col3">
-              <div id="govescuta" >
-                <h1>Governo Escuta</h1>
-              </div>
+            <div class="col3 govescuta" >
+              <a href="{{ url_for('audience.index') }}">
+                Governo Escuta</a>
             </div>
-            <div class="col3">
-              <div id="agenda" >
-                <h1>Agenda Colaborativa</h1>
-              </div>
+            <div class="col3 agenda" >
+              <a href="http://antigo.gabinetedigital.rs.gov.br/especial.php?pagina=agenda">
+                Agenda Colaborativa</a>
             </div>
-            <p id="desc"> </p>
-            <div class="row-end"></div>
+            <p class="desc"></p>
           </div>
         </div>
       </div>
