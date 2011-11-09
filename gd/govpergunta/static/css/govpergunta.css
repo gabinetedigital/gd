@@ -415,3 +415,50 @@
 }
 
 
+/* -- contribute page -- */
+
+div.contribute #form label {
+    float:left;
+    width:20%;
+}
+
+div.contribute #form input.theme {
+    float:left;
+    visibility:hidden;
+}
+
+div.contribute #form label a {
+    margin:0 0 0 -10px;
+    padding:0px 0 17px 33px;
+    display:block;
+    color:#333;
+}
+
+div.contribute #form label.selected {
+    font-weight:bold;
+    border-bottom:solid 2px;
+}
+
+div.contribute #form label a:hover {
+    color:#4e9a06;
+}
+
+div.contribute #form .cuidado a {
+    background:url('../imgs/cuidadointegral32.png') no-repeat;
+}
+
+div.contribute #form .familia a {
+    background:url('../imgs/familia32.png') no-repeat;
+}
+
+div.contribute #form .emergencia a {
+    background:url('../imgs/emergencia32.png') no-repeat;
+}
+
+div.contribute #form .medicamentos a {
+    background:url('../imgs/medicamentos32.png') no-repeat;
+}
+
+div.contribute #form .regional a {
+    background:url('../imgs/regional32.png') no-repeat;
+}

@@ -106,7 +106,6 @@ var themeapi = (function () {
             $('#themed ul.allThemes li[class~=' +
               this.current + ']').fadeIn();
             this.current = name;
-            console.debug('clicking');
             $('#themed ul.internal').data('tabs').click(0);
             this.update(0);
         },
@@ -116,12 +115,22 @@ var themeapi = (function () {
                 return null;
 
             var $el = $('a', $('ul.internal li').get(idx));
-            var $target = $('div.' + $el.attr('target') + ' .cont',
-                            $('.ptpanes')).html('');
+            var name = $el.attr('target');
+            var $target =
+                    $('div.' + name + ' .cont', $('.ptpanes')).html('');
             var url =
                     BASE_URL + 'pages/govpergunta/' +
-                    themeapi.current + '/' +
-                    $el.attr('target') + '.json';
+                    themeapi.current + '/' + name + '.json';
+
+            /* The user asked to go to the contribute form */
+            if (name === 'contribua') {
+                navapi.click(3);
+                $('a.theme')
+                    .data('overlay')
+                    .close();
+                return null;
+            }
+
             $.getJSON(url, function (data) {
                 /* Yes, if none is retrieved, we'll clean the
                  * element content. */
@@ -129,8 +138,18 @@ var themeapi = (function () {
                 $target.html(ct);
             });
             return $el;
+        },
+
+        goToContribForm: function () {
         }
     };
+
+    /* -- Contribute page -- */
+
+    $('.contribute label').click(function () {
+        $('.contribute label').removeClass('selected');
+        $(this).addClass('selected');
+    });
 
     return new ThemeApi();
 })();
