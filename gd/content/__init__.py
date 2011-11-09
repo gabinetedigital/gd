@@ -46,7 +46,12 @@ app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(fbauth, url_prefix='/auth/fb')
+
+# Publishing the audience to be the homepage temporarely. Yes, we need
+# to register twice because of the static paths built to the `audience'
+# blueprint.
 app.register_blueprint(audience, url_prefix='/audience')
+app.register_blueprint(audience, url_prefix='/')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 
@@ -96,7 +101,7 @@ def cleanup(response):
     return response
 
 
-@app.route('/')
+@app.route('/teaser')
 def teaser():
     """Renders the teaser template"""
     return render_template('teaser.html')
