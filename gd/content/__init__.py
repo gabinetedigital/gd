@@ -146,6 +146,12 @@ def home_page(json='{}'):
         videos=wordpress.wpgd.getHighlightedVideos(2),
     )
 
+
+@app.route('/home')
+def index():
+    return home_page()
+
+
 @app.route('/')
 def index():
     return redirect(url_for('audience.index'))
