@@ -18,6 +18,7 @@
 
 from flask import Blueprint, render_template
 from gd.content.wp import wordpress
+from gd import auth
 
 govpergunta = Blueprint(
     'govpergunta', __name__,
@@ -28,6 +29,4 @@ govpergunta = Blueprint(
 @govpergunta.route('/')
 def index():
     """Renders the index template"""
-    faq = wordpress.getPageByPath('govpergunta/faq')
-    return render_template('govpergunta.html', faq=faq)
-
+    return render_template('govpergunta.html', wp=wordpress)

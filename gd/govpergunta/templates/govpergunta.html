@@ -65,17 +65,8 @@
             <div id="maintext" class="panes">
 
               <div class="whatisit">
-                <h2>O que é?</h2>
                 <p class="blocktext">
-                  O Governador Pergunta é uma plataforma digital de envio e
-                  priorização de propostas ao Governo do Estado do Rio
-                  Grande do Sul. O objetivo da promover o debate sobre temas
-                  de grande relevância social. Por meio do Governador
-                  Pergunta, serão coletadas, junto à população,subsídios
-                  para o aprimoramento e o desenvolvimento de políticas
-                  públicas. Assim como em todas as suas iniciativas de
-                  participação popular, o governo se abre ao diálogo e busca
-                  a colaboração da sociedade na tomada de decisões.
+                  {{ wp.getPageByPath('govpergunta/o-que-e').content|safe }}
                 </p>
 
                 <div id="more">
@@ -92,53 +83,9 @@
               </div> <!-- .whatisit -->
 
               <div class="howitworks">
-                <h2>Como funciona?</h2>
-                <ol id="howworks">
-                  <li>
-                    <img
-                       src="{{ url_for('.static', filename='imgs/listcomo.png') }}"
-                       class="how1">
-                    <p>
-                      O governador Tarso Genro apresenta a ferramenta ao
-                      vivo na internet. Os cidadãos podem enviar
-                      (como???) dúvidas e perguntas sobre a ferramenta,
-                      que serão
-                    </p>
-                  </li>
-                  <li>
-                    <img
-                       src="{{ url_for('.static', filename='imgs/listcomo.png') }}"
-                       class="how2">
-                    <p>
-                      Período de envio de propostas. As propostas podem
-                      ser encaminhadas dentro de cinco temas
-                      estratégicos para a Saúde. São disponibilizadas
-                      informações
-                    </p>
-                  </li>
-                  <li>
-                    <img
-                       src="{{ url_for('.static', filename='imgs/listcomo.png') }}"
-                       class="how3">
-                    <p>
-                      Após a sistematização das propostas recebidas, os
-                      participantes escolhem aquelas que consideram mais
-                      importantes.  Duas sugestões sobre o mesmo tema
-                      são apresentadas
-                    </p>
-                  </li>
-                  <li>
-                    <img
-                       src="{{ url_for('.static', filename='imgs/listcomo.png') }}"
-                       class="how4">
-                    <p>
-                      Após a sistematização das propostas recebidas, os
-                      participantes escolhem aquelas que consideram mais
-                      importantes. Duas sugestões sobre o mesmo tema são
-                      apresentadas
-                    </p>
-                  </li>
-                </ol>
+                <p class="blocktext">
+                  {{ wp.getPageByPath('govpergunta/como-funciona').content|safe }}
+                </p>
 
                 <div class="controller row">
                   <a href="javascript:;" class="prev">o que é?</a>
@@ -148,12 +95,8 @@
               </div> <!-- .howitworks -->
 
               <div class="themes">
-                <h2>Temas</h2>
                 <p class="blocktext">
-                  O Governador Pergunta é uma plataforma digital de
-                  envio e priorização de propostas ao Governo do Estado
-                  do Rio Grande do Sul. O objetivo da promover o debate
-                  sobre temas de grande relevância social.
+                  {{ wp.getPageByPath('govpergunta/temas').content|safe }}
                 </p>
 
                 <ul id="themes">
@@ -251,9 +194,7 @@
                   </fieldset>
                 </div>
                 <div id="faq" class="col3">
-                  {% if faq %}
-                  {{ faq.content|safe }}
-                  {% endif %}
+                  {{ wp.getPageByPath('govpergunta/faq').content|safe }}
                 </div>
 
                 <div class="row-end"></div>
