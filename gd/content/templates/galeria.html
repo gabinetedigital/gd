@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/galeria.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+    <h1>Sua foto com o Governador</h1>
+    
+    <div class="row">
+        <div class="col1">
+            <a href="" class="prev">anterior</a>
+        </div>
+        <div class="col10">
+            <div class="frame">
+                <img src="{{ url_for('.static', filename='imgs/galeria/03.jpg') }}">
+            </div>
+
+            <p class="desc">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+            </p>
+        </div>
+        <div class="col1">
+            <a href="" class="next">próxima</a>
+        </div>
+    <div class="row-end"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="wall">   
+          <ul>
+            <li class="photo">
+              <img src="{{ url_for('static', filename='imgs/tumbs/01.jpg') }}"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="{{ url_for('static', filename='imgs/tumbs/02.jpg') }}"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="{{ url_for('static', filename='imgs/tumbs/03.jpg') }}"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="{{ url_for('static', filename='imgs/tumbs/04.jpg') }}"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="{{ url_for('static', filename='imgs/tumbs/05.jpg') }}"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="{{ url_for('static', filename='imgs/tumbs/06.jpg') }}"
+                   alt="tarso"></li>
+            <li class="photo">
+              <img src="{{ url_for('static', filename='imgs/tumbs/07.jpg') }}"
+                   alt="tarso"></li>
+          </ul>
+        </div>
+    <div class="row-end"></div>
+    </div>
+
+
+</div>
+{% endblock %}
