@@ -220,19 +220,13 @@ def profile_passwd_json():
     else:
         return msg.error(form.errors, 'ValidationError')
 
-
 @auth.route('/remember_password', methods=('POST',))
 def remember_password():
     try:
-        print 'getting user'
         user = User.query.filter_by(email=request.values['email']).one()
-        print 'got user'
-        print user
         new_pass = generate_random_password()
-        print 'generated pass' + new_pass
         user.set_password(new_pass)
         session.commit()
-        print 'commited'
         send_password(request.values['email'],new_pass);
     except NoResultFound:
         return msg.error(
