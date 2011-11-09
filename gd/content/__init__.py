@@ -46,12 +46,7 @@ app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(fbauth, url_prefix='/auth/fb')
-
-# Publishing the audience to be the homepage temporarely. Yes, we need
-# to register twice because of the static paths built to the `audience'
-# blueprint.
 app.register_blueprint(audience, url_prefix='/audience')
-app.register_blueprint(audience, url_prefix='/')
 app.register_blueprint(fbapp, url_prefix='/fbapp')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 
@@ -151,9 +146,9 @@ def home_page(json='{}'):
         videos=wordpress.wpgd.getHighlightedVideos(2),
     )
 
-@app.route('/home')
+@app.route('/')
 def index():
-    return home_page()
+    return redirect(url_for('audience.index'))
 
 @app.route('/confirm_signup/<string:key>', methods=('GET',))
 def confirm_signup(key):
