@@ -22,6 +22,8 @@ var auth = (function() {
     /** Class that unifies the main things about authentication */
     function Auth() { }
 
+    var onload_callback = null;
+
     Auth.prototype = {
         /** Place to store cached authentication data. Actually, the
          * whole authenticated user information. */
@@ -30,6 +32,7 @@ var auth = (function() {
         /** Configuring the DOM element that holds the login form */
         , $loginOverlay: $('#loginoverlay').overlay({
             api: true,
+            top: '5px',
             mask: {
                 color: '#111',
                 opacity: 0.7
@@ -43,6 +46,8 @@ var auth = (function() {
             onLoad: function() {
                 var overlay = this.getOverlay();
                 var closeMethod = this.close;
+
+                if (onload_callback) onload_callback(overlay);
 
                 /* Just focus the username when overlay shows up */
                 overlay.find('input[name=username]').focus();
@@ -62,7 +67,15 @@ var auth = (function() {
                         } else {
                             closeMethod();
                             auth.userAuthenticated(pData.msg.user);
-                            $("#blog_comment_form").show(); //show the hidden blog comment form
+
+                            //if the user is logging through activation key
+                            //send him to /home
+                            if (document.location.href.indexOf('/confirm_signup') !=-1) {
+                                document.location = url_for('home');
+                            } else {
+                                //show the hidden blog comment form
+                                $("#blog_comment_form").show();
+                            }
                         }
                     });
                     return false;
@@ -89,6 +102,7 @@ var auth = (function() {
         , $signOverlay: $('#signupoverlay').overlay({
             api: true,
             fixed: false,
+            top: '5px',
             mask: {
                 color: '#333',
                 opacity: 0.8
@@ -116,8 +130,11 @@ var auth = (function() {
                         success: function (data) {
                             var pData = $.parseJSON(data);
                             if (pData.status === 'ok') {
-                                closeMethod();
-                                auth.userAuthenticated(pData.msg.user);
+                                overlay
+                                    .find('.success')
+                                    .html(pData.msg.message)
+                                overlay.find(".signup-form").slideUp();
+                                overlay.find('.header').slideUp();
                                 return;
                             }
 
@@ -168,7 +185,8 @@ var auth = (function() {
 
         /** Shows the login form and register callbacks to be called when
          *  it returns successfuly or not */
-        , showLoginForm: function (params) {
+        , showLoginForm: function (params, fn) {
+            onload_callback = fn;
             this.$loginOverlay.load();
             if (params && typeof params.success === 'function') {
                 this.success = params.success;

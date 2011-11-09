@@ -45,3 +45,7 @@ SMTP='localhost'
 PASSWORD_REMAINDER_MSG = "Sua senha: %s"
 PASSWORD_REMAINDER_SUBJECT = '<site>: sua senha'
 PASSWORD_REMAINDER_FROM = 'mailer@mailer'
+
+PASSWORD_CONFORMATION_MSG="Confirme aqui: http://localhost:5000/confirm_signup/%s"
+PASSWORD_CONFIRMATION_SUBJECT="Confirmação de inscrição"
+PASSWORD_CONFIRMATION_FROM="mailer@mailer.com"

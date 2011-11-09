@@ -38,7 +38,8 @@ from gd.auth.webapp import auth
 from gd.buzz.webapp import buzz
 from gd.buzz.facebookapp import fbapp
 from gd.govpergunta import govpergunta
-from gd.model import get_mayor_last_tweet
+from gd.model import get_mayor_last_tweet, User
+from sqlalchemy.orm.exc import NoResultFound
 
 app = Flask(__name__)
 app.register_blueprint(admin, url_prefix='/admin')
@@ -120,8 +121,7 @@ def news(page=0):
         posts=posts)
 
 
-@app.route('/home')
-def index():
+def home_page(json='{}'):
     """Renders the index template"""
     slideshow = wordpress.getRecentPosts(
         category_name='highlights',
@@ -135,10 +135,28 @@ def index():
         thumbsizes=['newsbox', 'widenewsbox'])
     return render_template(
         'index.html', wp=wordpress,
+        customData=json,
         slideshow=slideshow, news=news,
         last_tweet=get_mayor_last_tweet(),
         videos=wordpress.wpgd.getHighlightedVideos(2),
     )
+
+@app.route('/home')
+def index():
+    return home_page()
+
+@app.route('/confirm_signup/<string:key>', methods=('GET',))
+def confirm_signup(key):
+    try:
+        user = User.query.filter_by(user_activation_key=key).one()
+        user.user_activation_key = ''
+        dbsession.commit()
+    except NoResultFound:
+        return home_page(dumps({'error':_(u'Authorization key not found in the database. Perhaps your profile is already enabled!')}))
+    except:
+        return home_page(dumps({'error':_(u'There was an error processing the request')}))
+    return home_page(dumps({'username':user.username,'message':_('Your profile was enabled successfully')}))
+
 
 
 @app.route('/cat/<int:cid>')

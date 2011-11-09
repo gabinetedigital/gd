@@ -28,4 +28,15 @@ $(document).ready(function () {
     window.setInterval(function () {
         $("#slideshow .controls").data("tabs").next();
     }, 7000);
+
+    if (HOME_DATA.error) {
+        auth.showLoginForm(null, function(overlay) {
+            overlay.find("#auth-error").html(HOME_DATA.error);
+        });
+    } else if (HOME_DATA.username) {
+        auth.showLoginForm(null, function(overlay) {
+            overlay.find("[name=username]").val(HOME_DATA.username);
+            overlay.find("#confirmation-success").html(HOME_DATA.message);
+        });
+    }
 });

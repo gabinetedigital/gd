@@ -21,7 +21,9 @@ from os import urandom
 from flask import Blueprint, render_template, request
 from werkzeug import FileStorage
 
-from gd.utils import thumbnail, msg, _, send_password, generate_random_password
+from gd.utils import thumbnail, msg, _, send_password, \
+     generate_random_password, send_confirmation_email
+
 from gd.content.wp import wordpress
 from gd.auth import forms
 from gd.auth.fbauth import checkfblogin
@@ -151,13 +153,15 @@ def signup_json():
             user = authapi.create_user(
                 dget('name'), dget('email'), password,
                 dget('email_confirmation'), form.meta)
+            send_confirmation_email(user)
         except authapi.UserExists:
             return format_error(_(u'User already exists'), 'UserExists')
         except authapi.EmailAddressExists:
             return format_error(_(u'The email address informed is being used '
                                   u'by another person'), 'EmailAddressExists')
-        data = authapi.login_user_instance(user, password)
-        return msg.ok({ 'user': data })
+        return msg.ok({
+            'message':
+            _('A confirmation e-mail has been sent to your e-mail address.')})
     else:
         return format_error(form.errors, 'ValidationError')
 

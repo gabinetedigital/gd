@@ -103,4 +103,13 @@ def send_password(to, password):
     s = smtplib.SMTP(conf.SMTP)
     s.sendmail(conf.PASSWORD_REMAINDER_FROM, to, msg.as_string())
     s.quit()
-    print 'sent'
+
+def send_confirmation_email(user):
+    msg = MIMEText(conf.PASSWORD_CONFORMATION_MSG % user.user_activation_key)
+    msg['Subject'] = conf.PASSWORD_CONFIRMATION_SUBJECT
+    msg['From'] = conf.PASSWORD_CONFIRMATION_FROM
+    msg['To'] = user.email
+
+    s = smtplib.SMTP(conf.SMTP)
+    s.sendmail(conf.PASSWORD_CONFIRMATION_FROM, user.email, msg.as_string())
+    s.quit()
