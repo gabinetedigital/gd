@@ -39,7 +39,7 @@ class BuzzApp(object):
     def __init__(self, app=None):
         self.context = zmq.Context()
         self.app = app
-        self.app.server = ctx.socket(zmq.PUB)
+        self.app.server = self.context.socket(zmq.PUB)
         self.app.server.bind(conf.SOCK_LOCAL_SERVER)
         self.setup()
 
