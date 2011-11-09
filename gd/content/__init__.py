@@ -121,6 +121,11 @@ def news(page=0):
         posts=posts)
 
 
+@app.route('/gallery')
+def gallery():
+    return render_template('galeria.html')
+
+
 def home_page(json='{}'):
     """Renders the index template"""
     slideshow = wordpress.getRecentPosts(
