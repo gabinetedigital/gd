@@ -64,9 +64,10 @@
             <div id="maintext" class="panes">
 
               <div class="whatisit">
-                <p class="blocktext">
+                <h2>O que é?</h2>
+                <div class="blocktext">
                   {{ wp.getPageByPath('govpergunta/o-que-e').content|safe }}
-                </p>
+                </div>
 
                 <div id="more">
                   <a href="javascript:navapi.click(3);" class="participe">
@@ -82,9 +83,10 @@
               </div> <!-- .whatisit -->
 
               <div class="howitworks">
-                <p class="blocktext">
+                <h2>Como funciona?</h2>
+                <div class="blocktext">
                   {{ wp.getPageByPath('govpergunta/como-funciona').content|safe }}
-                </p>
+                </div>
 
                 <div class="controller row">
                   <a href="javascript:;" class="prev">o que é?</a>
@@ -94,9 +96,10 @@
               </div> <!-- .howitworks -->
 
               <div class="themes">
-                <p class="blocktext">
+                <h2>Temas</h2>
+                <div class="blocktext">
                   {{ wp.getPageByPath('govpergunta/temas').content|safe }}
-                </p>
+                </div>
 
                 <ul id="themes">
                   <li class="cuidado">

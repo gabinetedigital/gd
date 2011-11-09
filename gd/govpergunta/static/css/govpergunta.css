@@ -98,6 +98,10 @@
     padding: 10px 190px 0px 50px;
 }
 
+#container #content #maintext .blocktext p {
+    margin-top:20px;
+}
+
 #container #content #maintext #more a {
     color: #888a85;
     border: 2px solid #888a85;
