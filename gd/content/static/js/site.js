@@ -55,9 +55,3 @@ $(function () {
             $(this).removeClass('selected');
         });
 });
-
-function goto(url) {
-  return function() {
-    document.location.href = url;
-  };
-}

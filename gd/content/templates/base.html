@@ -293,11 +293,6 @@
     <script src="{{ url_for('static', filename='js/site.js') }}"></script>
     <script>
       $(function() {
-      $("#govpergunta").click(goto("{{url_for('govpergunta.index')}}"));
-      //$("#govresponde").click(goto("..."));
-      //$("#agenda").click(goto("..."));
-      //$("#govescuta").click(goto("..."));
-
         var form = $("<form name='search'></form>");
         var input = $("#search_form");
 
