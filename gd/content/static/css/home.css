@@ -207,12 +207,18 @@
 }
 #container #sidebar #picday #picedge {
     border: 1px solid #2e3436;
-    padding: 4px 4px;
-    width: 262px;
-    height: 171px;
+    width: 300px;
      -moz-box-shadow: 3px 3px 4px #CCC;
     -webkit-box-shadow: 3px 3px 4px #CCC;
     box-shadow: 3px 3px 4px #CCC;
+}
+
+#container #sidebar #picday img {
+    width: 295;
+    margin: 0 auto;
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #container #sidebar #picday p {
@@ -220,5 +226,4 @@
     font-style: italic;
     font-size: 12px;
     margin-top: 8px;
-    width: 260px;
 }
