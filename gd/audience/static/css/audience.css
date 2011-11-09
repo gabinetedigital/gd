@@ -148,6 +148,10 @@
     width: 450px;
 }
 
+#beingAnswered {
+    height:70px;
+}
+
 #container #main .content #how-it-works {
     width: 148px;
     height: 50px;
@@ -156,11 +160,11 @@
 }
 
 #container #main .content #streaming {
-    background: url(../imgs/video.png) ;
+    background: url(../imgs/video.png) 50%;
     display: block;
-    width: 606px;
-    height: 356px;
-    margin-bottom: 20px;
+    width: 600px;
+    height: 450px;
+    margin:0 auto 20px auto;
 }
 
 #container #main .content #misc h5 {
