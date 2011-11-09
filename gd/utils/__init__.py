@@ -90,16 +90,11 @@ def generate_random_password():
 
 
 def send_password(to, password):
-    print 'sending password to ' + to + '[' + password + ']'
-
     msg = MIMEText(conf.PASSWORD_REMAINDER_MSG % password)
     msg['Subject'] = conf.PASSWORD_REMAINDER_SUBJECT
     msg['From'] = conf.PASSWORD_REMAINDER_FROM
     msg['To'] = to
 
-    print msg
-
-    print '...sending ...'
     s = smtplib.SMTP(conf.SMTP)
     s.sendmail(conf.PASSWORD_REMAINDER_FROM, to, msg.as_string())
     s.quit()
