@@ -27,7 +27,8 @@ DATEFORMAT = "%d/%m/%Y %H:%M"
 
 # Wordpress integration parameters
 WORDPRESS_ADDRESS = 'http://example.com/wordpress/'
-WORDPRESS_XMLRPC = 'http://example.com/wordpress/xmlrpc.php'
+WORDPRESS_XMLRPC = '%s/xmlrpc.php' % WORDPRESS_ADDRESS
+WORDPRESS_RSS = '%s?feed=atom' % WORDPRESS_ADDRESS
 WORDPRESS_BLOGID = 1
 WORDPRESS_USER = 'user'
 WORDPRESS_PASSWORD = 'password'
