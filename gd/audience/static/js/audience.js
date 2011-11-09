@@ -132,19 +132,28 @@ $(function() {
 
     if (navigator.userAgent.indexOf('MSIE') > -1) {
         // IE uses polling+ajax, that's it.
+
+        function url(resource) {
+            var s = window.location.href;
+            if (!isNaN(parseInt(s.charAt(s.length-1))))
+                return CURRENT_URL + '/' + resource;
+            else
+                return CURRENT_URL + '/' + $('aid').val() + '/' + resource;
+        }
+
         window.setInterval(function () {
             var element = $('#buzz-public').is(':visible') ?
-                { url:'/public_buzz', target: $('#buzz-public') } :
-                { url:'/moderated_buzz', target: $('#buzz-moderated') };
+                { url:'public_buzz', target: $('#buzz-public') } :
+                { url:'moderated_buzz', target: $('#buzz-moderated') };
 
-            $.getJSON(CURRENT_URL + element.url, function (data) {
+            $.getJSON(url(element.url), function (data) {
                 element.target.html('');
                 $(data).each(function (index, item) {
                     $(tmpl('buzzTemplate', item)).appendTo(element.target);
                 });
             });
 
-            $.getJSON(CURRENT_URL + '/last_published', function (data) {
+            $.getJSON(url('last_published'), function (data) {
                 /* The last notice still the same */
                 if ($('#beingAnswered').data('lastnotice') == data.id) {
                     return;
