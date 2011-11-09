@@ -18,30 +18,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import werkzeug.serving
-from socketio import SocketIOServer
-from gevent import monkey
-monkey.patch_thread()
-monkey.patch_time()
-
-from gd.content import app
-from gd.buzz import sio
-from gd import conf
-
 import gettext
+from gd import conf
+from gd.content import app
+
+
 gettext.install(
     'gabinetedigital',
     os.path.join(os.path.dirname(__file__), '..', 'po'))
 
 
-@werkzeug.serving.run_with_reloader
 def run():
     app.debug = conf.DEBUG
-    server = SocketIOServer(
-        (conf.HTTP_HOST, conf.HTTP_PORT),
-        sio.BuzzApp(app),
-        resource='socket.io')
-    server.start()
+    app.run(conf.HTTP_HOST, conf.HTTP_PORT)
 
 
 if __name__ == '__main__':
