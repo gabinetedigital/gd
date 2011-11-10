@@ -90,6 +90,10 @@ def cleanup(response):
 
 # --- Static special pages ---
 
+@app.route('/govescuta')
+def govescuta():
+    """Renders the teaser template"""
+    return render_template('govescuta.html')
 
 @app.route('/')
 def index():
