@@ -195,16 +195,12 @@ var themeapi = (function () {
                         .find('.'+ f + '-error')
                         .html(errors[f][0]);
                     form.find('div.error')
-                        .html('Erros na validação do formulário')
+                        .html('Falta alguma informação para completar a sua proposta')
                         .fadeIn('fast');
                 }
             } else {
                 form.find('div.error').html(pData.msg.data).fadeIn('fast');
             }
-
-            console.debug(pData);
-            // if () {
-            // }
             return null;
         }
     });
