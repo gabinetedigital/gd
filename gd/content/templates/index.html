@@ -121,7 +121,8 @@
           <ul>
             <li>
               <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
-                <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="thumb">
+                <img src="../static/imgs/play.png" class="play">
               </a>
             </li>
             <li>
