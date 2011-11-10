@@ -121,9 +121,9 @@ var themeapi = (function () {
             /* The user asked to go to the contribute form */
             if (name === 'contribua') {
                 navapi.click(3);
-                $('a.theme')
-                    .data('overlay')
-                    .close();
+                $('a.theme').each(function () {
+                    $(this).data('overlay').close();
+                });
                 return null;
             }
 
