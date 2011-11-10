@@ -211,3 +211,13 @@ var themeapi = (function () {
 
     return new ThemeApi();
 })();
+
+function show_form_again() {
+    $("#form .title").attr("value", "")
+    $("#form textarea").val("")
+    $('.contribute label').removeClass('selected');
+    $("#form input[type=radio]").attr("checked",false)
+
+    $('#form fieldset').fadeIn();
+    $('div.success').fadeOut();
+}
