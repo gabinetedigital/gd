@@ -37,9 +37,14 @@
 
 #container .audiencia {
     padding-bottom: 56px;
-    border-bottom: 1px dotted #999;
     margin: 25px auto;
     width: 900px;
+}
+
+#container .audiencia li.video {
+    float: left;
+    display: block;
+    margin-right: 20px;
 }
 
 #container .audiencia img {
@@ -50,13 +55,14 @@
 }
 
 #container .audiencia .titulo {
-    font-size: 20px;       
+    font-size: 20px;
 }
 
 #container .audiencia .desc {
-    font-size: 14px;       
-    margin-top: 20px;
+    font-size: 14px;
+    margin: 20px 0 0 260px;
     text-align: justify;
+    width:610px;
 }
 
 

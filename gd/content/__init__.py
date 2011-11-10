@@ -93,6 +93,10 @@ def teaser():
     """Renders the teaser template"""
     return render_template('teaser.html')
 
+@app.route('/govescuta')
+def govescuta():
+    """Renders the teaser template"""
+    return render_template('govescuta.html')
 
 @app.route('/sobre')
 def sobre():
