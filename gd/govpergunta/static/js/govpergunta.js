@@ -54,7 +54,7 @@ $(function () {
     /* -- Setting up the per-theme description overlays --*/
     (function () {
         $('a.theme').overlay({
-            top: '20%',
+            top: '10%',
             speed: 'fast',
             fixed: false,
             oneInstance: false,
