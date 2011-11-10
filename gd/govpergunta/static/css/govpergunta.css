@@ -294,11 +294,12 @@
 
 
 #themed {
-    width:700px;
+    width:900px;
     min-height:400px;
     background:#fff;
     border:none;
     border-radius:8px;
+    font-size: 16px;
 }
 
 #themed .close {
