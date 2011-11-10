@@ -24,10 +24,6 @@ $(function () {
 
     var wizard = $('.wizard').data('isLoaded', false);
 
-    $('#maintext, .tabs', wizard).click(function() {
-        $('html,body').animate({ scrollTop: 320 }, 150);
-    });
-
     $("ol.tabs", wizard).tabs(
         "div.panes > div", {
             effect: 'fade',
