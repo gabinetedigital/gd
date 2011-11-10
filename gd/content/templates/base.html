@@ -319,6 +319,7 @@
     {% if 'signup' in request.values %}
     <script> $(function () { auth.showSignupForm(); }); </script>
     {% endif %}
+    <script>$(function () { avl.loadPlayers(); });</script>
 
     {% block javascript %}
     {% endblock %}
