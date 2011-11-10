@@ -42,15 +42,26 @@ class ContribForm(Form):
     title = TextField(
         _('Contribution title'),
         [validators.Length(
-                min=5, max=256,
-                message=_(u'Your title must have between 5 and 256 chars'))],
+                min=5,
+                message=_(u'Your title is too short! It needs to have '
+                          u'at least 5 chars')),
+         validators.Length(
+                max=256,
+                message=_(u'Your title is too long! It needs to have '
+                          u'at most 256 chars'))
+         ],
     )
 
     content = TextField(
         _('Content'),
         [validators.Length(
-                min=100, max=400,
-                message=_('Your contribution must have between '
-                          '100 and 400 chars')
+                min=100,
+                message=_(u'Your contribution is too short! It needs to have '
+                          u'at least 100 chars')
+                ),
+         validators.Length(
+                max=400,
+                message=_(u'Your contribution is too long! It needs to have '
+                          u'at most 400 chars')
                 )],
     )
