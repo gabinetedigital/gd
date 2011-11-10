@@ -33,15 +33,24 @@ class ContribForm(Form):
     """Form that receives contributions from users to the "Ask" tool"""
 
     theme = SelectField(
-        _('Theme'), choices=THEMES,
+        _('Theme'),
+        [validators.Required(
+                message=_(u'You need to choose one of the options above'))],
+        choices=THEMES,
     )
 
     title = TextField(
         _('Contribution title'),
-        [validators.Length(min=5, max=256)],
+        [validators.Length(
+                min=5, max=256,
+                message=_(u'Your title must have between 5 and 256 chars'))],
     )
 
     content = TextField(
         _('Content'),
-        [validators.Length(min=100, max=400)],
+        [validators.Length(
+                min=100, max=400,
+                message=_('Your contribution must have between '
+                          '100 and 400 chars')
+                )],
     )
