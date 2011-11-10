@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+#
+# Copyright (C) 2011  Lincoln de Sousa <lincoln@comum.org>
+# Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+#
+#   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+#   Author: Thiago Silva <thiago@metareload.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+TWITTER_JSON_TIMELINE_URL = \
+    "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%s"
+
+import sys
+import os
+from urllib import urlopen
+from time import sleep
+from json import loads
+
+# This script is meant to be run from crontab, so, as our project is not
+# correctly installed as a python library, here is a small helper that
+# gets the application path and adds to the python import path
+
+if os.getenv('GDPATH'):
+    sys.path.insert(0, os.getenv('GDPATH'))
+
+from gd import conf
+from gd.model import set_mayor_last_tweet
+
+
+def main():
+    """Make a request to the twitter API and gets the last tweet from
+    the account configured in the `gd.conf' module"""
+    json = urlopen(
+        TWITTER_JSON_TIMELINE_URL %
+        conf.TWITTER_MAYOR_USERNAME).read()
+    message = loads(json)
+    try:
+        message = loads(json)
+    except ValueError:
+        print 'Invalid JSON content, look: %s' % json
+        raise
+
+    # Making sure twitter will let me watch the mayor!
+    if 'error' not in message:
+        set_mayor_last_tweet(message[0]['text'])
+
+
+if __name__ == '__main__':
+    main()
