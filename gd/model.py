@@ -362,10 +362,10 @@ class Contrib(Entity):
     content = Field(Unicode(400))
     user = ManyToOne('User')
     creation_date = Field(DateTime, default=datetime.now)
-    theme = Enum(
+    theme = Field(Enum(
         u'cuidado', u'familia', u'emergencia',
         u'medicamentos', u'regional'
-    )
+    ))
 
 
 @event.listens_for(session, "after_flush")
