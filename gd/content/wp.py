@@ -131,7 +131,7 @@ def convert_getPost(post):
     return Post(post)
 
 
-def convert_getMainSidebar(sidebar):
+def convert_getSidebar(sidebar):
     """Converts all links found in the html of the sidebar to flask
     links"""
     return wp_links_to_flask(sidebar)

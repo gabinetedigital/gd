@@ -108,7 +108,7 @@ def news(page=0):
     pagination, posts = wordpress.getPosts(page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getMainSidebar(),
+        sidebar=wordpress.getSidebar,
         pagination=pagination,
         posts=posts)
 
@@ -165,7 +165,7 @@ def category(cid, page=0):
     pagination, posts = wordpress.getPostsByCategory(cat=cid, page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getMainSidebar(),
+        sidebar=wordpress.getSidebar,
         pagination=pagination,
         posts=posts)
 
@@ -177,7 +177,7 @@ def tag(slug, page=0):
     pagination, posts = wordpress.getPostsByTag(tag=slug, page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getMainSidebar(),
+        sidebar=wordpress.getSidebar,
         pagination=pagination,
         posts=posts)
 
@@ -187,7 +187,7 @@ def pages(path):
     return render_template(
         'page.html',
         page=wordpress.getPageByPath(path),
-        sidebar=wordpress.getMainSidebar(),
+        sidebar=wordpress.getSidebar,
     )
 
 
@@ -207,7 +207,7 @@ def post_page(pid, error_msg=''):
         'post.html',
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
-        sidebar=wordpress.getMainSidebar(),
+        sidebar=wordpress.getSidebar,
         comments=wordpress.getComments(post_id=pid),
         error_msg=error_msg,
         show_comment_form=is_authenticated(),
@@ -244,7 +244,7 @@ def search(s, page=0):
     pagination, posts = wordpress.search(s=s, page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getMainSidebar(),
+        sidebar=wordpress.getSidebar,
         pagination=pagination,
         search_term=s,
         posts=posts)
