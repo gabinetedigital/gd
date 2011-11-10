@@ -18,7 +18,7 @@
 
 from flask import Blueprint, request, render_template
 from gd.content.wp import wordpress
-from gd.utils import _, msg, format_csrf_error, format_csrf_error
+from gd.utils import msg, format_csrf_error, format_csrf_error
 from gd import auth
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session

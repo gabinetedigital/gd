@@ -19,18 +19,19 @@
 
 import os
 import gettext
-from gd import conf
-from gd.content import app
 
 
-gettext.install(
-    'gabinetedigital',
-    os.path.join(os.path.dirname(__file__), '..', 'po'))
+gettext.install('gabinetedigital', os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '..', 'po')),
+                unicode=True)
 
 
 def run():
+    from gd import conf
+    from gd.content import app
     app.debug = conf.DEBUG
     app.run(conf.HTTP_HOST, conf.HTTP_PORT)
+
 
 
 if __name__ == '__main__':

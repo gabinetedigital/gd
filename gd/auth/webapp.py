@@ -23,7 +23,7 @@ from flask import Blueprint, render_template, request
 from werkzeug import FileStorage
 
 from gd import utils
-from gd.utils import _, msg
+from gd.utils import msg
 from gd import auth as authapi
 from gd.auth.fbauth import checkfblogin
 from gd.auth import forms

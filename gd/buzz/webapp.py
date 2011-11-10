@@ -20,7 +20,7 @@
 
 from flask import Blueprint, render_template, request
 from gd.model import Audience, Buzz, BuzzType, session, get_or_create
-from gd.utils import msg, _
+from gd.utils import msg
 from gd import auth
 
 

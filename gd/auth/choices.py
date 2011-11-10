@@ -22,8 +22,6 @@ class to avoid messing up that module, things were done here in a
 separated place.
 """
 
-from gd.utils import _
-
 GENDER = (
     (u'', _(u'--')),
     (u'm', _(u'Male')),

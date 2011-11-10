@@ -24,7 +24,7 @@ from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc, not_
 from gd.model import Audience, Buzz, Term, session
-from gd.utils import _, msg
+from gd.utils import msg
 from gd.buzz import sio
 from gd import auth, conf
 

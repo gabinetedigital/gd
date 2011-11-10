@@ -19,8 +19,6 @@
 from flaskext.wtf import validators, ValidationError
 from flaskext.wtf import Form, TextField, SelectField
 
-from gd.utils import _
-
 
 THEMES = (
     (u'cuidado',)*2,

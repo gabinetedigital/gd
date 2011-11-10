@@ -30,8 +30,6 @@ from email.mime.text import MIMEText
 from gettext import gettext
 import smtplib
 
-_ = gettext
-
 
 def _default_handler(value):
     """Handles usually unserializable objects, currently datetime and

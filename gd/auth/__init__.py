@@ -26,7 +26,7 @@ from flask import request, session, redirect, url_for
 from functools import wraps
 from sqlalchemy.orm.exc import NoResultFound
 
-from gd.utils import phpass, msg, _
+from gd.utils import phpass, msg
 from gd.model import User, session as dbsession
 from hashlib import md5
 
