@@ -5,15 +5,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GabineteDigital 0.1\n"
-"POT-Creation-Date: 2011-11-08 17:57+BRST\n"
-"PO-Revision-Date: 2011-11-08 18:25-0200\n"
+"POT-Creation-Date: 2011-11-10 21:35+BRST\n"
+"PO-Revision-Date: 2011-11-10 21:39-0200\n"
 "Last-Translator: Lincoln de Sousa <lincoln@gg.rs.gov.br>\n"
 "Language-Team: LANGUAGE <pt-br@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
 "Generated-By: pygettext.py 1.5\n"
-
 
 #: ../gd/admin/__init__.py:52
 msgid "Login"
@@ -29,86 +29,90 @@ msgid "No user authenticated."
 msgstr "Nenhum usuário autenticado"
 
 #: ../gd/auth/__init__.py:136
-msgid "The currently logged user don't have suficient privileges to access this resource"
-msgstr "O usuário autenticado atualmente não tem privilégios suficientes para acessar este recurso"
+msgid ""
+"The currently logged user don't have suficient privileges to access this "
+"resource"
+msgstr ""
+"O usuário autenticado atualmente não tem privilégios suficientes para "
+"acessar este recurso"
 
-#: ../gd/auth/choices.py:28
+#: ../gd/auth/choices.py:26
 msgid "--"
 msgstr "--"
 
-#: ../gd/auth/choices.py:29
+#: ../gd/auth/choices.py:27
 msgid "Male"
 msgstr "Masculino"
 
-#: ../gd/auth/choices.py:30
+#: ../gd/auth/choices.py:28
 msgid "Female"
 msgstr "Feminino"
 
-#: ../gd/auth/choices.py:36
+#: ../gd/auth/choices.py:34
 msgid "80 years old or more"
 msgstr "80 anos ou mais"
 
-#: ../gd/auth/choices.py:37
+#: ../gd/auth/choices.py:35
 msgid "75 to 79"
 msgstr "75 a 79"
 
-#: ../gd/auth/choices.py:38
+#: ../gd/auth/choices.py:36
 msgid "70 to 74"
 msgstr "70 a 74"
 
-#: ../gd/auth/choices.py:39
+#: ../gd/auth/choices.py:37
 msgid "65 to 69"
 msgstr "65 a 69"
 
-#: ../gd/auth/choices.py:40
+#: ../gd/auth/choices.py:38
 msgid "60 to 64"
 msgstr "60 a 64"
 
-#: ../gd/auth/choices.py:41
+#: ../gd/auth/choices.py:39
 msgid "55 to 59"
 msgstr "55 a 59"
 
-#: ../gd/auth/choices.py:42
+#: ../gd/auth/choices.py:40
 msgid "50 to 54"
 msgstr "50 a 54"
 
-#: ../gd/auth/choices.py:43
+#: ../gd/auth/choices.py:41
 msgid "45 to 49"
 msgstr "45 a 49"
 
-#: ../gd/auth/choices.py:44
+#: ../gd/auth/choices.py:42
 msgid "40 to 44"
 msgstr "40 a 44"
 
-#: ../gd/auth/choices.py:45
+#: ../gd/auth/choices.py:43
 msgid "35 to 39"
 msgstr "35 a 39"
 
-#: ../gd/auth/choices.py:46
+#: ../gd/auth/choices.py:44
 msgid "30 to 34"
 msgstr "30 a 34"
 
-#: ../gd/auth/choices.py:47
+#: ../gd/auth/choices.py:45
 msgid "25 to 29"
 msgstr "25 a 29"
 
-#: ../gd/auth/choices.py:48
+#: ../gd/auth/choices.py:46
 msgid "20 to 24"
 msgstr "20 a 24"
 
-#: ../gd/auth/choices.py:49
+#: ../gd/auth/choices.py:47
 msgid "15 to 19"
 msgstr "15 a 19"
 
-#: ../gd/auth/choices.py:50
+#: ../gd/auth/choices.py:48
 msgid "10 to 14"
 msgstr "10 a 14"
 
-#: ../gd/auth/choices.py:51
+#: ../gd/auth/choices.py:49
 msgid "5 to 9"
 msgstr "5 a 9"
 
-#: ../gd/auth/choices.py:52
+#: ../gd/auth/choices.py:50
 msgid "0 to 4"
 msgstr "0 a 4"
 
@@ -173,8 +177,12 @@ msgid "Email confirmation"
 msgstr "Email confirmation"
 
 #: ../gd/auth/forms.py:118
-msgid "Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab('tos')\">Terms of use</a>?"
-msgstr "Você leu e aceitou nossos <a href=\"javascript:auth.toggleSignupTab('tos')\">Termos de uso</a>?"
+msgid ""
+"Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab"
+"('tos')\">Terms of use</a>?"
+msgstr ""
+"Você leu e aceitou nossos <a href=\"javascript:auth.toggleSignupTab"
+"('tos')\">Termos de uso</a>?"
 
 #: ../gd/auth/forms.py:129
 msgid "Email does not match its confirmation"
@@ -196,55 +204,114 @@ msgstr "Sua senha atual"
 msgid "The current password is wrong"
 msgstr "A senha atual está incorreta"
 
-#: ../gd/auth/webapp.py:93
+#: ../gd/auth/webapp.py:95
 msgid "User does not exist"
 msgstr "Usuário não existe"
 
-#: ../gd/auth/webapp.py:95
+#: ../gd/auth/webapp.py:97
 msgid "User or password mismatch"
 msgstr "Usuário e senha não batem"
 
-#: ../gd/auth/webapp.py:98
+#: ../gd/auth/webapp.py:100
 msgid "Username or password missing"
 msgstr "Usuário ou senha faltando"
 
-#: ../gd/auth/webapp.py:105
+#: ../gd/auth/webapp.py:107
 msgid "User loged out"
 msgstr "O Usuário saiu"
 
-#: ../gd/auth/webapp.py:141
+#: ../gd/auth/webapp.py:131 ../gd/govpergunta/__init__.py:57
 msgid "Invalid csrf token"
 msgstr "Token csrf token inválido"
 
-#: ../gd/auth/webapp.py:155
+#: ../gd/auth/webapp.py:147
 msgid "User already exists"
 msgstr "O usuário já existe"
 
-#: ../gd/auth/webapp.py:157
+#: ../gd/auth/webapp.py:151
 msgid "The email address informed is being used by another person"
 msgstr "O endereço de email informado já está sendo usuado por outra pessoa"
 
-#: ../gd/auth/webapp.py:208
+#: ../gd/auth/webapp.py:202
 msgid "User profile updated successfuly"
 msgstr "Perfil de usuário atualizado com sucesso"
 
-#: ../gd/auth/webapp.py:219
+#: ../gd/auth/webapp.py:213
 msgid "Password updated successful"
 msgstr "Senha atualizada com sucesso"
 
-#: ../gd/auth/webapp.py:239
+#: ../gd/auth/webapp.py:227
 msgid "E-mail not found in the database"
 msgstr "Email não encontrado em nossa base de dados"
 
-#: ../gd/auth/webapp.py:242
+#: ../gd/auth/webapp.py:230
 msgid "There was an error sending the e-mail"
 msgstr "Houve um erro ao enviar o email"
 
-#: ../gd/auth/webapp.py:243
+#: ../gd/auth/webapp.py:231
 msgid "Password sent to the email"
 msgstr "Senha enviada para o email"
 
 #: ../gd/buzz/webapp.py:55
-msgid "Notice posted successfuly. Please wait a few while your message is approved."
-msgstr "Contribuição postada com sucesso. Por favor aguarde até que sua mensagem seja aprovada."
+msgid ""
+"Notice posted successfuly. Please wait a few while your message is approved."
+msgstr ""
+"Contribuição postada com sucesso. Por favor aguarde até que sua mensagem "
+"seja aprovada."
 
+#: ../gd/content/__init__.py:158
+msgid ""
+"Authorization key not found in the database. Perhaps your profile is already "
+"enabled!"
+msgstr "Chave de autorização não encontrada na base. Talvez o seu perfil já esteja ativo"
+
+#: ../gd/content/__init__.py:160
+#, fuzzy
+msgid "There was an error processing the request"
+msgstr "Houve um erro ao enviar o email"
+
+#: ../gd/content/__init__.py:161
+#, fuzzy
+msgid "Your profile was enabled successfully"
+msgstr "Perfil de usuário atualizado com sucesso"
+
+#: ../gd/govpergunta/__init__.py:49
+#, fuzzy
+msgid "User not authenticated"
+msgstr "Nenhum usuário autenticado"
+
+#: ../gd/govpergunta/__init__.py:66
+msgid "Contribution received successful"
+msgstr "A contribuição foi recebida com sucesso"
+
+#: ../gd/govpergunta/forms.py:36
+msgid "Theme"
+msgstr "Temas"
+
+#: ../gd/govpergunta/forms.py:38
+msgid "You need to choose one of the options above"
+msgstr "Você precisa escolher uma das alternativas acima"
+
+#: ../gd/govpergunta/forms.py:43
+msgid "Contribution title"
+msgstr "Título da contribuição"
+
+#: ../gd/govpergunta/forms.py:46
+msgid "Your title is too short! It needs to have at least 5 chars"
+msgstr "Seu título está muito curto! Ele precisa ter pelo menos 5 letras"
+
+#: ../gd/govpergunta/forms.py:50
+msgid "Your title is too long! It needs to have at most 256 chars"
+msgstr "Seu título está muito longo! Ele precisa ter no máximo 256 letras"
+
+#: ../gd/govpergunta/forms.py:56
+msgid "Content"
+msgstr "Conteúdo"
+
+#: ../gd/govpergunta/forms.py:59
+msgid "Your contribution is too short! It needs to have at least 100 chars"
+msgstr "Sua contribuição está muito curta! Ela precisa ter pelo menos 100 caracteres"
+
+#: ../gd/govpergunta/forms.py:64
+msgid "Your contribution is too long! It needs to have at most 400 chars"
+msgstr "Sua contribuição está muito longa! Ela precisa ter no máximo 400 letras"
