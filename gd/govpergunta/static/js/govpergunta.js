@@ -188,12 +188,17 @@ var themeapi = (function () {
             /* The user made a mistake when filling the form */
             if (code === 'ValidationError') {
                 for (var f in errors) {
+                    var msg = errors[f][0];
+                    /* O lixo do wtforms não me deixou traduzir as strings
+                     * que ele gera dinâmicamente. Logo, fiz marreta. */
+                    if (f === 'theme')
+                        msg = 'Escolha uma das opções acima';
                     form
                         .find('[name=' + f  + ']')
                         .addClass('fielderror');
                     form
                         .find('.'+ f + '-error')
-                        .html(errors[f][0]);
+                        .html(msg);
                     form.find('div.error')
                         .html('Falta alguma informação para completar a sua proposta')
                         .fadeIn('fast');
