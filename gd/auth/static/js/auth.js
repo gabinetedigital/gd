@@ -69,9 +69,9 @@ var auth = (function() {
                             auth.userAuthenticated(pData.msg.user);
 
                             //if the user is logging through activation key
-                            //send him to /home
+                            //send him to /
                             if (document.location.href.indexOf('/confirm_signup') !=-1) {
-                                document.location = url_for('home');
+                                document.location = '/';
                             } else {
                                 //show the hidden blog comment form
                                 $("#blog_comment_form").show();
