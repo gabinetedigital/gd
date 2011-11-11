@@ -220,7 +220,7 @@ class User(Entity):
     username = Field(Unicode(64), colname='user_login')
     password = Field(Unicode(256), colname='user_pass')
     email = Field(Unicode(64), colname='user_email')
-    user_activation_key = Field(Unicode(60))
+#    user_activation_key = Field(Unicode(60))
 
     buzzes = OneToMany('Buzz')
     contribs = OneToMany('Contrib')

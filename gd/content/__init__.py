@@ -108,7 +108,6 @@ def index():
 
     return render_template(
         'index.html', wp=wordpress,
-        customData=json,
         slideshow=slideshow, news=news,
         last_tweet=get_mayor_last_tweet(),
         videos=wordpress.wpgd.getHighlightedVideos(2),
@@ -138,7 +137,7 @@ def govescuta():
 def gallery():
     return render_template('galeria.html')
 
-
+#this is not currently used!
 @app.route('/confirm_signup/<string:key>', methods=('GET',))
 def confirm_signup(key):
     try:

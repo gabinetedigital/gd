@@ -28,7 +28,6 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from gd.utils import phpass, msg
 from gd.model import User, session as dbsession
-from hashlib import md5
 
 class AuthError(Exception):
     """Base class for login errors"""
@@ -149,10 +148,8 @@ def create_user(name, username, password, email, meta=None):
 
     # Creating an user instance and getting its id by commiting the
     # chage to the database
-    activation_key = md5(username+password).hexdigest()
     user = User(
-        name=name, username=username, password=password, email=email,
-        user_activation_key=activation_key)
+        name=name, username=username, password=password, email=email)
     dbsession.commit()
 
     # Time to save all meta attributes that we received

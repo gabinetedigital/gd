@@ -47,8 +47,6 @@ var auth = (function() {
                 var overlay = this.getOverlay();
                 var closeMethod = this.close;
 
-                if (onload_callback) onload_callback(overlay);
-
                 /* Just focus the username when overlay shows up */
                 overlay.find('input[name=username]').focus();
 
@@ -67,15 +65,7 @@ var auth = (function() {
                         } else {
                             closeMethod();
                             auth.userAuthenticated(pData.msg.user);
-
-                            //if the user is logging through activation key
-                            //send him to /
-                            if (document.location.href.indexOf('/confirm_signup') !=-1) {
-                                document.location = '/';
-                            } else {
-                                //show the hidden blog comment form
-                                $("#blog_comment_form").show();
-                            }
+                            $("#blog_comment_form").show();
                         }
                     });
                     return false;
@@ -202,8 +192,7 @@ var auth = (function() {
 
         /** Shows the login form and register callbacks to be called when
          *  it returns successfuly or not */
-        , showLoginForm: function (params, fn) {
-            onload_callback = fn;
+        , showLoginForm: function (params) {
             this.$loginOverlay.load();
             if (params && typeof params.success === 'function') {
                 this.success = params.success;
