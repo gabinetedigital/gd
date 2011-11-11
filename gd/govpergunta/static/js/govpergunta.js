@@ -118,11 +118,20 @@ var themeapi = (function () {
                     BASE_URL + 'pages/govpergunta/' +
                     themeapi.current + '/' + name + '.json';
 
+            /* Saving the context */
+            var self = this;
+
             /* The user asked to go to the contribute form */
             if (name === 'contribua') {
                 navapi.click(3);
                 $('a.theme').each(function () {
                     $(this).data('overlay').close();
+                    $('#theme_' + self.current).attr('checked', 'checked');
+                    $('.contribute label').removeClass('selected');
+                    $('#theme_' + self.current)
+                        .parent()
+                        .find('label')
+                        .addClass('selected');
                 });
                 return null;
             }
