@@ -453,3 +453,27 @@ a {
 #footer #map #apps li {
     margin-right: 15px;
 }
+
+/* Browser stuff */
+.browser-banner {
+    width:550px;
+    padding:10px;
+}
+
+.browser-banner h2 {
+    margin-bottom:10px;
+}
+
+.browser-banner p {
+    margin-bottom:10px;
+}
+
+.browser-banner ul {
+    margin-left:80px;
+    padding:10px 0;
+}
+
+.browser-banner ul li {
+    float:left;
+    margin-right:20px;
+}
