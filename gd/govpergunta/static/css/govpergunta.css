@@ -447,53 +447,53 @@ div.contribute textarea.error {
     border:solid 1px red !important;
 }
 
-div.contribute #form label {
-    float:left;
-    width:20%;
-}
-
 div.contribute #form input.theme {
     float:left;
-    visibility:hidden;
 }
 
-div.contribute #form label a {
+div.contribute #form .btn {
     margin:0 0 0 -10px;
     padding:0px 0 17px 33px;
-    display:block;
     color:#333;
+    float:left;
+    width:15%;
+    overflow:hidden;
 }
 
-div.contribute #form label.selected a {
+div.contribute #form .btn label.selected {
     font-weight:bold;
     color:#4e9a06;
 }
 
-div.contribute #form label a:hover {
+div.contribute #form .btn:hover {
     color:#4e9a06;
 }
 
-div.contribute h3{
+div.contribute #form .btn input {
+    margin-left:-50px;
+}
+
+div.contribute h3 {
     margin-bottom: 5px;
 }
 
-div.contribute #form .cuidado a {
+div.contribute #form .cuidado {
     background:url('../imgs/cuidadointegral32.png') no-repeat;
 }
 
-div.contribute #form .familia a {
+div.contribute #form .familia {
     background:url('../imgs/familia32.png') no-repeat;
 }
 
-div.contribute #form .emergencia a {
+div.contribute #form .emergencia {
     background:url('../imgs/emergencia32.png') no-repeat;
 }
 
-div.contribute #form .medicamentos a {
+div.contribute #form .medicamentos {
     background:url('../imgs/medicamentos32.png') no-repeat;
 }
 
-div.contribute #form .regional a {
+div.contribute #form .regional {
     background:url('../imgs/regional32.png') no-repeat;
 }
 
