@@ -114,7 +114,7 @@ def signup_form():
     return render_template(
         'signup.html', form=form,
         tos=wordpress.getPageByPath('tos'),
-        readmore=wordpress.getPageByPath('signup/read-more'),
+        readmore=wordpress.getPageByPath('signup-read-more'),
     )
 
 
