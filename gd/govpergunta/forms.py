@@ -55,13 +55,13 @@ class ContribForm(Form):
     content = TextField(
         _('Content'),
         [validators.Length(
-                min=100,
+                min=50,
                 message=_(u'Your contribution is too short! It needs to have '
-                          u'at least 100 chars')
+                          u'at least 50 chars')
                 ),
          validators.Length(
-                max=400,
+                max=600,
                 message=_(u'Your contribution is too long! It needs to have '
-                          u'at most 400 chars')
+                          u'at most 600 chars')
                 )],
     )
