@@ -20,7 +20,8 @@
 
     <div id="remember-password-error" class="msg error"></div>
     <div id="remember-password-success" class="msg success"></div>
-    <form class="auth" method="post" id="remember_password" action="#">
+    <form class="auth" method="post" id="remember_password"
+          action="{{ url_for('auth.remember_password') }}">
       <ol>
         <li>
           <label for="email">Email</label>
@@ -38,7 +39,8 @@
   <div class="loginForm">
     <div id="auth-error" class="msg error"></div>
     <div id="confirmation-success" class="msg success"></div>
-    <form class="auth" method="post" id="login" action="#">
+    <form class="auth" method="post" id="login"
+          action="{{ url_for('auth.login_json') }}">
       <ol>
         <li>
           <label for="username">Email</label>

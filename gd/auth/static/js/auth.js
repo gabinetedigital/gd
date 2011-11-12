@@ -50,59 +50,56 @@ var auth = (function() {
                 /* Just focus the username when overlay shows up */
                 overlay.find('input[name=username]').focus();
 
-                /* The submit button does its miracles of cancelling the usual
-                 * form submit and send data via ajax */
-                overlay.find('#login').submit(function () {
-                    var params = {
-                        username: overlay.find('input[name=username]').val(),
-                        password: overlay.find('input[name=password]').val()
-                    };
+                $(overlay.find('form')).ajaxForm({
+                    beforeSubmit: function () {
+                        $('.msg').fadeOut();
+                    },
 
-                    $.post(url_for('auth.login_json'), params, function (data) {
+                    success: function (data) {
                         var pData = $.parseJSON(data);
                         if (pData.status !== 'ok') {
-                            overlay.find('#auth-error').html(pData.msg).fadeIn('fast');
+                            overlay
+                                .find('#auth-error')
+                                .html(pData.msg)
+                                .fadeIn('fast');
                         } else {
                             closeMethod();
                             auth.userAuthenticated(pData.msg.user);
                             $("#blog_comment_form").show();
                         }
-                    });
-                    return false;
+                        return false;
+                    }
                 });
 
-                overlay.find('#remember_password').submit(function () {
-                    var params = { email: overlay.find("input[name=email]").val() };
-                    overlay.find('.msg').fadeOut();
+                overlay.find('#remember_password').ajaxForm({
+                    beforeSubmit: function () {
+                        overlay.find('.msg').fadeOut();
+                    },
 
-                    $.post(url_for('auth.remember_password'),
-                           params,
-                           function (data) {
-                               var pData = $.parseJSON(data);
-                               if (pData.status !== 'ok') {
-                                   overlay
-                                       .find('#remember-password-error')
-                                       .html(pData.msg)
-                                       .fadeIn('fast');
-                                   overlay
-                                       .find('#remember-password-success')
-                                       .hide();
-                               } else {
-                                   overlay
-                                       .find('#remember-password-success')
-                                       .html(pData.msg)
-                                       .fadeIn('fast');
-                                   overlay
-                                       .find('#remember-password-error')
-                                       .hide();
-                                   overlay.find('input[name=email]').val('');
-                               }
-                               window.setTimeout(function () {
-                                   overlay.find('.msg').fadeOut();
-                               }, 10000);
-
-                           });
-                    return false;
+                    success: function (data) {
+                        var pData = $.parseJSON(data);
+                        if (pData.status !== 'ok') {
+                            overlay
+                                .find('#remember-password-error')
+                                .html(pData.msg)
+                                .fadeIn('fast');
+                            overlay
+                                .find('#remember-password-success')
+                                .hide();
+                        } else {
+                            overlay
+                                .find('#remember-password-success')
+                                .html(pData.msg)
+                                .fadeIn('fast');
+                            overlay
+                                .find('#remember-password-error')
+                                .hide();
+                            overlay.find('input[name=email]').val('');
+                        }
+                        window.setTimeout(function () {
+                            overlay.find('.msg').fadeOut();
+                        }, 10000);
+                    }
                 });
             }
         })

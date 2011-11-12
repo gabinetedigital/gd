@@ -220,7 +220,7 @@ def remember_password():
         new_pass = utils.generate_random_password()
         user.set_password(new_pass)
         session.commit()
-        utils.send_password(request.values['email'],new_pass);
+        utils.send_password(request.values['email'], new_pass);
     except NoResultFound:
         return msg.error(
             _(u'E-mail not found in the database'), 'UserNotFound')
