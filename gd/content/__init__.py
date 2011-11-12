@@ -88,52 +88,24 @@ def cleanup(response):
     return response
 
 
-@app.route('/teaser')
-def teaser():
-    """Renders the teaser template"""
-    return render_template('teaser.html')
-
-@app.route('/govescuta')
-def govescuta():
-    """Renders the teaser template"""
-    return render_template('govescuta.html')
-
-@app.route('/sobre')
-def sobre():
-    """Renders the about template"""
-    return render_template(
-        'about.html', page=wordpress.getPageByPath('about'))
+# --- Static special pages ---
 
 
-@app.route('/news')
-@app.route('/news/<int:page>')
-def news(page=0):
-    """List posts in chronological order"""
-    pagination, posts = wordpress.getPosts(page=page)
-    return render_template(
-        'archive.html',
-        sidebar=wordpress.getSidebar,
-        pagination=pagination,
-        posts=posts)
-
-
-@app.route('/gallery')
-def gallery():
-    return render_template('galeria.html')
-
-
-def home_page(json='{}'):
+@app.route('/')
+def index():
     """Renders the index template"""
     slideshow = wordpress.getRecentPosts(
         category_name='highlights',
         post_status='publish',
         numberposts=4,
         thumbsizes=['slideshow'])
+
     news = wordpress.getRecentPosts(
         category_name='news',
         post_status='publish',
         numberposts=2,
         thumbsizes=['newsbox', 'widenewsbox'])
+
     return render_template(
         'index.html', wp=wordpress,
         customData=json,
@@ -143,9 +115,28 @@ def home_page(json='{}'):
     )
 
 
-@app.route('/')
-def index():
-    return home_page()
+@app.route('/sobre')
+def sobre():
+    """Renders the about template"""
+    return render_template(
+        'about.html', page=wordpress.getPageByPath('about'))
+
+
+@app.route('/teaser')
+def teaser():
+    """Renders the teaser template"""
+    return render_template('teaser.html')
+
+
+@app.route('/govescuta')
+def govescuta():
+    """Renders the teaser template"""
+    return render_template('govescuta.html')
+
+
+@app.route('/gallery')
+def gallery():
+    return render_template('galeria.html')
 
 
 @app.route('/confirm_signup/<string:key>', methods=('GET',))
@@ -160,6 +151,17 @@ def confirm_signup(key):
         return home_page(dumps({'error':_(u'There was an error processing the request')}))
     return home_page(dumps({'username':user.username,'message':_('Your profile was enabled successfully')}))
 
+
+@app.route('/news')
+@app.route('/news/<int:page>')
+def news(page=0):
+    """List posts in chronological order"""
+    pagination, posts = wordpress.getPosts(page=page)
+    return render_template(
+        'archive.html',
+        sidebar=wordpress.getSidebar,
+        pagination=pagination,
+        posts=posts)
 
 
 @app.route('/cat/<int:cid>')
@@ -185,22 +187,6 @@ def tag(slug, page=0):
         pagination=pagination,
         posts=posts)
 
-@app.route('/pages/<path>')
-def pages(path):
-    """Renders a wordpress page"""
-    return render_template(
-        'page.html',
-        page=wordpress.getPageByPath(path),
-        sidebar=wordpress.getSidebar,
-    )
-
-
-@app.route('/pages/<path:path>.json')
-def page_json(path):
-    """Returns a page data in the JSON format"""
-    page = wordpress.getPageByPath(path)
-    return dumps(page and page.data or None)
-
 
 def post_page(pid, error_msg=''):
     """A generic function that renders a post template"""
@@ -216,6 +202,23 @@ def post_page(pid, error_msg=''):
         error_msg=error_msg,
         show_comment_form=is_authenticated(),
         recent_posts=recent_posts)
+
+
+@app.route('/pages/<path>')
+def pages(path):
+    """Renders a wordpress page"""
+    return render_template(
+        'page.html',
+        page=wordpress.getPageByPath(path),
+        sidebar=wordpress.getSidebar,
+    )
+
+
+@app.route('/pages/<path:path>.json')
+def page_json(path):
+    """Returns a page data in the JSON format"""
+    page = wordpress.getPageByPath(path)
+    return dumps(page and page.data or None)
 
 
 @app.route('/post/<int:pid>')
@@ -253,7 +256,9 @@ def search(s, page=0):
         search_term=s,
         posts=posts)
 
+
 @app.route('/feed')
 def feed():
+    """Renders the RSS wordpress function"""
     header = {'Content-Type': 'application/rss+xml; charset=utf-8'}
     return wordpress.getRSS(), 200, header
