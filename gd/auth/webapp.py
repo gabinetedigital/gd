@@ -44,7 +44,11 @@ def social(form, show=True, default=None):
     This version is currently facebook only, but it's easy to extend it
     to support other social networks."""
     # Here's the line that says that we're social or not
-    facebook = checkfblogin() or {}
+    #
+    # FIXME: Debug and discover why this damn facebook stuff does not
+    # work properly.
+    #facebook = checkfblogin() or {}
+    facebook = {}
     data = default or {}
     data.update(facebook)
     inst = form(**data) if show else form()
