@@ -168,6 +168,7 @@ form.auth hr {
 }
 
 p.errmsg {
+    display:none;
     color:#ef2929 !important;
     margin-bottom:0;
 }
@@ -191,7 +192,6 @@ form.auth .submit input {
 /* specific things to the signup form */
 
 form.auth p {
-    margin-bottom:20px;
 }
 
 form.auth .accept_tos input {
@@ -239,12 +239,12 @@ form.auth select#state, form.auth select#gender {
     width:60px;
 }
 
-form.auth select#country, form.auth select#age_group {
-    width:120px;
+form.auth li.phone {
+    height:64px;
 }
 
-form.auth select#city, form.auth select#income_group {
-    width:210px;
+form.auth select#city, form.auth select, form.auth select#age_group {
+    width:120px;
 }
 
 form.auth div.readmore,

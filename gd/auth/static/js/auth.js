@@ -131,7 +131,7 @@ var auth = (function() {
                              * error state for now to allow him to try
                              * again */
                             overlay.find('input,select').removeClass('fielderror');
-                            overlay.find('.errmsg').html('');
+                            overlay.find('.errmsg').html('').hide();
                         },
 
                         success: function (data) {
@@ -160,12 +160,14 @@ var auth = (function() {
                                         .addClass('fielderror');
                                     overlay
                                         .find('.'+ f + '-error')
-                                        .html(errors[f][0]);
+                                        .html(errors[f][0])
+                                        .show();
                                 }
                             } else {
                                 overlay
                                     .find('div.error')
-                                    .html(pData.msg.data).fadeIn('fast');
+                                    .fadeIn()
+                                    .html(pData.msg);
                             }
                         }
                     });

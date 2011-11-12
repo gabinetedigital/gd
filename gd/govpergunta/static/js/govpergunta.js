@@ -162,7 +162,7 @@ var themeapi = (function () {
             var form = $('.contribute form');
             form.find('input,textarea').removeClass('fielderror');
             form.find('.error').fadeOut();
-            form.find('.errmsg').html('');
+            form.find('.errmsg').html('').hide();
 
 
             if (!auth.isAuthenticated()) {
@@ -207,7 +207,8 @@ var themeapi = (function () {
                         .addClass('fielderror');
                     form
                         .find('.'+ f + '-error')
-                        .html(msg);
+                        .html(msg)
+                        .show();
                     form.find('div.error')
                         .html('Falta alguma informação para completar a sua proposta')
                         .fadeIn('fast');

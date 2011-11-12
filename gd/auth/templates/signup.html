@@ -1,5 +1,7 @@
 <form class="auth" method="post" id="signup" action="{{ url_for('.signup_json') }}">
+
   {{ form.csrf }}
+
   <div class="header">
     <h1><a href="javascript:auth.toggleSignupTab('form')">Cadastrar</a></h1>
     <ul>
@@ -62,25 +64,26 @@
           </li>
           {% endif %}
 
-          <li class="sep"><hr></li>
-          <li class="field country frmcol2">{{ form.country.label }} {{ form.country }}</li>
-          <li class="field state frmcol2">{{ form.state.label }} {{ form.state }}</li>
-          <li class="field city">{{ form.city.label }} {{ form.city }}</li>
-          <li class="field age_group frmcol2">
-            {{ form.age_group.label }} {{ form.age_group }}
-          </li>
-          <li class="field gender frmcol2">{{ form.gender.label }} {{ form.gender }}</li>
-          <li class="field income_group">
-            {{ form.income_group.label }} {{ form.income_group }}
-          </li>
-          <li class="sep"><hr></li>
-          <li class="field twitter frmcol1">{{ form.twitter.label }} {{ form.twitter }}</li>
-          <li class="field facebook">{{ form.facebook.label }} {{ form.facebook }}</li>
-          <li class="sep"><hr></li>
-          <li class="field accept_tos">{{ form.accept_tos }} {{ form.accept_tos.label }}
+          <li class="field accept_tos">
+            <br>
+            {{ form.accept_tos }} {{ form.accept_tos.label }}
             <p class="errmsg accept_tos-error"></p>
           </li>
           <li class="submit"><input type="submit" class="awesome" value="Cadastrar"></li>
+
+          <li class="sep"><hr></li>
+          <li><h2>Dados opcionais</h2></li>
+          <li class="field state frmcol2">{{ form.state.label }} {{ form.state }}</li>
+          <li class="field city frmcol2">{{ form.city.label }} {{ form.city }}</li>
+          <li class="field phone">{{ form.phone.label }} {{ form.phone }}</li>
+
+          <li class="field gender frmcol2">{{ form.gender.label }} {{ form.gender }}</li>
+          <li class="field age_group frmcol2">
+            {{ form.age_group.label }} {{ form.age_group }}
+          </li>
+          <li class="field twitter">
+            {{ form.twitter.label }} {{ form.twitter }}
+          </li>
         </ol>
       </div>
     </div>

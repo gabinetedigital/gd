@@ -38,13 +38,6 @@ class BaseDataForm(Form):
         ]
     )
 
-    country = SelectField(
-        _('Country'),
-        [validators.Required()],
-        choices=choices.COUNTRIES,
-        default=u'Brasil',
-    )
-
     state = SelectField(
         _('State'),
         [validators.Required()],
@@ -69,17 +62,12 @@ class BaseDataForm(Form):
         choices=choices.GENDER,
     )
 
-    income_group = SelectField(
-        _('Income group'),
-        choices=choices.INCOME,
+    phone = TextField(
+        _('Phone'),
     )
 
     twitter = TextField(
         _('Twitter'),
-    )
-
-    facebook = TextField(
-        _('Facebook'),
     )
 
 
@@ -118,8 +106,8 @@ class SignupForm(BaseDataForm, BasePasswordForm):
         _('Have you read and accepted our '
           '<a href="javascript:auth.toggleSignupTab(\'tos\')">'
           'Terms of use</a>?'),
-        [validators.Required(),
-         ]
+        [validators.Required(),],
+        default=True,
     )
 
     def validate_email_confirmation(self, field):

@@ -128,12 +128,6 @@ def signup_json():
     signup form"""
     form = social(forms.SignupForm, False)
 
-    # This field is special, it must be validated before anything. If it
-    # doesn't work, the action must be aborted.
-    csrf = request.form['csrf']
-    if not csrf or not form.csrf.validate(csrf):
-        return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
-
     # Proceeding with the validation of the user fields
     if form.validate_on_submit():
         try:
@@ -156,6 +150,12 @@ def signup_json():
         data = authapi.login_user_instance(user, password)
         return msg.ok({ 'user': data })
     else:
+        # This field is special, it must be validated before anything. If it
+        # doesn't work, the action must be aborted.
+        if not form.csrf_is_valid:
+            return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
+
+        # Usual validation error
         return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
 
