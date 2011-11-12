@@ -108,6 +108,10 @@ div.wrapper {
     padding:20px;
 }
 
+wrapper.success {
+    padding:10px;
+}
+
 form.auth a.button {
     display:block;
     text-align:right;

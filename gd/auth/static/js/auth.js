@@ -150,11 +150,8 @@ var auth = (function() {
                         success: function (data) {
                             var pData = $.parseJSON(data);
                             if (pData.status === 'ok') {
-                                overlay
-                                    .find('.success')
-                                    .html(pData.msg.message);
-                                overlay.find(".signup-form").slideUp();
-                                overlay.find('.header').slideUp();
+                                auth.userAuthenticated(pData.msg.user);
+                                closeMethod();
                                 return;
                             }
 
