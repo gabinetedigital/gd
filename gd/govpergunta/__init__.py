@@ -56,7 +56,11 @@ def contrib_json():
             theme=form.data['theme'],
             user=auth.authenticated_user())
         session.commit()
-        return msg.ok(_('Contribution received successful'))
+
+        # Returning the csrf
+        data = { 'data': _('Contribution received successful') }
+        data.update({ 'csrf': form.csrf.data })
+        return msg.ok(data)
     else:
         # This field is special, it must be validated before anything. If it
         # doesn't work, the action must be aborted.

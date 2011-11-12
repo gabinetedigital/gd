@@ -177,13 +177,8 @@ var themeapi = (function () {
         },
 
         success: function (data) {
-            var pData = $.parseJSON(data);
-            if (pData.status === 'ok') {
-                $('#form fieldset').fadeOut();
-                return $('div.success').fadeIn();
-            }
-
             /* Here we know that something is wrong */
+            var pData = $.parseJSON(data);
             var form = $('.contribute form');
             var errors = pData.msg.data;
             var code = pData.code;
@@ -193,6 +188,12 @@ var themeapi = (function () {
              * our form. If we don't do it, we can't try to
              * register again. */
             form.find('[name=csrf]').val(csrfToken);
+
+            /* It's everything ok, let's get out */
+            if (pData.status === 'ok') {
+                $('#form fieldset').fadeOut();
+                return $('div.success').fadeIn();
+            }
 
             /* The user made a mistake when filling the form */
             if (code === 'ValidationError') {
