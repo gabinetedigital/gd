@@ -351,6 +351,7 @@ a {
 #footer-wrapper {
     background-color: #555753;
     border-top: 4px solid #4e9a06;
+    padding-top:30px;
 }
 
 #footer {
