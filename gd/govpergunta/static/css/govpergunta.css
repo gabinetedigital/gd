@@ -479,10 +479,12 @@ div.contribute h3 {
 
 div.contribute #form .cuidado {
     background:url('../imgs/cuidadointegral32.png') no-repeat;
+    width:70px;
 }
 
 div.contribute #form .familia {
     background:url('../imgs/familia32.png') no-repeat;
+    width:80px;
 }
 
 div.contribute #form .emergencia {
@@ -491,6 +493,7 @@ div.contribute #form .emergencia {
 
 div.contribute #form .medicamentos {
     background:url('../imgs/medicamentos32.png') no-repeat;
+    width:100px;
 }
 
 div.contribute #form .regional {
