@@ -215,7 +215,10 @@ var themeapi = (function () {
                         .fadeIn('fast');
                 }
             } else {
-                form.find('div.error').html(pData.msg.data).fadeIn('fast');
+                form
+                    .find('div.error')
+                    .fadeIn('fast')
+                    .html(pData.msg.data);
             }
             return null;
         }
