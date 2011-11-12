@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GabineteDigital 0.1\n"
 "POT-Creation-Date: 2011-11-10 21:35+BRST\n"
-"PO-Revision-Date: 2011-11-10 21:39-0200\n"
+"PO-Revision-Date: 2011-11-12 10:39-0200\n"
 "Last-Translator: Lincoln de Sousa <lincoln@gg.rs.gov.br>\n"
 "Language-Team: LANGUAGE <pt-br@li.org>\n"
 "Language: \n"
@@ -174,7 +174,7 @@ msgstr "A senha não bate com sua confirmação"
 
 #: ../gd/auth/forms.py:112
 msgid "Email confirmation"
-msgstr "Email confirmation"
+msgstr "Confirmação de email"
 
 #: ../gd/auth/forms.py:118
 msgid ""
