@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-12 19:22+BRST\n"
+"POT-Creation-Date: 2011-11-12 19:50+BRST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,7 +193,7 @@ msgid "User does not exist"
 msgstr ""
 
 #: ../gd/auth/webapp.py:101
-msgid "User or password mismatch"
+msgid "Wrong password"
 msgstr ""
 
 #: ../gd/auth/webapp.py:104

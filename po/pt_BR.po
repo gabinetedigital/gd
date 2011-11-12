@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GabineteDigital 0.1\n"
-"POT-Creation-Date: 2011-11-12 19:22+BRST\n"
+"POT-Creation-Date: 2011-11-12 19:50+BRST\n"
 "PO-Revision-Date: 2011-11-12 10:39-0200\n"
 "Last-Translator: Lincoln de Sousa <lincoln@gg.rs.gov.br>\n"
 "Language-Team: LANGUAGE <pt-br@li.org>\n"
@@ -201,8 +201,8 @@ msgid "User does not exist"
 msgstr "Usuário não existe"
 
 #: ../gd/auth/webapp.py:101
-msgid "User or password mismatch"
-msgstr "Usuário e senha não batem"
+msgid "Wrong password"
+msgstr "Senha incorreta"
 
 #: ../gd/auth/webapp.py:104
 msgid "Username or password missing"
@@ -260,7 +260,6 @@ msgstr ""
 "ativo"
 
 #: ../gd/content/__init__.py:150
-#, fuzzy
 msgid "There was an error processing the request"
 msgstr "Houve um erro ao processer a requisição"
 
@@ -302,9 +301,9 @@ msgstr "Conteúdo"
 
 #: ../gd/govpergunta/forms.py:59
 msgid "Your contribution is too short! It needs to have at least 50 chars"
-msgstr "Sua contribuição está muito curta! Ela precisa ter pelo menos 50 caracteres"
+msgstr ""
+"Sua contribuição está muito curta! Ela precisa ter pelo menos 50 caracteres"
 
 #: ../gd/govpergunta/forms.py:64
-#, fuzzy
 msgid "Your contribution is too long! It needs to have at most 600 chars"
 msgstr "Sua contribuição está muito longa! Ela precisa ter no máximo 600 letras"
