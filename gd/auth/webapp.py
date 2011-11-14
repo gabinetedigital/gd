@@ -179,7 +179,13 @@ def profile_json():
     """
     form = social(forms.ProfileForm, False)
     if not form.validate_on_submit():
-        return msg.error(form.errors, 'ValidationError')
+        # This field is special, it must be validated before anything. If it
+        # doesn't work, the action must be aborted.
+        if not form.csrf_is_valid:
+            return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
+
+        # Usual validation error
+        return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
     # Let's save the authenticated user's meta data
     mget = form.meta.get
@@ -202,7 +208,10 @@ def profile_json():
     for key, val in form.meta.items():
         user.set_meta(key, val)
 
-    return msg.ok(_('User profile updated successfuly'))
+    return msg.ok({
+        'data': _('User profile updated successfuly'),
+        'csrf': form.csrf.data,
+    })
 
 
 @auth.route('/profile_passwd_json', methods=('POST',))
@@ -213,9 +222,19 @@ def profile_passwd_json():
         user = authapi.authenticated_user()
         user.set_password(form.password.data)
         session.commit()
-        return msg.ok(_('Password updated successful'))
+        return msg.ok({
+            'data': _('Password updated successful'),
+            'csrf': form.csrf.data,
+        })
     else:
-        return msg.error(form.errors, 'ValidationError')
+        # This field is special, it must be validated before anything. If it
+        # doesn't work, the action must be aborted.
+        if not form.csrf_is_valid:
+            return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
+
+        # Usual validation error
+        return utils.format_csrf_error(form, form.errors, 'ValidationError')
+
 
 @auth.route('/remember_password', methods=('POST',))
 def remember_password():

@@ -8,88 +8,90 @@
 
 {% block content %}
 <div id="container">
-      <div class="row">
-<div id="pedit" class="col12">
-<div id="content">
-<h2>Editar perfil</h2>
+  <div class="row">
+    <div id="pedit" class="col12">
+      <div id="content">
+        <h2>Editar perfil</h2>
 
-{% if not profile.social %}
-<div id="tab">
-<ul class="tabs">
-  <li><a href="#">Geral</a></li>
-  <li><a href="#">Alterar senha</a></li>
-</ul>
-</div>
-{% endif %}
+        {% if not profile.social %}
+        <div id="tab">
+          <ul class="tabs">
+            <li><a href="#">Geral</a></li>
+            <li><a href="#">Alterar senha</a></li>
+          </ul>
+        </div>
+        {% endif %}
 
-<div class="panes">
-  <form
-     class="auth" method="post" id="profile"
-     action="{{ url_for('.profile_json') }}"
-     enctype="multipart/form-data">
+        <div class="msg error"></div>
+        <div class="msg success"></div>
 
-    {{ profile.csrf }}
+        <div class="panes">
+          <form
+             class="auth" method="post" id="profile_form"
+             action="{{ url_for('.profile_json') }}"
+             enctype="multipart/form-data">
 
-    <ol>
-      <li class="field avatar">
-        <img src="{{ user.avatar_url }}" alt="{{ user.name }}">
-        {{ profile.avatar.label }} {{ profile.avatar }}
-      </li>
-      <li class="field name frmcol1">
-        {{ profile.name.label }} {{ profile.name }}
-      </li>
-      <li class="field email">
-        {{ profile.email.label }} {{ profile.email }}
-      </li>
-      <li class="field state frmcol2">
-        {{ profile.state.label }} {{ profile.state }}
-      </li>
-      <li class="field city frmcol2">
-        {{ profile.city.label }} {{ profile.city }}
-      </li>
-      <li class="field phone">
-        {{ profile.phone.label }} {{ profile.phone }}
-      </li>
-      <li class="field gender frmcol2">
-        {{ profile.gender.label }} {{ profile.gender }}
-      </li>
-      <li class="field age_group frmcol2">
-        {{ profile.age_group.label }} {{ profile.age_group }}
-      </li>
-      <li class="field twitter">
-        {{ profile.twitter.label }} {{ profile.twitter }}
-      </li>
-      <li class="sep"><hr></li>
-      <li class="submit"><button class="awesome">Salvar</button></li>
-    </ol>
-  </form>
+            {{ profile.csrf }}
 
-  {% if not profile.social %}
-  <form
-     class="auth" method="post" id="profile"
-     action="{{ url_for('.profile_passwd_json') }}">
+            <ol>
+              <li class="field avatar">
+                <img src="{{ user.avatar_url }}" alt="{{ user.name }}">
+                {{ profile.avatar.label }} {{ profile.avatar(value='') }}
+              </li>
+              <li class="field name frmcol1">
+                {{ profile.name.label }} {{ profile.name }}
+              </li>
+              <li class="field email">
+                {{ profile.email.label }} {{ profile.email }}
+              </li>
+              <li class="field state frmcol2">
+                {{ profile.state.label }} {{ profile.state }}
+              </li>
+              <li class="field city frmcol2">
+                {{ profile.city.label }} {{ profile.city }}
+              </li>
+              <li class="field phone">
+                {{ profile.phone.label }} {{ profile.phone }}
+              </li>
+              <li class="field gender frmcol2">
+                {{ profile.gender.label }} {{ profile.gender }}
+              </li>
+              <li class="field age_group frmcol2">
+                {{ profile.age_group.label }} {{ profile.age_group }}
+              </li>
+              <li class="field twitter">
+                {{ profile.twitter.label }} {{ profile.twitter }}
+              </li>
+              <li class="sep"><hr></li>
+              <li class="submit"><button class="awesome">Salvar</button></li>
+            </ol>
+          </form>
 
-    {{ passwd.csrf }}
+          {% if not profile.social %}
+          <form
+             class="auth" method="post" id="password_form"
+             action="{{ url_for('.profile_passwd_json') }}">
 
-    <ol>
-      <li class="field password">
-        {{ passwd.current_password.label }} {{ passwd.current_password }}
-      </li>
-      <li class="field password frmcol1">
-        {{ passwd.password.label }} {{ passwd.password }}
-      </li>
-      <li class="field password_confirmation">
-        {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
-      </li>
-      <li class="submit"><button class="awesome">Alterar senha</button></li>
-    </ol>
-  </form>
-  {% endif %}
+            {{ passwd.csrf(id='password_csrf') }}
 
-</div>
-</div>
-</div>
-    <div class="row-end"></div>
-</div>
+            <ol>
+              <li class="field password">
+                {{ passwd.current_password.label }} {{ passwd.current_password }}
+              </li>
+              <li class="field password frmcol1">
+                {{ passwd.password.label }} {{ passwd.password }}
+              </li>
+              <li class="field password_confirmation">
+                {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
+              </li>
+              <li class="submit"><button class="awesome">Alterar senha</button></li>
+            </ol>
+          </form>
+          {% endif %}
+        </div> <!-- .panes -->
+      </div><!-- content -->
+    </div> <!-- #pedit -->
+  </div> <!-- row -->
+  <div class="row-end"></div>
 </div>
 {% endblock %}
