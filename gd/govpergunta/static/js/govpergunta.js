@@ -164,11 +164,13 @@ var themeapi = (function () {
             form.find('.error').fadeOut();
             form.find('.errmsg').html('').hide();
 
-
+            /* Saving the success callback to be called when the user
+             * is properly logged */
+            var options = this;
             if (!auth.isAuthenticated()) {
                 auth.showLoginForm({
                     success: function () {
-                        form.submit();
+                        form.ajaxSubmit(options.success);
                     }
                 });
                 return false;
