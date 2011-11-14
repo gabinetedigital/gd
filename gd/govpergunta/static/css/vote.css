@@ -1,0 +1,107 @@
+@import url('font.css');
+
+* {
+    font-family: 'OpenSansRegular';
+}
+
+#container h1 {
+    padding-left: 146px;
+    font-size: 44px;
+    font-weight: normal;
+}
+
+#container h1.reg {
+    background: url('../imgs/regional128.png') no-repeat;
+    color: #4e9a06;
+}
+
+#container h1.cui {
+    background: url('../imgs/cuidadointegral128.png') no-repeat;
+    color: #204a87;
+}
+
+#container h1.eme {
+    background: url('../imgs/emergencia128.png') no-repeat;
+    color: #cc0000;
+}
+
+#container h1.fam {
+    background: url('../imgs/familia128.png') no-repeat;
+    color: #f57900;
+}
+
+#container h1.med {
+    background: url('../imgs/medicamentos128.png') no-repeat;
+    color: #75507b;
+}
+
+#cell {
+ margin-top: 60px;
+}
+
+.col6 a {
+    background-color: #d3d7cf;
+    display: block;
+    border-radius: 10px;
+}
+
+.col6 a {
+    background-color: #d3d7cf;
+    display: block;
+    border-radius: 10px;
+    color: #2e3436;
+}
+
+.col6 a:hover {
+    background-color: #babdb6;
+    display: block;
+    border-radius: 10px;
+    color: #2e3436;
+}
+
+#cell .opt {
+    padding: 20px;
+    font-size: 16px;
+}
+
+
+#cell .opt h3 {
+    color: #555753;
+    font-size: 32px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.skip:hover {
+    background-color: #babdb6;
+}
+
+.skip {
+    font-size: 20px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #EEEEEC;
+    color: #2e3436;
+    display: block;
+    width: 220px;
+    margin-top: 30px;
+    padding: 4px;
+}
+
+.misc {
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+    font-size: 14px;
+    color: #888a85;   
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.misc:hover {
+    text-decoration: underline;
+}

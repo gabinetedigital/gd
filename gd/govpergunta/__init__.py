@@ -36,6 +36,12 @@ def index():
     form = ContribForm()
     return render_template('govpergunta.html', wp=wordpress, form=form)
 
+@govpergunta.route('/vote')
+def vote():
+    """Renders the index template"""
+    form = ContribForm()
+    return render_template('vote.html')
+
 
 @govpergunta.route('/contrib_json', methods=('POST',))
 def contrib_json():

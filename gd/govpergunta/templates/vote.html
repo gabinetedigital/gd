@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/vote.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+    <div class="row">
+        <h1 class="reg">O que você considera mais essêncial para a saúde na sua região?</h1>
+        <div class="row-end"></div>
+    </div>
+    <div id="cell" class="row">
+        <div class="col6"><a href="">
+            <div class="opt">
+                <h3>Estrutura de redes de atenção</h3>
+                <p>Estruturação de redes de atenção integral à saúde que garantam a continuidade do cuidado aos usuários do SUS nas macrorregiões Centro-oeste, Metropolitana, Missioneira, Norte, Serra, Sul e Vales</p>
+            </div></a>    
+        </div>
+        <div class="col6"><a href="">
+            <div class="opt">
+                <h3>Implementação de Centros de Especialidades</h3>
+                <p>Implementação de Centros de Especialidades em todas as regiões para atender demandas de consultas especializadas em diversas áreas, como cardiologia, ginecologia, traumatologia, entre outras</p>
+            </div></a>
+        </div>
+        <div class="row-end"></div>
+    </div>
+     <div class="row">
+        <div class="col12">
+            <a class="skip" href="">Não consigo decidir</a>   
+            <a class="misc" href="">Dúvidas e sugestões</a>   
+        </div>
+        <div class="row-end"></div>
+    </div>
+
+{% endblock %}
