@@ -20,19 +20,24 @@
 import os
 import gettext
 
+# Hardcoded language configuration
+for lang in 'LANGUAGE', 'LANG':
+    os.environ[lang] = 'pt_BR'
 
+
+# Installing the translation files
 gettext.install('gabinetedigital', os.path.abspath(
         os.path.join(os.path.dirname(__file__), '..', 'po')),
                 unicode=True)
 
 
-def run():
-    from gd import conf
-    from gd.content import app
+# These imports *must* be declared after installing gettext, otherwise,
+# the magic `_' function will not be present in the imported modules
+from gd import conf
+from gd.content import app
+
+
+# Function that actually executes the app
+if __name__ == '__main__':
     app.debug = conf.DEBUG
     app.run(conf.HTTP_HOST, conf.HTTP_PORT)
-
-
-
-if __name__ == '__main__':
-    run()
