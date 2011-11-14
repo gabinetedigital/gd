@@ -28,7 +28,7 @@ from flask import Flask, request, render_template, session, \
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
-from gd.utils import dumps
+from gd.utils import dumps, msg
 from gd.model import session as dbsession
 from gd.model import get_mayor_last_tweet, User
 
@@ -230,7 +230,7 @@ def post(pid):
 def new_comment():
     """Posts new comments to the blog"""
     if not is_authenticated():
-        return post_page(request.form['post_id'])
+        return msg.error(_(u'User not authenticated'))
     try:
         wordpress.newComment(
             username=session['username'],
@@ -238,9 +238,9 @@ def new_comment():
             post_id=request.form['post_id'],
             content=request.form['content']
         )
-        return redirect(url_for('post', pid=request.form['post_id']))
+        return msg.ok(_(u'Thank you. Your comment was successfuly sent'))
     except xmlrpclib.Fault, err:
-        return post_page(request.form['post_id'], err.faultString)
+        return msg.error(_(unicode(err.faultString)), code='CommentError')
 
 
 @app.route('/search/<string:s>')
