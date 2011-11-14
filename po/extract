@@ -1,2 +1,3 @@
 #!/bin/bash
 pygettext -d gabinetedigital ../gd
+msgmerge pt_BR.po gabinetedigital.pot -o pt_BR.po
