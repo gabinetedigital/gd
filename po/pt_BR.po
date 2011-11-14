@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GabineteDigital 0.1\n"
-"POT-Creation-Date: 2011-11-12 19:50+BRST\n"
-"PO-Revision-Date: 2011-11-12 10:39-0200\n"
+"POT-Creation-Date: 2011-11-14 14:27+BRST\n"
+"PO-Revision-Date: 2011-11-14 14:46-0200\n"
 "Last-Translator: Lincoln de Sousa <lincoln@gg.rs.gov.br>\n"
 "Language-Team: LANGUAGE <pt-br@li.org>\n"
 "Language: \n"
@@ -220,7 +220,7 @@ msgstr "O usuário já existe"
 msgid "The email address informed is being used by another person"
 msgstr "O endereço de email informado já está sendo usuado por outra pessoa"
 
-#: ../gd/auth/webapp.py:156 ../gd/govpergunta/__init__.py:64
+#: ../gd/auth/webapp.py:156 ../gd/govpergunta/__init__.py:68
 msgid "Invalid csrf token"
 msgstr "Token csrf token inválido"
 
@@ -255,9 +255,7 @@ msgstr ""
 msgid ""
 "Authorization key not found in the database. Perhaps your profile is already "
 "enabled!"
-msgstr ""
-"Chave de autorização não encontrada na base. Talvez o seu perfil já esteja "
-"ativo"
+msgstr "Chave de autorização não encontrada na base. Talvez o seu perfil já esteja ativo!"
 
 #: ../gd/content/__init__.py:150
 msgid "There was an error processing the request"
@@ -267,11 +265,15 @@ msgstr "Houve um erro ao processer a requisição"
 msgid "Your profile was enabled successfully"
 msgstr "Perfil de usuário atualizado com sucesso"
 
-#: ../gd/govpergunta/__init__.py:49
+#: ../gd/content/__init__.py:233 ../gd/govpergunta/__init__.py:49
 msgid "User not authenticated"
 msgstr "Nenhum usuário autenticado"
 
-#: ../gd/govpergunta/__init__.py:59
+#: ../gd/content/__init__.py:241
+msgid "Thank you. Your comment was successfuly sent"
+msgstr "Obrigado. Seu comentário foi enviado com sucesso"
+
+#: ../gd/govpergunta/__init__.py:61
 msgid "Contribution received successful"
 msgstr "A contribuição foi recebida com sucesso"
 
@@ -306,4 +308,4 @@ msgstr ""
 
 #: ../gd/govpergunta/forms.py:64
 msgid "Your contribution is too long! It needs to have at most 600 chars"
-msgstr "Sua contribuição está muito longa! Ela precisa ter no máximo 600 letras"
+msgstr ""

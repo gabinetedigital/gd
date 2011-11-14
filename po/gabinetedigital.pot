@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-12 19:50+BRST\n"
+"POT-Creation-Date: 2011-11-14 14:27+BRST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -212,7 +212,7 @@ msgstr ""
 msgid "The email address informed is being used by another person"
 msgstr ""
 
-#: ../gd/auth/webapp.py:156 ../gd/govpergunta/__init__.py:64
+#: ../gd/auth/webapp.py:156 ../gd/govpergunta/__init__.py:68
 msgid "Invalid csrf token"
 msgstr ""
 
@@ -252,11 +252,15 @@ msgstr ""
 msgid "Your profile was enabled successfully"
 msgstr ""
 
-#: ../gd/govpergunta/__init__.py:49
+#: ../gd/content/__init__.py:233 ../gd/govpergunta/__init__.py:49
 msgid "User not authenticated"
 msgstr ""
 
-#: ../gd/govpergunta/__init__.py:59
+#: ../gd/content/__init__.py:241
+msgid "Thank you. Your comment was successfuly sent"
+msgstr ""
+
+#: ../gd/govpergunta/__init__.py:61
 msgid "Contribution received successful"
 msgstr ""
 

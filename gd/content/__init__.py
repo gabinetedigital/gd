@@ -240,7 +240,7 @@ def new_comment():
         )
         return msg.ok(_(u'Thank you. Your comment was successfuly sent'))
     except xmlrpclib.Fault, err:
-        return msg.error(_(unicode(err.faultString)), code='CommentError')
+        return msg.error(__(err.faultString), code='CommentError')
 
 
 @app.route('/search/<string:s>')
