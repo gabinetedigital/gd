@@ -1,52 +1,58 @@
+/* Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+ *
+ *   Author: Thiago Silva <thiago@metareload.com>
+ *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 $(function () {
 
-  $("#participe .govresponde")
+    /* The code responsible for the interaction of the  "Participate"
+     * button. Yes, that big red button in the middle of the screen :) */
+    function toggle() {
+        var $participe = $('#participe');
+        var $slideshow = $('#slideshow');
+        if ($participe.is(':visible')) {
+            $participe.show().slideUp();
+            $slideshow.hide().slideDown();
+        } else {
+            $slideshow.show().slideUp();
+            $participe.hide().slideDown();
+        }
+    }
+    $("#a-participe").click(toggle);
+    $("#participe .close").click(toggle);
+
+    /* -- Show/hide text on the mouse over event in "participate" buttons -- */
+    $("#participe .govresponde")
         .data('text','Quer saber o que o Governador pensa? Pergunte para ele. ' +
               'A questão mais votada do mês é respondida em vídeo.');
-  $("#participe .govpergunta")
+    $("#participe .govpergunta")
         .data('text', 'O Governador pergunta e a sociedade responde com novas ' +
               'idéias.');
-  $("#participe .agenda")
+    $("#participe .agenda")
         .data('text', 'Quer fazer parte da agenda do Governador na sua cidade?' +
               ' Indique uma pauta na agenda colaborativa.');
-  $("#participe .govescuta")
+    $("#participe .govescuta")
         .data('text','Audiências públicas digitais transmitidas via internet  ' +
               'onde você pode enviar sua contribuição.');
-  $("#participe").mouseenter(function() {
-    if (home_menu_delay) clearTimeout(home_menu_delay);
-  });
 
-  $("#participe").mouseleave(prepare_to_hide_home_menu);
-
-  var home_menu_delay;
-  function show_home_menu() {
-    if (home_menu_delay) {
-      clearTimeout(home_menu_delay);
-    } else {
-      $("#slideshow").slideUp();
-      $("#participe").slideDown();
-    }
-  }
-
-  function hide_home_menu() {
-    $("#slideshow").slideDown();
-    $("#participe").slideUp();
-  }
-
-  function prepare_to_hide_home_menu() {
-    if (home_menu_delay) clearTimeout(home_menu_delay);
-    home_menu_delay = setTimeout(function() {
-      home_menu_delay = null;
-      hide_home_menu();
-    }, 500);
-  }
-
-  $("#a-participe").hover(show_home_menu, prepare_to_hide_home_menu);
-
-  $("#participe .govresponde, " +
-    "#participe .govpergunta, " +
-    "#participe .govescuta,   " +
-    "#participe .agenda")
+    $("#participe .govresponde, " +
+      "#participe .govpergunta, " +
+      "#participe .govescuta,   " +
+      "#participe .agenda")
         .hover(function() {
             $(this).addClass('selected');
             $("#participe .desc").text($(this).data("text"));

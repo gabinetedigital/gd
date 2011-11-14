@@ -246,9 +246,11 @@ a {
 
 #participe {
     height: 233px;
-    background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
+    background: url(../imgs/slideshow.png) #58a410 center center no-repeat;
     overflow:hidden;
     display: none;
+    border-left:solid 1px #73d216;
+    border-right:solid 1px #73d216;
 }
 
 #participe div.col3 {
@@ -295,6 +297,11 @@ a {
     font-size: 16px;
 }
 
+#header-wrapper-2 .close {
+    float:right;
+    margin-right:10px;
+}
+
 /** Container **/
 
 /** Extras **/
@@ -319,14 +326,17 @@ a {
     background:#fff;
 }
 
-.overlay .close {
-    background-image:url(../imgs/close.png);
-    position:absolute;
-    right:-15px;
-    top:-15px;
+.close {
+    background:url(../imgs/close.png) no-repeat;
     cursor:pointer;
     height:35px;
     width:35px;
+}
+
+.overlay a.close {
+    position:absolute;
+    right:-15px;
+    top:-15px;
 }
 
 .overlay.video {
