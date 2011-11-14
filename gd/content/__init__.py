@@ -141,19 +141,6 @@ def govescuta():
 def gallery():
     return render_template('galeria.html')
 
-#this is not currently used!
-@app.route('/confirm_signup/<string:key>', methods=('GET',))
-def confirm_signup(key):
-    try:
-        user = User.query.filter_by(user_activation_key=key).one()
-        user.user_activation_key = ''
-        dbsession.commit()
-    except NoResultFound:
-        return home_page(dumps({'error':_(u'Authorization key not found in the database. Perhaps your profile is already enabled!')}))
-    except:
-        return home_page(dumps({'error':_(u'There was an error processing the request')}))
-    return home_page(dumps({'username':user.username,'message':_('Your profile was enabled successfully')}))
-
 
 @app.route('/news')
 @app.route('/news/<int:page>')
