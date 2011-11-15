@@ -48,7 +48,7 @@ def contrib_json():
     if not auth.is_authenticated():
         return msg.error(_(u'User not authenticated'))
 
-    form = ContribForm()
+    form = ContribForm(csrf_enabled=False)
     if form.validate_on_submit():
         Contrib(
             title=form.data['title'],
@@ -62,8 +62,4 @@ def contrib_json():
         data.update({ 'csrf': form.csrf.data })
         return msg.ok(data)
     else:
-        # This field is special, it must be validated before anything. If it
-        # doesn't work, the action must be aborted.
-        if not form.csrf_is_valid:
-            return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
         return format_csrf_error(form, form.errors, 'ValidationError')

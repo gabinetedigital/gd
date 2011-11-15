@@ -134,23 +134,29 @@ var auth = (function() {
                             overlay.find('.errmsg').html('').hide();
                         },
 
-                        success: function (data) {
-                            var pData = $.parseJSON(data);
-                            if (pData.status === 'ok') {
-                                auth.userAuthenticated(pData.msg.user);
+                        success: function (rdata) {
+                            var data = $.parseJSON(rdata);
+
+                            if (data.status === 'ok') {
+                                auth.userAuthenticated(data.msg.user);
                                 closeMethod();
                                 return;
                             }
 
-                            /* Here we're sure that things didn't work :( */
-                            var errors = pData.msg.data;
-                            var code = pData.code;
-                            var csrfToken = pData.msg.csrf;
+                            /* Here we know that something is wrong */
+                            var form = overlay.find('form');
+                            var code = data.code;
+                            var errors = data.msg;
 
-                            /* The first step now is to set the new csrf token to
-                             * our form. If we don't do it, we can't try to
-                             * register again. */
-                            overlay.find('[name=csrf]').val(csrfToken);
+                            /* Just updating this object with received data */
+                            if (data.msg.data)
+                                errors = data.msg.data;
+
+                            /* The first step now is to set the new csrf
+                             * token to our form. If we don't do it, we
+                             * can't try to register again. */
+                            if (data.msg.csrf !== undefined)
+                                form.find('[name=csrf]').val(data.msg.csrf);
 
                             /* The user made a mistake when filling the form */
                             if (code === 'ValidationError') {
@@ -167,7 +173,7 @@ var auth = (function() {
                                 overlay
                                     .find('div.error')
                                     .fadeIn()
-                                    .html(pData.msg);
+                                    .html(errors);
                             }
                         }
                     });

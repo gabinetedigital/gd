@@ -178,24 +178,32 @@ var themeapi = (function () {
             return true;
         },
 
-        success: function (data) {
-            /* Here we know that something is wrong */
-            var pData = $.parseJSON(data);
-            var form = $('.contribute form');
-            var errors = pData.msg.data;
-            var code = pData.code;
-            var csrfToken = pData.msg.csrf;
-
-            /* The first step now is to set the new csrf token to
-             * our form. If we don't do it, we can't try to
-             * register again. */
-            form.find('[name=csrf]').val(csrfToken);
+        success: function (rdata) {
+            var data = $.parseJSON(rdata);
 
             /* It's everything ok, let's get out */
-            if (pData.status === 'ok') {
+            if (data.status === 'ok') {
                 $('#form fieldset').fadeOut();
-                return $('div.success').fadeIn();
+                $('div.success').fadeIn();
+                return;
             }
+
+            console.debug(data);
+
+            /* Here we know that something is wrong */
+            var form = $('.contribute form');
+            var code = data.code;
+            var errors = data.msg;
+
+            /* Just updating this object with received data */
+            if (data.msg && data.msg.data)
+                errors = data.msg.data;
+
+            /* The first step now is to set the new csrf
+             * token to our form. If we don't do it, we
+             * can't try to register again. */
+            if (data.msg.csrf !== undefined)
+                form.find('[name=csrf]').val(data.msg.csrf);
 
             /* The user made a mistake when filling the form */
             if (code === 'ValidationError') {
@@ -219,8 +227,8 @@ var themeapi = (function () {
             } else {
                 form
                     .find('div.error')
-                    .fadeIn('fast')
-                    .html(pData.msg.data);
+                    .html(errors)
+                    .fadeIn('fast');
             }
             return null;
         }

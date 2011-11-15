@@ -52,6 +52,7 @@ def social(form, show=True, default=None):
     data = default or {}
     data.update(facebook)
     inst = form(**data) if show else form()
+    inst.csrf_enabled = False
 
     # Preparing form meta data
     inst.social = bool(facebook)
@@ -150,12 +151,6 @@ def signup_json():
         data = authapi.login_user_instance(user, password)
         return msg.ok({ 'user': data })
     else:
-        # This field is special, it must be validated before anything. If it
-        # doesn't work, the action must be aborted.
-        if not form.csrf_is_valid:
-            return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
-
-        # Usual validation error
         return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
 
