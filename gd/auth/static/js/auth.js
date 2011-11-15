@@ -47,6 +47,9 @@ var auth = (function() {
                     /* Just focus the username when overlay shows up */
                     overlay.find('input[name=username]').focus();
 
+                    /* We're done! */
+                    overlay.removeClass('loading');
+
                     $(overlay.find('form')).ajaxForm({
                         beforeSubmit: function () {
                             $('.msg').fadeOut();

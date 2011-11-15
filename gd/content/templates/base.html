@@ -75,10 +75,24 @@
             </div>
             <div class="col2">
               <div id="user-space">
-                <div id="loginoverlay" class="overlay">
-                  <div class="contentWrap"></div></div>
-                <div id="signupoverlay" class="overlay">
-                  <div class="contentWrap"></div></div>
+                <div id="loginoverlay" class="overlay loading">
+                  <div class="contentWrap">
+                    <div class="ct">
+                      <strong>Carregando</strong>
+                      <img src="{{ url_for('static', filename='imgs/loading.gif') }}"
+                           alt="Carregando, por favor aguarde" class="loading">
+                    </div>
+                  </div>
+                </div>
+                <div id="signupoverlay" class="overlay loading">
+                  <div class="contentWrap">
+                    <div class="ct">
+                      <strong>Carregando</strong>
+                      <img src="{{ url_for('static', filename='imgs/loading.gif') }}"
+                           alt="Carregando, por favor aguarde" class="loading">
+                    </div>
+                  </div>
+                </div>
                 <ul class="login">
                   {% if user is not none %}
                   <li class="avatar">
