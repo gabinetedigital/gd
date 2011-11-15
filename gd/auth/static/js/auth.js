@@ -33,72 +33,70 @@ var auth = (function() {
         , $loginOverlay: $('#loginoverlay').overlay({
             api: true,
             top: '5px',
+            oneInstance: false,
+            speed: 'fast',
             mask: {
                 color: '#111',
                 opacity: 0.7
             },
-            oneInstance: false,
-            speed: 'fast',
             onBeforeLoad: function() {
-                var wrap = this.getOverlay().find(".contentWrap");
-                wrap.load(url_for('auth.login'));
-            },
-            onLoad: function() {
                 var overlay = this.getOverlay();
+                var wrap = overlay.find(".contentWrap");
                 var closeMethod = this.close;
+                wrap.load(url_for('auth.login'), function () {
+                    /* Just focus the username when overlay shows up */
+                    overlay.find('input[name=username]').focus();
 
-                /* Just focus the username when overlay shows up */
-                overlay.find('input[name=username]').focus();
+                    $(overlay.find('form')).ajaxForm({
+                        beforeSubmit: function () {
+                            $('.msg').fadeOut();
+                        },
 
-                $(overlay.find('form')).ajaxForm({
-                    beforeSubmit: function () {
-                        $('.msg').fadeOut();
-                    },
-
-                    success: function (data) {
-                        var pData = $.parseJSON(data);
-                        if (pData.status !== 'ok') {
-                            overlay
-                                .find('#auth-error')
-                                .html(pData.msg)
-                                .fadeIn('fast');
-                        } else {
-                            closeMethod();
-                            auth.userAuthenticated(pData.msg.user);
+                        success: function (data) {
+                            var pData = $.parseJSON(data);
+                            if (pData.status !== 'ok') {
+                                overlay
+                                    .find('#auth-error')
+                                    .html(pData.msg)
+                                    .fadeIn('fast');
+                            } else {
+                                closeMethod();
+                                auth.userAuthenticated(pData.msg.user);
+                            }
+                            return false;
                         }
-                        return false;
-                    }
-                });
+                    });
 
-                overlay.find('#remember_password').ajaxForm({
-                    beforeSubmit: function () {
-                        overlay.find('.msg').fadeOut();
-                    },
-
-                    success: function (data) {
-                        var pData = $.parseJSON(data);
-                        if (pData.status !== 'ok') {
-                            overlay
-                                .find('#remember-password-error')
-                                .html(pData.msg)
-                                .fadeIn('fast');
-                            overlay
-                                .find('#remember-password-success')
-                                .hide();
-                        } else {
-                            overlay
-                                .find('#remember-password-success')
-                                .html(pData.msg)
-                                .fadeIn('fast');
-                            overlay
-                                .find('#remember-password-error')
-                                .hide();
-                            overlay.find('input[name=email]').val('');
-                        }
-                        window.setTimeout(function () {
+                    overlay.find('#remember_password').ajaxForm({
+                        beforeSubmit: function () {
                             overlay.find('.msg').fadeOut();
-                        }, 10000);
-                    }
+                        },
+
+                        success: function (data) {
+                            var pData = $.parseJSON(data);
+                            if (pData.status !== 'ok') {
+                                overlay
+                                    .find('#remember-password-error')
+                                    .html(pData.msg)
+                                    .fadeIn('fast');
+                                overlay
+                                    .find('#remember-password-success')
+                                    .hide();
+                            } else {
+                                overlay
+                                    .find('#remember-password-success')
+                                    .html(pData.msg)
+                                    .fadeIn('fast');
+                                overlay
+                                    .find('#remember-password-error')
+                                    .hide();
+                                overlay.find('input[name=email]').val('');
+                            }
+                            window.setTimeout(function () {
+                                overlay.find('.msg').fadeOut();
+                            }, 10000);
+                        }
+                    });
                 });
             }
         })
