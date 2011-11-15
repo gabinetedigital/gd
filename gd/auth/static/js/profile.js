@@ -47,7 +47,6 @@ $(function() {
             $('div.success').fadeOut();
             $('div.error').fadeIn().html('Existem erros no formulário');
             for (var field in data.msg.data) {
-                console.debug(field);
                 $('[name=' + field + ']').addClass('fielderror');
             }
         }

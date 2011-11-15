@@ -188,8 +188,6 @@ var themeapi = (function () {
                 return;
             }
 
-            console.debug(data);
-
             /* Here we know that something is wrong */
             var form = $('.contribute form');
             var code = data.code;
