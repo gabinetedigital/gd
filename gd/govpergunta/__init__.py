@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""Web application definitions to the govp tool"""
+
 from flask import Blueprint, request, render_template
 from gd.content.wp import wordpress
 from gd.utils import msg, format_csrf_error, format_csrf_error

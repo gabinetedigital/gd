@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""This module holds the declaration of all forms used by the auth app
+"""
+
 from gd.utils import phpass
 from gd.auth import choices, authenticated_user
 from gd.model import Upload

@@ -46,6 +46,12 @@ def dumps(obj):
     return internal_dumps(obj, default=_default_handler)
 
 
+def nts(string):
+    """Ensures that a string will not end with a trailing slash"""
+    if string.endswith('/'):
+        return string[:-1]
+    return string
+
 # -- JSON Messages --
 
 
@@ -100,11 +106,14 @@ def format_csrf_error(form, orig, code):
 # -- E-mail password
 
 def generate_random_password():
+    """As the name says, this method generates random passwords"""
     return ''.join(random.choice(
         string.ascii_uppercase + string.digits) for x in range(8))
 
 
 def send_password(to, password):
+    """Sends a new password to an user that forgot his/her choosen
+    one"""
     msg = MIMEText(conf.PASSWORD_REMAINDER_MSG % password)
     msg['Subject'] = conf.PASSWORD_REMAINDER_SUBJECT
     msg['From'] = conf.PASSWORD_REMAINDER_FROM
