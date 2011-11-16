@@ -42,12 +42,40 @@ TWITTER_STREAM_PASSWORD='password'
 TWITTER_MAYOR_USERNAME='themayor'
 
 # E-mail
-SMTP='localhost'
-PASSWORD_REMAINDER_MSG = "Sua senha: %s"
-PASSWORD_REMAINDER_SUBJECT = '[GabineteDigital]: sua senha'
-PASSWORD_REMAINDER_FROM = 'gabinetedigital@gg.rs.gov.br'
+SMTP = 'localhost'
+FROM_ADDR = 'gabinetedigital@gg.rs.gov.br'
 
-PASSWORD_CONFIRMATION_SUBJECT="[GabineteDigital] Confirmação de inscrição"
-PASSWORD_CONFIRMATION_FROM="gabinetedigital@gg.rs.gov.br"
-PASSWORD_CONFORMATION_MSG="""Por favor, siga o seguinte link para efetivar o
-seu cadastro no nosso site: http://localhost:5000/confirm_signup/%s"""
+# Password reminder
+PASSWORD_REMAINDER_SUBJECT = '[GabineteDigital]: Sua nova senha'
+PASSWORD_REMAINDER_MSG = u'''Olá,
+
+Você acessou o recurso "Esqueci minha senha" do site do Gabinete
+Digital. Respondendo à sua requisição, aqui vai a sua nova senha:
+
+  %(password)s
+
+Para acessar, use o botão "ENTRAR" no canto superior direito do site.
+
+-- 
+Gabinete Digital
+%(siteurl)s
+'''
+
+
+# Welcome email
+WELCOME_SUBJECT = "[GabineteDigital] Bem vindo ao Gabinete Digital"
+WELCOME_MSG = u'''Olá %(username)s,
+
+Muito obrigado por se cadastrar no Gabinete Digital.
+
+Esta é uma mensagem de boas vindas certificando que o seu cadastro foi
+efetuado com sucesso. Para saber mais sobre o projeto, acesse o site do
+nosso projeto em
+
+  %(siteurl)s
+
+
+-- 
+Gabinete Digital
+%(siteurl)s
+'''

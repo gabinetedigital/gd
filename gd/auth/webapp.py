@@ -149,6 +149,7 @@ def signup_json():
                 _(u'The email address informed is being used '
                   u'by another person'), 'EmailAddressExists')
         data = authapi.login_user_instance(user, password)
+        utils.send_welcome_email(user)
         return msg.ok({ 'user': data })
     else:
         return utils.format_csrf_error(form, form.errors, 'ValidationError')
@@ -233,16 +234,20 @@ def profile_passwd_json():
 
 @auth.route('/remember_password', methods=('POST',))
 def remember_password():
+    """An HTTP view that answers requests for a new password"""
     try:
         user = User.query.filter_by(email=request.values['email']).one()
         new_pass = utils.generate_random_password()
-        user.set_password(new_pass)
-        session.commit()
-        utils.send_password(request.values['email'], new_pass)
+        if utils.send_password(request.values['email'], new_pass):
+            user.set_password(new_pass)
+            session.commit()
+        else:
+            session.rollback()
+            raise Exception('Unable to send the email')
     except NoResultFound:
         return msg.error(
             _(u'E-mail not found in the database'), 'UserNotFound')
-    except:
+    except Exception, exc:
         return msg.error(
             _(u'There was an error sending the e-mail'), 'UnknownError')
     return msg.ok(_('Password sent to the email'))

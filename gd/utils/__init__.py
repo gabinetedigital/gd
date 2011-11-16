@@ -18,17 +18,19 @@
 """This module holds general useful functions that are too generic to be
 placed anywhere else.
 """
-from gd import conf
 
+import string
+import random
+import smtplib
+
+from email.mime.text import MIMEText
 from json import dumps as internal_dumps
 from datetime import date, datetime
 from StringIO import StringIO
 from PIL import Image, ImageOps
-import string
-import random
-from email.mime.text import MIMEText
 from gettext import gettext
-import smtplib
+
+from gd import conf
 
 
 def _default_handler(value):
@@ -111,24 +113,43 @@ def generate_random_password():
         string.ascii_uppercase + string.digits) for x in range(8))
 
 
-def send_password(to, password):
+def sendmail(subject, to_addr, message):
+    """Sends an email message"""
+    msg = MIMEText(message, _charset='utf-8')
+
+    # Setting message headers
+    msg['Subject'] = subject
+    msg['To'] = to_addr
+    msg['From'] = conf.FROM_ADDR
+
+    # Finally, sending the mail
+    smtp = smtplib.SMTP(conf.SMTP)
+    smtp.sendmail(conf.FROM_ADDR, to_addr, msg.as_string())
+    smtp.quit()
+
+    print msg.as_string()
+
+
+def send_password(addr, password):
     """Sends a new password to an user that forgot his/her choosen
     one"""
-    msg = MIMEText(conf.PASSWORD_REMAINDER_MSG % password)
-    msg['Subject'] = conf.PASSWORD_REMAINDER_SUBJECT
-    msg['From'] = conf.PASSWORD_REMAINDER_FROM
-    msg['To'] = to
+    # Setting the message body
+    sendmail(
+        conf.PASSWORD_REMAINDER_SUBJECT, addr,
+        conf.PASSWORD_REMAINDER_MSG % {
+            'password': password,
+            'siteurl': conf.BASE_URL,
+        }
+    )
 
-    s = smtplib.SMTP(conf.SMTP)
-    s.sendmail(conf.PASSWORD_REMAINDER_FROM, to, msg.as_string())
-    s.quit()
 
-def send_confirmation_email(user):
-    msg = MIMEText(conf.PASSWORD_CONFORMATION_MSG % user.user_activation_key)
-    msg['Subject'] = conf.PASSWORD_CONFIRMATION_SUBJECT
-    msg['From'] = conf.PASSWORD_CONFIRMATION_FROM
-    msg['To'] = user.email
-
-    s = smtplib.SMTP(conf.SMTP)
-    s.sendmail(conf.PASSWORD_CONFIRMATION_FROM, user.email, msg.as_string())
-    s.quit()
+def send_welcome_email(user):
+    """Sends a welcome message to brand new users"""
+    # Setting the message body
+    sendmail(
+        conf.WELCOME_SUBJECT, user.email,
+        conf.WELCOME_MSG % {
+            'username': unicode(user.display_name),
+            'siteurl': conf.BASE_URL,
+        }
+    )
