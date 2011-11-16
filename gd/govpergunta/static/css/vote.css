@@ -10,40 +10,44 @@
     color: #A40000;
 }
 
-#container h1.reg {
-    background: url('../imgs/regional128.png') no-repeat;
+#container h2.reg {
+    background: url('../imgs/regional90.png') no-repeat;
     color: #4e9a06;
+    padding-top: 22px;
 }
 
-#container h1.cui {
-    background: url('../imgs/cuidadointegral128.png') no-repeat;
+#container h2.cui {
+    background: url('../imgs/cuidadointegral90.png') no-repeat;
     color: #204a87;
+    padding-top: 10px;
 }
 
-#container h1.eme {
-    background: url('../imgs/emergencia128.png') no-repeat;
+#container h2.eme {
+    background: url('../imgs/emergencia90.png') no-repeat;
     color: #cc0000;
+    padding-top: 32px;
 }
 
-#container h1.fam {
-    background: url('../imgs/familia128.png') no-repeat;
+#container h2.fam {
+    background: url('../imgs/familia90.png') no-repeat;
     color: #f57900;
+    padding-top: 32px;
 }
 
-#container h1.med {
-    background: url('../imgs/medicamentos128.png') no-repeat;
+#container h2.med {
+    background: url('../imgs/medicamentos90.png') no-repeat;
     color: #75507b;
+    padding-top: 22px;
 }
 
 #container h2 {
     font-size: 32px;
     font-weight: normal;
-    padding-left: 150px;
+    padding-left: 100px;
+    height: 91px;
+    margin-top: 10px;
 }
 
-#cell {
- margin-top: 60px;
-}
 
 .col6 a {
     background-color: #dde9af;
@@ -77,15 +81,43 @@
 }
 
 .skip {
-    font-size: 20px;
+    font-size: 16px;
     margin: 0 auto;
     display: block;
     text-align: center;
     border-radius: 4px;
     background-color: #EEEEEC;
-    color: #2e3436;
+    color: #888a85;
     display: block;
     width: 220px;
+    margin-top: 30px;
+    padding: 4px;
+}
+
+.send {
+    font-size: 22px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #bcd35f;
+    color: #445016;
+    display: block;
+    width: 240px;
+    margin-top: 30px;
+    padding: 4px;
+}
+
+.send:hover {
+    font-size: 22px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #abc837;
+    color: #445016;
+    display: block;
+    width: 240px;
     margin-top: 30px;
     padding: 4px;
 }
