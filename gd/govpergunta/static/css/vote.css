@@ -5,9 +5,9 @@
 }
 
 #container h1 {
-    padding-left: 146px;
-    font-size: 44px;
+    font-size: 34px;
     font-weight: normal;
+    color: #A40000;
 }
 
 #container h1.reg {
@@ -35,28 +35,27 @@
     color: #75507b;
 }
 
+#container h2 {
+    font-size: 32px;
+    font-weight: normal;
+    padding-left: 150px;
+}
+
 #cell {
  margin-top: 60px;
 }
 
 .col6 a {
-    background-color: #d3d7cf;
+    background-color: #dde9af;
     display: block;
-    border-radius: 10px;
-}
-
-.col6 a {
-    background-color: #d3d7cf;
-    display: block;
-    border-radius: 10px;
-    color: #2e3436;
+    border-radius: 20px;
+    color: #445016;
 }
 
 .col6 a:hover {
-    background-color: #babdb6;
+    background-color: #bcd35f;
     display: block;
-    border-radius: 10px;
-    color: #2e3436;
+    color: #445016;
 }
 
 #cell .opt {
@@ -66,7 +65,7 @@
 
 
 #cell .opt h3 {
-    color: #555753;
+    color: #445016;
     font-size: 32px;
     font-weight: normal;
     text-align: center;
