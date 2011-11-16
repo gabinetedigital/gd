@@ -17,6 +17,16 @@
 
 import os
 import gettext
+import warnings
+from sqlalchemy.exc import SAWarning
+
+# This just screws up all the site, so let's handle it this way before
+# finding where that damn ascii string is being inserted.
+warnings.filterwarnings(
+    'ignore',
+    '^Unicode type received non-unicode bind param value',
+    SAWarning)
+
 
 # Hardcoded language configuration
 for lang in 'LANGUAGE', 'LANG':
