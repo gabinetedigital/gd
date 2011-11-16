@@ -126,15 +126,14 @@ def sendmail(subject, to_addr, message):
     smtp = smtplib.SMTP(conf.SMTP)
     smtp.sendmail(conf.FROM_ADDR, to_addr, msg.as_string())
     smtp.quit()
-
-    print msg.as_string()
+    return True
 
 
 def send_password(addr, password):
     """Sends a new password to an user that forgot his/her choosen
     one"""
     # Setting the message body
-    sendmail(
+    return sendmail(
         conf.PASSWORD_REMAINDER_SUBJECT, addr,
         conf.PASSWORD_REMAINDER_MSG % {
             'password': password,
@@ -146,7 +145,7 @@ def send_password(addr, password):
 def send_welcome_email(user):
     """Sends a welcome message to brand new users"""
     # Setting the message body
-    sendmail(
+    return sendmail(
         conf.WELCOME_SUBJECT, user.email,
         conf.WELCOME_MSG % {
             'username': unicode(user.display_name),
