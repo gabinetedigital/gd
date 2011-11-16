@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -17,8 +15,21 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gd import conf
-from gd.launch import app
+import os
+import gettext
 
-app.debug = conf.DEBUG
-app.run(conf.HTTP_HOST, conf.HTTP_PORT)
+# Hardcoded language configuration
+for lang in 'LANGUAGE', 'LANG':
+    os.environ[lang] = 'pt_BR'
+
+
+# Installing the translation files
+gettext.install('gabinetedigital', os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '..', 'po')),
+                unicode=True)
+
+
+# These imports *must* be declared after installing gettext, otherwise,
+# the magic `_' function will not be present in the imported modules
+from gd import conf
+from gd.content import app
