@@ -24,7 +24,12 @@
 }
 
 #container #news a {
-    color: #808080;
+    color: #668000;
+}
+
+#container #news a:hover {
+    color: #668000;
+    text-decoration: underline;
 }
 
 #container #news  {
@@ -95,9 +100,9 @@
     position: absolute;
 } */
 
-#container #post ul {
-    margin-left: 20px;
-    list-style-type: circle;
+#container #post ul li {
+    margin-left: 30px;
+    list-style-type: disc;
 }
 
 #container #post ol {
