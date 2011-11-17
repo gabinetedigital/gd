@@ -351,6 +351,15 @@
     border-bottom:solid 1px #888;
 }
 
+#themed .ctloading {
+    display:none;
+}
+
+#themed .loading {
+    text-align:center;
+    padding:40px 0;
+}
+
 #themed .ptpanes {
     padding:20px;
 }

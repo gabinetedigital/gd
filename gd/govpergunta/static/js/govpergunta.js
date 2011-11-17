@@ -1,4 +1,7 @@
 /* Copyright (C) 2011  Lincoln de Sousa <lincoln@comum.org>
+ * Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+ *
+ *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -110,10 +113,11 @@ var themeapi = (function () {
             if (this.current === '')
                 return null;
 
+            var $loading = $('.ctloading');
             var $el = $('a', $('ul.internal li').get(idx));
             var name = $el.attr('target');
-            var $target =
-                    $('div.' + name + ' .cont', $('.ptpanes')).html('');
+            var $target = $('div.' + name + ' .cont', $('.ptpanes'))
+                    .html($loading.html());
             var url =
                     BASE_URL + 'pages/govpergunta/' +
                     themeapi.current + '/' + name + '.json';

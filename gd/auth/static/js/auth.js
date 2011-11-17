@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Governo do Estado do Rio Grande do Sul
+/* Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
  *
  *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
  *
