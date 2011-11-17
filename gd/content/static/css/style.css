@@ -366,6 +366,18 @@ a {
     margin-left:5px;
 }
 
+#signupfeedback.overlay {
+    width:300px;
+    padding:10px;
+    border:none;
+    background:#eee;
+}
+
+#signupfeedback.overlay h2 {
+    margin-bottom:10px;
+    color:#4e9a06;
+}
+
 /** Footer **/
 
 #footer-wrapper {

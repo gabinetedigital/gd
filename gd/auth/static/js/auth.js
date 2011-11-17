@@ -140,6 +140,7 @@ var auth = (function() {
                             if (data.status === 'ok') {
                                 auth.userAuthenticated(data.msg.user);
                                 closeMethod();
+                                auth.feedbackAfterSignup();
                                 return;
                             }
 
@@ -285,6 +286,22 @@ var auth = (function() {
                     $target.fadeIn();
                 }, 200);
             }
+        }
+
+        /** Shows a box with a feedback to the user after user's signup */
+        , feedbackAfterSignup: function () {
+            var $overlay = $('#signupfeedback').overlay({
+                api: true,
+                top: '10px',
+                oneInstance: false,
+                speed: 'fast',
+                left: '60%'
+            });
+
+            $overlay.load();
+            window.setTimeout(function () {
+                $overlay.close();
+            }, 8000);
         }
     };
 
