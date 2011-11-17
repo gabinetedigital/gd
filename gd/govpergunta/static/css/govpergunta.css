@@ -355,9 +355,9 @@
     display:none;
 }
 
-#themed .loading {
+#themed .loading, #contributions .loading {
     text-align:center;
-    padding:40px 0;
+    padding:30px 0;
 }
 
 #themed .ptpanes {
@@ -411,7 +411,7 @@
 /* cuidado integral */
 #themed.cuidado h1 { color:#204a87; }
 #themed.cuidado span.icon {
-    background:url('../imgs/cuidadointegral90.png') no-repeat;
+    background:url('../imgs/cuidado90.png') no-repeat;
 }
 
 /* medicamentos */
@@ -487,7 +487,7 @@ div.contribute h3 {
 }
 
 div.contribute #form .cuidado {
-    background:url('../imgs/cuidadointegral32.png') no-repeat;
+    background:url('../imgs/cuidado32.png') no-repeat;
     width:70px;
 }
 
@@ -522,4 +522,63 @@ div.contribute #form .success h3 {
 div.contribute #form .success p {
     color:#333;
     padding:10px;
+}
+
+/* -- List of contributions -- */
+
+#contributions {
+    width:450px;
+    padding:10px;
+}
+
+#contributions menu {
+    float:right;
+}
+
+#contributions menu li {
+    display:block;
+    float:left;
+    margin-left:10px;
+}
+
+#contributions h2 {
+    color:#4e9a06;
+    margin-bottom:20px;
+}
+
+#contributions .contrib {
+    margin-bottom:20px;
+}
+
+#contributions .contrib .icon {
+    float:left;
+    margin-right:10px;
+}
+
+#contributions .contrib .title {
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+#contributions .contrib .content {
+    margin-left:42px;
+}
+
+#contributions .all {
+    display:none;
+}
+
+#contributions .wrapper {
+    border:none;
+    background:transparent;
+    overflow:auto;
+    max-height:400px;
+    margin-bottom:20px;
+    box-shadow:none;
+}
+
+#contributions .nocontrib {
+    display:none;
+    padding:0 20px;
+    font-size:12pt;
 }

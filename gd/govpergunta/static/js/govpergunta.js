@@ -127,7 +127,8 @@ var themeapi = (function () {
 
             /* The user asked to go to the contribute form */
             if (name === 'contribua') {
-                navapi.click(3);
+                this.goToContribForm();
+
                 $('a.theme').each(function () {
                     $(this).data('overlay').close();
                     $('#theme_' + self.current).attr('checked', 'checked');
@@ -150,6 +151,7 @@ var themeapi = (function () {
         },
 
         goToContribForm: function () {
+            navapi.click(3);
         }
     };
 
@@ -232,12 +234,90 @@ var themeapi = (function () {
                     .html(errors)
                     .fadeIn('fast');
             }
-            return null;
+            return;
         }
     });
 
     return new ThemeApi();
 })();
+
+
+
+var contribapi = (function () {
+    /* -- Overlay to list -- contributions that the user have already made */
+
+    function ContribApi () {
+    }
+
+
+    ContribApi.prototype = {
+        $overlay: $('#contributions').overlay({
+            api: true,
+            fixed: false,
+            oneInstance: false,
+            top: '5px',
+            speed: 'fast',
+            mask: {
+                color: '#111',
+                opacity: 0.7
+            },
+
+            onBeforeLoad: function () {
+                contribapi.showLoading();
+            },
+
+            onLoad: function () {
+                contribapi.loadContribs('user');
+            }
+        })
+
+        , showLoading: function () {
+            var $target = $('#contributions >ul');
+            var $loading = $('.ctloading');
+            $target.html($loading.html());
+        }
+
+        , loadContribs: function (type) {
+            var $target = $('#contributions ul.listing');
+            var url = url_for('govpergunta.contribs.' + type) + '.json';
+
+            /* Visibility of the items of the right type of listing */
+            var inverse = type === 'user' ? 'all' : 'user';
+            $('#contributions .' + inverse).hide();
+            $('#contributions .' + type).show();
+
+            /* Preparing the feedback for the user about his/her lack of
+             * contribs */
+            var $nomsgs = $('#contributions .nocontrib');
+            $nomsgs.hide();
+
+            /* Getting contributions */
+            $.getJSON(url, function (data) {
+                $target.html('');
+                if (data.length === 0) {
+                    $nomsgs.show();
+                    return;
+                }
+                $(data).each(function (index, item) {
+                    $(tmpl('contribTemplate', item))
+                        .appendTo($target);
+                });
+            });
+        }
+
+        , showContribs: function () {
+            this.$overlay.load();
+        }
+
+        , goToContribForm: function () {
+            this.$overlay.close();
+            themeapi.goToContribForm();
+        }
+    };
+
+    return new ContribApi();
+})();
+
 
 function show_form_again() {
     $("#form .title").attr("value", "");

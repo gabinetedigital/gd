@@ -360,6 +360,9 @@ class Contrib(Entity):
 
     title = Field(Unicode(256))
     content = Field(Unicode(400))
+    original = Field(Unicode(400), default=u'')
+    status = Field(Boolean, default=False)
+    parent = Field(Integer, default=0)
     user = ManyToOne('User')
     creation_date = Field(DateTime, default=datetime.now)
     theme = Field(Enum(

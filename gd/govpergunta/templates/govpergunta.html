@@ -101,7 +101,7 @@
                        title="Cuidado Integral">
                       <img
                          src="{{ url_for('.static',
-                                    filename='imgs/cuidadointegral128.png') }}">
+                                    filename='imgs/cuidado128.png') }}">
                       <p>Cuidado Integral</p>
                     </a>
                   </li>
@@ -271,7 +271,7 @@
       <li class="cuidado">
         <a title="Cuidado Integral"
            href="javascript:themeapi.change('cuidado', 'Cuidado Integral')">
-          <img src="{{ url_for('.static', filename='imgs/cuidadointegral32.png') }}"></a>
+          <img src="{{ url_for('.static', filename='imgs/cuidado32.png') }}"></a>
       </li>
       <li class="medicamentos">
         <a title="Acesso a Medicamentos"
@@ -349,32 +349,40 @@
 
     <div>
     </div><!-- /contribua -->
-
-  <div id="contribuicoes">
-    <h3>minhas contribuições</h3>
-        <ul>
-            <li>
-                <ul>
-                    <li><img src="tema(icone)"></li>
-                    <li>titulo</li>
-                    <li>conteudo</li>
-                </ul>
-            </li>
-        </ul>
-     <h3>Todas as contribuições</h3>
-        <ul>
-            <li>
-                <ul>
-                    <li><img src="tema(icone)"></li>
-                    <li>titulo</li>
-                    <li>conteudo</li>
-                </ul>
-            </li>
-        </ul>
-
-  </div>
-
   </div>
 </div>
+
+
+<div id="contributions" class="overlay">
+  <menu>
+    <li><a href="javascript:contribapi.loadContribs('all');">Ver Todas</a></li>
+    <li><a href="javascript:contribapi.loadContribs('user');">Ver só as Minhas</a></li>
+  </menu>
+
+  <h2 class="user">Minhas contribuições</h2>
+  <h2 class="all">Todas contribuições</h2>
+
+  <div class="nocontrib">
+    Você ainda não possui contribuições.<br>
+    Para fazer a sua primeira, siga
+    <a href="javascript:contribapi.goToContribForm()">este link</a>.
+  </div>
+  <div class="wrapper">
+    <ul class="listing"></ul>
+  </div>
+</div>
+
+<script type="text/html" id="contribTemplate">
+  <li class="contrib">
+    <ul>
+      <li class="icon">
+        <img
+           src="{{ url_for('.static', filename='imgs/') }}<%= obj.theme %>32.png">
+      </li>
+      <li class="title"><%= obj.title %></li>
+      <li class="content"><%= obj.content %></li>
+    </ul>
+  </li>
+</script>
 
 {% endblock %}

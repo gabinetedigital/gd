@@ -19,9 +19,10 @@
 """Web application definitions to the govp tool"""
 
 from flask import Blueprint, request, render_template
-from gd.content.wp import wordpress
-from gd.utils import msg, format_csrf_error, format_csrf_error
+
 from gd import auth
+from gd.content.wp import wordpress
+from gd.utils import msg, format_csrf_error, format_csrf_error, dumps
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
 
@@ -71,3 +72,39 @@ def contrib_json():
         return msg.ok(data)
     else:
         return format_csrf_error(form, form.errors, 'ValidationError')
+
+
+# -- JSON API that publishes contributions
+
+
+def _format_contrib(contrib):
+    """Returns a dictionary representation of a contribution"""
+    return {
+        'id': contrib.id,
+        'title': contrib.title,
+        'content': contrib.content,
+        'creation_date': contrib.creation_date,
+        'theme': contrib.theme,
+     }
+
+
+@govpergunta.route('/contribs/all.json')
+def contribs_all():
+    """Lists all contributions in the JSON format"""
+    return dumps([
+            _format_contrib(i)
+                for i in Contrib.query.filter_by(status=True)])
+
+
+@govpergunta.route('/contribs/user.json')
+def contribs_user():
+    """Lists all contributions in the JSON format"""
+    try:
+        user = auth.authenticated_user()
+    except auth.NobodyHome:
+        return dumps([])
+    return dumps([
+            _format_contrib(i)
+                for i in Contrib.query
+                    .filter_by(status=True)
+                    .filter(Contrib.user==user)])
