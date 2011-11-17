@@ -25,7 +25,9 @@ $(document).ready(function () {
         clickable: false
     });
 
-    window.setInterval(function () {
-        $("#slideshow .controls").data("tabs").next();
-    }, 7000);
+    if ($('#slideshow .controls').length > 0) {
+        window.setInterval(function () {
+            $("#slideshow .controls").data("tabs").next();
+        }, 7000);
+    }
 });
