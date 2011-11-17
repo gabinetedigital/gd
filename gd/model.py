@@ -362,7 +362,9 @@ class Contrib(Entity):
     content = Field(Unicode(400))
     original = Field(Unicode(400), default=u'')
     status = Field(Boolean, default=False)
+    enabled = Field(Boolean, default=True)
     parent = Field(Integer, default=0)
+    moderation = Field(Boolean, default=False)
     user = ManyToOne('User')
     creation_date = Field(DateTime, default=datetime.now)
     theme = Field(Enum(
