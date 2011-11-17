@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-14 14:27+BRST\n"
+"POT-Creation-Date: 2011-11-17 10:38+BRST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,127 +112,127 @@ msgstr ""
 msgid "0 to 4"
 msgstr ""
 
-#: ../gd/auth/forms.py:31
+#: ../gd/auth/forms.py:34
 msgid "Name"
 msgstr ""
 
-#: ../gd/auth/forms.py:36
+#: ../gd/auth/forms.py:39
 msgid "Email"
 msgstr ""
 
-#: ../gd/auth/forms.py:37 ../gd/auth/forms.py:101
+#: ../gd/auth/forms.py:40 ../gd/auth/forms.py:104
 msgid "That's not a valid email address."
 msgstr ""
 
-#: ../gd/auth/forms.py:42
+#: ../gd/auth/forms.py:45
 msgid "State"
 msgstr ""
 
-#: ../gd/auth/forms.py:49
+#: ../gd/auth/forms.py:52
 msgid "City"
 msgstr ""
 
-#: ../gd/auth/forms.py:56
+#: ../gd/auth/forms.py:59
 msgid "Age group"
 msgstr ""
 
-#: ../gd/auth/forms.py:61
+#: ../gd/auth/forms.py:64
 msgid "Gender"
 msgstr ""
 
-#: ../gd/auth/forms.py:66
+#: ../gd/auth/forms.py:69
 msgid "Phone"
 msgstr ""
 
-#: ../gd/auth/forms.py:70
+#: ../gd/auth/forms.py:73
 msgid "Twitter"
 msgstr ""
 
-#: ../gd/auth/forms.py:78
+#: ../gd/auth/forms.py:81
 msgid "Password"
 msgstr ""
 
-#: ../gd/auth/forms.py:84
+#: ../gd/auth/forms.py:87
 msgid "Password confirmation"
 msgstr ""
 
-#: ../gd/auth/forms.py:93
+#: ../gd/auth/forms.py:96
 msgid "Password does not match its confirmation"
 msgstr ""
 
-#: ../gd/auth/forms.py:100
+#: ../gd/auth/forms.py:103
 msgid "Email confirmation"
 msgstr ""
 
-#: ../gd/auth/forms.py:106
+#: ../gd/auth/forms.py:109
 msgid "Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab('tos')\">Terms of use</a>?"
 msgstr ""
 
-#: ../gd/auth/forms.py:117
+#: ../gd/auth/forms.py:120
 msgid "Email does not match its confirmation"
 msgstr ""
 
-#: ../gd/auth/forms.py:124
+#: ../gd/auth/forms.py:127
 msgid "User avatar"
 msgstr ""
 
-#: ../gd/auth/forms.py:128
+#: ../gd/auth/forms.py:131
 msgid "Only images are allowed in this field!"
 msgstr ""
 
-#: ../gd/auth/forms.py:137
+#: ../gd/auth/forms.py:140
 msgid "Your current password"
 msgstr ""
 
-#: ../gd/auth/forms.py:148
+#: ../gd/auth/forms.py:151
 msgid "The current password is wrong"
 msgstr ""
 
-#: ../gd/auth/webapp.py:99
+#: ../gd/auth/webapp.py:100
 msgid "User does not exist"
 msgstr ""
 
-#: ../gd/auth/webapp.py:101
+#: ../gd/auth/webapp.py:102
 msgid "Wrong password"
 msgstr ""
 
-#: ../gd/auth/webapp.py:104
+#: ../gd/auth/webapp.py:105
 msgid "Username or password missing"
 msgstr ""
 
-#: ../gd/auth/webapp.py:111
+#: ../gd/auth/webapp.py:112
 msgid "User loged out"
 msgstr ""
 
-#: ../gd/auth/webapp.py:144
+#: ../gd/auth/webapp.py:145
 msgid "User already exists"
 msgstr ""
 
-#: ../gd/auth/webapp.py:148
+#: ../gd/auth/webapp.py:149
 msgid "The email address informed is being used by another person"
 msgstr ""
 
-#: ../gd/auth/webapp.py:156 ../gd/govpergunta/__init__.py:68
+#: ../gd/auth/webapp.py:181 ../gd/auth/webapp.py:229
 msgid "Invalid csrf token"
 msgstr ""
 
-#: ../gd/auth/webapp.py:205
+#: ../gd/auth/webapp.py:208
 msgid "User profile updated successfuly"
 msgstr ""
 
-#: ../gd/auth/webapp.py:216
+#: ../gd/auth/webapp.py:222
 msgid "Password updated successful"
 msgstr ""
 
-#: ../gd/auth/webapp.py:230
+#: ../gd/auth/webapp.py:249
 msgid "E-mail not found in the database"
 msgstr ""
 
-#: ../gd/auth/webapp.py:233
+#: ../gd/auth/webapp.py:252
 msgid "There was an error sending the e-mail"
 msgstr ""
 
-#: ../gd/auth/webapp.py:234
+#: ../gd/auth/webapp.py:253
 msgid "Password sent to the email"
 msgstr ""
 
@@ -240,27 +240,15 @@ msgstr ""
 msgid "Notice posted successfuly. Please wait a few while your message is approved."
 msgstr ""
 
-#: ../gd/content/__init__.py:148
-msgid "Authorization key not found in the database. Perhaps your profile is already enabled!"
-msgstr ""
-
-#: ../gd/content/__init__.py:150
-msgid "There was an error processing the request"
-msgstr ""
-
-#: ../gd/content/__init__.py:151
-msgid "Your profile was enabled successfully"
-msgstr ""
-
-#: ../gd/content/__init__.py:233 ../gd/govpergunta/__init__.py:49
+#: ../gd/content/__init__.py:224 ../gd/govpergunta/__init__.py:57
 msgid "User not authenticated"
 msgstr ""
 
-#: ../gd/content/__init__.py:241
+#: ../gd/content/__init__.py:232
 msgid "Thank you. Your comment was successfuly sent"
 msgstr ""
 
-#: ../gd/govpergunta/__init__.py:61
+#: ../gd/govpergunta/__init__.py:69
 msgid "Contribution received successful"
 msgstr ""
 
