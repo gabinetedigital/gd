@@ -160,7 +160,13 @@ def wp_links_to_flask(text):
         subs[href] = wp_link_style_to_flask(href)
     for original, translated in subs.items():
         text = text.replace(original, translated)
-    return text.replace(wp_url, site_url)
+    text = text.replace(wp_url, site_url)
+
+    # Hammer to avoid breaking static content published by users
+    # directly in wordpress admin
+    return text.replace(
+        site_url + '/wp-content',
+        wp_url + '/wp-content')
 
 
 def wp_link_style_to_flask(href):
