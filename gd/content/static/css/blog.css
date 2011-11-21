@@ -162,6 +162,8 @@
 }
 
 #container #post .comment .content {
+    -moz-border-radius: 0px 20px 20px 20px;
+    -webkit-border-radius: 0px 20px 20px 20px;
     border-radius: 0px 20px 20px 20px;
     background: #eee;
     padding: 6px;
