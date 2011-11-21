@@ -208,22 +208,18 @@
     margin-top: 15px;
 }
 
-#container #sidebar #picday {
-    margin-top: 30px;
-    margin-bottom: 20px;
+#container #sidebar .widget_sp_image-image-link {
+    margin-top: 10px;
 }
-
-#container #sidebar #picday h3 {
-    color: #c4a000;
+#container #sidebar h3 {
+    color: #C4A000;
     font-size: 16px;
-    margin-bottom: 10px;
 }
-#container #sidebar #picday #picedge {
-    border: 1px solid #2e3436;
+#container #sidebar .widget_sp_image-image-link {
+    border: 1px solid #2E3436;
+    box-shadow: 3px 3px 4px #CCCCCC;
     width: 300px;
-     -moz-box-shadow: 3px 3px 4px #CCC;
-    -webkit-box-shadow: 3px 3px 4px #CCC;
-    box-shadow: 3px 3px 4px #CCC;
+    display: block;
 }
 
 #container #sidebar #picday img {

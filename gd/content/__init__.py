@@ -113,6 +113,7 @@ def index():
     return render_template(
         'index.html', wp=wordpress,
         slideshow=slideshow, news=news,
+        sidebar=wordpress.getSidebar,
         last_tweet=get_mayor_last_tweet(),
         videos=wordpress.wpgd.getHighlightedVideos(2),
     )
