@@ -125,6 +125,14 @@
     background: rgba(0,0,0,0.6);
 }
 
+#container #news .news li.title a {
+    color: #FFF;
+}
+
+#container #news .news li.title a:hover {
+    text-decoration: underline;
+}
+
 #container #news .news .meta {
     text-align: right;
     margin-top: 20px;
