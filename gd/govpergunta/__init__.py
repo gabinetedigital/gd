@@ -62,6 +62,12 @@ def vote():
                            contrib1=contrib1,
                            contrib2=contrib2)
 
+@govpergunta.route('/do_vote')
+def vote():
+    pairwise = fsession['pairwise']
+    pairwise.vote(request.get('prompt_id'), request.get('choice_id'))
+    return redirect(url_for("vote"))
+
 
 @govpergunta.route('/contrib_json', methods=('POST',))
 def contrib_json():

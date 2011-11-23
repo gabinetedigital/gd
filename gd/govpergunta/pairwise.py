@@ -53,3 +53,6 @@ class Pairwise:
         question = parseString(content)
         promptNode =  question.getElementsByTagName('picked_prompt_id')[0]
         return qid, promptNode.childNodes[0].data
+
+    def vote(self):
+        pass
