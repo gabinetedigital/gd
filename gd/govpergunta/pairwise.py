@@ -14,7 +14,8 @@ PAIRWISE_PASSWORD = 'pairpass'
 QUESTION_IDS = [1,2,3,4,5]
 TOTAL_THEMES = 5
 
-QUESTION_URL =  "/questions/%s.xml?visitor_identifier=%s&with_prompt=true"
+QUESTION_URL = "/questions/%s.xml?visitor_identifier=%s&with_appearance=true&with_prompt=true"
+
 PROMPT_URL = "/questions/%s/prompts/%s.xml?visitor_identifier=%s&with_prompt=true";
 
 class Pairwise:
