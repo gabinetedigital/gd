@@ -26,8 +26,6 @@ class Pairwise:
         qid, pid = self.get_prompt_id()
         path = PROMPT_URL % (qid, pid, self.user_id)
 
-        print 'requesting prompt %s' % path
-
         content = self.http_get(path)
         promptNode = parseString(content)
         leftNode =  promptNode.getElementsByTagName('left-choice-text')[0]
@@ -42,7 +40,6 @@ class Pairwise:
         base64string = base64.encodestring('%s:%s' %
                                            (PAIRWISE_USERNAME,
                                             PAIRWISE_PASSWORD))[:-1]
-        print PAIRWISE_SERVER + path
         req = urllib2.Request(PAIRWISE_SERVER + path)
         req.add_header("Authorization", "Basic %s" % base64string)
         return  urllib2.urlopen(req).read()
@@ -52,7 +49,6 @@ class Pairwise:
         rnd = int(math.ceil(random.random() * 10))
         qid =  QUESTION_IDS[rnd % TOTAL_THEMES]
         path = QUESTION_URL % (qid, self.user_id)
-        print 'requesting question %s' % path
         content = self.http_get(path)
         question = parseString(content)
         promptNode =  question.getElementsByTagName('picked_prompt_id')[0]
