@@ -19,13 +19,14 @@
 """Web application definitions to the govp tool"""
 
 from flask import Blueprint, request, render_template
+from flask import session as fsession
 
 from gd import auth
 from gd.content.wp import wordpress
 from gd.utils import msg, format_csrf_error, format_csrf_error, dumps
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
-
+from gd.govpergunta.pairwise import Pairwise
 
 govpergunta = Blueprint(
     'govpergunta', __name__,
@@ -42,8 +43,15 @@ def index():
 
 @govpergunta.route('/vote')
 def vote():
+    if not 'pairwise' in fsession:
+        fsession['pairwise'] = Pairwise();
+    pairwise = fsession['pairwise']
+    # this raises!!
+    contrib1, contrib2 = pairwise.get_pair()
     """Renders the index template"""
-    return render_template('vote.html')
+    return render_template('vote.html',
+                           contrib1=contrib1,
+                           contrib2=contrib2)
 
 
 @govpergunta.route('/contrib_json', methods=('POST',))
