@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+#
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -28,6 +30,12 @@ from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
 from gd.govpergunta.pairwise import Pairwise
 
+THEMES = {'cuidado': u'Cuidado Integral',
+          'familia': u'Saúde da Família',
+          'emergencia': u'Urgência e Emergência',
+          'medicamentos': u'Acesso a Medicamentos',
+          'regional': u'Saúde na sua Região'}
+
 govpergunta = Blueprint(
     'govpergunta', __name__,
     template_folder='templates',
@@ -48,8 +56,9 @@ def vote():
     pairwise = fsession['pairwise']
     # this raises!!
     contrib1, contrib2 = pairwise.get_pair()
-    """Renders the index template"""
     return render_template('vote.html',
+                           theme_name=contrib1.theme,
+                           theme_text=THEMES[contrib1.theme],
                            contrib1=contrib1,
                            contrib2=contrib2)
 
