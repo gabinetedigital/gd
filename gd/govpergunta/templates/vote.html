@@ -9,10 +9,13 @@
 {% endblock %}
 
 {% block content %}
-<script>
- VOTE_TOKEN="{{vote_token}}";
-</script>
+
 <div id="container">
+  <form id="vote-form" action="{{url_for('.add_vote')}}" method="POST">
+    <input type="hidden" name="token" value="{{vote_token}}">
+    <input id="vote-direction" type="hidden" name="direction" value="">
+  </form>
+
     <div class="row">
         <h1>Como podemos melhorar o atendimento na saúde pública?</h1>
         <div class="row-end"></div>
@@ -28,13 +31,13 @@
     </div>
 
     <div id="cell" class="row">
-        <div class="col6"><a href="{{url_for('.add_vote')}}/left" id="option_1">
+        <div class="col6"><a href="" id="option_1">
             <div class="opt">
                 <h3>{{contrib1.title}}</h3>
                 <p>{{contrib1.content}}</p>
             </div></a>
         </div>
-        <div class="col6"><a href="{{url_for('.add_vote')}}/right" id="option_2">
+        <div class="col6"><a href="" id="option_2">
             <div class="opt">
                 <h3>{{contrib2.title}}</h3>
                 <p>{{contrib2.content}}</p>

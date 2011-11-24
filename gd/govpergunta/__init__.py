@@ -20,7 +20,7 @@
 
 """Web application definitions to the govp tool"""
 
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, redirect, url_for
 from flask import session as fsession
 
 from gd import auth
@@ -51,13 +51,14 @@ def index():
 
 @govpergunta.route('/vote')
 def vote():
-    fsession['pairwise'] = Pairwise();
-    if not 'pairwise' in fsession:
-        fsession['pairwise'] = Pairwise();
+    if  'pairwise' not in fsession:
+        fsession['pairwise'] = Pairwise()
         fsession['vote-count'] = 0
+
     pairwise = fsession['pairwise']
     # this raises!!
     contrib1, contrib2, token = pairwise.get_pair()
+    fsession.modified = True
     return render_template('vote.html',
                            theme_name=contrib1.theme,
                            theme_text=THEMES[contrib1.theme],
@@ -71,7 +72,8 @@ def add_vote():
     pairwise = fsession['pairwise']
     pairwise.vote(request.values.get('direction'), request.values.get('token'))
     fsession['vote-count'] = fsession['vote-count'] + 1
-    return msg.ok({'data':'ok'})
+    fsession.modified = True
+    return redirect(url_for('.vote'))
 
 @govpergunta.route('/contrib_json', methods=('POST',))
 def contrib_json():

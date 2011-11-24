@@ -1,33 +1,13 @@
 $(function() {
   $("#option_1").click(function(ev) {
-    ev.preventDefault()
-    $.ajax({
-      type:'post',
-      url: url_for('govpergunta.add_vote'),
-      data: {direction:'left', token:VOTE_TOKEN},
-      error: function(e) {
-        // console.log("error 1")
-        // console.dir(e)
-          },
-      success: function(data) {
-        document.location.reload()
-      }
-    });
+    ev.preventDefault();
+    $("#vote-direction").attr("value", "left");
+    $("#vote-form").submit();
   });
 
   $("#option_2").click(function(ev) {
-    ev.preventDefault()
-    $.ajax({
-      type:'post',
-      url: url_for('govpergunta.add_vote'),
-      data: {direction:'right', token:VOTE_TOKEN},
-      error: function(e) {
-        // console.log("error 1")
-        // console.dir(e)
-          },
-      success: function(data) {
-        document.location.reload()
-      }
-    });
+    ev.preventDefault();
+    $("#vote-direction").attr("value", "right");
+    $("#vote-form").submit();
   });
 });
