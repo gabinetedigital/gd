@@ -53,16 +53,14 @@ def index():
 def vote():
     if  'pairwise' not in fsession:
         fsession['pairwise'] = Pairwise()
-        fsession['vote-count'] = 0
-
     pairwise = fsession['pairwise']
-    # this raises!!
-    contrib1, contrib2, token = pairwise.get_pair()
+
+    contrib1, contrib2, token, votes = pairwise.get_pair()
     fsession.modified = True
     return render_template('vote.html',
                            theme_name=contrib1.theme,
                            theme_text=THEMES[contrib1.theme],
-                           votes=fsession['vote-count'],
+                           votes=votes,
                            contrib1=contrib1,
                            contrib2=contrib2,
                            vote_token=token)
@@ -71,7 +69,6 @@ def vote():
 def add_vote():
     pairwise = fsession['pairwise']
     pairwise.vote(request.values.get('direction'), request.values.get('token'))
-    fsession['vote-count'] = fsession['vote-count'] + 1
     fsession.modified = True
     return redirect(url_for('.vote'))
 
