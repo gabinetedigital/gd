@@ -359,7 +359,7 @@ class Contrib(Entity):
     using_options(shortnames=True)
 
     title = Field(Unicode(256))
-    content = Field(Unicode(400))
+    content = Field(Unicode(600))
     original = Field(Unicode(400), default=u'')
     status = Field(Boolean, default=False)
     enabled = Field(Boolean, default=True)
