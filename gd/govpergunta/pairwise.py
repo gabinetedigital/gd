@@ -73,8 +73,8 @@ class Pairwise:
     def choose_question_id(self):
         total_questions = len(QUESTION_IDS)
         rnd = int(math.ceil(random.random() * 10))
-        #self.current_qid = QUESTION_IDS[rnd % TOTAL_THEMES]
-        self.current_qid = QUESTION_IDS[1]
+        self.current_qid = QUESTION_IDS[rnd % TOTAL_THEMES]
+        #self.current_qid = QUESTION_IDS[1]
 
     def lookup_prompt_id(self):
         path = QUESTION_URL % (self.current_qid, self.uid)
