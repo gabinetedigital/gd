@@ -18,15 +18,15 @@ QUESTION_URL = "/questions/%s.xml?visitor_identifier=%s&with_appearance=true&wit
 
 PROMPT_URL = "/questions/%s/prompts/%s.xml?visitor_identifier=%s&with_prompt=true";
 
+VOTE_URL = "/questions/%s/prompts/%s/vote.xml?"
+VOTE_PARAMS = "vote[visitor_identifier]=%s&vote[direction]=%s&next_prompt[visitor_identifier]=%s"
+
+
 class Pairwise:
     def __init__(self):
-        self.user_id = str(uuid4())
+        self.uid =  str(uuid4())
 
-    def get_pair(self):
-        qid, pid = self.get_prompt_id()
-        path = PROMPT_URL % (qid, pid, self.user_id)
-
-        content = self.http_get(path)
+    def unpack_contrib(self, content):
         promptNode = parseString(content)
         leftNode =  promptNode.getElementsByTagName('left-choice-text')[0]
         rightNode =  promptNode.getElementsByTagName('right-choice-text')[0]
@@ -34,7 +34,18 @@ class Pairwise:
         rightjs = loads(rightNode.childNodes[0].data)
         c1 = Contrib.query.get(leftjs['id'])
         c2 = Contrib.query.get(rightjs['id'])
-        return c1,c2
+        return c1, c2
+
+    def get_pair(self):
+        self.current_qid, self.current_pid = self.choose_prompt()
+
+        path = PROMPT_URL % (self.current_qid, self.current_pid, self.uid)
+        content = self.http_get(path)
+        c1, c2 = self.unpack_contrib(content)
+
+        self.current_match_token = str(uuid4())
+
+        return c1, c2, self.current_match_token
 
     def http_get(self, path):
         base64string = base64.encodestring('%s:%s' %
@@ -42,17 +53,35 @@ class Pairwise:
                                             PAIRWISE_PASSWORD))[:-1]
         req = urllib2.Request(PAIRWISE_SERVER + path)
         req.add_header("Authorization", "Basic %s" % base64string)
+        req.add_header('Content-Type', 'application/json')
         return  urllib2.urlopen(req).read()
 
-    def get_prompt_id(self):
+    def http_post(self, path):
+        base64string = base64.encodestring('%s:%s' %
+                                           (PAIRWISE_USERNAME,
+                                            PAIRWISE_PASSWORD))[:-1]
+        req = urllib2.Request(PAIRWISE_SERVER + path)
+        req.add_header("Authorization", "Basic %s" % base64string)
+        req.add_header('Content-Type', 'application/json')
+        return  urllib2.urlopen(req, '').read()
+
+    def get_a_question_id(self):
         total_questions = len(QUESTION_IDS)
         rnd = int(math.ceil(random.random() * 10))
-        qid =  QUESTION_IDS[rnd % TOTAL_THEMES]
-        path = QUESTION_URL % (qid, self.user_id)
+        return QUESTION_IDS[rnd % TOTAL_THEMES]
+
+    def choose_prompt(self):
+        qid =  self.get_a_question_id()
+        path = QUESTION_URL % (qid, self.uid)
         content = self.http_get(path)
         question = parseString(content)
         promptNode =  question.getElementsByTagName('picked_prompt_id')[0]
         return qid, promptNode.childNodes[0].data
 
-    def vote(self):
-        pass
+    def vote(self, direction, token):
+        if token != self.current_match_token:
+            raise Exception('Invalid token')
+
+        path = VOTE_URL % (self.current_qid, self.current_pid)
+        path = path + (VOTE_PARAMS % (self.uid, direction, self.uid))
+        self.http_post(path)

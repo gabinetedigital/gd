@@ -39,8 +39,7 @@ function create_question(theme, ideas, count) {
       ideas: ideas,
       information:"",
       'local_identifier':'1',
-      'visitor-identifier': 'a4b8c273bfb9a25bf4999c71b0869cb4',
-      'it-should-autoactivate-ideas':false
+      'visitor-identifier': 'a4b8c273bfb9a25bf4999c71b0869cb4'
     }};
 
   var data = JSON.stringify(question);

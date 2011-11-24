@@ -4,7 +4,14 @@
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/vote.css') }}">
 {% endblock %}
 
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/vote.js') }}"></script>
+{% endblock %}
+
 {% block content %}
+<script>
+ VOTE_TOKEN="{{vote_token}}";
+</script>
 <div id="container">
     <div class="row">
         <h1>Como podemos melhorar o atendimento na saúde pública?</h1>
@@ -15,19 +22,19 @@
             <h2 class="{{theme_name}}">{{theme_text}}</h2>
         </div>
         <div class="col6">
-            <h2 class="counter">Você possui 10 votos para esse tema</h2>
+            <h2 class="counter">Você já votou {{votes}} vezes</h2>
         </div>
     <div class="row-end"></div>
     </div>
 
     <div id="cell" class="row">
-        <div class="col6"><a href="">
+        <div class="col6"><a href="{{url_for('.add_vote')}}/left" id="option_1">
             <div class="opt">
                 <h3>{{contrib1.title}}</h3>
                 <p>{{contrib1.content}}</p>
             </div></a>
         </div>
-        <div class="col6"><a href="">
+        <div class="col6"><a href="{{url_for('.add_vote')}}/right" id="option_2">
             <div class="opt">
                 <h3>{{contrib2.title}}</h3>
                 <p>{{contrib2.content}}</p>
@@ -43,6 +50,5 @@
         </div>
         <div class="row-end"></div>
     </div>
-
 </div>
 {% endblock %}

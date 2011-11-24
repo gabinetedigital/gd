@@ -51,23 +51,27 @@ def index():
 
 @govpergunta.route('/vote')
 def vote():
+    fsession['pairwise'] = Pairwise();
     if not 'pairwise' in fsession:
         fsession['pairwise'] = Pairwise();
+        fsession['vote-count'] = 0
     pairwise = fsession['pairwise']
     # this raises!!
-    contrib1, contrib2 = pairwise.get_pair()
+    contrib1, contrib2, token = pairwise.get_pair()
     return render_template('vote.html',
                            theme_name=contrib1.theme,
                            theme_text=THEMES[contrib1.theme],
+                           votes=fsession['vote-count'],
                            contrib1=contrib1,
-                           contrib2=contrib2)
+                           contrib2=contrib2,
+                           vote_token=token)
 
-@govpergunta.route('/do_vote')
-def vote():
+@govpergunta.route('/add_vote', methods=('POST',))
+def add_vote():
     pairwise = fsession['pairwise']
-    pairwise.vote(request.get('prompt_id'), request.get('choice_id'))
-    return redirect(url_for("vote"))
-
+    pairwise.vote(request.values.get('direction'), request.values.get('token'))
+    fsession['vote-count'] = fsession['vote-count'] + 1
+    return msg.ok({'data':'ok'})
 
 @govpergunta.route('/contrib_json', methods=('POST',))
 def contrib_json():
