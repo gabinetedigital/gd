@@ -25,6 +25,19 @@ SKIP_URL = "/questions/%s/prompts/%s/skip.xml?"
 SKIP_PARAMS = "vote[visitor_identifier]=%s&skip[skip_reason]=other&skip[visitor_identifier]=%s&next_prompt[visitor_identifier]=%s";
 
 
+def _request(path, method='get'):
+    base64string = base64.encodestring(
+        '%s:%s' % (PAIRWISE_USERNAME, PAIRWISE_PASSWORD))[:-1]
+    req = urllib2.Request(PAIRWISE_SERVER + path)
+    req.add_header("Authorization", "Basic %s" % base64string)
+    req.add_header('Content-Type', 'application/json')
+
+    # If you don't send anything, urllib does a GET, with some data, it
+    # does a POST. Nice API... NOT!
+    data = method == 'get' and '' or None
+    return  urllib2.urlopen(req, data).read()
+
+
 class Pairwise:
     def __init__(self):
         self.uid =  str(uuid4())
@@ -36,24 +49,6 @@ class Pairwise:
 
     def right_contrib(self):
         return Contrib.query.get(self.prompts[self.current_qid]['right'])
-
-    def http_get(self, path):
-        base64string = base64.encodestring('%s:%s' %
-                                           (PAIRWISE_USERNAME,
-                                            PAIRWISE_PASSWORD))[:-1]
-        req = urllib2.Request(PAIRWISE_SERVER + path)
-        req.add_header("Authorization", "Basic %s" % base64string)
-        req.add_header('Content-Type', 'application/json')
-        return  urllib2.urlopen(req).read()
-
-    def http_post(self, path):
-        base64string = base64.encodestring('%s:%s' %
-                                           (PAIRWISE_USERNAME,
-                                            PAIRWISE_PASSWORD))[:-1]
-        req = urllib2.Request(PAIRWISE_SERVER + path)
-        req.add_header("Authorization", "Basic %s" % base64string)
-        req.add_header('Content-Type', 'application/json')
-        return  urllib2.urlopen(req, '').read()
 
     def get_pair(self):
         self.init_prompt()
@@ -78,14 +73,14 @@ class Pairwise:
 
     def lookup_prompt_id(self):
         path = QUESTION_URL % (self.current_qid, self.uid)
-        content = self.http_get(path)
+        content = _request(path)
         question = parseString(content)
         promptNode =  question.getElementsByTagName('picked_prompt_id')[0]
         self.current_pid = promptNode.childNodes[0].data
 
     def load_prompt(self):
         path = PROMPT_URL % (self.current_qid, self.current_pid, self.uid)
-        content = self.http_get(path)
+        content = _request(path)
         self.setup_prompt(content)
 
     def setup_prompt(self, content):
