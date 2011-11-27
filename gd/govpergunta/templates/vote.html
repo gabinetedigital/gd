@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('.static', filename='css/vote.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/vote.css') }}">
 {% endblock %}
 
 {% block javascript %}
@@ -17,45 +17,76 @@
   </form>
 
   <div class="row">
-    <h1>Como podemos melhorar o atendimento na saúde pública?</h1>
-    <div class="row-end"></div>
-  </div>
-  <div class="row">
-    <div class="col6">
-      <h2 class="{{theme_name}}">{{ theme }}</h2>
+    <div id="applogo" class="col4">
+      <h1>
+        <a href="javascript:;">Governador Pergunta</a>
+      </h1>
     </div>
-    <div class="col6">
-      <h2 class="counter">Você já votou {{ pair.votes }} vezes</h2>
+    <div class="8">
+      <h1>Como podemos melhorar o atendimento na saúde pública?</h1>
     </div>
     <div class="row-end"></div>
   </div>
 
-  <div id="cell" class="row">
-    <div class="col6">
-      <a href="" id="option_1">
-        <div class="opt">
-          <!-- {{ pair.left.id }}-->
-          <h3>{{ pair.left.title.decode('iso-8859-1') }}</h3>
-          <p>{{ pair.left.content.decode('iso-8859-1') }}</p>
-        </div>
+  <div class="row">
+    <p class="helptext">
+      Mauris nunc risus, commodo rutrum rutrum id, sodales nec augue. Ut eget
+      orci et arcu fermentum condimentum et faucibus eros. Aenean mauris nisi,
+      tristique id bibendum sit amet, varius a sem. Nulla aliquam ultrices
+      lorem, vel vulputate est elementum vitae.
+      pharetra est.
+    </p>
+    <span class="row-end"></span>
+  </div>
+
+  <div class="row questions">
+    <h2 class="{{ pair.left.theme }}">{{ theme }}</h2>
+    <span class="row-end"></span>
+
+    <div class="opt left">
+      <!-- {{ pair.left.id }}-->
+      <h3>{{ pair.left.title.decode('iso-8859-1') }}</h3>
+      <p>{{ pair.left.content.decode('iso-8859-1') }}</p>
+      <a class="vote awesome" href="" id="option_1">
+        Escolher esta contribuição
       </a>
     </div>
-    <div class="col6">
-      <a href="" id="option_2">
-        <div class="opt">
-          <!-- {{ pair.right.id }}-->
-          <h3>{{ pair.right.title.decode('iso-8859-1') }}</h3>
-          <p>{{ pair.right.content.decode('iso-8859-1') }}</p>
-        </div>
+
+    <div class="opt">
+      <!-- {{ pair.right.id }}-->
+      <h3>{{ pair.right.title.decode('iso-8859-1') }}</h3>
+      <p>{{ pair.right.content.decode('iso-8859-1') }}</p>
+      <a class="vote awesome" href="" id="option_2">
+        Escolher esta contribuição
       </a>
     </div>
     <div class="row-end"></div>
   </div>
+
   <div class="row">
     <div class="col12">
-      <a id="vote-skip" class="skip" href="">Não consigo decidir</a>
-      <a class="send" href="">Envie sua contribuição</a>
-      <a class="misc" href="">Dúvidas e sugestões</a>
+      <ul class="pmenu">
+        <li>
+          <a href="javascript:;" id="vote-skip" class="awesome">
+            Não consigo decidir
+          </a>
+        </li>
+        <li>
+          <a class="awesome" href="">
+            Envie sua contribuição
+          </a>
+        </li>
+        <li>
+          <a class="awesome" href="">
+            Ver todas as contribuições
+          </a>
+        </li>
+        <li>
+          <a class="awesome" href="">
+            Saiba mais
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="row-end"></div>
   </div>

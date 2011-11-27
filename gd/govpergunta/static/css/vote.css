@@ -4,47 +4,55 @@
     font-family: 'OpenSansRegular';
 }
 
+#menu { display:none; }
+#header { height:150px; }
+
+#applogo h1 a {
+    background: url('../imgs/applogo.png') no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+    height: 77px;
+    width: 208px;
+    margin: 15px;
+    display:block;
+}
+
 #container h1 {
-    font-size: 34px;
+    font-size: 30px;
     font-weight: normal;
     color: #A40000;
 }
 
-#container h2.reg {
-    background: url('../imgs/regional90.png') no-repeat;
+#container h2.regional {
+    background: url('../imgs/regional32.png') no-repeat;
     color: #4e9a06;
-    padding-top: 22px;
 }
 
-#container h2.cui {
-    background: url('../imgs/cuidado90.png') no-repeat;
+#container h2.cuidado {
+    background: url('../imgs/cuidado32.png') no-repeat;
     color: #204a87;
-    padding-top: 10px;
 }
 
-#container h2.eme {
-    background: url('../imgs/emergencia90.png') no-repeat;
+#container h2.emergencia {
+    background: url('../imgs/emergencia32.png') no-repeat;
     color: #cc0000;
-    padding-top: 32px;
 }
 
-#container h2.fam {
-    background: url('../imgs/familia90.png') no-repeat;
+#container h2.familia {
+    background: url('../imgs/familia32.png') no-repeat;
     color: #f57900;
-    padding-top: 32px;
 }
 
-#container h2.med {
-    background: url('../imgs/medicamentos90.png') no-repeat;
+#container h2.medicamentos {
+    background: url('../imgs/medicamentos32.png') no-repeat;
     color: #75507b;
-    padding-top: 22px;
 }
 
 #container h2 {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: normal;
-    padding-left: 100px;
-    height: 91px;
+    padding-left: 40px;
+    height: 40px;
     margin-top: 10px;
 }
 
@@ -62,18 +70,31 @@
     color: #445016;
 }
 
-#cell .opt {
+.opt {
     padding: 20px;
     font-size: 16px;
+    background:#f7f7f7;
+    width:428px;
+    float:left;
+    border:solid 1px #f0f0f0;
+    border-radius:6px;
 }
 
+.opt.left {
+    margin-right:15px;
+}
 
-#cell .opt h3 {
+.opt h3 {
     color: #445016;
-    font-size: 32px;
+    font-size: 22px;
     font-weight: normal;
     text-align: center;
     margin-bottom: 20px;
+    height:40px;
+}
+
+.opt p {
+    height:250px;
 }
 
 .skip:hover {
@@ -135,4 +156,35 @@
 
 .misc:hover {
     text-decoration: underline;
+}
+
+.helptext {
+    font-size:12pt;
+    color:#333;
+    margin:0 30px 20px 100px;
+}
+
+.questions {
+    padding:10px;
+    margin:20px 0;
+    -moz-box-shadow: 0px 5px 14px 2px #ccc;
+    -webkit-box-shadow: 0px 5px 14px 2px #ccc;
+    box-shadow: 0px 5px 14px 2px #ccc;
+}
+
+a.vote {
+    float:right;
+    background-color:blue;
+}
+
+.pmenu {
+    display:block;
+    height:60px;
+    padding-top:20px;
+}
+
+.pmenu li {
+    display:block;
+    padding:10px;
+    float:left;
 }
