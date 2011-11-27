@@ -91,8 +91,8 @@ def contrib_json():
     form = ContribForm(csrf_enabled=False)
     if form.validate_on_submit():
         Contrib(
-            title=form.data['title'],
-            content=form.data['content'],
+            title=form.data['title'].encode('utf-8'),
+            content=form.data['content'].encode('utf-8'),
             theme=form.data['theme'],
             user=auth.authenticated_user())
         session.commit()

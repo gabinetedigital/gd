@@ -360,7 +360,7 @@ class Contrib(Entity):
 
     title = Field(String(256))
     content = Field(String(600))
-    original = Field(String(600), default=u'')
+    original = Field(String(600), default='')
     status = Field(Boolean, default=False)
     enabled = Field(Boolean, default=True)
     parent = Field(Integer, default=0)
