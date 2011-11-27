@@ -27,7 +27,7 @@ from json import loads
 from xml.dom.minidom import parseString
 from gd.model import Contrib
 
-PAIRWISE_VERSION = '2'
+PAIRWISE_VERSION = '3'
 
 PAIRWISE_SERVER = "http://localhost:4000"
 PAIRWISE_USERNAME = 'pairuser'
@@ -76,7 +76,6 @@ class Pairwise(object):
         self.token = None # will be filled out when calling `get_pair()'
         self.question_seq = 0
         self.current_qid = None
-        self.current_pid = None
 
     def _get_contrib(self, pos):
         return Contrib.query.get(self.prompts[self.current_qid][pos])
@@ -102,44 +101,42 @@ class Pairwise(object):
         self.question_seq += 1
 
     def lookup_and_load_prompt(self):
-        self.lookup_prompt_id()
-        self.load_prompt()
-
-    def lookup_prompt_id(self):
         path = QUESTION_URL % (self.current_qid, self.uid)
         question = parseString(_request(path))
         promptnode =  question.getElementsByTagName('picked_prompt_id')[0]
-        self.current_pid = promptnode.childNodes[0].data
+        pid = promptnode.childNodes[0].data
+        self.load_prompt(pid)
 
-    def load_prompt(self):
-        path = PROMPT_URL % (self.current_qid, self.current_pid, self.uid)
+    def load_prompt(self, pid):
+        path = PROMPT_URL % (self.current_qid, pid, self.uid)
         content = _request(path)
         self.setup_prompt(content)
 
     def setup_prompt(self, content):
-        c1, c2 = self.unpack_prompt(content)
-        self.prompts[self.current_qid] = {'left': c1, 'right': c2}
+        pid, c1, c2 = self.unpack_prompt(content)
+        self.prompts[self.current_qid] = {'pid': pid, 'left': c1, 'right': c2}
 
     def unpack_prompt(self, content):
         promptNode = parseString(content)
-        pid = self.current_pid
-        self.current_pid = promptNode.getElementsByTagName('id')[0].childNodes[0].data
+        pid = promptNode.getElementsByTagName('id')[0].childNodes[0].data
         leftNode =  promptNode.getElementsByTagName('left-choice-text')[0]
         rightNode =  promptNode.getElementsByTagName('right-choice-text')[0]
         leftjs = loads(leftNode.childNodes[0].data)
         rightjs = loads(rightNode.childNodes[0].data)
-        return leftjs['id'], rightjs['id']
+        return pid, leftjs['id'], rightjs['id']
 
     def vote(self, direction, token):
         if token != self.token:
             raise Exception('Invalid token')
         self.token = ''
 
+        pid = self.prompts[self.current_qid]['pid']
+
         if direction == 'skip':
-            path = SKIP_URL % (self.current_qid, self.current_pid)
+            path = SKIP_URL % (self.current_qid, pid)
             path = path + (SKIP_PARAMS % (self.uid, self.uid, self.uid))
         else:
-            path = VOTE_URL % (self.current_qid, self.current_pid)
+            path = VOTE_URL % (self.current_qid, pid)
             path = path + (VOTE_PARAMS % (self.uid, direction, self.uid))
 
         content = _request(path, '')
