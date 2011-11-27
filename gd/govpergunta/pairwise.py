@@ -61,7 +61,7 @@ def _request(path, data=None):
     req = urllib2.Request(PAIRWISE_SERVER + path)
     req.add_header("Authorization", "Basic %s" % base64string)
     req.add_header('Content-Type', 'application/json')
-    return  urllib2.urlopen(req, data).read()
+    return urllib2.urlopen(req, data).read()
 
 
 class Pairwise(object):
@@ -72,6 +72,9 @@ class Pairwise(object):
         self.prompts = {}
         self.votes = 0
         self.token = None # will be filled out when calling `get_pair()'
+
+        self.current_qid = None
+        self.current_pid = None
 
     def _get_contrib(self, pos):
         return Contrib.query.get(self.prompts[self.current_qid][pos])
