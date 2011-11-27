@@ -201,3 +201,17 @@ a.vote {
 .pmenu a:hover {
     color:#fff;
 }
+
+#comofunciona {
+    width:500px;
+    padding:20px;
+}
+
+#contributions {
+    z-index:2;
+}
+
+#comofunciona p {
+    margin-top:10px;
+    z-index:1;
+}
