@@ -41,6 +41,7 @@ def create_question(theme, ideas, count):
             'information': '',
             'local_identifier': '1',
             'visitor-identifier': 'a4b8c273bfb9a25bf4999c71b0869cb4',
+            'it_should_autoactivate_ideas': True,
         }
     }
 
@@ -60,7 +61,7 @@ def get_gd_choices(theme):
             'id': i.id,
             'title': i.title.decode('iso-8859-1'),
         }))
-    create_question(theme, ideas, query.count())
+    create_question(theme, '\n'.join(ideas), query.count())
 
 
 def main():
