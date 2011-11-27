@@ -1,3 +1,23 @@
+# -*- coding:utf-8 -*-
+#
+# Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+#
+#   Author: Thiago Silva <thiago@metareload.com>
+#   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 from uuid import uuid4
 import math
 import random
@@ -11,21 +31,32 @@ PAIRWISE_SERVER = "http://localhost:4000"
 PAIRWISE_USERNAME = 'pairuser'
 PAIRWISE_PASSWORD = 'pairpass'
 
-QUESTION_IDS = [1,2,3,4,5]
-TOTAL_THEMES = 5
+QUESTION_IDS = [1, 2, 3, 4, 5]
 
-QUESTION_URL = "/questions/%s.xml?visitor_identifier=%s&with_appearance=true&with_prompt=true"
+QUESTION_URL = "/questions/%s.xml?" + \
+    "visitor_identifier=%s&with_appearance=true&with_prompt=true"
 
-PROMPT_URL = "/questions/%s/prompts/%s.xml?visitor_identifier=%s&with_prompt=true";
+PROMPT_URL = "/questions/%s/prompts/%s.xml?" + \
+    "visitor_identifier=%s&with_prompt=true"
 
 VOTE_URL = "/questions/%s/prompts/%s/vote.xml?"
-VOTE_PARAMS = "vote[visitor_identifier]=%s&vote[direction]=%s&next_prompt[visitor_identifier]=%s"
+
+VOTE_PARAMS = "vote[visitor_identifier]=%s&vote[direction]=%s&" + \
+    "next_prompt[visitor_identifier]=%s"
 
 SKIP_URL = "/questions/%s/prompts/%s/skip.xml?"
-SKIP_PARAMS = "vote[visitor_identifier]=%s&skip[skip_reason]=other&skip[visitor_identifier]=%s&next_prompt[visitor_identifier]=%s";
+
+SKIP_PARAMS = "vote[visitor_identifier]=%s&skip[skip_reason]=other&" + \
+    "skip[visitor_identifier]=%s&next_prompt[visitor_identifier]=%s"
 
 
 def _request(path, method='get'):
+    """Abstraction for some bureaucracy of urllib
+
+    This function does a request against a `path' and returns it's
+    content. To do a POST instead a GET, just say it in the `method'
+    parameter.
+    """
     base64string = base64.encodestring(
         '%s:%s' % (PAIRWISE_USERNAME, PAIRWISE_PASSWORD))[:-1]
     req = urllib2.Request(PAIRWISE_SERVER + path)
@@ -38,22 +69,27 @@ def _request(path, method='get'):
     return  urllib2.urlopen(req, data).read()
 
 
-class Pairwise:
+class Pairwise(object):
+    """Binding to the Pairwise API provided by allourideas
+    """
     def __init__(self):
         self.uid =  str(uuid4())
         self.prompts = {}
         self.votes = 0
+        self.token = None # will be filled out when calling `get_pair()'
 
-    def left_contrib(self):
-        return Contrib.query.get(self.prompts[self.current_qid]['left'])
-
-    def right_contrib(self):
-        return Contrib.query.get(self.prompts[self.current_qid]['right'])
+    def _get_contrib(self, pos):
+        return Contrib.query.get(self.prompts[self.current_qid][pos])
 
     def get_pair(self):
         self.init_prompt()
         self.token = str(uuid4())
-        return self.left_contrib(), self.right_contrib(), self.token, self.votes
+        return {
+            'left': self._get_contrib('left'),
+            'right': self._get_contrib('right'),
+            'token': self.token,
+            'votes': self.votes,
+        }
 
     def init_prompt(self):
         self.choose_question_id()
@@ -61,22 +97,18 @@ class Pairwise:
             return
         self.lookup_and_load_prompt()
 
+    def choose_question_id(self):
+        self.current_qid = random.choice(QUESTION_IDS)
+
     def lookup_and_load_prompt(self):
         self.lookup_prompt_id()
         self.load_prompt()
 
-    def choose_question_id(self):
-        total_questions = len(QUESTION_IDS)
-        rnd = int(math.ceil(random.random() * 10))
-        self.current_qid = QUESTION_IDS[rnd % TOTAL_THEMES]
-        #self.current_qid = QUESTION_IDS[1]
-
     def lookup_prompt_id(self):
         path = QUESTION_URL % (self.current_qid, self.uid)
-        content = _request(path)
-        question = parseString(content)
-        promptNode =  question.getElementsByTagName('picked_prompt_id')[0]
-        self.current_pid = promptNode.childNodes[0].data
+        question = parseString(_request(path))
+        promptnode =  question.getElementsByTagName('picked_prompt_id')[0]
+        self.current_pid = promptnode.childNodes[0].data
 
     def load_prompt(self):
         path = PROMPT_URL % (self.current_qid, self.current_pid, self.uid)
