@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+#
+# Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+# Copyright (C) 2011  Lincoln de Sousa <lincoln@comum.org>
+#
+#   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+#   Author: Thiago Silva <thiago@metareload.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+import urllib2
+from json import dumps
+from xml.dom.minidom import parseString
+
+from gd import conf
+from gd.launch import app # needed to load gettext stuff
+from gd.model import Contrib
+from gd.govpergunta import pairwise
+
+
+def create_question(theme, ideas, count):
+    print '%s question with %d ideas' % (theme, count)
+    question = {
+        'question': {
+            'name': ('[%s] como podemos melhorar o atendimento '
+                     'na saúde pública?') % theme,
+            'url': '',
+            'ideas': ideas,
+            'information': '',
+            'local_identifier': '1',
+            'visitor-identifier': 'a4b8c273bfb9a25bf4999c71b0869cb4',
+        }
+    }
+
+    data = dumps(question)
+    response = parseString(pairwise._request('/questions.xml', data))
+    print 'done! question id[%s]: %s' % (
+        theme,
+        response.getElementsByTagName('id')[0].firstChild.nodeValue,
+    )
+
+
+def get_gd_choices(theme):
+    ideas = []
+    query = Contrib.query.filter_by(enabled=1, status=1, theme=theme)
+    for i in query:
+        ideas.append(dumps({
+            'id': i.id,
+            'title': i.title.decode('iso-8859-1'),
+        }))
+    create_question(theme, ideas, query.count())
+
+
+def main():
+    themes = ['cuidado','familia','emergencia','medicamentos','regional']
+    for i in themes:
+        get_gd_choices(i)
+
+
+if __name__ == '__main__':
+    main()

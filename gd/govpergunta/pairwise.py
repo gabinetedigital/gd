@@ -50,22 +50,17 @@ SKIP_PARAMS = "vote[visitor_identifier]=%s&skip[skip_reason]=other&" + \
     "skip[visitor_identifier]=%s&next_prompt[visitor_identifier]=%s"
 
 
-def _request(path, method='get'):
+def _request(path, data=None):
     """Abstraction for some bureaucracy of urllib
 
-    This function does a request against a `path' and returns it's
-    content. To do a POST instead a GET, just say it in the `method'
-    parameter.
+    We'll do a post instead of a get if the `data' attribute is not
+    None. Just like urllib2 does.
     """
     base64string = base64.encodestring(
         '%s:%s' % (PAIRWISE_USERNAME, PAIRWISE_PASSWORD))[:-1]
     req = urllib2.Request(PAIRWISE_SERVER + path)
     req.add_header("Authorization", "Basic %s" % base64string)
     req.add_header('Content-Type', 'application/json')
-
-    # If you don't send anything, urllib does a GET, with some data, it
-    # does a POST. Nice API... NOT!
-    data = method == 'get' and '' or None
     return  urllib2.urlopen(req, data).read()
 
 
