@@ -72,7 +72,7 @@ class Pairwise(object):
         self.prompts = {}
         self.votes = 0
         self.token = None # will be filled out when calling `get_pair()'
-
+        self.question_seq = 0
         self.current_qid = None
         self.current_pid = None
 
@@ -96,7 +96,8 @@ class Pairwise(object):
         self.lookup_and_load_prompt()
 
     def choose_question_id(self):
-        self.current_qid = random.choice(QUESTION_IDS)
+        self.current_qid = QUESTION_IDS[self.question_seq % len(QUESTION_IDS)]
+        self.question_seq += 1
 
     def lookup_and_load_prompt(self):
         self.lookup_prompt_id()
