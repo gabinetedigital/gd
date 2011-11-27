@@ -25,13 +25,12 @@ import base64
 import urllib2
 from json import loads
 from xml.dom.minidom import parseString
+
+from gd import conf
 from gd.model import Contrib
 
-PAIRWISE_VERSION = '3'
 
-PAIRWISE_SERVER = "http://localhost:4000"
-PAIRWISE_USERNAME = 'pairuser'
-PAIRWISE_PASSWORD = 'pairpass'
+PAIRWISE_VERSION = '3'
 
 QUESTION_IDS = [1, 2, 3, 4, 5]
 
@@ -59,8 +58,8 @@ def _request(path, data=None):
     None. Just like urllib2 does.
     """
     base64string = base64.encodestring(
-        '%s:%s' % (PAIRWISE_USERNAME, PAIRWISE_PASSWORD))[:-1]
-    req = urllib2.Request(PAIRWISE_SERVER + path)
+        '%s:%s' % (conf.PAIRWISE_USERNAME, conf.PAIRWISE_PASSWORD))[:-1]
+    req = urllib2.Request(conf.PAIRWISE_SERVER + path)
     req.add_header("Authorization", "Basic %s" % base64string)
     req.add_header('Content-Type', 'application/json')
     return urllib2.urlopen(req, data).read()
