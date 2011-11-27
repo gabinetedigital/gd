@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 
 {% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/govpergunta.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/vote.css') }}">
 {% endblock %}
 
 {% block javascript %}
+<script src="{{ url_for('.static', filename='js/govpergunta.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/vote.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 
 <div id="container">
-  <form id="vote-form" action="{{ url_for('.add_vote') }}" method="POST">
+  <form id="vote-form" action="{{ url_for('.add_vote') }}#vote-form" method="post">
     <input type="hidden" name="token" value="{{ pair.token }}">
     <input id="vote-direction" type="hidden" name="direction" value="">
   </form>
@@ -30,11 +32,11 @@
 
   <div class="row">
     <p class="helptext">
-      Mauris nunc risus, commodo rutrum rutrum id, sodales nec augue. Ut eget
-      orci et arcu fermentum condimentum et faucibus eros. Aenean mauris nisi,
-      tristique id bibendum sit amet, varius a sem. Nulla aliquam ultrices
-      lorem, vel vulputate est elementum vitae.
-      pharetra est.
+      Agora é a hora de votar nas prioridades da saúde para o Rio
+      Grande. Até o dia 9 de dezembro você pode escolher entre as
+      melhores propostas que a população enviou ao Governador
+      Pergunta. Escolha a partir dos pares de propostas apresentados
+      abaixo. Como issso funciona?
     </p>
     <span class="row-end"></span>
   </div>
@@ -61,34 +63,33 @@
       </a>
     </div>
     <div class="row-end"></div>
-  </div>
 
-  <div class="row">
-    <div class="col12">
-      <ul class="pmenu">
-        <li>
-          <a href="javascript:;" id="vote-skip" class="awesome">
-            Não consigo decidir
-          </a>
-        </li>
-        <li>
-          <a class="awesome" href="">
-            Envie sua contribuição
-          </a>
-        </li>
-        <li>
-          <a class="awesome" href="">
-            Ver todas as contribuições
-          </a>
-        </li>
-        <li>
-          <a class="awesome" href="">
-            Saiba mais
-          </a>
-        </li>
-      </ul>
-    </div>
+    <ul class="pmenu">
+      <li>
+        <a href="" id="vote-skip">
+          Não consigo decidir
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('govpergunta.index') }}#contribua">
+          Envie sua contribuição
+        </a>
+      </li>
+      <li>
+        <a href="javascript:contribapi.showContribs('all')">
+          Ver todas as contribuições
+        </a>
+      </li>
+      <li>
+        <a href="">
+          Saiba mais
+        </a>
+      </li>
+    </ul>
     <div class="row-end"></div>
   </div>
 </div>
+
+{% include "contribs.partial.html" %}
+
 {% endblock %}

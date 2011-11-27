@@ -20,10 +20,12 @@
 var navapi = null;
 
 $(function () {
-   $("#question-writer").ghost_typer({
-     text:'Como podemos melhorar o atendimento na saúde pública?',
-     speed: 80
-   });
+    if ($.fn.ghost_typer !== undefined) {
+        $("#question-writer").ghost_typer({
+            text:'Como podemos melhorar o atendimento na saúde pública?',
+            speed: 80
+        });
+    }
 
     var wizard = $('.wizard').data('isLoaded', false);
 
@@ -267,7 +269,7 @@ var contribapi = (function () {
             },
 
             onLoad: function () {
-                contribapi.loadContribs('user');
+                contribapi.loadContribs(contribapi.which);
             }
         })
 
@@ -305,7 +307,8 @@ var contribapi = (function () {
             });
         }
 
-        , showContribs: function () {
+        , showContribs: function (which) {
+            this.which = which === undefined ? 'user' : which;
             this.$overlay.load();
         }
 

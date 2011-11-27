@@ -31,25 +31,25 @@
       <div id="step" class="col5">
         <ol class="tabs">
           <li>
-            <a href="#">
+            <a href="#o-que-e">
               <span>1</span>
               <p>o que é?</p>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="#como-funciona">
               <span>2</span>
               <p>como funciona?</p>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="#temas">
               <span>3</span>
               <p>temas</p>
             </a>
           </li>
           <li class="last">
-            <a href="#">
+            <a href="#contribua">
               <span>4</span>
               <p>contribua</p>
             </a>
@@ -352,37 +352,6 @@
   </div>
 </div>
 
-
-<div id="contributions" class="overlay">
-  <menu>
-    <li><a href="javascript:contribapi.loadContribs('all');">Ver Todas</a></li>
-    <li><a href="javascript:contribapi.loadContribs('user');">Ver só as Minhas</a></li>
-  </menu>
-
-  <h2 class="user">Minhas contribuições</h2>
-  <h2 class="all">Todas contribuições</h2>
-
-  <div class="nocontrib">
-    Você ainda não possui contribuições.<br>
-    Para fazer a sua primeira, siga
-    <a href="javascript:contribapi.goToContribForm()">este link</a>.
-  </div>
-  <div class="wrapper">
-    <ul class="listing"></ul>
-  </div>
-</div>
-
-<script type="text/html" id="contribTemplate">
-  <li class="contrib">
-    <ul>
-      <li class="icon">
-        <img
-           src="{{ url_for('.static', filename='imgs/') }}<%= obj.theme %>32.png">
-      </li>
-      <li class="title"><%= obj.title %></li>
-      <li class="content"><%= obj.content %></li>
-    </ul>
-  </li>
-</script>
+{% include "contribs.partial.html" %}
 
 {% endblock %}
