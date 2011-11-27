@@ -28,7 +28,7 @@ from gd.content.wp import wordpress
 from gd.utils import msg, format_csrf_error, format_csrf_error, dumps
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
-from gd.govpergunta.pairwise import Pairwise
+from gd.govpergunta.pairwise import Pairwise, PAIRWISE_VERSION
 
 THEMES = {'cuidado': u'Cuidado Integral',
           'familia': u'Saúde da Família',
@@ -51,8 +51,11 @@ def index():
 
 @govpergunta.route('/vote')
 def vote():
-    if 'pairwise' not in fsession:
+    if ('pairwise' not in fsession) or \
+           (fsession['version'] != PAIRWISE_VERSION):
         fsession['pairwise'] = Pairwise()
+        fsession['version'] = PAIRWISE_VERSION
+
     pairwise = fsession['pairwise']
     pair = pairwise.get_pair()
     fsession.modified = True
@@ -65,6 +68,10 @@ def vote():
 
 @govpergunta.route('/add_vote', methods=('POST',))
 def add_vote():
+    if ('pairwise' not in fsession) or \
+           (fsession['version'] != PAIRWISE_VERSION):
+        return redirect(url_for('.vote'))
+
     pairwise = fsession['pairwise']
     pairwise.vote(request.values.get('direction'), request.values.get('token'))
     fsession.modified = True

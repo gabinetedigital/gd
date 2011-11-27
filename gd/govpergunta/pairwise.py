@@ -27,6 +27,8 @@ from json import loads
 from xml.dom.minidom import parseString
 from gd.model import Contrib
 
+PAIRWISE_VERSION = '1'
+
 PAIRWISE_SERVER = "http://localhost:4000"
 PAIRWISE_USERNAME = 'pairuser'
 PAIRWISE_PASSWORD = 'pairpass'
