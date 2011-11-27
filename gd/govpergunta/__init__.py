@@ -106,8 +106,8 @@ def _format_contrib(contrib):
     """Returns a dictionary representation of a contribution"""
     return {
         'id': contrib.id,
-        'title': contrib.title,
-        'content': contrib.content,
+        'title': contrib.title.decode('iso-8859-1'),
+        'content': contrib.content.decode('iso-8859-1'),
         'creation_date': contrib.creation_date,
         'theme': contrib.theme,
      }
