@@ -48,7 +48,6 @@ def index():
     form = ContribForm()
     return render_template('govpergunta.html', wp=wordpress, form=form)
 
-
 @govpergunta.route('/vote')
 def vote():
     if ('pairwise' not in fsession) or \

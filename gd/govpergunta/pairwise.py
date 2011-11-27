@@ -27,7 +27,7 @@ from json import loads
 from xml.dom.minidom import parseString
 from gd.model import Contrib
 
-PAIRWISE_VERSION = '1'
+PAIRWISE_VERSION = '2'
 
 PAIRWISE_SERVER = "http://localhost:4000"
 PAIRWISE_USERNAME = 'pairuser'
@@ -117,11 +117,13 @@ class Pairwise(object):
         self.setup_prompt(content)
 
     def setup_prompt(self, content):
-        c1, c2 = self.unpack_contrib(content)
+        c1, c2 = self.unpack_prompt(content)
         self.prompts[self.current_qid] = {'left': c1, 'right': c2}
 
-    def unpack_contrib(self, content):
+    def unpack_prompt(self, content):
         promptNode = parseString(content)
+        pid = self.current_pid
+        self.current_pid = promptNode.getElementsByTagName('id')[0].childNodes[0].data
         leftNode =  promptNode.getElementsByTagName('left-choice-text')[0]
         rightNode =  promptNode.getElementsByTagName('right-choice-text')[0]
         leftjs = loads(leftNode.childNodes[0].data)
@@ -140,12 +142,6 @@ class Pairwise(object):
             path = VOTE_URL % (self.current_qid, self.current_pid)
             path = path + (VOTE_PARAMS % (self.uid, direction, self.uid))
 
-        try:
-            content = _request(path,'')
-            self.votes = self.votes + 1
-            self.setup_prompt(content)
-        except:
-            # broken connection, unable to find question/choice/prompt
-            # also handling 'rapid fire' vote errors
-            print "UOPS!"
-            self.lookup_and_load_prompt()
+        content = _request(path, '')
+        self.votes = self.votes + 1
+        self.setup_prompt(content)
