@@ -139,7 +139,7 @@ class Pairwise(object):
             path = path + (VOTE_PARAMS % (self.uid, direction, self.uid))
 
         try:
-            content = self.http_post(path)
+            content = _request(path,'')
             self.votes = self.votes + 1
             self.setup_prompt(content)
         except:
