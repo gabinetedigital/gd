@@ -180,8 +180,9 @@ a.vote {
 .pmenu {
     margin-top:10px;
     height:35px;
-    background:#dfdfdf;
+    background:#efefef;
     border-radius:6px;
+    box-shadow:inset 0px 0px 10px #ccc;
 }
 
 .pmenu .wrap {
@@ -199,7 +200,7 @@ a.vote {
 }
 
 .pmenu a:hover {
-    color:#fff;
+    color:#888;
 }
 
 #comofunciona {
