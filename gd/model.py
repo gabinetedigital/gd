@@ -28,7 +28,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from elixir.events import after_insert, before_insert
 from elixir import using_options, setup_all, metadata, session
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
-    Boolean, Integer, Enum, ManyToOne, OneToMany
+    Boolean, Integer, Enum, ManyToOne, OneToMany, String
 from flask import url_for, abort
 from flaskext.uploads import UploadConfiguration, UploadSet, IMAGES
 
@@ -358,9 +358,9 @@ class Contrib(Entity):
     """
     using_options(shortnames=True)
 
-    title = Field(Unicode(256))
-    content = Field(Unicode(600))
-    original = Field(Unicode(600), default=u'')
+    title = Field(String(256))
+    content = Field(String(600))
+    original = Field(String(600), default=u'')
     status = Field(Boolean, default=False)
     enabled = Field(Boolean, default=True)
     parent = Field(Integer, default=0)
