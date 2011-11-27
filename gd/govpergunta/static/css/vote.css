@@ -71,7 +71,7 @@
 }
 
 .opt {
-    padding: 20px;
+    padding:10px 20px 20px 20px;
     font-size: 16px;
     background:#f7f7f7;
     width:428px;
@@ -86,7 +86,7 @@
 
 .opt h3 {
     color: #445016;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: normal;
     text-align: center;
     margin-bottom: 20px;
@@ -162,29 +162,42 @@
     font-size:12pt;
     color:#333;
     display:block;
-    margin:0 30px 35px 100px;
+    margin:0 30px 5px 100px;
 }
 
 .questions {
     padding:1px 10px 10px 10px;
-    margin:20px 0;
+    margin:20px 0 60px 0;
     -moz-box-shadow: 0px 5px 14px 2px #ccc;
     -webkit-box-shadow: 0px 5px 14px 2px #ccc;
     box-shadow: 0px 5px 14px 2px #ccc;
 }
 
 a.vote {
-    float:right;
-    background-color:blue;
+    margin-left:120px;
 }
 
 .pmenu {
-    display:block;
-    height:60px;
+    margin-top:10px;
+    height:35px;
+    background:#dfdfdf;
+    border-radius:6px;
 }
 
-.pmenu li {
+.pmenu .wrap {
+    width:610px;
+    margin:0 auto;
+}
+
+.pmenu a {
     display:block;
-    padding:10px;
     float:left;
+    font-size:12pt;
+    margin-right:8px;
+    color:#333;
+    padding:5px 10px;
+}
+
+.pmenu a:hover {
+    color:#fff;
 }

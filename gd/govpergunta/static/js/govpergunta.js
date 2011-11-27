@@ -33,6 +33,7 @@ $(function () {
         "div.panes > div", {
             effect: 'fade',
             lazy: true,
+            history: true,
             onBeforeClick: function () {
                 if (wizard.data('isLoaded')) {
                     $('html,body').animate({ scrollTop: 320 }, 150);
