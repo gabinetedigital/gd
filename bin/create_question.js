@@ -1,5 +1,23 @@
 #!/usr/bin/env node
 
+/* Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+ *
+ *   Author: Thiago Silva <thiago@metareload.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /* run 'npm install mysql' before executing this */
 
 /* this script creates a question in pairwise for each theme specified
@@ -15,13 +33,13 @@
 
 var themes = ['cuidado','familia','emergencia','medicamentos','regional'];
 
-PAIRWISE_URL_PREFIX   = "http://pairuser:pairpass@localhost:4000";
+const PAIRWISE_URL_PREFIX   = "http://pairuser:pairpass@localhost:4000";
 
-GD_MYSQL_HOST = "localhost";
-GD_MYSQL_DB = 'gd_dump'
-GD_MYSQL_USER = 'root'
-GD_MYSQL_PASS = ''
-GD_CONTRIB_TABLE = 'contrib';
+const GD_MYSQL_HOST = 'localhost';
+const GD_MYSQL_DB = 'gabinetedigital';
+const GD_MYSQL_USER = 'root';
+const GD_MYSQL_PASS = '';
+const GD_CONTRIB_TABLE = 'contrib';
 
 ///////////////
 
@@ -56,13 +74,13 @@ function create_question(theme, ideas, count) {
   };
 
   options.method = 'POST';
-  options.headers['Content-Length'] = data.length
+  options.headers['Content-Length'] = data.length;
 
   var req = HTTP.request(options);
   var ret = '';
   req.on('response', function(res) {
     res.on('data', function(d) {
-      ret += d });
+      ret += d; });
     res.on('error', function() {
       D("-- error: "+ url);
     });
@@ -79,7 +97,7 @@ function get_gd_choices(theme) {
   var mysql = require('mysql');
   var client = mysql.createClient({
     user: GD_MYSQL_USER,
-    password: GD_MYSQL_PASS,
+    password: GD_MYSQL_PASS
   });
 
   client.query('USE ' + GD_MYSQL_DB);
@@ -102,5 +120,5 @@ function get_gd_choices(theme) {
 }
 
 themes.forEach(function(theme) {
-  get_gd_choices(theme)
+  get_gd_choices(theme);
 });
