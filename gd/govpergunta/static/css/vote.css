@@ -178,16 +178,21 @@
 }
 
 .vote a {
+    font-size:12pt;
+    background-color:rgb(0, 102, 128) !important;
+}
 
+.vote a:hover {
+    background-color:rgb(85, 221, 255) !important;
 }
 
 .pmenu {
     margin-top:10px;
     height:35px;
     text-align:center;
-    background:rgb(85, 221, 255);
+    background:#bbb;
     border-radius:6px;
-    box-shadow:inset 0px 0px 10px rgb(0, 102, 128);;
+    box-shadow:inset 0px 0px 10px #666;
 }
 
 .pmenu a {
@@ -196,11 +201,11 @@
     margin-right:8px;
     color:#fff;
     padding:5px 10px;
-    text-shadow:1px 1px rgb(0, 102, 128);
+    text-shadow:1px 1px #333;
 }
 
 .pmenu a:hover {
-    background:rgb(0, 102, 128);
+    background:#ccc;
     border-radius:6px;
 }
 
@@ -208,7 +213,7 @@
     font-size:12pt;
     line-height:28pt;
     color:#fff;
-    text-shadow:1px 1px rgb(0, 102, 128);
+    text-shadow:1px 1px #333;
     margin-right:8px;
 }
 
