@@ -112,26 +112,29 @@
 </div>
 
 
-{% if pair.votes > 0 and pair.votes % 50 == 0 %}
+{% if pair.votes > 0 and pair.votes % 10 == 0 %}
 <div id="voteswarn" class="overlay">
   <div class="contentWrap">
     <h1>Muito obrigado</h1>
-    <p>Você votou 50 vezes.</p>
     <p>
-      Os autores das 50 propostas mais votadas serão convidados para a
+      Os autores das 50 propostas mais votadas serão convidados para
       se reunir com o Governador no dia 14 de Dezembro.
     </p>
     <p>
-      Você pode continuar votando ou aguarde o resultado no dia 10 de
+      Você pode continuar votando ou aguardar o resultado no dia 10 de
       Dezembro.
     </p>
+
     <p>
-      <button class="close awesome">Continuar</button>
+      <button class="close awesome">Continuar votando</button>
+      <button
+         class="awesome"
+         onclick="window.location.href = '{{ url_for('index') }}'">
+        Navegar pelo site</button>
     </p>
   </div>
 </div>
 {% endif %}
-
 
 {% include "contribs.partial.html" %}
 

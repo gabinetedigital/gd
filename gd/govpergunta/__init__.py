@@ -57,6 +57,13 @@ def vote():
         fsession['version'] = PAIRWISE_VERSION
 
     pairwise = fsession['pairwise']
+
+    # With 50 votes, the user will be redirected to the index page and
+    # it's pairwise session will be destroied
+    if pairwise.votes == 50:
+        del fsession['pairwise']
+        return redirect(url_for('index'))
+
     pair = pairwise.get_pair()
     fsession.modified = True
     return render_template(
