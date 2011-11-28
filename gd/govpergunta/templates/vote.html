@@ -112,25 +112,18 @@
 </div>
 
 
-{% if pair.votes > 0 and pair.votes % 10 == 0 %}
+{% if pair.votes > 0 and pair.votes % 50 == 0 %}
 <div id="voteswarn" class="overlay">
   <div class="contentWrap">
-    <h1>Muito obrigado</h1>
+    <h1>Muito obrigado pela contribuição</h1>
     <p>
-      Os autores das 50 propostas mais votadas serão convidados para
-      se reunir com o Governador no dia 14 de Dezembro.
+      Os autores das 50 propostas mais votadas serão convidados para se
+      reunir com o Governador no dia 14 de Dezembro. Aguarde o resultado
+      no dia 10 de Dezembro.
     </p>
     <p>
-      Você pode continuar votando ou aguardar o resultado no dia 10 de
-      Dezembro.
-    </p>
-
-    <p>
-      <button class="close awesome">Continuar votando</button>
-      <button
-         class="awesome"
-         onclick="window.location.href = '{{ url_for('index') }}'">
-        Navegar pelo site</button>
+      <a href="{{ url_for('govpergunta.invalidate') }}"
+         class="awesome">Continuar</a>
     </p>
   </div>
 </div>

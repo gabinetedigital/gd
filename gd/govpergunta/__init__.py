@@ -49,21 +49,21 @@ def index():
     form = ContribForm()
     return render_template('govpergunta.html', wp=wordpress, form=form)
 
-@govpergunta.route('/')
-def vote():
+
+
+def _get_pairwise():
+    """Helper function to get the pairwise instance saved in the
+    session"""
     if ('pairwise' not in fsession) or \
-           (fsession['version'] != PAIRWISE_VERSION):
+            (fsession['version'] != PAIRWISE_VERSION):
         fsession['pairwise'] = Pairwise()
         fsession['version'] = PAIRWISE_VERSION
+    return fsession['pairwise']
 
-    pairwise = fsession['pairwise']
 
-    # With 50 votes, the user will be redirected to the index page and
-    # it's pairwise session will be destroied
-    if pairwise.votes == 50:
-        del fsession['pairwise']
-        return redirect(url_for('index'))
-
+@govpergunta.route('/')
+def vote():
+    pairwise = _get_pairwise()
     pair = pairwise.get_pair()
     fsession.modified = True
     return render_template(
@@ -71,6 +71,14 @@ def vote():
         pair=pair,
         theme=THEMES[pair['left'].theme]
     )
+
+
+@govpergunta.route('/invalidate')
+def invalidate():
+    """With 50 votes, the user will be redirected to the index page and
+    it's pairwise session will be destroied"""
+    del fsession['pairwise']
+    return redirect(url_for('index'))
 
 
 @govpergunta.route('/add_vote', methods=('POST',))
