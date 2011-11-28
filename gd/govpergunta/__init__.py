@@ -42,13 +42,13 @@ govpergunta = Blueprint(
     static_folder='static')
 
 
-@govpergunta.route('/')
+@govpergunta.route('/contribuir')
 def index():
     """Renders the index template"""
     form = ContribForm()
     return render_template('govpergunta.html', wp=wordpress, form=form)
 
-@govpergunta.route('/vote')
+@govpergunta.route('/')
 def vote():
     if ('pairwise' not in fsession) or \
            (fsession['version'] != PAIRWISE_VERSION):
