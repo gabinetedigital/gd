@@ -112,7 +112,7 @@
 </div>
 
 
-{% if pair.votes == 50 %}
+{% if pair.votes > 0 and pair.votes % 50 == 0 %}
 <div id="voteswarn" class="overlay">
   <div class="contentWrap">
     <h1>Muito obrigado</h1>
