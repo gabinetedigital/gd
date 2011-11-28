@@ -65,6 +65,11 @@ def _request(path, data=None):
     return urllib2.urlopen(req, data).read()
 
 
+class InvalidTokenError(Exception):
+    """Raised when the user tries to use an invalid toke to vote"""
+    pass
+
+
 class Pairwise(object):
     """Binding to the Pairwise API provided by allourideas
     """
@@ -126,7 +131,7 @@ class Pairwise(object):
 
     def vote(self, direction, token):
         if token != self.token:
-            raise Exception('Invalid token')
+            raise InvalidTokenError('Invalid token')
         self.token = ''
 
         pid = self.prompts[self.current_qid]['pid']

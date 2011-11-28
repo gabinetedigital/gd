@@ -28,7 +28,8 @@ from gd.content.wp import wordpress
 from gd.utils import msg, format_csrf_error, format_csrf_error, dumps
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
-from gd.govpergunta.pairwise import Pairwise, PAIRWISE_VERSION
+from gd.govpergunta.pairwise import Pairwise, InvalidTokenError, \
+    PAIRWISE_VERSION
 
 THEMES = {'cuidado': u'Cuidado Integral',
           'familia': u'Saúde da Família',
@@ -72,8 +73,13 @@ def add_vote():
         return redirect(url_for('.vote'))
 
     pairwise = fsession['pairwise']
-    pairwise.vote(request.values.get('direction'), request.values.get('token'))
-    fsession.modified = True
+    try:
+        pairwise.vote(
+            request.values.get('direction'),
+            request.values.get('token'))
+        fsession.modified = True
+    except InvalidTokenError:
+        pass
     return redirect(url_for('.vote'))
 
 
