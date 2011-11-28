@@ -23,6 +23,10 @@
     color: #A40000;
 }
 
+#container h2.theme {
+    margin:10px 0 0 10px;
+}
+
 #container h2.regional {
     background: url('../imgs/regional32.png') no-repeat;
     color: #4e9a06;
@@ -81,7 +85,7 @@
 }
 
 .opt.left {
-    margin-right:15px;
+    margin:0 15px 0 10px;
 }
 
 .opt h3 {
@@ -166,7 +170,7 @@
 }
 
 .questions {
-    padding:1px 10px 10px 10px;
+    /*padding:1px 10px 10px 10px;*/
     margin:20px 0 60px 0;
     -moz-box-shadow: 0px 5px 14px 2px #ccc;
     -webkit-box-shadow: 0px 5px 14px 2px #ccc;
@@ -187,7 +191,7 @@
 }
 
 .pmenu {
-    margin-top:10px;
+    margin:10px 12px 10px 10px;
     height:35px;
     text-align:center;
     background:#bbb;
@@ -229,4 +233,24 @@
 #comofunciona p {
     margin-top:10px;
     z-index:1;
+}
+
+.votes {
+    text-align:right;
+    margin:15px 15px 0 0;
+}
+
+
+#voteswarn {
+    width:400px;
+    padding:10px;
+}
+
+#voteswarn p {
+    margin-top:10px;
+}
+
+#voteswarn button {
+    width:auto;
+    height:auto;
 }

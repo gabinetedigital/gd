@@ -42,9 +42,23 @@
     <span class="row-end"></span>
   </div>
 
-  <div class="row questions">
-    <h2 class="{{ pair.left.theme }}">{{ theme }}</h2>
-    <span class="row-end"></span>
+  <div class="questions">
+    <div class="row">
+      <div class="col9">
+        <h2 class="theme {{ pair.left.theme }}">{{ theme }}</h2>
+      </div>
+      <div class="col3">
+        <div class="votes">
+          {% if pair.votes > 0 %}
+          Você já votou {{ pair.votes }}
+          vez{% if pair.votes > 1 %}es{% endif %}
+          {% else %}
+          Você ainda não votou
+          {% endif %}
+        </div>
+      </div>
+      <div class="row-end"></div>
+    </div>
 
     <div class="opt left">
       <!-- {{ pair.left.id }}-->
@@ -96,6 +110,30 @@
     </div>
   </div>
 </div>
+
+
+{% if pair.votes == 50 %}
+<div id="voteswarn" class="overlay">
+  <div class="contentWrap">
+    <h1>Muito obrigado</h1>
+
+    <p>
+      Você votou 50 vezes. Os autores das 50 propostas mais votadas
+      serão convidados para a se reunir com o Governador no dia 14 de
+      Dezembro.
+    </p>
+    <p>
+      Você pode continuar votando ou aguarde o resultado no dia 10 de
+      Dezembro.
+    </p>
+
+    <p>
+      <button class="close awesome">Continuar</button>
+    </p>
+  </div>
+</div>
+{% endif %}
+
 
 {% include "contribs.partial.html" %}
 

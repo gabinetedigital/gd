@@ -43,4 +43,16 @@ $(function() {
             });
         }
     });
+
+
+    $('#voteswarn').overlay({
+        load: true,
+        oneInstance: false,
+        closeOnClick: false,
+        speed: 'fast',
+        mask: {
+            color: '#111',
+            opacity: 0.7
+        }
+    });
 });
