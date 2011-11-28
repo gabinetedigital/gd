@@ -50,33 +50,37 @@
       <!-- {{ pair.left.id }}-->
       <h3>{{ pair.left.title }}</h3>
       <p>{{ pair.left.content }}</p>
-      <a class="vote awesome" href="" id="option_1">
-        Escolher esta contribuição
-      </a>
+      <div class="vote">
+        <a class="awesome" href="" id="option_1">
+          Escolher esta contribuição
+        </a>
+      </div>
     </div>
 
     <div class="opt">
       <!-- {{ pair.right.id }}-->
       <h3>{{ pair.right.title }}</h3>
       <p>{{ pair.right.content }}</p>
-      <a class="vote awesome" href="" id="option_2">
-        Escolher esta contribuição
-      </a>
+      <div class="vote">
+        <a class="awesome" href="" id="option_2">
+          Escolher esta contribuição
+        </a>
+      </div>
     </div>
     <div class="row-end"></div>
 
     <div class="pmenu">
-      <div class="wrap">
-        <a href="#" id="vote-skip">
-          Não consigo decidir
-        </a>
-        <a href="{{ url_for('govpergunta.index') }}#contribua">
-          Envie sua contribuição
-        </a>
-        <a href="javascript:contribapi.showContribs('all')">
-          Ver todas as contribuições
-        </a>
-      </div>
+      <a href="#" id="vote-skip">
+        Não consigo decidir
+      </a>
+      <span>•</span>
+      <a href="{{ url_for('govpergunta.index') }}#contribua">
+        Envie sua contribuição
+      </a>
+      <span>•</span>
+      <a href="javascript:contribapi.showContribs('all')">
+        Ver todas as contribuições
+      </a>
     </div>
 
     <div class="row-end"></div>

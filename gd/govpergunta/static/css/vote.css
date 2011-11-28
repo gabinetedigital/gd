@@ -73,10 +73,10 @@
 .opt {
     padding:10px 20px 20px 20px;
     font-size: 16px;
-    background:#f7f7f7;
+    background:#eee;
     width:428px;
     float:left;
-    border:solid 1px #f0f0f0;
+    border:solid 1px #ccc;
     border-radius:6px;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .opt h3 {
-    color: #445016;
+    color: rgb(164, 0, 0);
     font-size: 18px;
     font-weight: normal;
     text-align: center;
@@ -159,7 +159,7 @@
 }
 
 .helptext {
-    font-size:12pt;
+    font-size:10pt;
     color:#333;
     display:block;
     margin:0 30px 5px 100px;
@@ -173,34 +173,43 @@
     box-shadow: 0px 5px 14px 2px #ccc;
 }
 
-a.vote {
-    margin-left:120px;
+.vote {
+    text-align:center;
+}
+
+.vote a {
+
 }
 
 .pmenu {
     margin-top:10px;
     height:35px;
-    background:#efefef;
+    text-align:center;
+    background:rgb(85, 221, 255);
     border-radius:6px;
-    box-shadow:inset 0px 0px 10px #ccc;
-}
-
-.pmenu .wrap {
-    width:610px;
-    margin:0 auto;
+    box-shadow:inset 0px 0px 10px rgb(0, 102, 128);;
 }
 
 .pmenu a {
-    display:block;
-    float:left;
-    font-size:12pt;
+    font-size:11pt;
+    font-weight:bold;
     margin-right:8px;
-    color:#333;
+    color:#fff;
     padding:5px 10px;
+    text-shadow:1px 1px rgb(0, 102, 128);
 }
 
 .pmenu a:hover {
-    color:#888;
+    background:rgb(0, 102, 128);
+    border-radius:6px;
+}
+
+.pmenu span {
+    font-size:12pt;
+    line-height:28pt;
+    color:#fff;
+    text-shadow:1px 1px rgb(0, 102, 128);
+    margin-right:8px;
 }
 
 #comofunciona {
