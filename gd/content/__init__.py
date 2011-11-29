@@ -2,6 +2,7 @@
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
 #   Author: Rodrigo Sebastiao da Rosa <rodrigo-rosa@procergs.rs.gov.br>
+#   Author: Thiago Silva <thiago@metareload.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -90,10 +91,6 @@ def cleanup(response):
 
 # --- Static special pages ---
 
-@app.route('/govescuta')
-def govescuta():
-    """Renders the teaser template"""
-    return render_template('govescuta.html')
 
 @app.route('/')
 def index():
@@ -119,17 +116,17 @@ def index():
     )
 
 
+@app.route('/teaser')
+def teaser():
+    """Renders the teaser template"""
+    return render_template('teaser.html')
+
+
 @app.route('/sobre')
 def sobre():
     """Renders the about template"""
     return render_template(
         'about.html', page=wordpress.getPageByPath('about'))
-
-
-@app.route('/teaser')
-def teaser():
-    """Renders the teaser template"""
-    return render_template('teaser.html')
 
 
 @app.route('/govescuta')
@@ -141,6 +138,9 @@ def govescuta():
 @app.route('/gallery')
 def gallery():
     return render_template('galeria.html')
+
+
+# -- Blog specific views --
 
 
 @app.route('/news')
@@ -179,23 +179,7 @@ def tag(slug, page=0):
         posts=posts)
 
 
-def post_page(pid, error_msg=''):
-    """A generic function that renders a post template"""
-    recent_posts = wordpress.getRecentPosts(
-        post_status='publish',
-        numberposts=4)
-    return render_template(
-        'post.html',
-        post=wordpress.getPost(pid),
-        tags=wordpress.getTagCloud(),
-        sidebar=wordpress.getSidebar,
-        comments=wordpress.getComments(post_id=pid),
-        error_msg=error_msg,
-        show_comment_form=is_authenticated(),
-        recent_posts=recent_posts)
-
-
-@app.route('/pages/<path>')
+@app.route('/pages/<path:path>')
 def pages(path):
     """Renders a wordpress page"""
     return render_template(
@@ -214,7 +198,18 @@ def page_json(path):
 
 @app.route('/post/<int:pid>')
 def post(pid):
-    """View that proxies the `post_page' function"""
+    """View that renders a post template"""
+    recent_posts = wordpress.getRecentPosts(
+        post_status='publish',
+        numberposts=4)
+    return render_template(
+        'post.html',
+        post=wordpress.getPost(pid),
+        tags=wordpress.getTagCloud(),
+        sidebar=wordpress.getSidebar,
+        comments=wordpress.getComments(post_id=pid),
+        show_comment_form=is_authenticated(),
+        recent_posts=recent_posts)
     return post_page(pid)
 
 
