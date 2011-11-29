@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="{{ url_for('auth.static', filename='css/auth.css') }}">
     {% block css %}{% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/awesome.css') }}">
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ie.css') }}">
+    <![endif]-->
   </head>
   <body class="{% block bodyclass %}{% endblock %}">
     <div id="header">

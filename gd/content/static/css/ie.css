@@ -1,0 +1,19 @@
+#container #news {
+    filter:
+      progid:DXImageTransform.Microsoft.Shadow(color=#dedede,direction=45,strength=4)
+      progid:DXImageTransform.Microsoft.Shadow(color=#dedede,direction=315,strength=4);
+    ms-filter: "
+      progid:DXImageTransform.Microsoft.Shadow(color=#dedede,direction=45,strength=4)
+      progid:DXImageTransform.Microsoft.Shadow(color=#dedede,direction=315,strength=4)";
+}
+
+
+body.votepage div.questions {
+    background:#fff;
+    filter:
+      progid:DXImageTransform.Microsoft.Shadow(color=#dedede,direction=135,strength=4)
+      progid:DXImageTransform.Microsoft.Shadow(color=#dedede,direction=315,strength=4);
+    ms-filter: "
+      progid:DXImageTransform.Microsoft.Shadow(color=#dedede,direction=135,strength=4)
+      progid:DXImageTransform.Microsoft.Shadow(color=#dedede,direction=315,strength=4)";
+}

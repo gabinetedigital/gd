@@ -10,8 +10,9 @@
 <script src="{{ url_for('.static', filename='js/vote.js') }}"></script>
 {% endblock %}
 
-{% block content %}
+{% block bodyclass %}votepage{% endblock %}
 
+{% block content %}
 <div id="container">
   <form id="vote-form" action="{{ url_for('.add_vote') }}#vote-form" method="post">
     <input type="hidden" name="token" value="{{ pair.token }}">
