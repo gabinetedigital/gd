@@ -230,16 +230,17 @@ def new_comment():
         return msg.error(__(err.faultString), code='CommentError')
 
 
-@app.route('/search/<string:s>')
-@app.route('/search/<string:s>/<int:page>')
-def search(s, page=0):
+@app.route('/search')
+@app.route('/search/<int:page>')
+def search(page=0):
     """Renders the search template"""
-    pagination, posts = wordpress.search(s=s, page=page)
+    query = request.values.get('s', '')
+    pagination, posts = wordpress.search(s=query, page=page)
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         pagination=pagination,
-        search_term=s,
+        search_term=query,
         posts=posts)
 
 

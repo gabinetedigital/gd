@@ -18,7 +18,6 @@
  */
 
 $(function () {
-
     /* The code responsible for the interaction of the  "Participate"
      * button. Yes, that big red button in the middle of the screen :) */
     function toggle() {
@@ -60,4 +59,35 @@ $(function () {
             $("#participe .desc").text('');
             $(this).removeClass('selected');
         });
+
+
+    /* -- Supporting browsers that don't have the `placeholder' stuff -- */
+    if (!('placeholder' in document.createElement('input'))) {
+        $('input')
+            .focus(function () {
+                if ($(this).val() === $(this).attr('placeholder')) {
+                    $(this).val('');
+                }
+            })
+            .blur(function () {
+                if ($(this).val() === '') {
+                    $(this).val($(this).attr('placeholder'));
+                }
+            })
+            .blur();
+    }
+
+
+    /* -- handling the "update your browser" message overlay -- */
+    if (($.browser.msie && parseInt($.browser.version) < 8)) {
+        $(".browser-banner").overlay({
+            load:true,
+            oneInstance: false,
+            speed: 'fast',
+            mask: {
+                color: '#111',
+                opacity: 0.7
+            }
+        });
+    }
 });

@@ -28,8 +28,10 @@
             </div>
             
             <div class="col4" id="search">
-              {% set term = search_term if search_term else "procurar..." %}
-              <input id="search_form" type="text" value="{{term}}">
+              <form id="search_form" method="get" action="{{ url_for('search') }}">
+                {% set term = search_term if search_term else "procurar..." %}
+                <input placeholder="{{ term }}" id="search_input" name="s" type="text">
+              </form>
             </div>
             <div class="col2">
               <ul class="main-menu">
@@ -354,39 +356,7 @@
     <script src="{{ url_for('static', filename='js/video.js') }}"></script>
     <script src="{{ url_for('auth.static', filename='js/auth.js') }}"></script>
     <script src="{{ url_for('static', filename='js/site.js') }}"></script>
-    <script>
-      $(function() {
-        var form = $("<form name='search'></form>");
-        var input = $("#search_form");
 
-        var current_term = "{{term}}";
-        input.focusin(function() {
-          current_term = $(this).val();
-          $(this).val("");
-        });
-        input.focusout(function() {
-          $(this).val(current_term);
-        });
-
-        form.submit(function() {
-          document.location = "{{ url_for('search',s='') }}"+input.val()
-          return false;
-        });
-        input.wrap(form)
-
-        if (($.browser.msie && parseInt($.browser.version) < 8)) {
-          $(".browser-banner").overlay({
-              load:true,
-              oneInstance: false,
-              speed: 'fast',
-              mask: {
-                  color: '#111',
-                  opacity: 0.7
-              }
-          });
-        }
-      });
-    </script>
     {% if user %}
     <script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
     {% endif %}
@@ -394,6 +364,7 @@
     {% if 'signup' in request.values %}
     <script> $(function () { auth.showSignupForm(); }); </script>
     {% endif %}
+
     <script>$(function () { avl.loadPlayers(); });</script>
 
     {% block javascript %}
