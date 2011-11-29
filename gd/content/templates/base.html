@@ -14,42 +14,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/awesome.css') }}">
   </head>
   <body class="{% block bodyclass %}{% endblock %}">
-
-    <div class="browser-banner overlay" style="display:none;">
-      <h2>Problemas encontrados com navegador</h2>
-      <p>
-        Detectamos que você está utilizando uma versão antiga do
-        Internet Explorer.
-      </p>
-      <p>
-        Recomendamos que você atualize seu navegador, utilizando o link
-        para o download do Internet Explorer mais novo, ou passe a
-        utilizar um navegador livre, conforme recomendação Ministério do
-        Planejamento Orçamento e Gestão, publicada no
-        <a href="http://www.eclac.org/socinfo/noticias/noticias/0/27800/eping_v2.pdf"
-           target="_blank">e-ping 2011</a>.
-        Para isso, também disponibilizamos o link para download do
-        Firefox ou Google Chrome.</p>
-      <ul>
-        <li>
-          <a href="http://br.mozdev.org/" target="_blank">
-            <img src="http://www.mozilla.org/contribute/buttons/110x32bubble_b_pt.png"
-                 alt="Firefox" width="110" height="32" style="border-style:none;"
-                 title="Mozilla Firefox" /></a></li>
-        <li>
-          <a href="http://www.google.com/chrome/eula.html?hl=pt-BR" target="_blank">
-            <img src="{{ url_for('static', filename='imgs/chrome.png') }}"
-                 alt="Google Chrome" width="120" height="32" style="border-style:none;"
-                 title="Google Chrome" /></a></li>
-        <li>
-          <a  href="http://windows.microsoft.com/pt-BR/internet-explorer/products/ie/home"
-              target="_blank">
-            <img src="{{ url_for('static', filename='imgs/ie9.png') }}"
-                 alt="Windows Explorer 9" width="110" height="33"
-                 style="border-style:none;" title="Windows Explorer" /></a></li>
-      </ul>
-    </div>
-
     <div id="header">
       <div id="header-wrapper">
         <div class="layout-978">
@@ -310,6 +274,42 @@
       </div>
       </div>
     </div>
+
+    <div class="browser-banner overlay" style="display:none;">
+      <h2>Problemas encontrados com navegador</h2>
+      <p>
+        Detectamos que você está utilizando uma versão antiga do
+        Internet Explorer.
+      </p>
+      <p>
+        Recomendamos que você atualize seu navegador, utilizando o link
+        para o download do Internet Explorer mais novo, ou passe a
+        utilizar um navegador livre, conforme recomendação Ministério do
+        Planejamento Orçamento e Gestão, publicada no
+        <a href="http://www.eclac.org/socinfo/noticias/noticias/0/27800/eping_v2.pdf"
+           target="_blank">e-ping 2011</a>.
+        Para isso, também disponibilizamos o link para download do
+        Firefox ou Google Chrome.</p>
+      <ul>
+        <li>
+          <a href="http://br.mozdev.org/" target="_blank">
+            <img src="http://www.mozilla.org/contribute/buttons/110x32bubble_b_pt.png"
+                 alt="Firefox" width="110" height="32" style="border-style:none;"
+                 title="Mozilla Firefox" /></a></li>
+        <li>
+          <a href="http://www.google.com/chrome/eula.html?hl=pt-BR" target="_blank">
+            <img src="{{ url_for('static', filename='imgs/chrome.png') }}"
+                 alt="Google Chrome" width="120" height="32" style="border-style:none;"
+                 title="Google Chrome" /></a></li>
+        <li>
+          <a  href="http://windows.microsoft.com/pt-BR/internet-explorer/products/ie/home"
+              target="_blank">
+            <img src="{{ url_for('static', filename='imgs/ie9.png') }}"
+                 alt="Windows Explorer 9" width="110" height="33"
+                 style="border-style:none;" title="Windows Explorer" /></a></li>
+      </ul>
+    </div>
+
     <script type="text/html" id="loggedinTemplate">
       <li class="avatar">
         <img src="<%= obj.avatar_url %>" alt="User avatar">
