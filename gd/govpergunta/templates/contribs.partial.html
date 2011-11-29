@@ -7,10 +7,21 @@
   <h2 class="user">Minhas contribuições</h2>
   <h2 class="all">Todas contribuições</h2>
 
-  <div class="nocontrib">
-    Você ainda não possui contribuições.<br>
-    Para fazer a sua primeira, siga
-    <a href="javascript:contribapi.goToContribForm()">este link</a>.
+  <div class="message">
+    <h3>Olá,</h3>
+
+    <p class="nocontrib">
+      Você ainda não possui contribuições.<br>
+      Para fazer a sua primeira, siga
+      <a href="{{ url_for('govpergunta.index') }}#contribua">
+        este link</a>.
+    </p>
+
+    <p class="authrequired">
+      As suas contribuições só são exibidas se você estiver
+      autenticado. Siga <a href="javascript:;" id="authandload">este
+      link</a> para se autenticar e ver suas contribuições
+    </p>
   </div>
   <div class="wrapper">
     <ul class="listing"></ul>

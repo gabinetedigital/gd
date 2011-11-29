@@ -158,5 +158,5 @@ def contribs_user():
     return dumps([
             _format_contrib(i)
                 for i in Contrib.query
-                    .filter_by(status=True)
+                    .filter_by()
                     .filter(Contrib.user==user)])

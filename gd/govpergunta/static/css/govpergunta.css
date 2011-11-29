@@ -577,8 +577,13 @@ div.contribute #form .success p {
     box-shadow:none;
 }
 
-#contributions .nocontrib {
+#contributions .message {
     display:none;
     padding:0 20px;
     font-size:12pt;
+}
+
+#contributions .message p {
+    margin:10px 0;
+    display:none;
 }

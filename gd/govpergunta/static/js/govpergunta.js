@@ -270,7 +270,19 @@ var contribapi = (function () {
             },
 
             onLoad: function () {
-                contribapi.loadContribs(contribapi.which);
+                var close = this.close;
+                contribapi.loadContribs(contribapi.which, function () {
+                    $('#authandload').click(function () {
+                        close();
+                        window.setTimeout(function() {
+                            auth.showLoginForm({
+                                success: function () {
+                                    contribapi.showContribs('user');
+                                }
+                            });
+                        }, 300);
+                    });
+                });
             }
         })
 
@@ -280,7 +292,7 @@ var contribapi = (function () {
             $target.html($loading.html());
         }
 
-        , loadContribs: function (type) {
+        , loadContribs: function (type, callback) {
             var $target = $('#contributions ul.listing');
             var url = url_for('govpergunta.contribs.' + type) + '.json';
 
@@ -291,7 +303,7 @@ var contribapi = (function () {
 
             /* Preparing the feedback for the user about his/her lack of
              * contribs */
-            var $nomsgs = $('#contributions .nocontrib');
+            var $nomsgs = $('#contributions .message');
             $nomsgs.hide();
 
             /* Getting contributions */
@@ -299,12 +311,21 @@ var contribapi = (function () {
                 $target.html('');
                 if (data.length === 0) {
                     $nomsgs.show();
+                    if (auth.isAuthenticated()) {
+                        $('p.nocontrib').show();
+                        $('p.authrequired').hide();
+                    } else {
+                        $('p.authrequired').show();
+                        $('p.nocontrib').hide();
+                    }
                     return;
                 }
                 $(data).each(function (index, item) {
                     $(tmpl('contribTemplate', item))
                         .appendTo($target);
                 });
+
+                callback();
             });
         }
 
