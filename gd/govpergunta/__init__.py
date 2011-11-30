@@ -85,7 +85,7 @@ def invalidate():
 def add_vote():
     if ('pairwise' not in fsession) or \
            (fsession['version'] != PAIRWISE_VERSION):
-        return redirect(url_for('.vote'))
+        return redirect(url_for('.index'))
 
     pairwise = fsession['pairwise']
     try:
@@ -95,7 +95,7 @@ def add_vote():
         fsession.modified = True
     except InvalidTokenError:
         pass
-    return redirect(url_for('.vote'))
+    return redirect(url_for('.index'))
 
 
 @govpergunta.route('/contrib_json', methods=('POST',))
