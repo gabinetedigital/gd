@@ -43,11 +43,11 @@ govpergunta = Blueprint(
     static_folder='static')
 
 
-@govpergunta.route('/contribuir')
-def index():
-    """Renders the index template"""
-    form = ContribForm()
-    return render_template('govpergunta.html', wp=wordpress, form=form)
+# @govpergunta.route('/contribuir')
+# def index():
+#     """Renders the index template"""
+#     form = ContribForm()
+#     return render_template('govpergunta.html', wp=wordpress, form=form)
 
 
 
@@ -62,7 +62,7 @@ def _get_pairwise():
 
 
 @govpergunta.route('/')
-def vote():
+def index():
     pairwise = _get_pairwise()
     pair = pairwise.get_pair()
     fsession.modified = True
@@ -108,6 +108,8 @@ def contrib_json():
     """
     if not auth.is_authenticated():
         return msg.error(_(u'User not authenticated'))
+
+    raise Exception('Not funny')
 
     form = ContribForm(csrf_enabled=False)
     if form.validate_on_submit():
