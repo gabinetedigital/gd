@@ -101,7 +101,8 @@
 
 #container #news .news li img {
     float: left;
-    margin-right: 30px;
+    margin-right:20px;
+    margin-bottom:10px;
 }
 
 #container #news .news li img.wide {
@@ -133,6 +134,10 @@
     text-decoration: underline;
 }
 
+#container #news a:hover {
+    color:#000;
+}
+
 #container #news .news .meta {
     text-align: right;
     margin-top: 20px;
@@ -143,6 +148,15 @@
 #container #news .news .meta strong {
     font-weight:normal;
     color:#4e9a06;
+}
+
+#container .bulletnews {
+    padding-left:30px;
+    list-style:disc inside;
+}
+
+#container .bulletnews li {
+    list-style:inherit;
 }
 
 #container #videogallery {
@@ -158,6 +172,19 @@
     padding: 18px;
     width:250px;
     border-radius: 8px;
+}
+
+#container .allnews {
+    text-align:right;
+    padding-right:20px;
+}
+
+#container #news .allnews a {
+    color:#4e9a06;
+}
+
+#container #news .allnews a:hover {
+    color:#333;
 }
 
 #container #videogallery .video.last {

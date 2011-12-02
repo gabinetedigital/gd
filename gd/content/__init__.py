@@ -104,12 +104,12 @@ def index():
     news = wordpress.getRecentPosts(
         category_name='news',
         post_status='publish',
-        numberposts=2,
+        numberposts=6,
         thumbsizes=['newsbox', 'widenewsbox'])
 
     return render_template(
         'index.html', wp=wordpress,
-        slideshow=slideshow, news=news,
+        slideshow=slideshow, news={'big': news[:2], 'small': news[2:]},
         sidebar=wordpress.getSidebar,
         last_tweet=get_mayor_last_tweet(),
         videos=wordpress.wpgd.getHighlightedVideos(2),

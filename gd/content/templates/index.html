@@ -56,10 +56,10 @@
   <div class="row">
     <div id="news" class="col8">
       <ul>
-        {% for post in news %}
+        {% for post in news.big %}
         <li>
           <ul class="news">
-            {% if post.thumbs and loop.index == 1 %}
+            {% if post.thumbs %}
             <li>
               <a href="{{ post.permalink }}">
                 {% if post.has_category('wide') %}
@@ -80,7 +80,7 @@
             </li>
             {% endif %}
 
-            {% if loop.index == 1 and post.has_category('wide') %}
+            {% if post.has_category('wide') %}
             <li class="title">
               <a href="{{ post.permalink }}">
                 {{ post.title }}
@@ -111,6 +111,16 @@
         {% endfor %}
       </ul>
 
+      <ul class="bulletnews">
+        {% for post in news.small %}
+        <li><a href="{{ post.permalink }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+
+      <div class="allnews">
+        <a href="{{ url_for('news') }}">Ver todas as notícias</a>
+      </div>
+
       <ul id="videogallery">
         {% for video in videos %}
         <li class="video{% if loop.last %} last {% endif %}">
@@ -137,7 +147,9 @@
         <div class="shadow">
           <div class="tweet">
             {{ last_tweet }}
-            <a href="http://twitter.com/tarsogenro" target="_blank"><h3>@tarsogenro</h3></a>
+            <a href="http://twitter.com/tarsogenro" target="_blank">
+              <h3>@tarsogenro</h3>
+            </a>
           </div>
         </div>
       </div>
