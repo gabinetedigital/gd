@@ -28,7 +28,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from elixir.events import after_insert, before_insert
 from elixir import using_options, setup_all, metadata, session
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
-    Boolean, Integer, Enum, ManyToOne, OneToMany, String
+    Boolean, Integer, Enum, ManyToOne, OneToMany, ManyToMany, String
 from flask import url_for, abort
 from flaskext.uploads import UploadConfiguration, UploadSet, IMAGES
 
@@ -367,6 +367,7 @@ class Contrib(Entity):
     moderation = Field(Boolean, default=False)
     user = ManyToOne('User')
     creation_date = Field(DateTime, default=datetime.now)
+    children = ManyToMany('Contrib')
     theme = Field(Enum(
         u'cuidado', u'familia', u'emergencia',
         u'medicamentos', u'regional'
