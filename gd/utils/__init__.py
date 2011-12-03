@@ -22,6 +22,7 @@ placed anywhere else.
 import string
 import random
 import smtplib
+import re
 
 from email.mime.text import MIMEText
 from json import dumps as internal_dumps
@@ -53,6 +54,15 @@ def nts(string):
     if string.endswith('/'):
         return string[:-1]
     return string
+
+
+LINK_RE = re.compile('(https?\:\/\/[(\w|\d|+|-|_|\.|\/)]+)')
+def replinks(string, target="_blank"):
+    """Find urls and replace them with an html link"""
+    return LINK_RE.sub(
+        '<a target="%s" href="\g<0>">\g<0></a>' % target,
+        string)
+
 
 # -- JSON Messages --
 

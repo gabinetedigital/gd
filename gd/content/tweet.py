@@ -20,6 +20,7 @@ on our home page
 """
 
 from gd.model import MayorTweet
+from gd.utils import replinks
 
 
 def set_mayor_last_tweet(data):
@@ -30,7 +31,7 @@ def set_mayor_last_tweet(data):
 def get_mayor_last_tweet():
     """Returns the text of the last tweet of the mayor"""
     try:
-        return MayorTweet.get_current().text
+        return replinks(MayorTweet.get_current().text)
     except AttributeError:
         return u''
 
