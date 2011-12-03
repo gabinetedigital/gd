@@ -214,7 +214,6 @@
 
 #container #sidebar #lasttweet {
     padding-bottom: 20px;
-    margin-top: 30px;
 }
 
 #container #sidebar #lasttweet .shadow {
@@ -229,8 +228,10 @@
     padding: 20px 12px 15px 14px;
     background-color: #55ddff;
     width: 281px;
-    color: #FFF;
+    color:#fff;
+    text-shadow:0 0 2px #333;
     font-size: 12px;
+    font-weight:bold;
     border-radius: 30px 30px 30px 0px;
 }
 
@@ -242,6 +243,7 @@
     color: #006680;
     text-align: right;
     margin-top: 15px;
+    text-shadow:none;
 }
 
 #container #sidebar .widget_sp_image-image-link {
