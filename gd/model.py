@@ -420,18 +420,6 @@ def get_or_404(model, **kwargs):
         abort(404)
 
 
-def set_mayor_last_tweet(data):
-    print 'Mayor tweet: %s' % data
-    MayorTweet.save_tweet(data)
-
-
-def get_mayor_last_tweet():
-    """Returns the text of the last tweet of the mayor"""
-    try:
-        return MayorTweet.get_current().text
-    except AttributeError:
-        return u''
-
 # Database setup
 
 metadata.bind = conf.DATABASE_URI

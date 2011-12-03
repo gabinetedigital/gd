@@ -36,7 +36,8 @@ if os.getenv('GDPATH'):
     sys.path.insert(0, os.getenv('GDPATH'))
 
 from gd import conf
-from gd.model import set_mayor_last_tweet
+from gd.launch import app # Needed to set up gettext things
+from gd.content.tweet import set_mayor_last_tweet
 
 
 def main():

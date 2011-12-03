@@ -29,9 +29,9 @@ from flask import Flask, request, render_template, session, \
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
+from gd.content.tweet import get_mayor_last_tweet
 from gd.utils import dumps, msg
-from gd.model import session as dbsession
-from gd.model import get_mayor_last_tweet, User
+from gd.model import User, session as dbsession
 
 from gd.auth.webapp import auth
 from gd.auth.fbauth import fbauth
