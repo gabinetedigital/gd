@@ -7,15 +7,23 @@
 {% block content %}
 <div id="container">
   <div class="gallery boxed">
-    <h1>{{ video.title }}</h1>
-    <video
-       id="{{ video.id }}"
-       width="{{ video.video_width }}"
-       height="{{ video.video_height }}">
-      {% for source in sources %}
-      <source type="{{ source.format }}" src="{{ source.url }}">
-      {% endfor %}
-    </video>
+
+    <div class="video">
+      <h1>{{ video.title }}</h1>
+      <video
+         id="{{ video.id }}"
+         width="{{ video.video_width }}"
+         height="{{ video.video_height }}">
+        {% for source in sources %}
+        <source type="{{ source.format }}" src="{{ source.url }}">
+          {% endfor %}
+      </video>
+
+      <p>{{ video.description }}</p>
+
+      <h3>Embed</h3>
+      <textarea class="embed" readonly="readonly">&lt;iframe style="border:0" src="{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"&gt;&lt;iframe&gt;</textarea>
+    </div>
   </div>
 </div>
 {% endblock %}
