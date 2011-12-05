@@ -38,3 +38,10 @@ def details(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)
     return render_template('video.html', video=video, sources=sources)
+
+
+@videos.route('/embed/<int:vid>')
+def embed(vid):
+    video = wordpress.wpgd.getVideo(vid)
+    sources = wordpress.wpgd.getVideoSources(vid)
+    return render_template('videoembed.html', video=video, sources=sources)
