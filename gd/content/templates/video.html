@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/videos.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+  <div class="gallery boxed">
+    <h1>{{ video.title }}</h1>
+    <video
+       id="{{ video.id }}"
+       width="{{ video.video_width }}"
+       height="{{ video.video_height }}">
+      {% for source in sources %}
+      <source type="{{ source.format }}" src="{{ source.url }}">
+      {% endfor %}
+    </video>
+  </div>
+</div>
+{% endblock %}

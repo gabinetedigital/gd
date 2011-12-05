@@ -48,7 +48,7 @@ var video = (function () {
                 var wrap = this.getOverlay().find('.contentWrap');
                 var id = video.playingVideo.id;
                 $(tmpl('videoTemplate', video.playingVideo)).appendTo(wrap);
-                $('<gd:video>')
+                $('<video>')
                     .attr('id', id)
                     .appendTo(wrap.find('.videoContainer'));
                 avl.loadPlayers();

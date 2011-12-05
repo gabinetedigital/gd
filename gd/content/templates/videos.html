@@ -18,6 +18,12 @@
                  width="193" height="110">
             <img src="../static/imgs/play.png" class="play">
           </div>
+          <a href="{{ url_for('.details', vid=video.id) }}" class="permalink">
+            <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
+                 alt="Permanet link">
+          </a>
+        </a>
+        <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
           <strong>{{ video.title }}</strong>
           <p>{{ video.description|truncate(length=80) }}</p>
         </a>

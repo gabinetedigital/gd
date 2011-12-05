@@ -33,6 +33,8 @@ def listing():
     return render_template('videos.html', videos=videos)
 
 
-@videos.route('/<int:page>')
-def details():
-    return render_template('video.html')
+@videos.route('/<int:vid>')
+def details(vid):
+    video = wordpress.wpgd.getVideo(vid)
+    sources = wordpress.wpgd.getVideoSources(vid)
+    return render_template('video.html', video=video, sources=sources)
