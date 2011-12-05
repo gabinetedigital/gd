@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('.static', filename='css/archive.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/archive.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -11,26 +11,28 @@
       <div id="news">
         <ul>
           {% for post in posts %}
-            <li>
-                <ul class="news">
-                    <li class="title">
-                        <h2>
-                        <a href="{{ post.permalink }}">
-                           {{ post.title }}
-                        </a>
-                        </h2>
-           <p class="date">{{post.the_date.day}}/{{post.the_date.month}}/{{post.the_date.year}}
-           as {{post.the_date.hour}}:{{post.the_date.minute}}</p>
-                    </li>
-                    <li>
-                     <p>{{ post.excerpt|safe }}</p>
-                    </li>
-                </ul>
-           </li>
-        {% endfor %}
+          <li>
+            <ul class="news">
+              <li class="title">
+                <h2>
+                  <a href="{{ post.permalink }}">
+                    {{ post.title }}
+                  </a>
+                </h2>
+                <p class="date">
+                  {{ post.the_date.day }}/{{ post.the_date.month }}/{{ post.the_date.year }}
+                  as {{ post.the_date.hour }}:{{ post.the_date.minute }}
+                </p>
+              </li>
+              <li>
+                <p>{{ post.excerpt|safe }}</p>
+              </li>
+            </ul>
+          </li>
+          {% endfor %}
         </ul>
         <div id="paginator">
-            {{ pagination|safe }}
+          {{ pagination|safe }}
         </div>
       </div>
     </div>
