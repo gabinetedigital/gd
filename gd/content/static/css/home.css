@@ -179,7 +179,14 @@
     padding-right:20px;
 }
 
-#container #news .allnews a {
+#container .allvideos {
+    text-align:right;
+    padding:10px 20px 0 0;
+    clear:both;
+}
+
+#container #news .allnews a,
+#container #news .allvideos a {
     color:#4e9a06;
 }
 

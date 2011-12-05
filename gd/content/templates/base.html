@@ -160,7 +160,9 @@
                 <li class="special">
                   <a href="{{ url_for('govpergunta.index') }}">Participe</a>
                 </li>
-                <li class="basic last"><a href="">Galeria</a></li>
+                <li class="basic last">
+                  <a href="{{ url_for('videos.listing') }}">Galeria</a>
+                </li>
               </ul>
             </div>
             <div class="row-end"></div>
@@ -345,6 +347,20 @@
       <h1><%= obj.title %></h1>
       <div class="videoContainer"></div>
       <p><%= obj.description %></p>
+      <div class="controls">
+        <a href="javascript:toggleEmbed(this)" class="embed"
+           title="Embed">
+          <img src="{{ url_for('static', filename='imgs/embed.png') }}"
+               alt="Embed">
+        </a>
+
+        <a href="<%= url_for('videos.<vid>', { vid: obj.id }) %>" class="permalink"
+           title="Link permanente">
+          <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
+               alt="Link permanente">
+        </a>
+      </div>
+      <textarea readonly="readonly">&lt;iframe style="border:0" src="<%= url_for('videos.embed.<vid>', { vid: obj.id }) %>" width="<%= obj.video_width %>" height="<%= obj.video_height %>"&gt;&lt;iframe&gt;</textarea>
     </script>
 
     <script type="text/javascript">

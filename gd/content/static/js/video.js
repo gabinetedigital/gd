@@ -70,3 +70,8 @@ var video = (function () {
 
     return new Video();
 })();
+
+/* Called by the embed link in a video overlay */
+function toggleEmbed(obj) {
+    $('.overlay.video textarea').slideToggle();
+}

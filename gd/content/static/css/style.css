@@ -346,6 +346,15 @@ a {
     color:#999;
 }
 
+.overlay.video .controls {
+    text-align:right;
+    margin-top:10px;
+}
+
+.overlay.video .controls a {
+    margin-left:10px;
+}
+
 .overlay.video .contentWrap {
     width:492px;
     margin:0 auto;
@@ -354,6 +363,11 @@ a {
 .overlay.video .videoContainer {
     margin:10px 0;
     border:solid 1px #999;
+}
+
+.overlay.video textarea {
+    width:100%;
+    display:none;
 }
 
 .overlay.loading .ct {
