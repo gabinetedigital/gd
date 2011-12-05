@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/videos.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+  <div class="gallery boxed">
+    <h1>Vídeos do Gabinete Digital</h1>
+    <ul>
+      {% for video in videos %}
+      <li class="video">
+        <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
+          <div class="container">
+            <img class="thumb"
+                 src="{{ video.thumbnail }}" alt="{{ video.title }}"
+                 width="193" height="110">
+            <img src="../static/imgs/play.png" class="play">
+          </div>
+          <strong>{{ video.title }}</strong>
+          <p>{{ video.description|truncate(length=80) }}</p>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="row-end"></div>
+  </div>
+</div>
+{% endblock %}

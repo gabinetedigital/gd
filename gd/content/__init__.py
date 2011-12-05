@@ -23,6 +23,7 @@ implemented blueprints in various modules to this app.
 
 import gettext
 import xmlrpclib
+from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
      redirect, url_for
 
@@ -36,12 +37,13 @@ from gd.model import User, session as dbsession
 from gd.auth.webapp import auth
 from gd.auth.fbauth import fbauth
 from gd.govpergunta import govpergunta
-from sqlalchemy.orm.exc import NoResultFound
+from gd.content.videos import videos
 
 app = Flask(__name__)
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(fbauth, url_prefix='/auth/fb')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
+app.register_blueprint(videos, url_prefix='/videos')
 
 # Registering a secret key to be able to work with sessions
 app.secret_key = conf.SECRET_KEY
