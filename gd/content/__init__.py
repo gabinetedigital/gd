@@ -251,3 +251,14 @@ def feed():
     """Renders the RSS wordpress function"""
     header = {'Content-Type': 'application/rss+xml; charset=utf-8'}
     return wordpress.getRSS(), 200, header
+
+@app.route('/archive/<int:m>')
+@app.route('/archive/<int:m>/<int:page>')
+def archive(m, page=0):
+    """List posts of the archive given yyyymm format"""
+    pagination, posts = wordpress.getArchivePosts(m=m, page=page)
+    return render_template(
+        'archive.html',
+        sidebar=wordpress.getSidebar,
+        pagination=pagination,
+        posts=posts)

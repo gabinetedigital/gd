@@ -117,6 +117,8 @@ def convert_getRecentPosts(posts):
 def convert_getPostsByCategory(data):
     return posts_and_pagination(data)
 
+def convert_getArchivePosts(data):
+    return posts_and_pagination(data)
 
 def convert_getPostsByTag(data):
     return posts_and_pagination(data)
@@ -172,6 +174,9 @@ def wp_links_to_flask(text):
 def wp_link_style_to_flask(href):
     """Converts wordpress url style to flask urlws"""
     base = conf.BASE_URL[:-1]
+    if href.find("m=") != -1:
+        m = re.search('m=(\d+)', href).group(1)
+        return base+url_for('archive', m=m)
     if href.find("cat=") != -1:
         cat = re.search('cat=(\d+)', href).group(1)
         return base+url_for('category', cid=cat)
