@@ -29,6 +29,8 @@
             <div class="msg error"></div>
             <div class="msg success"></div>
 
+            {% include "sociable.html" %}
+
             <form
                id="blog_comment_form" method="post"
                action="{{ url_for('new_comment') }}">
