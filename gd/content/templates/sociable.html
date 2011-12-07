@@ -1,8 +1,7 @@
 {% set permalink = url_for('post',pid=post.id, _external=True) %}
 <div class="sociable">
-
-<a href="https://twitter.com/share" data-text="{{post.title}} - {{permalink}}" class="twitter-share-button">Tweet</a>
-
-<div class="fb-like" data-href="{{permalink}}" data-send="true" data-width="450" data-show-faces="true"></div>
-
+  <a href="https://twitter.com/share" data-text="{{ post.title }} - {{ permalink }}"
+     class="twitter-share-button">Tweet</a>
+  <div class="fb-like" data-href="{{ permalink }}" data-send="true"
+       data-width="450" data-show-faces="true"></div>
 </div>

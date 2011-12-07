@@ -545,6 +545,17 @@ a {
     overflow:hidden;
 }
 
+/* -- sociable -- */
+
+div.sociable {
+    padding:10px 0 0 0;
+    height:30px;
+}
+
+div.sociable .fb_edge_widget_with_comment {
+    top:3px;
+}
+
 /* -- items with borders -- */
 
 .boxed {

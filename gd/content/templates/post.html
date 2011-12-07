@@ -20,6 +20,8 @@
            {{ post.the_date.hour }}:
            {{- post.the_date.minute }}h
 
+          {% include "sociable.html" %}
+
           {{ post.content|safe }}
           <div id="comments">
           <div class="postcontent">
@@ -28,8 +30,6 @@
             <!-- the comment error msg -->
             <div class="msg error"></div>
             <div class="msg success"></div>
-
-            {% include "sociable.html" %}
 
             <form
                id="blog_comment_form" method="post"
