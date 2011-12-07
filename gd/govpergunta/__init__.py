@@ -73,6 +73,11 @@ def index():
     )
 
 
+@govpergunta.route('/results')
+def results():
+    return render_template('results.html')
+
+
 @govpergunta.route('/invalidate')
 def invalidate():
     """With 50 votes, the user will be redirected to the index page and
