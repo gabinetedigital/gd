@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="{{ url_for('.static', filename='js/govpergunta.js') }}"></script>
 {% endblock %}
 
 {% block bodyclass %}votepage{% endblock %}
@@ -86,8 +87,10 @@
       <div class="col1">&nbsp;</div>
       <div class="col4">
         <div class="contribsbutton">
-          <strong>50</strong>
-          <p>Propostas priorizadas</p>
+          <a href="javascript:contribapi.showContribs();">
+            <strong>50</strong>
+            <p>Propostas priorizadas</p>
+          </a>
         </div>
 
         <div id="news">
@@ -147,4 +150,7 @@
   </div>
 
 </div>
+
+{% include "contribs.partial.html" %}
+
 {% endblock %}

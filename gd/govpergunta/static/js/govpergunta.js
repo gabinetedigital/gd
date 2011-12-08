@@ -297,8 +297,7 @@ var contribapi = (function () {
             var url = url_for('govpergunta.contribs.' + type) + '.json';
 
             /* Visibility of the items of the right type of listing */
-            var inverse = type === 'user' ? 'all' : 'user';
-            $('#contributions .' + inverse).hide();
+            $('#contributions h2').hide();
             $('#contributions .' + type).show();
 
             /* Preparing the feedback for the user about his/her lack of
@@ -306,6 +305,7 @@ var contribapi = (function () {
             var $nomsgs = $('#contributions .message');
             $nomsgs.hide();
 
+            $target.html('');
             /* Getting contributions */
             $.getJSON(url, function (data) {
                 $target.html('');
@@ -330,7 +330,7 @@ var contribapi = (function () {
         }
 
         , showContribs: function (which) {
-            this.which = which === undefined ? 'user' : which;
+            this.which = which === undefined ? 'choosen' : which;
             this.$overlay.load();
         }
 

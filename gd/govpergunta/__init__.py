@@ -171,3 +171,19 @@ def contribs_user():
                 for i in Contrib.query
                     .filter_by()
                     .filter(Contrib.user==user)])
+
+
+@govpergunta.route('/contribs/choosen.json')
+def contribs_all():
+    """Lists all contributions in the JSON format"""
+    query = Contrib.query.filter_by(status=True, enabled=True)[:50]
+    contribs = []
+    for contrib in query:
+        final = _format_contrib(contrib)
+        final['children'] = [_format_contrib(i) for i in contrib.children]
+        final['duplicated'] = [
+            _format_contrib(i) for i in
+                Contrib.query.filter_by(parent=contrib.id)]
+        contribs.append(final)
+    return dumps(contribs)
+

@@ -564,6 +564,10 @@ div.contribute #form .success p {
     margin-left:42px;
 }
 
+#contributions .contrib .duplicated {
+    padding-left:40px;
+}
+
 #contributions .all {
     display:none;
 }

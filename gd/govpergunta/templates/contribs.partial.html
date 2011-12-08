@@ -1,9 +1,15 @@
 <div id="contributions" class="overlay">
   <menu>
+    <li>
+      <a href="javascript:contribapi.loadContribs('choosen');">
+        Ver as 50 escolhidas
+      </a>
+    </li>
     <li><a href="javascript:contribapi.loadContribs('all');">Ver Todas</a></li>
     <li><a href="javascript:contribapi.loadContribs('user');">Ver só as Minhas</a></li>
   </menu>
 
+  <h2 class="choosen">50 Contribuições escolhidas</h2>
   <h2 class="user">Minhas contribuições</h2>
   <h2 class="all">Todas contribuições</h2>
 
@@ -32,8 +38,47 @@
         <img
            src="{{ url_for('.static', filename='imgs/') }}<%= obj.theme %>32.png">
       </li>
-      <li class="title"><%= obj.title %></li>
+      <li class="title">#<%= obj.id %> <%= obj.title %></li>
       <li class="content"><%= obj.content %></li>
+      <% if (obj.duplicated.length > 0) { %>
+      <li class="duplicated">
+        <h3>Questões duplicadas</h3>
+        <ul>
+          <% for (var d = 0; d < obj.duplicated.length; d++) { %>
+          <li>
+            <ul>
+              <li class="icon">
+                <img
+                   src="{{ url_for('.static', filename='imgs/') }}<%= obj.theme %>32.png">
+              </li>
+              <li class="title"><%= obj.duplicated[d].title %></li>
+              <li class="content"><%= obj.duplicated[d].content %></li>
+            </ul>
+          </li>
+          <% } %>
+        </ul>
+      </li>
+      <% } %>
+
+      <% if (obj.children.length > 0) { %>
+      <li class="children">
+        <h3>Questões agregadas</h3>
+        <ul>
+          <% for (var d = 0; d < obj.children.length; d++) { %>
+          <li>
+            <ul>
+              <li class="icon">
+                <img
+                   src="{{ url_for('.static', filename='imgs/') }}<%= obj.theme %>32.png">
+              </li>
+              <li class="title"><%= obj.children[d].title %></li>
+              <li class="content"><%= obj.children[d].content %></li>
+            </ul>
+          </li>
+          <% } %>
+        </ul>
+      </li>
+      <% } %>
     </ul>
   </li>
 </script>
