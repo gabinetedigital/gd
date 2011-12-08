@@ -168,6 +168,9 @@
     margin-bottom:5px;
 }
 
+#container .results #news { margin:0; padding-top:20px; }
+#container .results #news a { color:#666; }
+#container .results #news a:hover { color:#333; text-decoration:none; }
 #container #news { margin-top:30px; box-shadow:none; }
 #container #news ul.news { margin:0; }
 #container #news h2 { padding:0; line-height:100%; margin-bottom:5px; }
