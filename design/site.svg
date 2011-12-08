@@ -2114,9 +2114,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.80610538"
-     inkscape:cx="634.49978"
-     inkscape:cy="631.30459"
+     inkscape:zoom="0.81022376"
+     inkscape:cx="494.99431"
+     inkscape:cy="1220.2719"
      inkscape:document-units="px"
      inkscape:current-layer="layer11"
      showgrid="false"
@@ -2374,7 +2374,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -3575,7 +3575,7 @@
       <g
          style="display:inline"
          id="g17915"
-         transform="matrix(1,0,0,1.1988739,3.482099,-53.929003)">
+         transform="matrix(1,0,0,1.1988739,3.482099,-49.929003)">
         <rect
            transform="matrix(0.99398855,0,0,0.48641129,3.4808932,552.91859)"
            y="-547.63782"
@@ -3594,7 +3594,7 @@
       </g>
       <g
          id="g5434"
-         transform="translate(2,0)">
+         transform="translate(2,4)">
         <g
            style="fill:#204a87"
            id="g5280">
@@ -3621,11 +3621,11 @@
       <text
          sodipodi:linespacing="125%"
          id="text5076"
-         y="385.27185"
+         y="389.27185"
          x="12.556468"
          style="font-size:49.22954178px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#555753;fill-opacity:1;stroke:none;display:inline;font-family:Sansation;-inkscape-font-specification:Sansation"
          xml:space="preserve"><tspan
-           y="385.27185"
+           y="389.27185"
            x="12.556468"
            id="tspan5078"
            sodipodi:role="line"
@@ -3678,7 +3678,7 @@
          xml:space="preserve"
          id="flowRoot17132"
          style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-         transform="translate(-351.55298,-22.713605)"><flowRegion
+         transform="translate(-351.55298,-18.713605)"><flowRegion
            id="flowRegion17134"><rect
              id="rect17136"
              width="180.95454"
@@ -3689,16 +3689,16 @@
            id="flowPara17138"
            style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:Open Sans;-inkscape-font-specification:Open Sans">Resultados</flowPara></flowRoot>      <text
          xml:space="preserve"
-         style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#888a85;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+         style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#555753;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
          x="264.48911"
-         y="336.87598"
+         y="340.87598"
          id="text18496"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan18498"
            x="264.48911"
-           y="336.87598"
-           style="fill:#888a85">Eleição das 50 prioridades da saúde</tspan></text>
+           y="340.87598"
+           style="fill:#555753;fill-opacity:1">Eleição das 50 prioridades da saúde</tspan></text>
       <text
          sodipodi:linespacing="125%"
          id="text18500"
@@ -3738,40 +3738,36 @@
              height="40.452583"
              x="259.57074"
              y="231.35425" /></flowRegion><flowPara
-           id="flowPara18518" /></flowRoot>      <g
-         id="g5524"
-         transform="matrix(1.1083692,0,0,1,-61.684262,-56)">
-        <rect
-           y="896.12445"
-           x="446.25333"
-           height="81.138321"
-           width="124.55408"
-           id="rect18221"
-           style="fill:#babdb6;stroke:#2e3436;stroke-width:1.03905284;display:inline" />
-        <rect
-           style="fill:#babdb6;stroke:#2e3436;stroke-width:1.03905284;display:inline"
-           id="rect18223"
-           width="124.55408"
-           height="81.138321"
-           x="595.50641"
-           y="896.12445" />
-        <rect
-           y="896.12445"
-           x="744.75958"
-           height="81.138321"
-           width="124.55408"
-           id="rect18225"
-           style="fill:#babdb6;stroke:#2e3436;stroke-width:1.03905284;display:inline" />
-      </g>
+           id="flowPara18518" /></flowRoot>      <rect
+         style="fill:#babdb6;stroke:#2e3436;stroke-width:1.09390569;display:inline"
+         id="rect18221"
+         width="138.05191"
+         height="81.138321"
+         x="432.92917"
+         y="844.12445" />
+      <rect
+         y="844.12445"
+         x="598.35669"
+         height="81.138321"
+         width="138.05191"
+         id="rect18223"
+         style="fill:#babdb6;stroke:#2e3436;stroke-width:1.09390569;display:inline" />
+      <rect
+         style="fill:#babdb6;stroke:#2e3436;stroke-width:1.09390569;display:inline"
+         id="rect18225"
+         width="138.05191"
+         height="81.138321"
+         x="763.7843"
+         y="844.12445" />
       <rect
          style="fill:#555753;fill-opacity:1;stroke:none;display:inline"
          id="rect18801"
          width="474"
          height="267.22607"
          x="432.01263"
-         y="549.53607" />
+         y="553.53607" />
       <rect
-         y="1010.9004"
+         y="1014.9004"
          x="432.87631"
          height="118.67406"
          width="138.67407"
@@ -3783,9 +3779,9 @@
          width="138.67407"
          height="118.67406"
          x="600.87628"
-         y="1010.9004" />
+         y="1014.9004" />
       <rect
-         y="1010.9004"
+         y="1014.9004"
          x="768.87628"
          height="118.67406"
          width="138.67407"
@@ -3795,13 +3791,13 @@
          xml:space="preserve"
          style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
          x="432.30255"
-         y="994.99438"
+         y="998.99438"
          id="text18881"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan18883"
            x="432.30255"
-           y="994.99438"
+           y="998.99438"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Open Sans;-inkscape-font-specification:Open Sans">Veja as fotos do processo</tspan></text>
       <g
          inkscape:groupmode="layer"
@@ -3820,20 +3816,20 @@
            width="200"
            height="89.717224"
            x="96.862038"
-           y="431.79938"
+           y="435.79938"
            ry="0" />
         <g
            id="g5711"
-           transform="translate(40.8496,0)"
+           transform="translate(40.8496,4)"
            style="fill:#ffffff;fill-opacity:1">
           <text
              sodipodi:linespacing="125%"
              id="text18241"
              y="476.81546"
              x="95.990112"
-             style="font-size:17.71902275000000060px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+             style="font-size:17.71902275px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
              xml:space="preserve"><tspan
-               style="font-size:28.35043715999999847px;font-weight:bold;fill:#ffffff;-inkscape-font-specification:Sans Bold;fill-opacity:1"
+               style="font-size:28.35043716px;font-weight:bold;fill:#ffffff;fill-opacity:1;-inkscape-font-specification:Sans Bold"
                y="476.81546"
                x="95.990112"
                id="tspan18243"
@@ -3843,13 +3839,13 @@
              id="text18269"
              y="493.49295"
              x="97.711838"
-             style="font-size:17.71902275000000060px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+             style="font-size:17.71902275px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
              xml:space="preserve"><tspan
                id="tspan18279"
                y="493.49295"
                x="97.711838"
                sodipodi:role="line"
-               style="font-size:14.17521857999999924px;fill:#ffffff;fill-opacity:1">Dias de consulta</tspan></text>
+               style="font-size:14.17521858px;fill:#ffffff;fill-opacity:1">Dias de consulta</tspan></text>
         </g>
         <rect
            style="fill:#cc0000;fill-opacity:1;stroke:none;display:inline"
@@ -3857,20 +3853,20 @@
            width="200"
            height="89.717224"
            x="502.19534"
-           y="431.79938"
+           y="435.79938"
            ry="0" />
         <g
            id="g5717"
-           transform="translate(30.101438,0)"
+           transform="translate(30.101438,4)"
            style="fill:#ffffff;fill-opacity:1">
           <text
              sodipodi:linespacing="125%"
              id="text18257"
              y="476.91061"
              x="517.21686"
-             style="font-size:17.71902275000000060px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+             style="font-size:17.71902275px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
              xml:space="preserve"><tspan
-               style="font-size:28.35043715999999847px;font-weight:bold;fill:#ffffff;-inkscape-font-specification:Sans Bold;fill-opacity:1"
+               style="font-size:28.35043716px;font-weight:bold;fill:#ffffff;fill-opacity:1;-inkscape-font-specification:Sans Bold"
                y="476.91061"
                x="517.21686"
                id="tspan18259"
@@ -3880,17 +3876,17 @@
              id="text18310"
              y="493.04303"
              x="518.01282"
-             style="font-size:17.71902275000000060px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+             style="font-size:17.71902275px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
              xml:space="preserve"><tspan
                id="tspan5695"
                y="493.04303"
                x="518.01282"
                sodipodi:role="line"
-               style="font-size:14.17521857999999924px;fill:#ffffff;fill-opacity:1">Acessos ao site</tspan></text>
+               style="font-size:14.17521858px;fill:#ffffff;fill-opacity:1">Acessos ao site</tspan></text>
         </g>
         <rect
            ry="0"
-           y="431.79938"
+           y="435.79938"
            x="299.52869"
            height="89.717224"
            width="200"
@@ -3898,16 +3894,16 @@
            style="fill:#ef2929;fill-opacity:1;stroke:none;display:inline" />
         <g
            id="g5739"
-           transform="translate(-0.42837346,0)"
+           transform="translate(-0.42837346,4)"
            style="fill:#ffffff;fill-opacity:1">
           <text
              sodipodi:linespacing="125%"
              id="text18261"
              y="476.91061"
              x="354.51746"
-             style="font-size:17.71902275000000060px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+             style="font-size:17.71902275px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
              xml:space="preserve"><tspan
-               style="font-size:28.35043715999999847px;font-weight:bold;fill:#ffffff;-inkscape-font-specification:Sans Bold;fill-opacity:1"
+               style="font-size:28.35043716px;font-weight:bold;fill:#ffffff;fill-opacity:1;-inkscape-font-specification:Sans Bold"
                y="476.91061"
                x="354.51746"
                id="tspan18263"
@@ -3917,17 +3913,17 @@
              id="text18333"
              y="493.04303"
              x="356.32397"
-             style="font-size:17.71902275000000060px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+             style="font-size:17.71902275px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
              xml:space="preserve"><tspan
                id="tspan18337"
                y="493.04303"
                x="356.32397"
                sodipodi:role="line"
-               style="font-size:14.17521857999999924px;fill:#ffffff;fill-opacity:1">Propostas</tspan></text>
+               style="font-size:14.17521858px;fill:#ffffff;fill-opacity:1">Propostas</tspan></text>
         </g>
         <rect
            ry="0"
-           y="431.79938"
+           y="435.79938"
            x="706.10431"
            height="89.717224"
            width="200"
@@ -3935,16 +3931,16 @@
            style="fill:#a40000;fill-opacity:1;stroke:none;display:inline" />
         <g
            id="g5723"
-           transform="translate(-40.061498,0)"
+           transform="translate(-40.061498,4)"
            style="fill:#ffffff;fill-opacity:1">
           <text
              sodipodi:linespacing="125%"
              id="text18265"
              y="476.91061"
              x="797.10626"
-             style="font-size:17.71902275000000060px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+             style="font-size:17.71902275px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
              xml:space="preserve"><tspan
-               style="font-size:28.35043715999999847px;font-weight:bold;fill:#ffffff;-inkscape-font-specification:Sans Bold;fill-opacity:1"
+               style="font-size:28.35043716px;font-weight:bold;fill:#ffffff;fill-opacity:1;-inkscape-font-specification:Sans Bold"
                y="476.91061"
                x="797.10626"
                id="tspan18267"
@@ -3954,17 +3950,17 @@
              id="text18339"
              y="493.04303"
              x="799.70184"
-             style="font-size:17.71902275000000060px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+             style="font-size:17.71902275px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
              xml:space="preserve"><tspan
                y="493.04303"
                x="799.70184"
                id="tspan18341"
                sodipodi:role="line"
-               style="font-size:14.17521857999999924px;fill:#ffffff;fill-opacity:1">Votos</tspan></text>
+               style="font-size:14.17521858px;fill:#ffffff;fill-opacity:1">Votos</tspan></text>
         </g>
       </g>
       <rect
-         y="549.53607"
+         y="553.53607"
          x="96.003235"
          height="85.452492"
          width="306.70679"
@@ -3975,36 +3971,36 @@
          xml:space="preserve"
          style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
          x="210.63153"
-         y="586.91077"
+         y="590.91077"
          id="text18853"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan18855"
            x="210.63153"
-           y="586.91077"
+           y="590.91077"
            style="fill:#ffffff;fill-opacity:1">Propostas</tspan><tspan
            sodipodi:role="line"
            x="210.63153"
-           y="611.91077"
+           y="615.91077"
            id="tspan18857"
            style="fill:#ffffff;fill-opacity:1">Priorizadas</tspan></text>
       <text
          xml:space="preserve"
          style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
          x="127.15277"
-         y="613.72229"
+         y="617.72229"
          id="text18859"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan18861"
            x="127.15277"
-           y="613.72229"
+           y="617.72229"
            style="font-size:60px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:Open Sans;-inkscape-font-specification:Open Sans Bold">50</tspan></text>
       <flowRoot
          xml:space="preserve"
          id="flowRoot8529-6-0-8-2-3-9"
          style="font-size:13.59730816px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#808080;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
-         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,176.37075)"><flowRegion
+         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,180.37075)"><flowRegion
            id="flowRegion8531-6-9-5-7-0-0"><rect
              id="rect8533-4-9-5-6-7-9"
              width="321.38712"
@@ -4016,7 +4012,7 @@
          xml:space="preserve"
          id="flowRoot8517-5-1-8-2-9-3"
          style="font-size:15.68929291px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sansation;-inkscape-font-specification:Sansation"
-         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,152.78909)"><flowRegion
+         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,156.78909)"><flowRegion
            id="flowRegion8519-0-7-3-1-9-5"><rect
              id="rect8521-4-3-1-5-3-4"
              width="320.46729"
@@ -4025,7 +4021,7 @@
              y="538.63275"
              style="font-size:15.68929291px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#2e3436;font-family:Sansation;-inkscape-font-specification:Sansation" /></flowRegion><flowPara
            id="flowPara8525-8-0-8-9-0-5">“A realização da Copa no RS vai colocar novamente o nosso Estado no cenário mundial” </flowPara></flowRoot>      <flowRoot
-         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,338.37074)"
+         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,342.37074)"
          style="font-size:13.59730816px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#808080;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
          id="flowRoot18959"
          xml:space="preserve"><flowRegion
@@ -4037,7 +4033,7 @@
              width="321.38712"
              id="rect18963" /></flowRegion><flowPara
            id="flowPara18965">Com essa expectativa, o governador Tarso Genro fala, em vídeo, sobre o le1gado da Copa 2014 para ...Com essa expectativa, o governador Tarso Genro fala, em vídeo, sobre o le1gado da Copa 2014 para ...</flowPara></flowRoot>      <flowRoot
-         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,314.78908)"
+         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,318.78908)"
          style="font-size:15.68929291px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sansation;-inkscape-font-specification:Sansation"
          id="flowRoot18967"
          xml:space="preserve"><flowRegion
@@ -4052,7 +4048,7 @@
          xml:space="preserve"
          id="flowRoot5452"
          style="font-size:13.59730816px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#808080;fill-opacity:1;stroke:none;display:inline;font-family:Sans;-inkscape-font-specification:Sans"
-         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,502.37074)"><flowRegion
+         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,506.37074)"><flowRegion
            id="flowRegion5454"><rect
              id="rect5456"
              width="321.38712"
@@ -4064,7 +4060,7 @@
          xml:space="preserve"
          id="flowRoot5460"
          style="font-size:15.68929291px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2e3436;fill-opacity:1;stroke:none;display:inline;font-family:Sansation;-inkscape-font-specification:Sansation"
-         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,478.78908)"><flowRegion
+         transform="matrix(0.95606605,0,0,0.95606605,-154.5961,482.78908)"><flowRegion
            id="flowRegion5462"><rect
              id="rect5464"
              width="320.46729"
