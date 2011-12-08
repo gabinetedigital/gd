@@ -185,6 +185,13 @@ def contribs_choosen():
             contrib = Contrib.get(loads(data['data'])['id'])
             final = _format_contrib(contrib)
             final['author'] = contrib.user.name
+            final['score'] = data['score']
+            final['votes'] = {
+                'score': data['score'],
+                'total': data['votes'],
+                'won': data['won'],
+                'lost': data['lost'],
+            }
 
             final['children'] = []
             for subcontrib in contrib.children:

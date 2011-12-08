@@ -40,6 +40,20 @@
         <img
            src="{{ url_for('.static', filename='imgs/') }}<%= obj.theme %>32.png">
       </li>
+
+      <% if (obj.votes) { %>
+      <li class="votes">
+        <ul>
+          <li><strong>Pontuação:</strong> <%= obj.votes.score %></li>
+          <li style="float:right;margin-left:5px;">
+            <strong>V:</strong> <%= obj.votes.won %></li>
+          <li style="float:right;margin-left:5px;">
+            <strong>D:</strong> <%= obj.votes.lost %></li>
+          <li><strong>T:</strong> <%= obj.votes.total %></li>
+        </ul>
+      </li>
+      <% } %>
+
       <li class="title"><%= obj.title %></li>
       <% if (obj.author) { %>
       <li class="author">

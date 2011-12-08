@@ -325,6 +325,7 @@ var contribapi = (function () {
                  * list of the contribs sorted by their score and
                  * showing 10 of them per theme. Here's the place that
                  * we implement this difference */
+                $target.html('');
                 if (type === 'choosen') {
                     for (var theme in data) {
                         var $line = $('<li>');
@@ -339,6 +340,7 @@ var contribapi = (function () {
 
                         $(data[theme].children).each(function (index, item) {
                             $parent.append(tmpl('contribTemplate', item));
+                            console.debug(item);
                         });
                     }
                 } else {
