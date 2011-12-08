@@ -20,6 +20,8 @@
 
 """Web application definitions to the govp tool"""
 
+
+from json import loads
 from flask import Blueprint, request, render_template, redirect, url_for
 from flask import session as fsession
 
@@ -174,16 +176,26 @@ def contribs_user():
 
 
 @govpergunta.route('/contribs/choosen.json')
-def contribs_all():
+def contribs_choosen():
     """Lists all contributions in the JSON format"""
     query = Contrib.query.filter_by(status=True, enabled=True)[:50]
-    contribs = []
-    for contrib in query:
-        final = _format_contrib(contrib)
-        final['children'] = [_format_contrib(i) for i in contrib.children]
-        final['duplicated'] = [
-            _format_contrib(i) for i in
-                Contrib.query.filter_by(parent=contrib.id)]
-        contribs.append(final)
-    return dumps(contribs)
+    contribs = {}
+    for key in THEMES.keys():
+        contribs[key] = []
+        for data in wordpress.pairwise.getSortedByScore(0, 10, key)[0]:
+            contrib = Contrib.get(loads(data['data'])['id'])
+            final = _format_contrib(contrib)
+            final['author'] = contrib.user.name
 
+            final['children'] = []
+            for subcontrib in contrib.children:
+                subfinal = _format_contrib(subcontrib)
+                subfinal['author'] = subcontrib.user.name
+                final['children'].append(subfinal)
+
+            for subcontrib in Contrib.query.filter_by(parent=contrib.id):
+                subfinal = _format_contrib(subcontrib)
+                subfinal['author'] = subcontrib.user.name
+                final['children'].append(subfinal)
+            contribs[key].append(final)
+    return dumps(contribs)

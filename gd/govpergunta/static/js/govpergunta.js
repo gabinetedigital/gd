@@ -305,6 +305,9 @@ var contribapi = (function () {
             var $nomsgs = $('#contributions .message');
             $nomsgs.hide();
 
+            /* Saving the context for the closure call */
+            var self = this;
+
             $target.html('');
             /* Getting contributions */
             $.getJSON(url, function (data) {
@@ -320,11 +323,27 @@ var contribapi = (function () {
                     }
                     return;
                 }
-                $(data).each(function (index, item) {
-                    $(tmpl('contribTemplate', item))
-                        .appendTo($target);
-                });
 
+                /* There's a small difference between loading the
+                 * complete list of all contributions and loading the
+                 * list of the contribs sorted by their score and
+                 * showing 10 of them per theme. Here's the place that
+                 * we implement this difference */
+                if (self.which === 'choosen') {
+                    for (var theme in data) {
+                        console.debug(data[theme]);
+
+                        $(data[theme]).each(function (index, item) {
+                            $(tmpl('themeTemplate', item))
+                                .appendTo($target);
+                        });
+                    }
+                } else {
+                    $(data).each(function (index, item) {
+                        $(tmpl('contribTemplate', item))
+                            .appendTo($target);
+                    });
+                }
                 callback();
             });
         }
@@ -337,6 +356,10 @@ var contribapi = (function () {
         , goToContribForm: function () {
             this.$overlay.close();
             themeapi.goToContribForm();
+        }
+
+        , showChildren: function (link) {
+            $(link).parent().parent().find('ul.children').slideToggle('fast');
         }
     };
 

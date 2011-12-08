@@ -109,6 +109,10 @@
     border-radius:8px;
 }
 
+.contribsbutton a {
+    color:#fff;
+}
+
 .contribsbutton strong {
     font-size:50px;
     display:block;

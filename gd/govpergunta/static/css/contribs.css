@@ -1,0 +1,114 @@
+/* Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+ *
+ *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#contributions {
+    width:820px;
+    padding:10px;
+}
+
+#contributions menu {
+    float:right;
+}
+
+#contributions menu li {
+    display:block;
+    float:left;
+    margin-left:10px;
+}
+
+#contributions h2 {
+    color:#4e9a06;
+    margin-bottom:20px;
+    font-size:20pt;
+}
+
+#contributions .contrib {
+    margin-bottom:20px;
+    border-bottom:dotted 1px #aaa;
+    padding-bottom:20px;
+}
+
+#contributions .contrib .icon {
+    float:left;
+    margin-right:10px;
+}
+
+#contributions .contrib .title {
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+#contributions .contrib .author {
+    color:#204a87;
+}
+
+#contributions .contrib .content {
+    margin-left:42px;
+}
+
+#contributions .all {
+    display:none;
+}
+
+#contributions .wrapper {
+    border:none;
+    background:transparent;
+    overflow:auto;
+    max-height:450px;
+    margin-bottom:20px;
+    box-shadow:none;
+}
+
+#contributions .message {
+    display:none;
+    padding:0 20px;
+    font-size:12pt;
+}
+
+#contributions .message p {
+    margin:10px 0;
+    display:none;
+}
+
+/* -- sub contributions -- */
+
+#contributions .contrib h3 {
+    margin-top:5px;
+    color:#4e9a06;
+}
+
+#contributions .contrib .children {
+    padding-left:40px;
+}
+
+#contributions .contrib ul.children {
+    display:none;
+    padding-left:20px;
+    margin-bottom:10px;
+    list-style-type:disc;
+    list-style-position:outside;
+}
+
+#contributions .contrib ul.children li {
+    list-style:inherit;
+    margin-top:5px;
+}
+
+#contributions .contrib .children .content {
+    margin-left:0;
+}

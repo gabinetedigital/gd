@@ -16,12 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import url('font.css');
-
-* {
-    font-family: 'OpenSansRegular';
-}
-
 #menu { display:none; }
 #header { height:150px; }
 
