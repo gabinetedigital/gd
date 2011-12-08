@@ -85,7 +85,7 @@ def audience_status(aid, status):
         inst.date_started = datetime.now()
     session.commit()
     return redirect(url_for('.audiences'))
-    
+
 
 @admin.route('/audience/new', methods=('GET', 'POST'))
 @auth.checkroles(['administrator'])
@@ -106,7 +106,7 @@ def new():
         for term in terms:
             newterm = Term(hashtag=term, main=(main==term))
             inst.terms.append(newterm)
-        
+
         inst.owner = 'administrator'
         session.commit()
         return redirect(url_for('.audiences'))
@@ -127,7 +127,7 @@ def edit(aid):
         inst.description = request.form['description']
         inst.embed = request.form['embed']
         inst.visible = request.form['visible']
-        
+
         # deleting all terms
         term = Term.query.filter_by(audience=inst)
         term.delete()
@@ -194,7 +194,7 @@ def publish(aid):
         .order_by(desc('creation_date'))
     return render_template(
         'admin/publish.html', audience=audience, buzz_list=buzz_list)
-        
+
 
 @admin.route('/audience/batch', methods=('post',))
 @auth.checkroles(['administrator'])
