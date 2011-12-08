@@ -221,13 +221,13 @@
             Telefone (51) 3210 4100
             <a href="mailto:gabinetedigital@gg.rs.gov.br">gabinetedigital@gg.rs.gov.br</a></p>
 
-            <img src="../static/imgs/gd.png" class="gd">
+            <img src="{{ url_for('static', filename='imgs/gd.png') }}" class="gd">
 
           </div>
           
           <div id="licencas" class="col4">
             <h3>Licenças</h3>
-            <img src="../static/imgs/cc.png">
+            <img src="{{ url_for('static', filename='imgs/cc.png') }}">
             <p>
               <a href="http://creativecommons.org/licenses/by-sa/3.0/"
                  target="_blank"> Todo o conteúdo do site está disponível
@@ -236,7 +236,8 @@
               </a>
             </p>
 
-            <img src="../static/imgs/agpl.png" class="agpl">
+            <img src="{{ url_for('static', filename='imgs/agpl.png') }}"
+                 class="agpl">
             <p>
               <a href="http://git.gabinetedigital.rs.gov.br/"
                  target="_blank"> O código deste site é livre,
@@ -249,7 +250,8 @@
           <div id="logos" class="col4">
             <h3>Rio Grande do Sul</h3>
             <a href="http://www.rs.gov.br" target="_blank">
-              <img src="../static/imgs/logors.png" class="rs">
+              <img src="{{ url_for('static', filename='imgs/logors.png') }}"
+                   class="rs">
             </a>
           </div>
           <div class="row-end"></div>
