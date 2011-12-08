@@ -37,7 +37,6 @@ audience = Blueprint(
 
 @audience.route('/')
 def index():
-    return redirect('/')
     """Returns the last published audience page"""
     inst = Audience.query.order_by(desc('date')).first()
     try:
