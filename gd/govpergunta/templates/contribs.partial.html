@@ -5,7 +5,9 @@
         Ver as 50 escolhidas
       </a>
     </li>
+    <li>•</li>
     <li><a href="javascript:contribapi.loadContribs('all');">Ver Todas</a></li>
+    <li>•</li>
     <li><a href="javascript:contribapi.loadContribs('user');">Ver só as Minhas</a></li>
   </menu>
 
@@ -31,16 +33,6 @@
   </div>
 </div>
 
-<script type="text/html" id="themeTemplate">
-  <li class="theme">
-    <ul>
-      <!-- <% for (var i = 0; i < obj.length; i++) { %> -->
-      <!--    <%= tmpl('contribTemplate', obj[i]) %> -->
-      <!-- <% } %> -->
-    </ul>
-  </li>
-</script>
-
 <script type="text/html" id="contribTemplate">
   <li class="contrib">
     <ul>
@@ -58,10 +50,10 @@
       <li class="content"><%= obj.content %></li>
       <% if (obj.children && obj.children.length > 0) { %>
       <li class="children">
-        <h3>
+        <h4>
           <a href="javascript:;" onclick="contribapi.showChildren(this);">
             Questões agregadas</a>
-        </h3>
+        </h4>
         <ul class="children">
           <% for (var d = 0; d < obj.children.length; d++) { %>
           <li>

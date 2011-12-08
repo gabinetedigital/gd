@@ -23,6 +23,7 @@
 
 #contributions menu {
     float:right;
+    margin-top:50px;
 }
 
 #contributions menu li {
@@ -31,10 +32,22 @@
     margin-left:10px;
 }
 
+#contributions menu,
+#contributions menu li a {
+    color:#666;
+}
+
+#contributions menu li a:hover {
+    color:#333;
+}
+
 #contributions h2 {
-    color:#4e9a06;
+    background:#729fcf;
+    color:#fff;
+    padding:4px;
     margin-bottom:20px;
     font-size:20pt;
+    border-radius:5px;
 }
 
 #contributions .contrib {
@@ -54,7 +67,7 @@
 }
 
 #contributions .contrib .author {
-    color:#204a87;
+    color:#333;
 }
 
 #contributions .contrib .content {
@@ -66,6 +79,7 @@
 }
 
 #contributions .wrapper {
+    clear:both;
     border:none;
     background:transparent;
     overflow:auto;
@@ -87,13 +101,56 @@
 
 /* -- sub contributions -- */
 
-#contributions .contrib h3 {
-    margin-top:5px;
+#contributions h3 {
+    padding:5px 0 10px 40px;
+    font-size:18pt;
+    line-height:80%
+}
+
+#contributions h3.cuidado {
+    background:url('../imgs/cuidado32.png') no-repeat;
+    color:#204a87;
+}
+
+#contributions h3.medicamentos {
+    background:url('../imgs/medicamentos32.png') no-repeat;
+    color:#75507b;
+}
+
+#contributions h3.familia {
+    background:url('../imgs/familia32.png') no-repeat;
+    color:#f57900;
+}
+
+#contributions h3.regional {
+    background:url('../imgs/regional32.png') no-repeat;
     color:#4e9a06;
 }
 
-#contributions .contrib .children {
-    padding-left:40px;
+#contributions h3.emergencia {
+    background:url('../imgs/emergencia32.png') no-repeat;
+    color:#cc0000;
+}
+
+#contributions .choosen .contrib {
+    margin-left:40px;
+}
+
+#contributions .choosen .contrib .icon {
+    display:none;
+}
+
+#contributions .choosen .contrib h4 {
+    padding-left:0;
+}
+
+#contributions .choosen .contrib .content {
+    margin-left:0;
+}
+
+#contributions .contrib h4 {
+    margin-top:5px;
+    color:#4e9a06;
 }
 
 #contributions .contrib ul.children {

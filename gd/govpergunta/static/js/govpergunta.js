@@ -305,13 +305,9 @@ var contribapi = (function () {
             var $nomsgs = $('#contributions .message');
             $nomsgs.hide();
 
-            /* Saving the context for the closure call */
-            var self = this;
-
             $target.html('');
             /* Getting contributions */
             $.getJSON(url, function (data) {
-                $target.html('');
                 if (data.length === 0) {
                     $nomsgs.show();
                     if (auth.isAuthenticated()) {
@@ -329,13 +325,20 @@ var contribapi = (function () {
                  * list of the contribs sorted by their score and
                  * showing 10 of them per theme. Here's the place that
                  * we implement this difference */
-                if (self.which === 'choosen') {
+                if (type === 'choosen') {
                     for (var theme in data) {
-                        console.debug(data[theme]);
+                        var $line = $('<li>');
+                        $line.appendTo($target);
+                        $line.append(
+                            $('<h3>')
+                                .addClass(theme)
+                                .html(data[theme]['name']));
 
-                        $(data[theme]).each(function (index, item) {
-                            $(tmpl('themeTemplate', item))
-                                .appendTo($target);
+                        var $parent = $('<ul>').addClass('choosen');
+                        $parent.appendTo($line);
+
+                        $(data[theme].children).each(function (index, item) {
+                            $parent.append(tmpl('contribTemplate', item));
                         });
                     }
                 } else {
@@ -344,7 +347,10 @@ var contribapi = (function () {
                             .appendTo($target);
                     });
                 }
-                callback();
+
+                if (callback !== undefined) {
+                    callback();
+                }
             });
         }
 

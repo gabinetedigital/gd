@@ -178,10 +178,9 @@ def contribs_user():
 @govpergunta.route('/contribs/choosen.json')
 def contribs_choosen():
     """Lists all contributions in the JSON format"""
-    query = Contrib.query.filter_by(status=True, enabled=True)[:50]
     contribs = {}
     for key in THEMES.keys():
-        contribs[key] = []
+        contribs[key] = {'name': THEMES[key], 'children': []}
         for data in wordpress.pairwise.getSortedByScore(0, 10, key)[0]:
             contrib = Contrib.get(loads(data['data'])['id'])
             final = _format_contrib(contrib)
@@ -197,5 +196,5 @@ def contribs_choosen():
                 subfinal = _format_contrib(subcontrib)
                 subfinal['author'] = subcontrib.user.name
                 final['children'].append(subfinal)
-            contribs[key].append(final)
+            contribs[key]['children'].append(final)
     return dumps(contribs)
