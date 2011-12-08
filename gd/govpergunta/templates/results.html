@@ -52,20 +52,28 @@
       <div class="col10">
         <ul class="numbers">
           <li class="dias">
-            <strong>30</strong>
-            <p>Dias de consulta</p>
+            <a href="#">
+              <strong>30</strong>
+              <p>Dias de consulta</p>
+            </a>
           </li>
           <li class="propostas">
-            <strong>1.295</strong>
-            <p>Propostas</p>
+            <a href="#">
+              <strong>1.295</strong>
+              <p>Propostas</p>
+            </a>
           </li>
           <li class="acessos">
-            <strong>20 mil</strong>
-            <p>Acessos ao site</p>
+            <a href="#">
+              <strong>20 mil</strong>
+              <p>Acessos ao site</p>
+            </a>
           </li>
           <li class="votos">
-            <strong>60 mil</strong>
-            <p>Votos</p>
+            <a href="#">
+              <strong>60 mil</strong>
+              <p>Votos</p>
+            </a>
           </li>
         </ul>
       </div>
@@ -84,27 +92,24 @@
 
         <div id="news">
           <ul>
+            {% for post in posts %}
             <li>
               <ul class="news">
                 <li>
                   <h2>
-                    <a href="{ post.permalink }">
-                      { post.title }
+                    <a href="{{ post.permalink }}">
+                      {{ post.title }}
                     </a>
                   </h2>
                 </li>
                 <li>
-                  <a href="{ post.permalink }">
-                    { post.excerpt|safe }}
-                  </a>
-                </li>
-                <li class="meta">
-                  <a href="{ post.permalink }#comments">
-                    Comentários (<strong>{ post.comments.count }</strong>)
+                  <a href="{{ post.permalink }}">
+                    {{ post.excerpt|safe }}
                   </a>
                 </li>
               </ul>
             </li>
+            {% endfor %}
           </ul>
         </div>
       </div>

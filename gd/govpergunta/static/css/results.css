@@ -17,6 +17,7 @@
  */
 
 .results {
+    margin-top:20px;
     margin-bottom:40px;
     padding-bottom:40px;
 }
@@ -28,7 +29,7 @@
 .subtitle {
     padding:25px 0;
     font-size:12pt;
-    color:#888a85;
+    color:#555753;
 }
 
 .flagbg {
@@ -36,7 +37,7 @@
     height:70px;
     background:url("../imgs/blue-flag.png") no-repeat;
     margin-left:-16px;
-    margin-top:10px;
+    margin-top:30px;
     position:absolute;
     padding:8px 30px;
     z-index:1;
@@ -57,7 +58,7 @@
 
 .numbers {
     height:80px;
-    margin-bottom:20px;
+    margin-bottom:30px;
 }
 
 .numbers li {
@@ -65,9 +66,12 @@
     float:left;
     width:200px;
     margin-right:3px;
-    color:#fff;
     text-align:center;
     padding:15px 0;
+}
+
+.numbers li a {
+    color:#fff;
 }
 
 .numbers li strong {
@@ -157,4 +161,4 @@
 
 #container #news { margin-top:30px; box-shadow:none; }
 #container #news ul.news { margin:0; }
-#container #news h2 { padding:0; }
+#container #news h2 { padding:0; line-height:100%; margin-bottom:5px; }

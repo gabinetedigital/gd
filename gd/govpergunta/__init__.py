@@ -75,7 +75,9 @@ def index():
 
 @govpergunta.route('/results')
 def results():
-    return render_template('results.html')
+    pagination, posts = wordpress.getPostsByTag(
+        tag='governador-perguta')
+    return render_template('results.html', posts=posts)
 
 
 @govpergunta.route('/invalidate')
