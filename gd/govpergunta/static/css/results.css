@@ -65,13 +65,18 @@
     display:block;
     float:left;
     width:200px;
-    margin-right:3px;
     text-align:center;
-    padding:15px 0;
 }
 
 .numbers li a {
     color:#fff;
+    display:block;
+    margin-right:3px;
+    padding:15px 0;
+}
+
+.numbers li a:hover {
+    margin-top:-10px;
 }
 
 .numbers li strong {
@@ -79,19 +84,19 @@
     line-height:100%;
 }
 
-.numbers li.dias {
+.numbers li.dias a {
     background:#f57900;
 }
 
-.numbers li.propostas {
+.numbers li.propostas a {
     background:#ef2929;
 }
 
-.numbers li.acessos {
+.numbers li.acessos a {
     background:#cc0000;
 }
 
-.numbers li.votos {
+.numbers li.votos a {
     background:#a40000;
     margin-right:0;
 }
