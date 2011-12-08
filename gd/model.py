@@ -33,7 +33,6 @@ from flask import url_for, abort
 from flaskext.uploads import UploadConfiguration, UploadSet, IMAGES
 
 from gd import conf
-from gd.buzz import sio
 from gd.utils import phpass, dumps
 
 
@@ -107,11 +106,6 @@ class Audience(Entity):
         return '<%s "%s" (%d)>' % (
             self.__class__.__name__, self.description, self.date)
 
-    @after_insert
-    def notify(self):
-        """Notify our buzz system that we have a new audience"""
-        sio.send('new_audience', { 'id': self.id })
-
     def get_main_term(self):
         """Returns the main term of the current audience"""
         return Term.query.filter_by(main=1, audience=self).one().hashtag
@@ -173,11 +167,6 @@ class Buzz(Entity):
         if base['user'] and self.user:
             base['user'] = self.user.public_dict()
         return base
-
-    @after_insert
-    def notify(self):
-        """Notify our buzz system that we have a new audience"""
-        sio.send('new_buzz', self.to_dict())
 
     @property
     def avatar(self):
