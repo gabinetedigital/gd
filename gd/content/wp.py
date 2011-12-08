@@ -253,7 +253,8 @@ class Gallery(object):
         return loads(urlopen(url).read())
 
     def search(self, tag, limit=0):
-        return self._api_call('search', tag, limit)['images']
+        imgs = self._api_call('search', tag, limit)['images']
+        return limit > 0 and imgs[:limit] or imgs
 
     def get_album(self, aid):
         return self._api_call('album', aid)
