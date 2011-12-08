@@ -84,6 +84,12 @@ def results():
         'results.html', posts=posts, images=images)
 
 
+@govpergunta.route('/results/<path:path>')
+def results_page(path):
+    page = wordpress.getPageByPath(path)
+    return render_template('results_page.html', page=page)
+
+
 @govpergunta.route('/invalidate')
 def invalidate():
     """With 50 votes, the user will be redirected to the index page and

@@ -1,87 +1,6 @@
-{% extends "base.html" %}
+{% extends "results_base.html" %}
 
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/newsbox.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/contribs.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/vote.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/results.css') }}">
-{% endblock %}
-
-{% block javascript %}
-<script src="{{ url_for('.static', filename='js/govpergunta.js') }}"></script>
-{% endblock %}
-
-{% block bodyclass %}votepage{% endblock %}
-
-{% block content %}
-<div id="container">
-  <div class="row">
-    <div id="applogo" class="col4">
-      <h1>
-        <a href="javascript:;">Governador Pergunta</a>
-      </h1>
-    </div>
-    <div class="8">
-      <h1>Como podemos melhorar o atendimento na saúde pública?</h1>
-    </div>
-    <div class="row-end"></div>
-  </div>
-
-
-  <div class="flagbg">
-    <h2>Resultados</h2>
-    <strong>9 Nov &mdash; 9 Dez</strong>
-  </div>
-
-  <div class="results boxed">
-    <!-- header -->
-    <div class="row subheader">
-      <div class="col3">
-        <h2>Resultados</h2>
-      </div>
-      <div class="col9">
-        <div class="subtitle">
-          Eleição das 50 prioridades da saúde
-        </div>
-      </div>
-      <div class="row-end"></div>
-    </div>
-
-    <!-- numbers -->
-    <div class="row">
-      <div class="col1">&nbsp;</div>
-      <div class="col10">
-        <ul class="numbers">
-          <li class="dias">
-            <a href="#">
-              <strong>30</strong>
-              <p>Dias de consulta</p>
-            </a>
-          </li>
-          <li class="propostas">
-            <a href="#">
-              <strong>1.295</strong>
-              <p>Propostas</p>
-            </a>
-          </li>
-          <li class="acessos">
-            <a href="#">
-              <strong>20 mil</strong>
-              <p>Acessos ao site</p>
-            </a>
-          </li>
-          <li class="votos">
-            <a href="#">
-              <strong>60 mil</strong>
-              <p>Votos</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="col1">&nbsp;</div>
-      <div class="row-end"></div>
-    </div>
-
+{% block inside %}
     <!-- left column -->
     <div class="row">
       <div class="col1">&nbsp;</div>
@@ -147,10 +66,4 @@
       <div class="col1">&nbsp;</div>
       <div class="row-end"></div>
     </div>
-  </div>
-
-</div>
-
-{% include "contribs.partial.html" %}
-
 {% endblock %}

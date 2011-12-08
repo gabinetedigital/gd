@@ -171,3 +171,19 @@
 #container #news { margin-top:30px; box-shadow:none; }
 #container #news ul.news { margin:0; }
 #container #news h2 { padding:0; line-height:100%; margin-bottom:5px; }
+
+/* -- Page -- */
+
+div.back a {
+    font-size:16pt;
+    color:#4e9a06;
+    display:block;
+    margin-top:10px;
+    float:right;
+}
+
+#container #post {
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}

@@ -1,0 +1,21 @@
+{% extends "results_base.html" %}
+
+{% block inside %}
+<div class="row">
+  <div class="col1">&nbsp;</div>
+  <div class="col10" id="post">
+    <div id="news">
+      <h2>{{ page.title }}</h2>
+      <div class="postcontent">
+        {{ page.content|safe }}
+      </div>
+
+      <div class="back">
+        <a href="{{ url_for('govpergunta.results') }}">Voltar</a>
+      </div>
+    </div>
+  </div>
+  <div class="col1">&nbsp;</div>
+  <div class="row-end"></div>
+</div>
+{% endblock %}
