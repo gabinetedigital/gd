@@ -24,7 +24,7 @@ from flask import Blueprint, request, render_template, redirect, url_for
 from flask import session as fsession
 
 from gd import auth
-from gd.content.wp import wordpress
+from gd.content.wp import wordpress, gallery
 from gd.utils import msg, format_csrf_error, format_csrf_error, dumps
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
@@ -77,7 +77,9 @@ def index():
 def results():
     pagination, posts = wordpress.getPostsByTag(
         tag='governador-perguta')
-    return render_template('results.html', posts=posts)
+    images = gallery.search('GovernadorPergunta', limit=3)
+    return render_template(
+        'results.html', posts=posts, images=images)
 
 
 @govpergunta.route('/invalidate')

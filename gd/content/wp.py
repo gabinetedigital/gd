@@ -23,6 +23,7 @@ import re
 from datetime import datetime
 from urllib import urlopen
 from xmlrpclib import Server
+from json import loads
 
 from flask import url_for
 
@@ -226,3 +227,36 @@ wordpress = Wordpress(
     conf.WORDPRESS_XMLRPC, conf.WORDPRESS_BLOGID,
     conf.WORDPRESS_USER, conf.WORDPRESS_PASSWORD
 )
+
+
+class Gallery(object):
+    def __init__(self):
+        pass
+
+    def _api_call(self, method, value, limit=0):
+        param = {
+            'search': 'term',
+            'tag': 'term',
+            'gallery': 'id',
+            'image': 'id',
+            'album': 'id',
+        }[method]
+        url = ('%(base)s/index.php?callback=json&api_key=true&'
+               'format=json&method=%(method)s&%(param)s=%(value)s&'
+               'limit=%(limit)s') % {
+            'base': conf.WORDPRESS_ADDRESS,
+            'method': method,
+            'param': param,
+            'value': value,
+            'limit': limit,
+        }
+        return loads(urlopen(url).read())
+
+    def search(self, tag, limit=0):
+        return self._api_call('search', tag, limit)['images']
+
+    def get_album(self, aid):
+        return self._api_call('album', aid)
+
+
+gallery = Gallery()
