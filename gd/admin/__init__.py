@@ -63,9 +63,7 @@ def logout():
 @admin.route('/')
 @auth.checkroles(['administrator'])
 def index():
-    """A temporary empty view"""
-    return 'Please access the /audience url in your browser!'
-
+    return redirect('/admin/audience')
 
 @admin.route('/audience')
 @auth.checkroles(['administrator'])
