@@ -3,6 +3,8 @@
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/newsbox.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/blog.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/contribs.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/vote.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/results.css') }}">
@@ -10,6 +12,8 @@
 
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/govpergunta.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/results.js') }}"></script>
 {% endblock %}
 
 {% block bodyclass %}votepage{% endblock %}

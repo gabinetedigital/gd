@@ -80,8 +80,9 @@ def results():
     pagination, posts = wordpress.getPostsByTag(
         tag='governador-pergunta')
     images = gallery.search('GovernadorPergunta', limit=24)
+    videos = [wordpress.wpgd.getVideo(i) for i in (10, 11, 9)]
     return render_template(
-        'results.html', posts=posts, images=images)
+        'results.html', posts=posts, images=images, videos=videos)
 
 
 @govpergunta.route('/results/<path:path>')

@@ -48,12 +48,13 @@
           </div>
 
           <ul>
-            <li>&nbsp;
+            {% for i in videos %}
+            <li {% if loop.last %}class="last"{% endif %}>
+              <a href="javascript:loadVideo({{ i.id }})">
+                <img width="150" height="70" src="{{ i.thumbnail }}">
+              </a>
             </li>
-            <li>&nbsp;
-            </li>
-            <li class="last">&nbsp;
-            </li>
+            {% endfor %}
           </ul>
 
           <div class="all">
@@ -66,12 +67,15 @@
           <ul>
             {% for image in images %}
             <li {% if loop.last %}class="last"{% endif %}>
-              <a href="{{ image.imageURL }}">
+              <a class="group" href="{{ image.imageURL }}">
                 <img width="150" src="{{ image.thumbURL }}">
               </a>
             </li>
             {% endfor %}
           </ul>
+        </div>
+        <div class="all">
+          <a href="{{ url_for('videos.listing') }}">Ver todas as fotos</a>
         </div>
       </div>
       <div class="col1">&nbsp;</div>

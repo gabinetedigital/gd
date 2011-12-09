@@ -181,6 +181,29 @@
     padding:0; line-height:100%; margin-bottom:5px; height:auto;
 }
 
+
+/* -- image list -- */
+
+div.pictures a {
+    border-radius:0;
+    width:150px;
+    height:120px;
+}
+
+div.pictures a:hover {
+    box-shadow:0 0 20px #666;
+    border-radius:0;
+    border:solid 1px #999;
+}
+
+/* -- video specific stuff -- */
+
+div.videos ul li {
+    height:70px;
+    overflow:hidden;
+    background:#000;
+}
+
 /* -- `all' links -- */
 
 div.all a {
