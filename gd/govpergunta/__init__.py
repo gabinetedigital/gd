@@ -78,8 +78,8 @@ def index():
 @govpergunta.route('/results')
 def results():
     pagination, posts = wordpress.getPostsByTag(
-        tag='governador-perguta')
-    images = gallery.search('GovernadorPergunta', limit=3)
+        tag='governador-pergunta')
+    images = gallery.search('GovernadorPergunta', limit=24)
     return render_template(
         'results.html', posts=posts, images=images)
 
