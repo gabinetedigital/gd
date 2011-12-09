@@ -33,6 +33,11 @@
             </li>
             {% endfor %}
           </ul>
+          <div class="all">
+            <a href="{{ url_for('tag', slug='governador-pergunta') }}">
+              Ver todas as notícias relacionadas
+            </a>
+          </div>
         </div>
       </div>
 
@@ -50,6 +55,10 @@
             <li class="last">&nbsp;
             </li>
           </ul>
+
+          <div class="all">
+            <a href="{{ url_for('videos.listing') }}">Ver todos os vídeos</a>
+          </div>
         </div>
 
         <div class="pictures">
@@ -57,7 +66,9 @@
           <ul>
             {% for image in images %}
             <li {% if loop.last %}class="last"{% endif %}>
-              <img width="150" src="{{ image.thumbURL }}">
+              <a href="{{ image.imageURL }}">
+                <img width="150" src="{{ image.thumbURL }}">
+              </a>
             </li>
             {% endfor %}
           </ul>

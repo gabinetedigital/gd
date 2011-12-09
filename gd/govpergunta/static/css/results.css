@@ -59,19 +59,20 @@
 .numbers {
     height:80px;
     margin-bottom:30px;
+    width:900px;
 }
 
 .numbers li {
     display:block;
     float:left;
-    width:200px;
+    width:199.5px;
+    margin-right:4px;
     text-align:center;
 }
 
 .numbers li a {
     color:#fff;
     display:block;
-    margin-right:3px;
     padding:15px 0;
 }
 
@@ -132,6 +133,7 @@
 
 .videos ul {
     margin-top:12px;
+    margin-bottom:10px;
     height:70px;
 }
 
@@ -147,6 +149,7 @@
 
 .pictures ul li {
     height:120px;
+    margin-bottom:20px;
 }
 
 .videos ul li.last,
@@ -161,6 +164,7 @@
 
 .pictures ul {
     height:120px;
+    width:494px;
 }
 
 .pictures h3 {
@@ -171,9 +175,26 @@
 #container .results #news { margin:0; padding-top:20px; }
 #container .results #news a { color:#666; }
 #container .results #news a:hover { color:#333; text-decoration:none; }
-#container #news { margin-top:30px; box-shadow:none; }
-#container #news ul.news { margin:0; }
-#container #news h2 { padding:0; line-height:100%; margin-bottom:5px; }
+#container .results #news { margin-top:0px; box-shadow:none; }
+#container .results #news ul.news { margin:0 0 20px 0; }
+#container .results #news h2 {
+    padding:0; line-height:100%; margin-bottom:5px; height:auto;
+}
+
+/* -- `all' links -- */
+
+div.all a {
+    display:block;
+    text-align:right;
+    font-size:10pt;
+    color:#4e9a06 !important;
+    background:none;
+}
+
+div.all a:hover {
+    color:#000 !important;
+    background:none;
+}
 
 /* -- Page -- */
 
