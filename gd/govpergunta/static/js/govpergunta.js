@@ -344,6 +344,7 @@ var contribapi = (function () {
                         });
                     }
                 } else {
+                    $('.choosen').hide();
                     $(data).each(function (index, item) {
                         $(tmpl('contribTemplate', item))
                             .appendTo($target);
