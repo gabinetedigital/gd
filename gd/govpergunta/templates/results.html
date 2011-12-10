@@ -44,7 +44,9 @@
       <div class="col6">
         <div class="videos">
           <div class="player">
-            player
+            {% if videos %}
+            <video id="{{ videos.0.id }}" width="470" height="280"></video>
+            {% endif %}
           </div>
 
           <ul>
