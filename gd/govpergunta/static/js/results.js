@@ -17,10 +17,14 @@
  */
 
 function loadVideo(id) {
-    
+    $('div.player').html($('<video>').attr({
+        'id': id,
+        'width': 470,
+        'height': 280
+    }));
+    avl.loadPlayers();
 }
 
 $(function () {
-    console.debug('oi');
     $("a.group").attr({ rel: 'group' }).fancybox();
 });

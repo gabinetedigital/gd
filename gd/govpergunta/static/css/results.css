@@ -128,7 +128,8 @@
 
 .player {
     background:#555753;
-    height:290px;
+    height:280px;
+    margin:0 2px;
 }
 
 .videos ul {
