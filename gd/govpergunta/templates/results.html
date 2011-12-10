@@ -50,7 +50,7 @@
           <ul>
             {% for i in videos %}
             <li {% if loop.last %}class="last"{% endif %}>
-              <a href="javascript:loadVideo({{ i.id }})">
+              <a href="javascript:loadVideo({{ i.id }}, true)">
                 <img width="150" height="70" src="{{ i.thumbnail }}">
               </a>
             </li>

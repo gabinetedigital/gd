@@ -16,11 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function loadVideo(id) {
+function loadVideo(id, autoplay) {
     $('div.player').html($('<video>').attr({
         'id': id,
         'width': 470,
-        'height': 280
+        'height': 280,
+        'autoplay': autoplay ? 'autoplay' : null
     }));
     avl.loadPlayers();
 }
