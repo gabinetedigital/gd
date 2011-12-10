@@ -100,14 +100,20 @@ a {
 
 #header .main-menu li {
     margin-right: 18px;
-}
-
-#header .main-menu li {
     float: left;
 }
 
 #header .login {
     margin-bottom: 35px;
+}
+
+#header .login li.welcome {
+    text-align:right;
+    padding-right:20px;
+}
+
+#header .login li.welcome a {
+    background:#3465a4;
 }
 
 #header .login li a { 
