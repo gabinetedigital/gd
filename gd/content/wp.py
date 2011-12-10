@@ -222,6 +222,17 @@ class Post(object):
         """Returns true if the post has a given category"""
         return bool([i for i in self.data['categories'] if i['slug'] == slug])
 
+    def has_field(self, key):
+        """Returns true if the post has a given custom field"""
+        return bool([i for i in self.data['custom_fields'] if i['key'] == key])
+
+    def get_field(self, key, default=None):
+        """Returns the value of a custom field"""
+        for i in self.data['custom_fields']:
+            if i['key'] == key:
+                return i['value']
+        return default
+
 
 wordpress = Wordpress(
     conf.WORDPRESS_XMLRPC, conf.WORDPRESS_BLOGID,
