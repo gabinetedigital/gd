@@ -50,6 +50,7 @@ var video = (function () {
                 $(tmpl('videoTemplate', video.playingVideo)).appendTo(wrap);
                 $('<video>')
                     .attr('id', id)
+                    .attr({width:490, height:290})
                     .appendTo(wrap.find('.videoContainer'));
                 avl.loadPlayers();
             },
