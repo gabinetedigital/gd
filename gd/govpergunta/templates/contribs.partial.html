@@ -6,9 +6,9 @@
       </a>
     </li>
     <li>•</li>
-    <li><a href="javascript:contribapi.loadContribs('all');">Ver Todas</a></li>
+    <li><a href="javascript:contribapi.loadContribs('all');">Ver todas</a></li>
     <li>•</li>
-    <li><a href="javascript:contribapi.loadContribs('user');">Ver só as Minhas</a></li>
+    <li><a href="javascript:contribapi.loadContribs('user');">Ver só as minhas</a></li>
   </menu>
 
   <h2 class="choosen">50 Contribuições escolhidas</h2>
@@ -64,7 +64,11 @@
       <% if (obj.author) { %>
       <li class="author">
         Autor(a)
+        <% if (obj.moderation) { %>
+        <strong>Vários</strong>
+        <% } else { %>
         <strong><%= obj.author %></strong>
+        <% } %>
       </li>
       <% } %>
       <li class="content"><%= obj.content %></li>
