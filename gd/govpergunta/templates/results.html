@@ -14,7 +14,7 @@
 
         <div id="news">
           <ul>
-            {% for post in posts %}
+            {% for post in posts[:6] %}
             <li>
               <ul class="news">
                 <li>
@@ -76,9 +76,9 @@
             {% endfor %}
           </ul>
         </div>
-        <div class="all">
-          <a href="{{ url_for('videos.listing') }}">Ver todas as fotos</a>
-        </div>
+        <!-- <div class="all"> -->
+        <!--   <a href="{{ url_for('videos.listing') }}">Ver todas as fotos</a> -->
+        <!-- </div> -->
       </div>
       <div class="col1">&nbsp;</div>
       <div class="row-end"></div>

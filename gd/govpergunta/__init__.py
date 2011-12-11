@@ -110,7 +110,7 @@ def results():
     pagination, posts = wordpress.getPostsByTag(
         tag='governador-pergunta')
     images = gallery.search('GovernadorPergunta', limit=24)
-    videos = [wordpress.wpgd.getVideo(i) for i in (10, 11, 9)]
+    videos = [wordpress.wpgd.getVideo(i) for i in (12, 8, 5)]
     return render_template(
         'results.html', posts=posts, images=images, videos=videos)
 
