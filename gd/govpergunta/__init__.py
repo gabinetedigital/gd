@@ -53,26 +53,56 @@ govpergunta = Blueprint(
 
 
 
-def _get_pairwise():
-    """Helper function to get the pairwise instance saved in the
-    session"""
-    if ('pairwise' not in fsession) or \
-            (fsession['version'] != PAIRWISE_VERSION):
-        fsession['pairwise'] = Pairwise()
-        fsession['version'] = PAIRWISE_VERSION
-    return fsession['pairwise']
+# def _get_pairwise():
+#     """Helper function to get the pairwise instance saved in the
+#     session"""
+#     if ('pairwise' not in fsession) or \
+#             (fsession['version'] != PAIRWISE_VERSION):
+#         fsession['pairwise'] = Pairwise()
+#         fsession['version'] = PAIRWISE_VERSION
+#     return fsession['pairwise']
+
+
+# @govpergunta.route('/')
+# def index():
+#     pairwise = _get_pairwise()
+#     pair = pairwise.get_pair()
+#     fsession.modified = True
+#     return render_template(
+#         'vote.html',
+#         pair=pair,
+#         theme=THEMES[pair['left'].theme]
+#     )
+
+
+# @govpergunta.route('/invalidate')
+# def invalidate():
+#     """With 50 votes, the user will be redirected to the index page and
+#     it's pairwise session will be destroied"""
+#     del fsession['pairwise']
+#     return redirect(url_for('index'))
+
+
+# @govpergunta.route('/add_vote', methods=('POST',))
+# def add_vote():
+#     if ('pairwise' not in fsession) or \
+#            (fsession['version'] != PAIRWISE_VERSION):
+#         return redirect(url_for('.index'))
+
+#     pairwise = fsession['pairwise']
+#     try:
+#         pairwise.vote(
+#             request.values.get('direction'),
+#             request.values.get('token'))
+#         fsession.modified = True
+#     except InvalidTokenError:
+#         pass
+#     return redirect(url_for('.index'))
 
 
 @govpergunta.route('/')
 def index():
-    pairwise = _get_pairwise()
-    pair = pairwise.get_pair()
-    fsession.modified = True
-    return render_template(
-        'vote.html',
-        pair=pair,
-        theme=THEMES[pair['left'].theme]
-    )
+    return render_template('temp.html')
 
 
 @govpergunta.route('/results')
@@ -89,31 +119,6 @@ def results():
 def results_page(path):
     page = wordpress.getPageByPath(path)
     return render_template('results_page.html', page=page)
-
-
-@govpergunta.route('/invalidate')
-def invalidate():
-    """With 50 votes, the user will be redirected to the index page and
-    it's pairwise session will be destroied"""
-    del fsession['pairwise']
-    return redirect(url_for('index'))
-
-
-@govpergunta.route('/add_vote', methods=('POST',))
-def add_vote():
-    if ('pairwise' not in fsession) or \
-           (fsession['version'] != PAIRWISE_VERSION):
-        return redirect(url_for('.index'))
-
-    pairwise = fsession['pairwise']
-    try:
-        pairwise.vote(
-            request.values.get('direction'),
-            request.values.get('token'))
-        fsession.modified = True
-    except InvalidTokenError:
-        pass
-    return redirect(url_for('.index'))
 
 
 @govpergunta.route('/contrib_json', methods=('POST',))
