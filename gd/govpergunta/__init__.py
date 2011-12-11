@@ -189,8 +189,18 @@ def contribs_choosen():
     contribs = {}
     for key in THEMES.keys():
         contribs[key] = {'name': THEMES[key], 'children': []}
-        for data in wordpress.pairwise.getSortedByScore(0, 10, key)[0]:
-            contrib = Contrib.get(loads(data['data'])['id'])
+        count = 11 if key == 'familia' else 10
+        for data in wordpress.pairwise.getSortedByScore(0, count, key)[0]:
+            cid = loads(data['data'])['id']
+
+            # This is _nasty_. The team that carried about organizing
+            # contribution approved something wrong. Yes, now we have
+            # invalid data on our db. This was the better way I figured
+            # out to fix it right now, but obviously something better
+            # must be done when we have more time.
+            if cid == 1213:
+                continue
+            contrib = Contrib.get(cid)
             final = _format_contrib(contrib)
             final['author'] = contrib.user.name
             final['score'] = data['score']
