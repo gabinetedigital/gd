@@ -212,3 +212,29 @@ def contribs_choosen():
                 final['children'].append(subfinal)
             contribs[key]['children'].append(final)
     return dumps(contribs)
+
+
+# @govpergunta.route('/contribs/stats.json')
+# def contribs_stats():
+#     """Lists all contributions in the JSON format"""
+#     def hammer_contrib(c):
+#         return '"%(name)s","%(email)s","%(city)s","%(phone)s",' + \
+#             '"%(title)s","%(theme)s"' % {
+#             'theme': c.theme,
+#             'name': c.user.name,
+#             'email': c.user.email,
+#             'city': c.user.get_meta('city'),
+#             'phone': c.user.get_meta('phone'),
+#             'title': c.title,
+#         }
+#
+#     contribs = ["nome,email,cidade,telefone,titulo,tema"]
+#     for key in THEMES.keys():
+#         for data in wordpress.pairwise.getSortedByScore(0, 10, key)[0]:
+#             contrib = Contrib.get(loads(data['data'])['id'])
+#             contribs.append(hammer_contrib(contrib))
+#             for subcontrib in contrib.children:
+#                 contribs.append(hammer_contrib(subcontrib))
+#             for subcontrib in Contrib.query.filter_by(parent=contrib.id):
+#                 contribs.append(hammer_contrib(subcontrib))
+#     return '\n'.join(contribs)
