@@ -157,6 +157,7 @@ def _format_contrib(contrib):
         'content': contrib.content,
         'creation_date': contrib.creation_date,
         'theme': contrib.theme,
+        'moderation': contrib.moderation,
      }
 
 
