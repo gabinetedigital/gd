@@ -19,13 +19,118 @@
 
 """The entry point for the buzzwatcher application"""
 
-from gd.buzz.server import Server
+from urllib import urlopen
+from urllib2 import HTTPError
+from time import sleep
+from json import loads
+from tweetstream import FilterStream, ConnectionError
+
+from gd.model import Audience, session, Buzz, BuzzType, get_or_create, conf
+
+USER_API_URL = 'http://api.twitter.com/1/users/show.json?screen_name=%s'
+
+class Twitter(object):
+    """A twitter stream client that saves tweets from some given
+    `profiles' and `hashtags'.
+    """
+    def __init__(self, audience):
+        self.audience = audience
+        self.profiles, self.hashtags = self.get_profiles_and_hashtags()
+        self.profileids = []
+
+        # We have to resolve these ID's before doing anything else. This
+        # function will be called until things works properly
+        while not self.resolve_profile_ids():
+            print 'Unable to resolve profile ids, trying again soon!'
+            sleep(30)
+
+    def get_profiles_and_hashtags(self):
+        profiles, hashtags = [], []
+        for i in self.audience.terms:
+            term = str(i)
+            print term
+            if term.startswith('@'):
+                profiles.append(term)
+            else:
+                hashtags.append(term)
+        return profiles, hashtags
+
+    def resolve_profile_ids(self):
+        """We need to resolve the screen names to user ids to use the
+        twitter stream API. This method does this job by requesting the
+        `USER_API_URL' and getting the `id' property from the returned
+        json content.
+        """
+        for screen_name in self.profiles:
+            try:
+                # Catching any connection or json parsing error here. We
+                # have to make sure that no error will escape from this
+                # cage!
+                content = urlopen(USER_API_URL % screen_name).read()
+                parsed = loads(content)
+            except Exception, exc:
+                return False
+
+            # Everything ok with the request, but the retrieved content
+            # is not what we want!
+            if not 'id' in parsed:
+                return False
+
+            # Now everything seems to be nice. Let's keep working
+            self.profileids.append(parsed['id'])
+
+        # All received ids resolved, let's go ahead and wait for tweets!
+        print 'IDs resolved successful'
+        return True
+
+    def process(self):
+        """Here's the place that we actually call the stream API and
+        capture found tweets.
+
+        Each time we receive a new tweet, we create a `Buzz' instance
+        with it's owner and content info and then yield it to the
+        caller. None is saved to the database here.
+        """
+        print 'processing %s, %s' % (self.profileids, self.hashtags)
+        try:
+            stream = FilterStream(
+                conf.TWITTER_STREAM_USERNAME,
+                conf.TWITTER_STREAM_PASSWORD,
+                follow=self.profileids, track=self.hashtags)
+
+            for tweet in stream:
+                # We're creating a new entry in our buzz entity for each
+                # tweet received. We are also setting this buzz as a
+                # twitter one and yielding it to the caller that will be
+                # the responsible for saving it in the database.
+                if tweet.has_key('user'):
+                    type_ = get_or_create(BuzzType, name=u'twitter')[0]
+                    buzz = Buzz(
+                        owner_nick=tweet['user']['screen_name'],
+                        owner_avatar=tweet['user']['profile_image_url'],
+                        content=tweet['text'],
+                        type_=type_)
+                    buzz.audience = self.audience
+                    self.audience.buzzes.append(buzz)
+                    session.commit()
+
+        except (ConnectionError, HTTPError), exc:
+            # Something got screwed, let's try some seconds late.
+            # FIXME: We really should limit the number of tries here and
+            # warning the sysadmin that something is wrong.
+            name = exc.__class__.__name__
+            print 'Crawler::%s trying again soon...' % name
+            sleep(30)
+            self.process()
+
 
 
 def main():
-    """Creates a new instance of the buzz server and starts it"""
-    Server().start()
-
+    import pdb
+    pdb.set_trace()
+    audience = Audience.query.filter_by(started=True).one()
+    twitter = Twitter(audience)
+    twitter.process()
 
 if __name__ == '__main__':
     main()
