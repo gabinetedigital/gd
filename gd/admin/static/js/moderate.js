@@ -18,10 +18,43 @@
 
 $(function () {
 
-    $("#show-hidden").click(function(ev) {
+    $("#show-hidden").click(function(ev) { //like twitter 'more' button
         ev.preventDefault();
+        hidden_count = 0;
         $("#show-hidden").hide();
         $('.listing li').slideDown();
+    });
+
+    $("#suggested-notices").click(function(ev)  {
+        ev.preventDefault();
+        $("#second-listing").hide();
+        $("#main-listing").show();
+    });
+
+    $("#published-notices").click(function(ev) {
+        ev.preventDefault();
+        $("#second-listing").show();
+        $("#second-listing a").hide(); //hide buttons of already published
+        $("#main-listing").hide();
+    });
+
+    $("#new-notices").click(function(ev)  {
+        ev.preventDefault();
+        $("#new-notices").addClass('selected');
+        $("#accepted-notices").removeClass('selected');
+
+        $("#second-listing").hide();
+        $("#main-listing").show();
+    });
+
+    $("#accepted-notices").click(function(ev) {
+        ev.preventDefault();
+        $("#new-notices").removeClass('selected');
+        $("#accepted-notices").addClass('selected');
+
+        $("#second-listing").show();
+        $("#second-listing a").hide(); //hide buttons of already published
+        $("#main-listing").hide();
     });
 
     /* Binding the click of the `control' links to an ajax get instead
@@ -47,7 +80,7 @@ $(function () {
 
     /* Creates a new instance of the buzz machinery that automatically
      * updates the buzz list. */
-    function updateBuzz(msg) {
+    function updateBuzz(msg, ul) {
         var $el = $(tmpl("buzzTemplate", msg));
         $('div.controls a', $el).click(updateToAjax);
 
@@ -57,7 +90,7 @@ $(function () {
             $("#show-hidden").text("("+hidden_count + " new)");
             $("#show-hidden").show();
         }
-        $('.listing').prepend($el);
+        ul.prepend($el);
     }
 
     function is_moderated_page() {
@@ -71,21 +104,27 @@ $(function () {
     new Buzz(BASE_URL,{
         new_buzz: function (msg) {
             if (is_moderated_page()) {
-                updateBuzz(msg);
+                updateBuzz(msg, $('#main-listing'));
             }
         },
-
+        buzz_accepted: function (msg) {
+            if (is_moderated_page()) {
+              updateBuzz(msg, $('#second-listing'));
+            }
+        },
         buzz_selected: function (msg) {
             if (is_publish_page()) {
-                updateBuzz(msg);
+              updateBuzz(msg, $('#main-listing'));
             }
         },
-        done: function(name) {
-            if ((name == 'selected' && is_publish_page()) ||
-                (name == 'public' && is_moderated_page())) {
-                is_first_update = false;
-                $("#listing-loading").remove();
+        buzz_published: function (msg) {
+            if (is_publish_page()) {
+              updateBuzz(msg, $('#second-listing'));
             }
+        },
+        done: function() {
+            is_first_update = false;
+            $("#listing-loading").remove();
         }
     });
 });

@@ -33,6 +33,15 @@ function Buzz(base_url, params) {
     var selected_ids = [];
     var last_published_id = 0;
 
+    var requests = 0;
+    function compute_requests() {
+        requests++;
+        if (requests == 4) {
+            requests = 0;
+            args.done();
+        }
+    }
+
     setInterval(function () {
         $.ajax({
             url: base_url+'audience/'+AUDIENCE_ID+'/public_buzz',
@@ -46,7 +55,7 @@ function Buzz(base_url, params) {
                         args.new_buzz(this);
                     });
                 }
-                args.done('public');
+                compute_requests();
             }
         });
 
@@ -61,7 +70,7 @@ function Buzz(base_url, params) {
                         args.buzz_accepted(this);
                     }
                 });
-                args.done('moderated');
+                compute_requests();
             }
         });
 
@@ -76,7 +85,7 @@ function Buzz(base_url, params) {
                         args.buzz_selected(this);
                     }
                 });
-                args.done('selected');
+                compute_requests();
             }
         });
 
@@ -89,9 +98,8 @@ function Buzz(base_url, params) {
                     last_published_id = notice.id;
                     args.buzz_published(notice);
                 }
-                args.done('last_published');
+                compute_requests();
             }
         });
     }, 2000);
-
 }

@@ -19,10 +19,17 @@
 
   <form id="batch" method="post" action="{{ url_for('.batch') }}">
     <div class="massive">
+      <label>Show:</label>
+      <a id="new-notices" class="selected"
+         href="">New</a> |
+      <a id="accepted-notices"
+         href="">Accepted</a>
     </div>
 
-    <ul class="listing">
+    <ul id="main-listing" class="listing">
       <li id="listing-loading">Loading...</li>
+    </ul>
+    <ul id="second-listing" class="listing" style="display:none">
     </ul>
   </form>
 </div>
