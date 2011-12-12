@@ -111,7 +111,8 @@ def tv(aid):
     """Visualization for the last notice published"""
     inst = get_or_404(Audience, id=aid, visible=True)
     return render_template(
-        'tv.html', notice=inst.get_last_published_notice())
+        'tv.html', audience=inst,
+        notice=inst.get_last_published_notice())
 
 
 @audience.route('/<int:aid>/tvbuzz')
@@ -119,4 +120,5 @@ def tvbuzz(aid):
     """Visualization for the buzz of an audience"""
     inst = get_or_404(Audience, id=aid, visible=True)
     return render_template(
-        'tvbuzz.html', buzz=inst.get_moderated_buzz())
+        'tvbuzz.html', audience=inst,
+        buzz=inst.get_moderated_buzz())

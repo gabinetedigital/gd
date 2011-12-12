@@ -47,9 +47,10 @@
     <script type="text/javascript">var BASE_URL = "{{ request.url_root }}";</script>
     <script src="{{ url_for('static', filename='js/jquery-1.5.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/template.js') }}"></script>
-    <script src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
     <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
     <script>
+      var BASE_URL = "{{ request.url_root }}";
+      var AUDIENCE_ID={{audience.id}};
       $(function () {
           new Buzz(BASE_URL,{
               buzz_accepted: function (msg) {
