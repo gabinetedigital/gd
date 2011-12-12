@@ -236,9 +236,9 @@ def select_buzz(bid):
 def delete_buzz(bid):
     """Delete Buzz"""
     buzz = Buzz.query.get(bid)
-    buzz.delete()
-    session.commit()
-    sio.send('buzz_deleted', buzz.to_dict())
+    if buzz is not None:
+        buzz.delete()
+        session.commit()
     return msg.ok('Buzz deleted successfuly')
 
 
