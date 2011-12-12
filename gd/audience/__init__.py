@@ -57,11 +57,32 @@ def audience_details(aid):
         notice=inst.get_last_published_notice(),
     )
 
+@audience.route('/<int:aid>/buzz_stream', methods=('POST',))
+def buzz_stream(aid):
+    """public_buzz, moderated_buzz, selected_buzz, last_published at once
+    filtred by from_id, selected_ids, moderated_ids and last_published_id"""
+    public_ids = request.values.getlist('public_ids[]')
+    moderated_ids = request.values.getlist('moderated_ids[]')
+    selected_ids = request.values.getlist('selected_ids[]')
+    last_published_id = request.values.get('last_published_id[]', 0)
+
+    public = Audience.query.get(aid).get_public_buzz(0, 10,public_ids)
+
+    moderated = Audience.query.get(aid).get_moderated_buzz(moderated_ids)
+    selected = Audience.query.get(aid).get_selected_buzz(selected_ids)
+    published = Audience.get(aid).get_last_published_notice()
+
+    buzz = {'public': [notice.to_dict() for notice in public],
+            'moderated': [notice.to_dict() for notice in moderated],
+            'selected': [notice.to_dict() for notice in selected],
+            'published': published and published.id != last_published_id \
+            and published.to_dict() or None}
+    return dumps(buzz)
+
 @audience.route('/<int:aid>/public_buzz')
 def public_buzz(aid):
     """Returns the public buzz of an audience in JSON format"""
-    from_id = request.values.get('from_id', 0)
-    buzz = Audience.query.get(aid).get_public_buzz(0, 10,from_id)
+    buzz = Audience.query.get(aid).get_public_buzz(0, 10)
     return dumps([notice.to_dict() for notice in buzz])
 
 
@@ -73,7 +94,7 @@ def moderated_buzz(aid):
 
 @audience.route('/<int:aid>/selected_buzz')
 def selected_buzz(aid):
-    """Returns the moderated buzz of an audience in JSON format"""
+    """Returns the selected buzz of an audience in JSON format"""
     buzz = Audience.query.get(aid).get_selected_buzz()
     return dumps([notice.to_dict() for notice in buzz])
 

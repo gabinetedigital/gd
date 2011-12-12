@@ -28,78 +28,64 @@ function Buzz(base_url, params) {
         done: function() {}
     }, params);
 
-    var last_public_id = 0;
+    var public_ids = [];
     var moderated_ids = [];
     var selected_ids = [];
     var last_published_id = 0;
 
-    var requests = 0;
-    function compute_requests() {
-        requests++;
-        if (requests == 4) {
-            requests = 0;
-            args.done();
+    var receiver = {
+        public: function(notices) {
+            $.each(notices, function() {
+                if (public_ids.indexOf(this.id) == -1) {
+                    public_ids.push(this.id);
+                    args.new_buzz(this);
+                }
+            });
+        },
+        moderated: function(notices) {
+            $.each(notices, function() {
+                if (moderated_ids.indexOf(this.id) == -1) {
+                    moderated_ids.push(this.id);
+                    args.buzz_accepted(this);
+                }
+            });
+        },
+        selected: function(notices) {
+            $.each(notices, function() {
+                if (selected_ids.indexOf(this.id) == -1) {
+                    selected_ids.push(this.id);
+                    args.buzz_selected(this);
+                }
+            });
+        },
+        published: function(notice) {
+            if (notice && last_published_id != notice.id) {
+                last_published_id = notice.id;
+                args.buzz_published(notice);
+            }
         }
     }
 
-    setInterval(function () {
+    function request_notices() {
         $.ajax({
-            url: base_url+'audience/'+AUDIENCE_ID+'/public_buzz',
-            type: 'get',
-            data: {from_id:last_public_id},
+            url: base_url+'audience/'+AUDIENCE_ID+'/buzz_stream',
+            type: 'post',
+            data: {public_ids:public_ids,
+                   selected_ids:selected_ids,
+                   moderated_ids:moderated_ids,
+                   last_published_id:last_published_id
+                  },
             success: function(data) {
-                var notices = JSON.parse(data);
-                if (notices.length > 0) {
-                    last_public_id = notices[0].id;
-                    $.each(notices, function() {
-                        args.new_buzz(this);
-                    });
-                }
-                compute_requests();
-            }
-        });
-
-        $.ajax({
-            url: base_url+'audience/'+AUDIENCE_ID+'/moderated_buzz',
-            type: 'get',
-            success: function(data) {
-                var notices = JSON.parse(data);
-                $.each(notices, function() {
-                    if (moderated_ids.indexOf(this.id) == -1) {
-                        moderated_ids.push(this.id);
-                        args.buzz_accepted(this);
-                    }
+                console.log(data);
+                var json = JSON.parse(data);
+                var types = ['public','moderated','selected','published'];
+                $.each(types, function() {
+                    receiver[this](json[this]);
                 });
-                compute_requests();
+                args.done();
             }
         });
-
-        $.ajax({
-            url: base_url+'audience/'+AUDIENCE_ID+'/selected_buzz',
-            type: 'get',
-            success: function(data) {
-                var notices = JSON.parse(data);
-                $.each(notices, function() {
-                    if (selected_ids.indexOf(this.id) == -1) {
-                        selected_ids.push(this.id);
-                        args.buzz_selected(this);
-                    }
-                });
-                compute_requests();
-            }
-        });
-
-        $.ajax({
-            url: base_url+'audience/'+AUDIENCE_ID+'/last_published',
-            type: 'get',
-            success: function(msg) {
-                var notice = JSON.parse(msg);
-                if (notice && last_published_id != notice.id) {
-                    last_published_id = notice.id;
-                    args.buzz_published(notice);
-                }
-                compute_requests();
-            }
-        });
-    }, 2000);
+    }
+    setInterval(request_notices, 3000);
+    request_notices();
 }

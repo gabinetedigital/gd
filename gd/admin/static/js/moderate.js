@@ -27,12 +27,18 @@ $(function () {
 
     $("#suggested-notices").click(function(ev)  {
         ev.preventDefault();
+        $("#suggested-notices").addClass('selected');
+        $("#published-notices").removeClass('selected');
+
         $("#second-listing").hide();
         $("#main-listing").show();
     });
 
     $("#published-notices").click(function(ev) {
         ev.preventDefault();
+        $("#published-notices").addClass('selected');
+        $("#suggested-notices").removeClass('selected');
+
         $("#second-listing").show();
         $("#second-listing a").hide(); //hide buttons of already published
         $("#main-listing").hide();
