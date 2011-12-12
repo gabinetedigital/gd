@@ -17,7 +17,7 @@
  */
 
 $(function () {
-    new Buzz(SIO_BASE, {
+    new Buzz(BASE_URL, {
         buzz_published: function (msg) {
             $('.notice').html($(tmpl("noticeTemplate", msg)));
         }

@@ -57,19 +57,25 @@ def audience_details(aid):
         notice=inst.get_last_published_notice(),
     )
 
-
 @audience.route('/<int:aid>/public_buzz')
 def public_buzz(aid):
     """Returns the public buzz of an audience in JSON format"""
-    buzz = Audience.query.get(aid).get_public_buzz(0, 10)
+    from_id = request.values.get('from_id', 0)
+    buzz = Audience.query.get(aid).get_public_buzz(0, 10,from_id)
     return dumps([notice.to_dict() for notice in buzz])
 
 
 @audience.route('/<int:aid>/moderated_buzz')
 def moderated_buzz(aid):
     """Returns the moderated buzz of an audience in JSON format"""
-    return dumps([buzz.to_dict()
-                  for buzz in Audience.query.get(aid).get_moderated_buzz()])
+    buzz = Audience.query.get(aid).get_moderated_buzz()
+    return dumps([notice.to_dict() for notice in buzz])
+
+@audience.route('/<int:aid>/selected_buzz')
+def selected_buzz(aid):
+    """Returns the moderated buzz of an audience in JSON format"""
+    buzz = Audience.query.get(aid).get_selected_buzz()
+    return dumps([notice.to_dict() for notice in buzz])
 
 
 @audience.route('/<int:aid>/last_published')

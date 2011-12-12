@@ -40,6 +40,7 @@ from gd.govpergunta import govpergunta
 from gd.content.videos import videos
 from gd.audience import audience
 from gd.admin import admin
+from gd.buzz.webapp import buzz
 
 app = Flask(__name__)
 app.register_blueprint(auth, url_prefix='/auth')
@@ -48,6 +49,7 @@ app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 app.register_blueprint(videos, url_prefix='/videos')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(admin, url_prefix='/admin')
+app.register_blueprint(buzz, url_prefix='/buzz')
 
 # Registering a secret key to be able to work with sessions
 app.secret_key = conf.SECRET_KEY

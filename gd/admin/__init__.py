@@ -25,7 +25,6 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc, not_
 from gd.model import Audience, Buzz, Term, session
 from gd.utils import msg
-from gd.buzz import sio
 from gd import auth, conf
 
 
@@ -219,7 +218,6 @@ def accept_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
     session.commit()
-    sio.send('buzz_accepted', buzz.to_dict())
     return msg.ok('Buzz accepted')
 
 
@@ -230,7 +228,6 @@ def select_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'selected'
     session.commit()
-    sio.send('buzz_selected', buzz.to_dict())
     return msg.ok('Buzz selected')
 
 
@@ -253,11 +250,10 @@ def publish_buzz(bid):
     buzz.status = u'published'
     buzz.date_published = datetime.now()
     session.commit()
-    sio.send('buzz_published', buzz.to_dict())
     return msg.ok('Buzz published')
 
 
-@admin.route('/buzz/<int:bid>/dontpublish')
+@admin.route('/buzz/<int:bid>/dont_publish')
 @auth.checkroles(['administrator'])
 def dont_publish_buzz(bid):
     """not publish messages"""

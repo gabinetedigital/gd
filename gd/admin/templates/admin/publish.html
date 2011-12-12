@@ -11,45 +11,19 @@
 {% block content %}
 {% set isnew = request.values.get('status', 'new') == 'new' %}
 
+<script>AUDIENCE_ID={{audience.id}};</script>
 <div class="subcontent moderate publish">
   <form id="batch" method="post" action="{{ url_for('.batch') }}">
-    <h2 class="subject">Publication</h2>
+    <h2 class="subject">Publication
+    <a id="show-hidden" style="display:none"
+       href="">(XX new)</a></h2>
+    </h2>
+
     <div class="massive">
-      <label>Show:</label>
-      <a {% if isnew %}class="selected"{% endif %}
-         href="{{ url_for('.publish', aid=audience.id) }}?status=new">New</a> |
-      <a {% if not isnew %}class="selected"{% endif %}
-         href="{{ url_for('.publish', aid=audience.id) }}?status=published">Published</a>
     </div>
 
     <ul class="listing">
-      {% for i in buzz_list %}
-      <!-- {{ i.id }} -->
-      <li class="{{ loop.cycle('dark', 'light') }}">
-        <img src="{{ i.avatar }}">
-        <strong>@{{ i.owner_nick }}</strong>
-        {% if isnew %}
-        <em>{{ i.creation_date.strftime('%d/%m/%Y %H:%M') }}</em>
-        {% else %}
-        <em>{{ i.date_published.strftime('%d/%m/%Y %H:%M') }}</em>
-        {% endif %}
-        <p>{{ i.content }}</p>
-
-        {% if isnew %}
-        <div class="controls">
-          <a href="{{ url_for('.publish_buzz', bid=i.id) }}" class="accept"
-             title="Publish this buzz">
-            Publish
-          </a>
-          <a href="{{ url_for('.dont_publish_buzz', bid=i.id) }}" class="remove"
-             title="Don't Publish this buzz">
-            Don't Publish
-          </a>
-          <span class="clear"></span>
-        </div>
-        {% endif %}
-      </li>
-      {% endfor  %}
+      <li id="listing-loading">Loading...</li>
     </ul>
   </form>
 </div>
@@ -60,12 +34,12 @@
     <strong>@<%= obj.owner_nick %></strong>
     <p><%= obj.content %></p>
     <div class="controls">
-      <a href="<%= url_for('admin.buzz.<bid>.publish_buzz', { bid: obj.id }) %>"
+      <a href="<%= url_for('admin.buzz.<bid>.publish', { bid: obj.id }) %>"
          class="accept" title="Publish this buzz">
         Publish
       </a>
 
-      <a href="<%= url_for('admin.buzz.<bid>.dont_publish_buzz', { bid: obj.id }) %>"
+      <a href="<%= url_for('admin.buzz.<bid>.dont_publish', { bid: obj.id }) %>"
          title="Suggest this buzz to be published" class="suggest"
          class="suggest">
         Don't Publish

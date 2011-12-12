@@ -17,51 +17,75 @@
  */
 
 $(function () {
+
+    $("#show-hidden").click(function(ev) {
+        ev.preventDefault();
+        $("#show-hidden").hide();
+        $('.listing li').slideDown();
+    });
+
     /* Binding the click of the `control' links to an ajax get instead
      * of letting the whole page redirect/update. */
     function updateToAjax () {
         var $a = $(this);
         $.getJSON($(this).attr('href'), function (data) {
             if (data.status === 'ok') {
-                $a
+                var li = $a
                     .parent() // div.controls
-                    .parent() // li
-                    .remove();
+                    .parent(); // li
+                li.slideUp(function() {
+                    li.remove();
+                });
             }
         });
         return false;
     }
     $('div.controls a').click(updateToAjax);
 
+    var hidden_count = 0;
+    var is_first_update = true;
+
     /* Creates a new instance of the buzz machinery that automatically
      * updates the buzz list. */
-    function updateBuzz(msg, show) {
-        if (show) {
-            var $el = $(tmpl("buzzTemplate", msg));
-            $('div.controls a', $el).click(updateToAjax);
-            $('.listing').prepend($el);
+    function updateBuzz(msg) {
+        var $el = $(tmpl("buzzTemplate", msg));
+        $('div.controls a', $el).click(updateToAjax);
+
+        if (!is_first_update) {
+            $el.hide();
+            hidden_count++;
+            $("#show-hidden").text("("+hidden_count + " new)");
+            $("#show-hidden").show();
         }
+        $('.listing').prepend($el);
     }
 
-    new Buzz(SIO_BASE, {
-        new_buzz: function (msg) {
-            updateBuzz(msg, location.href.indexOf('moderate') >= 0 &&
-                location.search.indexOf('accepted') < 0);
-        },
+    function is_moderated_page() {
+        return location.href.indexOf('moderate') >= 0;
+    }
 
-        buzz_accepted: function (msg) {
-            updateBuzz(msg, location.href.indexOf('moderate') >= 0 &&
-                location.search.indexOf('accepted') >= 0);
+    function is_publish_page() {
+        return location.href.indexOf('publish') >= 0;
+    }
+
+    new Buzz(BASE_URL,{
+        new_buzz: function (msg) {
+            if (is_moderated_page()) {
+                updateBuzz(msg);
+            }
         },
 
         buzz_selected: function (msg) {
-            updateBuzz(msg, location.href.indexOf('publish') >= 0 &&
-                location.search.indexOf('published') < 0);
+            if (is_publish_page()) {
+                updateBuzz(msg);
+            }
         },
-
-        buzz_published: function (msg) {
-            updateBuzz(msg, location.href.indexOf('publish') >= 0 &&
-                location.search.indexOf('published') >= 0);
+        done: function(name) {
+            if ((name == 'selected' && is_publish_page()) ||
+                (name == 'public' && is_moderated_page())) {
+                is_first_update = false;
+                $("#listing-loading").remove();
+            }
         }
     });
 });

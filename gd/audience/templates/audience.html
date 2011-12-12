@@ -6,12 +6,14 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
 <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/statusbar.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
+<script>
+  AUDIENCE_ID={{audience.id}};
+</script>
 {% endblock %}
 
 {% block content %}
@@ -104,13 +106,6 @@
         </div>
         {% if audience.started %}
         <div id="beingAnswered">
-          {% if notice %}
-          <ul class="stream">
-            <li class="avatar"><img src="{{ notice.avatar }}"></li>
-            <li class="author">@{{ notice.owner_nick }} <em>| {{ notice.type_ }}</em></li>
-            <li class="answer">{{ notice.content }}</li>
-          </ul>
-          {% endif %}
         </div>
         <div id="streaming">{{ audience.embed|safe }}</div>
         {% endif %}
@@ -124,44 +119,8 @@
       <a class="filter" href="javascript:;"
          title="Alternar a exibição de mensagens moderadas">filtro</a>
       <ul id="buzz-public" class="buzz" style="display:none">
-        {% for buzz in audience.get_public_buzz(0, 20) %}
-        <li>
-          <ul class="stream">
-            <li class="avatar">
-              <img src="{{ buzz.avatar }}">
-            </li>
-            <li class="author">
-              {%- if buzz.user %}
-                {{ buzz.user.display_name }}
-              {% else %}
-                @{{ buzz.owner_nick }}
-              {% endif %}
-              <em>|{{ buzz.type_.name }}</em>
-            </li>
-            <li class="answer">{{ buzz.content|safe }}</li>
-          </ul>
-        </li>
-        {% endfor %}
       </ul>
       <ul id="buzz-moderated" class="buzz">
-        {% for buzz in audience.get_moderated_buzz() %}
-        <li>
-          <ul class="stream">
-            <li class="avatar">
-              <img src="{{ buzz.avatar }}">
-            </li>
-            <li class="author">
-              {%- if buzz.user %}
-                {{ buzz.user.display_name }}
-              {% else %}
-                @{{ buzz.owner_nick }}
-              {% endif %}
-              <em>| {{ buzz.type_.name }}</em>
-            </li>
-            <li class="answer">{{ buzz.content|safe }}</li>
-          </ul>
-        </li>
-        {% endfor %}
       </ul>
       <div id="message-statusbar" class="alert"></div>
       <div id="chat">

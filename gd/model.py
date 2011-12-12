@@ -120,10 +120,12 @@ class Audience(Entity):
         except NoResultFound:
             return None
 
-    def get_public_buzz(self, offset=0, limit=-1):
+    def get_public_buzz(self, offset=0, limit=-1, from_id=0):
         """Returns the public notice buzz"""
         query = Buzz.query \
             .filter_by(audience=self) \
+            .filter(Buzz.id > from_id) \
+            .filter(Buzz.status.in_(['inserted'])) \
             .order_by(desc('creation_date'))
         return limit > 0 and query[offset:limit] or query.all()
 
@@ -131,7 +133,15 @@ class Audience(Entity):
         """Returns the moderated notice buzz"""
         return Buzz.query \
             .filter_by(audience=self) \
-            .filter(not_(Buzz.status.in_(['inserted']))) \
+            .filter(Buzz.status.in_(['approved'])) \
+            .order_by(desc('creation_date')) \
+            .all()
+
+    def get_selected_buzz(self):
+        """Returns the selected notice buzz"""
+        return Buzz.query \
+            .filter_by(audience=self) \
+            .filter(Buzz.status.in_(['selected'])) \
             .order_by(desc('creation_date')) \
             .all()
 

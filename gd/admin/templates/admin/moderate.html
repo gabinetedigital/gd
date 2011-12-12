@@ -11,65 +11,24 @@
 {% block content %}
 {% set isnew = request.values.get('status', 'new') == 'new' %}
 
+<script>AUDIENCE_ID={{audience.id}};</script>
 <div class="subcontent moderate">
-  <h2 class="subject">Moderation</h2>
+  <h2 class="subject">Moderation
+    <a id="show-hidden" style="display:none"
+       href="">(XX new)</a></h2>
 
   <form id="batch" method="post" action="{{ url_for('.batch') }}">
     <div class="massive">
-      <label>Show:</label>
-      <a {% if isnew %}class="selected"{% endif %}
-         href="{{ url_for('.moderate', aid=audience.id) }}?status=new">New</a> |
-      <a {% if not isnew %}class="selected"{% endif %}
-         href="{{ url_for('.moderate', aid=audience.id) }}?status=accepted">Accepted</a>
-
-      <label>Batch actions:
-        <select name="action" onchange="$('#batch').submit()">
-          <option value="">---</option>
-          <option value="accept">Accept</option>
-          <option value="remove">Remove</option>
-          <option value="suggest">Suggest</option>
-        </select>
-      </label>
     </div>
 
     <ul class="listing">
-      {% for i in buzz_list %}
-      <li class="{{ loop.cycle('dark', 'light') }}">
-        <input name="notice" value="{{ i.id }}" type="checkbox">
-        <img src="{{ i.avatar }}">
-        <strong>@{{ i.owner_nick }}</strong>
-        <em>{{ i.creation_date.strftime('%d/%m/%Y %H:%M') }}</em>
-        <p>{{ i.content }}</p>
-        <div class="controls">
-          {% if isnew %}
-          <a href="{{ url_for('.accept_buzz', bid=i.id) }}" class="accept"
-             title="Accept this buzz">
-            Accept
-          </a>
-          {% endif %}
-
-          <a href="{{ url_for('.select_buzz', bid=i.id) }}"
-             title="Suggest this buzz to be published" class="suggest"
-             class="suggest">
-            Suggest
-          </a>
-
-          <a href="{{ url_for('.delete_buzz', bid=i.id) }}"
-             title="Delete this buzz" class="remove"
-             class="remove">
-            Remove
-          </a>
-        </div>
-        <span class="clear"></span>
-      </li>
-      {% endfor  %}
+      <li id="listing-loading">Loading...</li>
     </ul>
   </form>
 </div>
 
 <script type="text/html" id="buzzTemplate">
   <li>
-    <input name="notice" value="<%= obj.id %>" type="checkbox">
     <img src="<%= obj.avatar %>">
     <strong>@<%= obj.owner_nick %></strong>
     <p><%= obj.content %></p>
