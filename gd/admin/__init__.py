@@ -77,6 +77,9 @@ def audiences():
 @auth.checkroles(['administrator'])
 def audience_status(aid, status):
     """Changes the status of an audience"""
+    active = Audience.query.filter_by(started=True).first()
+    if active:
+        active.started = False
     inst = Audience.query.get(aid)
     inst.started = status == 'true'
     if status == 'true':
