@@ -64,7 +64,7 @@ def buzz_stream(aid):
     public_ids = request.values.getlist('public_ids[]')
     moderated_ids = request.values.getlist('moderated_ids[]')
     selected_ids = request.values.getlist('selected_ids[]')
-    last_published_id = request.values.get('last_published_id[]', 0)
+    last_published_id = int(request.values.get('last_published_id', 0))
 
     public = Audience.query.get(aid).get_public_buzz(0, 10,public_ids)
 

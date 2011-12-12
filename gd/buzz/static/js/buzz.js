@@ -59,8 +59,8 @@ function Buzz(base_url, params) {
             });
         },
         published: function(notice) {
+            if (notice) last_published_id = notice.id;
             if (notice && last_published_id != notice.id) {
-                last_published_id = notice.id;
                 args.buzz_published(notice);
             }
         }
