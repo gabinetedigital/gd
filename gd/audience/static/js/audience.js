@@ -129,16 +129,25 @@ $(function() {
 
     $('a.filter').tooltip({ opacity: 0.7 });
 
+    var is_first_update = true;
 
     new Buzz(BASE_URL, {
         new_buzz: function (msg) {
             var $el = $(tmpl("buzzTemplate", msg));
-            $('#buzz-public').prepend($el);
+            if (is_first_update) {
+                $('#buzz-public').append($el);
+            } else {
+                $('#buzz-public').prepend($el);
+            }
         },
 
         buzz_accepted: function (msg) {
             var $el = $(tmpl("buzzTemplate", msg));
-            $('#buzz-moderated').prepend($el);
+            if (is_first_update) {
+                $('#buzz-moderated').append($el);
+            } else {
+                $('#buzz-moderated').prepend($el);
+            }
         },
 
         buzz_published: function (msg) {
@@ -148,6 +157,9 @@ $(function() {
                 $(this).append($el);
                 $(this).fadeIn();
             });
+        },
+        done: function() {
+            is_first_update = false;
         }
     });
 
