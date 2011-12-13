@@ -24,6 +24,7 @@ from urllib2 import HTTPError
 from time import sleep
 from json import loads
 from tweetstream import FilterStream, ConnectionError
+from sqlalchemy.orm.exc import NoResultFound
 
 from gd.model import Audience, session, Buzz, BuzzType, get_or_create, conf
 
@@ -126,9 +127,12 @@ class Twitter(object):
 
 
 def main():
-    import pdb
-    pdb.set_trace()
-    audience = Audience.query.filter_by(started=True).one()
+    try:
+        audience = Audience.query.filter_by(started=True).one()
+    except NoResultsFound:
+        print 'Nothing to be processed or too much things to process'
+        print 'Make sure you have only `one\' audience running'
+        exit(0)
     twitter = Twitter(audience)
     twitter.process()
 
