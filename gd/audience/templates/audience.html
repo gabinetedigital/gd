@@ -20,26 +20,33 @@
 
 <div id="container">
   <div id="info-aud" class="row">
-    <div class="col7">
+    <div class="col9">
       <div id="title">
         <p class="title">{{ audience.title }}</p>
         <p class="description">{{ audience.subject }}</p>
       </div>
     </div>
-    <div class="col5">
+    <div class="col3">
       <div id="date">
         <p class="day">{{ audience.date.strftime('%d') }}</p>
         <p class="month">{{ audience.date.strftime('%b') }}</p>
         <p class="hour">{{ audience.date.strftime('%H') }}h</p>
         <p class="min">{{ audience.date.strftime('%M') }}</p>
       </div>
-      <div id="tag">
+    </div>
+    <div class="row-end"></div>
+  </div>
+
+  <div id="tag" class="row">
+    <div class="col12">
+      <div class="inner">
         <p>Use a hashtag</p>
         <h3>{{ audience.get_main_term() }}</h3>
       </div>
     </div>
     <div class="row-end"></div>
   </div>
+
   <div class="row buzzbg">
     <div id="main" class="col8">
       <div class="content">
@@ -54,18 +61,19 @@
         <div id="works-like-this" class="overlay boverlay">
           <ol>
             <li class="step-1">
-              <img
-                 src="{{ url_for('.static', filename='imgs/couple.png') }}"
-                 class="step-1-couple">
-              <div>
+              <div class="wrapper">
                 <img
-                   src="{{ url_for('.static', filename='imgs/mail_trail.png') }}"
-                   class="step-1-mail-trail">
-                <img
-                   src="{{ url_for('.static', filename='imgs/mail.png') }}"
-                   class="step-1-mail">
+                   src="{{ url_for('.static', filename='imgs/couple.png') }}"
+                   class="step-1-couple">
+                <div>
+                  <img
+                     src="{{ url_for('.static', filename='imgs/mail_trail.png') }}"
+                     class="step-1-mail-trail">
+                  <img
+                     src="{{ url_for('.static', filename='imgs/mail.png') }}"
+                     class="step-1-mail">
+                </div>
               </div>
-
               <p>As pessoas enviam suas contribuições</p>
             </li>
             <li class="step-2">
@@ -97,7 +105,9 @@
             </li>
           </ol>
 
-          <a id="saiba-mais-link" href="javascript:show_how_to()"> Saiba mais </a>
+          <div id="saiba-mais-link">
+            <a href="javascript:show_how_to()"> Saiba mais </a>
+          </div>
           <div id="saiba-mais-text" style="display:none">
             {{ how_to|safe }}
           </div>

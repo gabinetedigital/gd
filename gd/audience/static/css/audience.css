@@ -19,12 +19,11 @@
 /** Container **/
 
 #container #info-aud {
-    height: 122px;
+    padding-bottom:20px;
 }
 
 #container #title {
     color: #999;
-    padding-left: 54px;
     margin-top: 11px;
 }
 
@@ -47,45 +46,48 @@
 }
 
 #container #tag {
-    color: #CCC;
-    margin-top: -23px;
-    margin-left: 113px;
-    float: left;
+    color: #ccc;
     font-size:26px;
+    height:0;
+    position:absolute;
+    margin-top:-25px;
+}
+
+#container #tag .inner {
+    margin-left:650px;
 }
 
 #container #date {
-    color: #CCC;
-    float: left;
-    margin-left: 200px;
-    overflow: hidden;
-    height: 109px;
+    color: #ccc;
+    width:160px;
     margin-top: -15px;
+    margin-right:10px;
+    float:right;
 }
 
 #container #date .day {
     font-size: 74px;
-    float: left;
+    display:block;
+    line-height:90%;
+    float:left;
+    margin-right:6px;
 }
 
 #container #date .month {
     font-size: 40px;
     float: left;
-    margin-top: 11px;
+    line-height:100%;
 }
 
 #container #date .hour {
     font-size: 22px;
-    margin-left: -76px;
-    margin-top: 56px;
-    float: left;
+    display:block;
+    float:left;
 }
 
 #container #date .min {
     font-size: 22px;
-    margin-left: -35px;
     float: left;
-    margin-top: 56px;
 }
 
 #container #tag h3 {
@@ -149,7 +151,7 @@
 }
 
 #beingAnswered {
-    height:100px;
+    max-height:100px;
 }
 
 #container #main .content #how-it-works {
@@ -334,7 +336,7 @@
 /* -- How it works -- */
 
 #works-like-this {
-    padding:50px 40px 50px 60px;
+    padding:40px;
     width:590px;
 }
 
@@ -347,8 +349,10 @@
 }
 
 #works-like-this .wrapper {
-    height:130px;
+    height:100px;
     margin:0 auto;
+    background:none;
+    box-shadow:none;
 }
 
 #works-like-this p {
@@ -364,6 +368,10 @@
     margin-left:10%;
 }
 
+#works-like-this ol {
+    height:180px;
+}
+
 #works-like-this .step-3 img {
     float:left;
 }
@@ -377,8 +385,8 @@
 }
 
 #works-like-this #saiba-mais-link {
-    margin-top: 40px;
-    float: left;
+    margin-top:30px;
+    float:right;
 }
 
 #works-like-this #saiba-mais-text {
