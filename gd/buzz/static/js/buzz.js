@@ -66,11 +66,12 @@ function Buzz(base_url, params) {
         }
     }
 
-    function request_notices() {
+    function request_notices(first) {
         $.ajax({
             url: base_url+'audience/'+AUDIENCE_ID+'/buzz_stream',
             type: 'post',
-            data: {public_ids:public_ids,
+            data: {public_limit:first?-1:10,
+                   public_ids:public_ids,
                    selected_ids:selected_ids,
                    moderated_ids:moderated_ids,
                    last_published_id:last_published_id
@@ -87,5 +88,5 @@ function Buzz(base_url, params) {
         });
     }
     setInterval(request_notices, 3000);
-    request_notices();
+    request_notices(true);
 }

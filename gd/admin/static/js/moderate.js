@@ -96,7 +96,7 @@ $(function () {
             $("#show-hidden").text("("+hidden_count + " new)");
             $("#show-hidden").show();
         }
-        ul.prepend($el);
+        ul.append($el);
     }
 
     function is_moderated_page() {

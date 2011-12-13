@@ -63,12 +63,13 @@ def audience_details(aid):
 def buzz_stream(aid):
     """public_buzz, moderated_buzz, selected_buzz, last_published at once
     filtred by from_id, selected_ids, moderated_ids and last_published_id"""
+    public_limit = int(request.values.get('public_limit'))
     public_ids = request.values.getlist('public_ids[]')
     moderated_ids = request.values.getlist('moderated_ids[]')
     selected_ids = request.values.getlist('selected_ids[]')
     last_published_id = int(request.values.get('last_published_id', 0))
 
-    public = Audience.query.get(aid).get_public_buzz(0, 10,public_ids)
+    public = Audience.query.get(aid).get_public_buzz(0,public_limit,public_ids)
 
     moderated = Audience.query.get(aid).get_moderated_buzz(moderated_ids)
     selected = Audience.query.get(aid).get_selected_buzz(selected_ids)
