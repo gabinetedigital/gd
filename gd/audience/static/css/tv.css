@@ -48,7 +48,8 @@ body.buzz {
 }
 
 .notice h2 em {
-    color:#111;
+    color:green;
+    font-style:normal;
 }
 
 .notice p {
