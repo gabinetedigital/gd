@@ -38,10 +38,12 @@ audience = Blueprint(
 @audience.route('/')
 def index():
     """Returns the last published audience page"""
-    inst = Audience.query.filter_by(started=True).one()
     try:
+        inst = Audience.query \
+            .filter_by(visible=True) \
+            .order_by(desc('date')).first()
         return audience_details(inst.id)
-    except AttributeError:
+    except (AttributeError, NoResultFound):
         abort(404)
 
 
