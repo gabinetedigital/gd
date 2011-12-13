@@ -40,7 +40,6 @@ $(function () {
         $("#suggested-notices").removeClass('selected');
 
         $("#second-listing").show();
-        $("#second-listing a").hide(); //hide buttons of already published
         $("#main-listing").hide();
     });
 
@@ -59,7 +58,6 @@ $(function () {
         $("#accepted-notices").addClass('selected');
 
         $("#second-listing").show();
-        $("#second-listing a").hide(); //hide buttons of already published
         $("#main-listing").hide();
     });
 
@@ -86,8 +84,8 @@ $(function () {
 
     /* Creates a new instance of the buzz machinery that automatically
      * updates the buzz list. */
-    function updateBuzz(msg, ul) {
-        var $el = $(tmpl("buzzTemplate", msg));
+    function updateBuzz(msg, ul, tplname) {
+        var $el = $(tmpl(tplname, msg));
         $('div.controls a', $el).click(updateToAjax);
 
         if (!is_first_update) {
@@ -112,22 +110,22 @@ $(function () {
     new Buzz(BASE_URL,{
         new_buzz: function (msg) {
             if (is_moderated_page()) {
-                updateBuzz(msg, $('#main-listing'));
+                updateBuzz(msg, $('#main-listing'),'newBuzzTemplate');
             }
         },
         buzz_accepted: function (msg) {
             if (is_moderated_page()) {
-              updateBuzz(msg, $('#second-listing'));
+                updateBuzz(msg, $('#second-listing'),'acceptedBuzzTemplate');
             }
         },
         buzz_selected: function (msg) {
             if (is_publish_page()) {
-              updateBuzz(msg, $('#main-listing'));
+                updateBuzz(msg, $('#main-listing'), 'selectedBuzzTemplate');
             }
         },
         buzz_published: function (msg) {
             if (is_publish_page()) {
-              updateBuzz(msg, $('#second-listing'));
+                updateBuzz(msg, $('#second-listing'), 'publishedBuzzTemplate');
             }
         },
         done: function() {

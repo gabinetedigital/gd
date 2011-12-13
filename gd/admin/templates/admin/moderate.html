@@ -34,7 +34,7 @@
   </form>
 </div>
 
-<script type="text/html" id="buzzTemplate">
+<script type="text/html" id="newBuzzTemplate">
   <li>
     <img src="<%= obj.avatar %>">
     <strong>@<%= obj.owner_nick %></strong>
@@ -45,6 +45,22 @@
         Accept
       </a>
 
+      <a href="<%= url_for('admin.buzz.<bid>.delete', { bid: obj.id }) %>"
+         title="Delete this buzz" class="remove"
+         class="remove">
+        Remove
+      </a>
+      <span class="clear"></span>
+    </div>
+  </li>
+</script>
+
+<script type="text/html" id="acceptedBuzzTemplate">
+  <li>
+    <img src="<%= obj.avatar %>">
+    <strong>@<%= obj.owner_nick %></strong>
+    <p><%= obj.content %></p>
+    <div class="controls">
       <a href="<%= url_for('admin.buzz.<bid>.select', { bid: obj.id }) %>"
          title="Suggest this buzz to be published" class="suggest"
          class="suggest">
