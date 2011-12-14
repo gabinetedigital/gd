@@ -78,7 +78,6 @@ function Buzz(base_url, params) {
                    last_published_id:last_published_id
                   },
             success: function(data) {
-                console.log(data);
                 var json = JSON.parse(data);
                 var types = ['public','moderated','selected','published'];
                 $.each(types, function() {
