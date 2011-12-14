@@ -340,7 +340,6 @@ var contribapi = (function () {
 
                         $(data[theme].children).each(function (index, item) {
                             $parent.append(tmpl('contribTemplate', item));
-                            console.debug(item);
                         });
                     }
                 } else {
