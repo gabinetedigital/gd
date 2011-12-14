@@ -164,8 +164,12 @@
     background: url(../imgs/video.png) 50%;
     display: block;
     width: 600px;
-    height: 450px;
+    height: 400px;
     margin:0 auto 20px auto;
+}
+
+#container #main .content #streaming video.video-js {
+    height: 400px;
 }
 
 #container #main .content #misc h5 {
