@@ -38,7 +38,8 @@ def index():
 
 
 @buzz.route('/post', methods=('POST',))
-@auth.checkroles(['administrator', 'subscriber'], redirect_on_error=False)
+@auth.checkroles(['administrator', 'subscriber', 'editor'],
+                 redirect_on_error=False)
 def post():
     """When ready, this method will post contributions from users that
     choosen to use our internal message service instead of twitter,
