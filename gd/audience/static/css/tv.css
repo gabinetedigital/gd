@@ -9,7 +9,7 @@
 
 body {
     background:#222;
-    font-size:25px;
+    font-size:30px;
 }
 
 
@@ -55,7 +55,7 @@ body.buzz {
 
 .notice p {
     color:#ddd;
-    font-size:30px;
+    font-size:40px;
 }
 
 
@@ -80,6 +80,7 @@ body.buzz {
 
 .buzz #notices li .content {
     color:#ddd;
+    font-size:30px;
 }
 
 .buzz #notices .author {
