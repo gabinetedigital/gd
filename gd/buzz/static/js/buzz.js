@@ -67,6 +67,7 @@ function Buzz(base_url, params) {
         }
     }
 
+    _recv = []
     function request_notices(first) {
         $.ajax({
             url: base_url+'audience/'+AUDIENCE_ID+'/buzz_stream',
@@ -79,6 +80,7 @@ function Buzz(base_url, params) {
                   },
             success: function(data) {
                 var json = JSON.parse(data);
+                _recv.push(json);
                 var types = ['public','moderated','selected','published'];
                 $.each(types, function() {
                     receiver[this](json[this]);
