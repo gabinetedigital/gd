@@ -33,10 +33,11 @@ function Buzz(base_url, params) {
     var selected_ids = [];
     var last_published_id = 0;
 
+
     var receiver = {
         public: function(notices) {
             $.each(notices, function() {
-                if (public_ids.indexOf(this.id) == -1) {
+                if ($.inArray(this.id,public_ids) == -1) {
                     public_ids.push(this.id);
                     args.new_buzz(this);
                 }
@@ -44,7 +45,7 @@ function Buzz(base_url, params) {
         },
         moderated: function(notices) {
             $.each(notices, function() {
-                if (moderated_ids.indexOf(this.id) == -1) {
+                if ($.inArray(this.id, moderated_ids) == -1) {
                     moderated_ids.push(this.id);
                     args.buzz_accepted(this);
                 }
@@ -52,7 +53,7 @@ function Buzz(base_url, params) {
         },
         selected: function(notices) {
             $.each(notices, function() {
-                if (selected_ids.indexOf(this.id) == -1) {
+                if ($.inArray(this.id,selected_ids) == -1) {
                     selected_ids.push(this.id);
                     args.buzz_selected(this);
                 }
