@@ -126,6 +126,20 @@
     font-size:18px;
 }
 
+.answers {
+    display:block;
+    clear:both;
+    margin-top:-10px;
+    padding:5px 40px;
+    background:green;
+    border-radius:6px;
+}
+
+.answers a {
+    color:#fff;
+    font-size:14px;
+}
+
 .player {
     background:#555753;
     height:280px;
