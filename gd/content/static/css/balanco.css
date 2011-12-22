@@ -87,3 +87,41 @@
     margin-right:0;
     border-right:none;
 }
+
+.results {
+    padding:0 80px 40px 80px;
+}
+
+.results.govpergunta {
+    padding:0;
+}
+
+.results img {
+    margin-right:30px;
+    float:left;
+}
+
+.results .date {
+    font-size:22px;
+    color:#666;
+    padding-bottom:20px;
+}
+
+#container .results h1 {
+    font-size:26px;
+}
+
+#container .results h2 {
+    padding-left:0;
+    height:auto;
+    margin-top:0;
+}
+
+.results p {
+    margin:10px 0;
+}
+
+ul.cases li {
+    border-bottom:dotted 1px #ccc;
+    padding:40px 0;
+}

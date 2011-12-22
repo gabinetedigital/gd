@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('govpergunta.static', filename='css/contribs.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('govpergunta.static', filename='css/vote.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('govpergunta.static', filename='css/results.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/balanco.css') }}">
+{% endblock %}
+
+{% block content %}
+<div id="container">
+  <div class="flagbg">
+    <h2>Balanço</h2>
+    <strong>2011 (ou outra coisa?)</strong>
+  </div>
+
+  <div class="boxed">
+    <div class="row subheader">
+      <div class="col3">
+        <h2>Balanço</h2>
+      </div>
+      <div class="col9">
+        <div class="subtitle">
+          Resultados obtidos pelo Gabinete Digital no ano de 2011
+        </div>
+      </div>
+      <p class="intro">
+        Nulla vehicula consectetur adipiscing. Duis sit amet tellus
+        tellus, vitae sagittis justo. Fusce sollicitudin ante a arcu
+        vehicula pretium luctus at eros. Sed euismod tortor quis dolor
+        tincidunt vel congue leo euismod. Cum sociis natoque penatibus et
+        magnis dis parturient montes, nascetur ridiculus mus. Nulla
+        malesuada magna sed metus suscipit sit amet dignissim urna
+        molestie. Sed sit amet sodales metus. Donec dictum tempus nunc, in
+        molestie ante posuere a. Integer eleifend consequat egestas.
+      </p>
+      <div class="row-end"></div>
+    </div>
+
+    <div class="row">
+      <ul class="logos">
+        <li>
+          <a href="#">
+            <img src="{{ url_for('static', filename='imgs/tools/govpergunta.png') }}">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="{{ url_for('static', filename='imgs/tools/govescuta.png') }}">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="{{ url_for('static', filename='imgs/tools/govresponde.png') }}">
+          </a>
+        </li>
+        <li class="last">
+          <a href="#">
+            <img src="{{ url_for('static', filename='imgs/tools/agenda.png') }}">
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="results {{ pagename }}">
+      {% block results %}{% endblock %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

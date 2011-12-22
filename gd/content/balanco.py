@@ -27,7 +27,7 @@ balanco = Blueprint(
 
 
 @balanco.route('/')
-def listing():
+def govpergunta():
     # First page data
     pagination, posts = wordpress.getPostsByTag(
         tag='governador-pergunta')
@@ -35,4 +35,14 @@ def listing():
     videos = [wordpress.wpgd.getVideo(i) for i in (14, 16, 12)]
     return render_template(
         'balanco.html', posts=posts, images=images, videos=videos,
+        pagename='govpergunta',
+    )
+
+
+@balanco.route('/govresponde')
+def govresponde():
+    return render_template(
+        'balanco_govresponde.html',
+        pagename='govresponde',
+        videos=[wordpress.wpgd.getVideo(i) for i in range(17, 23)]
     )
