@@ -1,0 +1,89 @@
+/* Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+ *
+ *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#container {
+    margin-top:20px;
+}
+
+#container h2 {
+    font-size:22px;
+    height:40px;
+    margin-top:30px;
+}
+
+.subtitle {
+    padding:25px 0;
+    font-size:12pt;
+    color:#555753;
+}
+
+.row.subheader {
+    height:auto;
+}
+
+.flagbg {
+    width:256px;
+    height:70px;
+    background:url("../../govpergunta/static/imgs/blue-flag.png") no-repeat;
+    margin-left:-16px;
+    margin-top:10px;
+    position:absolute;
+    padding:8px 30px;
+    z-index:1;
+}
+
+#container .flagbg h2 {
+    margin:0;
+    padding:0;
+    color:#fff;
+}
+
+.flagbg strong {
+    display:block;
+    margin-top:5px;
+    font-size:12pt;
+    color:#555753;
+}
+
+.row p.intro {
+    padding:40px 80px 30px;
+    clear:both;
+}
+
+.logos {
+    background:#2e3436;
+    height:60px;
+    padding-left:34px;
+    margin-bottom:40px;
+}
+
+.logos li a {
+    display:block;
+    float:left;
+    padding:0 46px;
+    border-right:dotted 1px #ccc;
+}
+
+.logos li a:hover {
+    border-bottom:solid 2px green;
+}
+
+.logos li.last a {
+    margin-right:0;
+    border-right:none;
+}

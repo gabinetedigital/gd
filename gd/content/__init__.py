@@ -38,6 +38,7 @@ from gd.auth.webapp import auth
 from gd.auth.fbauth import fbauth
 from gd.govpergunta import govpergunta
 from gd.content.videos import videos
+from gd.content.balanco import balanco
 from gd.audience import audience
 from gd.admin import admin
 from gd.buzz.webapp import buzz
@@ -47,6 +48,7 @@ app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(fbauth, url_prefix='/auth/fb')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 app.register_blueprint(videos, url_prefix='/videos')
+app.register_blueprint(balanco, url_prefix='/balanco')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
