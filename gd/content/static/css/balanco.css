@@ -125,3 +125,8 @@ ul.cases li {
     border-bottom:dotted 1px #ccc;
     padding:40px 0;
 }
+
+ul.gallery li {
+    border-bottom:none;
+    padding:0;
+}

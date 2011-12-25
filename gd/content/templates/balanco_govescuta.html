@@ -1,0 +1,126 @@
+{% extends "balanco_base.html" %}
+
+{% block results %}
+
+<h1>Governo Escuta</h1>
+
+<p>
+  Desde o lançamento do Gabinete Digital, em maio de 2011, foram três
+  edições do Governo Escuta, abarcaondo grandes temas pautados pela
+  sociedade. As audiências públicas com transmissão pela internet contam
+  com a presença de especialistas e a população pode participar enviando
+  suas contribuições via chat.
+</p>
+
+<ul class="cases">
+  <li>
+    <h2>Bullyng</h2>
+    <div class="date">04/05</div>
+    <p>
+      A prática de bullyng nas escolas públicas motivou inúmeras
+      discussões no início do ano, e para encontrar caminhos para a
+      construção de politicas públicas plurais, o governador decidiu
+      realizar uma consulta pública envolvendo especialistas, sociedade
+      civil e poder público.
+    </p>
+
+    <p class="encaminhamentos">
+      Encaminhamentos: Criação do Comitê Comunitário de Prevenção à
+      Violência nas Escolas Formação de uma rede de proteção a crianças,
+      adolescentes e professores envolvendo Ministério Público,
+      Defensoria Pública, Secretarias de Estado, Detran, Associação de
+      Conselhos Tutelares do RS e Conselho Estadual do RS.  Criação de
+      Coordenações Regionais para tratar dos temas de bullyng e
+      cyberbullyng em 16 coordenadorias regionais de educação no RS, que
+      potencialmente contemplaram 500 escolas da região metropolitana e
+      1.068 em 12 Coordenadorias Regionais de Educação no interior do
+      Estado, em cidades como Santa Maria, Passo Fundo, Caxias, etc.  Em
+      Porto Alegre foram criados 9 Comitês Comunitários de Prevenção a
+      Violência com reuniões mensais desde outubro de 2011, com
+      priorização dos Territórios de Paz (Lomba do Pinheiro, Rubem
+      Berta, Restinga, Vila Cruzeiro, Ilhas, Vila Nova, Centro, etc).
+    </p>
+
+    <ul class="gallery">
+      {% for image in imgs.bullying %}
+      <li>
+        <a class="group" href="{{ image.imageURL }}">
+          <img width="150" src="{{ image.thumbURL }}">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </li>
+
+  <li>
+    <h2>Estrangeirismo</h2>
+    <div class="date">11/05</div>
+
+    <p>
+      Contrário à inclusão de estrangeirismos na Língua portuguesa, o
+      deputado estadual Raul Carrion foi autor da lei que veta a
+      utilização, em propagandas e documentos oficiais do Rio Grande do
+      Sul, de palavras em outros idiomas, sem que elas sejam
+      acompanhadas de tradução. O tema gerou intensas discussões e
+      polêmica no Estado e foi pauta da edição de maio do Governo
+      Escuta.
+    </p>
+
+    <p class="encaminhamentos">
+      Encaminhamentos: O governador vetou parceialmente o projeto de lei
+      aprovado na Assembleia Legislativa e que obriga a tradução de
+      palavras e/ou expressões “estrangeiras”, de autoria do deputado
+      estadual Raul Carrion.
+    </p>
+
+    <ul class="gallery">
+      {% for image in imgs.estrangeirismo %}
+      <li>
+        <a class="group" href="{{ image.imageURL }}">
+          <img width="150" src="{{ image.thumbURL }}">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </li>
+  <li>
+    <h2>Software Livre</h2>
+    <div class="date">29/06</div>
+    <p>
+      Durante o 12º Fórum Internacional Software Livre (fisl) aconteceu
+      a terceira audiência pública do Gabinete Digital com a presença
+      dos maiores ativistas em software livre e especialistas em
+      tecnologia, como Jon Maddog Hall, James Beasley, Sérgio Amadeu e
+      Alexandre Oliva. O tema foi Cultura Digital, Democracia e Governos
+      no século XXI. A iniciativa aconteceu em parceria com as
+      Secretarias Estaduais de Educação; Ciência, Inovação e Tecnologia;
+      Comunicação; Cultura e com a Procergs e o Gabinete do Governador.
+    </p>
+    <p class="encaminhamentos">
+      Encaminhamentos: Assinatura de Termo de Compromisso entre o
+      Serviço de Processamento de Dados do Governo Federal (Serpro), a
+      Companhia de Processamento de Dados do RS (Procergs) e a Companhia
+      de Processamento de Dados de Porto Alegre (Procempa) para
+      desenvolvimento conjunto de softwares, intercambio de tecnologia e
+      treinamento de profissionais.  Protocolo Brasília - assinatura de
+      compromisso de uso padrão ODF entre representantes do Comitê de
+      Implementação de Software Livre do Governo Federal e membros do
+      poder público gaúcho e comunidade software livre.  Assinatura de
+      termo de cooperação entra a Procergs e a W3C Brasil para o
+      compartilhamento de dados governamentais.  Lançamento do site da
+      Secretaria Estadual de Cultura com a licença flexível Creative
+      Commons.
+    </p>
+
+    <ul class="gallery">
+      {% for image in imgs.softwarelivre %}
+      <li>
+        <a class="group" href="{{ image.imageURL }}">
+          <img width="150" src="{{ image.thumbURL }}">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </li>
+</ul>
+{% endblock %}

@@ -46,3 +46,17 @@ def govresponde():
         pagename='govresponde',
         videos=[wordpress.wpgd.getVideo(i) for i in range(17, 23)]
     )
+
+
+@balanco.route('/govescuta')
+def govescuta():
+    imgs = {
+        'bullying': gallery.search('bullying'),
+        'estrangeirismo': gallery.search('estrangeirismo'),
+        'softwarelivre': gallery.search('software-livre'),
+    }
+    return render_template(
+        'balanco_govescuta.html',
+        pagename='govescuta',
+        imgs=imgs,
+    )
