@@ -98,6 +98,7 @@
 
 .results img {
     margin-right:30px;
+    margin-bottom:30px;
     float:left;
 }
 
@@ -115,9 +116,10 @@
     padding-left:0;
     height:auto;
     margin-top:0;
+    clear:both;
 }
 
-.results p {
+
     margin:10px 0;
 }
 
@@ -126,7 +128,15 @@ ul.cases li {
     padding:40px 0;
 }
 
-ul.gallery li {
+ul.gallery {
+    clear:both;
+}
+
+ul.cases ul li {
     border-bottom:none;
     padding:0;
+}
+
+ul.cases ul.encaminhamentos {
+    
 }

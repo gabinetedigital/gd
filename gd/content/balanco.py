@@ -60,3 +60,11 @@ def govescuta():
         pagename='govescuta',
         imgs=imgs,
     )
+
+
+@balanco.route('/agenda')
+def agenda():
+    return render_template(
+        'balanco_agenda.html',
+        pagename='agenda',
+    )
