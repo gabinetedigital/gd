@@ -62,9 +62,10 @@
         {% for post in news.big %}
         <li>
           <ul class="news">
+            {% set link = post.get_field('link', post.permalink) %}
             {% if post.thumbs %}
             <li>
-              <a href="{{ post.permalink }}">
+              <a href="{{ link }}">
                 {% if post.has_category('wide') %}
                 <img
                    src="{{ post.thumbs.widenewsbox.url }}"
@@ -85,7 +86,7 @@
 
             {% if post.has_category('wide') %}
             <li class="title">
-              <a href="{{ post.permalink }}">
+              <a href="{{ link }}">
                 {{ post.title }}
               </a>
             </li>
@@ -93,18 +94,18 @@
             {% else %}
             <li>
               <h2>
-                <a href="{{ post.permalink }}">
+                <a href="{{ link }}">
                   {{ post.title }}
                 </a>
               </h2>
             </li>
             <li>
-              <a href="{{ post.permalink }}">
+              <a href="{{ link }}">
                 {{ post.excerpt|safe }}
               </a>
             </li>
             <li class="meta">
-              <a href="{{ post.permalink }}#comments">
+              <a href="{{ link }}#comments">
                 Comentários (<strong>{{ post.comments.count }}</strong>)
               </a>
             </li>
