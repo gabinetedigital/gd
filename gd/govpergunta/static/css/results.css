@@ -124,6 +124,8 @@
 
 .contribsbutton p {
     font-size:18px;
+    clear:none !important;
+    margin:0 !important;
 }
 
 .answers {

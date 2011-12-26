@@ -100,6 +100,7 @@
     margin-right:30px;
     margin-bottom:30px;
     float:left;
+    display:block;
 }
 
 .results .date {
@@ -116,11 +117,11 @@
     padding-left:0;
     height:auto;
     margin-top:0;
-    clear:both;
 }
 
-
+.results p {
     margin:10px 0;
+    clear:both;
 }
 
 ul.cases li {
@@ -129,7 +130,9 @@ ul.cases li {
 }
 
 ul.gallery {
+    padding:20px 0;
     clear:both;
+    height:250px;
 }
 
 ul.cases ul li {
