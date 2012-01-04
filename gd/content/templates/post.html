@@ -8,6 +8,8 @@
 <script src="{{ url_for('.static', filename='js/post.js') }}"></script>
 {% endblock %}
 
+{% block title %}{{ post.title }}{% endblock %}
+
 {% block content %}
 <div id="container">
   <div class="row">
