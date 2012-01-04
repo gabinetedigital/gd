@@ -562,6 +562,15 @@ div.sociable .fb_edge_widget_with_comment {
     top:3px;
 }
 
+div.sociable div.connect_widget_sample_connections {
+    display:none;
+}
+
+div.sociable .twitterwidget {
+    float:left;
+    padding-top:5px;
+}
+
 /* -- items with borders -- */
 
 .boxed {
