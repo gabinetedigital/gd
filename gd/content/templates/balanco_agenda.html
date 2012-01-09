@@ -65,6 +65,17 @@
         Situação: Termo de Cooperação Assinado
       </p>
     </div>
+
+    <ul class="gallery">
+      {% for image in images.bage %}
+      <li>
+        <a class="group" href="{{ image.imageURL }}">
+          <img width="150" src="{{ image.thumbURL }}">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
   </li>
   <li>
     <h2>Santana do Livramento</h2>
@@ -103,6 +114,17 @@
     <p>
       Responsável: Secretaria Ifra-Estrutura e Logística
     </p>
+
+    <ul class="gallery">
+      {% for image in images.santana %}
+      <li>
+        <a class="group" href="{{ image.imageURL }}">
+          <img width="150" src="{{ image.thumbURL }}">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
   </li>
   <li>
     <h2>Esteio</h2>
@@ -129,6 +151,17 @@
       2012
     </p>
     <p>Responsável: CORSAN</p>
+
+    <ul class="gallery">
+      {% for image in images.esteio %}
+      <li>
+        <a class="group" href="{{ image.imageURL }}">
+          <img width="150" src="{{ image.thumbURL }}">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
   </li>
   <li>
     <h2>Taquara</h2>
@@ -169,6 +202,17 @@
     </p>
     <p>Situação: Protocolo Assinado</p>
     <p>Responsável: Secretaria da Cultura</p>
+
+    <ul class="gallery">
+      {% for image in images.taquara %}
+      <li>
+        <a class="group" href="{{ image.imageURL }}">
+          <img width="150" src="{{ image.thumbURL }}">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
   </li>
 </ul>
 {% endblock %}

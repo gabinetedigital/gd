@@ -64,7 +64,14 @@ def govescuta():
 
 @balanco.route('/agenda')
 def agenda():
+    images = {
+        'bage': gallery.search('bagé'),
+        'santana': gallery.search('santana-do-livramento'),
+        'esteio': gallery.search('esteio'),
+        'taquara': gallery.search('taquara'),
+    }
     return render_template(
         'balanco_agenda.html',
         pagename='agenda',
+        images=images,
     )

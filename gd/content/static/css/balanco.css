@@ -140,12 +140,17 @@ ul.cases li {
 ul.gallery {
     padding:20px 0;
     clear:both;
-    height:250px;
+    width:900px;
+    overflow:hidden;
 }
 
 ul.cases ul li {
     border-bottom:none;
     padding:0;
+    width:150px;
+    height:120px;
+    float:left;
+    margin:0 20px 20px 0;
 }
 
 ul.cases ul.encaminhamentos {
