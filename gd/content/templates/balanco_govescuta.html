@@ -44,7 +44,8 @@
     <ul class="gallery">
       {% for image in imgs.bullying %}
       <li>
-        <a class="group" href="{{ image.imageURL }}">
+        <a description="{{ image.description }}"
+           class="group" href="{{ image.imageURL }}">
           <img width="150" src="{{ image.thumbURL }}">
         </a>
       </li>
@@ -76,7 +77,8 @@
     <ul class="gallery">
       {% for image in imgs.estrangeirismo %}
       <li>
-        <a class="group" href="{{ image.imageURL }}">
+        <a description="{{ image.description }}"
+           class="group" href="{{ image.imageURL }}">
           <img width="150" src="{{ image.thumbURL }}">
         </a>
       </li>
@@ -115,7 +117,8 @@
     <ul class="gallery">
       {% for image in imgs.softwarelivre %}
       <li>
-        <a class="group" href="{{ image.imageURL }}">
+        <a description="{{ image.description }}"
+           class="group" href="{{ image.imageURL }}">
           <img width="150" src="{{ image.thumbURL }}">
         </a>
       </li>

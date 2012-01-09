@@ -27,5 +27,17 @@ function loadVideo(id, autoplay) {
 }
 
 $(function () {
-    $("a.group").attr({ rel: 'group' }).fancybox();
+    $("a.group").attr({ rel: 'group' }).fancybox({
+        titleFormat: function (title, currentArray, currentIndex, currentOpts) {
+            var description = $(currentArray[currentIndex]).attr('description');
+            var content = [];
+            if (description) {
+                content.push('<span id="fancybox-title-over">');
+                content.push('<strong>' + description + '</strong> ');
+                content.push('&mdash; ' + (currentIndex + 1) + ' / ' + currentArray.length);
+                content.push('</span>');
+            }
+            return content.join('');
+        }
+    });
 });

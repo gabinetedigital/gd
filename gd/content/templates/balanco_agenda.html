@@ -69,7 +69,8 @@
     <ul class="gallery">
       {% for image in images.bage %}
       <li>
-        <a class="group" href="{{ image.imageURL }}">
+        <a description="{{ image.description }}"
+           class="group" href="{{ image.imageURL }}">
           <img width="150" src="{{ image.thumbURL }}">
         </a>
       </li>
@@ -118,7 +119,8 @@
     <ul class="gallery">
       {% for image in images.santana %}
       <li>
-        <a class="group" href="{{ image.imageURL }}">
+        <a description="{{ image.description }}"
+           class="group" href="{{ image.imageURL }}">
           <img width="150" src="{{ image.thumbURL }}">
         </a>
       </li>
@@ -155,7 +157,8 @@
     <ul class="gallery">
       {% for image in images.esteio %}
       <li>
-        <a class="group" href="{{ image.imageURL }}">
+        <a description="{{ image.description }}"
+           class="group" href="{{ image.imageURL }}">
           <img width="150" src="{{ image.thumbURL }}">
         </a>
       </li>
@@ -206,7 +209,8 @@
     <ul class="gallery">
       {% for image in images.taquara %}
       <li>
-        <a class="group" href="{{ image.imageURL }}">
+        <a description="{{ image.description }}"
+           class="group" href="{{ image.imageURL }}">
           <img width="150" src="{{ image.thumbURL }}">
         </a>
       </li>

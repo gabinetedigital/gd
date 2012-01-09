@@ -156,3 +156,9 @@ ul.cases ul li {
 ul.cases ul.encaminhamentos {
     
 }
+
+#fancybox-title-over {
+    background:#fff;
+    width:700px;
+    margin:0 auto 20px auto;
+}

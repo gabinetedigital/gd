@@ -71,7 +71,8 @@
       <ul>
         {% for image in images %}
         <li {% if loop.last %}class="last"{% endif %}>
-          <a class="group" href="{{ image.imageURL }}">
+          <a description="{{ image.description }}" class="group"
+             href="{{ image.imageURL }}">
             <img width="150" src="{{ image.thumbURL }}">
           </a>
         </li>
