@@ -65,6 +65,14 @@
     clear:both;
 }
 
+.numbers {
+    margin-bottom:20px;
+}
+
+.numbers li a {
+    padding:10px 0;
+}
+
 .logos {
     background:#2e3436;
     height:60px;

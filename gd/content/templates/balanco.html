@@ -1,6 +1,42 @@
 {% extends "balanco_base.html" %}
 
 {% block results %}
+
+<!-- numbers -->
+<div class="row numbers">
+  <div class="col1">&nbsp;</div>
+  <div class="col10">
+    <ul class="numbers">
+      <li class="dias">
+        <a href="{{ url_for('govpergunta.results_page', path='govpergunta/results/p1') }}">
+          <strong>30</strong>
+          <p>Dias de consulta</p>
+        </a>
+      </li>
+      <li class="propostas">
+        <a href="{{ url_for('govpergunta.results_page', path='govpergunta/results/p2') }}">
+          <strong>1.388</strong>
+          <p>Propostas</p>
+        </a>
+      </li>
+      <li class="acessos">
+        <a href="{{ url_for('govpergunta.results_page', path='govpergunta/results/p3') }}">
+          <strong>60 mil</strong>
+          <p>Pessoas envolvidas</p>
+        </a>
+      </li>
+      <li class="votos">
+        <a href="{{ url_for('govpergunta.results_page', path='govpergunta/results/p4') }}">
+          <strong>122 mil</strong>
+          <p>Votos</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col1">&nbsp;</div>
+  <div class="row-end"></div>
+</div>
+
 {% include "results_widget.html" %}
 {% include "contribs.partial.html" %}
 {% endblock %}
