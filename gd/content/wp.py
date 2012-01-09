@@ -48,7 +48,7 @@ class Namespace(object):
             # it will change in the future, if I find any function that
             # doesn't fit this strategy
             ret = method(
-                self.conf['user'], self.conf['password'],
+                0, self.conf['user'], self.conf['password'],
                 kwargs, *args)
             converter = 'convert_%s' % attr
             if converter in globals():
@@ -69,7 +69,7 @@ class Wordpress(object):
     mostly via XML-RPC"""
     def __init__(self, address, blogid, user, password):
         self.default_namespace = 'exapi'
-        self.known_namespaces = 'exapi', 'wpgd', 'wp', 'pairwise'
+        self.known_namespaces = 'exapi', 'wpgd', 'wp', 'pairwise', 'ngg'
         self.conf = {
             'address': address,
             'user': user,
