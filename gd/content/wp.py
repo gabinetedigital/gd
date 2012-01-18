@@ -69,7 +69,8 @@ class Wordpress(object):
     mostly via XML-RPC"""
     def __init__(self, address, blogid, user, password):
         self.default_namespace = 'exapi'
-        self.known_namespaces = 'exapi', 'wpgd', 'wp', 'pairwise', 'ngg'
+        self.known_namespaces = 'exapi', 'wpgd', 'wp', 'pairwise', 'ngg', \
+            'wpgp', 'govr', 'govp',
         self.conf = {
             'address': address,
             'user': user,
