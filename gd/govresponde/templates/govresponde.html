@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/govresponde.css') }}">
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+
+{% block content %}
+
+<!-- header -->
+<div class="innerheader">
+  <div class="row">
+    <div class="col4">
+      <h2 class="title">
+        <a href="#">Governador Responde</a>
+      </h2>
+    </div>
+    <div class="col8">
+      <ul class="menu">
+        <li>Como<br>Funciona</li>
+        <li>Edições<br>anteriores</li>
+        <li>Perguntas<br>em votação</li>
+        <li><a href="#" class="awesome">Envie sua<br>pergunta</a></li>
+      </ul>
+    </div>
+
+    <div class="row-end"></div>
+  </div>
+</div>
+
+<!-- content -->
+<div class="content boxed">
+  <div class="row">
+    <div class="col3">
+      <div class="sidebar">
+        <form class="search">
+          <input class="text" type="text" placeholder="Encontre sua pergunta">
+          <input class="button" type="button" value="Ir">
+        </form>
+
+        <dl>
+          <dt>Escolha um tema</dt>
+          <dd>Acessibilidade</dd>
+          <dd>Agricultura</dd>
+          <dd class="choosen">Combate à miséria</dd>
+          <dd>Cultura</dd>
+          <dd>Educação</dd>
+
+          <dt>Suas contribuições</dt>
+          <dd>21 votos</dd>
+          <dd>4 perguntas</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="col9">
+      <div class="rcolumn highlight">
+        <h3>Segurança Pública</h3>
+        <div class="video"></div>
+        <div class="date">18/07/2011</div>
+        <p class="desc">
+          Governador Tarso Genro, sabemos que atualmente o déficit de
+          policiais civis está em torno de 7.000 homens, dados estes
+          fornecidos pela SERVIPOL/RS e que muitos da ativa já estão com
+          direito de pedir sua aposentadoria o que causaria uma baixa
+          maior ainda no efetivo.  (...)
+        </p>
+        <a class="answers" href="#">Demais perguntas incluídas</a>
+
+        <ul class="others">
+          <li>
+            <h3>Combate à miséria</h3>
+            <img src="{{ url_for('.static', filename='imgs/others.png') }}">
+            <div class="date">18/07/2011</div>
+            <p>
+              Nam iaculis, nibh egestas gravida tincidunt, lorem leo
+              rutrum nibh, nec euismod lectus metus ac velit. Quisque et
+              magna sed eros vestibulum lacinia. Vivamus porta varius
+              orci, a mollis purus congue ac. Vivamus mi lectus, tempor
+              sed accumsan fringilla, mollis et sem.
+            </p>
+            <div class="row-end"></div>
+          </li>
+          <li>
+            <h3>Acessibilidade</h3>
+            <img src="{{ url_for('.static', filename='imgs/others.png') }}">
+            <p>
+              Nulla pulvinar elementum dolor quis fermentum. Cras ut
+              metus ante. Etiam non nisl nulla, vel imperdiet
+              ligula. Donec vitae porttitor dolor.
+            </p>
+            <div class="row-end"></div>
+          </li>
+          <li>
+            <h3>Educação</h3>
+            <img src="{{ url_for('.static', filename='imgs/others.png') }}">
+            <p>
+              Mauris eros ante, fermentum ac fermentum vel, cursus nec
+              lectus. Aenean in erat et purus posuere malesuada. Morbi
+              elementum tempor odio, vitae mollis tortor rutrum sed.
+            </p>
+            <div class="row-end"></div>
+          </li>
+        </ul>
+
+        <div class="row-end"></div>
+      </div>
+
+    </div>
+
+    <div class="row-end"></div>
+  </div>
+</div>
+
+{% endblock %}

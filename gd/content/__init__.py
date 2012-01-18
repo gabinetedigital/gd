@@ -37,6 +37,7 @@ from gd.model import User, session as dbsession
 from gd.auth.webapp import auth
 from gd.auth.fbauth import fbauth
 from gd.govpergunta import govpergunta
+from gd.govresponde import govresponde
 from gd.content.videos import videos
 from gd.content.balanco import balanco
 from gd.audience import audience
@@ -47,6 +48,7 @@ app = Flask(__name__)
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(fbauth, url_prefix='/auth/fb')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
+app.register_blueprint(govresponde, url_prefix='/govresponde')
 app.register_blueprint(videos, url_prefix='/videos')
 app.register_blueprint(balanco, url_prefix='/balanco')
 app.register_blueprint(audience, url_prefix='/audience')
