@@ -19,56 +19,6 @@ Comments:   It's necessary to link it against all dependencies (even the
             optionals)
 
 
-Lib:        zmq
-Version:    2.1.10
-Link:       http://download.zeromq.org/zeromq-2.1.10.tar.gz
-Install:    ./configure && make && make install
-
-
-Lib:        pyzmq
-Version:    2.1.9
-Link:       https://github.com/zeromq/pyzmq/downloads/pyzmq-2.1.9.tar.gz
-Install:    python setup.py install --zmq=/zmq/prefix (provavelmente /usr)
-
-
-Lib:        libevent
-Version:    2.0.14
-Link:       https://github.com/downloads/libevent/libevent/libevent-2.0.14-stable.tar.gz
-Install:    ./configure && make && make install
-
-
-Lib:        greenlet
-Version:    0.3.1
-Link:       http://pypi.python.org/packages/source/g/greenlet/greenlet-0.3.1.tar.gz
-Install:    python setup.py install
-Comments:   Please export the env var CFLAGS="-O0" if you're running a 32bits system
-
-
-Lib:        gevent
-Version:    0.13.6
-Link:       http://pypi.python.org/packages/source/g/gevent/gevent-0.13.6.tar.gz
-Install:    python setup.py install -I/libevent/include -L/libevent/lib
-Comments:   Params -I and -L are paths to the inclue/lib dirs of libevent
-
-
-Lib:        gevent_zeromq
-Version:    0.2.0
-Link:       http://pypi.python.org/packages/source/g/gevent_zeromq/gevent_zeromq-0.2.0.tar.gz
-Install:    python setup.py install
-
-
-Lib:        gevent-websocket
-Version:    0.2.3
-Link:       http://pypi.python.org/packages/source/g/gevent-websocket/gevent-websocket-0.2.3.tar.gz
-Install:    python setup.py install
-
-
-Lib:        gevent-socketio
-Version:    0.2.0
-Link:       http://pypi.python.org/packages/source/g/gevent-socketio/gevent-socketio-0.2.0.tar.gz
-Install:    python setup.py install
-
-
 Lib:        sqlalchemy
 Version:    0.7.3
 Link:       http://pypi.python.org/packages/source/S/SQLAlchemy/SQLAlchemy-0.7.3.tar.gz
