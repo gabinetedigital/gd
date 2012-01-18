@@ -20,6 +20,7 @@
 """Web application definitions to the govr tool"""
 
 from flask import Blueprint, request, render_template, redirect, url_for
+from gd.content import wordpress
 
 govresponde = Blueprint(
     'govresponde', __name__,
@@ -29,5 +30,7 @@ govresponde = Blueprint(
 
 @govresponde.route('/')
 def index():
-    return render_template('govresponde.html')
+    return render_template(
+        'govresponde_edicoesanteriores.html',
+        wordpress=wordpress)
 
