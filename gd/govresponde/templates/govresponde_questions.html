@@ -1,0 +1,24 @@
+{% extends "govresponde.html" %}
+
+{% block rcolumn %}
+
+<div class="questions">
+  <h2>
+    Perguntas em votação
+    {% if theme %}({{ theme }}){% endif %}
+  </h2>
+
+  <ul>
+    {% for question in questions %}
+    <li>
+      <strong>{{ question.title }}</strong>
+      <div class="date">
+        Enviada em {{ question.created_at.strftime('%d/%m/%Y') }}
+      </div>
+      <p>{{ question.content }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

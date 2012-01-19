@@ -20,6 +20,7 @@
 """Web application definitions to the govr tool"""
 
 from flask import Blueprint, request, render_template, redirect, url_for
+from dateutil import parser as dateparser
 
 from gd import auth
 from gd.utils import msg, format_csrf_error
@@ -70,7 +71,14 @@ def send_json():
 
 @govresponde.route('/questions')
 def questions():
+    theme = request.values.get('theme')
+    questions_raw, count = wordpress.govr.getContribs(theme or '')
+    questions = []
+    for i in questions_raw:
+        question = i.copy()
+        question['created_at'] = dateparser.parse(question['created_at'])
+        questions.append(question)
     return render_template(
-        'govresponde_theme.html',
-        wordpress=wordpress, theme=None)
-
+        'govresponde_questions.html',
+        wordpress=wordpress, theme=theme,
+        questions=questions, count=count)

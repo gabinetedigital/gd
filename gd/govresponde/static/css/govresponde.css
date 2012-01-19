@@ -81,6 +81,7 @@
 .rcolumn {
     padding:10px 10px 10px 40px;
     border-left:dotted 1px #aaa;
+    min-height:220px;
 }
 
 .rcolumn h2 {
@@ -148,11 +149,39 @@ form#send label {
     margin:15px 0 5px;
 }
 
+form#send select {
+    width:390px;
+}
+
+form#send input, form#send textarea {
+    width:380px;
+}
+
 form#send textarea {
-    width:280px;
     height:100px;
 }
 
 form#send .sendbtn {
     margin-top:20px;
+}
+
+/* -- questions screen -- */
+.questions li {
+    margin-bottom:20px;
+    padding-bottom:20px;
+    border-bottom:solid 1px #ddd;
+}
+
+.questions li strong {
+    font-size:12pt;
+    display:block;
+    margin-bottom:10px;
+}
+
+.questions li .date {
+    color:#666;
+    margin-bottom:10px;
+}
+
+.questions li p {
 }

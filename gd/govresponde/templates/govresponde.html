@@ -26,7 +26,9 @@
         <li>
           <a href="{{ url_for('.index') }}">Edições<br>anteriores</a>
         </li>
-        <li>Perguntas<br>em votação</li>
+        <li>
+          <a href="{{ url_for('.questions') }}">Perguntas<br>em votação</a>
+        </li>
         <li>
           <a href="{{ url_for('.send') }}" class="awesome">
             Envie sua<br>pergunta
@@ -53,7 +55,9 @@
           <dt>Escolha um tema</dt>
           {% for i in wordpress.govr.getThemes() %}
           <dd {% if theme == i.name  %}class="choosen"{% endif %}>
-            <a href="{{ url_for('.questions') }}">{{ i.name }}</a>
+            <a href="{{ url_for('.questions') }}?theme={{ i.name }}">
+              {{ i.name }}
+            </a>
           </dd>
           {% endfor %}
 
