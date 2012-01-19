@@ -70,7 +70,16 @@
     margin-left:20px;
 }
 
+.sidebar dd.choosen {
+    font-weight:bold;
+}
+
+.sidebar dd a {
+    color:#000;
+}
+
 .rcolumn {
+    padding:10px 10px 10px 40px;
     border-left:dotted 1px #aaa;
 }
 
@@ -82,7 +91,7 @@
 /* -- highlight -- */
 
 .highlight {
-    padding:10px 10px 10px 40px;
+
 }
 
 .highlight h3 {
@@ -130,4 +139,20 @@
 
 .highlight .date {
     font-size:12pt;
+}
+
+/* -- send question -- */
+form#send label {
+    display:block;
+    font-size:12pt;
+    margin:15px 0 5px;
+}
+
+form#send textarea {
+    width:280px;
+    height:100px;
+}
+
+form#send .sendbtn {
+    margin-top:20px;
 }

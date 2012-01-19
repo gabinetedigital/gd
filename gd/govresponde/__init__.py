@@ -20,7 +20,10 @@
 """Web application definitions to the govr tool"""
 
 from flask import Blueprint, request, render_template, redirect, url_for
+
+from gd import auth
 from gd.content import wordpress
+from gd.govresponde import forms
 
 govresponde = Blueprint(
     'govresponde', __name__,
@@ -33,4 +36,31 @@ def index():
     return render_template(
         'govresponde_edicoesanteriores.html',
         wordpress=wordpress)
+
+
+@govresponde.route('/send', methods=('GET', 'POST'))
+def send():
+    form = forms.QuestionForm(csrf_enabled=False)
+    form.theme.choices = [(None, '----')] + \
+        [(i['id'], i['name']) for i in wordpress.govr.getThemes()]
+
+    if form.validate_on_submit():
+        print wordpress.govr.createContrib(
+            form.data['title'],
+            form.data['theme'],
+            form.data['question'],
+            auth.authenticated_user().id,
+            '', 0, 0
+        )
+
+    return render_template(
+        'govresponde_enviar.html',
+        wordpress=wordpress, form=form)
+
+
+@govresponde.route('/questions')
+def questions():
+    return render_template(
+        'govresponde_theme.html',
+        wordpress=wordpress, theme=None)
 

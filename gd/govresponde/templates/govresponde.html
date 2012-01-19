@@ -20,9 +20,15 @@
     <div class="col8">
       <ul class="menu">
         <li>Como<br>Funciona</li>
-        <li>Edições<br>anteriores</li>
+        <li>
+          <a href="{{ url_for('.index') }}">Edições<br>anteriores</a>
+        </li>
         <li>Perguntas<br>em votação</li>
-        <li><a href="#" class="awesome">Envie sua<br>pergunta</a></li>
+        <li>
+          <a href="{{ url_for('.send') }}" class="awesome">
+            Envie sua<br>pergunta
+          </a>
+        </li>
       </ul>
     </div>
 
@@ -43,7 +49,9 @@
         <dl>
           <dt>Escolha um tema</dt>
           {% for i in wordpress.govr.getThemes() %}
-          <dd>{{ i.name }}</dd>
+          <dd {% if theme == i.name  %}class="choosen"{% endif %}>
+            <a href="{{ url_for('.questions') }}">{{ i.name }}</a>
+          </dd>
           {% endfor %}
 
           <dt>Suas contribuições</dt>

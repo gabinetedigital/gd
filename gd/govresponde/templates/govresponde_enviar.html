@@ -1,0 +1,27 @@
+{% extends "govresponde.html" %}
+
+{% block rcolumn %}
+
+<h2>Envie sua pergunta ao Governador</h2>
+
+<form class="auth" id="send" method="post" action="{{ url_for('.send') }}">
+  <ol>
+    <li>
+      <label for="theme">Escolha um tema</label>
+      {{ form.theme }}
+    </li>
+    <li>
+      <label for="title">Dê um titulo à sua pergunta</label>
+      {{ form.title }}
+    </li>
+    <li>
+      <label for="question">Faça a sua pergunta</label>
+      <textarea id="question" name="question"></textarea>
+    </li>
+    <li class="sendbtn">
+      <button class="awesome">Enviar</button>
+    </li>
+  </ol>
+</form>
+
+{% endblock %}

@@ -129,11 +129,11 @@ form.auth label {
     font-size: 14px;
 }
 
-form.auth input, form.auth select {
+form.auth input, form.auth select, form.auth textarea {
     box-shadow:inset 0 0 5px 1px #ccc;
     border-radius:4px;
+    border: 1px solid #999;
     padding:5px 5px;
-    border:solid 1px #fff;
 }
 
 form.auth .submit {
@@ -232,7 +232,6 @@ form.auth .accept_tos label {
 
 form.auth input {
     width:200px;
-    border: 1px solid #999;
 }
 
 form.auth select#state, form.auth select#gender {
