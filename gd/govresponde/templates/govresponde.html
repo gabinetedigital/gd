@@ -53,9 +53,15 @@
 
         <dl>
           <dt>Escolha um tema</dt>
+
+          <dd {% if not theme and request.path.endswith('questions') %}
+              class="choosen"{% endif %}>
+            <a href="{{ url_for('.questions') }}">Todos</a>
+          </dd>
+
           {% for i in wordpress.govr.getThemes() %}
-          <dd {% if theme == i.name  %}class="choosen"{% endif %}>
-            <a href="{{ url_for('.questions') }}?theme={{ i.name }}">
+          <dd {% if theme and theme.id == i.id  %}class="choosen"{% endif %}>
+            <a href="{{ url_for('.questions') }}?theme={{ i.id }}">
               {{ i.name }}
             </a>
           </dd>

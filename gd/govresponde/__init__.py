@@ -33,6 +33,11 @@ govresponde = Blueprint(
     static_folder='static')
 
 
+def _get_theme():
+    theme_id = request.values.get('theme')
+    return theme_id and wordpress.govr.getTheme(theme_id) or None
+
+
 @govresponde.route('/')
 def index():
     return render_template(
@@ -71,14 +76,15 @@ def send_json():
 
 @govresponde.route('/questions')
 def questions():
-    theme = request.values.get('theme')
-    questions_raw, count = wordpress.govr.getContribs(theme or '')
+    theme = _get_theme()
     questions = []
+    questions_raw, count = \
+        wordpress.govr.getContribs(theme and theme['id'] or '')
     for i in questions_raw:
         question = i.copy()
         question['created_at'] = dateparser.parse(question['created_at'])
         questions.append(question)
     return render_template(
         'govresponde_questions.html',
-        wordpress=wordpress, theme=theme,
+        wordpress=wordpress, theme=_get_theme(),
         questions=questions, count=count)
