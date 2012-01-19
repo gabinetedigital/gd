@@ -27,7 +27,7 @@ from flask import session as fsession
 
 from gd import auth
 from gd.content.wp import wordpress, gallery
-from gd.utils import msg, format_csrf_error, format_csrf_error, dumps
+from gd.utils import msg, format_csrf_error, dumps
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
 from gd.govpergunta.pairwise import Pairwise, InvalidTokenError, \

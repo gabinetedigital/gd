@@ -22,6 +22,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 
 from gd import auth
+from gd.utils import msg, format_csrf_error
 from gd.content import wordpress
 from gd.govresponde import forms
 
@@ -38,24 +39,33 @@ def index():
         wordpress=wordpress)
 
 
-@govresponde.route('/send', methods=('GET', 'POST'))
+@govresponde.route('/send')
 def send():
     form = forms.QuestionForm(csrf_enabled=False)
     form.theme.choices = [(None, '----')] + \
         [(i['id'], i['name']) for i in wordpress.govr.getThemes()]
 
+    return render_template(
+        'govresponde_enviar.html',
+        wordpress=wordpress, form=form)
+
+
+@govresponde.route('/send_json', methods=('POST',))
+def send_json():
+    form = forms.QuestionForm(csrf_enabled=False)
+    form.theme.choices = [(None, '----')] + \
+        [(i['id'], i['name']) for i in wordpress.govr.getThemes()]
     if form.validate_on_submit():
-        print wordpress.govr.createContrib(
+        wordpress.govr.createContrib(
             form.data['title'],
             form.data['theme'],
             form.data['question'],
             auth.authenticated_user().id,
             '', 0, 0
         )
-
-    return render_template(
-        'govresponde_enviar.html',
-        wordpress=wordpress, form=form)
+        return msg.ok(u'Contribution received successful')
+    else:
+        return format_csrf_error(form, form.errors, 'ValidationError')
 
 
 @govresponde.route('/questions')

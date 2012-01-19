@@ -1,22 +1,45 @@
 {% extends "govresponde.html" %}
 
+{% block js %}
+<script src="{{ url_for('.static', filename='js/govresponde_enviar.js') }}"></script>
+{% endblock %}
+
 {% block rcolumn %}
 
 <h2>Envie sua pergunta ao Governador</h2>
 
-<form class="auth" id="send" method="post" action="{{ url_for('.send') }}">
+<form class="auth" id="send" method="post"
+      action="{{ url_for('.send_json') }}">
+
+  <div class="msg error"></div>
+  <div class="msg success envio">
+    <p>
+      Sua colaboração foi enviada com sucesso. Após uma breve moderação,
+      ela será publicada e estará apta a receber votos.
+    </p>
+    <p>
+      Para enviar outra contribuição,
+      clique <a href="javascript:showContribForm()">aqui</a>
+    </p>
+  </div>
+
   <ol>
     <li>
       <label for="theme">Escolha um tema</label>
-      {{ form.theme }}
+      {{ form.theme(class='theme') }}
+      <p class="errmsg theme-error"></p>
     </li>
     <li>
       <label for="title">Dê um titulo à sua pergunta</label>
-      {{ form.title }}
+      {{ form.title(class='title') }}
+      <p class="errmsg title-error"></p>
     </li>
     <li>
       <label for="question">Faça a sua pergunta</label>
-      <textarea id="question" name="question"></textarea>
+      <textarea
+         id="question" name="question"
+         class="question"></textarea>
+      <p class="errmsg question-error"></p>
     </li>
     <li class="sendbtn">
       <button class="awesome">Enviar</button>
