@@ -78,8 +78,13 @@ def send_json():
 def questions():
     theme = _get_theme()
     questions = []
-    questions_raw, count = \
-        wordpress.govr.getContribs(theme and theme['id'] or '')
+    questions_raw, count = wordpress.govr.getVotingContribs(
+        theme and theme['id'] or '', # theme id
+        0,                           # page number
+        '',                          # sortby
+        '',                          # from
+        '',                          # to
+    )
     for i in questions_raw:
         question = i.copy()
         question['created_at'] = dateparser.parse(question['created_at'])
