@@ -174,7 +174,7 @@ form#send .helptext {
 }
 
 /* -- questions screen -- */
-.questions li {
+.questions ul li {
     margin-bottom:20px;
     border-bottom:solid 1px #ddd;
 }
@@ -236,6 +236,21 @@ form#send .helptext {
 
 .questions .aggregated li {
     padding-bottom:10px;
+}
+
+.questions ol.pagination {
+    padding-bottom:25px;
+    text-align:right;
+}
+
+.questions ol.pagination li {
+    float:left;
+    margin-right:10px;
+    width:10px;
+}
+
+.questions ol.pagination li.selected {
+    border-bottom:solid 2px #999;
 }
 
 /* -- como funciona -- */

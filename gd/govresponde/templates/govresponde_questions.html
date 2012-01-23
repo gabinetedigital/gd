@@ -20,6 +20,16 @@
     </li>
     {% endfor %}
   </ul>
+
+  <ol class="pagination">
+    {% for i in range(pagination.pages) %}
+    <li {% if pagination.page == i %}class="selected"{% endif %}>
+      <a href="{{ url_for('.questions') }}?theme={{ theme.id }}&page={{ i }}">
+        {{ i+1 }}
+      </a>
+    </li>
+    {% endfor %}
+  </ol>
 </div>
 
 {% endblock %}

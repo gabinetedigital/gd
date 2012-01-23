@@ -22,6 +22,7 @@
 from flask import Blueprint, request, render_template, redirect, \
     url_for, abort
 from dateutil import parser as dateparser
+from math import ceil
 
 from gd import auth
 from gd.utils import msg, format_csrf_error
@@ -34,12 +35,14 @@ govresponde = Blueprint(
     static_folder='static')
 
 
+CONTRIBS_PER_PAGE = 50
+
 def _get_context(custom=None):
     theme_id = request.values.get('theme')
     govr = wordpress.govr
     ctx = {}
     ctx['wordpress'] = wordpress
-    ctx['theme'] = theme_id and govr.getTheme(theme_id) or None
+    ctx['theme'] = theme_id and govr.getTheme(theme_id) or ''
     if auth.is_authenticated():
         ctx['userstats'] = govr.getUserStats(auth.authenticated_user().id)
     ctx.update(custom or {})
@@ -106,12 +109,22 @@ def questions():
         theme['id'] or ''
 
     # Finally, listing the questions that are able to receive votes.
+    pagination = {}
+    pagination['page'] = int(request.values.get('page', 0))
     questions_raw, count = wordpress.govr.getVotingContribs(
         user_id,                # user id
         theme_id,               # theme id
-        0,                      # page number
+        pagination['page'],     # page number
         '',                     # sortby
+        '',                     # to
+        '',                     # from
+        CONTRIBS_PER_PAGE,      # perpage
     )
+
+    # Pagination stuff
+    count = int(count)
+    pagination['pages'] = int(ceil(float(count) / CONTRIBS_PER_PAGE))
+    pagination['count'] = count
 
     # Small fix for the date value in the question content
     for i in questions_raw:
@@ -119,7 +132,7 @@ def questions():
         question['created_at'] = dateparser.parse(question['created_at'])
         questions.append(question)
 
-    ctx.update({ 'questions': questions, 'count': count })
+    ctx.update({ 'questions': questions, 'pagination': pagination })
     return render_template('govresponde_questions.html', **ctx)
 
 
