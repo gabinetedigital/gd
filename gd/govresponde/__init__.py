@@ -34,24 +34,31 @@ govresponde = Blueprint(
     static_folder='static')
 
 
-def _get_theme():
+def _get_context(custom=None):
     theme_id = request.values.get('theme')
-    return theme_id and wordpress.govr.getTheme(theme_id) or None
+    govr = wordpress.govr
+    ctx = {}
+    ctx['wordpress'] = wordpress
+    ctx['theme'] = theme_id and govr.getTheme(theme_id) or None
+    if auth.is_authenticated():
+        ctx['userstats'] = govr.getUserStats(auth.authenticated_user().id)
+    ctx.update(custom or {})
+    return ctx
 
 
 @govresponde.route('/')
 def index():
     return render_template(
-        'govresponde_edicoesanteriores.html',
-        wordpress=wordpress)
+        'govresponde_edicoesanteriores.html', **_get_context())
 
 
 @govresponde.route('/comofunciona')
 def comofunciona():
     return render_template(
         'govresponde_comofunciona.html',
-        wordpress=wordpress,
-        page=wordpress.getPageByPath('govresponde/como-funciona'),
+        **_get_context({
+            'page': wordpress.getPageByPath('govresponde/como-funciona'),
+        })
     )
 
 
@@ -63,7 +70,7 @@ def send():
 
     return render_template(
         'govresponde_enviar.html',
-        wordpress=wordpress, form=form)
+        **_get_context({ 'form': form }))
 
 
 @govresponde.route('/send_json', methods=('POST',))
@@ -86,7 +93,8 @@ def send_json():
 
 @govresponde.route('/questions')
 def questions():
-    theme = _get_theme()
+    ctx = _get_context()
+    theme = ctx['theme']
     questions = []
     questions_raw, count = wordpress.govr.getVotingContribs(
         theme and theme['id'] or '', # theme id
@@ -99,10 +107,9 @@ def questions():
         question = i.copy()
         question['created_at'] = dateparser.parse(question['created_at'])
         questions.append(question)
-    return render_template(
-        'govresponde_questions.html',
-        wordpress=wordpress, theme=_get_theme(),
-        questions=questions, count=count)
+
+    ctx.update({ 'questions': questions, 'count': count })
+    return render_template('govresponde_questions.html', **ctx)
 
 
 @govresponde.route('/questions/<int:qid>')
@@ -115,8 +122,7 @@ def question(qid):
 
     return render_template(
         'govresponde_question.html',
-        wordpress=wordpress, theme=_get_theme(),
-        question=contrib,
+        **_get_context({ 'question': contrib })
     )
 
 

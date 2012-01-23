@@ -69,9 +69,11 @@
           </dd>
           {% endfor %}
 
+          {% if user %}
           <dt>Suas contribuições</dt>
-          <dd>21 votos</dd>
-          <dd>4 perguntas</dd>
+          <dd>{{ userstats.votes }} votos</dd>
+          <dd>{{ userstats.contribs }} perguntas</dd>
+          {% endif %}
         </dl>
       </div>
     </div>
