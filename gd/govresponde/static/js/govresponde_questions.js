@@ -19,3 +19,20 @@
 function showAggregated(parentId) {
     $('#aggregated-' + parentId).slideToggle();
 }
+
+function vote(qid) {
+    $.get(url_for('govresponde.vote.<qid>', { qid: qid }), function (data) {
+        $('#question-' + qid + ' button').replaceWith(
+            $('<div>')
+                .addClass('success')
+                .addClass('msg')
+                .show()
+                .html('Obrigado por votar. Seu voto foi contabilizado'));
+        $('#question-' + qid + ' .score')
+            .fadeOut(function () {
+                $(this)
+                    .html(data)
+                    .fadeIn();
+            });
+    });
+}

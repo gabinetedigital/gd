@@ -93,3 +93,9 @@ def questions():
         'govresponde_questions.html',
         wordpress=wordpress, theme=_get_theme(),
         questions=questions, count=count)
+
+
+@govresponde.route('/vote/<int:qid>')
+def vote(qid):
+    return str(wordpress.govr.contribVote(
+        qid, auth.authenticated_user().id))

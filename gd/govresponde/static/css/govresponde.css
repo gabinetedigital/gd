@@ -184,7 +184,6 @@ form#send .sendbtn {
 .questions li .date {
     color:#666;
     margin-bottom:10px;
-    margin-left:70px;
 }
 
 .questions .votes {
@@ -196,13 +195,18 @@ form#send .sendbtn {
 }
 
 .questions button {
-    margin-left:70px;
     margin-bottom:10px;
 }
 
 .questions .votes strong {
     font-size:30px;
     line-height:10px;
+}
+
+.questions .alreadyvoted {
+    color:#666;
+    display:block;
+    margin-bottom:10px;
 }
 
 .questions li .content {
