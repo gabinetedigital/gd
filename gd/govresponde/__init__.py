@@ -46,6 +46,15 @@ def index():
         wordpress=wordpress)
 
 
+@govresponde.route('/comofunciona')
+def comofunciona():
+    return render_template(
+        'govresponde_comofunciona.html',
+        wordpress=wordpress,
+        page=wordpress.getPageByPath('govresponde/como-funciona'),
+    )
+
+
 @govresponde.route('/send')
 def send():
     form = forms.QuestionForm(csrf_enabled=False)

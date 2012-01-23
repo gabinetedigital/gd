@@ -237,3 +237,8 @@ form#send .helptext {
 .questions .aggregated li {
     padding-bottom:10px;
 }
+
+/* -- como funciona -- */
+.comofunciona p {
+    margin:10px 0;
+}
