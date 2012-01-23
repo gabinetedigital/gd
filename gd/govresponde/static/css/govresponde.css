@@ -169,6 +169,10 @@ form#send .sendbtn {
     margin-top:20px;
 }
 
+form#send .helptext {
+    margin-right:250px;
+}
+
 /* -- questions screen -- */
 .questions li {
     margin-bottom:20px;

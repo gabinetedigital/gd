@@ -11,6 +11,12 @@
 <form class="auth" id="send" method="post"
       action="{{ url_for('.send_json') }}">
 
+  <p class="helptext">
+    Envie uma pergunta diretamente ao Governador. Se o tema escolhido e a
+    pergunta enviada forem os mais votados, ele irá responder em vídeo
+    aqui pelo site.
+  </p>
+
   <div class="msg error"></div>
   <div class="msg success envio">
     <p>
