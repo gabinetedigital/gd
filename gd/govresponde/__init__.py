@@ -19,7 +19,8 @@
 
 """Web application definitions to the govr tool"""
 
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, \
+    url_for, abort
 from dateutil import parser as dateparser
 
 from gd import auth
@@ -93,6 +94,21 @@ def questions():
         'govresponde_questions.html',
         wordpress=wordpress, theme=_get_theme(),
         questions=questions, count=count)
+
+
+@govresponde.route('/questions/<int:qid>')
+def question(qid):
+    if wordpress.govr.contribIsAggregated(qid):
+        abort(404)
+
+    contrib = wordpress.govr.getContrib(qid)
+    contrib['created_at'] = dateparser.parse(contrib['created_at'])
+
+    return render_template(
+        'govresponde_question.html',
+        wordpress=wordpress, theme=_get_theme(),
+        question=contrib,
+    )
 
 
 @govresponde.route('/vote/<int:qid>')

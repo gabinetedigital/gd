@@ -1,0 +1,14 @@
+{% extends "govresponde.html" %}
+
+{% block js %}
+<script src="{{ url_for('.static', filename='js/govresponde_questions.js') }}"></script>
+{% endblock %}
+
+{% block rcolumn %}
+
+<div id="question-{{ question.id }}" class="questions single">
+  <h2>{{ question.title }}</h2>
+  {% include "govresponde_question.part.html" %}
+</div>
+
+{% endblock %}

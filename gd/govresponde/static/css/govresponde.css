@@ -175,13 +175,21 @@ form#send .sendbtn {
     border-bottom:solid 1px #ddd;
 }
 
+.questions.single strong.title {
+    display:none;
+}
+
+.questions strong.title a {
+    color:#000;
+}
+
 .questions li strong {
     font-size:12pt;
     display:block;
     margin-bottom:10px;
 }
 
-.questions li .date {
+.questions .date {
     color:#666;
     margin-bottom:10px;
 }
@@ -209,7 +217,7 @@ form#send .sendbtn {
     margin-bottom:10px;
 }
 
-.questions li .content {
+.questions .content {
     margin-left:70px;
 }
 

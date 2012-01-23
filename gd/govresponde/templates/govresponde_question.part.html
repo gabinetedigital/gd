@@ -1,0 +1,45 @@
+<div class="votes">
+  {% set score = wordpress.govr.getContribScore(question.id) %}
+  <strong class="score">{{ score }}</strong>
+  {% if score == '1' %}
+  <p>Voto</p>
+  {% else %}
+  <p>Votos</p>
+  {% endif %}
+</div>
+<div class="content">
+  <strong class="title">
+    <a href="{{ url_for('.question', qid=question.id) }}">
+      {{ question.title }}
+    </a>
+  </strong>
+  <div class="date">
+    Enviada em {{ question.created_at.strftime('%d/%m/%Y') }}
+  </div>
+  {% if wordpress.govr.contribUserCanVote(question.id, user.id) %}
+  <button class="awesome" onclick="vote({{ question.id }})">
+    Votar
+  </button>
+  {% else %}
+  <em class="alreadyvoted">Você já votou nessa pergunta</em>
+  {% endif %}
+
+  <p class="desc">{{ question.content }}</p>
+
+  {% set aggregated = wordpress.govr.getAggregatedContribs(question.id) %}
+  {% if aggregated %}
+  <a href="javascript:;"
+     onclick="showAggregated({{ question.id  }})"
+     class="otherquestions">
+    Demais perguntas incluídas
+  </a>
+  <ul id="aggregated-{{ question.id }}" class="aggregated">
+    {% for ag in aggregated %}
+    <li>
+      <strong>{{ ag.title }}</strong>
+      <p class="desc">{{ ag.content }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
