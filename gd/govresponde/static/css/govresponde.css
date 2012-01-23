@@ -37,6 +37,18 @@
     margin-bottom:40px;
 }
 
+a.otherquestions {
+    display:block;
+    margin-top:10px;
+    background:url("../imgs/others.png") no-repeat;
+    padding-left:20px;
+}
+
+p.desc {
+    color:#666;
+}
+
+
 /* -- sidebar -- */
 
 .sidebar {
@@ -95,13 +107,13 @@
 
 }
 
+.highlight a.otherquestions {
+    margin-left:480px;
+}
+
 .highlight h3 {
     margin-bottom:10px;
     font-size:14pt;
-}
-
-.highlight p {
-    color:#666;
 }
 
 .highlight .video {
@@ -111,14 +123,6 @@
     float:left;
     margin-right:10px;
     margin-bottom:20px;
-}
-
-.highlight .answers {
-    display:block;
-    margin-top:10px;
-    margin-left:480px;
-    background:url("../imgs/others.png") no-repeat;
-    padding-left:20px;
 }
 
 .highlight .others {
@@ -168,7 +172,6 @@ form#send .sendbtn {
 /* -- questions screen -- */
 .questions li {
     margin-bottom:20px;
-    padding-bottom:20px;
     border-bottom:solid 1px #ddd;
 }
 
@@ -181,7 +184,36 @@ form#send .sendbtn {
 .questions li .date {
     color:#666;
     margin-bottom:10px;
+    margin-left:70px;
 }
 
-.questions li p {
+.questions .votes {
+    width:50px;
+    text-align:center;
+    float:left;
+    margin-right:20px;
+    padding-top:10px;
+}
+
+.questions button {
+    margin-left:70px;
+    margin-bottom:10px;
+}
+
+.questions .votes strong {
+    font-size:30px;
+    line-height:10px;
+}
+
+.questions li .content {
+    margin-left:70px;
+}
+
+.questions .aggregated {
+    margin:10px 10px 0 20px;
+    display:none;
+}
+
+.questions .aggregated li {
+    padding-bottom:10px;
 }

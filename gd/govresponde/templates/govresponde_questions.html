@@ -1,5 +1,9 @@
 {% extends "govresponde.html" %}
 
+{% block js %}
+<script src="{{ url_for('.static', filename='js/govresponde_questions.js') }}"></script>
+{% endblock %}
+
 {% block rcolumn %}
 
 <div class="questions">
@@ -11,11 +15,39 @@
   <ul>
     {% for question in questions %}
     <li>
+      <div class="votes">
+        <strong>{{ question.score }}</strong>
+        {% if question.score == 1 %}
+        <p>Voto</p>
+        {% else %}
+        <p>Votos</p>
+        {% endif %}
+      </div>
       <strong>{{ question.title }}</strong>
       <div class="date">
         Enviada em {{ question.created_at.strftime('%d/%m/%Y') }}
       </div>
-      <p>{{ question.content }}</p>
+      <button class="awesome">Votar</button>
+      <div class="content">
+        <p class="desc">{{ question.content }}</p>
+
+        {% set aggregated = wordpress.govr.getAggregatedContribs(question.id) %}
+        {% if aggregated %}
+        <a href="javascript:;"
+           onclick="showAggregated({{ question.id  }})"
+           class="otherquestions">
+          Demais perguntas incluídas
+        </a>
+        <ul id="aggregated-{{ question.id }}" class="aggregated">
+          {% for ag in aggregated %}
+          <li>
+            <strong>{{ ag.title }}</strong>
+            <p class="desc">{{ ag.content }}</p>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
     </li>
     {% endfor %}
   </ul>
