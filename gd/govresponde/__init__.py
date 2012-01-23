@@ -96,15 +96,26 @@ def questions():
     ctx = _get_context()
     theme = ctx['theme']
     questions = []
+
+    # Looking for the authenticated user
+    user_id = auth.is_authenticated() and \
+        auth.authenticated_user().id or ''
+
+    # Discovering the theme id
+    theme_id = theme and \
+        theme['id'] or ''
+
+    # Finally, listing the questions that are able to receive votes.
     questions_raw, count = wordpress.govr.getVotingContribs(
-        theme and theme['id'] or '', # theme id
-        0,                           # page number
-        '',                          # sortby
-        '',                          # from
-        '',                          # to
+        user_id,                # user id
+        theme_id,               # theme id
+        0,                      # page number
+        '',                     # sortby
     )
+
+    # Small fix for the date value in the question content
     for i in questions_raw:
-        question = i.copy()
+        question = i
         question['created_at'] = dateparser.parse(question['created_at'])
         questions.append(question)
 
@@ -117,7 +128,12 @@ def question(qid):
     if wordpress.govr.contribIsAggregated(qid):
         abort(404)
 
-    contrib = wordpress.govr.getContrib(qid)
+    # Looking for the authenticated user
+    user_id = auth.is_authenticated() and \
+        auth.authenticated_user().id or ''
+
+    # Small fix for the date value in the question content
+    contrib = wordpress.govr.getContrib(qid, user_id)
     contrib['created_at'] = dateparser.parse(contrib['created_at'])
 
     return render_template(

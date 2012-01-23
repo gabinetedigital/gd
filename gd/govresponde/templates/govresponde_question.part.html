@@ -1,7 +1,6 @@
 <div class="votes">
-  {% set score = wordpress.govr.getContribScore(question.id) %}
-  <strong class="score">{{ score }}</strong>
-  {% if score == '1' %}
+  <strong class="score">{{ question.real_score }}</strong>
+  {% if question.real_score == '1' %}
   <p>Voto</p>
   {% else %}
   <p>Votos</p>
@@ -31,7 +30,7 @@
   <div class="date">
     Enviada em {{ question.created_at.strftime('%d/%m/%Y') }}
   </div>
-  {% if wordpress.govr.contribUserCanVote(question.id, user.id) %}
+  {% if question.user_can_vote or not user %}
   <button class="awesome" onclick="vote({{ question.id }})">
     Votar
   </button>
@@ -41,15 +40,14 @@
 
   <p class="desc">{{ question.content }}</p>
 
-  {% set aggregated = wordpress.govr.getAggregatedContribs(question.id) %}
-  {% if aggregated %}
+  {% if question.aggregated %}
   <a href="javascript:;"
      onclick="showAggregated({{ question.id  }})"
      class="otherquestions">
     Demais perguntas incluídas
   </a>
   <ul id="aggregated-{{ question.id }}" class="aggregated">
-    {% for ag in aggregated %}
+    {% for ag in question.aggregated %}
     <li>
       <strong>{{ ag.title }}</strong>
       <p class="desc">{{ ag.content }}</p>
