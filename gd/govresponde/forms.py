@@ -45,14 +45,10 @@ class QuestionForm(Form):
     question = TextField(
         _('Content'),
         [validators.Length(
-                min=50,
+                min=5,
                 message=_(u'Your contribution is too short! It needs to have '
                           u'at least 50 chars')
                 ),
-         validators.Length(
-                max=600,
-                message=_(u'Your contribution is too long! It needs to have '
-                          u'at most 600 chars')
-                )],
+         ],
     )
 
