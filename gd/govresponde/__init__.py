@@ -112,8 +112,8 @@ def questions():
     pagination = {}
     pagination['page'] = int(request.values.get('page', 0))
     questions_raw, count = wordpress.govr.getVotingContribs(
-        user_id,                # user id
         theme_id,               # theme id
+        user_id,                # user id
         pagination['page'],     # page number
         '',                     # sortby
         '',                     # to
