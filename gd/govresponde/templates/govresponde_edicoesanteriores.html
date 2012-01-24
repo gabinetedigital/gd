@@ -28,7 +28,10 @@
         <strong class="title">{{ contrib.title }}</strong>
       </div>
 
-      <div class="content">{{ contrib.answer|safe }}</div>
+      <div class="content">{{ contrib.content|safe }}</div>
+
+      <h4>Resposta</h4>
+      <div class="answer">{{ contrib.answer|safe }}</div>
 
       {% if contrib.aggregated %}
       <a href="javascript:;"

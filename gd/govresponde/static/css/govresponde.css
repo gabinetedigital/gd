@@ -157,6 +157,8 @@ p.desc {
     margin-bottom:10px;
 }
 
+.highlight h4 { clear:both; margin:20px 0; }
+
 /* -- send question -- */
 form#send label {
     display:block;
