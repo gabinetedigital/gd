@@ -51,8 +51,22 @@ def _get_context(custom=None):
 
 @govresponde.route('/')
 def index():
+    contribs = []
+
+    user_id = auth.is_authenticated() and \
+        auth.authenticated_user().id or ''
+
+    contribs_raw, count = wordpress.govr.getContribs(
+        '', user_id, 0, 'date', '', '', 'responded')
+    for i in contribs_raw:
+        contrib = i
+        contrib['created_at'] = dateparser.parse(contrib['created_at'])
+        contrib['theme'] = wordpress.govr.getTheme(contrib['theme_id'])
+        contribs.append(contrib)
+
+    ctx = _get_context({ 'contribs': contribs, 'count': count })
     return render_template(
-        'govresponde_edicoesanteriores.html', **_get_context())
+        'govresponde_edicoesanteriores.html', **ctx)
 
 
 @govresponde.route('/comofunciona')

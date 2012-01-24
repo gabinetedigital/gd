@@ -107,7 +107,7 @@ p.desc {
 
 }
 
-.highlight a.otherquestions {
+.highlight .bigger a.otherquestions {
     margin-left:480px;
 }
 
@@ -131,7 +131,6 @@ p.desc {
 
 .highlight .others li {
     padding:20px 0;
-    border-top:solid 1px #ddd;
 }
 
 .highlight .others img {

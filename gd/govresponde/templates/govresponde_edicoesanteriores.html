@@ -1,33 +1,49 @@
 {% extends "govresponde.html" %}
 
+{% block js %}
+<script src="{{ url_for('.static', filename='js/govresponde_questions.js') }}"></script>
+{% endblock %}
+
 {% block rcolumn %}
-<div class="highlight">
-  <h3>Segurança Pública</h3>
-  <div class="video"></div>
-  <div class="date">18/07/2011</div>
-  <p class="desc">
-    Governador Tarso Genro, sabemos que atualmente o déficit de
-    policiais civis está em torno de 7.000 homens, dados estes
-    fornecidos pela SERVIPOL/RS e que muitos da ativa já estão com
-    direito de pedir sua aposentadoria o que causaria uma baixa
-    maior ainda no efetivo.  (...)
-  </p>
-  <a class="otherquestions" href="#">Demais perguntas incluídas</a>
+<div class="highlight questions">
+  <!-- <h3>Segurança Pública</h3> -->
+  <!-- <div class="video"></div> -->
+  <!-- <div class="date">18/07/2011</div> -->
+  <!-- <p class="desc"> -->
+  <!--   Governador Tarso Genro, sabemos que atualmente o déficit de -->
+  <!--   policiais civis está em torno de 7.000 homens, dados estes -->
+  <!--   fornecidos pela SERVIPOL/RS e que muitos da ativa já estão com -->
+  <!--   direito de pedir sua aposentadoria o que causaria uma baixa -->
+  <!--   maior ainda no efetivo.  (...) -->
+  <!-- </p> -->
+  <!-- <a class="otherquestions" href="#">Demais perguntas incluídas</a> -->
 
   <ul class="others">
+    {% for contrib in contribs %}
     <li>
-      <h3>Combate à miséria</h3>
+      <h3>{{ contrib.theme.name }}</h3>
       <img src="{{ url_for('.static', filename='imgs/others.png') }}">
-      <div class="date">18/07/2011</div>
-      <p>
-        Nam iaculis, nibh egestas gravida tincidunt, lorem leo
-        rutrum nibh, nec euismod lectus metus ac velit. Quisque et
-        magna sed eros vestibulum lacinia. Vivamus porta varius
-        orci, a mollis purus congue ac. Vivamus mi lectus, tempor
-        sed accumsan fringilla, mollis et sem.
-      </p>
+      <div class="date">{{ contrib.created_at.strftime('%d/%m/%Y') }}</div>
+      <strong>{{ contrib.title }}</strong> &mdash; {{ contrib.answer|safe }}
       <div class="row-end"></div>
+
+      {% if contrib.aggregated %}
+      <a href="javascript:;"
+         onclick="showAggregated({{ contrib.id  }})"
+         class="otherquestions">
+        Demais perguntas incluídas
+      </a>
+      <ul id="aggregated-{{ contrib.id }}" class="aggregated">
+        {% for ag in contrib.aggregated %}
+        <li>
+          <strong>{{ ag.title }}</strong>
+          <p class="desc">{{ ag.content }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
     </li>
+    {% endfor %}
   </ul>
 
   <div class="row-end"></div>
