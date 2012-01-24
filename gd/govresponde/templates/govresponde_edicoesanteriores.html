@@ -18,14 +18,17 @@
   <!-- </p> -->
   <!-- <a class="otherquestions" href="#">Demais perguntas incluídas</a> -->
 
-  <ul class="others">
+  <ul>
     {% for contrib in contribs %}
     <li>
       <h3>{{ contrib.theme.name }}</h3>
       <img src="{{ url_for('.static', filename='imgs/others.png') }}">
-      <div class="date">{{ contrib.created_at.strftime('%d/%m/%Y') }}</div>
-      <strong>{{ contrib.title }}</strong> &mdash; {{ contrib.answer|safe }}
-      <div class="row-end"></div>
+      <div>
+        <p class="date">{{ contrib.created_at.strftime('%d/%m/%Y') }}</p>
+        <strong class="title">{{ contrib.title }}</strong>
+      </div>
+
+      <div class="content">{{ contrib.answer|safe }}</div>
 
       {% if contrib.aggregated %}
       <a href="javascript:;"

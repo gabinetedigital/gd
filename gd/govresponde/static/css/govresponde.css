@@ -125,24 +125,36 @@ p.desc {
     margin-bottom:20px;
 }
 
-.highlight .others {
+.highlight li {
+    padding:20px 0;
     clear:both;
 }
 
-.highlight .others li {
-    padding:20px 0;
-}
-
-.highlight .others img {
-    width:140px;
-    height:100px;
+.highlight img {
+    width:250px;
+    height:112px;
     border:solid 1px #999;
     float:left;
     margin-right:10px;
 }
 
+.highlight .title {
+    font-size:12pt;
+    margin:10px 0;
+}
+
 .highlight .date {
     font-size:12pt;
+    float:left;
+    margin:0 10px 0 0 !important;
+}
+
+.highlight .content {
+    margin:10px 0 0 0 !important;
+}
+
+.highlight .content p {
+    margin-bottom:10px;
 }
 
 /* -- send question -- */
@@ -187,9 +199,8 @@ form#send .helptext {
 }
 
 .questions li strong {
-    font-size:12pt;
-    display:block;
-    margin-bottom:10px;
+    font-size:10pt;
+    margin:10px 0;
 }
 
 .questions .date {
@@ -229,12 +240,13 @@ form#send .helptext {
 }
 
 .questions .aggregated {
-    margin:10px 10px 0 20px;
+    margin:10px 10px 0 40px;
     display:none;
 }
 
 .questions .aggregated li {
-    padding-bottom:10px;
+    padding-bottom:20px;
+    margin-bottom:10px;
 }
 
 .questions ol.pagination {

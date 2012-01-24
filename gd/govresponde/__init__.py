@@ -58,10 +58,9 @@ def index():
 
     contribs_raw, count = wordpress.govr.getContribs(
         '', user_id, 0, 'date', '', '', 'responded')
-    for i in contribs_raw:
+    for i in contribs_raw[::-1]:
         contrib = i
         contrib['created_at'] = dateparser.parse(contrib['created_at'])
-        contrib['theme'] = wordpress.govr.getTheme(contrib['theme_id'])
         contribs.append(contrib)
 
     ctx = _get_context({ 'contribs': contribs, 'count': count })
