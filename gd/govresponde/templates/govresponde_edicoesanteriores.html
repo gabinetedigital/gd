@@ -22,7 +22,25 @@
     {% for contrib in contribs %}
     <li>
       <h3>{{ contrib.theme.name }}</h3>
-      <img src="{{ url_for('.static', filename='imgs/others.png') }}">
+
+      {% if contrib.video %}
+      <div class="video">
+        <a href="javascript:;" onclick='video.play({{ contrib.video|tojson|safe }})'>
+          <div class="container">
+            <img class="thumb"
+                 src="{{ contrib.video.thumbnail }}" alt="{{ contrib.video.title }}"
+                 width="193" height="110">
+            <img src="../static/imgs/play.png" class="play">
+          </div>
+          <a href="{{ url_for('videos.details', vid=contrib.video.id) }}"
+             class="permalink">
+            <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
+                 alt="Permanet link">
+          </a>
+        </a>
+      </div>
+      {% endif %}
+
       <div>
         <p class="date">{{ contrib.created_at.strftime('%d/%m/%Y') }}</p>
         <strong class="title">{{ contrib.title }}</strong>

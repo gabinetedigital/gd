@@ -61,6 +61,7 @@ def index():
     for i in contribs_raw[::-1]:
         contrib = i
         contrib['created_at'] = dateparser.parse(contrib['created_at'])
+        contrib['video'] = wordpress.wpgd.getVideo(contrib['data'])
         contribs.append(contrib)
 
     ctx = _get_context({ 'contribs': contribs, 'count': count })

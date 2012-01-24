@@ -130,12 +130,18 @@ p.desc {
     clear:both;
 }
 
-.highlight img {
+.highlight .video {
     width:250px;
     height:112px;
     border:solid 1px #999;
     float:left;
     margin-right:10px;
+}
+
+.highlight .video .permalink {
+    position:relative;
+    top:-25px;
+    left:230px;
 }
 
 .highlight .title {
