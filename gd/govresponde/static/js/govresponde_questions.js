@@ -21,6 +21,14 @@ function showAggregated(parentId) {
 }
 
 function vote(qid) {
+    if (!auth.isAuthenticated()) {
+        return auth.showLoginForm({
+            success: function () {
+                vote(qid);
+            }
+        });
+    }
+
     $.get(url_for('govresponde.vote.<qid>', { qid: qid }), function (data) {
         $('#question-' + qid + ' button').replaceWith(
             $('<div>')
