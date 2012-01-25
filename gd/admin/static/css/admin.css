@@ -17,9 +17,6 @@
  */
 
 /* General stuff */
-@font-face { font-family:'Cantarell';
-    src:url(../../../static/fonts/Cantarell-Bold.ttf);
-}
 * { margin:0; padding:0; list-style:none; }
 body { font:normal 10pt Sans, Helvetica, sans-serif; color:#4f5b66; }
 .container { width:968px; margin:0 auto; }
