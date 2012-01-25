@@ -2240,6 +2240,50 @@
          stdDeviation="11.617535"
          id="feGaussianBlur7045-2-09" />
     </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4970-2-9"
+       id="radialGradient11497-7-9"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,-0.41259225,0.87469278,0,713.71392,-35.350693)"
+       cx="235.99672"
+       cy="-221.84964"
+       fx="235.99672"
+       fy="-221.84964"
+       r="500.9606" />
+    <linearGradient
+       id="linearGradient4970-2-9">
+      <stop
+         style="stop-color:#8ae224;stop-opacity:1;"
+         offset="0"
+         id="stop4972-2-1" />
+      <stop
+         style="stop-color:#8ae234;stop-opacity:0;"
+         offset="1"
+         id="stop4974-1-4" />
+    </linearGradient>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath10061-7-9">
+      <rect
+         style="fill:#fcaf3e;fill-opacity:1;stroke:#73d216;stroke-width:0.47878519;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         id="rect10063-9-1"
+         width="474"
+         height="233.71422"
+         x="12"
+         y="-446.25055" />
+    </clipPath>
+    <linearGradient
+       id="linearGradient5169-3-7">
+      <stop
+         style="stop-color:#45a516;stop-opacity:1;"
+         offset="0"
+         id="stop5171-6-5" />
+      <stop
+         style="stop-color:#73d216;stop-opacity:0;"
+         offset="1"
+         id="stop5173-4-8" />
+    </linearGradient>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -2248,11 +2292,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7065066"
-     inkscape:cx="451.81095"
-     inkscape:cy="1190.9773"
+     inkscape:zoom="0.76638494"
+     inkscape:cx="515.66151"
+     inkscape:cy="1274.4005"
      inkscape:document-units="px"
-     inkscape:current-layer="svg7268"
+     inkscape:current-layer="layer20"
      showgrid="false"
      showborder="false"
      inkscape:showpageshadow="false"
@@ -4081,7 +4125,7 @@
      inkscape:groupmode="layer"
      id="layer16"
      inkscape:label="GovResponde"
-     style="display:inline">
+     style="display:none">
     <g
        inkscape:groupmode="layer"
        id="layer18"
@@ -4624,7 +4668,7 @@
            id="text12462-1">8</text>
         <polygon
            transform="translate(563.88133,-156.63853)"
-           points="292.407,685.63 283.24,691.13 283.24,680.13 "
+           points="283.24,680.13 292.407,685.63 283.24,691.13 "
            id="polygon12464-2" />
         <text
            y="532.99139"
@@ -6226,8 +6270,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,547.63782)"
-     style="display:none"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -6375,7 +6418,8 @@
        inkscape:groupmode="layer"
        id="layer7"
        inkscape:label="Notícias"
-       style="display:inline">
+       style="display:inline"
+       sodipodi:insensitive="true">
       <rect
          style="fill:#cccccc;fill-opacity:1;stroke:none;display:inline;filter:url(#filter7043-2-9)"
          id="rect6935-9-4"
@@ -6622,7 +6666,8 @@
        inkscape:groupmode="layer"
        id="layer6"
        inkscape:label="Slideshow"
-       style="display:inline">
+       style="display:none"
+       sodipodi:insensitive="true">
       <rect
          style="fill:#4e9a06;fill-opacity:1;stroke:none;display:inline"
          id="rect4938"
@@ -6895,6 +6940,171 @@
            inkscape:connector-curvature="0"
            sodipodi:nodetypes="cccc" />
       </g>
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer20"
+       inkscape:label="Participe"
+       style="display:inline">
+      <rect
+         style="fill:#4e9a06;fill-opacity:1;stroke:none;display:inline"
+         id="rect4938-7"
+         width="1600.2314"
+         height="318.12567"
+         x="-298.65628"
+         y="-408.59521" />
+      <rect
+         y="-358.66907"
+         x="16.444275"
+         height="233.07361"
+         width="978"
+         id="rect4940-0"
+         style="fill:url(#radialGradient11497-7-9);fill-opacity:1;stroke:none;display:inline"
+         inkscape:export-filename="/home/guerrinha/Projects/GabineteDigital/Assembleia/Dev/gd/content/static/imgs/slideshow.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#rect5219-9"
+         id="use5410-6"
+         transform="matrix(0.98979118,0,0,1.000016,1069.955,547.29686)"
+         width="1002"
+         height="1600"
+         style="fill:#eeeeec;stroke:#008fd8;display:inline" />
+      <rect
+         style="fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.75391810999999997;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+         id="rect10079-6"
+         width="978.02271"
+         height="262.24475"
+         x="10.294076"
+         y="-387.53073" />
+      <rect
+         y="-387.5708"
+         x="207.46562"
+         height="262.32489"
+         width="780.89124"
+         id="rect4935"
+         style="fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.67376946999999998;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline" />
+      <use
+         x="0"
+         y="0"
+         xlink:href="#rect5219"
+         id="use5410-9"
+         transform="matrix(0.98975164,0,0,1.0044642,1069.9631,0.06306023)"
+         width="1002"
+         height="1600"
+         style="fill:#eeeeec;stroke:#008fd8;display:inline" />
+      <rect
+         style="fill:#eeeeec;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+         id="rect5219-9"
+         width="532.88379"
+         height="55.119617"
+         x="-298.58578"
+         y="-126.04449" />
+      <g
+         style="display:inline"
+         id="g5667-2"
+         transform="translate(9.09837,-1.2617187e-5)">
+        <path
+           sodipodi:nodetypes="ccccc"
+           id="rect5219-3-6-5-5"
+           d="m 202.5,-126.07133 200.03325,0 0,55.000007 -200.03325,0 z"
+           style="fill:#ff2a2a;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+           inkscape:connector-curvature="0" />
+        <use
+           height="1600"
+           width="1002"
+           transform="matrix(0.91135272,0,0,1,414.45348,-0.36218)"
+           id="use6239-4"
+           xlink:href="#rect5219-3-6-5-5"
+           y="0"
+           x="0"
+           style="display:inline" />
+        <rect
+           y="-139.03668"
+           x="384.53329"
+           height="58"
+           width="232.00481"
+           id="rect5219-2-4-0-4"
+           style="fill:#d40000;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text5123-9-8-8-3-9"
+           y="-101.92731"
+           x="431.42633"
+           style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+           xml:space="preserve"><tspan
+             style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+             y="-101.92731"
+             x="431.42633"
+             id="tspan5125-2-7-7-7-9"
+             sodipodi:role="line">Participe</tspan></text>
+        <text
+           sodipodi:linespacing="125%"
+           id="text5123-9-8-7-6-2-6-3"
+           y="-88.43351"
+           x="642.07568"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#eeeeec;fill-opacity:1;stroke:none;display:inline;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+           xml:space="preserve"><tspan
+             style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#eeeeec;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+             y="-88.43351"
+             x="642.07568"
+             id="tspan5125-2-7-5-6-7-0-6"
+             sodipodi:role="line">Galeria</tspan></text>
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           id="path5239-5-1-0"
+           d="m 402.53325,-81.071323 0,10 -18,-10 z"
+           style="fill:#aa0000;stroke:none;display:inline" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text5123-9-8-7-1-8-50"
+           y="-87.982445"
+           x="247.06349"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#eeeeec;fill-opacity:1;stroke:none;display:inline;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+           xml:space="preserve"><tspan
+             style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#eeeeec;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+             y="-87.982445"
+             x="247.06349"
+             id="tspan5125-2-7-5-7-8-2"
+             sodipodi:role="line">Notícias</tspan></text>
+        <path
+           style="fill:#aa0000;stroke:none;display:inline"
+           d="m 598.53325,-81.071323 0,10 18,-10 z"
+           id="path4765-9"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccc" />
+      </g>
+      <rect
+         style="fill:#babdb6;fill-opacity:1;stroke:none;stroke-width:0.16632000999999999;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+         id="rect4937"
+         width="197.18587"
+         height="63.302479"
+         x="10.000278"
+         y="-386.71179" />
+      <rect
+         y="-254.91797"
+         x="10.000278"
+         height="63.302479"
+         width="197.18587"
+         id="rect4939"
+         style="fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:0.16632000999999999;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline" />
+      <rect
+         style="fill:#babdb6;fill-opacity:1;stroke:none;stroke-width:0.16632000999999999;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+         id="rect4941"
+         width="197.18587"
+         height="63.302479"
+         x="10.000278"
+         y="-320.81488" />
+      <rect
+         style="fill:#babdb6;fill-opacity:1;stroke:none;stroke-width:0.16632000999999999;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+         id="rect4943"
+         width="197.18587"
+         height="63.302479"
+         x="10.000278"
+         y="-189.02101" />
     </g>
   </g>
   <g
