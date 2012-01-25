@@ -34,31 +34,25 @@ $(function () {
     $("#a-participe").click(toggle);
     $("#participe .close").click(toggle);
 
-    /* -- Show/hide text on the mouse over event in "participate" buttons -- */
-    $("#participe .govresponde")
-        .data('text','Quer saber o que o Governador pensa? Pergunte para ele. ' +
-              'A questão mais votada do mês é respondida em vídeo.');
-    $("#participe .govpergunta")
-        .data('text', 'O Governador pergunta e a sociedade responde com novas ' +
-              'idéias.');
-    $("#participe .agenda")
-        .data('text', 'Quer fazer parte da agenda do Governador na sua cidade?' +
-              ' Indique uma pauta na agenda colaborativa.');
-    $("#participe .govescuta")
-        .data('text','Audiências públicas digitais transmitidas via internet  ' +
-              'onde você pode enviar sua contribuição.');
+    $("#participe ul.items li")
+        .click(function() {
+            /* Removing the selected class of all elements */
+            $('#participe ul.items li').removeClass('selected');
 
-    $("#participe .govresponde, " +
-      "#participe .govpergunta, " +
-      "#participe .govescuta,   " +
-      "#participe .agenda")
-        .hover(function() {
-            $(this).addClass('selected');
-            $("#participe .desc").text($(this).data("text"));
-        }, function() {
-            $("#participe .desc").text('');
-            $(this).removeClass('selected');
+            /* Loading the selected element */
+            var el = $(this);
+            var desc = $("#participe .desc");
+            var params = { part: el.attr('class')};
+
+            desc.addClass('loading').html('');
+            $.get(url_for('getpart.<part>', params), function (content) {
+                desc.html(content);
+                desc.removeClass('loading');
+            });
+            el.addClass('selected');
+            return false;
         });
+    $("#participe ul.items li.govresponde").click();
 
 
     /* -- Supporting browsers that don't have the `placeholder' stuff -- */

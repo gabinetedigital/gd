@@ -143,24 +143,42 @@
           {% block slideshow %}{% endblock %}
 
           <div class="row" id="participe">
-            <div class="col3 govresponde">
-              <a href="http://antigo.gabinetedigital.rs.gov.br/govresponde">
-                Governador Responde</a>
-            </div>
-            <div class="col3 govpergunta" >
-              <a href="{{ url_for('govpergunta.index') }}">
-                Governador Pergunta</a>
-            </div>
-            <div class="col3 govescuta" >
-              <a href="{{ url_for('govescuta') }}">
-                Governo Escuta</a>
-            </div>
-            <div class="col3 agenda" >
-              <a href="http://antigo.gabinetedigital.rs.gov.br/especial.php?pagina=agenda">
-                Agenda Colaborativa</a>
-            </div>
+            <ul class="items">
+              <li class="govresponde">
+                <a href="{{ url_for('govresponde.index') }}"
+                   title="Governador Responde">
+                  <img
+                     src="{{ url_for('.static', filename='imgs/govresponde.png') }}"
+                     alt="Governador Responde">
+                </a>
+              </li>
+              <li class="govpergunta">
+                <a href="{{ url_for('govpergunta.index') }}"
+                   title="Governador Pergunta">
+                  <img
+                     src="{{ url_for('.static', filename='imgs/govpergunta.png') }}"
+                     alt="Governador Pergunta">
+                </a>
+              </li>
+              <li class="govescuta">
+                <a href="{{ url_for('govescuta') }}"
+                   title="Governo Escuta">
+                  <img
+                     src="{{ url_for('.static', filename='imgs/govescuta.png') }}"
+                     alt="Governo Escuta">
+                </a>
+              </li>
+              <li class="agenda">
+                <a href="http://antigo.gabinetedigital.rs.gov.br/especial.php?pagina=agenda"
+                   title="Agenda Colaborativa">
+                  <img
+                     src="{{ url_for('.static', filename='imgs/agenda.png') }}"
+                     alt="Agenda Colaborativa">
+                </a>
+              </li>
+            </ul>
             <a class="close" title="Fechar"></a>
-            <p class="desc"></p>
+            <div class="desc"></div>
           </div>
         </div>
       </div>
@@ -172,8 +190,7 @@
               <ul>
                 <li class="basic first"><a href="{{url_for('news')}}">Notícias</a></li>
                 <li class="special">
-                  <a href="{{ url_for('balanco.govpergunta') }}"
-                     style="padding:12px 70px;">Balanço</a>
+                  <a id="a-participe" href="javascript:;">Participe</a>
                 </li>
                 <li class="basic last">
                   <a href="{{ url_for('videos.listing') }}">Galeria</a>

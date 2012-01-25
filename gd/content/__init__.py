@@ -128,6 +128,12 @@ def index():
     )
 
 
+@app.route('/getpart/<part>')
+def get_part(part):
+    """Renders some layout parts used to build the "participate" menu"""
+    return render_template('parts/%s.html' % part)
+
+
 @app.route('/teaser')
 def teaser():
     """Renders the teaser template"""
