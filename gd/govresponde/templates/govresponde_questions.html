@@ -46,6 +46,7 @@
     {% endfor %}
   </ul>
 
+  {% if pagination.pages > 1 %}
   <ol class="pagination">
     {% for i in range(pagination.pages) %}
     <li {% if pagination.page == i %}class="selected"{% endif %}>
@@ -55,6 +56,7 @@
     </li>
     {% endfor %}
   </ol>
+  {% endif %}
 </div>
 
 {% endblock %}
