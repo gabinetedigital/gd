@@ -193,6 +193,10 @@ form#send .helptext {
 }
 
 /* -- questions screen -- */
+.questions #orderby {
+    float:right;
+}
+
 .questions ul li {
     margin-bottom:20px;
     border-bottom:solid 1px #ddd;
@@ -270,6 +274,10 @@ form#send .helptext {
 
 .questions ol.pagination li.selected {
     border-bottom:solid 2px #999;
+}
+
+.questions #filterform {
+    float:right;
 }
 
 /* -- como funciona -- */

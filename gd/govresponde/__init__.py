@@ -113,6 +113,7 @@ def questions():
     ctx = _get_context()
     theme = ctx['theme']
     questions = []
+    sortby = request.values.get('sortby', '-date')
 
     # Looking for the authenticated user
     user_id = auth.is_authenticated() and \
@@ -129,7 +130,7 @@ def questions():
         theme_id,               # theme id
         user_id,                # user id
         pagination['page'],     # page number
-        '',                     # sortby
+        sortby,                 # sortby
         '',                     # to
         '',                     # from
         CONTRIBS_PER_PAGE,      # perpage
@@ -146,7 +147,11 @@ def questions():
         question['created_at'] = dateparser.parse(question['created_at'])
         questions.append(question)
 
-    ctx.update({ 'questions': questions, 'pagination': pagination })
+    ctx.update({
+        'questions': questions,
+        'pagination': pagination,
+        'sortby': sortby,
+    })
     return render_template('govresponde_questions.html', **ctx)
 
 

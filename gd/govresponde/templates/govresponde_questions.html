@@ -8,6 +8,31 @@
 {% block rcolumn %}
 
 <div class="questions">
+  <form id="filterform" method="get" action="{{ url_for('.questions') }}">
+    <select name="sortby" onchange="$('#filterform').submit()">
+      <option value="">filtros</option>
+      <option
+         {% if sortby == '-date' %}selected="selected"{% endif %}
+         value="-date">
+        Mais recentes
+      </option>
+      <option
+         {% if sortby == 'date' %}selected="selected"{% endif %}
+         value="date">
+        Mais antigas
+      </option>
+      <option
+         {% if sortby == '-score' %}selected="selected"{% endif %}
+         value="-score">
+        Mais votadas
+      </option>
+      <option
+         {% if sortby == 'score' %}selected="selected"{% endif %}
+         value="score">
+        Menos votadas
+      </option>
+    </select>
+  </form>
   <h2>
     Perguntas em votação
     {% if theme %}({{ theme.name }}){% endif %}
