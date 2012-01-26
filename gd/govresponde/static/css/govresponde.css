@@ -225,7 +225,7 @@ form#send .helptext {
 }
 
 .questions .votes {
-    width:50px;
+    width:80px;
     text-align:center;
     float:left;
     margin-right:20px;
@@ -248,7 +248,7 @@ form#send .helptext {
 }
 
 .questions .content {
-    margin-left:70px;
+    margin-left:100px;
 }
 
 .questions .aggregated {
