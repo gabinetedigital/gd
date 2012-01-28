@@ -84,10 +84,4 @@ $(function () {
             }
         });
     }
-
-    /* -- sociable stuff -- */
-    stLight.options({
-        publisher:'12345'
-    });
-
 });
