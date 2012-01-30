@@ -12,13 +12,12 @@
 
 {% block content %}
 
-<!-- header -->
-<div class="innerheader">
-  <div class="row">
-    <div class="col4">
-      <h2 class="title">
+<div id="container" class="boxed">
+  <div class="head row">
+    <div id="logo" class="col4">
+      <h1 class="title">
         <a href="{{ url_for('.index') }}">Governador Responde</a>
-      </h2>
+      </h1>
     </div>
     <div class="col8">
       <ul class="menu">
@@ -31,7 +30,7 @@
         <li>
           <a href="{{ url_for('.questions') }}">Perguntas<br>em votação</a>
         </li>
-        <li>
+        <li class="last">
           <a href="{{ url_for('.send') }}" class="awesome">
             Envie sua<br>pergunta
           </a>
@@ -41,10 +40,8 @@
 
     <div class="row-end"></div>
   </div>
-</div>
 
-<!-- content -->
-<div class="content boxed">
+  <!-- content -->
   <div class="row">
     <div class="col3">
       <div class="sidebar">

@@ -1,39 +1,57 @@
-#menu { display:none; }
-#header { height:150px; }
-
-.innerheader {
-    margin:20px 0 30px 0;
+#container .head {
+    border-bottom: 1px solid #999;
 }
 
-.innerheader h2 {
+#container #logo h1 {
+    background:url("../imgs/govresponde.png") no-repeat;
+    overflow: hidden;
     width:230px;
     height:77px;
-    background:url("../imgs/govresponde.png") no-repeat;
-    overflow:hidden;
-    margin-left:10px;
+    margin: 30px auto 0;
 }
 
-.innerheader h2 a {
+#container #logo a {
     padding-top:80px;
     display:block;
 }
 
-.innerheader .menu {
-    margin-top:15px;
+#container .head .menu {
+    padding:50px 0pt 98px 45px;
 }
 
-.innerheader .menu li {
+#container .head .menu li {
     display:inline;
     float:left;
     margin-right:70px;
     font-size:12pt;
 }
 
-.innerheader .menu li .awesome {
+#container .head .menu li:hover {
+    border-bottom:solid 2px #333;
+}
+
+#container .head .menu li.last {
+    margin-right:0;
+}
+
+#container .head .menu li.last:hover {
+    border-bottom:0;
+}
+
+#container .head .menu li .awesome {
+    background-color:darkred;
+    color:#fff;
+}
+
+#container .head .menu li .awesome:hover {
     background-color:red;
 }
 
-.content {
+#container .head .menu a {
+    color:#333;
+}
+
+#container {
     margin-bottom:40px;
 }
 
@@ -91,7 +109,7 @@ p.desc {
 }
 
 .rcolumn {
-    padding:10px 10px 10px 40px;
+    padding:20px 10px 10px 40px;
     border-left:dotted 1px #aaa;
     min-height:220px;
 }
@@ -102,10 +120,6 @@ p.desc {
 }
 
 /* -- highlight -- */
-
-.highlight {
-
-}
 
 .highlight .bigger a.otherquestions {
     margin-left:480px;
@@ -126,7 +140,7 @@ p.desc {
 }
 
 .highlight li {
-    padding:20px 0;
+    padding:0 0 30px 0;
     clear:both;
 }
 
@@ -199,7 +213,7 @@ form#send .helptext {
 
 .questions ul li {
     margin-bottom:20px;
-    border-bottom:solid 1px #ddd;
+    padding-bottom:20px;
 }
 
 .questions.single strong.title {
