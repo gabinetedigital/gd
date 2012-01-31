@@ -29,9 +29,9 @@
 
       {% for audience in audiences %}
       <li>
-        <ul class="audiencia">
+        <div class="audiencia">
           {% if audience.video %}
-          <li class="video">
+          <div class="video">
             <a href="javascript:;" onclick='video.play({{ audience.video|tojson|safe }})'>
               <div class="container">
                 <img class="thumb"
@@ -45,16 +45,14 @@
                      alt="Permanet link">
               </a>
             </a>
-          </li>
+          </div>
           {% endif %}
 
-          <li class="titulo">
+          <div class="titulo">
             <h4>{{ audience.title }}</h4>
-          </li>
-          <li class="desc">
-            {{ audience.subject }}
-          </li>
-        </ul>
+          </div>
+          <div><p class="desc">{{ audience.subject }}</p></div>
+        </div>
       </li>
       {% endfor %}
     </ul>

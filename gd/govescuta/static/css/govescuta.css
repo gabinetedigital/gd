@@ -40,7 +40,7 @@
     width: 900px;
 }
 
-#container .audiencia li.video {
+#container .audiencia .video {
     float: left;
     display: block;
     margin-right: 20px;
@@ -60,8 +60,7 @@
 
 #container .audiencia .desc {
     font-size: 14px;
-    margin: 20px 0 0 260px;
-    text-align: justify;
+    margin: 20px 0 0 270px;
     width:610px;
 }
 
