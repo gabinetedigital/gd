@@ -571,6 +571,13 @@ a {
     overflow:hidden;
 }
 
+.video .permalink {
+    position:relative;
+    top:-25px;
+    left:230px;
+}
+
+
 /* -- sociable -- */
 
 div.sociable {
