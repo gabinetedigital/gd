@@ -21,6 +21,7 @@
 from flask import Blueprint, request, render_template, redirect, \
     url_for, abort
 
+from gd.content.wp import wordpress
 
 govescuta = Blueprint(
     'govescuta', __name__,
@@ -30,4 +31,20 @@ govescuta = Blueprint(
 
 @govescuta.route('/')
 def index():
-    return render_template('govescuta.html')
+    audiences_raw, count = wordpress.gove.getAudiences(
+        '',                        # sortby
+        '',                        # search
+        'audience.visible = true', # filter
+        '0',                       # page
+    )
+
+    audiences = []
+    for audience in audiences_raw[::-1]:
+        audience['video'] = wordpress.wpgd.getVideo(audience['data'])
+        audiences.append(audience)
+
+    return render_template(
+        'govescuta.html',
+        audiences=audiences,
+        count=count,
+    )

@@ -44,10 +44,11 @@
     float: left;
     display: block;
     margin-right: 20px;
+    width:250px;
+    height:112px;
 }
 
 #container .audiencia img {
-    background-color: #808080;
     float: left;
     display: block;
     margin-right: 20px;

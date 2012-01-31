@@ -26,27 +26,37 @@
   <div class="row content">
     <h2>Audiências</h2>
     <ul>
+
+      {% for audience in audiences %}
       <li>
         <ul class="audiencia">
+          {% if audience.video %}
           <li class="video">
-            <gd:video id="4" width="250" height="145">
+            <a href="javascript:;" onclick='video.play({{ audience.video|tojson|safe }})'>
+              <div class="container">
+                <img class="thumb"
+                     src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
+                     width="250" height="112">
+                <img src="../static/imgs/play.png" class="play">
+              </div>
+              <a href="{{ url_for('videos.details', vid=audience.video.id) }}"
+                 class="permalink">
+                <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
+                     alt="Permanet link">
+              </a>
+            </a>
           </li>
+          {% endif %}
+
           <li class="titulo">
-            <h4>Lançamento do Governador Pergunta - 9 Novembro</h4>
+            <h4>{{ audience.title }}</h4>
           </li>
           <li class="desc">
-            Assista ao lançamento do Govenador Pergunta, nova ferramenta
-            de participação popular do Gabinete Digital. O evento
-            aconteceu no Memorial do RS. O tema da primeira edição do
-            Governador Pergunta é Saúde, e o questionamento feito pelo
-            Governador foi “Como podemos melhorar o atendimento e o
-            acesso à saúde pública?”. Além do Governador, participaram
-            do lançamento o Secretário da Saúde, Ciro Simoni, o Chefe de
-            Gabinete e Coordernador do Gabinete Digital Vinícios Wu e
-            demais autoridades e convidados.
+            {{ audience.subject }}
           </li>
         </ul>
       </li>
+      {% endfor %}
     </ul>
     <div class="row-end"></div>
   </div>

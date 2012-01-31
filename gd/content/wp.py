@@ -70,7 +70,7 @@ class Wordpress(object):
     def __init__(self, address, blogid, user, password):
         self.default_namespace = 'exapi'
         self.known_namespaces = 'exapi', 'wpgd', 'wp', 'pairwise', 'ngg', \
-            'wpgp', 'govr', 'govp',
+            'wpgp', 'govr', 'govp', 'gove',
         self.conf = {
             'address': address,
             'user': user,
