@@ -381,6 +381,10 @@ a {
     margin-left:10px;
 }
 
+.overlay.video .permalink {
+    position:static;
+}
+
 .overlay.video .contentWrap {
     width:492px;
     margin:0 auto;
