@@ -32,7 +32,7 @@ govescuta = Blueprint(
 @govescuta.route('/')
 def index():
     audiences_raw, count = wordpress.gove.getAudiences(
-        '',                        # sortby
+        'date',                    # sortby
         '',                        # search
         'audience.visible = true', # filter
         '0',                       # page
