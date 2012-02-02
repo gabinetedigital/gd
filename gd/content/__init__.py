@@ -41,6 +41,7 @@ from gd.govresponde import govresponde
 from gd.govescuta import govescuta
 from gd.content.videos import videos
 from gd.content.balanco import balanco
+from gd.content.gallery import gallery
 from gd.audience import audience
 from gd.admin import admin
 from gd.buzz.webapp import buzz
@@ -52,6 +53,7 @@ app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 app.register_blueprint(govresponde, url_prefix='/govresponde')
 app.register_blueprint(govescuta, url_prefix='/govescuta')
 app.register_blueprint(videos, url_prefix='/videos')
+app.register_blueprint(gallery, url_prefix='/gallery')
 app.register_blueprint(balanco, url_prefix='/balanco')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(admin, url_prefix='/admin')

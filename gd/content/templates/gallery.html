@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h1 class="stitle">Galeria de fotos</h1>
+
+<div id="currentgallery">
+  <div class="currentpic">
+    <img src="http://gd.local/wp/wp-content/gallery/govpergunta/20111214182520saude4160cb141211.jpg" alt="" />
+  </div>
+
+  <ul class="nav">
+    <li class="prev">Prev</li>
+    <li class="next">Next</li>
+  </ul>
+
+  <ul>
+    {% for image in images %}
+    <li>
+      <a href="{{ image.imageURL }}" title="{{ image.description }}">
+        <img src="{{ image.thumbURL }}" alt="" width="70">
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<ul id="gallerylist">
+  <li>
+    <img src="http://gd.local/wp/wp-content/gallery/govpergunta/thumbs/thumbs_20111214182520saude4160cb141211.jpg" alt="">
+  </li>
+</ul>
+
+{% endblock %}
