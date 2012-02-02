@@ -67,6 +67,7 @@
     float:right;
     margin-top:15px;
     margin-right:10px;
+    position:static;
 }
 
 /* video.html specific stuff */
