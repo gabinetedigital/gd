@@ -9,16 +9,20 @@
 <h1 class="stitle">Galeria de fotos</h1>
 
 <div id="currentgallery">
+  <ul class="nav">
+    <li class="prev">
+      <a href="javascript:;" class="awesome">«</a>
+    </li>
+    <li class="next">
+      <a href="javascript:;" class="awesome">»</a>
+    </li>
+  </ul>
+
   <div class="currentpic">
     <img src="http://gd.local/wp/wp-content/gallery/govpergunta/20111214182520saude4160cb141211.jpg" alt="" />
   </div>
 
-  <ul class="nav">
-    <li class="prev">Prev</li>
-    <li class="next">Next</li>
-  </ul>
-
-  <ul>
+  <ul class="images">
     {% for image in images %}
     <li>
       <a href="{{ image.imageURL }}" title="{{ image.description }}">

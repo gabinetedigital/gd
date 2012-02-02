@@ -31,15 +31,31 @@ h1.stitle {
     text-align:center;
 }
 
-#currentgallery ul {
+#currentgallery ul.images {
     clear:both;
     height:60px;
     overflow:hidden;
     width:978px;
 }
 
-#currentgallery ul li {
+#currentgallery ul.images li {
     float:left; margin-right:10px;
 }
 
-(/ 958 90.0)
+ul.nav {
+    width:1005px;
+    margin:300px 0 0 -30px;
+    position:absolute;
+    font-size:20px;
+}
+
+ul.nav .prev {
+    width:20%;
+    float:left;
+}
+
+ul.nav .next {
+    width:80%;
+    margin-left:20%;
+    text-align:right;
+}
