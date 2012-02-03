@@ -18,13 +18,20 @@
  */
 
 function changeCurrentPic(link) {
+    var $link = $(link);
+
+    /* Resseting the css class */
     $('ul.images li a').removeClass('selected');
-    $(link).addClass('selected');
+    $link.addClass('selected');
+
+    /* Loading the new text and picture */
+    $('#currentgallery .currentpic p').html($link.attr('title'));
     $('#currentgallery .currentpic img')
         .attr('src', '')
-        .attr('src', $(link).attr('href'));
-    $('html,body')
-        .animate({ scrollTop: 270 }, 100);
+        .attr('src', $link.attr('href'));
+
+    /* Moving the focus to the top of the image */
+    $('html,body').animate({ scrollTop: 270 }, 100);
     return false;
 }
 
