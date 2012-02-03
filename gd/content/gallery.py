@@ -31,8 +31,8 @@ gallery = Blueprint(
 @gallery.route('/<int:gid>')
 def index(gid=None):
     galleries = wordpress.wpgd.getGalleries()
-    images = wordpress.wpgd.getGallery(gid or galleries[0]['gid'])
+    current = wordpress.wpgd.getGallery(gid or galleries[0]['gid'])
     return render_template(
         'gallery.html',
         galleries=galleries,
-        images=images)
+        current=current)

@@ -38,6 +38,12 @@ h2.stitle {
     overflow:hidden;
 }
 
+#currentgallery .currentpic h2 {
+    text-align:left;
+    color:#fff;
+    padding-bottom:10px;
+}
+
 #currentgallery .currentpic .pcontainer {
     background:#000;
     min-height:533px;
@@ -92,4 +98,28 @@ ul.nav .next {
     width:80%;
     margin-left:20%;
     text-align:right;
+}
+
+#gallerylist li {
+    float:left;
+}
+
+#gallerylist li img {
+    display:block;
+}
+
+#gallerylist li p {
+    display:block;
+    padding:5px 0;
+}
+
+#gallerylist li a {
+    color:#333;
+    display:block;
+    padding:20px;
+    width:150px;
+}
+
+#gallerylist li a:hover {
+    background:#ccc;
 }

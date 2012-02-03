@@ -23,8 +23,9 @@
   </ul>
 
   <div class="currentpic">
-    {% if images %}
-    {% set highlight = images[0] %}
+    {% if current %}
+    <h2>{{ current.title }}</h2>
+    {% set highlight = current.images[0] %}
     <div class="pcontainer">
       <img
          src="{{ highlight.imageURL }}"
@@ -35,7 +36,7 @@
   </div>
 
   <ul class="images">
-    {% for image in images %}
+    {% for image in current.images %}
     <li>
       <a href="{{ image.imageURL }}" title="{{ image.description }}"
          onclick="return changeCurrentPic(this)"
@@ -57,9 +58,12 @@
   <li>
     <a href="{{ url_for('.index', gid=gallery.gid) }}" title="{{ gallery.title }}">
       <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
+      <p>{{ gallery.title }}</p>
     </a>
   </li>
   {% endfor %}
 </ul>
+
+<div class="row-end"></div>
 
 {% endblock %}
