@@ -28,6 +28,11 @@ gallery = Blueprint(
 
 
 @gallery.route('/')
-def index():
-    images = api.search('GovernadorPergunta', limit=24)[::-1]
-    return render_template('gallery.html', images=images)
+@gallery.route('/<int:gid>')
+def index(gid=None):
+    galleries = wordpress.wpgd.getGalleries()
+    images = wordpress.wpgd.getGallery(gid or galleries[0]['gid'])
+    return render_template(
+        'gallery.html',
+        galleries=galleries,
+        images=images)

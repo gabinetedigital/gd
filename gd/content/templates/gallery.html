@@ -53,9 +53,13 @@
 
 <h2 class="stitle">Todas as galerias</h2>
 <ul id="gallerylist">
+  {% for gallery in galleries  %}
   <li>
-    <img src="http://gd.local/wp/wp-content/gallery/govpergunta/thumbs/thumbs_20111214182520saude4160cb141211.jpg" alt="">
+    <a href="{{ url_for('.index', gid=gallery.gid) }}" title="{{ gallery.title }}">
+      <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
+    </a>
   </li>
+  {% endfor %}
 </ul>
 
 {% endblock %}
