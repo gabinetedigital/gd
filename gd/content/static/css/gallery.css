@@ -21,6 +21,10 @@ h1.stitle {
     margin-bottom:20px;
 }
 
+h2.stitle {
+    margin:10px 0;
+}
+
 #currentgallery {
     background:#111;
     padding:20px 15px 15px;
@@ -29,24 +33,54 @@ h1.stitle {
 
 #currentgallery .currentpic {
     text-align:center;
+    width:800px;
+    margin:0 auto;
+    overflow:hidden;
+}
+
+#currentgallery .currentpic .pcontainer {
+    background:#000;
+    min-height:533px;
+}
+
+#currentgallery .currentpic img {
+    max-width:800px;
+}
+
+#currentgallery .currentpic p {
+    color:#ccc;
+    padding:10px 0 15px;
+    text-align:left;
 }
 
 #currentgallery ul.images {
     clear:both;
-    height:60px;
+    width:820px;
+    margin:0 auto;
     overflow:hidden;
-    width:978px;
+    padding-left:20px;
 }
 
 #currentgallery ul.images li {
-    float:left; margin-right:10px;
+    float:left;
+    margin:0 11px 10px 0;
+}
+
+#currentgallery ul.images li a.selected {
+    border-bottom:solid 2px gray;
 }
 
 ul.nav {
-    width:1005px;
-    margin:300px 0 0 -30px;
+    width:1035px;
+    margin:300px 0 0 -45px;
     position:absolute;
     font-size:20px;
+}
+
+ul.nav li a {
+    font-size:18pt;
+    padding:10px 25px;
+    line-height:normal
 }
 
 ul.nav .prev {

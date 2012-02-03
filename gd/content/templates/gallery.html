@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
 {% endblock %}
 
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
 <h1 class="stitle">Galeria de fotos</h1>
@@ -19,20 +23,35 @@
   </ul>
 
   <div class="currentpic">
-    <img src="http://gd.local/wp/wp-content/gallery/govpergunta/20111214182520saude4160cb141211.jpg" alt="" />
+    {% if images %}
+    {% set highlight = images[0] %}
+    <div class="pcontainer">
+      <img
+         src="{{ highlight.imageURL }}"
+         alt="{{ highlight.description }}">
+    </div>
+    <p>{{ highlight.description }}</p>
+    {% endif %}
   </div>
 
   <ul class="images">
     {% for image in images %}
     <li>
-      <a href="{{ image.imageURL }}" title="{{ image.description }}">
-        <img src="{{ image.thumbURL }}" alt="" width="70">
+      <a href="{{ image.imageURL }}" title="{{ image.description }}"
+         onclick="return changeCurrentPic(this, '{{ image.imageURL }}')"
+         {% if loop.index == 1 %}class="selected"{% endif %}
+         >
+        <img
+           src="{{ image.thumbURL }}" alt="{{ image.description }}"
+           width="70">
       </a>
     </li>
     {% endfor %}
   </ul>
 </div>
 
+
+<h2 class="stitle">Todas as galerias</h2>
 <ul id="gallerylist">
   <li>
     <img src="http://gd.local/wp/wp-content/gallery/govpergunta/thumbs/thumbs_20111214182520saude4160cb141211.jpg" alt="">
