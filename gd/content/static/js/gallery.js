@@ -17,13 +17,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function changeCurrentPic(link, newUrl) {
+function changeCurrentPic(link) {
     $('ul.images li a').removeClass('selected');
     $(link).addClass('selected');
     $('#currentgallery .currentpic img')
         .attr('src', '')
-        .attr('src', newUrl);
+        .attr('src', $(link).attr('href'));
     $('html,body')
         .animate({ scrollTop: 270 }, 100);
     return false;
+}
+
+
+function nextPic() {
+    var link = $('ul.images li a.selected').parent().next().find('a');
+    changeCurrentPic(link);
+}
+
+
+function prevPic() {
+    var link = $('ul.images li a.selected').parent().prev().find('a');
+    changeCurrentPic(link);
 }

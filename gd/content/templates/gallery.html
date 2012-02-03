@@ -15,10 +15,10 @@
 <div id="currentgallery">
   <ul class="nav">
     <li class="prev">
-      <a href="javascript:;" class="awesome">«</a>
+      <a href="javascript:prevPic();" class="awesome">«</a>
     </li>
     <li class="next">
-      <a href="javascript:;" class="awesome">»</a>
+      <a href="javascript:nextPic();" class="awesome">»</a>
     </li>
   </ul>
 
@@ -38,7 +38,7 @@
     {% for image in images %}
     <li>
       <a href="{{ image.imageURL }}" title="{{ image.description }}"
-         onclick="return changeCurrentPic(this, '{{ image.imageURL }}')"
+         onclick="return changeCurrentPic(this)"
          {% if loop.index == 1 %}class="selected"{% endif %}
          >
         <img
