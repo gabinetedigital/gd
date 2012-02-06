@@ -27,7 +27,7 @@ balanco = Blueprint(
 
 
 @balanco.route('/')
-def govpergunta():
+def index():
     # First page data
     pagination, posts = wordpress.getPostsByTag(
         tag='governador-pergunta')

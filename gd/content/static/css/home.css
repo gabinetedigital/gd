@@ -199,3 +199,27 @@
     font-size: 12px;
     margin-top: 8px;
 }
+
+#resultsbutton {
+    color:#333;
+    margin:5px 0 15px 0;
+    font-size:10pt;
+    border-radius:4px;
+}
+
+#resultsbutton .wcontent {
+    padding:10px 1px 1px 1px;
+}
+
+#resultsbutton .button {
+    text-align:right;
+    margin-top:10px;
+}
+
+#resultsbutton a {
+    background-color:#4e9a06;
+}
+
+#resultsbutton a:hover {
+
+}
