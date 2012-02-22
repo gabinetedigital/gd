@@ -164,8 +164,15 @@ def question(qid):
     user_id = auth.is_authenticated() and \
         auth.authenticated_user().id or ''
 
-    # Small fix for the date value in the question content
+    # Getting the contrib
     contrib = wordpress.govr.getContrib(qid, user_id)
+
+    # Just making sure that the user is authorized to see the requested
+    # contrib
+    if contrib['status'] != 'approved':
+        abort(404)
+
+    # Small fix for the date value in the question content
     contrib['created_at'] = dateparser.parse(contrib['created_at'])
 
     return render_template(
