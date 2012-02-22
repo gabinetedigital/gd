@@ -61,6 +61,7 @@ def index():
     for i in contribs_raw[::-1]:
         contrib = i
         contrib['created_at'] = dateparser.parse(contrib['created_at'])
+        contrib['answered_at'] = dateparser.parse(contrib['answered_at'])
         contrib['video'] = wordpress.wpgd.getVideo(contrib['data'])
         contribs.append(contrib)
 
@@ -145,6 +146,7 @@ def questions():
     for i in questions_raw:
         question = i
         question['created_at'] = dateparser.parse(question['created_at'])
+        question['answered_at'] = dateparser.parse(question['answered_at'])
         questions.append(question)
 
     ctx.update({
@@ -174,6 +176,7 @@ def question(qid):
 
     # Small fix for the date value in the question content
     contrib['created_at'] = dateparser.parse(contrib['created_at'])
+    contrib['answered_at'] = dateparser.parse(contrib['answered_at'])
 
     return render_template(
         'govresponde_question.html',
