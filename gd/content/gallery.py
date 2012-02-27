@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, abort
 from gd.content.wp import wordpress, gallery as api
 
 gallery = Blueprint(
@@ -31,6 +31,10 @@ gallery = Blueprint(
 @gallery.route('/<int:gid>')
 def index(gid=None):
     galleries = wordpress.wpgd.getGalleries()
+    if not galleries:
+        abort(404)
+    if gid and (str(gid) not in [i['gid'] for i in galleries]):
+        abort(404)
     current = wordpress.wpgd.getGallery(gid or galleries[0]['gid'])
     return render_template(
         'gallery.html',
