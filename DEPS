@@ -25,6 +25,11 @@ Link:       http://pypi.python.org/packages/source/S/SQLAlchemy/SQLAlchemy-0.7.3
 Install:    python setup.py install
 
 
+Lib:        elixir
+Version:    0.7.1
+Link:       http://pypi.python.org/packages/source/E/Elixir/Elixir-0.7.1.tar.gz
+Install:    python setup.py install
+
 Lib:        flask
 Version:    0.8
 Link:       pypi.python.org/packages/source/F/Flask/Flask-0.8.tar.gz
@@ -103,8 +108,8 @@ Comments:   To make wordpress work properly, you'll need to install/enable
 
 
 Lib:        Twig
-Version:    1.3.0
-Link:       https://github.com/fabpot/Twig/tarball/v1.3.0
+Version:    1.6.0
+Link:       https://github.com/fabpot/Twig/tarball/v1.6.0
 Install:    All you have to do is to install the library in a directory
             visible by the PHP include system. In debian, /usr/share/php
             is the right place. It's possible to install twig using pear
