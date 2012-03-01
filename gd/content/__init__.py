@@ -276,3 +276,14 @@ def archive(m, page=0):
         sidebar=wordpress.getSidebar,
         pagination=pagination,
         posts=posts)
+
+
+@app.route('/confirm_signup/<string:key>')
+def confirm_signup(key):
+    try:
+        user = User.query.filter_by(user_activation_key=key).one()
+        user.user_activation_key = ''
+        dbsession.commit()
+    except NoResultFound:
+        return redirect(url_for('.index'))
+    return redirect('%s?login' % url_for('.index'))

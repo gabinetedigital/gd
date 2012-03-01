@@ -30,6 +30,7 @@ from datetime import date, datetime
 from StringIO import StringIO
 from PIL import Image, ImageOps
 from gettext import gettext
+from flask import url_for
 
 from gd import conf
 
@@ -155,10 +156,12 @@ def send_password(addr, password):
 def send_welcome_email(user):
     """Sends a welcome message to brand new users"""
     # Setting the message body
+    url = url_for('confirm_signup', key=user.user_activation_key)
     return sendmail(
         conf.WELCOME_SUBJECT, user.email,
         conf.WELCOME_MSG % {
             'username': unicode(user.display_name),
             'siteurl': conf.BASE_URL,
+            'confirmation_url': url[1:],
         }
     )

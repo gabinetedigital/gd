@@ -81,9 +81,9 @@
                 <div id="signupfeedback" class="overlay">
                   <h2>Muito obrigado</h2>
                   <p>
-                    O seu cadastro foi efetuado com sucesso. Você está
-                    pronto para colaborar através das ferramentas do
-                    Gabinete Digital.
+                    Você está quase lá. Para concluir o seu cadastro,
+                    por favor acesse a sua conta de email e siga as
+                    instruções enviadas.
                   </p>
                 </div>
                 <ul class="login">
@@ -421,6 +421,10 @@
 
     {% if 'signup' in request.values %}
     <script> $(function () { auth.showSignupForm(); }); </script>
+    {% endif %}
+
+    {% if 'login' in request.values and not user %}
+    <script> $(function () { auth.showLoginForm(); }); </script>
     {% endif %}
 
     <script>$(function () { avl.init({sourcesUrl: VIDEO_BASE}).loadPlayers(); });</script>

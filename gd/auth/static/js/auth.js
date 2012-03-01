@@ -138,7 +138,6 @@ var auth = (function() {
                             var data = $.parseJSON(rdata);
 
                             if (data.status === 'ok') {
-                                auth.userAuthenticated(data.msg.user);
                                 closeMethod();
                                 auth.feedbackAfterSignup();
                                 return;

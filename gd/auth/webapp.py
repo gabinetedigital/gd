@@ -140,6 +140,7 @@ def signup_json():
             user = authapi.create_user(
                 dget('name'), dget('email'), password,
                 dget('email_confirmation'), form.meta)
+            utils.send_welcome_email(user)
         except authapi.UserExists:
             return utils.format_csrf_error(
                 form, _(u'User already exists'), 'UserExists')
@@ -148,9 +149,8 @@ def signup_json():
                 form,
                 _(u'The email address informed is being used '
                   u'by another person'), 'EmailAddressExists')
-        data = authapi.login_user_instance(user, password)
         utils.send_welcome_email(user)
-        return msg.ok({ 'user': data })
+        return msg.ok({})
     else:
         return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
