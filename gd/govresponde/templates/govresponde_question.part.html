@@ -38,7 +38,7 @@
   <em class="alreadyvoted">Você já votou nessa pergunta</em>
   {% endif %}
 
-  <p class="desc">{{ question.content }}</p>
+  <p class="desc">{{ question.content|safe }}</p>
 
   {% if question.aggregated %}
   <a href="javascript:;"
