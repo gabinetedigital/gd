@@ -32,11 +32,11 @@
                  width="193" height="110">
             <img src="../static/imgs/play.png" class="play">
           </div>
-          <a href="{{ url_for('videos.details', vid=contrib.video.id) }}"
-             class="permalink">
-            <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
-                 alt="Permanet link">
-          </a>
+        </a>
+        <a href="{{ url_for('videos.details', vid=contrib.video.id) }}"
+           class="permalink">
+          <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
+               alt="Permanet link">
         </a>
       </div>
       {% endif %}
