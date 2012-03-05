@@ -1,0 +1,49 @@
+{% extends "govresponde.html" %}
+
+{% block sidebar %}{% endblock %}
+
+{% block rcolumn %}
+<div class="resultpage">
+  <h2>{{ contrib.title }} ({{ contrib.answered_at.strftime('%d/%m/%Y') }})</h2>
+  <em>{{ contrib.theme.name }}</em>
+
+  <div class="videobox">
+    <video
+       id="{{ contrib.video.id }}"
+       width="{{ contrib.video.video_width }}"
+       height="{{ contrib.video.video_height }}">
+      {% for source in contrib.video_sources %}
+      <source type="{{ source.format }}" src="{{ source.url }}">
+        {% endfor %}
+    </video>
+  </div>
+
+  <div class="question">
+    <h3>Pergunta</h3>
+    <div>{{ contrib.content|safe }}</div>
+  </div>
+
+  <div class="answer">
+    <h3>Resposta</h3>
+    <div>{{ contrib.answer|safe }}</div>
+  </div>
+
+  {% if referrals %}
+  <div class="referrals">
+    <h3>Encaminhamentos</h3>
+    <ul>
+      {% for post in referrals %}
+      <li>
+        <h4>
+          {{ post.title }}
+          <em>({{ post.the_date.strftime('%d/%m/%Y') }})</em>
+        </h4>
+        <div>{{ post.excerpt }}</div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

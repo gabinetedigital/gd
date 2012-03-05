@@ -48,9 +48,6 @@
 
       <div class="content">{{ contrib.content|safe }}</div>
 
-      <h4>Resposta</h4>
-      <div class="answer">{{ contrib.answer|safe }}</div>
-
       {% if contrib.aggregated %}
       <a href="javascript:;"
          onclick="showAggregated({{ contrib.id  }})"
@@ -66,6 +63,14 @@
         {% endfor %}
       </ul>
       {% endif %}
+
+      <div class="answerlink">
+        <a href="{{ url_for('.results', rid=contrib.id) }}"
+           class="awesome">
+          Encaminhamentos da resposta
+        </a>
+      </div>
+
     </li>
     {% endfor %}
   </ul>

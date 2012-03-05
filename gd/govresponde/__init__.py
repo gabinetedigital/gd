@@ -41,12 +41,31 @@ def _get_context(custom=None):
     theme_id = request.values.get('theme')
     govr = wordpress.govr
     ctx = {}
+
+    # Style customization parameters
+    ctx['hidesidebar'] = False
+    ctx['rclass'] = ''
+
+    # Parameters from wordpress
     ctx['wordpress'] = wordpress
     ctx['theme'] = theme_id and govr.getTheme(theme_id) or ''
+
+    # Info from authenticated users
     if auth.is_authenticated():
         ctx['userstats'] = govr.getUserStats(auth.authenticated_user().id)
+
+    # Update the default values
     ctx.update(custom or {})
     return ctx
+
+
+def _format_contrib(contrib):
+    contrib['created_at'] = dateparser.parse(contrib['created_at'])
+    contrib['answered_at'] = dateparser.parse(contrib['answered_at'])
+    contrib['theme'] = wordpress.govr.getTheme(contrib['theme_id'])
+    contrib['video'] = wordpress.wpgd.getVideo(contrib['data'])
+    contrib['video_sources'] = wordpress.wpgd.getVideoSources(contrib['data'])
+    return contrib
 
 
 @govresponde.route('/')
@@ -59,15 +78,43 @@ def index():
     contribs_raw, count = wordpress.govr.getContribs(
         '', user_id, 0, 'date', '', '', 'responded')
     for i in contribs_raw[::-1]:
-        contrib = i
-        contrib['created_at'] = dateparser.parse(contrib['created_at'])
-        contrib['answered_at'] = dateparser.parse(contrib['answered_at'])
-        contrib['video'] = wordpress.wpgd.getVideo(contrib['data'])
-        contribs.append(contrib)
+        contribs.append(_format_contrib(i))
 
     ctx = _get_context({ 'contribs': contribs, 'count': count })
     return render_template(
         'govresponde_edicoesanteriores.html', **ctx)
+
+
+@govresponde.route('/results/<int:rid>')
+@govresponde.route('/results/<int:rid>/<int:page>')
+def results(rid, page=0):
+    """Shows results about a single answer
+    """
+
+    # Looking for the authenticated user
+    user_id = auth.is_authenticated() and \
+        auth.authenticated_user().id or ''
+
+    # Getting the contrib itself and all its related posts. The page
+    # parameter is used to paginate referral query result.
+    contrib = _format_contrib(wordpress.govr.getContrib(rid, user_id))
+    if contrib['category']:
+        pagination, posts = wordpress.getPostsByCategory(
+            cat=contrib['category'], page=page)
+    else:
+        pagination, posts = None, []
+
+    # Building the context to return the template
+    return render_template(
+        'govresponde_results.html',
+        **_get_context({
+            'contrib': contrib,
+            'hidesidebar': True,
+            'rclass': 'result',
+            'referrals': posts,
+            'pagination': pagination,
+        })
+    )
 
 
 @govresponde.route('/comofunciona')
@@ -144,9 +191,7 @@ def questions():
 
     # Small fix for the date value in the question content
     for i in questions_raw:
-        question = i
-        question['created_at'] = dateparser.parse(question['created_at'])
-        question['answered_at'] = dateparser.parse(question['answered_at'])
+        question = _format_contrib(i)
         questions.append(question)
 
     ctx.update({
@@ -167,16 +212,12 @@ def question(qid):
         auth.authenticated_user().id or ''
 
     # Getting the contrib
-    contrib = wordpress.govr.getContrib(qid, user_id)
+    contrib = _format_contrib(wordpress.govr.getContrib(qid, user_id))
 
     # Just making sure that the user is authorized to see the requested
     # contrib
     if contrib['status'] != 'approved':
         abort(404)
-
-    # Small fix for the date value in the question content
-    contrib['created_at'] = dateparser.parse(contrib['created_at'])
-    contrib['answered_at'] = dateparser.parse(contrib['answered_at'])
 
     return render_template(
         'govresponde_question.html',
