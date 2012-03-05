@@ -158,11 +158,6 @@ p.desc {
     margin-right:10px;
 }
 
-.highlight .title {
-    font-size:12pt;
-    margin:10px 0;
-}
-
 .highlight .date {
     font-size:12pt;
     float:left;
@@ -229,17 +224,12 @@ form#send .helptext {
     border-bottom:dotted 1px #ccc;
 }
 
-.questions.single strong.title {
-    display:none;
-}
-
-.questions strong.title a {
-    color:#000;
-}
-
-.questions li strong {
-    font-size:10pt;
+.questions .title {
+    font-size:12pt;
+    font-weight:bold;
     margin:10px 0;
+    color:#000;
+    display:block;
 }
 
 .questions .date {

@@ -14,9 +14,9 @@
       {% if contrib.video and loop.index == 1 %}
       <div>
         <p class="date">{{ contrib.answered_at.strftime('%d/%m/%Y') }}</p>
-        <strong class="title">
+        <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
           {{ contrib.title }} ({{ contrib.real_score }} votos)
-        </strong>
+        </a>
       </div>
 
       <div class="videobox">
@@ -50,9 +50,9 @@
 
       <div>
         <p class="date">{{ contrib.answered_at.strftime('%d/%m/%Y') }}</p>
-        <strong class="title">
+        <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
           {{ contrib.title }} ({{ contrib.real_score }} votos)
-        </strong>
+        </a>
       </div>
       {% endif %}
 
