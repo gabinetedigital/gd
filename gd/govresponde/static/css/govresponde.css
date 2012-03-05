@@ -55,11 +55,17 @@
     margin-bottom:40px;
 }
 
+#container .answerlink {
+    margin-top:20px;
+    clear:both;
+}
+
 a.otherquestions {
     display:block;
     margin-top:10px;
     background:url("../imgs/others.png") no-repeat;
     padding-left:20px;
+    clear:both;
 }
 
 p.desc {
@@ -208,6 +214,7 @@ form#send .helptext {
 .questions ul li {
     margin-bottom:20px;
     padding-bottom:20px;
+    border-bottom:dotted 1px #ccc;
 }
 
 .questions.single strong.title {
@@ -291,4 +298,47 @@ form#send .helptext {
 /* -- como funciona -- */
 .comofunciona p {
     margin:10px 0;
+}
+
+
+/* -- result page -- */
+.rcolumn.result {
+    padding:20px 40px;
+    font-size:12px;
+}
+
+.resultpage .videobox {
+    margin:10px 0;
+    width:100%;
+    background:#000;
+    text-align:center;
+}
+
+.resultpage .videobox .video-js-box {
+    margin:0 auto;
+}
+
+.resultpage h3 {
+    margin:18px 0;
+}
+
+.resultpage .question div,
+.resultpage .answer div {
+    padding-left:20px;
+}
+
+.resultpage .referrals {
+    padding-top:40px;
+}
+
+.resultpage .referrals ul {
+    padding-left:20px;
+}
+
+.resultpage .referrals ul li {
+    margin-bottom:25px;
+}
+
+.resultpage .referrals ul li h4 {
+    margin-bottom:5px;
 }

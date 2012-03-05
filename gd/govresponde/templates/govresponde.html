@@ -43,6 +43,7 @@
 
   <!-- content -->
   <div class="row">
+    {% if not hidesidebar %}
     <div class="col3">
       <div class="sidebar">
         {#
@@ -76,8 +77,9 @@
         </dl>
       </div>
     </div>
-    <div class="col9">
-      <div class="rcolumn">
+    {% endif %}
+    <div class="{% if hidesidebar %}col12{% else %}col9{% endif %}">
+      <div class="rcolumn {{ rclass }}">
         {% block rcolumn %}{% endblock %}
       </div>
     </div>
