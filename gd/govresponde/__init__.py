@@ -70,19 +70,31 @@ def _format_contrib(contrib):
 
 @govresponde.route('/')
 def index():
-    contribs = []
-
+    # Getting the user id if the user is authenticated
     user_id = auth.is_authenticated() and \
         auth.authenticated_user().id or ''
 
+    # Querying the contribs ordenated by the answer date
+    contribs = []
     contribs_raw, count = wordpress.govr.getContribs(
-        '', user_id, 0, 'date', '', '', 'responded')
-    for i in contribs_raw[::-1]:
+        '', user_id, 0, '-answerdate', '', '', 'responded')
+    for i in contribs_raw:
         contribs.append(_format_contrib(i))
 
-    ctx = _get_context({ 'contribs': contribs, 'count': count })
+    # Yes, this is a hammer! This date value will be use to know which
+    # question should be highlighted.
+    #
+    # The rule is actually quite simple. We have to aggregate all the
+    # contribs that were published in the same day of the last published
+    # one.
+    base_date = contribs[0]['answered_at'].strftime('%d/%m/%Y')
+
     return render_template(
-        'govresponde_edicoesanteriores.html', **ctx)
+        'govresponde_edicoesanteriores.html', **_get_context({
+        'contribs': contribs,
+        'count': count,
+        'base_date': base_date,
+    }))
 
 
 @govresponde.route('/results/<int:rid>')

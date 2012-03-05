@@ -8,12 +8,14 @@
 <div class="highlight questions">
   <ul>
     {% for contrib in contribs %}
-    <li {% if loop.index == 1 %}class="first"{% endif %}>
+    {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
+
+    <li {% if date == base_date %}class="first"{% endif %}>
       <h3>{{ contrib.theme.name }}</h3>
 
-      {% if contrib.video and loop.index == 1 %}
+      {% if contrib.video and date == base_date %}
       <div>
-        <p class="date">{{ contrib.answered_at.strftime('%d/%m/%Y') }}</p>
+        <p class="date">{{ date }}</p>
         <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
           {{ contrib.title }} ({{ contrib.real_score }} votos)
         </a>
@@ -31,7 +33,7 @@
       </div>
       {% endif %}
 
-      {% if contrib.video and loop.index != 1 %}
+      {% if contrib.video and date != base_date %}
       <div class="video">
         <a href="javascript:;" onclick='video.play({{ contrib.video|tojson|safe }})'>
           <div class="container">
@@ -49,7 +51,7 @@
       </div>
 
       <div>
-        <p class="date">{{ contrib.answered_at.strftime('%d/%m/%Y') }}</p>
+        <p class="date">{{ date }}</p>
         <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
           {{ contrib.title }} ({{ contrib.real_score }} votos)
         </a>
