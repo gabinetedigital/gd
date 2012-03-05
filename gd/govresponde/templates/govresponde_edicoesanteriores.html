@@ -6,24 +6,30 @@
 
 {% block rcolumn %}
 <div class="highlight questions">
-  <!-- <h3>Segurança Pública</h3> -->
-  <!-- <div class="video"></div> -->
-  <!-- <div class="date">18/07/2011</div> -->
-  <!-- <p class="desc"> -->
-  <!--   Governador Tarso Genro, sabemos que atualmente o déficit de -->
-  <!--   policiais civis está em torno de 7.000 homens, dados estes -->
-  <!--   fornecidos pela SERVIPOL/RS e que muitos da ativa já estão com -->
-  <!--   direito de pedir sua aposentadoria o que causaria uma baixa -->
-  <!--   maior ainda no efetivo.  (...) -->
-  <!-- </p> -->
-  <!-- <a class="otherquestions" href="#">Demais perguntas incluídas</a> -->
-
   <ul>
     {% for contrib in contribs %}
-    <li>
+    <li {% if loop.index == 1 %}class="first"{% endif %}>
       <h3>{{ contrib.theme.name }}</h3>
 
-      {% if contrib.video %}
+      {% if contrib.video and loop.index == 1 %}
+      <div>
+        <p class="date">{{ contrib.answered_at.strftime('%d/%m/%Y') }}</p>
+        <strong class="title">{{ contrib.title }}</strong>
+      </div>
+
+      <div class="videobox">
+        <video
+           id="{{ contrib.video.id }}"
+           width="{{ contrib.video.video_width }}"
+           height="{{ contrib.video.video_height }}">
+          {% for source in contrib.video_sources %}
+          <source type="{{ source.format }}" src="{{ source.url }}">
+            {% endfor %}
+        </video>
+      </div>
+      {% endif %}
+
+      {% if contrib.video and loop.index != 1 %}
       <div class="video">
         <a href="javascript:;" onclick='video.play({{ contrib.video|tojson|safe }})'>
           <div class="container">
@@ -39,12 +45,12 @@
                alt="Permanet link">
         </a>
       </div>
-      {% endif %}
 
       <div>
         <p class="date">{{ contrib.answered_at.strftime('%d/%m/%Y') }}</p>
         <strong class="title">{{ contrib.title }}</strong>
       </div>
+      {% endif %}
 
       <div class="content">{{ contrib.content|safe }}</div>
 
