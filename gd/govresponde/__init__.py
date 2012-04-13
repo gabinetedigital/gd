@@ -173,7 +173,8 @@ def questions():
     ctx = _get_context()
     theme = ctx['theme']
     questions = []
-    sortby = request.values.get('sortby', '-date')
+    #sortby = request.values.get('sortby', '-date')
+    sortby = '?rand'
 
     # Looking for the authenticated user
     user_id = auth.is_authenticated() and \
@@ -190,7 +191,7 @@ def questions():
         theme_id,               # theme id
         user_id,                # user id
         pagination['page'],     # page number
-        sortby,                 # sortby
+        sortby,                 # sortby        
         '',                     # to
         '',                     # from
         CONTRIBS_PER_PAGE,      # perpage
