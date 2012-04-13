@@ -70,7 +70,6 @@ app.jinja_env = app.jinja_env.overlay(extensions=['jinja2.ext.i18n'])
 app.jinja_env.install_gettext_callables(
     gettext.gettext, gettext.ngettext, newstyle=True)
 
-
 @app.context_processor
 def extend_context():
     """This function is a context processor. It injects variables such
@@ -147,8 +146,7 @@ def teaser():
 @app.route('/sobre')
 def sobre():
     """Renders the about template"""
-    return render_template(
-        'about.html', page=wordpress.getPageByPath('about'))
+    return render_template('about.html', page=wordpress.getPageByPath('about'))
 
 
 @app.route('/gallery')
@@ -223,7 +221,7 @@ def post(pid):
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
         sidebar=wordpress.getSidebar,
-        comments=wordpress.getComments(post_id=pid),
+        comments=wordpress.getComments(status='approve',post_id=pid),
         show_comment_form=is_authenticated(),
         recent_posts=recent_posts)
     return post_page(pid)
