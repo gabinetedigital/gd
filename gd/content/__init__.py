@@ -20,7 +20,7 @@
 """Module that instantiates our Flask WSGI app and associates all
 implemented blueprints in various modules to this app.
 """
-
+import datetime
 import gettext
 import xmlrpclib
 from sqlalchemy.orm.exc import NoResultFound
@@ -69,6 +69,17 @@ app.config.from_object(conf)
 app.jinja_env = app.jinja_env.overlay(extensions=['jinja2.ext.i18n'])
 app.jinja_env.install_gettext_callables(
     gettext.gettext, gettext.ngettext, newstyle=True)
+
+
+def formatarDataeHora(s,formato = '%d/%m/%Y %H:%Mh' ):
+    z = str(s)
+    z = z.replace("T", "")
+    z = z.replace(":", "")
+    z = datetime.datetime.strptime(z, "%Y%m%d%H%M%S")
+    z = z.strftime(formato)
+    return z
+
+app.jinja_env.filters['formatarDataeHora'] = formatarDataeHora
 
 @app.context_processor
 def extend_context():

@@ -52,7 +52,9 @@
               <div class="content">
                 <h3>
                   {{ comment.author|safe }} em
-                  {{ comment.date_created_gmt|safe }}
+                  {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }} às
+                  {{ comment.date_created_gmt|formatarDataeHora('%H:%Mh') }}
+                  
                 </h3>
                 {{ comment.content|safe }} <br>
               </div>
