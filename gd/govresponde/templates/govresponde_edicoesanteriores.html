@@ -8,7 +8,7 @@
 <div class="highlight questions">
   <ul>
     {% for contrib in contribs %}
-    {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
+    {% set date = contrib.answered_at.strftime('%d %b %Y') %}
 
     <li {% if date == base_date %}class="first"{% endif %}>
       <h3>{{ contrib.theme.name }}</h3>

@@ -77,7 +77,7 @@ def index():
     # Querying the contribs ordenated by the answer date
     contribs = []
     contribs_raw, count = wordpress.govr.getContribs(
-        '', user_id, 0, '-answerdate', '', '', 'responded')
+        '', user_id, 0, '-answerdate', '', '', 'responded', '', '', 'home')
     for i in contribs_raw:
         contribs.append(_format_contrib(i))
 
@@ -87,6 +87,7 @@ def index():
     # The rule is actually quite simple. We have to aggregate all the
     # contribs that were published in the same day of the last published
     # one.
+    #base_date = contribs[0]['answered_at'].strftime('%d/%m/%Y')
     base_date = contribs[0]['answered_at'].strftime('%d/%m/%Y')
 
     return render_template(
@@ -186,6 +187,8 @@ def questions():
 
     # Finally, listing the questions that are able to receive votes.
     pagination = {}
+    import datetime 
+    print "1 = ",datetime.datetime.now()
     pagination['page'] = int(request.values.get('page', 0))
     questions_raw, count = wordpress.govr.getVotingContribs(
         theme_id,               # theme id
@@ -196,7 +199,7 @@ def questions():
         '',                     # from
         CONTRIBS_PER_PAGE,      # perpage
     )
-
+    print "2 = ",datetime.datetime.now()
     # Pagination stuff
     count = int(count)
     pagination['pages'] = int(ceil(float(count) / CONTRIBS_PER_PAGE))
@@ -206,14 +209,16 @@ def questions():
     for i in questions_raw:
         question = _format_contrib(i)
         questions.append(question)
-
+    
+    print "3 = ",datetime.datetime.now()        
     ctx.update({
         'questions': questions,
         'pagination': pagination,
         'sortby': sortby,
     })
+    print "4 = ",datetime.datetime.now()
     return render_template('govresponde_questions.html', **ctx)
-
+    
 
 @govresponde.route('/questions/<int:qid>')
 def question(qid):
