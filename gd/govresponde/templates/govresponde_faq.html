@@ -21,14 +21,19 @@
     </div>
     <div class="col8">
       <ul class="menu">
-        <li class="comofunciona">
-          <a href="{{ url_for('.comofunciona') }}">Como Funciona</a>
+        <li>
+          <a href="{{ url_for('.comofunciona') }}">Como<br>Funciona</a>
         </li>
-        <li class="respostasgov">
-          <a href="{{ url_for('.index') }}?page=resp">Respostas do Governador</a>
+        <li>
+          <a href="{{ url_for('.index') }}">Edições<br>anteriores</a>
         </li>
-        <li class="envie">
-          <a href="{{ url_for('.send') }}">Envie sua Pergunta</a>
+        <li>
+          <a href="{{ url_for('.questions') }}">Perguntas<br>em votação</a>
+        </li>
+        <li class="last">
+          <a href="{{ url_for('.send') }}" class="awesome">
+            Envie sua<br>pergunta
+          </a>
         </li>
       </ul>
     </div>
@@ -49,16 +54,16 @@
         #}
 
         <dl>
-          <dt class="section">{% if page %}Escolha o tema{% else %}Perguntas em votação{% endif %}
-          </dt>
+          <dt>Escolha um tema</dt>
 
           <dd {% if not theme and request.path.endswith('questions') %}
-              class="choosen"{% endif %}>            
+              class="choosen"{% endif %}>
+            <a href="{{ url_for('.questions') }}">Todos</a>
           </dd>
-			
-          {% for i in wordpress.govr.getThemes(page) %}
+
+          {% for i in wordpress.govr.getThemes() %}
           <dd {% if theme and theme.id == i.id  %}class="choosen"{% endif %}>
-            <a href="{% if page %}?page=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
+            <a href="{{ url_for('.questions') }}?theme={{ i.id }}">
               {{ i.name }}
             </a>
           </dd>
@@ -73,16 +78,7 @@
       </div>
     </div>
     {% endif %}
-    
-    {% if hidesidebarright %}
-    	<div class="col8">
-    		{% block lcolumn %}{% endblock %}
-    	</div>
-		<div class="col4">
-	{% else%}		
-				    
-    	<div class="{% if hidesidebar %}col12{% else %}col9{% endif %}">
-	{% endif%}
+    <div class="{% if hidesidebar %}col12{% else %}col9{% endif %}">
       <div class="rcolumn {{ rclass }}">
         {% block rcolumn %}{% endblock %}
       </div>

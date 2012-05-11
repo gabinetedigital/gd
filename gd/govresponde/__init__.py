@@ -19,6 +19,8 @@
 
 """Web application definitions to the govr tool"""
 
+import datetime
+
 from flask import Blueprint, request, render_template, redirect, \
     url_for, abort
 from dateutil import parser as dateparser
@@ -37,19 +39,25 @@ govresponde = Blueprint(
 
 CONTRIBS_PER_PAGE = 50
 
+statusedicao = ''
+
 def _get_context(custom=None):
     theme_id = request.values.get('theme')
+    page     = request.values.get('page')
     govr = wordpress.govr
     ctx = {}
 
     # Style customization parameters
     ctx['hidesidebar'] = False
+    ctx['hidesidebarright'] = False
     ctx['rclass'] = ''
 
     # Parameters from wordpress
     ctx['wordpress'] = wordpress
-    ctx['theme'] = theme_id and govr.getTheme(theme_id) or ''
-
+    ctx['theme'] = theme_id and govr.getTheme(theme_id)  or ''
+    ctx['page'] = page or ''
+    
+    
     # Info from authenticated users
     if auth.is_authenticated():
         ctx['userstats'] = govr.getUserStats(auth.authenticated_user().id)
@@ -62,7 +70,7 @@ def _get_context(custom=None):
 def _format_contrib(contrib):
     contrib['created_at'] = dateparser.parse(contrib['created_at'])
     contrib['answered_at'] = dateparser.parse(contrib['answered_at'])
-    contrib['theme'] = wordpress.govr.getTheme(contrib['theme_id'])
+    #contrib['theme'] = wordpress.govr.getTheme(contrib['theme_id'])
     contrib['video'] = wordpress.wpgd.getVideo(contrib['data'])
     contrib['video_sources'] = wordpress.wpgd.getVideoSources(contrib['data'])
     return contrib
@@ -70,16 +78,40 @@ def _format_contrib(contrib):
 
 @govresponde.route('/')
 def index():
+    ctx = _get_context()
+    theme = ctx['theme']
+    page  = ctx['page']
+    # Discovering the theme id
+    theme_id = theme and \
+         theme['id'] or ''
+    
+    print 'page =', page
+    if page <> '':
+        if theme_id <> '':     
+            statusedicao = ''
+        else:
+            statusedicao = 'ultima'
+        pagerender = 'govresponde_edicoesanteriores.html'
+    else:    
+        statusedicao = 'ultima'
+        pagerender = 'govresponde_home.html'
+         
     # Getting the user id if the user is authenticated
     user_id = auth.is_authenticated() and \
         auth.authenticated_user().id or ''
-
+        
     # Querying the contribs ordenated by the answer date
+    #print "-------------------------------------------------------------------------" 
+    #print "1 = ",datetime.datetime.now()
     contribs = []
+    #print "2 = ",datetime.datetime.now()
     contribs_raw, count = wordpress.govr.getContribs(
-        '', user_id, 0, '-answerdate', '', '', 'responded', '', '', 'home')
+        theme_id, user_id, 0, '-answerdate', '', '', 'responded', '', '', statusedicao)
+    #print "3 = ",datetime.datetime.now()
     for i in contribs_raw:
         contribs.append(_format_contrib(i))
+
+    #print "4 = ",datetime.datetime.now()
 
     # Yes, this is a hammer! This date value will be use to know which
     # question should be highlighted.
@@ -90,13 +122,16 @@ def index():
     #base_date = contribs[0]['answered_at'].strftime('%d/%m/%Y')
     base_date = contribs[0]['answered_at'].strftime('%d/%m/%Y')
 
+    #govresponde_edicoesanteriores
     return render_template(
-        'govresponde_edicoesanteriores.html', **_get_context({
+        pagerender, **_get_context({
         'contribs': contribs,
         'count': count,
         'base_date': base_date,
+        'statusedicao': statusedicao,  
+        'page' : page
     }))
-
+    
 
 @govresponde.route('/results/<int:rid>')
 @govresponde.route('/results/<int:rid>/<int:page>')
@@ -108,7 +143,7 @@ def results(rid, page=0):
     user_id = auth.is_authenticated() and \
         auth.authenticated_user().id or ''
 
-    # Getting the contrib itself and all its related posts. The page
+    # Getting the contrib itself and all its related theme_idposts. The page
     # parameter is used to paginate referral query result.
     contrib = _format_contrib(wordpress.govr.getContrib(rid, user_id))
     if contrib['category']:
@@ -126,6 +161,7 @@ def results(rid, page=0):
             'rclass': 'result',
             'referrals': posts,
             'pagination': pagination,
+            'statusedicao': statusedicao
         })
     )
 
@@ -136,6 +172,9 @@ def comofunciona():
         'govresponde_comofunciona.html',
         **_get_context({
             'page': wordpress.getPageByPath('govresponde/como-funciona'),
+            'hidesidebar': True,
+            'hidesidebarright' : True,
+            'statusedicao': statusedicao
         })
     )
 
@@ -148,7 +187,12 @@ def send():
 
     return render_template(
         'govresponde_enviar.html',
-        **_get_context({ 'form': form }))
+        **_get_context({ 
+            'form': form,
+            'hidesidebar': True,
+            'hidesidebarright' : True,
+            'statusedicao': statusedicao
+        }))
 
 
 @govresponde.route('/send_json', methods=('POST',))
@@ -183,11 +227,12 @@ def questions():
 
     # Discovering the theme id
     theme_id = theme and \
-        theme['id'] or ''
+         theme['id'] or ''
 
     # Finally, listing the questions that are able to receive votes.
     pagination = {}
-    import datetime 
+    
+    print "-------------------------------------------------------------------------" 
     print "1 = ",datetime.datetime.now()
     pagination['page'] = int(request.values.get('page', 0))
     questions_raw, count = wordpress.govr.getVotingContribs(
@@ -215,6 +260,7 @@ def questions():
         'questions': questions,
         'pagination': pagination,
         'sortby': sortby,
+        'statusedicao': statusedicao
     })
     print "4 = ",datetime.datetime.now()
     return render_template('govresponde_questions.html', **ctx)
@@ -239,7 +285,7 @@ def question(qid):
 
     return render_template(
         'govresponde_question.html',
-        **_get_context({ 'question': contrib })
+        **_get_context({ 'question': contrib, 'statusedicao': statusedicao })
     )
 
 

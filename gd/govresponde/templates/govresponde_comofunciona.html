@@ -1,8 +1,30 @@
 {% extends "govresponde.html" %}
 
+
+{% block lcolumn %}
+
+<h2>Comum funciona?</h2>
+
+<div id="palco">
+  <div id="oque">
+    <p>Quer saber a opinião do Governador sobre um determinado assunto?</p>
+    <h4>Procure</h4> <h4>Participe</h4> <h4>Mobilize</h4>
+  </div>
+  <div id="controle">
+    <ol>
+      <li><a href="#1">1</a></li>
+      <li><a href="#2">2</a></li>
+      <li><a href="#3">3</a></li>
+    </ol>
+  </div>
+</div>
+
+
+{% endblock %}
+
 {% block rcolumn %}
 
-<h2>Como funciona o Governador Responde</h2>
+<h2>FAQ</h2>
 
 <div class="content comofunciona">
   {{ page.content|safe }}

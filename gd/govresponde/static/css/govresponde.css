@@ -1,5 +1,5 @@
 #container .head {
-    border-bottom: 1px solid #999;
+    background: url("../imgs/top.png") no-repeat bottom;
 }
 
 #container #logo h1 {
@@ -19,33 +19,33 @@
     padding:50px 0pt 98px 45px;
 }
 
-#container .head .menu li {
+#container .head .menu li a {
     display:inline;
     float:left;
-    margin-right:70px;
+    margin-right:30px;
     font-size:12pt;
+    padding-top: 51px;
 }
 
-#container .head .menu li:hover {
-    border-bottom:solid 2px #333;
+#container .head .menu li.comofunciona a {
+    background: url("../imgs/comofunciona.png") no-repeat 35px top;
+    color: #008dc4;
 }
 
-#container .head .menu li.last {
-    margin-right:0;
+#container .head .menu li.respostasgov a { 
+    background: url("../imgs/respostasgov.png") no-repeat center top;
+    color: #fe6200;
 }
 
-#container .head .menu li.last:hover {
-    border-bottom:0;
+#container .head .menu li.envie a {
+    background: url("../imgs/envie.png") no-repeat center top;
+    color: #c00000;
 }
 
-#container .head .menu li .awesome {
-    background-color:darkred;
-    color:#fff;
+#container .head .menu li a:hover {
+    margin-top: 5px;
 }
 
-#container .head .menu li .awesome:hover {
-    background-color:red;
-}
 
 #container .head .menu a {
     color:#333;
@@ -69,7 +69,7 @@ a.otherquestions {
 }
 
 p.desc {
-    color:#666;
+    color:#000;
 }
 
 
@@ -97,13 +97,22 @@ p.desc {
 }
 
 .sidebar dt {
-    color:#a00;
+    color: #4f9700;
     font-size:12pt;
     margin:10px 0 10px 0;
 }
 
+.sidebar dt.section {
+    background: url("../imgs/vote.png") no-repeat;
+    height: 41px;
+    padding-left: 53px;
+}
+
 .sidebar dd {
     margin-left:20px;
+    background: url("../imgs/lista.png") no-repeat 0 center;
+    margin-top: 5px;
+    padding-left: 8px;
 }
 
 .sidebar dd.choosen {
@@ -112,6 +121,10 @@ p.desc {
 
 .sidebar dd a {
     color:#000;
+}
+
+.sidebar dd a:hover {
+    text-decoration: underline;
 }
 
 .rcolumn {
@@ -134,6 +147,8 @@ p.desc {
 .highlight h3 {
     margin-bottom:10px;
     font-size:14pt;
+    color: #969a9c;
+    font-weight: normal;
 }
 
 .highlight .video {
@@ -151,22 +166,65 @@ p.desc {
 }
 
 .highlight .video {
-    width:250px;
-    height:112px;
+    width:300px;
+    height:190px;
     border:solid 1px #999;
     float:left;
     margin-right:10px;
 }
 
 .highlight .date {
-    font-size:12pt;
     float:left;
     margin:0 10px 0 0 !important;
+    height: 90px;
+    color: #a40000;
+    text-align: center;
+    line-height: 28px;
 }
 
-.highlight .content {
-    margin:10px 0 0 0 !important;
+.highlight .date .dia {
+    font-size: 40px;
 }
+
+.highlight .date .mes {
+    font-size: 23px;
+}
+
+.highlight .date .ano {
+    font-size: 20px;
+}
+
+.highlight .caso {
+    background-color: #FF861D;
+    border-radius: 32px 0 32px 0;
+    float: right;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 80%;
+}
+
+.highlight .pergunta {
+    margin-bottom: 20px;
+    background-color: #2da7d3;
+    border-radius: 0px 32px;
+    padding: 20px;
+    width: 80%;
+
+}
+
+.highlight .caso h5 {
+    color: #FFF;
+    font-size: 21px;
+    font-weight: normal;
+    margin-top: 9px;
+    }
+
+.highlight .pergunta h5 {
+    color: #FFF;
+    font-size: 21px;
+    font-weight: normal;
+    margin-bottom: 9px;
+    }
 
 .highlight .content p {
     margin-bottom:10px;
@@ -214,6 +272,17 @@ form#send .helptext {
 }
 
 /* -- questions screen -- */
+
+.questions .head {
+    display: block;
+    margin-bottom: 20px;
+    height: 34px;
+}
+
+h1.questions {
+    float: left;
+}
+
 .questions #orderby {
     float:right;
 }
@@ -233,8 +302,13 @@ form#send .helptext {
 }
 
 .questions .date {
-    color:#666;
     margin:10px 0;
+}
+
+.questions .content .balloon {
+    background: #2da7d3;
+    border-radius: 13px;
+    padding: 12px 14px;
 }
 
 .questions .addthis_toolbox {
@@ -242,19 +316,22 @@ form#send .helptext {
 }
 
 .questions .votes {
-    width:80px;
+    width: 92px;
     text-align:center;
     float:left;
-    margin-right:20px;
-    padding-top:10px;
+    padding-top: 33px;
+    background: url("../imgs/circle.png") no-repeat scroll 0 0 transparent;
+    height: 92px;
+    color: #93b937;
 }
 
 .questions button {
     margin-bottom:10px;
+    float: right;
 }
 
 .questions .votes strong {
-    font-size:30px;
+    font-size:20px;
     line-height:10px;
 }
 
@@ -307,6 +384,29 @@ form#send .helptext {
 .rcolumn.result {
     padding:20px 40px;
     font-size:12px;
+}
+
+h1.respgov {
+    background: url("../imgs/respostasgov.png") no-repeat scroll center left transparent;
+    color: #FE6200;
+    height: 50px;
+    padding-left: 68px;
+    padding-top: 3px;
+}
+
+h3.respgov {
+    font-size: 22px;
+    color: black;
+}
+
+.respgov_balao {
+    background-color: #2da7d3;
+    border-radius: 32px;
+    padding: 20px;
+    text-align: justify;
+    width: 300px;
+    float: right;
+    height: 190px;
 }
 
 .resultpage .videobox {

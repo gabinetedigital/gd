@@ -13,32 +13,37 @@
     </a>
   </strong>
 
-  <!-- AddThis Button BEGIN -->
-  <div class="addthis_toolbox addthis_default_style"
-       addthis:url="{{ request.url_root }}{{ url_for('.question', qid=question.id) }}"
-       addthis:title="O que eu gostaria de saber do Governador: {{ question.title }}">
-    <a class="addthis_button_preferred_1"></a>
-    <a class="addthis_button_preferred_2"></a>
-    <a class="addthis_button_preferred_3"></a>
-    <a class="addthis_button_preferred_4"></a>
-    <a class="addthis_button_compact"></a>
-    <a class="addthis_counter addthis_bubble_style"></a>
-  </div>
-  <script>var addthis_config = {"data_track_clickback":true};</script>
-  <!-- AddThis Button END -->
+  <div class="balloon">
+    <p class="desc">{{ question.content|safe }}</p>
 
-  <div class="date">
-    Enviada em {{ question.created_at.strftime('%d/%m/%Y') }}
+    {% if question.user_can_vote or not user %}
+    <button class="awesome" onclick="vote({{ question.id }})">
+      Votar
+    </button>
+    {% else %}
+    <em class="alreadyvoted">Você já votou</em>
+    {% endif %}
   </div>
-  {% if question.user_can_vote or not user %}
-  <button class="awesome" onclick="vote({{ question.id }})">
-    Votar
-  </button>
-  {% else %}
-  <em class="alreadyvoted">Você já votou nessa pergunta</em>
-  {% endif %}
 
-  <p class="desc">{{ question.content|safe }}</p>
+  <div class="meta">
+    <div class="date">
+      Enviada em {{ question.created_at.strftime('%d/%m/%Y') }} | 
+    </div>
+    <a href="#">Mobilize</a>
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style"
+         addthis:url="{{ request.url_root }}{{ url_for('.question', qid=question.id) }}"
+         addthis:title="O que eu gostaria de saber do Governador: {{ question.title }}">
+      <a class="addthis_button_preferred_1"></a>
+      <a class="addthis_button_preferred_2"></a>
+      <a class="addthis_button_preferred_3"></a>
+      <a class="addthis_button_preferred_4"></a>
+      <a class="addthis_button_compact"></a>
+      <a class="addthis_counter addthis_bubble_style"></a>
+    </div>
+    <script>var addthis_config = {"data_track_clickback":true};</script>
+    <!-- AddThis Button END -->
+  </div>
 
   {% if question.aggregated %}
   <a href="javascript:;"

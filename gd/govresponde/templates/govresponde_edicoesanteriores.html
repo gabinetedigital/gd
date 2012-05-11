@@ -5,41 +5,30 @@
 {% endblock %}
 
 {% block rcolumn %}
+
+<h1 class="respgov">Respostas do Governador</h1>
 <div class="highlight questions">
   <ul>
     {% for contrib in contribs %}
-    {% set date = contrib.answered_at.strftime('%d %b %Y') %}
+    {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
 
-    <li {% if date == base_date %}class="first"{% endif %}>
-      <h3>{{ contrib.theme.name }}</h3>
-
-      {% if contrib.video and date == base_date %}
+    <li>
       <div>
-        <p class="date">{{ date }}</p>
-        <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
-          {{ contrib.title }} ({{ contrib.real_score }} votos)
-        </a>
-      </div>
+        <h3 class="respgov">{{ contrib.theme.name }}</h3>
+      </div>  
+	
+        <a href="{{ url_for('.results', rid=contrib.id) }}" class="respgov title">
+          {{ contrib.title }} 
+          <p>{{ date }} - ({{ contrib.real_score }} votos) </p>
+        </a>      
 
-      <div class="videobox">
-        <video
-           id="{{ contrib.video.id }}"
-           width="{{ contrib.video.video_width }}"
-           height="{{ contrib.video.video_height }}">
-          {% for source in contrib.video_sources %}
-          <source type="{{ source.format }}" src="{{ source.url }}">
-            {% endfor %}
-        </video>
-      </div>
-      {% endif %}
-
-      {% if contrib.video and date != base_date %}
+	{% if contrib.video  %}
       <div class="video">
         <a href="javascript:;" onclick='video.play({{ contrib.video|tojson|safe }})'>
           <div class="container">
             <img class="thumb"
                  src="{{ contrib.video.thumbnail }}" alt="{{ contrib.video.title }}"
-                 width="193" height="110">
+                 width="300" height="190">
             <img src="../static/imgs/play.png" class="play">
           </div>
         </a>
@@ -49,16 +38,16 @@
                alt="Permanet link">
         </a>
       </div>
-
-      <div>
-        <p class="date">{{ date }}</p>
-        <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
-          {{ contrib.title }} ({{ contrib.real_score }} votos)
-        </a>
-      </div>
-      {% endif %}
-
-      <div class="content">{{ contrib.content|safe }}</div>
+    {% endif %}
+    
+      	<div class="respgov_balao">
+			<h5>Pergunta</h5>
+ 			{{ contrib.content[:500]|safe }}
+ 			{% if contrib.content|safe|length > 500 %}
+        		...
+				<a href="{{ url_for('.results', rid=contrib.id) }}">[continue lendo]</a>
+			{% endif %}
+		</div>
 
       {% if contrib.aggregated %}
       <a href="javascript:;"

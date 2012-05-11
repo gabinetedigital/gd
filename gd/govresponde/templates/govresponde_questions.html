@@ -8,37 +8,35 @@
 {% block rcolumn %}
 
 <div class="questions">
-  <form id="filterform" method="get" action="{{ url_for('.questions') }}">
-    <input type="hidden" name="theme" value="{{ theme.id }}">
-    <select name="sortby" onchange="$('#filterform').submit()">
-      <option value="">filtros</option>
-      <option
-         {% if sortby == '-date' %}selected="selected"{% endif %}
-         value="-date">
-        Mais recentes
-      </option>
-      <option
-         {% if sortby == 'date' %}selected="selected"{% endif %}
-         value="date">
-        Mais antigas
-      </option>
-      <option
-         {% if sortby == '-score' %}selected="selected"{% endif %}
-         value="-score">
-        Mais votadas
-      </option>
-      <option
-         {% if sortby == 'score' %}selected="selected"{% endif %}
-         value="score">
-        Menos votadas
-      </option>
-    </select>
-  </form>
-  <h2>
-    Perguntas em votação
-    {% if theme %}({{ theme.name }}){% endif %}
-  </h2>
-
+  <div class="head">
+    <h1 class="questions">{% if theme %}{{ theme.name }}{% endif %}</h1>
+    <form id="filterform" method="get" action="{{ url_for('.questions') }}">
+      <input type="hidden" name="theme" value="{{ theme.id }}">
+      <select name="sortby" onchange="$('#filterform').submit()">
+        <option value="">filtros</option>
+        <option
+           {% if sortby == '-date' %}selected="selected"{% endif %}
+           value="-date">
+          Mais recentes
+        </option>
+        <option
+           {% if sortby == 'date' %}selected="selected"{% endif %}
+           value="date">
+          Mais antigas
+        </option>
+        <option
+           {% if sortby == '-score' %}selected="selected"{% endif %}
+           value="-score">
+          Mais votadas
+        </option>
+        <option
+           {% if sortby == 'score' %}selected="selected"{% endif %}
+           value="score">
+          Menos votadas
+        </option>
+      </select>
+    </form>
+  </div>
   <ul>
     {% for question in questions %}
     <li id="question-{{ question.id }}">

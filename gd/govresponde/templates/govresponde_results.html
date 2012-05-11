@@ -3,8 +3,14 @@
 {% block sidebar %}{% endblock %}
 
 {% block rcolumn %}
-<div class="resultpage">
-  <h2>{{ contrib.title }} ({{ contrib.answered_at.strftime('%d/%m/%Y') }})</h2>
+<div class="highlight resultpage">
+
+  <div class="date">
+    <p class="dia">05</p>
+    <p class="mes">mar</p>
+    <p class="ano">2012</p>
+  </div>
+  <h2>{{ contrib.title }}</h2>
   <em>{{ contrib.theme.name }}</em>
 
   <div class="videobox">
@@ -18,13 +24,13 @@
     </video>
   </div>
 
-  <div class="question">
-    <h3>Pergunta</h3>
+  <div class="pergunta">
+    <h5>Pergunta</h5>
     <div>{{ contrib.content|safe }}</div>
   </div>
 
-  <div class="answer">
-    <h3>Resposta</h3>
+  <div class="caso">
+    <h5>Resposta</h5>
     <div>{{ contrib.answer|safe }}</div>
   </div>
 
