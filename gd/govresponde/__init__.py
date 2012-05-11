@@ -70,9 +70,9 @@ def _get_context(custom=None):
 def _format_contrib(contrib):
     contrib['created_at'] = dateparser.parse(contrib['created_at'])
     contrib['answered_at'] = dateparser.parse(contrib['answered_at'])
-    contrib['theme'] = wordpress.govr.getTheme(contrib['theme_id'])
-    contrib['video'] = wordpress.wpgd.getVideo(contrib['data'])
-    contrib['video_sources'] = wordpress.wpgd.getVideoSources(contrib['data'])
+    #contrib['theme'] = wordpress.govr.getTheme(contrib['theme_id'])
+    #contrib['video'] = wordpress.wpgd.getVideo(contrib['data'])
+    #contrib['video_sources'] = wordpress.wpgd.getVideoSources(contrib['data'])
     return contrib
 
 
