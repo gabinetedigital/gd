@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import url('font.css');
+@import url('ie-font.css');
 
 * {
     font-family: Arial, Helvetica, sans-serif;
