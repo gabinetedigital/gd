@@ -4,11 +4,14 @@
 
 {% block rcolumn %}
 <div class="highlight resultpage">
-
+	{% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
+    {% set datedia = contrib.answered_at.strftime('%d') %}
+    {% set datemes = contrib.answered_at.strftime('%b') %}
+    {% set dateano = contrib.answered_at.strftime('%Y') %}
   <div class="date">
-    <p class="dia">05</p>
-    <p class="mes">mar</p>
-    <p class="ano">2012</p>
+    <p class="dia">{{ datedia }}</p>
+    <p class="mes">{{ datemes }}</p>
+    <p class="ano">{{ dateano }}</p>
   </div>
   <h2>{{ contrib.title }}</h2>
   <em>{{ contrib.theme.name }}</em>

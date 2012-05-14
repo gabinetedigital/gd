@@ -19,7 +19,7 @@
 
 """Web application definitions to the govr tool"""
 
-import datetime
+import locale
 
 from flask import Blueprint, request, render_template, redirect, \
     url_for, abort
@@ -36,6 +36,7 @@ govresponde = Blueprint(
     template_folder='templates',
     static_folder='static')
 
+locale.setlocale(locale.LC_ALL, 'pt_BR')
 
 CONTRIBS_PER_PAGE = 50
 
@@ -171,7 +172,7 @@ def comofunciona():
     return render_template(
         'govresponde_comofunciona.html',
         **_get_context({
-            'page': wordpress.getPageByPath('govresponde/como-funciona'),
+            'page': wordpress.getPageByPath('govresponde/como-funciona'), 
             'hidesidebar': True,
             'hidesidebarright' : True,
             'statusedicao': statusedicao
@@ -188,6 +189,7 @@ def send():
     return render_template(
         'govresponde_enviar.html',
         **_get_context({ 
+            'page': wordpress.getPageByPath('govresponde/lembre-se'),            
             'form': form,
             'hidesidebar': True,
             'hidesidebarright' : True,
@@ -232,8 +234,6 @@ def questions():
     # Finally, listing the questions that are able to receive votes.
     pagination = {}
     
-    print "-------------------------------------------------------------------------" 
-    print "1 = ",datetime.datetime.now()
     pagination['page'] = int(request.values.get('page', 0))
     questions_raw, count = wordpress.govr.getVotingContribs(
         theme_id,               # theme id
@@ -244,7 +244,6 @@ def questions():
         '',                     # from
         CONTRIBS_PER_PAGE,      # perpage
     )
-    print "2 = ",datetime.datetime.now()
     # Pagination stuff
     count = int(count)
     pagination['pages'] = int(ceil(float(count) / CONTRIBS_PER_PAGE))
@@ -255,14 +254,12 @@ def questions():
         question = _format_contrib(i)
         questions.append(question)
     
-    print "3 = ",datetime.datetime.now()        
     ctx.update({
         'questions': questions,
         'pagination': pagination,
         'sortby': sortby,
         'statusedicao': statusedicao
     })
-    print "4 = ",datetime.datetime.now()
     return render_template('govresponde_questions.html', **ctx)
     
 
