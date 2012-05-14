@@ -12,7 +12,10 @@
         type="text/css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/teaser.css') }}"
         type="text/css">
-
+<!--[if IE]>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ie-teaser.css') }}"
+        type="text/css">
+<![endif]-->
 <script>
   function saiba_mais() {
     $("#saiba_mais").hide();

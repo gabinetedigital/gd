@@ -2,6 +2,9 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/blog.css') }}">
+<!--[if IE]>
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
+<![endif]-->
 {% endblock %}
 
 {% block javascript %}

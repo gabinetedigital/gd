@@ -3,6 +3,9 @@
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/carousel.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/about.css') }}">
+<!--[if IE]>
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-about.css') }}">
+<![endif]-->
 {% endblock %}
 
 {% block javascript %}
