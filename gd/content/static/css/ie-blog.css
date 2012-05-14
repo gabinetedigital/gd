@@ -1,0 +1,255 @@
+@import url('font.css');
+
+* {
+    font-family: Arial;
+    
+}
+
+#header #slideshow {
+    height: 26px;
+    background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
+}
+
+#container #post {
+    margin-top: 20px;
+    background:white;
+    font-size: 13px;
+    -moz-box-shadow: 0px 0px 6px 1px #CCC;
+    -webkit-box-shadow: 0px 0px 6px 1px #CCC;
+    box-shadow: 0px 0px 6px 1px #CCC;
+    background-color: #FFF;
+}
+
+#container #news h2 a {
+    color: #2e3436;
+}
+
+#container #news a {
+    color: #668000;
+}
+
+#container #news a:hover {
+    color: #668000;
+    text-decoration: underline;
+}
+
+#container #news  {
+    color: #2e3436;
+    margin: 20px;
+    font-size: 14px;
+}
+
+#container #news .news li img {
+    float: left;
+    margin-right: 30px;
+}
+
+#container #news .news li img.wide {
+    float:none;
+}
+
+#container #news .news h2 {
+    color: #2e3436;
+    font-size: 15pt;
+    margin-bottom: 8px;
+}
+
+#container #news .news li.title {
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    padding:5px;
+    position:relative;
+    margin-top:-48px;
+    width:590px;
+}
+
+#container #news .news .meta {
+    text-align: right;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #999;
+}
+
+#container #news .news .meta strong {
+    font-weight:normal;
+    color:#4e9a06;
+}
+
+#container #post blockquote {
+    background: url("../imgs/quote.png") top right no-repeat ;
+    padding: 5px 38px 10px 10px;
+    text-align: justify;
+    color: #555753;
+    font-style: italic;
+}
+
+#container #post h1 {
+    margin-bottom: 10px;
+}
+
+#container #post h2, h3, h4 {
+    color: #A40000;
+}
+
+/* #container #post .wp-caption-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    margin-top: -41px;
+    width: 279px;
+    padding: 10px;
+    position: absolute;
+} */
+
+#container #post ul li {
+    margin-left: 30px;
+    list-style-type: disc;
+}
+
+#container #post ol {
+    margin-left: 20px;
+    list-style: decimal;
+}
+
+#container #post #wrapper-bottom {
+    background: url(../imgs/wrapper-bottom.png) -9px no-repeat;
+    height: 62px;
+}
+
+#container #post h2 {
+    margin-bottom:20px;
+}
+
+#container #post p {
+    margin:10px 0;
+}
+
+#container #post #comments {
+    border-top: 1px dotted #999;
+    padding-top: 12px;
+    margin-top: 30px;
+}
+
+#container #post #comments h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+#container #post #comments textarea {
+    border: 1px solid #eee;
+    width: 80%;
+    float: left;
+    height: 70px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+#container #post #comments input {
+    height: 70px;
+    padding: 20px;
+    margin-left: 10px;
+    border: 2px solid #eee;
+    background: #FFF:
+}
+
+#container #post .comment {
+    margin-bottom: 20px;
+    float: left;
+}
+
+#container #post .comment img {
+    float: left;
+    margin-right: 20px;
+}
+
+#container #post .comment .content {
+    -moz-border-radius: 0px 20px 20px 20px;
+    -webkit-border-radius: 0px 20px 20px 20px;
+    border-radius: 0px 20px 20px 20px;
+    background: #eee;
+    padding: 6px;
+    width: 500px;
+    float: right;
+    padding: 16px;
+}
+
+#container #post .comment .content h3 {
+    margin-bottom: 12px;
+}
+
+/** Sidebar **/
+
+#container #sidebar {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    float:right;
+    	
+}
+
+#container #sidebar h3 {
+    font-size: 16px;
+    font-weight: normal;
+    color: #4e9a06;
+}
+
+#container #sidebar .widget_recent_entries li {
+    margin: 10px;
+    font-size: 14px;
+    border-bottom: 1px dotted #babdb6;
+    padding-bottom: 6px;
+}
+
+#container #sidebar .widget_recent_entries a, .widget_recent_entries a:visited {
+    color: #2e3436;
+}
+
+#container #sidebar .widget_recent_entries a:hover {
+    color: #999;
+}
+
+#container #sidebar .widget_tag_cloud {
+    margin-bottom: 30px;
+}
+
+#container #sidebar .widget_tag_cloud li {
+    display: inline;
+}
+
+#container #sidebar .widget_categories {
+    margin-bottom: 30px;
+}
+
+#container #sidebar .widget_categories ul {
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+#container #sidebar .widget_categories a:hover {
+    text-decoration: underline;
+}
+
+#container #sidebar .widget_archive {
+    margin-bottom: 30px;
+}
+
+#container #sidebar .widget_archive ul {
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+#container #sidebar .widget_archive a, .widget_archive a:visited  {
+    color: #2e3436;
+    padding-bottom: 6px;
+    display: block;
+}
+
+#container #sidebar .widget_archive a:hover {
+    text-decoration: underline;
+}
+
+.aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
