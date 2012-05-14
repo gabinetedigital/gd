@@ -3,6 +3,12 @@
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/newsbox.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/blog.css') }}">
+
+<!--[if IE]>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ie-newsbox.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ie-blog.css') }}">
+<![endif]-->
+
 <link rel="stylesheet"
       href="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/contribs.css') }}">
