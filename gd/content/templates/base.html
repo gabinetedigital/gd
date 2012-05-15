@@ -10,7 +10,10 @@
        name="generator">
     <meta name="viewport" content="width=1024">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/978.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!--[if IE ]>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ie-style.css') }}">
+    <![endif]-->   
     <link rel="stylesheet" href="{{ url_for('auth.static', filename='css/auth.css') }}">
     <link rel="stylesheet" href="{{ conf.WORDPRESS_ADDRESS }}?wpgd/video/embedcss">
     {% block css %}{% endblock %}
