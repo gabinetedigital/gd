@@ -220,8 +220,8 @@ def questions():
     ctx = _get_context()
     theme = ctx['theme']
     questions = []
-    #sortby = request.values.get('sortby', '-date')
-    sortby = '?rand'
+    sortby = request.values.get('sortby') or '?rand'
+    #sortby = '?rand'
 
     # Looking for the authenticated user
     user_id = auth.is_authenticated() and \
