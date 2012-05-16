@@ -29,7 +29,7 @@
     <div class="date">
       Enviada em {{ question.created_at.strftime('%d/%m/%Y') }} | 
     </div>
-    <a href="comofunciona">Mobilize</a>
+    <a href="/govresponde/comofunciona">Mobilize</a>
     <!-- AddThis Button BEGIN -->
     <div class="addthis_toolbox addthis_default_style"
          addthis:url="{{ request.url_root }}{{ url_for('.question', qid=question.id) }}"
