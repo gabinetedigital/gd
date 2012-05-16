@@ -299,6 +299,7 @@ h1.questions {
     margin:10px 0;
     color:#000;
     display:block;
+    height: 49px;
 }
 
 .questions .date {
