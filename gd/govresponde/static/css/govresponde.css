@@ -61,7 +61,7 @@
     width: 412px;
 }
 
-#container .answerlink .encaminhamento {
+#container .answerlink .encaminhamento, .referrals .encaminhamento {
     font-size: 16px;
     color: #563a11;
     background: url("../imgs/encaminhamento.png") no-repeat left;
@@ -145,6 +145,8 @@ p.desc {
 .rcolumn h2 {
     color:#a00;
     margin-bottom:10px;
+    display: block;
+    height: 49px;
 }
 
 /* -- highlight -- */
@@ -430,9 +432,9 @@ h3.respgov {
     margin:0 auto;
 }
 
-.resultpage h3 {
-    margin:18px 0;
-}
+/* .resultpage h3 { */
+/*     margin:18px 0; */
+/* } */
 
 .resultpage .question div,
 .resultpage .answer div {

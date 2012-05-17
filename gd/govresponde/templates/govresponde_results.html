@@ -14,7 +14,7 @@
     <p class="ano">{{ dateano }}</p>
   </div>
   <h2>{{ contrib.title }}</h2>
-  <em>{{ contrib.theme.name }}</em>
+  <h3>{{ contrib.theme.name }}</h3>
 
   <div class="videobox">
     <video
@@ -39,7 +39,7 @@
 
   {% if referrals %}
   <div class="referrals">
-    <h3>Encaminhamentos</h3>
+    <a href="#" class="encaminhamento">Encaminhamentos</a>
     <ul>
       {% for post in referrals %}
       <li>
