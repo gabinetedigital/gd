@@ -49,7 +49,12 @@
         #}
 
         <dl>
-          <dt class="section">{% if page %}Escolha o tema{% else %}Perguntas em votação{% endif %}
+          <dt class="section">
+          {% if page %}
+              <a href="?page=todos">Escolha o tema</a>
+          {% else %}
+              Perguntas em votação
+          {% endif %}
           </dt>
 
           <dd {% if not theme and request.path.endswith('questions') %}

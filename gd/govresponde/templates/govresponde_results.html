@@ -2,6 +2,10 @@
 
 {% block sidebar %}{% endblock %}
 
+{% block js %}
+<script src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ddba96024e86089"></script>
+{% endblock %}
+
 {% block rcolumn %}
 <div class="highlight resultpage">
 	{% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
@@ -36,8 +40,44 @@
     <h5>Resposta</h5>
     <div>{{ contrib.answer|safe }}</div>
   </div>
+  
+  <div style="clear:both; padding-top:5px;">&nbsp;</div>
+  
+  <div class="meta">
+    <a href="/govresponde/comofunciona">Mobilize</a>  
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style"
+         addthis:url="{{ request.url_root }}{{ url_for('.results', rid=contrib.id) }}"
+         addthis:title="O que eu gostaria de saber do Governador: {{ contrib.title }}">
+      <a class="addthis_button_preferred_1"></a>
+      <a class="addthis_button_preferred_2"></a>
+      <a class="addthis_button_preferred_3"></a>
+      <a class="addthis_button_preferred_4"></a>
+      <a class="addthis_button_compact"></a>
+      <a class="addthis_counter addthis_bubble_style"></a>
+    </div>
+    <script>var addthis_config = {"data_track_clickback":true};</script>
+    <!-- AddThis Button END -->
+  </div>
+  <div style="clear:both; padding-top:5px;">&nbsp;</div>
 
-  {% if referrals %}
+  {% if contrib.aggregated %}
+      <a href="javascript:;"
+         onclick="showAggregated({{ contrib.id  }})"
+         class="otherquestions">         
+        Demais perguntas incluídas
+      </a>
+      <ul id="aggregated-{{ contrib.id }}" class="aggregated">
+        {% for ag in contrib.aggregated %}
+        <li>
+          <strong>{{ ag.title }}</strong>
+          <p class="desc">{{ ag.content }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+  {% endif %}
+            
+  {% if referrals %}  
   <div class="referrals">
     <a href="#" class="encaminhamento">Encaminhamentos</a>
     <ul>

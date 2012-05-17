@@ -71,6 +71,7 @@
 
 
       <div class="answerlink">
+        {% if contrib.category %}
         <a href="{{ url_for('.results', rid=contrib.id) }}"
            class="encaminhamento">
           Encaminhamentos
@@ -93,7 +94,7 @@
         {% endif %}
 
       </div>
-
+        
     </li>
     {% endfor %}
   </ul>

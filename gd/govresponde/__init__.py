@@ -38,7 +38,7 @@ govresponde = Blueprint(
 
 locale.setlocale(locale.LC_ALL, 'pt_BR')
 
-CONTRIBS_PER_PAGE = 50
+CONTRIBS_PER_PAGE = 10
 
 statusedicao = ''
 
@@ -86,7 +86,6 @@ def index():
     theme_id = theme and \
          theme['id'] or ''
     
-    print 'page =', page
     if page <> '':
         if theme_id <> '':     
             statusedicao = ''
@@ -96,10 +95,15 @@ def index():
     else:    
         statusedicao = 'ultima'
         pagerender = 'govresponde_home.html'
+        
+    if page == 'todos':
+        statusedicao = ''
+        page = 'resp'
          
     # Getting the user id if the user is authenticated
     user_id = auth.is_authenticated() and \
         auth.authenticated_user().id or ''
+    
         
     # Querying the contribs ordenated by the answer date
     #print "-------------------------------------------------------------------------" 
