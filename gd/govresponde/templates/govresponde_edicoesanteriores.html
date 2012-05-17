@@ -17,12 +17,21 @@
         <h3 class="respgov">{{ contrib.theme.name }}</h3>
       </div>  
 	
-        <a href="{{ url_for('.results', rid=contrib.id) }}" class="respgov title">
-          {{ contrib.title }} 
-          <p>{{ date }} - ({{ contrib.real_score }} votos) </p>
-        </a>      
+      <a href="{{ url_for('.results', rid=contrib.id) }}" class="respgov title">
+        {{ contrib.title }} 
+        <p class="qdate">{{ date }} - ({{ contrib.real_score }} votos) </p>
+      </a>      
 
-	{% if contrib.video  %}
+      <div class="respgov_balao">
+ 	{{ contrib.content[:300]|safe }}
+ 	{% if contrib.content|safe|length > 300 %}
+        ...
+	<a href="{{ url_for('.results', rid=contrib.id) }}">[continue lendo]</a>
+	{% endif %}
+        <h4>Pergunta</h4>
+      </div> 
+
+      {% if contrib.video  %}
       <div class="video">
         <a href="javascript:;" onclick='video.play({{ contrib.video|tojson|safe }})'>
           <div class="container">
@@ -38,19 +47,15 @@
                alt="Permanet link">
         </a>
       </div>
-    {% endif %}
+      {% endif %}
     
-      	<div class="respgov_balao">
-			<h5>Pergunta</h5>
- 			{{ contrib.content[:500]|safe }}
- 			{% if contrib.content|safe|length > 500 %}
-        		...
-				<a href="{{ url_for('.results', rid=contrib.id) }}">[continue lendo]</a>
-			{% endif %}
-		</div>
-
-      {% if contrib.aggregated %}
-      <a href="javascript:;"
+      <div class="answerlink">
+        <a href="{{ url_for('.results', rid=contrib.id) }}"
+           class="encaminhamento">
+          Encaminhamentos
+        </a>
+        {% if contrib.aggregated %}
+        <a href="javascript:;"
          onclick="showAggregated({{ contrib.id  }})"
          class="otherquestions">
         Demais perguntas incluídas
@@ -64,13 +69,10 @@
         {% endfor %}
       </ul>
       {% endif %}
-
-      <div class="answerlink">
-        <a href="{{ url_for('.results', rid=contrib.id) }}"
-           class="awesome">
-          Encaminhamentos da resposta
-        </a>
+      
       </div>
+
+
 
     </li>
     {% endfor %}

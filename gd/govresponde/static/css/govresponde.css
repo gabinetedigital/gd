@@ -146,7 +146,7 @@ p.desc {
     color:#a00;
     margin-bottom:10px;
     display: block;
-    height: 49px;
+    height: 49px;otot
 }
 
 /* -- highlight -- */
@@ -180,8 +180,8 @@ p.desc {
     width:300px;
     height:190px;
     border:solid 1px #999;
-    float:left;
-    margin-right:10px;
+    float: right;
+    margin-top:10px;
 }
 
 .highlight .date {
@@ -411,14 +411,58 @@ h3.respgov {
     color: black;
 }
 
+.questions .qdate {
+    margin-left: 40px;
+    color: #969a9c;
+    font-weight: normal;
+}
+
 .respgov_balao {
     background-color: #2da7d3;
-    border-radius: 32px;
-    padding: 20px;
+    border-radius: 32px 32px 32px 0px;
+    padding: 20px 20px 0;
     text-align: justify;
     width: 300px;
-    float: right;
+    float: left;
+    height: 173px;
+    margin-top: 10px;
+}
+
+.respgov_balao h4 {
+    color: #FFFFFF;
+    font-size: 21px;
+    font-weight: normal;
+    margin-bottom: 9px;    
+}
+
+.respgov_balao a {
+    color: #FFF;
+}
+
+.video .thumb {
     height: 190px;
+    margin-bottom: 10px;
+    width: 300px;    
+}
+
+.video .container {
+    height: 190px;
+    overflow: hidden;
+}
+
+.video .play {
+    height: 50px;
+    margin-left: 125px;
+    margin-top: -76px;
+    position: relative;
+    top: -94px;
+    width: 50px;
+}
+
+.video .permalink {
+    left: 277px;
+    position: relative;
+    top: -25px;
 }
 
 .resultpage .videobox {
@@ -426,6 +470,7 @@ h3.respgov {
     width:100%;
     background:#000;
     text-align:center;
+    margin-top: 10px;
 }
 
 .resultpage .videobox .video-js-box {
