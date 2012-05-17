@@ -25,7 +25,7 @@
         <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
           {{ contrib.title }} ({{ contrib.real_score }} votos)
         </a>
-      <h3>{{ contrib.theme.name }}</h3>
+        <h3>{{ contrib.theme.name }}</h3>
       </div>
 
       <div class="videobox">
@@ -70,27 +70,28 @@
       <div class="caso">{{ contrib.answer|safe }} <h5>Entenda o caso</h5></div>
 
 
-      {% if contrib.aggregated %}
-      <a href="javascript:;"
-         onclick="showAggregated({{ contrib.id  }})"
-         class="otherquestions">
-        Demais perguntas incluídas
-      </a>
-      <ul id="aggregated-{{ contrib.id }}" class="aggregated">
-        {% for ag in contrib.aggregated %}
-        <li>
-          <strong>{{ ag.title }}</strong>
-          <p class="desc">{{ ag.content }}</p>
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-
       <div class="answerlink">
         <a href="{{ url_for('.results', rid=contrib.id) }}"
-           class="awesome">
-          Encaminhamentos da resposta
+           class="encaminhamento">
+          Encaminhamentos
         </a>
+
+        {% if contrib.aggregated %}
+        <a href="javascript:;"
+           onclick="showAggregated({{ contrib.id  }})"
+           class="otherquestions">
+          Demais perguntas incluídas
+        </a>
+        <ul id="aggregated-{{ contrib.id }}" class="aggregated">
+          {% for ag in contrib.aggregated %}
+          <li>
+            <strong>{{ ag.title }}</strong>
+            <p class="desc">{{ ag.content }}</p>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
       </div>
 
     </li>

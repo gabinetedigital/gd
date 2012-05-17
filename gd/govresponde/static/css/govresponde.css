@@ -58,14 +58,23 @@
 #container .answerlink {
     margin-top:20px;
     clear:both;
+    width: 412px;
+}
+
+#container .answerlink .encaminhamento {
+    font-size: 16px;
+    color: #563a11;
+    background: url("../imgs/encaminhamento.png") no-repeat left;
+    padding-left: 20px;
 }
 
 a.otherquestions {
     display:block;
-    margin-top:10px;
-    background:url("../imgs/others.png") no-repeat;
+    background:url("../imgs/others.png") no-repeat left;
     padding-left:20px;
     clear:both;
+    float: right;
+    font-size: 16px;
 }
 
 p.desc {
