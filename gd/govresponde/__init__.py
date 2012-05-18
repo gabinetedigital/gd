@@ -36,9 +36,9 @@ govresponde = Blueprint(
     template_folder='templates',
     static_folder='static')
 
-locale.setlocale(locale.LC_ALL, 'pt_BR')
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
-CONTRIBS_PER_PAGE = 5
+CONTRIBS_PER_PAGE = 10
 
 statusedicao = ''
 
@@ -101,7 +101,6 @@ def index():
         
     if pg == 'todos':
         statusedicao = ''
-        pg = 'resp'
          
     # Getting the user id if the user is authenticated
     user_id = auth.is_authenticated() and \
@@ -114,20 +113,15 @@ def index():
     print 'xxxx === ', pagination['page']
         
     # Querying the contribs ordenated by the answer date
-    #print "-------------------------------------------------------------------------" 
-    #print "1 = ",datetime.datetime.now()
     contribs = []
-    #print "2 = ",datetime.datetime.now()
     contribs_raw, count = wordpress.govr.getContribs(
-        theme_id, user_id, pagination['page'], '-answerdate', '', '', 'responded', '', '', statusedicao)
-    #print "3 = ",datetime.datetime.now()
+        theme_id, user_id, pagination['page'], '-answerdate', '', '', 'responded', '', CONTRIBS_PER_PAGE, statusedicao)
+
     for i in contribs_raw:
         contribs.append(_format_contrib(i))
-        print 'xxxx2 === ', contribs[0]['answered_at']
     
-    print 'xxxx1 === ', count
     # Pagination stuff
-    count = int(count)
+    count = count
     pagination['pages'] = int(ceil(float(count) / CONTRIBS_PER_PAGE))
     pagination['count'] = count
     
