@@ -25,7 +25,7 @@
           <a href="{{ url_for('.comofunciona') }}">Como Funciona</a>
         </li>
         <li class="respostasgov">
-          <a href="{{ url_for('.index') }}?page=resp">Respostas do Governador</a>
+          <a href="{{ url_for('.index') }}?pg=resp">Respostas do Governador</a>
         </li>
         <li class="envie">
           <a href="{{ url_for('.send') }}">Envie sua Pergunta</a>
@@ -50,8 +50,8 @@
 
         <dl>
           <dt class="section">
-          {% if page %}
-              <a href="?page=todos">Escolha o tema</a>
+          {% if pg %}
+              <a href="?pg=todos">Escolha o tema</a>
           {% else %}
               Perguntas em votação
           {% endif %}
@@ -61,9 +61,9 @@
               class="choosen"{% endif %}>            
           </dd>
 			
-          {% for i in wordpress.govr.getThemes(page) %}
+          {% for i in wordpress.govr.getThemes(pg) %}
           <dd {% if theme and theme.id == i.id  %}class="choosen"{% endif %}>
-            <a href="{% if page %}?page=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
+            <a href="{% if pg %}?pg=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
               {{ i.name }}
             </a>
           </dd>

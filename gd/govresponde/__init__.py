@@ -38,13 +38,14 @@ govresponde = Blueprint(
 
 locale.setlocale(locale.LC_ALL, 'pt_BR')
 
-CONTRIBS_PER_PAGE = 10
+CONTRIBS_PER_PAGE = 5
 
 statusedicao = ''
 
 def _get_context(custom=None):
     theme_id = request.values.get('theme')
     page     = request.values.get('page')
+    pg       = request.values.get('pg')
     govr = wordpress.govr
     ctx = {}
 
@@ -57,6 +58,7 @@ def _get_context(custom=None):
     ctx['wordpress'] = wordpress
     ctx['theme'] = theme_id and govr.getTheme(theme_id)  or ''
     ctx['page'] = page or ''
+    ctx['pg'] = pg or ''
     
     
     # Info from authenticated users
@@ -82,11 +84,12 @@ def index():
     ctx = _get_context()
     theme = ctx['theme']
     page  = ctx['page']
+    pg    = ctx['pg']
     # Discovering the theme id
     theme_id = theme and \
          theme['id'] or ''
     
-    if page <> '':
+    if pg <> '':
         if theme_id <> '':     
             statusedicao = ''
         else:
@@ -96,14 +99,19 @@ def index():
         statusedicao = 'ultima'
         pagerender = 'govresponde_home.html'
         
-    if page == 'todos':
+    if pg == 'todos':
         statusedicao = ''
-        page = 'resp'
+        pg = 'resp'
          
     # Getting the user id if the user is authenticated
     user_id = auth.is_authenticated() and \
         auth.authenticated_user().id or ''
     
+    # Finally, listing the questions that are able to receive votes.
+    pagination = {}    
+    pagination['page'] = int(request.values.get('page', 0))
+    
+    print 'xxxx === ', pagination['page']
         
     # Querying the contribs ordenated by the answer date
     #print "-------------------------------------------------------------------------" 
@@ -111,10 +119,19 @@ def index():
     contribs = []
     #print "2 = ",datetime.datetime.now()
     contribs_raw, count = wordpress.govr.getContribs(
-        theme_id, user_id, 0, '-answerdate', '', '', 'responded', '', '', statusedicao)
+        theme_id, user_id, pagination['page'], '-answerdate', '', '', 'responded', '', '', statusedicao)
     #print "3 = ",datetime.datetime.now()
     for i in contribs_raw:
         contribs.append(_format_contrib(i))
+        print 'xxxx2 === ', contribs[0]['answered_at']
+    
+    print 'xxxx1 === ', count
+    # Pagination stuff
+    count = int(count)
+    pagination['pages'] = int(ceil(float(count) / CONTRIBS_PER_PAGE))
+    pagination['count'] = count
+    
+    
 
     #print "4 = ",datetime.datetime.now()
 
@@ -134,7 +151,8 @@ def index():
         'count': count,
         'base_date': base_date,
         'statusedicao': statusedicao,  
-        'page' : page
+        'pagination': pagination,
+        'pg' : pg
     }))
     
 
