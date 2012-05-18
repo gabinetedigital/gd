@@ -287,11 +287,24 @@ form#send .helptext {
 .questions .head {
     display: block;
     margin-bottom: 20px;
-    height: 34px;
+    height: 38px;
+}
+
+
+form input, form select, form textarea {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #93B937;
+    border-radius: 4px 4px 4px 4px;
+    margin-top: 7px;
+    padding: 2px;
+    box-shadow: none;
 }
 
 h1.questions {
     float: left;
+    color: #93B937;
+    font-size: 26px;
+    font-weight: normal;
 }
 
 .questions #orderby {
@@ -313,6 +326,31 @@ h1.questions {
     height: 49px;
 }
 
+.questions .title a {
+    color: #000;
+    font-weight: normal;
+    font-size: 14pt;
+}
+
+.questions .meta .date {
+    color: #4D4D4D;
+    float: left;
+    font-size: 13px;
+}
+
+.questions .meta .date {
+    color: #4D4D4D;
+    float: left;
+    font-size: 13px;
+}
+
+.questions .meta .mobilize {
+    float: left;
+    color: #e10000;
+    font-size: 16px;
+    margin: 7px 11px;
+}
+
 .questions .date {
     margin:10px 0;
 }
@@ -323,8 +361,13 @@ h1.questions {
     padding: 12px 14px;
 }
 
+.questions .content .balloon p.desc {
+    color: #FFF;
+}
+
 .questions .addthis_toolbox {
     height:20px;
+    padding: 10px 0;
 }
 
 .questions .votes {
@@ -335,6 +378,7 @@ h1.questions {
     background: url("../imgs/circle.png") no-repeat scroll 0 0 transparent;
     height: 92px;
     color: #93b937;
+    margin-top: 7%;
 }
 
 .questions button {

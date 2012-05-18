@@ -6,6 +6,7 @@
   <p>Votos</p>
   {% endif %}
 </div>
+
 <div class="content">
   <strong class="title">
     <a href="{{ url_for('.question', qid=question.id) }}">
@@ -27,9 +28,9 @@
 
   <div class="meta">
     <div class="date">
-      Enviada em {{ question.created_at.strftime('%d/%m/%Y') }} | 
+      Pergunta enviada em {{ question.created_at.strftime('%d/%m/%Y') }} | 
     </div>
-    <a href="/govresponde/comofunciona">Mobilize</a>
+    <a href="comofunciona" class="mobilize">Mobilize</a>
     <!-- AddThis Button BEGIN -->
     <div class="addthis_toolbox addthis_default_style"
          addthis:url="{{ request.url_root }}{{ url_for('.question', qid=question.id) }}"
