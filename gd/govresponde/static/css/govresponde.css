@@ -256,6 +256,22 @@ p.desc {
 
 
 /* -- send question -- */
+
+h1.envie {
+    background: url("../imgs/envie.png") no-repeat scroll left center transparent;
+    color: #af0000;
+    height: 50px;
+    font-weight: normal;
+    margin-left: 23px;
+    padding-left: 109px;
+    padding-top: 9px;
+}
+
+form#send {
+    margin-left: 23px;
+    display: block;
+}
+
 form#send label {
     display:block;
     font-size:12pt;
@@ -276,10 +292,21 @@ form#send textarea {
 
 form#send .sendbtn {
     margin-top:20px;
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 231px;
 }
 
 form#send .helptext {
-    margin-right:250px;
+    font-size: 14px;
+}
+
+.error {
+    background: none repeat scroll 0 0 #CE3316;
+    border: 1px solid #EF2929;
+    margin: 20px auto 0;
+    text-align: center;
+    width: 76%;
 }
 
 /* -- questions screen -- */
@@ -293,7 +320,7 @@ form#send .helptext {
 
 form input, form select, form textarea {
     background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #93B937;
+    /* border: 1px solid #93B937; */
     border-radius: 4px 4px 4px 4px;
     margin-top: 7px;
     padding: 2px;
