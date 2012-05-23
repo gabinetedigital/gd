@@ -1,24 +1,54 @@
 {% extends "govresponde.html" %}
 
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/govresponde.js') }}"></script>
+{% endblock %}
 
 {% block lcolumn %}
 
-<h2>Comum funciona?</h2>
+<h1 class="cfunciona">Comum funciona?</h1>
 
-<div id="palco">
-  <div id="oque">
-    <p>Quer saber a opinião do Governador sobre um determinado assunto?</p>
-    <h4>Procure</h4> <h4>Participe</h4> <h4>Mobilize</h4>
-  </div>
-  <div id="controle">
-    <ol>
-      <li><a href="#1">1</a></li>
-      <li><a href="#2">2</a></li>
-      <li><a href="#3">3</a></li>
-    </ol>
-  </div>
+<div id="slideshow">
+  <ul class="carousel">
+    <li>
+      <div id="step1" class="slide">
+        <p>Quer fazer uma pergunta <u>diretamente</u> ao <b>Governador</b>?</p>
+      </div>
+    </li>
+    <li>
+      <div id="step2" class="slide">
+        <p>A pergunta mais votada de cada mês é respondida <b>pessoalmente</b> pelo Governador em <u>vídeo</u>.</p>
+      </div>
+    </li>
+    <li>
+      <div id="step3" class="slide">
+        <p>Confira as perguntas que já estão em votação, talvez o seu questionamento já tenha sido enviado por outra pessoa.</p>
+        <p>É <b>importante</b> <big>mobilizar</big> a votação em uma só pergunta para que ela tenha mais força.</p>
+      </div>
+    </li>
+    <li>
+      <div id="step4" class="slide">
+        <p>Seu questionamento ainda não foi enviado por outra pessoa?</p>
+        <p>Então é hora de formular a sua pergunta, seja direto e objetivo.</p>
+        <p>Perguntas de cunho pessoal devem ser enviadas para a <a href="">Ouvidoria</a>.</p>
+      </div>
+    </li>
+    <li>
+      <div id="step5" class="slide">
+        <p>Pergunta enviada é hora de iniciar a mobilização.</p>
+        <p>Faça campanha das redes sociais para que sua pergunta tenha mais votos.</p>
+      </div>
+    </li>
+  </ul>
+
+  <ol class="controls">
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+  </ol>
 </div>
-
 
 {% endblock %}
 
