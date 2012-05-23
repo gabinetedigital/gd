@@ -1,5 +1,9 @@
 {% extends "govresponde.html" %}
 
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/govresponde.js') }}"></script>
+{% endblock %}
+
 {% block sidebar %}{% endblock %}
 
 {% block js %}
@@ -62,26 +66,14 @@
   </div>
   <div style="clear:both; padding-top:5px;">&nbsp;</div>
 
-  {% if contrib.aggregated %}
-      <a href="javascript:;"
-         onclick="showAggregated({{ contrib.id  }})"
-         class="otherquestions">         
-        Demais perguntas incluídas
-      </a>
-      <ul id="aggregated-{{ contrib.id }}" class="aggregated">
-        {% for ag in contrib.aggregated %}
-        <li>
-          <strong>{{ ag.title }}</strong>
-          <p class="desc">{{ ag.content }}</p>
-        </li>
-        {% endfor %}
-      </ul>
-  {% endif %}
-            
-  {% if referrals %}  
-  <div class="referrals">
-    <a href="#" class="encaminhamento">Encaminhamentos</a>
-    <ul>
+  <div class="answerlink">
+    {% if referrals %}
+    <a href="javascript:;"
+       onclick="showEncaminhada({{ contrib.id  }})"
+       class="encaminhamento">
+      Encaminhamentos
+    </a>
+    <ul  id="encaminhada-{{ contrib.id }}" class="encaminhada">
       {% for post in referrals %}
       <li>
         <h4>
@@ -92,8 +84,25 @@
       </li>
       {% endfor %}
     </ul>
+    {% endif %} 
+
+    {% if contrib.aggregated %}
+    <a href="javascript:;"
+       onclick="showAggregated({{ contrib.id  }})"
+       class="otherquestions">
+      Demais perguntas incluídas
+    </a>
+    <ul id="aggregated-{{ contrib.id }}" class="aggregated">
+      {% for ag in contrib.aggregated %}
+      <li>
+        <strong>{{ ag.title }}</strong>
+        <p class="desc">{{ ag.content }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
   </div>
-  {% endif %}
 
 </div>
 {% endblock %}

@@ -17,6 +17,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+function showAggregated(parentId) {
+    $('#aggregated-' + parentId).slideToggle();
+}
+
+function showEncaminhada(parentId) {
+    $('#encaminhada-' + parentId).slideToggle();
+}
+
 $(document).ready(function () {
     $('#slideshow .controls').tabs('ul.carousel > li', {
         effect: 'fade',

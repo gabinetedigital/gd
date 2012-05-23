@@ -73,8 +73,9 @@ a.otherquestions {
     background:url("../imgs/others.png") no-repeat left;
     padding-left:20px;
     clear:both;
-    float: right;
+    float: left;
     font-size: 16px;
+    margin-right: 20px
 }
 
 p.desc {
@@ -309,6 +310,8 @@ form#send .helptext {
     width: 76%;
 }
 
+
+
 /* -- questions screen -- */
 
 .questions .head {
@@ -428,7 +431,12 @@ h1.questions {
     margin-left:100px;
 }
 
-.questions .aggregated {
+.aggregated {
+    margin:10px 10px 0 40px;
+    display:none;
+}
+
+.encaminhada {
     margin:10px 10px 0 40px;
     display:none;
 }
