@@ -102,3 +102,31 @@ function showContribForm () {
         $('form#send ol').fadeIn();
     });
 }
+
+$(document).ready(function () {
+    $("#comofunciona").overlay({
+        mask: {
+            color: '#111',
+            loadSpeed: 200,
+            opacity: 0.9
+        },
+        
+        closeOnClick: true,
+        load: true
+    });
+
+    $('#slideshow .controls').tabs('ul.carousel > li', {
+        effect: 'fade',
+        rotate: true
+    }).slideshow({
+        clickable: false
+    });
+
+    if ($('#slideshow .controls').length > 0) {
+        window.setInterval(function () {
+            $("#slideshow .controls").data("tabs").next();
+        }, 7000);
+    }
+
+});
+

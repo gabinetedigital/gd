@@ -51,6 +51,49 @@
   </ol>
 </form>
 
+<div id="comofunciona">
+  <h1 class="cfunciona">Comum funciona?</h1>
+
+  <div id="slideshow">
+    <ul class="carousel">
+      <li>
+        <div id="step1" class="slide">
+          <img src="{{ url_for('.static', filename='imgs/cf01.png') }}" />
+        </div>
+      </li>
+      <li>
+        <div id="step2" class="slide">
+          <img src="{{ url_for('.static', filename='imgs/cf02.png') }}" />
+        </div>
+      </li>
+      <li>
+        <div id="step3" class="slide">
+          <img src="{{ url_for('.static', filename='imgs/cf03.png') }}" />
+        </div>
+      </li>
+      <li>
+        <div id="step4" class="slide">
+          <img src="{{ url_for('.static', filename='imgs/cf04.png') }}" />
+        </div>
+      </li>
+      <li>
+        <div id="step5" class="slide">
+          <img src="{{ url_for('.static', filename='imgs/cf05.png') }}" />
+        </div>
+      </li>
+    </ul>
+
+    <ol class="controls">
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+    </ol>
+  </div>
+</div>
+
+
 {% endblock %}
 
 {% block rcolumn %}

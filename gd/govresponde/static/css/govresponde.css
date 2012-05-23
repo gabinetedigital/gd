@@ -310,7 +310,12 @@ form#send .helptext {
     width: 76%;
 }
 
-
+#comofunciona {
+    display: none;
+    background: #FFF;
+    padding: 20px;
+    border-radius: 20px;
+}
 
 /* -- questions screen -- */
 
