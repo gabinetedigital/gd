@@ -168,6 +168,7 @@ def remove(aid):
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
     audience = Audience.query.get(aid)
+    print aid
     status = Buzz.status.in_([u'inserted']) \
         if request.values.get('status', 'new') == 'new' \
         else not_(Buzz.status.in_([u'inserted']))
