@@ -223,3 +223,19 @@
 #resultsbutton a:hover {
 
 }
+
+#timeline {
+    display: none;
+    background: #white;
+    color: white;
+}
+
+#timeline .close {
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    display: block;
+    left: 878px;
+    position: absolute;
+    top: 20px;
+}
