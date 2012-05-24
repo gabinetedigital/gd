@@ -16,6 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+$(function () {
+
+    $("#time").click(function() {
+        $("#timeline").overlay().load();
+    });
+
+
+    $("#timeline").overlay({
+        mask: {
+            color: '#111',
+            loadSpeed: 200,
+            opacity: 0.9
+        },
+
+        closeOnClick: true,
+        load: true
+    });
+
+});
+
 $('#blog_comment_form').ajaxForm({
     beforeSubmit: function () {
         var form = $('#blog_comment_form');

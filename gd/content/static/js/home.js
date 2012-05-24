@@ -18,16 +18,23 @@
  */
 
 $(document).ready(function () {
+    $("#time").click(function() {
+        $("#timeline").overlay().load();
+    });
+
+
     $("#timeline").overlay({
         mask: {
             color: '#111',
             loadSpeed: 200,
             opacity: 0.9
         },
-        
+
         closeOnClick: true,
         load: true
     });
+
+
 
     $('#slideshow .controls').tabs('ul.carousel > li', {
         effect: 'fade',
