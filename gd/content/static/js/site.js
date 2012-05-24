@@ -73,7 +73,7 @@ $(function () {
 
 
     /* -- handling the "update your browser" message overlay -- */
-    if (($.browser.msie && parseInt($.browser.version) < 8)) {
+    if (($.browser.msie && parseInt($.browser.version) < 7)) {
         $(".browser-banner").overlay({
             load:true,
             oneInstance: false,
