@@ -23,12 +23,13 @@
       </a>      
 
       <div class="respgov_balao">
+ 	<a href="{{ url_for('.results', rid=contrib.id) }}">
  	{{ contrib.content[:300]|safe }}
  	{% if contrib.content|safe|length > 300 %}
         ...
-	<a href="{{ url_for('.results', rid=contrib.id) }}">[continue lendo]</a>
+	[continue lendo]
 	{% endif %}
-        <h4>Pergunta</h4>
+        <h4>Pergunta</h4></a>
       </div> 
 
       {% if contrib.video  %}

@@ -48,12 +48,13 @@
         </form>
         #}
 
-        <dl>
-          <dt class="section">
+        <dl>          
           {% if pg %}
+          <dt class="section_respostas">
               <a href="?pg=todos">Escolha o tema</a>
           {% else %}
-              Perguntas em votação
+          <dt class="section">
+              <a href="{{ url_for('.questions') }}">Perguntas em votação</a>
           {% endif %}
           </dt>
 
