@@ -49,7 +49,7 @@
   <ol class="pagination">
     {% for i in range(pagination.pages) %}
     <li {% if pagination.page == i %}class="selected"{% endif %}>
-      <a href="{{ url_for('.questions') }}?theme={{ theme.id }}&page={{ i }}">
+      <a href="{{ url_for('.questions') }}?theme={{ theme.id }}&page={{ i }}&sortby={{sortby}}">
         {{ i+1 }}
       </a>
     </li>
