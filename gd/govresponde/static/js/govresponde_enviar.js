@@ -121,10 +121,16 @@ $(document).ready(function () {
     }).slideshow({
         clickable: false
     });
-
+    
+    var cont = 0;
     if ($('#slideshow .controls').length > 0) {
         window.setInterval(function () {
-            $("#slideshow .controls").data("tabs").next();
+        	if ((cont == 4)) {
+        		$("#comofunciona").overlay().close();
+        		$("#slideshow .controls").data("tabs").stop();
+        	}
+        	$("#slideshow .controls").data("tabs").next();
+        	cont++;
         }, 7000);
     }
 
