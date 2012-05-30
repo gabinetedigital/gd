@@ -267,6 +267,8 @@ p.desc {
     width:100%;
     background:#000;
     text-align:center;
+    clear: both;
+    display: block;
 }
 
 .highlight li.first .videobox .video-js-box {
