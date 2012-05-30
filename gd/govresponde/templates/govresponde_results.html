@@ -48,24 +48,6 @@
   
   <div style="clear:both; padding-top:5px;">&nbsp;</div>
   
-  <div class="meta">
-    <a href="/govresponde/comofunciona">Mobilize</a>  
-    <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style"
-         addthis:url="{{ request.url_root }}{{ url_for('.results', rid=contrib.id) }}"
-         addthis:title="O que eu gostaria de saber do Governador: {{ contrib.title }}">
-      <a class="addthis_button_preferred_1"></a>
-      <a class="addthis_button_preferred_2"></a>
-      <a class="addthis_button_preferred_3"></a>
-      <a class="addthis_button_preferred_4"></a>
-      <a class="addthis_button_compact"></a>
-      <a class="addthis_counter addthis_bubble_style"></a>
-    </div>
-    <script>var addthis_config = {"data_track_clickback":true};</script>
-    <!-- AddThis Button END -->
-  </div>
-  <div style="clear:both; padding-top:5px;">&nbsp;</div>
-
   <div class="answerlink">
     {% if referrals %}
     <a href="javascript:;"
@@ -101,6 +83,23 @@
       {% endfor %}
     </ul>
     {% endif %}
+
+  <div class="share">
+    <a href="{{ url_for('govresponde.comofunciona')}}" class="mobilize">Mobilize</a>  
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style"
+         addthis:url="{{ request.url_root }}{{ url_for('.results', rid=contrib.id) }}"
+         addthis:title="O que eu gostaria de saber do Governador: {{ contrib.title }}">
+      <a class="addthis_button_preferred_1"></a>
+      <a class="addthis_button_preferred_2"></a>
+      <a class="addthis_button_preferred_3"></a>
+      <a class="addthis_button_preferred_4"></a>
+      <a class="addthis_button_compact"></a>
+      <a class="addthis_counter addthis_bubble_style"></a>
+    </div>
+    <script>var addthis_config = {"data_track_clickback":true};</script>
+    <!-- AddThis Button END -->
+  </div>
 
   </div>
 
