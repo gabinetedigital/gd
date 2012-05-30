@@ -378,7 +378,6 @@ h1.questions {
     font-weight:bold;
     margin:10px 0;
     color:#000;
-    display:block;
     height: 49px;
 }
 
@@ -415,6 +414,7 @@ h1.questions {
     background: #2da7d3;
     border-radius: 13px;
     padding: 12px 14px;
+    margin-top: 10px;
 }
 
 .questions .content .balloon p.desc {
