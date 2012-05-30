@@ -317,6 +317,16 @@ form#send .helptext {
     border-radius: 20px;
 }
 
+#comofunciona .close {
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    display: block;
+    left: 640px;
+    position: absolute;
+    top: 5px;
+}
+
 /* -- questions screen -- */
 
 .questions .head {
