@@ -36,6 +36,6 @@ $(document).ready(function () {
     if ($('#slideshow .controls').length > 0) {
         window.setInterval(function () {
             $("#slideshow .controls").data("tabs").next();
-        }, 7000);
+        }, 10000);
     }
 });

@@ -131,7 +131,7 @@ $(document).ready(function () {
         	}
         	$("#slideshow .controls").data("tabs").next();
         	cont++;
-        }, 7000);
+        }, 10000);
     }
 
 });
