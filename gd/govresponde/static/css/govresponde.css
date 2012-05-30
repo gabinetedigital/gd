@@ -32,7 +32,7 @@
     color: #008dc4;
 }
 
-#container .head .menu li.respostasgov a { 
+#container .head .menu li.respostasgov a {
     background: url("../imgs/respostasgov.png") no-repeat center top;
     color: #fe6200;
 }
@@ -116,6 +116,17 @@ p.desc {
     background: url("../imgs/vote.png") no-repeat;
     height: 41px;
     padding-left: 53px;
+}
+
+.sidebar dt.section_respostas {
+    background: url("../imgs/respostasgov.png") no-repeat;
+    height: 45px;
+    line-height: 30px;
+    padding-left: 66px;
+}
+
+.sidebar dt.section_respostas a {
+    color: #FE6200;
 }
 
 .sidebar dd {
@@ -616,7 +627,7 @@ h3.respgov {
     color: #FFFFFF;
     font-size: 21px;
     font-weight: normal;
-    margin-bottom: 9px;    
+    margin-bottom: 9px;
 }
 
 .respgov_balao a {
@@ -626,7 +637,7 @@ h3.respgov {
 .video .thumb {
     height: 190px;
     margin-bottom: 10px;
-    width: 300px;    
+    width: 300px;
 }
 
 .video .container {
@@ -664,6 +675,15 @@ h3.respgov {
 /* .resultpage h3 { */
 /*     margin:18px 0; */
 /* } */
+
+.resultpage .mobilize {
+    float: left;
+    color: #e10000;
+    font-size: 16px;
+    margin-right:5px;
+    margin-top:-3px;
+
+}
 
 .resultpage .question div,
 .resultpage .answer div {
