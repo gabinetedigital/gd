@@ -76,7 +76,7 @@
            class="encaminhamento">
           Encaminhamentos
         </a>
-
+        {% endif %}
         {% if contrib.aggregated %}
         <a href="javascript:;"
            onclick="showAggregated({{ contrib.id  }})"
@@ -94,7 +94,7 @@
         {% endif %}
 
       </div>
-        
+
     </li>
     {% endfor %}
   </ul>
