@@ -135,7 +135,7 @@ class Audience(Entity):
         except_ids = except_ids or [-1]
         return Buzz.query \
             .filter_by(audience=self) \
-            .filter(Buzz.status.in_(['approved'])) \
+            .filter(Buzz.status.in_(['approved', 'selected'])) \
             .filter(not_(Buzz.id.in_(except_ids))) \
             .order_by(desc('creation_date')) \
             .all()
