@@ -156,7 +156,11 @@
         <% if (obj.user) { %>
           <%= obj.user.display_name %>
         <% } else { %>
-          @<%= obj.owner_nick %>
+			<% if (obj.owner_nick) { %>
+          		@<%= obj.owner_nick %>
+			<% } else { %>
+				Via SMS
+			<% } %>
         <% } %>
         <em>| <%= obj.type_.name %></em>
       </li>
@@ -168,7 +172,17 @@
 <script type="text/html" id="selectedNotice">
   <ul class="stream">
     <li class="avatar"><img src="<%= obj.avatar %>"></li>
-    <li class="author">@<%= obj.owner_nick %><em> | <%= obj.type_.name %></em></li>
+    <li class="author">
+		<% if (obj.user) { %>
+          <%= obj.user.display_name %>
+        <% } else { %>
+			<% if (obj.owner_nick) { %>
+          		@<%= obj.owner_nick %>
+			<% } else { %>
+				Via SMS
+			<% } %>
+        <% } %>
+	<em> | <%= obj.type_.name %></em></li>
     <li class="answer"><%= obj.content %></li>
   </ul>
 </script>

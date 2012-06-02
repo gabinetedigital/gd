@@ -19,7 +19,11 @@
           {% if notice.user %}
             {{ notice.user.display_name }}
           {% else %}
-            @{{ notice.owner_nick }}
+          	{% if notice.owner_nick %}
+            	@{{ notice.owner_nick }}
+            {% else %}
+            	Via SMS
+            {% endif %}	
           {% endif %}
           <em>| {{ notice.type_.name }}</em>
         </div>
@@ -33,11 +37,15 @@
       <li>
         <img src="<%= obj.avatar %>">
         <div class="author">
-          <% if (obj.user) { %>
-            <%= obj.user.display_name %>
-          <% } else { %>
-            @<%= obj.owner_nick %>
-          <% } %>
+          	<% if (obj.user) { %>
+          		<%= obj.user.display_name %>
+        	<% } else { %>
+				<% if (obj.owner_nick) { %>
+          			@<%= obj.owner_nick %>
+				<% } else { %>
+					Via SMS
+				<% } %>
+        	<% } %>
           <em>| <%= obj.type_.name %></em>
         </div>
         <div class="content"><%= obj.content %></div>
