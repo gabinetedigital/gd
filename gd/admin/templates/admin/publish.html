@@ -38,7 +38,17 @@
 <script type="text/html" id="selectedBuzzTemplate">
   <li>
     <img src="<%= obj.avatar %>">
-    <strong>@<%= obj.owner_nick %></strong>
+    <strong>
+		<% if (obj.user) { %>
+        	<%= obj.user.display_name %>
+        <% } else { %>
+			<% if (obj.owner_nick) { %>
+        		@<%= obj.owner_nick %>
+			<% } else { %>
+				Via SMS
+			<% } %>
+        <% } %>
+	</strong>
     <p><%= obj.content %></p>
     <div class="controls">
       <a href="<%= url_for('admin.buzz.<bid>.publish', { bid: obj.id }) %>"
