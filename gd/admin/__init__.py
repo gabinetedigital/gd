@@ -19,6 +19,9 @@
 """Module that uses the Template and Model APIs to build the Admin web
 interface.
 """
+import urllib 
+import json
+
 
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for
@@ -176,6 +179,7 @@ def moderate(aid):
         .filter_by(audience=audience) \
         .filter(status) \
         .order_by(desc('creation_date'))
+        
     return render_template(
         'admin/moderate.html', audience=audience, buzz_list=buzz_list,
         title=_(u'Audience'))
@@ -218,7 +222,15 @@ def accept_buzz(bid):
     """Approve messages to appear in the main buzz area"""
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
+    
+    avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
+    query = json.dumps({"type": "moderated", "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) })
+    url = "http://levice.procergs.com.br:81/buzz/pub?id="+str(buzz.audience.id)
+    f = urllib.urlopen(url, query)
+    f.close()
+    
     session.commit()
+    
     return msg.ok('Buzz accepted')
 
 
@@ -250,6 +262,13 @@ def publish_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'published'
     buzz.date_published = datetime.now()
+    
+    avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
+    query = json.dumps({"type": "published", "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) })
+    url = "http://levice.procergs.com.br:81/buzz/pub?id="+str(buzz.audience.id)
+    f = urllib.urlopen(url, query)
+    f.close()
+    
     session.commit()
     return msg.ok('Buzz published')
 
