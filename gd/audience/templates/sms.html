@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Governador Ao Vivo</title>
+    <link
+       rel="stylesheet" type="text/css"
+       href="{{ url_for('static', filename='css/978.css') }}">
+    <link
+       rel="stylesheet" type="text/css"
+       href="{{ url_for('.static', filename='css/sms.css') }}">
+  </head>
+  <body>
+    <div id="container">
+      <div class="row">
+        <div class="col12">
+          <h1>Governo Escuta - SMS</h1>
+        </div>
+        <div class="row-end"></div>
+
+        <div class="row notice">
+        </div>
+        <div class="row-end"></div>
+
+      </div>
+    </div>
+
+    <script type="text/html" id="noticeTemplate">
+
+      <div class="row notice">
+        <div class="col10">
+          <h2>
+            <% if (obj.user) { %>
+            <%= obj.user.display_name %>
+            <% } else { %>
+            @<%= obj.owner_nick %>
+            <% } %>
+            <em>| <%= obj.type_.name %></em>
+          </h2>
+          <p><%= obj.content %></p>
+        </div>
+      </div>
+
+    </script>
+
+    <script>
+      var BASE_URL = "{{ request.url_root }}";
+      var AUDIENCE_ID={{audience.id}};asa d
+    </script>
+    <script src="{{ url_for('static', filename='js/jquery-1.5.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/template.js') }}"></script>
+    <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
+    <script src="{{ url_for('.static', filename='js/tv.js') }}"></script>
+  </body>
+</html>
