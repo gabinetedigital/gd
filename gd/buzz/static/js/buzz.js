@@ -16,79 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-function Buzz(base_url, params) {
-    var args = $.extend({
-        new_buzz: function (msg) {},
-        buzz_accepted: function (msg) {},
-        buzz_selected: function (msg) {},
-        buzz_removed: function (msg) {},
-        buzz_published: function (msg) {},
-        buzz_unpublished: function (msg) {},
-        done: function() {}
-    }, params);
-
-    var public_ids = [];
-    var moderated_ids = [];
-    var selected_ids = [];
-    var last_published_id = 0;
-
-
-    var receiver = {
-        public: function(notices) {
-            $.each(notices, function() {
-                if ($.inArray(this.id,public_ids) == -1) {
-                    public_ids.push(this.id);
-                    args.new_buzz(this);
-                }
-            });
-        },
-        moderated: function(notices) {
-            $.each(notices, function() {
-                if ($.inArray(this.id, moderated_ids) == -1) {
-                    moderated_ids.push(this.id);
-                    args.buzz_accepted(this);
-                }
-            });
-        },
-        selected: function(notices) {
-            $.each(notices, function() {
-                if ($.inArray(this.id,selected_ids) == -1) {
-                    selected_ids.push(this.id);
-                    args.buzz_selected(this);
-                }
-            });
-        },
-        published: function(notice) {
-            if (notice && last_published_id != notice.id) {
-                args.buzz_published(notice);
-                last_published_id = notice.id;
-            }
-        }
-    }
-
-    _recv = []
-    function request_notices(first) {
-        $.ajax({
-            url: base_url+'audience/'+AUDIENCE_ID+'/buzz_stream',
-            type: 'post',
-            data: {public_limit:first?-1:10,
-                   public_ids:public_ids,
-                   selected_ids:selected_ids,
-                   moderated_ids:moderated_ids,
-                   last_published_id:last_published_id
-                  },
-            success: function(data) {
-                var json = JSON.parse(data);
-                _recv.push(json);
-                var types = ['public','moderated','selected','published'];
-                $.each(types, function() {
-                    receiver[this](json[this]);
-                });
-                args.done();
-            }
-        });
-    }
-    setInterval(request_notices, 3000);
-    request_notices(true);
-}
+// Inicia longpool
+var buzz_longpool = $.longPoll (
+                    {
+                      url: '/buzz/sub?id=' + window.AUDIENCE_ID,
+                      dataType: 'json',
+                      success: function ( data)
+                      {
+                        if ( data)
+                        {
+                          if ( data.type == 'published')
+                          {
+                            $('#beingAnswered').fadeOut ().html ( '<ul class="stream"><li class="avatar"><img src="' + data.avatar + '"></li><li class="author">' + data.author + ' <em>| ' + data.authortype + '</em></li><li class="answer">' + data.content + '</li></ul>').fadeIn ();
+                          }
+                          if ( data.type == 'moderated' || data.type == 'public')
+                          {
+                            $('#buzz-' + data.type).prepend ( '<li><ul class="stream"><li class="avatar"><img src="' + data.avatar + '"></li><li class="author">' + data.author + ' <em>| ' + data.authortype + '</em></li><li class="answer">' + data.content + '</li></ul></li>').fadeIn ();
+                          }
+                        }
+                      }
+                    });
+setTimeout ( buzz_longpool.connect, 0);

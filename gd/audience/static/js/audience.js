@@ -129,41 +129,6 @@ $(function() {
 
     $('a.filter').tooltip({ opacity: 0.7 });
 
-    var is_first_update = true;
-
-    new Buzz(BASE_URL, {
-        new_buzz: function (msg) {
-            var $el = $(tmpl("buzzTemplate", msg));
-            if (is_first_update) {
-                $('#buzz-public').append($el);
-            } else {
-                $('#buzz-public').prepend($el);
-            }
-        },
-
-        buzz_accepted: function (msg) {
-            var $el = $(tmpl("buzzTemplate", msg));
-            if (is_first_update) {
-                $('#buzz-moderated').append($el);
-            } else {
-                $('#buzz-moderated').prepend($el);
-            }
-        },
-
-        buzz_published: function (msg) {
-            var $el = $(tmpl("selectedNotice", msg));
-            $('#beingAnswered').fadeOut(function () {
-                $(this).html('');
-                $(this).append($el);
-                $(this).fadeIn();
-            });
-        },
-        done: function() {
-            is_first_update = false;
-        }
-    });
-
-
     // Initializing "how it works" stuff
     audience_how_it_works_spinning_gears_setup();
 

@@ -6,14 +6,15 @@
 {% endblock %}
 
 {% block javascript %}
+<script type="text/javascript">
+  var AUDIENCE_ID={{audience.id}};
+</script>
+<script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script>
 <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/statusbar.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
-<script>
-  AUDIENCE_ID={{audience.id}};
-</script>
 {% endblock %}
 
 {% block content %}
