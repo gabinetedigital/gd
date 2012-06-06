@@ -20,10 +20,12 @@
 var buzz_longpool = $.longPoll (
                     {
                       url: '/buzz/sub?id=' + window.AUDIENCE_ID,
-                      dataType: 'json',
                       success: function ( data)
                       {
-                        if ( data)
+                    	try {
+                    	  data = $.parseJSON ( data);
+                    	} catch ( e) {}
+                        if ( data.type)
                         {
                           if ( data.type == 'published')
                           {
