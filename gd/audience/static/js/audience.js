@@ -31,7 +31,9 @@ $(function() {
             $(this).toggleClass('off');
             moderatedBuzz.toggle();
             publicBuzz.toggle();
-
+            if($('#buzz-public').is(':visible') ) { 
+            	// chama javascript;
+            }
         });
 
     // initializing status bar

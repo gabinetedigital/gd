@@ -115,9 +115,25 @@
 
 
         </div>
-        {% if audience.started %}
         <div id="beingAnswered">
+        	<ul class="stream">
+    			<li class="avatar"><img src="<%= obj.avatar %>"></li>
+    			<li class="author">
+					{% if (buzzesSelec.user)  %}
+          				{{ buzzesSelec.user.display_name }}
+        			{% else  %}
+						{% if (buzzesSelec.owner_nick)  %}
+          					@{{ buzzesSelec.owner_nick }}
+						{% else  %}
+							Via SMS
+						{% endif %}
+        			{% endif %}
+					<em> | {{ buzzesSelec.type_.name }}</em>
+				</li>
+    			<li class="answer">{{ buzzesSelec.content }}</li>
+  			</ul>
         </div>
+        {% if audience.started %}
         <div id="streaming">{{ audience.embed|safe }}</div>
         {% endif %}
         <div id="misc">
@@ -132,7 +148,27 @@
       <ul id="buzz-public" class="buzz" style="display:none">
       </ul>
       <ul id="buzz-moderated" class="buzz">
-      </ul>
+      {% for buzz in buzzes %}
+		<li>
+    		<ul class="stream">
+      			<li class="avatar"><img src="{{ buzz.avatar}}"></li>
+      			<li class="author">
+        			{% if (buzz.user)  %}
+          				{{ buzz.user.display_name }}
+        			{%  else  %}
+						{% if (buzz.owner_nick)  %}
+          					@{{ buzz.owner_nick }}
+						{% else  %}
+							Via SMS
+						{% endif %}
+        			{% endif %}
+        			<em>| {{ buzz.type_.name }}</em>
+      			</li>
+      			<li class="answer">{{ buzz.content }}</li>
+    		</ul>
+  		</li>
+      {% endfor %}	
+      </ul >
       <div id="message-statusbar" class="alert"></div>
       <div id="chat">
         <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
