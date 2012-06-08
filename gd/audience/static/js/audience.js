@@ -32,7 +32,11 @@ $(function() {
             moderatedBuzz.toggle();
             publicBuzz.toggle();
             if($('#buzz-public').is(':visible') ) { 
-            	// chama javascript;
+            	new Buzz(BASE_URL, {
+            		buzz_all: function (msg) {
+                        $('#buzz-public').append($(tmpl("buzzTemplate", msg)));
+                    }
+                }, 'updatepage');
             }
         });
 

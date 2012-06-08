@@ -149,6 +149,14 @@ class Audience(Entity):
             .filter(not_(Buzz.id.in_(except_ids))) \
             .order_by(desc('creation_date')) \
             .all()
+    
+    def get_all_buzz(self):
+        """Returns the selected notice buzz"""
+        return Buzz.query \
+            .filter_by(audience=self) \
+            .order_by(desc('creation_date')) \
+            .all()
+    
 
 
 class Buzz(Entity):

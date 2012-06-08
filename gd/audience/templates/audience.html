@@ -11,6 +11,7 @@
 </script>
 <script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script>
 <script src="{{ url_for('buzz.static', filename='js/longpool.js') }}"></script>
+<script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/statusbar.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
@@ -204,6 +205,31 @@
       <li class="answer"><%= obj.content %></li>
     </ul>
   </li>
+</script>
+
+<script type="text/html" id="buzzTemplateAll">
+  <% for( a in obj) { %>
+  <li>
+    <ul class="stream">
+      <li class="avatar">
+        <img src="<%= obj.avatar %>">
+      </li>
+      <li class="author">
+        <% if (obj.user) { %>
+          <%= obj.user.display_name %>
+        <% } else { %>
+			<% if (obj.owner_nick) { %>
+          		@<%= obj.owner_nick %>
+			<% } else { %>
+				Via SMS
+			<% } %>
+        <% } %>
+        <em>| <%= obj.type_.name %></em>
+      </li>
+      <li class="answer"><%= obj.content %></li>
+    </ul>
+  </li>
+<% } %>
 </script>
 
 <script type="text/html" id="selectedNotice">

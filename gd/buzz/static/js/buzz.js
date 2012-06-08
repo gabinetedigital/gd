@@ -17,7 +17,7 @@
  */
 
 
-function Buzz(base_url, params) {
+function Buzz(base_url, params, updatepage) {
     var args = $.extend({
         new_buzz: function (msg) {},
         buzz_accepted: function (msg) {},
@@ -25,6 +25,7 @@ function Buzz(base_url, params) {
         buzz_removed: function (msg) {},
         buzz_published: function (msg) {},
         buzz_unpublished: function (msg) {},
+        buzz_all: function (msg) {},
         done: function() {}
     }, params);
 
@@ -32,8 +33,8 @@ function Buzz(base_url, params) {
     var moderated_ids = [];
     var selected_ids = [];
     var last_published_id = 0;
-
-
+    var allbuzz_ids = [];
+    
     var receiver = {
         public: function(notices) {
             $.each(notices, function() {
@@ -64,32 +65,64 @@ function Buzz(base_url, params) {
                 args.buzz_published(notice);
                 last_published_id = notice.id;
             }
+        },
+        public_all: function(notices) {
+        	$.each(notices, function() {
+        		allbuzz_ids.push(this.id);
+                args.buzz_all(this);	
+            });
         }
     }
 
     _recv = []
-    function request_notices(first) {
-        $.ajax({
-            url: base_url+'audience/'+AUDIENCE_ID+'/buzz_stream',
-            type: 'post',
-            data: {public_limit:first?-1:10,
-                   public_ids:public_ids,
-                   selected_ids:selected_ids,
-                   moderated_ids:moderated_ids,
-                   last_published_id:last_published_id
-                  },
-            success: function(data) {
-                var json = JSON.parse(data);
-                _recv.push(json);
-                var types = ['public','moderated','selected','published'];
-                $.each(types, function() {
-                    receiver[this](json[this]);
-                });
-                args.done();
-            }
-        });
+    if(!updatepage){
+    
+	    function request_notices(first) {
+	        $.ajax({
+	            url: base_url+'audience/'+AUDIENCE_ID+'/buzz_stream',
+	            type: 'POST',
+	            data: {public_limit:first?-1:10,
+	                   public_ids:public_ids,
+	                   selected_ids:selected_ids,
+	                   moderated_ids:moderated_ids,
+	                   last_published_id:last_published_id,
+	                  },
+	            success: function(data) {
+	                var json = JSON.parse(data);
+	                _recv.push(json);
+	                var types = ['public','moderated','selected','published'];
+	                $.each(types, function() {
+	                    receiver[this](json[this]);
+	                });
+	                args.done();
+	            }
+	        });
+	    }
+	    
+	    setInterval(request_notices, 3000);
+	    request_notices(true);
+    
+    } else {
+    
+	    function request_notices_all() {
+	        $.ajax({
+	            url: base_url+'audience/'+AUDIENCE_ID+'/all_stream',
+	            type: 'POST',
+	            data: {allbuzz_ids:allbuzz_ids},
+	            success: function(data) {
+	                var json = JSON.parse(data);
+	                _recv.push(json);
+	                var types = ['public_all'];
+	                $.each(types, function() {
+	                    receiver[this](json[this]);
+	                });
+	                args.done();
+	            }
+	        });
+	    }
+	    
+	    request_notices_all();
+    
     }
-    setInterval(request_notices, 3000);
-    request_notices(true);
 }
 

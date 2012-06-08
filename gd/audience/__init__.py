@@ -113,6 +113,14 @@ def last_published(aid):
     return dumps(notice and notice.to_dict() or None)
 
 
+@audience.route('/<int:aid>/all_stream', methods=('POST',))
+def all_buzz(aid):
+    """Returns the last published notice of an audience"""
+    public_all = Audience.query.get(aid).get_all_buzz()
+    buzz = {'public_all': [notice.to_dict() for notice in public_all]}
+    return dumps(buzz)
+
+
 @audience.route('/<int:aid>/tv')
 def tv(aid):
     """Visualization for the last notice published"""
