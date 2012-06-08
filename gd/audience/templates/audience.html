@@ -117,6 +117,7 @@
 
         </div>
         <div id="beingAnswered">
+        	{% if (buzzesSelec) %}
         	<ul class="stream">
     			<li class="avatar"><img src="<%= obj.avatar %>"></li>
     			<li class="author">
@@ -133,6 +134,7 @@
 				</li>
     			<li class="answer">{{ buzzesSelec.content }}</li>
   			</ul>
+  			{% endif %}
         </div>
         {% if audience.started %}
         <div id="streaming">{{ audience.embed|safe }}</div>
