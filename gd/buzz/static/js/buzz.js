@@ -80,7 +80,7 @@ function Buzz(base_url, params, updatepage) {
 	    function request_notices(first) {
 	        $.ajax({
 	            url: base_url+'audience/'+AUDIENCE_ID+'/buzz_stream',
-	            type: 'GET',
+	            type: 'POST',
 	            data: {public_limit:first?-1:10,
 	                   public_ids:public_ids,
 	                   selected_ids:selected_ids,
@@ -107,7 +107,7 @@ function Buzz(base_url, params, updatepage) {
 	    function request_notices_all() {
 	        $.ajax({
 	            url: base_url+'audience/'+AUDIENCE_ID+'/all_stream',
-	            type: 'POST',
+	            type: 'GET',
 	            data: {allbuzz_ids:allbuzz_ids},
 	            success: function(data) {
 	                var json = JSON.parse(data);
