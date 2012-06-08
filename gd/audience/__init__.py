@@ -137,3 +137,12 @@ def tvbuzz(aid):
     return render_template(
         'tvbuzz.html', audience=inst,
         buzz=inst.get_moderated_buzz())
+
+
+@audience.route('/<int:aid>/tvsms')
+def tvsms(aid):
+    """Visualization for the buzz of an audience"""
+    inst = get_or_404(Audience, id=aid, visible=True)
+    return render_template(
+        'tvsms.html', audience=inst,
+        buzz=inst.get_moderated_buzz())
