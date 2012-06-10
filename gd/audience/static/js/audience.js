@@ -31,12 +31,14 @@ $(function() {
             $(this).toggleClass('off');
             moderatedBuzz.toggle();
             publicBuzz.toggle();
-            if($('#buzz-public').is(':visible') ) { 
+            if($('#buzz-public').is(':visible') ) {
             	new Buzz(BASE_URL, {
             		buzz_all: function (msg) {
                         $('#buzz-public').append($(tmpl("buzzTemplate", msg)));
                     }
                 }, 'updatepage');
+            } else {
+            	$('#buzz-public').html('');            	
             }
         });
 

@@ -38,4 +38,4 @@ var buzz_longpool = $.longPoll (
         }
       }
     });
-setTimeout ( buzz_longpool.connect, 0);
+//setTimeout ( buzz_longpool.connect, 0);
