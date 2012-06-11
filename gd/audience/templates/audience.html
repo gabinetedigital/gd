@@ -29,25 +29,24 @@
       </div>
     </div>
     <div class="col3">
-      <div id="date">
-        <p class="day">{{ audience.date.strftime('%d') }}</p>
-        <p class="month">{{ audience.date.strftime('%b') }}</p>
-        <p class="hour">{{ audience.date.strftime('%H') }}h</p>
-        <p class="min">{{ audience.date.strftime('%M') }}</p>
-      </div>
+		<div id="date">
+        	<p class="day">{{ audience.date.strftime('%d') }}</p>
+        	<p class="month">{{ audience.date.strftime('%b') }}</p>
+        	<p class="hour">{{ audience.date.strftime('%H') }}h</p>
+        	<p class="min">{{ audience.date.strftime('%M') }}</p>
+      	</div>
+      	
+      	<div id="tag" class="row">
+      		<div class="inner">
+        		<p>Use a hashtag</p>
+        		<h3>{{ audience.get_main_term() }}</h3>
+        		<div class="fraseSMS">Envie SMS para <span class="numeroSMS">27556</span></div>
+    		</div>
+  		</div>
     </div>
     <div class="row-end"></div>
   </div>
 
-  <div id="tag" class="row">
-    <div class="col12">
-      <div class="inner">
-        <p>Use a hashtag</p>
-        <h3>{{ audience.get_main_term() }}</h3>
-      </div>
-    </div>
-    <div class="row-end"></div>
-  </div>
 
   <div class="row buzzbg">
     <div id="main" class="col8">

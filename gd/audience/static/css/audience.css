@@ -28,7 +28,7 @@
 }
 
 #container .buzzbg {
-    background:url(../imgs/buzz.png) no-repeat 612px 28px;
+    background:url(../imgs/buzz.png) no-repeat 612px 48px;
     height: 692px;
 }
 
@@ -54,7 +54,8 @@
 }
 
 #container #tag .inner {
-    margin-left:650px;
+    margin-left:-100px;
+    margin-top:100px;
 }
 
 #container #date {
@@ -93,6 +94,19 @@
     font-size: 23px;
     color:#888a85;
     margin-left:15px;
+}
+
+#container #tag .fraseSMS {
+	margin-left:15px;
+	margin-top:5px;
+	font-size:14px;
+	color:#888888;
+}
+
+#container #tag .numeroSMS {
+    font-size: 25px;
+    color:#888a85;
+    font-weight:bold;
 }
 
 #container #tag p {
@@ -191,7 +205,7 @@
 /** Buzz **/
 
 #container .filter {
-    margin-top: 49px;
+    margin-top: 69px;
     display: block;
     background: url(../imgs/filter.png) no-repeat;
     width: 23px;
@@ -207,7 +221,7 @@
 }
 
 #container .buzz {
-    margin-top: 80px;
+    margin-top: 100px;
     margin-left: -18px;
     height: 355px;
     width: 304px;
@@ -400,3 +414,5 @@
 .boverlay {
     border-radius: 30px;
 }
+
+
