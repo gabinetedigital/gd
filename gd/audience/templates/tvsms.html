@@ -6,7 +6,7 @@
        href="{{ url_for('static', filename='css/978.css') }}">
     <link
        rel="stylesheet" type="text/css"
-       href="{{ url_for('.static', filename='css/tv.css') }}">
+       href="{{ url_for('.static', filename='css/sms.css') }}">
   </head>
   <body class="buzz">
     <h1>Governador Escuta</h1>
@@ -35,7 +35,6 @@
 
     <script type="text/html" id="noticeTemplate">
       <li>
-        <img src="<%= obj.avatar %>">
         <div class="author">
           	<% if (obj.user) { %>
           		<%= obj.user.display_name %>
@@ -56,6 +55,7 @@
     <script src="{{ url_for('static', filename='js/jquery-1.5.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/template.js') }}"></script>
     <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
+    <script src="{{ url_for('.static', filename='js/tv.js') }}"></script>
     <script>
       var BASE_URL = "{{ request.url_root }}";
       var AUDIENCE_ID={{audience.id}};

@@ -145,4 +145,4 @@ def tvsms(aid):
     inst = get_or_404(Audience, id=aid, visible=True)
     return render_template(
         'tvsms.html', audience=inst,
-        buzz=inst.get_moderated_buzz())
+        buzz=inst.get_moderated_buzz_sms())

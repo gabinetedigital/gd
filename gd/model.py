@@ -23,17 +23,17 @@ are sent using the `sio' module.
 """
 
 from datetime import datetime
-from sqlalchemy import not_, desc, event
-from sqlalchemy.orm.exc import NoResultFound
+from elixir import Entity, Field, Unicode, UnicodeText, DateTime, Boolean, \
+    Integer, Enum, ManyToOne, OneToMany, ManyToMany, String, using_options, \
+    setup_all, metadata, session
 from elixir.events import after_insert, before_insert
-from elixir import using_options, setup_all, metadata, session
-from elixir import Entity, Field, Unicode, UnicodeText, DateTime, \
-    Boolean, Integer, Enum, ManyToOne, OneToMany, ManyToMany, String
 from flask import url_for, abort
 from flaskext.uploads import UploadConfiguration, UploadSet, IMAGES
-
 from gd import conf
 from gd.utils import phpass, dumps
+from sqlalchemy import not_, desc, event
+from sqlalchemy.orm.exc import NoResultFound
+
 
 
 def _configuploadset(name, constraint):
@@ -139,6 +139,17 @@ class Audience(Entity):
             .filter(not_(Buzz.id.in_(except_ids))) \
             .order_by(desc('creation_date')) \
             .all()
+    
+    def get_moderated_buzz_sms(self, except_ids=[]):
+        """Returns the moderated notice buzz"""
+        except_ids = except_ids or [-1]
+        return Buzz.query \
+            .filter_by(audience=self) \
+            .filter(Buzz.status.in_(['approved', 'selected'])) \
+            .filter(not_(Buzz.id.in_(except_ids))) \
+            .filter('type__id=3') \
+            .order_by(desc('creation_date')) \
+            .all()         
 
     def get_selected_buzz(self, except_ids=[]):
         """Returns the selected notice buzz"""
@@ -225,7 +236,6 @@ class User(Entity):
     """Mapper for the `user' entity that is the same table used by
     wordpress"""
     using_options(tablename='wp_users')
-
     id = Field(Integer, primary_key=True)
     name = Field(Unicode(64), colname='user_nicename')
     nickname = Field(Unicode(64), colname='display_name')
