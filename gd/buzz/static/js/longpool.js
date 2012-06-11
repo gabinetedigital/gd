@@ -33,7 +33,10 @@ var buzz_longpool = $.longPoll (
           }
           if ( data.type == 'moderated' || data.type == 'public')
           {
-            $('#buzz-' + data.type).prepend ( '<li><ul class="stream"><li class="avatar"><img src="' + data.avatar + '"></li><li class="author">' + data.author + ' <em>| ' + data.authortype + '</em></li><li class="answer">' + data.content + '</li></ul></li>').fadeIn ();
+            if ( ! $('#msgid_' + data.id))
+            {
+              $('#buzz-' + data.type).prepend ( '<li id="msgid_' + data.id + '"><ul class="stream"><li class="avatar"><img src="' + data.avatar + '"></li><li class="author">' + data.author + ' <em>| ' + data.authortype + '</em></li><li class="answer">' + data.content + '</li></ul></li>').fadeIn ();
+            }
           }
         }
       }

@@ -151,7 +151,7 @@
       </ul>
       <ul id="buzz-moderated" class="buzz">
       {% for buzz in buzzes %}
-		<li>
+		<li id="msgid_{{ buzz.msgid }}">
     		<ul class="stream">
       			<li class="avatar"><img src="{{ buzz.avatar}}"></li>
       			<li class="author">

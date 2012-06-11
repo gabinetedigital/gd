@@ -89,6 +89,7 @@ class Audience(Entity):
     """
     using_options(shortnames=True)
 
+    msgid = Field(id)
     title = Field(Unicode(256))
     subject = Field(UnicodeText)
     description = Field(UnicodeText)
