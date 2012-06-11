@@ -225,7 +225,7 @@ def accept_buzz(bid):
     
     avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
     query = json.dumps({"type": "moderated", "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) })
-    url = "http://levice.procergs.com.br:81/buzz/pub?id="+str(buzz.audience.id)
+    url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
     f = urllib.urlopen(url, query)
     f.close()
     
@@ -265,7 +265,7 @@ def publish_buzz(bid):
     
     avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
     query = json.dumps({"type": "published", "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) })
-    url = "http://levice.procergs.com.br:81/buzz/pub?id="+str(buzz.audience.id)
+    url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
     f = urllib.urlopen(url, query)
     f.close()
     
