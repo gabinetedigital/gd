@@ -119,7 +119,7 @@
         <div id="beingAnswered">
         	{% if (buzzesSelec) %}
         	<ul class="stream">
-    			<li class="avatar"><img src="<%= obj.avatar %>"></li>
+    			<li class="avatar"><img src="{{ buzzesSelec.avatar }}"></li>
     			<li class="author">
 					{% if (buzzesSelec.user)  %}
           				{{ buzzesSelec.user.display_name }}
