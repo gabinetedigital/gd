@@ -116,11 +116,13 @@ def cleanup(response):
 
 
 # --- Static special pages ---
-
-
 @app.route('/')
 def index():
-    """Renders the index template"""
+    return redirect('/audience')
+"""
+@app.route('/')
+def index():
+    ""Renders the index template""
     slideshow = wordpress.getRecentPosts(
         category_name='highlights',
         post_status='publish',
@@ -140,7 +142,7 @@ def index():
         last_tweet=get_mayor_last_tweet(),
         videos=wordpress.wpgd.getHighlightedVideos(2),
     )
-
+"""
 
 @app.route('/getpart/<part>')
 def get_part(part):
