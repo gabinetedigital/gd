@@ -12,25 +12,7 @@
     <h1>Governador Escuta</h1>
 
     <ul id="notices">
-      {% for notice in buzz %}
-      <li>
-        <img src="{{ notice.avatar }}">
-        <div class="author">
-          {% if notice.user %}
-            {{ notice.user.display_name }}
-          {% else %}
-          	{% if notice.owner_nick %}
-            	@{{ notice.owner_nick }}
-            {% else %}
-            	Via SMS
-            {% endif %}	
-          {% endif %}
-          <em>| {{ notice.type_.name }}</em>
-        </div>
-        <div class="content">{{ notice.content }}</div>
-        <div class="row-end"></div>
-      </li>
-      {% endfor %}
+      
     </ul>
 
     <script type="text/html" id="noticeTemplate">
@@ -43,7 +25,7 @@
 				<% if (obj.owner_nick) { %>
           			@<%= obj.owner_nick %>
 				<% } else { %>
-					Via SMS
+					Via SMS 
 				<% } %>
         	<% } %>
           <em>| <%= obj.type_.name %></em>

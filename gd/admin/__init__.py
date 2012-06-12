@@ -224,7 +224,7 @@ def accept_buzz(bid):
     buzz.status = u'approved'
     
     avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
-    query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) })
+    query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
     url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
     f = urllib.urlopen(url, query)
     f.close()
@@ -264,7 +264,7 @@ def publish_buzz(bid):
     buzz.date_published = datetime.now()
     
     avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
-    query = json.dumps({"type": "published", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) })
+    query = json.dumps({"type": "published", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
     url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
     f = urllib.urlopen(url, query)
     f.close()

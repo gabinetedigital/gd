@@ -146,17 +146,6 @@ class Audience(Entity):
             .order_by(desc('creation_date')) \
             .all()
     
-    def get_moderated_buzz_sms(self, except_ids=[]):
-        """Returns the moderated notice buzz"""
-        except_ids = except_ids or [-1]
-        return Buzz.query \
-            .filter_by(audience=self) \
-            .filter(Buzz.status.in_(['approved', 'selected'])) \
-            .filter(not_(Buzz.id.in_(except_ids))) \
-            .filter('type__id=3') \
-            .order_by(desc('creation_date')) \
-            .all()         
-
     def get_selected_buzz(self, except_ids=[]):
         """Returns the selected notice buzz"""
         except_ids = except_ids or [-1]
