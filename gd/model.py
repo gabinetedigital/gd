@@ -22,6 +22,8 @@ All entity mappers are defined using the `Elixir' API and some signals
 are sent using the `sio' module.
 """
 
+import locale
+
 from datetime import datetime
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, Boolean, \
     Integer, Enum, ManyToOne, OneToMany, ManyToMany, String, using_options, \
@@ -34,6 +36,8 @@ from gd.utils import phpass, dumps
 from sqlalchemy import not_, desc, event
 from sqlalchemy.orm.exc import NoResultFound
 
+
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
 
 def _configuploadset(name, constraint):
