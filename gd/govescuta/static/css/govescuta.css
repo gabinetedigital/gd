@@ -35,21 +35,58 @@
 }
 
 #container .audiencia {
-    padding-bottom: 56px;
+    padding-bottom: 125px;
     margin: 25px auto;
     width: 900px;
+    border-top: 1px dotted #CCCCCC;
+    padding-top: 20px
 }
+
 
 #container .audiencia .video {
     float: left;
     display: block;
     margin-right: 20px;
-    width:250px;
-    height:112px;
+    width:300px;
+    height:190px;
+}
+
+.video .thumb {
+    height: 190px;
+    margin-bottom: 10px;
+    width: 300px;    
+}
+
+.video .container {
+    height: 190px;
+    overflow: hidden;
+}
+
+.video .play {
+    height: 50px;
+    margin-left: 125px;
+    margin-top: -76px;
+    position: relative;
+    top: -50px;
+    width: 50px;
+}
+
+.video .permalink {
+    left: 275px;
+    position: relative;
+    top: -25px;
+}
+
+.encaminhamento {
+    background: url("../imgs/encaminhamento.png") no-repeat scroll left center transparent;
+    color: #563A11;
+    font-size: 16px;
+    padding-left: 20px;
+    float: left;
+    margin-top: 3%;
 }
 
 #container .audiencia img {
-    float: left;
     display: block;
     margin-right: 20px;
 }

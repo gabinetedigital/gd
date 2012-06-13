@@ -36,7 +36,7 @@
               <div class="container">
                 <img class="thumb"
                      src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
-                     width="250" height="112">
+                     width="300" height="190">
                 <img src="../static/imgs/play.png" class="play">
               </div>
               <a href="{{ url_for('videos.details', vid=audience.video.id) }}"
@@ -52,6 +52,9 @@
             <h4>{{ audience.title }}</h4>
           </div>
           <div><p class="desc">{{ audience.subject }}</p></div>
+          <a href="" class="encaminhamento">
+            Encaminhamentos
+          </a>
         </div>
       </li>
       {% endfor %}
