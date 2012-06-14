@@ -19,14 +19,28 @@
         Audiências públicas digitais transmitidas via internet onde você
         pode enviar sua contribuição
       </p>
+
+      <ul class="menu">
+        <li class="comofunciona">
+          <a href="">Como Funciona</a>
+        </li>
+      </ul>
+
     </div>
     <div class="row-end"></div>
   </div>
 
   <div class="row content">
     <h2>Audiências</h2>
+    <form id="filterform" method="get" action="">
+      <input type="hidden" name="theme" value="">
+      <select name="sortby" onchange="">
+        <option value="">filtros</option>
+        <option>Mais recentes</option>
+        <option>Mais antigas</option>
+      </select>
+    </form>
     <ul>
-
       {% for audience in audiences %}
       <li>
         <div class="audiencia">
@@ -49,7 +63,7 @@
           {% endif %}
 
           <div class="titulo">
-            <h4>{{ audience.title }}</h4>
+            <h4>{{ audience.title }} <i>(01/06/2012)</i></h4>
           </div>
           <div><p class="desc">{{ audience.subject }}</p></div>
           <a href="" class="encaminhamento">

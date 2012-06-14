@@ -9,7 +9,7 @@
 }
 
 #container .head {
-    border-bottom: 1px solid #999;
+    background: url("../imgs/top.png") no-repeat scroll center bottom transparent;
 }
 
 #container #logo h1 {
@@ -21,9 +21,49 @@
     margin: 30px auto 0;
 }
 
+#container .head .menu {
+    padding-top: 30px;
+}
+
+#container .head .menu li a {
+    display:inline;
+    float:left;
+    margin-right:30px;
+    font-size:12pt;
+    padding-top: 51px;
+}
+
+#container .head .menu li.comofunciona a {
+    background: url("../imgs/comofunciona.png") no-repeat 35px top;
+    color: #008dc4;
+}
+
+#container .head .menu li.respostasgov a {
+    background: url("../imgs/respostasgov.png") no-repeat center top;
+    color: #fe6200;
+}
+
+#container .head .menu li.envie a {
+    background: url("../imgs/envie.png") no-repeat center top;
+    color: #c00000;
+}
+
+#container .head .menu li a:hover {
+    margin-top: 5px;
+}
+
+
+#container .head .menu a {
+    color:#333;
+}
+
+
 #container .col8 p {
+    float: left;
     font-size: 18px;
-    padding: 54px;
+    margin-right: 40px;
+    padding-top: 50px;
+    width: 450px;
 }
 
 #container h2 {
@@ -31,17 +71,30 @@
     font-size: 33px;
     margin-top: 27px;
     margin-left: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 #container .audiencia {
-    padding-bottom: 125px;
-    margin: 25px auto;
-    width: 900px;
     border-top: 1px dotted #CCCCCC;
-    padding-top: 20px
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    padding-top: 20px;
+    width: 900px;
 }
 
+.content form {
+    text-align: right;
+    margin-right: 40px;
+}
+
+Form input, form select, form textarea {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px 4px 4px 4px;
+    margin-top: 7px;
+    padding: 2px;
+    box-shadow: none;
+}
 
 #container .audiencia .video {
     float: left;
@@ -93,6 +146,12 @@
 
 #container .audiencia .titulo {
     font-size: 20px;
+}
+
+#container .audiencia .titulo i {
+    font-size: 14px;
+    color: #AAAAAA;
+    font-style: normal;
 }
 
 #container .audiencia .desc {
