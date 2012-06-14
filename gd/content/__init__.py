@@ -160,7 +160,17 @@ def teaser():
 @app.route('/sobre')
 def sobre():
     """Renders the about template"""
+    return render_template('sobre.html', page=wordpress.getPageByPath('sobre'))
+
+@app.route('/about')
+def about():
+    """Renders the about template"""
     return render_template('about.html', page=wordpress.getPageByPath('about'))
+
+@app.route('/acerca')
+def acerca():
+    """Renders the about template"""
+    return render_template('acerca.html', page=wordpress.getPageByPath('acerca'))
 
 
 @app.route('/gallery')
