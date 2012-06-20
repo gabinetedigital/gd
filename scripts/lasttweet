@@ -43,6 +43,7 @@ from gd.content.tweet import set_mayor_last_tweet
 def main():
     """Make a request to the twitter API and gets the last tweet from
     the account configured in the `gd.conf' module"""
+    print(conf.TWITTER_MAYOR_USERNAME)
     json = urlopen(
         TWITTER_JSON_TIMELINE_URL %
         conf.TWITTER_MAYOR_USERNAME).read()
