@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/carousel.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/about.css') }}">
 <!--[if IE]>
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-about.css') }}">
-<![endif]-->
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-about.css') }}">
+    <![endif]-->
 {% endblock %}
 
 {% block javascript %}
@@ -22,23 +22,23 @@
 <div id="container">
   <div class="row">
     <div id="content" class="col8">
-        <div id="page">
-          {{ page.content|safe }}
-        </div>
+      <div id="page">
+        {{ page.content|safe }}
+      </div>
     </div>
 
     <div id="sidebar" class="col4">
       <div id="contacts">
-          <h2>Contato</h2>
-          <div class="address">
-            <p>Gabinete do Governador
+        <h2>Contato</h2>
+        <div class="address">
+          <p>Gabinete do Governador
             Palácio Piratini, Praça Marechal Deodoro s/n
             Porto Alegre - RS. CEP 90010-282</p>
 
-            <p>Telefone (51) 3210 4100
+          <p>Telefone (51) 3210 4100
             gabinetedigital@gg.rs.gov.br</p>
 
-          </div>
+        </div>
       </div>
 
       <div id="equipe">
@@ -74,6 +74,11 @@
           </li>
 
           <li>
+            <h5>Relações Públicas:</h5>
+            Bianca Persici Toniolo
+          </li>
+
+          <li>
             <h5>Videomaker:</h5>
             Thiago Köche
           </li>
@@ -106,7 +111,7 @@
           <li>
             <h4>Convidados:</h4>
           </li>
-          
+
           <li>
             <h5>Desenvolvedor:</h5>
             Thiago Silva
