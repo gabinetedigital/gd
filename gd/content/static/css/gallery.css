@@ -99,6 +99,19 @@ ul.nav .next {
     text-align:right;
 }
 
+#page_navigation {
+    text-align: center;
+}
+
+#page_navigation a {
+    color: #FFF;
+}
+
+#page_navigation .page_link {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 #gallerylist li {
     float:left;
 }

@@ -35,6 +35,9 @@
     {% endif %}
   </div>
 
+  <input type='hidden' id='current_page' />  
+  <input type='hidden' id='show_per_page' /> 
+
   <ul class="images">
     {% for image in current.images %}
     <li>
@@ -49,6 +52,7 @@
     </li>
     {% endfor %}
   </ul>
+  <div id="page_navigation"></div>
 </div>
 
 <div id="busca">
