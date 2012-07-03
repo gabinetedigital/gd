@@ -28,7 +28,6 @@ h2.stitle {
 #currentgallery {
     background:#111;
     padding:20px 15px 15px;
-    margin-bottom:30px;
 }
 
 #currentgallery .currentpic {
@@ -108,9 +107,11 @@ ul.nav .next {
     display:block;
 }
 
-#gallerylist li p {
+#gallerylist li h4 {
     display:block;
     padding:5px 0;
+    color: #FFF;
+    text-transform: capitalize;
 }
 
 #gallerylist li a {
@@ -120,6 +121,18 @@ ul.nav .next {
     width:150px;
 }
 
-#gallerylist li a:hover {
-    background:#ccc;
+#busca {
+    background: none repeat scroll 0 0 #D40000;
+    display: block;
+    padding: 10px;
+    overflow: auto;
+}
+
+#search_tool {
+    text-align: right;
+    color: white;
+}
+
+#search_tool li {
+    display: inline;
 }
