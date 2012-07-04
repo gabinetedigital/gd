@@ -116,3 +116,8 @@ Install:    All you have to do is to install the library in a directory
             too. The following simple commands do this job:
             # pear channel-discover pear.twig-project.org
             # pear install twig/Twig
+
+Lib:        HTTP-Reques
+Version:    -
+Link:       http://pear.php.net/package/HTTP_Request/
+Install:    apt-get install php-http-reququest
