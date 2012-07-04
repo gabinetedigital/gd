@@ -25,40 +25,41 @@ h2.stitle {
     margin:10px 0;
 }
 
-#currentgallery {
+.currentgallery {
     background:#111;
     padding:20px 15px 15px;
+    text-align: center;
 }
 
-#currentgallery .currentpic {
+.currentgallery .current {
     text-align:center;
     width:800px;
     margin:0 auto;
     overflow:hidden;
 }
 
-#currentgallery .currentpic h2 {
+.currentgallery .current h2 {
     text-align:left;
     color:#fff;
     padding-bottom:10px;
 }
 
-#currentgallery .currentpic .pcontainer {
+.currentgallery .current .pcontainer {
     background:#000;
     min-height:533px;
 }
 
-#currentgallery .currentpic img {
+.currentgallery .current img {
     max-width:800px;
 }
 
-#currentgallery .currentpic p {
+.currentgallery .current p {
     color:#ccc;
     padding:10px 0 15px;
     text-align:left;
 }
 
-#currentgallery ul.images {
+.currentgallery ul.images {
     clear:both;
     width:820px;
     margin:0 auto;
@@ -66,37 +67,34 @@ h2.stitle {
     padding-left:20px;
 }
 
-#currentgallery ul.images li {
+.currentgallery ul.images li {
     float:left;
     margin:0 11px 10px 0;
 }
 
-#currentgallery ul.images li a.selected {
+.currentgallery ul.images li a.selected {
     border-bottom:solid 2px gray;
 }
 
-ul.nav {
+#controls {
     width:1035px;
-    margin:300px 0 0 -45px;
+    margin:300px 0 0 -30px;
     position:absolute;
     font-size:20px;
 }
 
-ul.nav li a {
+#controls .nav-controls  a {
     font-size:18pt;
     padding:10px 25px;
     line-height:normal
 }
 
-ul.nav .prev {
-    width:20%;
+#controls .nav-controls .prev {
     float:left;
 }
-
-ul.nav .next {
-    width:80%;
-    margin-left:20%;
-    text-align:right;
+ 
+#controls .nav-controls .next {
+    float: right;
 }
 
 a.previous_link, a.page_link, a.next_link, a.active_page {
