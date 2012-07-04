@@ -99,17 +99,38 @@ ul.nav .next {
     text-align:right;
 }
 
+a.previous_link, a.page_link, a.next_link, a.active_page {
+    text-indent: -9999px;
+    font-size: 1px;
+    overflow: hidden;
+    margin: 0 auto;
+    background: url(../imgs/sprite.png) no-repeat;
+    display: inline-block;
+    width: 7px;
+    height: 7px;    
+}
+
 #page_navigation {
     text-align: center;
 }
 
 #page_navigation a {
     color: #FFF;
-}
-
-#page_navigation .page_link {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+a.page_link {
+    background-position: -13px 0px;
+}
+
+a.active_page {
+    background-position: -25px 0px;
+}
+
+a.next_link {
+    background-position: -38px 0;
+    margin-left: 3px
 }
 
 #gallerylist li {
