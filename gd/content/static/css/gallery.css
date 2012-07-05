@@ -59,7 +59,7 @@ h2.stitle {
     text-align:left;
 }
 
-.currentgallery ul.images {
+#thumbs ul.images {
     clear:both;
     width:820px;
     margin:0 auto;
@@ -67,12 +67,12 @@ h2.stitle {
     padding-left:20px;
 }
 
-.currentgallery ul.images li {
+#thumbs ul.images li {
     float:left;
     margin:0 11px 10px 0;
 }
 
-.currentgallery ul.images li a.selected {
+#thumbs ul.images li a.selected {
     border-bottom:solid 2px gray;
 }
 
