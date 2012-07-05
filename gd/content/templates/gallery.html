@@ -11,8 +11,8 @@
 <script type="text/javascript">
 
   // We only want these styles applied when javascript is enabled
- 
-  $(document).ready(function() {				
+
+  $(document).ready(function() {
   // Initialize Minimal Galleriffic Gallery
   $('#thumbs').galleriffic({
   imageContainerSel:      '#slideshow',
@@ -25,6 +25,7 @@
   $('.prev').addClass('awesome');
   $('.next').addClass('awesome');
   $('.play').hide();
+
   });
 
 </script>
@@ -35,12 +36,14 @@
 <h1 class="stitle">Galeria de fotos</h1>
 
 <div id="gallery" class="content currentgallery">
-  {% if current %}
-  <h2>{{ current.title }}</h2>
-  {% endif %}
+
   <div id="controls"></div>
   <div id="loading"></div>
-  <div id="slideshow"> </div>
+  <div id="slideshow">
+    {% if current %}
+  <h2>{{ current.title }}</h2>
+  {% endif %}
+  </div>
   <div id="caption"></div>
 
     <div id="thumbs"  class="navigation images">
