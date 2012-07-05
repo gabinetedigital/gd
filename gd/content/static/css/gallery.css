@@ -29,6 +29,7 @@ h2.stitle {
     background:#111;
     padding:20px 15px 15px;
     text-align: center;
+    overflow: auto;
 }
 
 .currentgallery .current {
@@ -59,12 +60,16 @@ h2.stitle {
     text-align:left;
 }
 
+#thumbs {
+    margin-top: 10px;
+}
+
 #thumbs ul.images {
     clear:both;
     width:820px;
     margin:0 auto;
     overflow:hidden;
-    padding-left:20px;
+    padding-left:23px;
 }
 
 #thumbs ul.images li {
@@ -72,8 +77,16 @@ h2.stitle {
     margin:0 11px 10px 0;
 }
 
-#thumbs ul.images li a.selected {
-    border-bottom:solid 2px gray;
+#thumbs ul.images li img {
+    opacity: 0.5;
+}
+
+#thumbs ul.images li.selected img {
+    opacity: 1.0;
+}
+
+#thumbs img {
+    width: 70px;
 }
 
 #controls {
@@ -154,7 +167,7 @@ a.next_link {
 }
 
 #busca {
-    background: none repeat scroll 0 0 #D40000;
+    background: none repeat scroll 0 0 #CC0000;
     display: block;
     padding: 10px;
     overflow: auto;

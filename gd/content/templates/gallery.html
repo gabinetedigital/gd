@@ -11,10 +11,6 @@
 <script type="text/javascript">
 
   // We only want these styles applied when javascript is enabled
-  $('div.navigation').css({'width' : '300px', 'float' : 'left'});
-  $('div.content').css('display', 'block');
-  
-
  
   $(document).ready(function() {				
   // Initialize Minimal Galleriffic Gallery
@@ -38,68 +34,29 @@
 
 <h1 class="stitle">Galeria de fotos</h1>
 
-<div id="gallery" class="content">
+<div id="gallery" class="content currentgallery">
+  {% if current %}
+  <h2>{{ current.title }}</h2>
+  {% endif %}
   <div id="controls"></div>
   <div id="loading"></div>
-  <div id="slideshow" class="currentgallery"></div>
+  <div id="slideshow"> </div>
   <div id="caption"></div>
 
-  <div id="thumbs"  class="navigation images">
-    <ul class="thumbs images">
-      {% for image in current.images %}
-      <li>
-        <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
-           {% if loop.index == 1 %}class="selected"{% endif %}
-           >
-          <img src="{{ image.thumbURL }}" alt="{{ image.description }}">
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
+    <div id="thumbs"  class="navigation images">
+      <ul class="thumbs images">
+        {% for image in current.images %}
+        <li>
+          <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
+             {% if loop.index == 1 %}class="selected"{% endif %}
+             >
+            <img src="{{ image.thumbURL }}" alt="{{ image.description }}">
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
 </div>
-<!-- <div id="currentgallery"> -->
-<!--   <ul class="nav"> -->
-<!--     <li class="prev"> -->
-<!--       <a href="javascript:prevPic();" class="awesome">«</a> -->
-<!--     </li> -->
-<!--     <li class="next"> -->
-<!--       <a href="javascript:nextPic();" class="awesome">»</a> -->
-<!--     </li> -->
-<!--   </ul> -->
-
-<!--   <div class="currentpic"> -->
-<!--     {% if current %} -->
-<!--     <h2>{{ current.title }}</h2> -->
-<!--     {% set highlight = current.images[0] %} -->
-<!--     <div class="pcontainer"> -->
-<!--       <img -->
-<!--          src="{{ highlight.imageURL }}" -->
-<!--          alt="{{ highlight.description }}"> -->
-<!--     </div> -->
-<!--     <p>{{ highlight.description }}</p> -->
-<!--     {% endif %} -->
-<!--   </div> -->
-
-<!--   <input type='hidden' id='current_page' />   -->
-<!--   <input type='hidden' id='show_per_page' />  -->
-
-<!--   <ul class="images"> -->
-<!--     {% for image in current.images %} -->
-<!--     <li> -->
-<!--       <a href="{{ image.imageURL }}" title="{{ image.description }}" -->
-<!--          onclick="return changeCurrentPic(this)" -->
-<!--          {% if loop.index == 1 %}class="selected"{% endif %} -->
-<!--          > -->
-<!--         <img -->
-<!--            src="{{ image.thumbURL }}" alt="{{ image.description }}" -->
-<!--            width="70"> -->
-<!--       </a> -->
-<!--     </li> -->
-<!--     {% endfor %} -->
-<!--   </ul> -->
-<!--   <div id="page_navigation"></div> -->
-<!-- </div> -->
 
 <div id="busca">
   <h2> Galerias </h2>
