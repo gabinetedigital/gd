@@ -45,6 +45,7 @@ h2.stitle {
     padding-bottom:10px;
     margin-left: 73px;
     font-size: 14pt;
+    text-transform: capitalize;
 }
 
 .currentgallery .current .pcontainer {
@@ -113,15 +114,10 @@ h2.stitle {
     float: right;
 }
 
-a.previous_link, a.page_link, a.next_link, a.active_page {
-    text-indent: -9999px;
-    font-size: 1px;
-    overflow: hidden;
-    margin: 0 auto;
-    background: url(../imgs/sprite.png) no-repeat;
-    display: inline-block;
-    width: 7px;
-    height: 7px;    
+#caption {
+    text-align: left;
+    color: #FFF;
+    margin-left: 73px;
 }
 
 #thumbs .pagination a {

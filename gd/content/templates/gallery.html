@@ -42,10 +42,15 @@
   <div id="loading"></div>
   <div id="slideshow">
     {% if current %}
-  <h2>{{ current.title }}</h2>
-  {% endif %}
+    <h2>{{ current.title }}</h2>
+    {% endif %}
   </div>
-  <div id="caption"></div>
+  <div id="caption">
+    {% if current %}
+    {% set highlight = current.images[0] %}
+    <p>{{ highlight.description }}</p>
+    {% endif %}
+  </div>
 
     <div id="thumbs"  class="navigation images">
       <ul class="thumbs images">
