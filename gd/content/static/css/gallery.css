@@ -124,12 +124,14 @@ a.previous_link, a.page_link, a.next_link, a.active_page {
     height: 7px;    
 }
 
-#page_navigation {
-    text-align: center;
+#thumbs .pagination a {
+    color: #FFF;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-#page_navigation a {
-    color: #FFF;
+#thumbs .pagination .current {
+    color: #CC0000;
     margin-left: 5px;
     margin-right: 5px;
 }
