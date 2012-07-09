@@ -130,6 +130,10 @@ def index():
         numberposts=4,
         thumbsizes=['slideshow'])
 
+    #Retorna a ultima foto inserida neste album.
+    picday = wordpress.wpgd.getLastFromGallery(3)
+    print 'PICDAY:', picday
+
     news = wordpress.getRecentPosts(
         category_name='news',
         post_status='publish',
@@ -139,7 +143,8 @@ def index():
     return render_template(
         'index.html', wp=wordpress,
         slideshow=slideshow, news={'big': news[:2], 'small': news[2:]},
-        sidebar=wordpress.getSidebar,
+        #sidebar=wordpress.getSidebar,
+        picday=picday,
         last_tweet=get_mayor_last_tweet(),
         videos=wordpress.wpgd.getHighlightedVideos(2),
     )
@@ -173,8 +178,8 @@ def acerca():
     return render_template('acerca.html', page=wordpress.getPageByPath('acerca'))
 
 
-@app.route('/gallery')
-def gallery():
+@app.route('/foto_com_gov')
+def foto_com_gov():
     return render_template('galeria.html')
 
 

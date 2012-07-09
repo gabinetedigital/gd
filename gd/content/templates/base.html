@@ -192,12 +192,14 @@
           <div class="row">
             <div id="menu" class="col12">
               <ul>
-                <li class="basic first"><a href="{{url_for('news')}}">Notícias</a></li>
+                <li class="basic first">
+                  <a href="{{url_for('gallery.index')}}">Fotos</a>
+                </li>
                 <li class="special">
                   <a id="a-participe" href="javascript:;">Participe</a>
                 </li>
                 <li class="basic last">
-                  <a href="{{ url_for('videos.listing') }}">Galeria</a>
+                  <a href="{{ url_for('videos.listing') }}">Vídeos</a>
                 </li>
               </ul>
             </div>
