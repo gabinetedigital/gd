@@ -8,28 +8,7 @@
 <script src="{{ url_for('.static', filename='js/jquery.galleriffic.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
-<script type="text/javascript">
-
-  // We only want these styles applied when javascript is enabled
-
-  $(document).ready(function() {
-  // Initialize Minimal Galleriffic Gallery
-  $('#thumbs').galleriffic({
-  imageContainerSel:      '#slideshow',
-  controlsContainerSel:   '#controls',
-  numThumbs:                 10,
-  prevLinkText:              '«',
-  nextLinkText:              '»',
-  nextPageLinkText:          '>',
-  prevPageLinkText:          '<',
-  });
-
-  $('.prev').addClass('awesome');
-  $('.next').addClass('awesome');
-  $('.play').hide();
-  });
-
-</script>
+<script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
 {% endblock %}
 
 {% block content %}
