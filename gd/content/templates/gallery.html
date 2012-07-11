@@ -56,20 +56,24 @@
     <!--     <option>Minha foto com o Governador</option> -->
     <!--   </select> -->
     <!-- </li> -->
-    <li>Busque por <input type="text"> </li>
+    <li>Busque por <form method="GET" action="/gallery"> <input type="text" name="s" id="s" value="{{s}}"> </form> </li>
     <!-- <li class="feed">Assine</li> -->
   </ul>
 
   <div id="galerias">
     <ul id="gallerylist">
-      {% for gallery in galleries  %}
-      <li>
-        <a href="{{ url_for('.index', gid=gallery.gid) }}" title="{{ gallery.title }}">
-          <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
-          <h4>{{ gallery.title }}</h4>
-        </a>
-      </li>
-      {% endfor %}
+      {% if galleries %}
+        {% for gallery in galleries  %}
+        <li>
+          <a href="{{ url_for('.index', slug=gallery.slug) }}" title="{{ gallery.title }}">
+            <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
+            <h4>{{ gallery.title }}</h4>
+          </a>
+        </li>
+        {% endfor %}
+      {% else %}
+        <p>Nenhuma galeria de fotos foi encontrada.</p>
+      {% endif %}
     </ul>
   </div>
 
