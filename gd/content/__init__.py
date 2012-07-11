@@ -132,7 +132,6 @@ def index():
 
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    print 'PICDAY:', picday, '***', type(picday)
 
     news = wordpress.getRecentPosts(
         category_name='news',
@@ -193,7 +192,8 @@ def news(page=0):
     pagination, posts = wordpress.getPosts(page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getSidebar,
+        #sidebar=wordpress.getSidebar,
+        picday=picday,
         pagination=pagination,
         posts=posts)
 
@@ -205,7 +205,8 @@ def category(cid, page=0):
     pagination, posts = wordpress.getPostsByCategory(cat=cid, page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getSidebar,
+        #sidebar=wordpress.getSidebar,
+        picday=picday,
         pagination=pagination,
         posts=posts)
 
@@ -217,7 +218,8 @@ def tag(slug, page=0):
     pagination, posts = wordpress.getPostsByTag(tag=slug, page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getSidebar,
+        #sidebar=wordpress.getSidebar,
+        picday=picday,
         pagination=pagination,
         posts=posts)
 
@@ -228,7 +230,8 @@ def pages(path):
     return render_template(
         'page.html',
         page=wordpress.getPageByPath(path),
-        sidebar=wordpress.getSidebar,
+        #sidebar=wordpress.getSidebar,
+        picday=picday,
     )
 
 
@@ -249,7 +252,8 @@ def post(pid):
         'post.html',
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
-        sidebar=wordpress.getSidebar,
+        #sidebar=wordpress.getSidebar,
+        picday=picday,
         comments=wordpress.getComments(status='approve',post_id=pid),
         show_comment_form=is_authenticated(),
         recent_posts=recent_posts)
@@ -281,7 +285,8 @@ def search(page=0):
     pagination, posts = wordpress.search(s=query, page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getSidebar,
+        #sidebar=wordpress.getSidebar,
+        picday=picday,
         pagination=pagination,
         search_term=query,
         posts=posts)
@@ -300,7 +305,8 @@ def archive(m, page=0):
     pagination, posts = wordpress.getArchivePosts(m=m, page=page)
     return render_template(
         'archive.html',
-        sidebar=wordpress.getSidebar,
+        #sidebar=wordpress.getSidebar,
+        picday=picday,
         pagination=pagination,
         posts=posts)
 
