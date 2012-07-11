@@ -131,8 +131,8 @@ def index():
         thumbsizes=['slideshow'])
 
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(3)
-    print 'PICDAY:', picday
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    print 'PICDAY:', picday, '***', type(picday)
 
     news = wordpress.getRecentPosts(
         category_name='news',

@@ -184,7 +184,17 @@
       </div>
 
       <div id="picday">
-        {{ picday }}
+        {%if picday %}
+        <aside id="widget_sp_image-3" class="widget widget_sp_image">
+          <h3 class="widget-title">Foto do Dia</h3>
+          <a class="widget_sp_image-image-link" href="{{ picday['imageURL'] }}" target="_self">
+            <img src="{{ picday['imageURL'] }}" style="max-width: 299px;max-height: 193px;" alt="{{ picday['title'] }}" />
+          </a>
+          <div class="widget_sp_image-description" >
+            {{ picday['description']}}
+          </div>
+        </aside>
+        {%endif%}
       </div>
     </div>
     <div class="row-end"></div>
