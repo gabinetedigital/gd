@@ -65,7 +65,7 @@
       {% if galleries %}
         {% for gallery in galleries  %}
         <li>
-          <a href="{{ url_for('.index', slug=gallery.slug) }}" title="{{ gallery.title }}">
+          <a href="{{ url_for('.index', slug=gallery.slug) }}{%if s%}?s={{s}}{%endif%}" title="{{ gallery.title }}">
             <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
             <h4>{{ gallery.title }}</h4>
           </a>
