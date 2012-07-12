@@ -238,6 +238,9 @@ class User(Entity):
     password = Field(Unicode(256), colname='user_pass')
     email = Field(Unicode(64), colname='user_email')
     user_activation_key = Field(Unicode(60))
+    
+    receive_sms   = Field(Boolean)
+    receive_email = Field(Boolean)
 
     buzzes = OneToMany('Buzz')
     contribs = OneToMany('Contrib')

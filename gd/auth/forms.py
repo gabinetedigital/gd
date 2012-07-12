@@ -112,6 +112,24 @@ class SignupForm(BaseDataForm, BasePasswordForm):
         [validators.Required(),],
         default=True,
     )
+    
+    receive_email = BooleanField(
+        _('I want to receive updates by email.'),
+        default=True,
+    )
+    
+    receive_sms = BooleanField(
+        _('I want to receive updates by sms. '
+          '(Cell phone required)'),
+        default=True,
+    )
+    
+    def validate_receive_sms(self, field):
+        """Validate if cel-phone number is present"""
+        if ( field.data in ['Y','y'] and not self.phone.data):
+            raise ValidationError(
+                _(u'Cel phone number is required'))
+            
 
     def validate_email_confirmation(self, field):
         """Compound validation between email and its confirmation"""

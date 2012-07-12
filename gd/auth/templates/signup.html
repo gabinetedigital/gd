@@ -69,6 +69,19 @@
             {{ form.accept_tos }} {{ form.accept_tos.label }}
             <p class="errmsg accept_tos-error"></p>
           </li>
+          
+          <li class="field receive_email">
+            <br>
+            {{ form.receive_email }} {{ form.receive_email.label }}
+            <p class="errmsg receive_email-error"></p>
+          </li>
+          
+          <li class="field receive_sms">
+            <br>
+            {{ form.receive_sms }} {{ form.receive_sms.label }}
+            <p class="errmsg receive_sms-error"></p>
+          </li>
+          
           <li class="submit"><input type="submit" class="awesome" value="Cadastrar"></li>
 
           <li class="sep"><hr></li>

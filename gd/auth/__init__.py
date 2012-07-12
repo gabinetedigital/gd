@@ -144,7 +144,7 @@ class checkroles(object):
         return wrapper
 
 
-def create_user(name, username, password, email, meta=None):
+def create_user(name, username, password, email, meta=None, receive_sms=False, receive_email=False):
     """Create a new user in the database"""
     # There will be one and only one user with a given username
     if User.query.filter_by(username=username).count():
@@ -157,6 +157,7 @@ def create_user(name, username, password, email, meta=None):
     activation_key = md5(username + password).hexdigest()
     user = User(
         name=name, username=username, password=password, email=email,
+        receive_sms=receive_sms, receive_email=receive_email,
         user_activation_key=activation_key)
     dbsession.commit()
 

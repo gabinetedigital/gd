@@ -139,7 +139,8 @@ def signup_json():
             # Finally, it's time to create the user
             user = authapi.create_user(
                 dget('name'), dget('email'), password,
-                dget('email_confirmation'), form.meta)
+                dget('email_confirmation'), form.meta,
+                dget('receive_sms'), dget('receive_email') )
             utils.send_welcome_email(user)
         except authapi.UserExists:
             return utils.format_csrf_error(
