@@ -39,7 +39,7 @@
 	  <div class="download">
 	    <a href="{{ image.imageURL }}_backup">Download Original</a>
 	  </div>
-	  <div class="image-title">{{ image.description }}</div>
+	  <div class="text">{{ image.title }}<br>{{ image.description }}</div>
 	</div>
       </li>
       {% endfor %}
@@ -52,23 +52,31 @@
 
   <form method="GET" action="/gallery" id="search_tool">
     busca: <input type="text" name="s" id="s" value="{{s}}">
-    <input type="submit" value="ir">
+    <input type="submit" class="submit" value="ir">
 
   </form>
 
   <div id="galerias">
     <ul id="gallerylist">
+      {% if s %}
+      <h3>
+        <a href="/gallery">Todas as galerias</a>
+
+        > Resutado busca por: <i>{{s}}</i>
+
+      </h3>
+      {% endif %}
       {% if galleries %}
-        {% for gallery in galleries  %}
-        <li>
-          <a href="{{ url_for('.index', slug=gallery.slug) }}{%if s%}?s={{s}}{%endif%}" title="{{ gallery.title }}">
-            <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
-            <h4>{{ gallery.title }}</h4>
-          </a>
-        </li>
-        {% endfor %}
+      {% for gallery in galleries  %}
+      <li>
+        <a href="{{ url_for('.index', slug=gallery.slug) }}{%if s%}?s={{s}}{%endif%}" title="{{ gallery.title }}">
+          <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
+          <h4>{{ gallery.title }}</h4>
+        </a>
+      </li>
+      {% endfor %}
       {% else %}
-        <p>Nenhuma galeria de fotos foi encontrada.</p>
+      <p class="error">Nenhuma galeria de fotos foi encontrada.</p>
       {% endif %}
     </ul>
   </div>
