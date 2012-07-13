@@ -32,13 +32,6 @@ h2.stitle {
     overflow: auto;
 }
 
-/* .currentgallery .current { */
-/*     text-align:center; */
-/*     width:800px; */
-/*     margin:0 auto; */
-/*     overflow:hidden; */
-/* } */
-
 .currentgallery h2 {
     text-align:left;
     color:#fff;
@@ -184,12 +177,6 @@ a.next_link {
 
 #search_tool {
     text-align: right;
-    color: white;
-}
-
-#search_tool li {
-    display: inline;
-    margin-left: 10px;
     color: #000;
 }
 
@@ -197,16 +184,12 @@ a.next_link {
     margin-left: 40px;
 }
 
-#search_tool select {
-    border: 1px solid #880000;
-    Background: #CC0000;
-}
-
 #search_tool input {
     border: 1px solid #880000;
     background: #CC0000;
     padding-left: 2px;
     margin-left: 5px;
+    box-shadow: none;
 }
 
 #galerias {

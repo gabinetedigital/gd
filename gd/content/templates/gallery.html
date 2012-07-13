@@ -37,7 +37,7 @@
         </a>
 	<div class="caption">
 	  <div class="download">
-	    <a href="{{ image.imageURL }}">Download Original</a>
+	    <a href="{{ image.imageURL }}_backup">Download Original</a>
 	  </div>
 	  <div class="image-title">{{ image.description }}</div>
 	</div>
@@ -49,17 +49,12 @@
 
 <div id="busca">
   <h2> Galerias </h2>
-  <ul id="search_tool">
-    <!-- <li>Filtre por -->
-    <!--   <select> -->
-    <!--     <option>Categoria</option> -->
-    <!--     <option>Foto do dia</option> -->
-    <!--     <option>Minha foto com o Governador</option> -->
-    <!--   </select> -->
-    <!-- </li> -->
-    <li>Busque por <form method="GET" action="/gallery"> <input type="text" name="s" id="s" value="{{s}}"> </form> </li>
-    <!-- <li class="feed">Assine</li> -->
-  </ul>
+
+  <form method="GET" action="/gallery" id="search_tool">
+    busca: <input type="text" name="s" id="s" value="{{s}}">
+    <input type="submit" value="ir">
+
+  </form>
 
   <div id="galerias">
     <ul id="gallerylist">
