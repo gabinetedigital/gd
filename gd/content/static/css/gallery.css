@@ -32,12 +32,12 @@ h2.stitle {
     overflow: auto;
 }
 
-.currentgallery .current {
-    text-align:center;
-    width:800px;
-    margin:0 auto;
-    overflow:hidden;
-}
+/* .currentgallery .current { */
+/*     text-align:center; */
+/*     width:800px; */
+/*     margin:0 auto; */
+/*     overflow:hidden; */
+/* } */
 
 .currentgallery h2 {
     text-align:left;
@@ -56,6 +56,10 @@ h2.stitle {
 .currentgallery .current img {
     max-width:800px;
     max-height: 600px;
+}
+
+div.slideshow a.advance-link {
+    height: 600px;
 }
 
 .currentgallery .current p {
@@ -109,15 +113,36 @@ h2.stitle {
 #controls .nav-controls .prev {
     float:left;
 }
- 
+
 #controls .nav-controls .next {
     float: right;
 }
 
-#caption {
+div#caption {
     text-align: left;
-    color: #FFF;
-    margin-left: 73px;
+    position: absolute;
+}
+
+span.image-caption {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+}
+
+div.caption {
+    background-color: #000000;
+    color: #CCCCCC;
+    padding: 12px;
+    overflow: auto;
+}
+
+div.caption .download a {
+    background: url("../imgs/download.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: right;
+    height: 32px;
+    text-indent: -9999px;
+    width: 24px;
 }
 
 #thumbs .pagination a {

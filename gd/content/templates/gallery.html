@@ -9,6 +9,7 @@
 <script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -24,26 +25,26 @@
     <h2>{{ current.title }}</h2>
     {% endif %}
   </div>
-  <div id="caption">
-    {% if current %}
-    {% set highlight = current.images[0] %}
-    <p>{{ highlight.description }}</p>
-    {% endif %}
+  <div id="caption" class="caption-container"></div>
+  <div id="thumbs"  class="navigation images">
+    <ul class="thumbs images">
+      {% for image in current.images %}
+      <li>
+        <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
+           {% if loop.index == 1 %}class="selected"{% endif %}
+           >
+          <img src="{{ image.thumbURL }}" alt="{{ image.description }}">
+        </a>
+	<div class="caption">
+	  <div class="download">
+	    <a href="{{ image.imageURL }}">Download Original</a>
+	  </div>
+	  <div class="image-title">{{ image.description }}</div>
+	</div>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
-
-    <div id="thumbs"  class="navigation images">
-      <ul class="thumbs images">
-        {% for image in current.images %}
-        <li>
-          <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
-             {% if loop.index == 1 %}class="selected"{% endif %}
-             >
-            <img src="{{ image.thumbURL }}" alt="{{ image.description }}">
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
 </div>
 
 <div id="busca">

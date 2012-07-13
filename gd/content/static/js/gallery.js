@@ -18,18 +18,36 @@
  */
 
 $(document).ready(function() {
+
     // Initialize Minimal Galleriffic Gallery
     $('#thumbs').galleriffic({
         imageContainerSel:      '#slideshow',
         controlsContainerSel:   '#controls',
+        captionContainerSel:    '#caption',
         numThumbs:                 10,
         maxPagesToShow:            20,
         prevLinkText:              '«',
         nextLinkText:              '»',
         nextPageLinkText:          '>',
         prevPageLinkText:          '<',
+        onTransitionIn: function(slide, caption, isSync) {
+            var duration = this.getDefaultTransitionDuration(isSync);
+            var slideImage = slide.find('img');
+            slide.fadeTo(duration, 1.0);
+
+            console.log(Math.floor(($('#slideshow').width() - slideImage.width()) / 2));
+            caption.width(slideImage.width())
+                .css({
+                    'bottom' : ($('#caption').height()+4),
+                    'left' : ((Math.floor(($('#slideshow').width() - slideImage.width()) / 2) )+ 1),
+                })
+
+            $('#caption span.image-caption').fadeTo(1000, 0.9);
+        },
     });
 
+
+    $('#slideshow > img').hide();
     $('.prev').addClass('awesome');
     $('.next').addClass('awesome');
     $('.play').hide();
