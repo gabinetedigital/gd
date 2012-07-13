@@ -58,7 +58,7 @@ def vote(imageid, rate):
             vote_result = wordpress.nggv.voteImage( imageid, rate )
         else:
             vote_result = 'False'
-        return "{'vote': '%s' }" % str(vote_result)
+        return "{'vote': '%s', 'msg': %s }" % ( str(vote_result), can )
     except RuntimeError as e:
         print e.errno, e.strerror
         return "{'vote': 'False'}"
