@@ -50,3 +50,15 @@ def index(slug=None):
         s=search_terms,
         current=current)
 
+@gallery.route('/vote/<int:imageid>/<int:rate>')
+def vote(imageid, rate):
+    try:
+        can = wordpress.nggv.canVoteImage( imageid )
+        if can == 'true':
+            vote_result = wordpress.nggv.voteImage( imageid, rate )
+        else:
+            vote_result = 'False'
+        return "{'vote': '%s' }" % str(vote_result)
+    except RuntimeError as e:
+        print e.errno, e.strerror
+        return "{'vote': 'False'}"
