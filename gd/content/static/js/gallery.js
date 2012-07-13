@@ -35,7 +35,6 @@ $(document).ready(function() {
             var slideImage = slide.find('img');
             slide.fadeTo(duration, 1.0);
 
-            console.log(Math.floor(($('#slideshow').width() - slideImage.width()) / 2));
             caption.width(slideImage.width())
                 .css({
                     'bottom' : ($('#caption').height()+4),
