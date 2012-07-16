@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template, abort, request
+from flask import Blueprint, render_template, abort, request, jsonify
 from gd.content.wp import wordpress, gallery as api
 import math
 
@@ -57,15 +57,19 @@ def index(slug=None):
         s=search_terms,
         current=current)
 
+@gallery.route('/vote/<int:gid>/')
 @gallery.route('/vote/<int:gid>/<int:rate>/')
-def vote(gid, rate):
+def vote(gid, rate=-1):
     try:
         can = wordpress.nggv.canVoteGallery( gid )
         if can in ['true','True',True]:
-            vote_result = wordpress.nggv.voteGallery( gid, rate )
+            if rate == -1:
+                rate = request.args.get('value', -1, type=int)
+                if rate != -1:
+                    vote_result = wordpress.nggv.voteGallery( gid, rate )
         else:
             vote_result = 'False'
-        return "{'vote': '%s', 'msg': %s }" % ( str(vote_result), can )
+        return jsonify( "{'vote': '%s', 'msg': %s }" % ( str(vote_result), can ) )
     except RuntimeError as e:
         print e.errno, e.strerror
-        return "{'vote': 'False', 'msg': ''}"
+        return jsonify("{'vote': 'False', 'msg': ''}")
