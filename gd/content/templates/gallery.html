@@ -11,6 +11,7 @@
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
 <script src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ddba96024e86089"></script>
 <script src="{{ url_for('.static', filename='js/jquery.rating.pack.js') }}"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -38,13 +39,40 @@
           </div>
         </li>
         <li class="rating">
+          <script>
+            $(document).ready(function() {
+              function adjust(value, r0, r1, r2, r3) {
+                var mag = Math.abs(value - r0);
+                if (value < 0) {
+                  sgn = -1;
+                } else {
+                  sgn = 1;
+                }
+
+                return sgn * mag * (r3 - r2) / (r1 - r0);
+              }
+
+              $('input').rating('select',parseInt(adjust(10,1,10,0,4)));
+              console.log("Star: " + {{ current.star }};
+            });
+          </script>
+          {% if current.usercanvote %}
           <div>
-            <input name="star1" type="radio" class="star">
-            <input name="star1" type="radio" class="star">
-            <input name="star1" type="radio" class="star">
-            <input name="star1" type="radio" class="star">
-            <input name="star1" type="radio" class="star">
+            <input name="star1" type="radio" class="star" disabled="disabled">
+            <input name="star1" type="radio" class="star" >
+            <input name="star1" type="radio" class="star" >
+            <input name="star1" type="radio" class="star" >
+            <input name="star1" type="radio" class="star" >
           </div>
+          {% else %}
+          <div>
+            <input name="star1" type="radio" class="star" >
+            <input name="star1" type="radio" class="star" >
+            <input name="star1" type="radio" class="star" >
+            <input name="star1" type="radio" class="star" >
+            <input name="star1" type="radio" class="star" >
+          </div>
+          {% endif %}
         </li>
       </ul>
     </div>
