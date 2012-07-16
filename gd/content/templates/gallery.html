@@ -9,20 +9,30 @@
 <script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
-
+<script src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ddba96024e86089"></script>
 {% endblock %}
 
 {% block content %}
 
 <h1 class="stitle">Galeria de fotos</h1>
-
 <div id="gallery" class="content currentgallery">
 
   <div id="controls"></div>
   <div id="loading"></div>
   <div id="slideshow">
     {% if current %}
-    <h2>{{ current.title }}</h2>
+    <h2>
+      {{ current.title }}
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style"
+           addthis:url="{{ request.url_root }}gallery/{{ current.slug }}" id="share"
+           addthis:title="Galeria : {{ current.title }}">
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+      </div>
+      <script>var addthis_config = {"data_track_clickback":true};</script>
+      <!-- AddThis Button END -->
+    </h2>
     {% endif %}
   </div>
   <div id="caption" class="caption-container"></div>

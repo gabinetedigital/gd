@@ -41,6 +41,12 @@ h2.stitle {
     text-transform: capitalize;
 }
 
+.currentgallery #share {
+    float: right;
+    margin-right: 71px;
+    padding-top: 8px;
+}
+
 .currentgallery .current .pcontainer {
     background:#000;
     min-height:533px;
