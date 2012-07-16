@@ -44,8 +44,12 @@ def index(slug=None):
         if slug and (str(slug) not in [i['slug'] for i in galleries]):
             abort(404)
         current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
-        current['avg'] = float(str(current['avg']))/10
-        current['star'] = math.ceil(current['avg']) 
+        if 'avg' in current.keys() and current['avg']:
+            current['avg'] = float(str(current['avg']))/10
+            current['star'] = math.ceil(current['avg'])
+        else:
+            current['avg'] = 0
+            current['star'] = 0
         
     return render_template(
         'gallery.html',
