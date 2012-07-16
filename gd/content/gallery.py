@@ -20,6 +20,7 @@
 
 from flask import Blueprint, render_template, abort, request
 from gd.content.wp import wordpress, gallery as api
+import math
 
 gallery = Blueprint(
     'gallery', __name__,
@@ -28,7 +29,7 @@ gallery = Blueprint(
 
 
 @gallery.route('/')
-@gallery.route('/<slug>')
+@gallery.route('/<slug>/')
 def index(slug=None):
     search_terms = ''
     if 's' in request.args and request.args.get('s', ''):
@@ -43,6 +44,8 @@ def index(slug=None):
         if slug and (str(slug) not in [i['slug'] for i in galleries]):
             abort(404)
         current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
+        current['avg'] = float(str(current['avg']))/10
+        current['star'] = math.ceil(current['avg']) 
         
     return render_template(
         'gallery.html',
@@ -50,15 +53,15 @@ def index(slug=None):
         s=search_terms,
         current=current)
 
-@gallery.route('/vote/<int:imageid>/<int:rate>')
-def vote(imageid, rate):
+@gallery.route('/vote/<int:gid>/<int:rate>/')
+def vote(gid, rate):
     try:
-        can = wordpress.nggv.canVoteImage( imageid )
-        if can == 'true':
-            vote_result = wordpress.nggv.voteImage( imageid, rate )
+        can = wordpress.nggv.canVoteGallery( gid )
+        if can in ['true','True',True]:
+            vote_result = wordpress.nggv.voteGallery( gid, rate )
         else:
             vote_result = 'False'
         return "{'vote': '%s', 'msg': %s }" % ( str(vote_result), can )
     except RuntimeError as e:
         print e.errno, e.strerror
-        return "{'vote': 'False'}"
+        return "{'vote': 'False', 'msg': ''}"
