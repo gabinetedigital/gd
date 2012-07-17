@@ -62,16 +62,15 @@ h2.stitle {
 
 .currentgallery .current .pcontainer {
     background:#000;
-    min-height:533px;
 }
 
 .currentgallery .current img {
     max-width:800px;
-    max-height: 600px;
+    max-height: 533px;
 }
 
 div.slideshow a.advance-link {
-    height: 600px;
+    height: 533px;
 }
 
 .currentgallery .current p {
