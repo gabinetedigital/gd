@@ -11,29 +11,6 @@
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
 <script src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ddba96024e86089"></script>
 <script src="{{ url_for('.static', filename='js/jquery.rating.pack.js') }}"></script>
-<script>
-  $(document).ready(function() {
-    function adjust(value, r0, r1, r2, r3) {
-        var mag = Math.abs(value - r0);
-        if (value < 0) {
-            sgn = -1;
-        } else {
-            sgn = 1;
-        }
-        return sgn * mag * (r3 - r2) / (r1 - r0);
-    }
-
-    var star = {{ current.star }};
-
-    if ( star > 0 ) {
-        $('input').rating('select',parseInt(adjust({{ current.star }},0,10,0,4)));
-    }
-
-
-
-
-   });
-</script>
 {% endblock %}
 
 {% block content %}
@@ -59,39 +36,6 @@
             <script>var addthis_config = {"data_track_clickback":true};</script>
             <!-- AddThis Button END -->
           </div>
-        </li>
-        <li class="rating">
-          <form action="vote/{{current.gid}}/" id="star1">
-            <script>
-$(document).ready(function() {
-
-      $('.star').rating({
-       callback: function(value, link){
-         alert(value);
-         $(this.form).ajaxSubmit();
-       }
-      });
-    });
-
- </script>
-          {% if user is not none and current.usercanvote %}
-          <div>
-            <input name="star1" type="radio" class="star" value="1">
-            <input name="star1" type="radio" class="star" value="3">
-            <input name="star1" type="radio" class="star" value="5">
-            <input name="star1" type="radio" class="star" value="7">
-            <input name="star1" type="radio" class="star" value="10">
-          </div>
-          {% else %}
-          <div>
-            <input name="star1" type="radio" class="star" disabled="disabled">
-            <input name="star1" type="radio" class="star" disabled="disabled">
-            <input name="star1" type="radio" class="star" disabled="disabled">
-            <input name="star1" type="radio" class="star" disabled="disabled">
-            <input name="star1" type="radio" class="star" disabled="disabled">
-          </div>
-          {% endif %}
-          </form>
         </li>
       </ul>
     </div>

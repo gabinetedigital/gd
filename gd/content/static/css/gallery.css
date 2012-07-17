@@ -17,8 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import url('jquery.rating.css');
-
 h1.stitle {
     margin-bottom:20px;
 }
@@ -51,12 +49,6 @@ h2.stitle {
 .currentgallery #title li.share {
     float: right;
     margin-right: 71px;
-    padding-top: 8px;
-}
-
-.currentgallery #title li.rating {
-    float: right;
-    margin-right: 15px;
     padding-top: 8px;
 }
 
