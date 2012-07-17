@@ -32,6 +32,13 @@ h2.stitle {
     overflow: auto;
 }
 
+#title {
+    clear: both;
+    display: block;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
 .currentgallery h2 {
     text-align:left;
     color:#fff;
@@ -50,6 +57,7 @@ h2.stitle {
     float: right;
     margin-right: 71px;
     padding-top: 8px;
+    width: 40px;
 }
 
 .currentgallery .current .pcontainer {
@@ -123,20 +131,17 @@ div.slideshow a.advance-link {
 
 div#caption {
     text-align: left;
-    position: absolute;
-}
+ }
 
 span.image-caption {
     display: block;
-    position: relative;
     margin: 0 auto;
 }
 
 div.caption {
-    background-color: #000000;
     color: #CCCCCC;
-    padding: 12px;
     overflow: auto;
+    padding: 12px;
 }
 
 div.caption .download a {

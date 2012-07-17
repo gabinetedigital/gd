@@ -37,11 +37,11 @@ $(document).ready(function() {
 
             caption.width(slideImage.width())
                 .css({
-                    'bottom' : ($('#caption').height()+4),
-                    'left' : ((Math.floor(($('#slideshow').width() - slideImage.width()) / 2) )),
+                    'bottom' : ($('#caption').height()+3),
+                    'left' : ((Math.floor(($('#slideshow').width() - slideImage.width()) / 2) + 2 )),
                 })
 
-            $('#caption span.image-caption').fadeTo(1000, 0.9);
+            $('#caption span.image-caption').fadeTo(1000, 0.8);
         },
     });
 
