@@ -129,10 +129,8 @@ def index():
         post_status='publish',
         numberposts=4,
         thumbsizes=['slideshow'])
-
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-
     news = wordpress.getRecentPosts(
         category_name='news',
         post_status='publish',
@@ -190,6 +188,8 @@ def foto_com_gov():
 def news(page=0):
     """List posts in chronological order"""
     pagination, posts = wordpress.getPosts(page=page)
+    #Retorna a ultima foto inserida neste album.
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
         #sidebar=wordpress.getSidebar,
@@ -203,6 +203,8 @@ def news(page=0):
 def category(cid, page=0):
     """List posts of a given category"""
     pagination, posts = wordpress.getPostsByCategory(cat=cid, page=page)
+    #Retorna a ultima foto inserida neste album.
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
         #sidebar=wordpress.getSidebar,
@@ -216,6 +218,8 @@ def category(cid, page=0):
 def tag(slug, page=0):
     """List posts of a given tag"""
     pagination, posts = wordpress.getPostsByTag(tag=slug, page=page)
+    #Retorna a ultima foto inserida neste album.
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
         #sidebar=wordpress.getSidebar,
@@ -227,6 +231,8 @@ def tag(slug, page=0):
 @app.route('/pages/<path:path>')
 def pages(path):
     """Renders a wordpress page"""
+    #Retorna a ultima foto inserida neste album.
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'page.html',
         page=wordpress.getPageByPath(path),
@@ -248,6 +254,8 @@ def post(pid):
     recent_posts = wordpress.getRecentPosts(
         post_status='publish',
         numberposts=4)
+    #Retorna a ultima foto inserida neste album.
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'post.html',
         post=wordpress.getPost(pid),
@@ -283,6 +291,8 @@ def search(page=0):
     """Renders the search template"""
     query = request.values.get('s', '')
     pagination, posts = wordpress.search(s=query, page=page)
+    #Retorna a ultima foto inserida neste album.
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
         #sidebar=wordpress.getSidebar,
@@ -303,6 +313,8 @@ def feed():
 def archive(m, page=0):
     """List posts of the archive given yyyymm format"""
     pagination, posts = wordpress.getArchivePosts(m=m, page=page)
+    #Retorna a ultima foto inserida neste album.
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
         #sidebar=wordpress.getSidebar,
