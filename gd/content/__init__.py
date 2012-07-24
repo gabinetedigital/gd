@@ -192,7 +192,7 @@ def news(page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
-        #sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
         posts=posts)
@@ -222,7 +222,7 @@ def tag(slug, page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
-        #sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
         posts=posts)
@@ -236,7 +236,7 @@ def pages(path):
     return render_template(
         'page.html',
         page=wordpress.getPageByPath(path),
-        #sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         picday=picday,
     )
 
@@ -260,7 +260,7 @@ def post(pid):
         'post.html',
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
-        #sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         picday=picday,
         comments=wordpress.getComments(status='approve',post_id=pid),
         show_comment_form=is_authenticated(),
@@ -295,7 +295,7 @@ def search(page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
-        #sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
         search_term=query,
@@ -317,7 +317,7 @@ def archive(m, page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
         'archive.html',
-        #sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
         posts=posts)
