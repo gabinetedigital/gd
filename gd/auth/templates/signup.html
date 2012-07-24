@@ -64,6 +64,19 @@
           </li>
           {% endif %}
 
+          <li class="field state frmcol2">
+            {{ form.state.label }} {{ form.state }}
+            <p class="errmsg state-error">
+          </li>
+          <li class="field city frmcol2">
+            {{ form.city.label }} {{ form.city }}
+            <p class="errmsg city-error">
+          </li>
+          <li class="field phone">
+            {{ form.phone.label }} {{ form.phone }}
+            <p class="errmsg phone-error">
+          </li>
+          
           <li class="field accept_tos">
             <br>
             {{ form.accept_tos }} {{ form.accept_tos.label }}
@@ -75,20 +88,16 @@
             {{ form.receive_email }} {{ form.receive_email.label }}
             <p class="errmsg receive_email-error"></p>
           </li>
-          
           <li class="field receive_sms">
             <br>
             {{ form.receive_sms }} {{ form.receive_sms.label }}
             <p class="errmsg receive_sms-error"></p>
           </li>
-          
+
           <li class="submit"><input type="submit" class="awesome" value="Cadastrar"></li>
 
           <li class="sep"><hr></li>
           <li><h2>Dados opcionais</h2></li>
-          <li class="field state frmcol2">{{ form.state.label }} {{ form.state }}</li>
-          <li class="field city frmcol2">{{ form.city.label }} {{ form.city }}</li>
-          <li class="field phone">{{ form.phone.label }} {{ form.phone }}</li>
 
           <li class="field gender frmcol2">{{ form.gender.label }} {{ form.gender }}</li>
           <li class="field age_group frmcol2">

@@ -67,6 +67,7 @@ class BaseDataForm(Form):
 
     phone = TextField(
         _('Phone'),
+        [validators.Required()],
     )
 
     twitter = TextField(
@@ -119,8 +120,7 @@ class SignupForm(BaseDataForm, BasePasswordForm):
     )
     
     receive_sms = BooleanField(
-        _('I want to receive updates by sms. '
-          '(Cell phone required)'),
+        _('I want to receive updates by sms.'),
         default=True,
     )
     
