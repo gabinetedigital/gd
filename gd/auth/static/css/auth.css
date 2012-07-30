@@ -169,6 +169,24 @@ form.auth .accept_tos label {
     padding-bottom:2px;
 }
 
+form.auth .receive_email input {
+    width:auto;
+}
+
+form.auth .receive_email label {
+    display:inline;
+    padding-bottom:2px;
+}
+
+form.auth .receive_sms input {
+    width:auto;
+}
+
+form.auth .receive_sms label {
+    display:inline;
+    padding-bottom:2px;
+}
+
 .frmcol1 {
     width:50%;
     float:left;
