@@ -19,15 +19,15 @@
 
 from os import urandom
 from sqlalchemy.orm.exc import NoResultFound
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 from werkzeug import FileStorage
 
 from gd import utils
 from gd.utils import msg
 from gd import auth as authapi
-from gd.auth.fbauth import checkfblogin
+from gd.auth.fbauth import checkfblogin, facebook as remote_facebook
 from gd.auth import forms
-from gd.model import Upload, session, User
+from gd.model import Upload, session as dbsession, User
 from gd.content.wp import wordpress
 
 
@@ -55,7 +55,9 @@ def social(form, show=True, default=None):
     inst.csrf_enabled = False
 
     # Preparing form meta data
-    inst.social = bool(facebook)
+    inst.social = bool(facebook) 
+    if default and 'social' in default:
+        inst.social = default['social']
     inst.meta = inst.data.copy()
 
     # Cleaning unwanted metafields (they are not important after
@@ -115,11 +117,27 @@ def logout_json():
 @auth.route('/signup')
 def signup_form():
     """Renders the signup form"""
-    form = social(forms.SignupForm)
+    
+    default_data=None
+    print session.keys()
+    if request.cookies.get('connect_type') == 'social_f':
+        f_data=remote_facebook.get('/me').data
+        default_data = {
+            'gender': f_data['gender'][:1], #'m' e 'f'
+            'name': f_data['name'],
+            'email': f_data['email'],
+            'email_confirmation': f_data['email'],
+            'social': True
+        }
+        print  "DEFAULT DATA FORM ::::::::::::::::: ", default_data
+    else:
+        print "NAO TEM FACEBOOK_DATA !!!!!!"
+
+    form = social(forms.SignupForm, default=default_data)
     return render_template(
         'signup.html', form=form,
         tos=wordpress.getPageByPath('tos'),
-        readmore=wordpress.getPageByPath('signup-read-more'),
+        readmore=wordpress.getPageByPath('signup-read-more')
     )
 
 
@@ -128,6 +146,7 @@ def signup_json():
     """Register a new user that sent his/her informations through the
     signup form"""
     form = social(forms.SignupForm, False)
+    fromsocial = request.cookies.get('connect_type') == 'social_f'
 
     # Proceeding with the validation of the user fields
     if form.validate_on_submit():
@@ -218,7 +237,7 @@ def profile_passwd_json():
     if form.validate_on_submit():
         user = authapi.authenticated_user()
         user.set_password(form.password.data)
-        session.commit()
+        dbsession.commit()
         return msg.ok({
             'data': _('Password updated successful'),
             'csrf': form.csrf.data,
@@ -241,9 +260,9 @@ def remember_password():
         new_pass = utils.generate_random_password()
         if utils.send_password(request.values['email'], new_pass):
             user.set_password(new_pass)
-            session.commit()
+            dbsession.commit()
         else:
-            session.rollback()
+            dbsession.rollback()
             raise Exception('Unable to send the email')
     except NoResultFound:
         return msg.error(

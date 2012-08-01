@@ -71,31 +71,38 @@ def authenticated_user():
         raise NobodyHome()
 
 
-def login(username, password):
+def login(username, password, fromsocial=False):
     """Logs a user in the current session"""
     # Testing if the user exists
     try:
+        print "LOGIN WITH USER:", username
         user = User.query.filter_by(username=username).one()
     except NoResultFound:
         raise UserNotFound()
-    return login_user_instance(user, password)
+    print "USUARIO ENCONTRADO, VALIDANDO SENHA..."
+    return login_user_instance(user, password, fromsocial)
 
 
-def login_user_instance(user, password):
+def login_user_instance(user, password, fromsocial=False):
     """Logs an user instance in, instead of receiving it's username as a
     string"""
+
+    print 'USER ACTIVATION_KEY:', user.user_activation_key, user.user_activation_key.strip()
 
     # We won't log unconfirmed users in
     if user.user_activation_key.strip():
         raise UserNotFound()
 
+    print '================> USER DEBUG:',user.get_meta('fromsocial'), 'oauth_token' in session
+
     # If user is not logging in from a social network, let's verify
     # his/her local password information.
-    if not (user.get_meta('fromsocial') and 'oauth_token' in session):
+    if not (user.get_meta('fromsocial') and 'oauth_token' in session) and not fromsocial:
         hasher = phpass.PasswordHash(8, True)
         if not hasher.check_password(password, user.password):
             raise UserAndPasswordMissmatch()
 
+    print 
     # Everything seems to be ok here, let's register the user in our
     # session and return its data (but the password, of course) to the
     # caller.
