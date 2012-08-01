@@ -20,7 +20,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 TWITTER_JSON_TIMELINE_URL = \
-    "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%s"
+    "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=%s&include_rts=true&count=1"
 
 import sys
 import os
