@@ -228,6 +228,19 @@ def tag(slug, page=0):
         posts=posts)
 
 
+@app.route('/conselho-comunicacao')
+def conselho():
+    """Renders a wordpress page special"""
+    path = 'conselho-comunicacao'
+    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    return render_template(
+        'conselho-comunicacao.html',
+        page=wordpress.getPageByPath(path),
+        sidebar=wordpress.getSidebar,
+        picday=picday,
+    )
+
+
 @app.route('/pages/<path:path>')
 def pages(path):
     """Renders a wordpress page"""
