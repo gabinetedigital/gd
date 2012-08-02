@@ -80,6 +80,7 @@ class BaseDataForm(Form):
                     _(u'This field is required.'))
 
 
+
 class BasePasswordForm(Form):
     """Form that holds password fields"""
 
@@ -130,8 +131,9 @@ class SignupForm(BaseDataForm, BasePasswordForm):
     )
 
     def validate_receive_sms(self, field):
+        print "VALIDANDO RECEBIMENTO DE SMS com ou sem telefone!!!!", field.data, self.phone.data
         """Validate if cel-phone number is present"""
-        if ( field.data and not self.phone.data):
+        if ( (field.data in ['Y','y'] or field.data == True) and not self.phone.data):
             raise ValidationError(
                 _(u'Cel phone number is required'))
 

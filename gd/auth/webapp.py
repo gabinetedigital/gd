@@ -150,6 +150,7 @@ def signup_json():
 
     # Proceeding with the validation of the user fields
     if form.validate_on_submit():
+        print "VALIDADOOOOOOOO!"
         try:
             meta = form.meta
             dget = meta.pop
@@ -172,6 +173,7 @@ def signup_json():
         utils.send_welcome_email(user)
         return msg.ok({})
     else:
+        print "NAOOOOO VALIDADOOOOOOOO!"
         return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
 
