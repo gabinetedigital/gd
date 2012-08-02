@@ -105,6 +105,7 @@ class BaseDataForm(Form):
 
 
 
+
 class BasePasswordForm(Form):
     """Form that holds password fields"""
 
@@ -143,6 +144,30 @@ class SignupForm(BaseDataForm, BasePasswordForm):
         [validators.Required(),],
         default=True,
     )
+
+    receive_email = BooleanField(
+        _('I want to receive updates by email.'),
+        default=True,
+    )
+
+    receive_sms = BooleanField(
+        _('I want to receive updates by sms.'),
+        default=True,
+    )
+
+    def validate_receive_sms(self, field):
+        print "VALIDANDO RECEBIMENTO DE SMS com ou sem telefone!!!!", field.data, self.phone.data
+        """Validate if cel-phone number is present"""
+        if ( (field.data in ['Y','y'] or field.data == True) and not self.phone.data):
+            raise ValidationError(
+                _(u'Cel phone number is required'))
+
+
+    def validate_email_confirmation(self, field):
+        """Compound validation between email and its confirmation"""
+        if field.data != self.email.data:
+            raise ValidationError(
+                _(u'Email does not match its confirmation'))
 
 
 class ProfileForm(BaseDataForm):

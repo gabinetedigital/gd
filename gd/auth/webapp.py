@@ -56,7 +56,7 @@ def social(form, show=True, default=None):
     inst.csrf_enabled = False
 
     # Preparing form meta data
-    inst.social = bool(facebook) 
+    inst.social = bool(facebook)
     if default and 'social' in default:
         inst.social = default['social']
     inst.meta = inst.data.copy()
@@ -195,7 +195,6 @@ def signup_json():
         utils.send_welcome_email(user)
         return msg.ok({})
     else:
-        print "NAOOOOO VALIDADOOOOOOOO!", form.errors
         return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
 
