@@ -180,14 +180,21 @@
 /** Sidebar **/
 
 #container #sidebar {
-    margin-top: 60px;
+    margin-top: 15px;
     margin-bottom: 20px;
 }
 
 #container #sidebar h3 {
-    font-size: 16px;
+    font-size: 28px;
     font-weight: normal;
     color: #4e9a06;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+#container #sidebar a.awesome {
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 #container #sidebar .widget_recent_entries li {
