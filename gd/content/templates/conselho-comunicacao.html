@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/blog.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/conselho.css') }}">
 <!--[if IE]>
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
 <![endif]-->
@@ -15,6 +15,12 @@
     mylink.click();
   }
 </script>
+{% endblock %}
+
+{% block slideshow %}
+<div class="row">
+  <div id="slideshow" class="col12"></div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -51,7 +57,6 @@
 
             {% for comment in comments %}
             <div class="comment">
-              <img src="{{ comment.user.avatar_url }}">
               <div class="content">
                 <h3>
                   {{ comment.author|safe }} em
