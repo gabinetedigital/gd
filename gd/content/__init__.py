@@ -273,6 +273,7 @@ def post(pid):
         numberposts=4)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+
     return render_template(
         'post.html',
         post=wordpress.getPost(pid),
