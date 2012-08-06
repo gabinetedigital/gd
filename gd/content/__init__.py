@@ -233,11 +233,15 @@ def conselho():
     """Renders a wordpress page special"""
     path = 'conselho-comunicacao'
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    page = wordpress.getPageByPath(path)
+    print 'PAAAAAAAAAAAAAAGE ID:', page.data['id']
     return render_template(
         'conselho-comunicacao.html',
-        page=wordpress.getPageByPath(path),
+        page=page,
         sidebar=wordpress.getSidebar,
         picday=picday,
+        comments=wordpress.getComments(status='approve',post_id=page.data['id']),
+        show_comment_form=is_authenticated(),
     )
 
 
@@ -280,14 +284,13 @@ def post(pid):
         recent_posts=recent_posts)
     return post_page(pid)
 
-
 @app.route('/new_comment', methods=('POST',))
 def new_comment():
     """Posts new comments to the blog"""
     if not is_authenticated():
         return msg.error(_(u'User not authenticated'))
     try:
-        wordpress.newComment(
+        cid = wordpress.newComment(
             username=session['username'],
             password=session['password'],
             post_id=request.form['post_id'],
@@ -295,7 +298,7 @@ def new_comment():
         )
         return msg.ok(_(u'Thank you. Your comment was successfuly sent'))
     except xmlrpclib.Fault, err:
-        return msg.error(__(err.faultString), code='CommentError')
+        return msg.error(_(err.faultString), code='CommentError')
 
 
 @app.route('/search')

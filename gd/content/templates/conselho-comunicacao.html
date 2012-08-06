@@ -7,23 +7,77 @@
 <![endif]-->
 {% endblock %}
 
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/post.js') }}"></script>
+<script>
+  chamaLogin = function(){
+    var mylink = document.getElementById("botao-login");
+    mylink.click();
+  }
+</script>
+{% endblock %}
+
 {% block content %}
 <div id="container">
   <div class="row">
     <div id="post" class="col8">
       <div id="news">
-          <h1>{{ page.title }}</h1>
-          <div class="postcontent">
-            {{ page.content|safe }}
+        <h1>{{ page.title }}</h1>
+        <div class="postcontent">
+          {{ page.content|safe }}
+          <div id="comments">
+
+            <div class="postcontent">
+              <h4>Contribuições</h4>
+              {% if page.comments.allow_comments and show_comment_form %}
+
+              <!-- the comment error msg -->
+              <div class="msg error"></div>
+              <div class="msg success"></div>
+
+              <form
+              id="blog_comment_form" method="post"
+              action="{{ url_for('new_comment') }}">
+
+              <input type="hidden" name="post_id" value="{{ page.id }}">
+
+              Deixe sua contribuição<br>
+              <textarea name="content"></textarea>
+              <input type="submit" value="Enviar">
+            </form>
+            {% else %}
+            <p>É necessário estar logado para poder enviar sua contribuição. <a href="javascript:chamaLogin();">ENTRAR</a> </p>
+            {% endif %}
+
+            {% for comment in comments %}
+            <div class="comment">
+              <img src="{{ comment.user.avatar_url }}">
+              <div class="content">
+                <h3>
+                  {{ comment.author|safe }} em
+                  {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }} às
+                  {{ comment.date_created_gmt|formatarDataeHora('%H:%Mh') }}
+
+                </h3>
+                {{ comment.content|safe }} <br>
+              </div>
+            </div>
+            {% endfor %}
           </div>
+        </div>
       </div>
     </div>
-    <div id="sidebar" class="col4">
-      <div id="wordpress-sidebar-1">
-        {{ sidebar(id='sidebar-2')|safe }} 
-      </div>
-    </div>
+
   </div>
-  <div class="row-end"></div>
+
+</div>
+<div id="sidebar" class="col4">
+  <div id="wordpress-sidebar-1">
+    {{ sidebar(id='sidebar-2')|safe }} 
+  </div>
+</div>
+</div>
+
+<div class="row-end"></div>
 </div>
 {% endblock %}
