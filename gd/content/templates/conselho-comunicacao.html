@@ -28,7 +28,8 @@
   <div class="row">
     <div id="post" class="col8">
       <div id="news">
-        <h1>{{ page.title }}</h1>
+        <a href="#comments" class="awesome" id="vcoments">Ver contribuições</a>
+        <h1>{{ page.title }}</h1> 
         <div class="postcontent">
           {{ page.content|safe }}
           <div id="comments">
@@ -47,7 +48,7 @@
 
               <input type="hidden" name="post_id" value="{{ page.id }}">
 
-              Deixe sua contribuição<br>
+              <h5>Deixe sua contribuição</h5>
               <textarea name="content"></textarea>
               <input type="submit" value="Enviar" class="awesome">
             </form>
@@ -56,15 +57,14 @@
             {% endif %}
 
             {% for comment in comments %}
+            <a name="comentarios"></a>
             <div class="comment">
               <div class="content">
-                <h3>
+                <p>{{ comment.content|safe }}</p>
+                <h6>
                   {{ comment.author|safe }} em
-                  {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }} às
-                  {{ comment.date_created_gmt|formatarDataeHora('%H:%Mh') }}
-
-                </h3>
-                {{ comment.content|safe }} <br>
+                  {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }}
+                </h6>
               </div>
             </div>
             {% endfor %}

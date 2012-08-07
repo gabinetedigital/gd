@@ -84,6 +84,12 @@
     font-style: italic;
 }
 
+#container #post #vcoments {
+    color: #FFF;
+    float: right;
+    margin-top: 8px;
+}
+
 #container #post h1 {
     margin-bottom: 10px;
 }
@@ -128,16 +134,22 @@
     border-top: 1px dotted #999;
     padding-top: 12px;
     margin-top: 30px;
+    overflow: hidden;
 }
 
 #container #post #comments h4 {
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 30px;
+}
+
+#container #post #comments h5 {
+    margin-top: 20px;
+    font-size: 20px;
 }
 
 #container #post #comments textarea {
     border: 1px solid #eee;
-    width: 100%;
+    width: 98%;
     float: left;
     height: 122px;
     font-size: 18px;
@@ -150,7 +162,7 @@
 }
 
 #container #post .comment {
-    margin-bottom: 20px;
+    margin-top: 20px;
     float: left;
 }
 
@@ -165,13 +177,17 @@
     border-radius: 0px 20px 20px 20px;
     background: #eee;
     padding: 6px;
-    width: 500px;
-    float: right;
-    padding: 16px;
+    width: 95%;
+    padding: 4px 16px 16px 16px;
 }
 
 #container #post .comment .content h3 {
     margin-bottom: 12px;
+}
+
+#container #post .comment .content h6 {
+    font-size: 12px;
+    text-align: right;
 }
 
 /** Sidebar **/
