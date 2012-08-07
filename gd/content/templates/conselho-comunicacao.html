@@ -38,15 +38,37 @@
               <div class="msg success"></div>
 
               <div id="ptcp" class="modal">
-
+                <!-- Estes formularios de comentário irão aparecer somente quando clicar no botão "CONTRIBUIR" -->
                 <form
                 id="blog_comment_form" method="post"
                 action="{{ url_for('new_comment') }}">
 
                 <input type="hidden" name="post_id" value="{{ page.id }}">
 
-                <h5>Deixe sua contribuição</h5>
-                <textarea name="content"></textarea>
+                <div id='botoes-escolha'>
+                  <button id='btn-nomeacao' class='awesome'>Nomeações</button>&nbsp;
+                  <button id='btn-alteracao' class='awesome'>Alteração da Lei</button>
+                </div>
+
+                <div id='div-nomeacao' class='escondido'>
+                  <label for="tipo-contribuicao"><h5>Tipo de Contribuição</h5></label>
+                  <select id='tipo-contribuicao'>
+                    <option value='1'>Entidades de classe dos profissionais da comunicação social</option>
+                    <option value='2'>Empresas de comunicação e instituições representativas do setor</option>
+                    <option value='3'>Entidades ligadas à comunicação comunitária</option>
+                    <option value='4'>Instituições da sociedade civil e movimentos sociais</option>
+                    <option value='5'>Instituições de ensino e pesquisa da área da comunicação social no Rio Grande do Sul</option>
+                  </select>
+
+                  <h5>Sua contribuição</h5>
+                  <input type='text' maxlength=500 size=50 name='input'></input>
+                </div>
+
+                <div id='div-alteracao' class='escondido'>
+                  <h5>Sua contribuição</h5>
+                  <textarea name="content"></textarea>
+                </div>
+
                 <input type="submit" value="Enviar" class="awesome">
               </form>
               {% else %}

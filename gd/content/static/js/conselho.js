@@ -17,13 +17,21 @@ showParticipar = function(slug){
 		if(!overlay_openned){
 			$('#ptcp').prepend(pagina.content);
 			$('#ptcp').prepend("<h1>" + pagina.title + "</h1>");
-			//$('#ptcp').append("<br/>");
+			//$('#ptcp').append("");
 			overlay_openned = true;
-		}		
+		}
 
 	});
 
 }
+
+$('#div-nomeacao').click(function(){
+	$('#div-nomeacao').fadeToggle();
+})
+
+$('#div-alteracao').click(function(){
+	$('#div-alteracao').fadeToggle();
+})
 
 $('#botaoparticipar').overlay({
 	// some mask tweaks suitable for modal dialogs
