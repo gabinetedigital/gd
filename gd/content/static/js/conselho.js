@@ -8,30 +8,40 @@ chamaLogin = function(){
 showParticipar = function(slug){
 	//Caregga a página com o slug abaixo para a div
 	//$('#ptcp').empty();
-	$.getJSON('/pages/instrucoes-participar.json', function(pagina){
+	if(!overlay_openned){
+		$.getJSON('/pages/instrucoes-participar.json', function(pagina){
 
-		//Abre este conteudo carregado + uma caixa de inserção de texto para 
-		//a participação do usuário.
-		//alert(pagina.content);
+			//Abre este conteudo carregado + uma caixa de inserção de texto para 
+			//a participação do usuário.
+			//alert(pagina.content);
 
-		if(!overlay_openned){
 			$('#ptcp').prepend(pagina.content);
 			$('#ptcp').prepend("<h1>" + pagina.title + "</h1>");
 			//$('#ptcp').append("");
 			overlay_openned = true;
-		}
 
-	});
+		});
+	}
+
+	$('#div-nomeacao').hide();
+	$('#div-alteracao').hide();
+	$('#botoes-escolha button').show();
+
 
 }
 
-$('#div-nomeacao').click(function(){
-	$('#div-nomeacao').fadeToggle();
-})
+clickNomeacao = function(){
+	//$('#div-alteracao').hide();
+	$('#botoes-escolha button').fadeOut();
+	$('#div-nomeacao').fadeIn();
 
-$('#div-alteracao').click(function(){
-	$('#div-alteracao').fadeToggle();
-})
+};
+
+clickAlteracao = function(){
+	//$('#div-nomeacao').hide();
+	$('#botoes-escolha button').fadeOut();
+	$('#div-alteracao').fadeIn();
+};
 
 $('#botaoparticipar').overlay({
 	// some mask tweaks suitable for modal dialogs

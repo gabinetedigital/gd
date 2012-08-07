@@ -46,11 +46,11 @@
                 <input type="hidden" name="post_id" value="{{ page.id }}">
 
                 <div id='botoes-escolha'>
-                  <button id='btn-nomeacao' class='awesome'>Nomeações</button>&nbsp;
-                  <button id='btn-alteracao' class='awesome'>Alteração da Lei</button>
+                  <button id='btn-nomeacao' onClick='clickNomeacao();' class='awesome'>Nomeações</button>&nbsp;
+                  <button id='btn-alteracao' onClick='clickAlteracao();' class='awesome'>Alteração da Lei</button>
                 </div>
 
-                <div id='div-nomeacao' class='escondido'>
+                <div id='div-nomeacao'>
                   <label for="tipo-contribuicao"><h5>Tipo de Contribuição</h5></label>
                   <select id='tipo-contribuicao'>
                     <option value='1'>Entidades de classe dos profissionais da comunicação social</option>
@@ -61,15 +61,16 @@
                   </select>
 
                   <h5>Sua contribuição</h5>
-                  <input type='text' maxlength=500 size=50 name='input'></input>
+                  <textarea name="content"></textarea>
+                  <input type="submit" value="Enviar" class="awesome">
                 </div>
 
-                <div id='div-alteracao' class='escondido'>
+                <div id='div-alteracao'>
                   <h5>Sua contribuição</h5>
                   <textarea name="content"></textarea>
+                  <input type="submit" value="Enviar" class="awesome">
                 </div>
-
-                <input type="submit" value="Enviar" class="awesome">
+                
               </form>
               {% else %}
               <p>É necessário estar logado para poder enviar sua contribuição. <a href="javascript:chamaLogin();">ENTRAR</a> </p>
