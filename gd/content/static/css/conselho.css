@@ -137,19 +137,16 @@
 
 #container #post #comments textarea {
     border: 1px solid #eee;
-    width: 80%;
+    width: 100%;
     float: left;
-    height: 70px;
-    font-size: 13px;
+    height: 122px;
+    font-size: 18px;
     margin-bottom: 20px;
 }
 
 #container #post #comments input {
-    height: 70px;
-    padding: 20px;
-    margin-left: 10px;
-    border: 2px solid #eee;
-    background: #FFF:
+    margin-left: -86px;
+    margin-top: 112px;
 }
 
 #container #post .comment {
