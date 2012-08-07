@@ -9,12 +9,7 @@
 
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/post.js') }}"></script>
-<script>
-  chamaLogin = function(){
-    var mylink = document.getElementById("botao-login");
-    mylink.click();
-  }
-</script>
+<script src="{{ url_for('.static', filename='js/conselho.js') }}"></script>
 {% endblock %}
 
 {% block slideshow %}
@@ -82,6 +77,8 @@
   </div>
 </div>
 </div>
+
+<div id="ptcp" class="modal">&nbsp;</div>
 
 <div class="row-end"></div>
 </div>
