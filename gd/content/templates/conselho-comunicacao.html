@@ -37,19 +37,23 @@
               <div class="msg error"></div>
               <div class="msg success"></div>
 
-              <form
-              id="blog_comment_form" method="post"
-              action="{{ url_for('new_comment') }}">
+              <div id="ptcp" class="modal">
 
-              <input type="hidden" name="post_id" value="{{ page.id }}">
+                <form
+                id="blog_comment_form" method="post"
+                action="{{ url_for('new_comment') }}">
 
-              <h5>Deixe sua contribuição</h5>
-              <textarea name="content"></textarea>
-              <input type="submit" value="Enviar" class="awesome">
-            </form>
-            {% else %}
-            <p>É necessário estar logado para poder enviar sua contribuição. <a href="javascript:chamaLogin();">ENTRAR</a> </p>
-            {% endif %}
+                <input type="hidden" name="post_id" value="{{ page.id }}">
+
+                <h5>Deixe sua contribuição</h5>
+                <textarea name="content"></textarea>
+                <input type="submit" value="Enviar" class="awesome">
+              </form>
+              {% else %}
+              <p>É necessário estar logado para poder enviar sua contribuição. <a href="javascript:chamaLogin();">ENTRAR</a> </p>
+              {% endif %}
+              <button type='button' class='close'>&nbsp;</button>
+            </div>
 
             {% for comment in comments %}
             <a name="comentarios"></a>
@@ -77,8 +81,6 @@
   </div>
 </div>
 </div>
-
-<div id="ptcp" class="modal">&nbsp;</div>
 
 <div class="row-end"></div>
 </div>

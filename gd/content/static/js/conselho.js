@@ -1,3 +1,5 @@
+var overlay_openned = false;
+
 chamaLogin = function(){
 	var mylink = document.getElementById("botao-login");
 	mylink.click();
@@ -5,17 +7,19 @@ chamaLogin = function(){
 
 showParticipar = function(slug){
 	//Caregga a página com o slug abaixo para a div
-	$('#ptcp').empty();
+	//$('#ptcp').empty();
 	$.getJSON('/pages/instrucoes-participar.json', function(pagina){
 
 		//Abre este conteudo carregado + uma caixa de inserção de texto para 
 		//a participação do usuário.
 		//alert(pagina.content);
-		
-		$('#ptcp').append("<h1>" + pagina.title + "</h1>");
-		$('#ptcp').append(pagina.content);
-		$('#ptcp').append("<br/><form><textarea id='participar-texto' rows='15' cols='75'></textarea><br/><br/><div class='right'><button type='button' class='awesome'>Enviar</button>&nbsp;<button type='button' class='awesome'>Fechar</button></div></form>");
-		
+
+		if(!overlay_openned){
+			$('#ptcp').prepend(pagina.content);
+			$('#ptcp').prepend("<h1>" + pagina.title + "</h1>");
+			//$('#ptcp').append("<br/>");
+			overlay_openned = true;
+		}		
 
 	});
 
@@ -24,9 +28,10 @@ showParticipar = function(slug){
 $('#botaoparticipar').overlay({
 	// some mask tweaks suitable for modal dialogs
 	mask: {
-		color: '#ebecff',
+		color: '#c5c5c5',
 		loadSpeed: 200,
 		opacity: 0.9
 	},
-	closeOnClick: false
+	closeOnClick: false,
+	closeOnEsc: false
 });
