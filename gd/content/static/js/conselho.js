@@ -5,9 +5,7 @@ chamaLogin = function(){
 	mylink.click();
 }
 
-showParticipar = function(slug){
-	//Caregga a página com o slug abaixo para a div
-	//$('#ptcp').empty();
+showParticipar = function(){
 	if(!overlay_openned){
 		$.getJSON('/pages/instrucoes-participar.json', function(pagina){
 
@@ -27,6 +25,20 @@ showParticipar = function(slug){
 	$('#div-alteracao').hide();
 	$('#botoes-escolha').show();
 
+
+}
+
+showMore = function(slug){
+
+	$.getJSON('/pages/'+slug+'.json', function(pagina){
+
+		//Abre o conteudo carregado em na caixa "overlay"
+		//$('#showmore').empty();
+		$('#showmore #content').html(pagina.content);
+		$('#showmore #content').prepend("<h1>" + pagina.title + "</h1>");
+		//$('#showmore').append("<button type='button' class='close'>&nbsp;</button>");
+
+	});
 
 }
 
@@ -53,3 +65,15 @@ $('#botaoparticipar').overlay({
 	closeOnClick: false,
 	closeOnEsc: false
 });
+
+$('.showmore').overlay({
+	// some mask tweaks suitable for modal dialogs
+	mask: {
+		color: '#000',
+		loadSpeed: 200,
+		opacity: 0.9
+	},
+	closeOnClick: false,
+	closeOnEsc: false
+});
+
