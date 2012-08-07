@@ -46,7 +46,7 @@ clickAlteracao = function(){
 $('#botaoparticipar').overlay({
 	// some mask tweaks suitable for modal dialogs
 	mask: {
-		color: '#c5c5c5',
+		color: '#000',
 		loadSpeed: 200,
 		opacity: 0.9
 	},
