@@ -25,21 +25,21 @@ showParticipar = function(slug){
 
 	$('#div-nomeacao').hide();
 	$('#div-alteracao').hide();
-	$('#botoes-escolha button').show();
+	$('#botoes-escolha').show();
 
 
 }
 
 clickNomeacao = function(){
 	//$('#div-alteracao').hide();
-	$('#botoes-escolha button').fadeOut();
+	$('#botoes-escolha').fadeOut();
 	$('#div-nomeacao').fadeIn();
 
 };
 
 clickAlteracao = function(){
 	//$('#div-nomeacao').hide();
-	$('#botoes-escolha button').fadeOut();
+	$('#botoes-escolha').fadeOut();
 	$('#div-alteracao').fadeIn();
 };
 
