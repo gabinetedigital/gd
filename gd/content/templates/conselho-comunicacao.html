@@ -50,7 +50,7 @@
                   <button id='btn-alteracao' onClick='clickAlteracao();' class='awesome'>Alteração da Lei</button>
                 </div>
 
-                <div id='div-nomeacao'>
+                <div id="div-nomeacao">
                   <label for="tipo-contribuicao"><h5>Categoria de Sugestão</h5></label>
                   <select id='tipo-contribuicao'>
                     <option value='1'>Entidades de classe dos profissionais da comunicação social</option>
@@ -61,15 +61,15 @@
                   </select>
 
                   <h5>Entidade / Empresa / Instituição</h5>
-                  <textarea name="content"></textarea>
-                  <input type="submit" value="Enviar" class="awesome" maxlength=50>
-                  <p>Limite de 50 caracteres</p>
+                  <input type="text" class="nomeacao" maxlength="80">
+                  <input type="submit" value="Enviar" class="awesome">
+                  <p>Limite de 80 caracteres</p>
                 </div>
 
-                <div id='div-alteracao'>
+                <div id="div-alteracao">
                   <h5>Sugestão de Alteração</h5>
-                  <textarea name="content"></textarea>
-                  <input type="submit" value="Enviar" class="awesome" maxlength=600>
+                  <textarea name="content" maxlength="600"></textarea>
+                  <input type="submit" value="Enviar" class="alt awesome">
                   <p>Limite de 600 caracteres</p>
                 </div>
                 
