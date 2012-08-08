@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -14,7 +15,6 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """This module holds general useful functions that are too generic to be
 placed anywhere else.
 """
@@ -165,3 +165,14 @@ def send_welcome_email(user):
             'confirmation_url': url[1:],
         }
     )
+
+def categoria_contribuicao_text(id):
+    """Retorna a descricao do item conforme o ID recebido"""
+    return [
+        '',
+        u'Entidades de classe dos profissionais da comunicação social',
+        u'Empresas de comunicação e instituições representativas do setor',
+        u'Entidades ligadas à comunicação comunitária',
+        u'Instituições da sociedade civil e movimentos sociais',
+        u'Instituições de ensino e pesquisa da área da comunicação social no Rio Grande do Sul',
+    ][int(id)];

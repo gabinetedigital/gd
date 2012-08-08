@@ -31,7 +31,7 @@ from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
 from gd.content.tweet import get_mayor_last_tweet
-from gd.utils import dumps, msg
+from gd.utils import dumps, msg, categoria_contribuicao_text
 from gd.model import User, session as dbsession
 
 from gd.auth.webapp import auth
@@ -119,7 +119,7 @@ def cleanup(response):
 """@app.route('/')
 def index():
     return redirect('/audience')
-"""    
+"""
 
 @app.route('/')
 def index():
@@ -228,20 +228,23 @@ def tag(slug, page=0):
         posts=posts)
 
 
+
 @app.route('/conselho-comunicacao')
 def conselho():
     """Renders a wordpress page special"""
     path = 'conselho-comunicacao'
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     page = wordpress.getPageByPath(path)
-    print 'PAAAAAAAAAAAAAAGE ID:', page.data['id']
+    cmts = wordpress.getComments(status='approve',post_id=page.data['id'], number=1000)
+    print cmts
     return render_template(
         'conselho-comunicacao.html',
         page=page,
         sidebar=wordpress.getSidebar,
         picday=picday,
-        comments=wordpress.getComments(status='approve',post_id=page.data['id']),
+        comments=cmts,
         show_comment_form=is_authenticated(),
+        categoria_contribuicao_text=categoria_contribuicao_text,
     )
 
 
@@ -285,13 +288,42 @@ def post(pid):
         recent_posts=recent_posts)
     return post_page(pid)
 
+@app.route('/new_contribution', methods=('POST',))
+def new_contribution():
+    """Posts new contributions on the page 'conselho-comunicacao' """
+    print "ENVIANDO NOVO COMENTARIO!!!!!!!!"
+    if not is_authenticated():
+        print "NAO AUTENTICADO!"
+        return msg.error(_(u'User not authenticated'))
+    try:
+        print request.form
+        print "VAR:", session['username']
+        print "VAR:", session['password']
+        print "VAR:", request.form['post_id']
+        print "VAR:", request.form['content1']
+        print "VAR:", request.form['content2']
+        print "VAR:", request.form['categoria_sugestao']
+
+        cid = wordpress.newComment(
+            username=session['username'],
+            password=session['password'],
+            post_id=request.form['post_id'],
+            content=request.form['content1'] or request.form['content2'],
+            categoria_sugestao=request.form['categoria_sugestao']
+        )
+        print "COMENTARIO ID:", cid
+        return msg.ok(_(u'Thank you. Your contribution was successfuly sent.'))
+    except xmlrpclib.Fault, err:
+        print "ERRO:", err.faultString
+        return msg.error(_(err.faultString), code='CommentError')
+
 @app.route('/new_comment', methods=('POST',))
 def new_comment():
     """Posts new comments to the blog"""
     if not is_authenticated():
         return msg.error(_(u'User not authenticated'))
     try:
-        cid = wordpress.newComment(
+        wordpress.newComment(
             username=session['username'],
             password=session['password'],
             post_id=request.form['post_id'],

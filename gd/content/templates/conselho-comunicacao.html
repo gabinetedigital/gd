@@ -8,7 +8,10 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/post.js') }}"></script>
+<script>
+var show_comment_form = '{{show_comment_form}}' == 'True';
+</script>
+<!-- <script src="{{ url_for('.static', filename='js/post.js') }}"></script> -->
 <script src="{{ url_for('.static', filename='js/conselho.js') }}"></script>
 {% endblock %}
 
@@ -24,24 +27,24 @@
     <div id="post" class="col8">
       <div id="news">
         <a href="#comments" class="awesome" id="vcoments">Ver contribuições</a>
-        <h1>{{ page.title }}</h1> 
+        <h1>{{ page.title }}</h1>
         <div class="postcontent">
           {{ page.content|safe }}
           <div id="comments">
 
             <div class="postcontent">
               <h4>Contribuições</h4>
+              <div id="ptcp" class="modal">
               {% if page.comments.allow_comments and show_comment_form %}
 
               <!-- the comment error msg -->
               <div class="msg error"></div>
               <div class="msg success"></div>
 
-              <div id="ptcp" class="modal">
                 <!-- Estes formularios de comentário irão aparecer somente quando clicar no botão "CONTRIBUIR" -->
                 <form
-                id="blog_comment_form" method="post"
-                action="{{ url_for('new_comment') }}">
+                  id="blog_comment_form" method="post"
+                  action="{{ url_for('new_contribution') }}">
 
                 <input type="hidden" name="post_id" value="{{ page.id }}">
 
@@ -50,9 +53,10 @@
                   <button id='btn-alteracao' onClick='clickAlteracao();' class='awesome'>Alteração da Lei</button>
                 </div>
 
-                <div id="div-nomeacao">
-                  <label for="tipo-contribuicao"><h5>Categoria de Sugestão</h5></label>
-                  <select id='tipo-contribuicao'>
+                <div id='div-nomeacao'>
+                  <label for="categoria_sugestao"><h5>Categoria de Sugestão</h5></label>
+                  <select id='categoria_sugestao' name='categoria_sugestao'>
+                    <option value=''>-- Selecione --</option>
                     <option value='1'>Entidades de classe dos profissionais da comunicação social</option>
                     <option value='2'>Empresas de comunicação e instituições representativas do setor</option>
                     <option value='3'>Entidades ligadas à comunicação comunitária</option>
@@ -61,18 +65,18 @@
                   </select>
 
                   <h5>Entidade / Empresa / Instituição</h5>
-                  <input type="text" class="nomeacao" maxlength="80">
+                  <input type="text" id="content1" name="content1" class="nomeacao" maxlength="80">
                   <input type="submit" value="Enviar" class="awesome">
                   <p>Limite de 80 caracteres</p>
                 </div>
 
                 <div id="div-alteracao">
                   <h5>Sugestão de Alteração</h5>
-                  <textarea name="content" maxlength="600"></textarea>
-                  <input type="submit" value="Enviar" class="alt awesome">
+                  <textarea id="content2" name="content2" maxlength=600></textarea>
+                  <input id='submit-2' type="submit" value="Enviar" class="awesome">
                   <p>Limite de 600 caracteres</p>
                 </div>
-                
+
               </form>
               {% else %}
               <p>É necessário estar logado para poder enviar sua contribuição. <a href="javascript:chamaLogin();">ENTRAR</a> </p>
@@ -84,7 +88,13 @@
             <a name="comentarios"></a>
             <div class="comment">
               <div class="content">
-                <p>{{ comment.content|safe }}</p>
+                {% if comment.categoria_sugestao %}
+                  <p><strong>Sugestão para:</strong> {{categoria_contribuicao_text(comment.categoria_sugestao)}}</p>
+                  <p>{{ comment.content|safe }}</p>
+                {% else %}
+                  <p><strong>Sugestão para alteração da lei:</strong></p>
+                  <p>{{ comment.content|safe }}</p>
+                {% endif %}
                 <h6>
                   {{ comment.author|safe }} em
                   {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }}
@@ -102,7 +112,7 @@
 </div>
 <div id="sidebar" class="col4">
   <div id="wordpress-sidebar-1">
-    {{ sidebar(id='sidebar-2')|safe }} 
+    {{ sidebar(id='sidebar-2')|safe }}
   </div>
 </div>
 </div>
@@ -111,7 +121,7 @@
 <div id='showmore' class="modal">
   <div id='content'></div>
   <button type='button' class='close'>&nbsp;</button>
-</div> 
+</div>
 
 <div class="row-end"></div>
 </div>
