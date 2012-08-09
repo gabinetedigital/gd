@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-07-24 17:50+BRT\n"
+"POT-Creation-Date: 2012-08-09 16:09+BRT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -252,11 +252,16 @@ msgstr ""
 msgid "Notice posted successfuly. Please wait a few while your message is approved."
 msgstr ""
 
-#: ../gd/content/__init__.py:258 ../gd/govpergunta/__init__.py:128
+#: ../gd/content/__init__.py:294 ../gd/content/__init__.py:311
+#: ../gd/govpergunta/__init__.py:128
 msgid "User not authenticated"
 msgstr ""
 
-#: ../gd/content/__init__.py:266
+#: ../gd/content/__init__.py:303
+msgid "Thank you. Your contribution was successfuly sent."
+msgstr ""
+
+#: ../gd/content/__init__.py:319
 msgid "Thank you. Your comment was successfuly sent"
 msgstr ""
 

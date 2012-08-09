@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GabineteDigital 0.1\n"
-"POT-Creation-Date: 2012-07-24 17:50+BRT\n"
-"PO-Revision-Date: 2012-07-24 17:51-0300\n"
+"POT-Creation-Date: 2012-08-09 16:09+BRT\n"
+"PO-Revision-Date: 2012-08-09 16:12-0300\n"
 "Last-Translator: Sérgio Berlotto Jr <sergio-berlotto@gg.rs.gov.br>\n"
 "Language-Team: LANGUAGE <pt-br@li.org>\n"
 "Language: \n"
@@ -256,12 +256,17 @@ msgstr "Senha enviada para o email"
 msgid "Notice posted successfuly. Please wait a few while your message is approved."
 msgstr "Contribuição postada com sucesso. Por favor aguarde até que sua mensagem seja aprovada."
 
-#: ../gd/content/__init__.py:258
+#: ../gd/content/__init__.py:294
+#: ../gd/content/__init__.py:311
 #: ../gd/govpergunta/__init__.py:128
 msgid "User not authenticated"
 msgstr "Nenhum usuário autenticado"
 
-#: ../gd/content/__init__.py:266
+#: ../gd/content/__init__.py:303
+msgid "Thank you. Your contribution was successfuly sent."
+msgstr "Obrigado. Sua contribuição foi enviada com sucesso."
+
+#: ../gd/content/__init__.py:319
 msgid "Thank you. Your comment was successfuly sent"
 msgstr "Obrigado. Seu comentário foi enviado com sucesso"
 
@@ -307,3 +312,4 @@ msgstr "Sua contribuição está muito curta! Ela precisa ter pelo menos 50 cara
 #: ../gd/govpergunta/forms.py:64
 msgid "Your contribution is too long! It needs to have at most 600 chars"
 msgstr "Sua contribuição é longa de mais! Ela precisa ter no máximo 600 caracteres"
+
