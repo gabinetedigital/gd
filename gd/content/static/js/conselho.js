@@ -1,20 +1,44 @@
 var overlay_openned = false;
 
 chamaLogin = function(){
-	var mylink = document.getElementById("botao-login");
-	mylink.click();
+	auth.showLoginForm({
+        success: function (userData) {
+        	overlay_openned = false;
+			$.getJSON('/pages/instrucoes-participar.json', function(pagina){
+
+				//Abre este conteudo carregado + uma caixa de inserção de texto para
+				//a participação do usuário.
+				$('#ptcp').prepend( pagina.content );
+				$('#ptcp').prepend("<h1>" + pagina.title + "</h1>");
+				//$('#ptcp').append("");
+				overlay_openned = true;
+
+	            $('#botaoparticipar').overlay({
+					mask: {
+						color: '#000',
+						loadSpeed: 200,
+						opacity: 0.9
+					},
+					closeOnClick: false,
+					closeOnEsc: false,
+					load: true,
+					oneInstance: false
+				});
+
+
+			});
+        }
+    });
 }
 
 showParticipar = function(){
-
-	if (show_comment_form){
+	if (auth.isAuthenticated()){
 
 		if(!overlay_openned){
 			$.getJSON('/pages/instrucoes-participar.json', function(pagina){
 
 				//Abre este conteudo carregado + uma caixa de inserção de texto para
 				//a participação do usuário.
-				//alert(pagina.content);
 				$('#ptcp').prepend( pagina.content );
 				$('#ptcp').prepend("<h1>" + pagina.title + "</h1>");
 				//$('#ptcp').append("");
