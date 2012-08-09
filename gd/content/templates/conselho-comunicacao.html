@@ -32,7 +32,7 @@
             <div class="postcontent">
               <h4>Contribuições</h4>
               <div id="ptcp" class="modal">
-              {% if page.comments.allow_comments and show_comment_form %}
+              {% if page.comments.allow_comments %}
 
               <!-- the comment error msg -->
               <div class="msg error"></div>
@@ -75,8 +75,6 @@
                 </div>
 
               </form>
-              {% else %}
-              <p>É necessário estar logado para poder enviar sua contribuição. <a href="javascript:chamaLogin();">ENTRAR</a> </p>
               {% endif %}
               <button type='button' class='close'>&nbsp;</button>
             </div>

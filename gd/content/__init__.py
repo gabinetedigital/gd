@@ -236,7 +236,6 @@ def conselho():
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     page = wordpress.getPageByPath(path)
     cmts = wordpress.getComments(status='approve',post_id=page.data['id'], number=1000)
-    print cmts
     return render_template(
         'conselho-comunicacao.html',
         page=page,
@@ -291,19 +290,9 @@ def post(pid):
 @app.route('/new_contribution', methods=('POST',))
 def new_contribution():
     """Posts new contributions on the page 'conselho-comunicacao' """
-    print "ENVIANDO NOVO COMENTARIO!!!!!!!!"
     if not is_authenticated():
-        print "NAO AUTENTICADO!"
         return msg.error(_(u'User not authenticated'))
     try:
-        print request.form
-        print "VAR:", session['username']
-        print "VAR:", session['password']
-        print "VAR:", request.form['post_id']
-        print "VAR:", request.form['content1']
-        print "VAR:", request.form['content2']
-        print "VAR:", request.form['categoria_sugestao']
-
         cid = wordpress.newComment(
             username=session['username'],
             password=session['password'],
@@ -311,10 +300,8 @@ def new_contribution():
             content=request.form['content1'] or request.form['content2'],
             categoria_sugestao=request.form['categoria_sugestao']
         )
-        print "COMENTARIO ID:", cid
         return msg.ok(_(u'Thank you. Your contribution was successfuly sent.'))
     except xmlrpclib.Fault, err:
-        print "ERRO:", err.faultString
         return msg.error(_(err.faultString), code='CommentError')
 
 @app.route('/new_comment', methods=('POST',))

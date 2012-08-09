@@ -3,30 +3,6 @@ var overlay_openned = false;
 chamaLogin = function(){
 	auth.showLoginForm({
         success: function (userData) {
-        	overlay_openned = false;
-			$.getJSON('/pages/instrucoes-participar.json', function(pagina){
-
-				//Abre este conteudo carregado + uma caixa de inserção de texto para
-				//a participação do usuário.
-				$('#ptcp').prepend( pagina.content );
-				$('#ptcp').prepend("<h1>" + pagina.title + "</h1>");
-				//$('#ptcp').append("");
-				overlay_openned = true;
-
-	            $('#botaoparticipar').overlay({
-					mask: {
-						color: '#000',
-						loadSpeed: 200,
-						opacity: 0.9
-					},
-					closeOnClick: false,
-					closeOnEsc: false,
-					load: true,
-					oneInstance: false
-				});
-
-
-			});
         }
     });
 }
@@ -179,7 +155,7 @@ $('#blog_comment_form').ajaxForm({
 
 			$('#div-nomeacao').hide();
 			$('#div-alteracao').hide();
-			$('#botoes-escolha').show();
+			//$('#botoes-escolha').show();
 
 			$('#blog_comment_form #categoria_sugestao').find('option[value=""]').attr('selected',true);
 	        $('#blog_comment_form #content1').val('');
