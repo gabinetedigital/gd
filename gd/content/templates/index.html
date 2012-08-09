@@ -157,31 +157,7 @@
     </div>
 
     <div id="sidebar" class="col4">
-      <div id="lasttweet">
-        <div class="shadow">
-          <div class="tweet">
-            {{ last_tweet|safe }}
-            <a href="http://twitter.com/#!/GabineteDigital" target="_blank">
-              <h3>@GabineteDigital</h3>
-            </a>
-          </div>
-        </div>
-      </div>
 
-      <div id="resultsbutton">
-        <h3 class="widget-title">Resultados</h3>
-
-        <div class="wcontent">
-          Veja os resultados alcançados pelo Gabinete Digital no ano
-          de <strong>2011</strong>
-
-          <div class="button">
-            <a class="awesome" href="{{ url_for('balanco.index') }}">
-              Balanço 2011
-            </a>
-          </div>
-        </div>
-      </div>
 
       <div id="picday">
         <aside id="widget_sp_image-3" class="widget widget_sp_image">
@@ -199,6 +175,20 @@
         {% endif %}
         </aside>
       </div>
+
+
+      <div id="lasttweet">
+        <div class="shadow">
+          <div class="tweet">
+            {{ last_tweet|safe }}
+            <a href="http://twitter.com/#!/GabineteDigital" target="_blank">
+              <h3>@GabineteDigital</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
     </div>
     <div class="row-end"></div>
   </div>

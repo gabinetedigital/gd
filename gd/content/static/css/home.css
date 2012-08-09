@@ -186,6 +186,10 @@
     display: block;
 }
 
+#container #sidebar #picday {
+    margin-bottom: 30px;
+}
+
 #container #sidebar #picday img {
     width: 295;
     margin: 0 auto;
@@ -194,7 +198,7 @@
     padding-bottom: 5px;
 }
 
-#container #sidebar #picday p {
+#container #sidebar #picday .widget_sp_image-description {
     color: #555753;
     font-style: italic;
     font-size: 12px;
