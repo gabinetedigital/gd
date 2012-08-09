@@ -140,7 +140,7 @@ def index():
     return render_template(
         'index.html', wp=wordpress,
         slideshow=slideshow, news={'big': news[:2], 'small': news[2:]},
-        #sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         picday=picday,
         last_tweet=get_mayor_last_tweet(),
         videos=wordpress.wpgd.getHighlightedVideos(2),
