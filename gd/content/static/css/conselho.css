@@ -127,7 +127,8 @@
 }
 
 #container #post p {
-    margin:10px 0;
+
+;    margin:10px 0;
 }
 
 #container #post #comments {
@@ -364,3 +365,20 @@ img.aligncenter {
     float: right;
 }
 
+#showmore {
+    font-size: 15px;
+}
+
+#showmore  #content p {
+    margin: 10px 0;
+}
+
+#showmore .modal  {
+    width: 500px;
+}
+
+#showmore  #content li {
+    list-style: disc;
+    margin-left: 43px;
+    padding: 4px;
+}
