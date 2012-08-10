@@ -127,9 +127,10 @@
 }
 
 #container #post p {
-
-;    margin:10px 0;
+    margin:10px 0;
 }
+
+
 
 #container #post #comments {
     border-top: 1px dotted #999;
@@ -151,24 +152,49 @@
     border: 1px solid #eee;
     width: 98%;
     float: left;
-    font-size: 18px;
-    margin-bottom: 20px;
-    height: 122px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    height: 88px;
 }
+
+#container #comments form p {
+    float: right;
+}
+
+.submit {
+    margin-top: 10px;
+}
+
 
 #container #post #comments #div-nomeacao select {
     margin-bottom: 10px;
 }
 
 #container #post #comments #div-nomeacao input.nomeacao {
-    width: 690px;
+    float: left;
     font-size: 17px;
+    margin-right: 18px;
+    margin-top: 13px;
+    width: 690px;
 }
 
 #container #post #comments #div-alteracao input.alt {
     margin-left: -86px;
     margin-top: 112px;
 }
+
+#mostrar_nome  {
+    float: left;
+    margin-top: 12px;
+    margin-right: 7px;
+}
+
+#mostrar_nome2  {
+    float: left;
+    margin-top: 3px;
+    margin-right: 7px;
+}
+
 
 #container #post .comment {
     margin-top: 20px;
