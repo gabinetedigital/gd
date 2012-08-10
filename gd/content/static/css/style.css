@@ -307,6 +307,10 @@ a {
     padding-left:10px;
 }
 
+#participe .consulta a {
+    padding-left:10px;
+}
+
 #participe .desc {
     color: white;
     font-size: 16px;
