@@ -290,16 +290,23 @@ def post(pid):
 @app.route('/new_contribution', methods=('POST',))
 def new_contribution():
     """Posts new contributions on the page 'conselho-comunicacao' """
+    
+    try:
+        mostrar_nome = request.form['mostrar_nome']
+    except KeyError :
+        mostrar_nome = 'N'
+
     if not is_authenticated():
         return msg.error(_(u'User not authenticated'))
     try:
+        print "\n\nMOSTRAR NOME!", mostrar_nome
         cid = wordpress.newComment(
             username=session['username'],
             password=session['password'],
             post_id=request.form['post_id'],
             content=request.form['content1'] or request.form['content2'],
             categoria_sugestao=request.form['categoria_sugestao'],
-            mostrar_nome=request.form['mostrar_nome']
+            mostrar_nome=mostrar_nome
         )
         return msg.ok(_(u'Thank you. Your contribution was successfuly sent.'))
     except xmlrpclib.Fault, err:

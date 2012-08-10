@@ -10,6 +10,12 @@
 {% block javascript %}
 <!-- <script src="{{ url_for('.static', filename='js/post.js') }}"></script> -->
 <script src="{{ url_for('.static', filename='js/conselho.js') }}"></script>
+
+<script type="text/javascript">
+reflectValue = function(check){
+  $('#mostrar_nome').attr('checked', check.checked );
+}
+</script>
 {% endblock %}
 
 {% block slideshow %}
@@ -63,6 +69,7 @@
 
                   <h5>Entidade / Empresa / Instituição</h5>
                   <input type="text" id="content1" name="content1" class="nomeacao" maxlength="80"><br/>
+                  <input type="checkbox" id="mostrar_nome" class="mostrar_nome" name="mostrar_nome" value="S" checked="checked" /><label class="mostrar_nome" for="mostrar_nome">Contribuição nominal</label>
                   <input type="submit" value="Enviar" class="awesome">
                   <p>Limite de 80 caracteres</p>
                 </div>
@@ -70,10 +77,10 @@
                 <div id="div-alteracao">
                   <h5>Sugestão de Alteração</h5>
                   <textarea id="content2" name="content2" maxlength=600></textarea>
+                  <input type="checkbox" id="mostrar_nome2" class="mostrar_nome2" name="mostrar_nome2" onclick="reflectValue(this)" value="S" checked="checked" /><label class="mostrar_nome" for="mostrar_nome2">Contribuição nominal</label>
                   <input id='submit-2' type="submit" value="Enviar" class="awesome">
                   <p>Limite de 600 caracteres</p>
                 </div>
-                <input type="checkbox" id="mostrar_nome" class="mostrar_nome" name="mostrar_nome" value="S" checked /><label class="mostrar_nome" for="mostrar_nome">Contribuição nominal</label>
 
               </form>
               {% endif %}

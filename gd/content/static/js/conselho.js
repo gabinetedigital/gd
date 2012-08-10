@@ -26,7 +26,6 @@ showParticipar = function(){
 		$('#div-nomeacao').hide();
 		$('#div-alteracao').hide();
 		$('#botoes-escolha').show();
-		$('.mostrar_nome').hide();
 
 		$('#blog_comment_form #categoria_sugestao').find('option[value=""]').attr('selected',true);
         $('#blog_comment_form #content1').val('');
@@ -58,7 +57,6 @@ clickNomeacao = function(){
 	//$('#div-alteracao').hide();
 	$('#botoes-escolha').fadeOut();
 	$('#div-nomeacao').fadeIn();
-	$('.mostrar_nome').show();
 
 };
 
@@ -66,7 +64,6 @@ clickAlteracao = function(){
 	//$('#div-nomeacao').hide();
 	$('#botoes-escolha').fadeOut();
 	$('#div-alteracao').fadeIn();
-	$('.mostrar_nome').show();
 };
 
 
@@ -159,7 +156,6 @@ $('#blog_comment_form').ajaxForm({
 			$('#div-nomeacao').hide();
 			$('#div-alteracao').hide();
 			//$('#botoes-escolha').show();
-			$('.mostrar_nome').hide();
 
 			$('#blog_comment_form #categoria_sugestao').find('option[value=""]').attr('selected',true);
 	        $('#blog_comment_form #content1').val('');
