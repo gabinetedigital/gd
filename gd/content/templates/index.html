@@ -158,6 +158,9 @@
 
     <div id="sidebar" class="col4">
 
+      {% if sidebar %}
+      {{ sidebar(id='sidebar-4')|safe }}
+      {% endif %}
 
       <div id="picday">
         <aside id="widget_sp_image-3" class="widget widget_sp_image">
@@ -170,12 +173,9 @@
             {{ picday['description']}}
           </div>
         {%endif%}
-        {% if sidebar %}
-        {{ sidebar(id='sidebar-4')|safe }}
-        {% endif %}
+
         </aside>
       </div>
-
 
       <div id="lasttweet">
         <div class="shadow">
