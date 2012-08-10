@@ -62,7 +62,7 @@
                   </select>
 
                   <h5>Entidade / Empresa / Instituição</h5>
-                  <input type="text" id="content1" name="content1" class="nomeacao" maxlength="80">
+                  <input type="text" id="content1" name="content1" class="nomeacao" maxlength="80"><br/>
                   <input type="submit" value="Enviar" class="awesome">
                   <p>Limite de 80 caracteres</p>
                 </div>
@@ -73,6 +73,7 @@
                   <input id='submit-2' type="submit" value="Enviar" class="awesome">
                   <p>Limite de 600 caracteres</p>
                 </div>
+                <input type="checkbox" id="mostrar_nome" class="mostrar_nome" name="mostrar_nome" value="S" checked /><label class="mostrar_nome" for="mostrar_nome">Contribuição nominal</label>
 
               </form>
               {% endif %}
@@ -91,7 +92,7 @@
                   <p>{{ comment.content|safe }}</p>
                 {% endif %}
                 <h6>
-                  {{ comment.author|safe }} em
+                  {%if comment.mostrar_nome == 'S' %}{{ comment.author|safe }} em {% endif %}
                   {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }}
                 </h6>
               </div>

@@ -298,7 +298,8 @@ def new_contribution():
             password=session['password'],
             post_id=request.form['post_id'],
             content=request.form['content1'] or request.form['content2'],
-            categoria_sugestao=request.form['categoria_sugestao']
+            categoria_sugestao=request.form['categoria_sugestao'],
+            mostrar_nome=request.form['mostrar_nome']
         )
         return msg.ok(_(u'Thank you. Your contribution was successfuly sent.'))
     except xmlrpclib.Fault, err:
