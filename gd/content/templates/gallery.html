@@ -9,7 +9,6 @@
 <script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
-<script src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ddba96024e86089"></script>
 <script src="{{ url_for('.static', filename='js/jquery.rating.pack.js') }}"></script>
 {% endblock %}
 
@@ -27,15 +26,17 @@
         <li><h2>{{ current.title }}</h2></li>
         <li class="share">
           <!-- AddThis Button BEGIN -->
-          <div class="addthis_toolbox addthis_default_style"
-               addthis:url="{{ request.url_root }}gallery/{{ current.slug }}"
-               addthis:title="Galeria : {{ current.title }}">
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style ">
             <a class="addthis_button_preferred_1"></a>
             <a class="addthis_button_preferred_2"></a>
-
-            <script>var addthis_config = {"data_track_clickback":true};</script>
+            <a class="addthis_button_preferred_3"></a>
+            <a class="addthis_button_preferred_4"></a>
+            <a class="addthis_button_compact"></a>
+            <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-502bb44573d2fc0a"></script>
             <!-- AddThis Button END -->
-          </div>
         </li>
       </ul>
     </div>
