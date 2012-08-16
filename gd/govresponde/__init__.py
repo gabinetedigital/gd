@@ -198,6 +198,10 @@ def comofunciona():
 
 @govresponde.route('/send')
 def send():
+
+    #Temporariamente desabilitado o envio de perguntas
+    return redirect( url_for('govresponde.index') );
+
     form = forms.QuestionForm(csrf_enabled=False)
     form.theme.choices = [(None, '----')] + \
         [(i['id'], i['name']) for i in wordpress.govr.getThemes()]
