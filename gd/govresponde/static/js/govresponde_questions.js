@@ -43,4 +43,17 @@ function vote(qid) {
                     .fadeIn();
             });
     });
+
 }
+
+$('#mensagemfim').overlay({
+    // some mask tweaks suitable for modal dialogs
+    mask: {
+        color: '#000',
+        loadSpeed: 200,
+        opacity: 0.6
+    },
+    load:  true,
+    closeOnClick: false,
+    closeOnEsc: false
+});

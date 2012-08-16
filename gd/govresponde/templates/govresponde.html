@@ -14,12 +14,12 @@
 
 <div id="container" class="boxed">
   <div class="head row">
-    <div id="logo" class="col4">
+    <div id="logo" class="col6">
       <h1 class="title">
         <a href="{{ url_for('.index') }}">Governador Responde</a>
       </h1>
     </div>
-    <div class="col8">
+    <div class="col6">
       <ul class="menu">
         <li class="comofunciona">
           <a href="{{ url_for('.comofunciona') }}">Como Funciona</a>
@@ -33,12 +33,15 @@
  -->      </ul>
     </div>
 
-<!--   <div class="row">
-    <div class="col11 aviso">
-      <p>Mensagem de fechamento do GovResponde</p>
-    </div>
+<div id="mensagemfim" class="modal">
+  <div id="content">
+    <p>Em 9 edições do Governador Responde, mais de 90 questões foram respondidas em vídeo pelo governador e mais de 25 mil votos foram recebidos.</p><br>
+    <p>Agora a ferramenta entra em uma nova fase, passará por uma reestruturação técnica e metodológica. Durante esse período, todas as respostas enviadas até o momento serão respondidas gradualmente em texto. O recebimento de perguntas será retomado em 2013.</p><br>
+    <p>Você pode continuar participando através das demais ferramentas. Exerça sua cidadania. Dúvidas ou sugestões podem ser enviadas para <a href="mailto:gabinetedigital@gg.rs.gov.br">gabinetedigital@gg.rs.gov.br</a></p>
   </div>
- -->
+  <button type="button" class="close">&nbsp;</button>
+</div>
+
     <div class="row-end"></div>
   </div>
 
@@ -60,7 +63,7 @@
               <a href="?pg=todos">Escolha o tema</a>
           {% else %}
           <dt class="section">
-              <a href="{{ url_for('.questions') }}">Perguntas em votação</a>
+              <a href="{{ url_for('.questions') }}">Temas</a>
           {% endif %}
           </dt>
 

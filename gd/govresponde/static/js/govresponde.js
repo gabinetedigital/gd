@@ -38,4 +38,6 @@ $(document).ready(function () {
             $("#slideshow .controls").data("tabs").next();
         }, 10000);
     }
+
+
 });
