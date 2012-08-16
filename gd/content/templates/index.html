@@ -166,7 +166,7 @@
         <aside id="widget_sp_image-3" class="widget widget_sp_image">
         {%if picday %}
           <h3 class="widget-title">Foto do Dia</h3>
-          <a class="widget_sp_image-image-link" href="{{ url_for('gallery.index') }}" target="_self">
+          <a class="widget_sp_image-image-link" href="{{ url_for('gallery.index',slug=picday['slug']) }}" target="_self">
             <img src="{{ picday['imageURL'] }}" style="max-width: 299px;max-height: 193px;" alt="{{ picday['title'] }}" />
           </a>
           <div class="widget_sp_image-description" >
