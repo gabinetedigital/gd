@@ -14,11 +14,10 @@
     </a>
   </strong>
 
-  {# Desabilitar temporariamente o voto nas quesoes
-  {% if false %}
   <div class="balloon">
     <p class="desc">{{ question.content|safe }}</p>
 
+{#
     {% if question.user_can_vote or not user %}
     <button class="awesome" onclick="vote({{ question.id }})">
       Votar
@@ -26,9 +25,8 @@
     {% else %}
     <em class="alreadyvoted">Você já votou</em>
     {% endif %}
+#}
   </div>
-  {% endif %}
-  #}
 
   <div class="meta">
     <div class="date">
