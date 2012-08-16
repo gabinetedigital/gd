@@ -19,7 +19,7 @@
 """Module that uses the Template and Model APIs to build the Audience web
 interface.
 """
-
+import datetime
 from flask import Blueprint, render_template, request, abort, redirect
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy import desc
@@ -50,17 +50,18 @@ def index():
 @audience.route('/<int:aid>')
 def audience_details(aid):
     """Renders an audience with its public template"""
-    inst = get_or_404(Audience, id=aid, visible=True)
+    #inst = get_or_404(Audience, id=aid, visible=True)
+    inst = wordpress.getPost(aid)
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-    buzzes = Audience.query.get(aid).get_moderated_buzz()
-    buzzesSelec = Audience.query.get(aid).get_last_published_notice()
+    #buzzes = Audience.query.get(aid).get_moderated_buzz()
+    #buzzesSelec = Audience.query.get(aid).get_last_published_notice()
     return render_template(
         'audience.html',
         audience=inst,
-        buzzes = buzzes,
-        buzzesSelec = buzzesSelec,
+        #buzzes = buzzes,
+        #buzzesSelec = buzzesSelec,
         how_to=getattr(how_to, 'content', ''),
-        notice=inst.get_last_published_notice(),
+        #notice=inst.get_last_published_notice(),
     )
 
 @audience.route('/<int:aid>/buzz_stream', methods=('POST',))

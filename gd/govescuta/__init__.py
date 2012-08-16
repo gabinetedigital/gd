@@ -30,21 +30,40 @@ govescuta = Blueprint(
 
 
 @govescuta.route('/')
-def index():
-    audiences_raw, count = wordpress.gove.getAudiences(
-        'date',                    # sortby
-        '',                        # search
-        'audience.visible = true', # filter
-        '0',                       # page
-    )
+@govescuta.route('/<int:page>')
+def index(page=0):
+#   audiences_raw, count = wordpress.gove.getAudiences(
+#        'date',                    # sortby
+#        '',                        # search
+#        'audience.visible = true', # filter
+#        '0',                       # page
+#    )
 
-    audiences = []
-    for audience in audiences_raw[::-1]:
-        audience['video'] = wordpress.wpgd.getVideo(audience['data'])
-        audiences.append(audience)
+#    audiences = []
+#    for audience in audiences_raw[::-1]:
+#        audience['video'] = wordpress.wpgd.getVideo(audience['data'])
+#        audiences.append(audience)
 
+#    return render_template(
+#        'govescuta.html',
+#        audiences=audiences,
+#        count=count,
+#    )
+#
+    pagination, posts = wordpress.getPosts(page=page, 
+                                           post_type='audiencia_govesc' )
+    
+    audiencevideos = []
+    for post in posts:
+        audiencevideos.append(post.custom_fields)
+        
+    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')    
+        
     return render_template(
         'govescuta.html',
-        audiences=audiences,
-        count=count,
-    )
+        sidebar=wordpress.getSidebar,
+        pagination=pagination,
+        audiences=posts,
+        audiencevideos=audiencevideos,
+        how_to=getattr(how_to, 'content', ''),)
+

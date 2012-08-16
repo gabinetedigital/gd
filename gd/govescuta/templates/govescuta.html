@@ -41,36 +41,25 @@
       </select>
     </form>
     <ul>
+      {% set i = 0 %}
       {% for audience in audiences %}
       <li>
         <div class="audiencia">
-          {% if audience.video %}
-          <div class="video">
-            <a href="javascript:;" onclick='video.play({{ audience.video|tojson|safe }})'>
-              <div class="container">
-                <img class="thumb"
-                     src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
-                     width="300" height="190">
-                <img src="../static/imgs/play.png" class="play">
-              </div>
-              <a href="{{ url_for('videos.details', vid=audience.video.id) }}"
-                 class="permalink">
-                <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
-                     alt="Permanet link">
-              </a>
-            </a>
-          </div>
-          {% endif %}
-
           <div class="titulo">
-            <h4>{{ audience.title }} <i>(01/06/2012)</i></h4>
+          	<a href="/audience/{{audience.id}}">
+            <h4>{{ audience.title }} <i>(
+				{% for audiencevideo in audiencevideos[i] %}
+          		{% if audiencevideo.key == "data_govesc" %}
+          		{{ audiencevideo.value[3:6]}}{{ audiencevideo.value[:3]}}{{ audiencevideo.value[6:10]}} às {{ audiencevideo.value[11:16]}} 
+          		{% endif %}
+          		{% endfor %}
+				)</i></h4>
+				</a>
           </div>
-          <div><p class="desc">{{ audience.subject }}</p></div>
-          <a href="" class="encaminhamento">
-            Encaminhamentos
-          </a>
+          <div><p class="desc">{{ audience.excerpt|safe }}</p></div>
         </div>
       </li>
+      {% set i = i+1 %}
       {% endfor %}
     </ul>
     <div class="row-end"></div>

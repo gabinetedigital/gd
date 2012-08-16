@@ -25,21 +25,23 @@
     <div class="col9">
       <div id="title">
         <p class="title">{{ audience.title }}</p>
-        <p class="description">{{ audience.subject }}</p>
+        <p class="description">{{ audience.excerpt|safe }}</p>
       </div>
     </div>
     <div class="col3">
 		<div id="date">
-        	<p class="day">{{ audience.date.strftime('%d') }}</p>
-        	<p class="month">{{ audience.date.strftime('%b') }}</p>
-        	<p class="hour">{{ audience.date.strftime('%H') }}h</p>
-        	<p class="min">{{ audience.date.strftime('%M') }}</p>
+        	<p class="day">{{ audience.custom_fields[1].value[3:5] }}</p>
+        	<p class="month">{{ audience.custom_fields[1].value|formatarNomeMes }}</p>
+        	<p class="hour">{{ audience.custom_fields[1].value[11:13] }}h</p>
+        	<p class="min">{{ audience.custom_fields[1].value[14:16] }}</p>
+        	
+        	
       	</div>
       	
       	<div id="tag" class="row">
       		<div class="inner">
         		<p>Use a hashtag</p>
-        		<h3>{{ audience.get_main_term() }}</h3>
+        		<h3><!-- audience.get_main_term() }}--></h3>
         		<div class="fraseSMS">Envie SMS para <span class="numeroSMS">27556</span></div>
     		</div>
   		</div>
@@ -135,12 +137,10 @@
   			</ul>
   			{% endif %}
         </div>
-        {% if audience.started %}
-        <div id="streaming">{{ audience.embed|safe }}</div>
-        {% endif %}
+        
         <div id="misc">
           <h5>Governo Escuta</h5>
-          <p>{{ audience.description|safe }}</p>
+          <p>{{ audience.custom_fields[2].value|safe }}</p>
         </div>
       </div>
     </div>
