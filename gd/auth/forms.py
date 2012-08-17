@@ -73,6 +73,7 @@ class BaseDataForm(Form):
         _('Twitter'),
     )
 
+
     receive_email = BooleanField(
         _('I want to receive updates by email.'),
         default=True,
@@ -96,6 +97,7 @@ class BaseDataForm(Form):
         if field.data != self.email.data:
             raise ValidationError(
                 _(u'Email does not match its confirmation'))
+
 
     def validate_phone(self, field):
         if self.receive_sms:
