@@ -59,8 +59,8 @@ def _get_context(custom=None):
     ctx['theme'] = theme_id and govr.getTheme(theme_id)  or ''
     ctx['page'] = page or ''
     ctx['pg'] = pg or ''
-    
-    
+
+
     # Info from authenticated users
     if auth.is_authenticated():
         ctx['userstats'] = govr.getUserStats(auth.authenticated_user().id)
@@ -88,30 +88,30 @@ def index():
     # Discovering the theme id
     theme_id = theme and \
          theme['id'] or ''
-    
+
     if pg <> '':
-        if theme_id <> '':     
+        if theme_id <> '':
             statusedicao = ''
         else:
             statusedicao = 'ultima'
         pagerender = 'govresponde_edicoesanteriores.html'
-    else:    
+    else:
         statusedicao = 'ultima'
         pagerender = 'govresponde_home.html'
-        
+
     if pg == 'todos':
         statusedicao = ''
-         
+
     # Getting the user id if the user is authenticated
     user_id = auth.is_authenticated() and \
         auth.authenticated_user().id or ''
-    
+
     # Finally, listing the questions that are able to receive votes.
-    pagination = {}    
+    pagination = {}
     pagination['page'] = int(request.values.get('page', 0))
-    
+
     print 'xxxx === ', pagination['page']
-        
+
     # Querying the contribs ordenated by the answer date
     contribs = []
     contribs_raw, count = wordpress.govr.getContribs(
@@ -119,13 +119,13 @@ def index():
 
     for i in contribs_raw:
         contribs.append(_format_contrib(i))
-    
+
     # Pagination stuff
     count = count
     pagination['pages'] = int(ceil(float(count) / CONTRIBS_PER_PAGE))
     pagination['count'] = count
-    
-    
+
+
 
     #print "4 = ",datetime.datetime.now()
 
@@ -144,11 +144,11 @@ def index():
         'contribs': contribs,
         'count': count,
         'base_date': base_date,
-        'statusedicao': statusedicao,  
+        'statusedicao': statusedicao,
         'pagination': pagination,
         'pg' : pg
     }))
-    
+
 
 @govresponde.route('/results/<int:rid>')
 @govresponde.route('/results/<int:rid>/<int:page>')
@@ -188,7 +188,7 @@ def comofunciona():
     return render_template(
         'govresponde_comofunciona.html',
         **_get_context({
-            'page': wordpress.getPageByPath('govresponde/como-funciona'), 
+            'page': wordpress.getPageByPath('govresponde/como-funciona'),
             'hidesidebar': True,
             'hidesidebarright' : True,
             'statusedicao': statusedicao
@@ -208,8 +208,8 @@ def send():
 
     return render_template(
         'govresponde_enviar.html',
-        **_get_context({ 
-            'page': wordpress.getPageByPath('govresponde/lembre-se'),            
+        **_get_context({
+            'page': wordpress.getPageByPath('govresponde/lembre-se'),
             'form': form,
             'hidesidebar': True,
             'hidesidebarright' : True,
@@ -253,17 +253,20 @@ def questions():
 
     # Finally, listing the questions that are able to receive votes.
     pagination = {}
-    
+
     pagination['page'] = int(request.values.get('page', 0))
+
+    print "=================> wordpress.govr.getVotingContribs INI"
     questions_raw, count = wordpress.govr.getVotingContribs(
         theme_id,               # theme id
         user_id,                # user id
         pagination['page'],     # page number
-        sortby,                 # sortby        
+        sortby,                 # sortby
         '',                     # to
         '',                     # from
         CONTRIBS_PER_PAGE,      # perpage
     )
+    print "=================> wordpress.govr.getVotingContribs FIM"
     # Pagination stuff
     count = int(count)
     pagination['pages'] = int(ceil(float(count) / CONTRIBS_PER_PAGE))
@@ -273,7 +276,7 @@ def questions():
     for i in questions_raw:
         question = _format_contrib(i)
         questions.append(question)
-    
+
     ctx.update({
         'questions': questions,
         'pagination': pagination,
@@ -281,7 +284,7 @@ def questions():
         'statusedicao': statusedicao
     })
     return render_template('govresponde_questions.html', **ctx)
-    
+
 
 @govresponde.route('/questions/<int:qid>')
 def question(qid):
