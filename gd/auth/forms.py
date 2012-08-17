@@ -67,12 +67,17 @@ class BaseDataForm(Form):
 
     phone = TextField(
         _('Phone'),
-        [validators.Required()],
     )
 
     twitter = TextField(
         _('Twitter'),
     )
+
+    def validate_phone(self, field):
+        if self.receive_sms:
+            if self.receive_sms.data and not field.data:
+                raise ValidationError(
+                    _(u'This field is required.'))
 
 
 class BasePasswordForm(Form):
@@ -113,23 +118,23 @@ class SignupForm(BaseDataForm, BasePasswordForm):
         [validators.Required(),],
         default=True,
     )
-    
+
     receive_email = BooleanField(
         _('I want to receive updates by email.'),
         default=True,
     )
-    
+
     receive_sms = BooleanField(
         _('I want to receive updates by sms.'),
         default=True,
     )
-    
+
     def validate_receive_sms(self, field):
         """Validate if cel-phone number is present"""
-        if ( field.data in ['Y','y'] and not self.phone.data):
+        if ( field.data and not self.phone.data):
             raise ValidationError(
                 _(u'Cel phone number is required'))
-            
+
 
     def validate_email_confirmation(self, field):
         """Compound validation between email and its confirmation"""

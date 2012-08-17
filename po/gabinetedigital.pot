@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-09 16:09+BRT\n"
+"POT-Creation-Date: 2012-08-17 14:55+BRT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,7 +120,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: ../gd/auth/forms.py:40 ../gd/auth/forms.py:105
+#: ../gd/auth/forms.py:40 ../gd/auth/forms.py:110
 msgid "That's not a valid email address."
 msgstr ""
 
@@ -144,59 +144,63 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: ../gd/auth/forms.py:74
+#: ../gd/auth/forms.py:73
 msgid "Twitter"
 msgstr ""
 
-#: ../gd/auth/forms.py:82
+#: ../gd/auth/forms.py:80
+msgid "This field is required."
+msgstr ""
+
+#: ../gd/auth/forms.py:87
 msgid "Password"
 msgstr ""
 
-#: ../gd/auth/forms.py:88
+#: ../gd/auth/forms.py:93
 msgid "Password confirmation"
 msgstr ""
 
-#: ../gd/auth/forms.py:97
+#: ../gd/auth/forms.py:102
 msgid "Password does not match its confirmation"
 msgstr ""
 
-#: ../gd/auth/forms.py:104
+#: ../gd/auth/forms.py:109
 msgid "Email confirmation"
 msgstr ""
 
-#: ../gd/auth/forms.py:110
+#: ../gd/auth/forms.py:115
 msgid "Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab('tos')\">Terms of use</a>?"
 msgstr ""
 
-#: ../gd/auth/forms.py:118
+#: ../gd/auth/forms.py:123
 msgid "I want to receive updates by email."
 msgstr ""
 
-#: ../gd/auth/forms.py:123
+#: ../gd/auth/forms.py:128
 msgid "I want to receive updates by sms."
 msgstr ""
 
-#: ../gd/auth/forms.py:131
+#: ../gd/auth/forms.py:137
 msgid "Cel phone number is required"
 msgstr ""
 
-#: ../gd/auth/forms.py:138
+#: ../gd/auth/forms.py:144
 msgid "Email does not match its confirmation"
 msgstr ""
 
-#: ../gd/auth/forms.py:145
+#: ../gd/auth/forms.py:151
 msgid "User avatar"
 msgstr ""
 
-#: ../gd/auth/forms.py:149
+#: ../gd/auth/forms.py:155
 msgid "Only images are allowed in this field!"
 msgstr ""
 
-#: ../gd/auth/forms.py:158
+#: ../gd/auth/forms.py:164
 msgid "Your current password"
 msgstr ""
 
-#: ../gd/auth/forms.py:169
+#: ../gd/auth/forms.py:175
 msgid "The current password is wrong"
 msgstr ""
 
@@ -252,16 +256,16 @@ msgstr ""
 msgid "Notice posted successfuly. Please wait a few while your message is approved."
 msgstr ""
 
-#: ../gd/content/__init__.py:294 ../gd/content/__init__.py:311
+#: ../gd/content/__init__.py:300 ../gd/content/__init__.py:319
 #: ../gd/govpergunta/__init__.py:128
 msgid "User not authenticated"
 msgstr ""
 
-#: ../gd/content/__init__.py:303
+#: ../gd/content/__init__.py:311
 msgid "Thank you. Your contribution was successfuly sent."
 msgstr ""
 
-#: ../gd/content/__init__.py:319
+#: ../gd/content/__init__.py:327
 msgid "Thank you. Your comment was successfuly sent"
 msgstr ""
 
