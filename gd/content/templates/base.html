@@ -1,29 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
     <title>
       Gabinete Digital &mdash; {% block title %}Democracia em Rede{% endblock %}
     </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta
-       content="HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org"
-       name="generator">
-    <meta name="viewport" content="width=1024">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/978.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <!--[if IE ]>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ie-style.css') }}">
-    <![endif]-->   
     <link rel="stylesheet" href="{{ url_for('auth.static', filename='css/auth.css') }}">
     <link rel="stylesheet" href="{{ conf.WORDPRESS_ADDRESS }}?wpgd/video/embedcss">
     {% block css %}{% endblock %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/awesome.css') }}">    
-   
-	
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ie.css') }}">
-    <![endif]-->
-    
   </head>
   <body class="{% block bodyclass %}{% endblock %}">
     <div id="intro">
