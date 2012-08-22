@@ -1,0 +1,199 @@
+@import "compass/css3";
+
+$red: #d8001d;
+$orange: #f33500;
+$blue: #008fd8;
+$green: #007160;
+$black: #1f1f21;
+$yellow: #f4e400;
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+}
+
+.home h1, .search, .feed, .twitter, .facebook, .news, #tweets,
+.pessoa1, .pessoa2, .pessoa3, .pessoa4 {
+    font-size: 1px;
+    overflow: hidden;
+    text-indent: -9999px;
+    background: url(../img/home.png) no-repeat;
+}
+
+.home h1 {
+    display: block;
+    width: 270px;
+    height: 123px;
+}
+
+#search, #social {
+   text-align: right;
+   margin-top: 50px;
+   margin-left: 20px;
+}
+
+.search {
+    display: inline-block;
+    width: 22px;
+    height: 19px;
+    background-position: 0px -274px;
+    border: 0;
+}
+
+.feed {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: -46px -270px;
+    border: 0;
+}
+
+
+.twitter {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: -82px -270px;
+    border: 0;
+}
+
+.facebook {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: -116px -270px;
+    border: 0;
+}
+
+.news {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: -153px -270px;
+    border: 0;
+}
+
+.tweets {
+    height: 86px;
+    overflow: hidden;
+}
+
+.tweets ul > li {
+    display: inline-block;
+    margin-right: 14px;
+}
+
+.pessoa1 {
+    display: block;
+    height: 86px;
+    width: 23px;
+    background-position: 0 -152px;
+}
+
+.pessoa2 {
+    display: block;
+    height: 86px;
+    width: 23px;
+    background-position: -42px -152px;
+}
+
+.pessoa3 {
+    display: block;
+    height: 86px;
+    width: 30px;
+    background-position: -89px -152px;
+}
+
+.pessoa4 {
+    display: block;
+    height: 86px;
+    width: 30px;
+    background-position: -142px -152px;
+}
+
+.popover {
+    width: 300px;
+}
+
+.popover-content {
+    font-size: 13px;
+}
+
+/* Subnav */
+
+.subnav .nav {
+    display: block;
+    float: left;
+    left: 0;
+    margin: 0 10px 0 0;
+    position: relative;
+}
+
+.subnav .nav > li > a {
+  margin: 0;
+  padding-top:    11px;
+  padding-bottom: 11px;
+  color: #333;
+  @include border-radius( 0 );
+}
+
+.subnav .nav > li > a:hover,
+.subnav .nav > .active > a,
+.subnav .nav > .active > a:hover {
+    padding-left: 13px;
+    color: #FFF;
+    background-color: $red;
+}
+
+/* Subnav Fixed */
+
+.subnav-fixed {
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1030;
+    @include background-image(linear-gradient(center top , #333333, #222222));
+}
+
+.subnav-fixed .nav {
+    display: block;
+    float: left;
+    left: 0;
+    margin: 0 10px 0 0;
+    position: relative;
+}
+
+.subnav-fixed .nav > li > a {
+    margin: 0;
+    padding-top:    11px;
+    padding-bottom: 11px;
+    color: #FFF;
+}
+
+
+.subnav-fixed .nav > li > a:hover,
+.subnav-fixed .nav > .active > a,
+.subnav-fixed .nav > .active > a:hover {
+    padding-left: 13px;
+    color: #FFF;
+    background-color: $yellow;
+}
+
+a.brand {
+    background: url(../img/net.png) no-repeat;
+    font-size: 1px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 126px;
+    height: 36px;
+    float: left;
+    margin-right: 27px;
+}
+
+.space {
+    height: 5000px;
+    display: block;
+    background: url(../img/bg.png);
+}

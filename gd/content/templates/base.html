@@ -8,15 +8,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/screen.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     {% block css %}{% endblock %}
   </head>
-  <body>
+  <body data-spy="scroll" data-target=".subnav">
+
+    <div class="navbar navbar-fixed-top hidden-desktop">
+      <div class="navbar-inner">
+        <div class="container">
+
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <!-- Be sure to leave the brand out there if you want it shown -->
+          <a class="brand" href="#">Gabinete Digital</a>
+
+          <!-- Everything you want hidden at 940px or less, place within here -->
+          <div class="nav-collapse">
+            <!-- .nav, .navbar-search, .navbar-form, etc -->
+            <ul>
+              {{ menu | safe }}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <section id="home">
+          <div class="span3">
+            <a href="#" class="home">
+              <h1>Gabinete Digital <small>Democracia em rede</small></h1>
+            </a>
+          </div>
+          <div class="span6 offset3">
+            <div id="social" class="pull-right">
+              <a href="" class="feed">rss</a>
+              <a href="" class="twitter">twitter</a>
+              <a href="" class="facebook">facebook</a>
+              <a href="" class="news">news</a>
+            </div>
+
+            <div id="search" class="pull-right">
+              <form class="form-inline">
+                <input type="text" class="input-small busca">
+                <button type="submit" class="search">Search</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="subnav pull-right visible-desktop">
+            <a class="brand tools" href="#home">Gabinete Digital</a>
+            <ul class="nav nav-pills">
+              {{ menu | safe }}
+            </ul>
+            <form class="navbar-search pull-left tools">
+              <input class="search-query span2" type="text" placeholder="pesquisar...">
+            </form>
+          </div>
+
+        </section>
+      </div>
+
+      <div class="row visible-desktop">
+        <div class="span9">
+          <div class="tweets">
+            <ul>
+              <li class="pessoa1"></li>
+              <li class="pessoa2"></li>
+              <li class="pessoa3"></li>
+              <li class="pessoa4"></li>
+              <li class="pessoa1"></li>
+              <li class="pessoa2"></li>
+              <li class="pessoa3"></li>
+              <li class="pessoa4"></li>
+              <li class="pessoa1"></li>
+              <li class="pessoa2"></li>
+              <li class="pessoa3"></li>
+              <li class="pessoa4"></li>
+              <li class="pessoa1"></li>
+              <li class="pessoa2"></li>
+              <li class="pessoa3"></li>
+              <li class="pessoa4"></li>
+              <li class="pessoa1"></li>
+              <li class="pessoa2"></li>
+              <li class="pessoa3"></li>
+              <li class="pessoa4"></li>
+            </ul>
+          </div>
+        </div>
+        <div class="span3">
+          <div class="login">
+            <h4>Olá Visitante!</h4>
+            <button class="btn btn-danger">Faça parte</button>
+          </div>
+        </div>
+      </div>
 
 
+    </div>
+
+    <div class="space">
+      <section id="participe"></section>
+      <section id="sobre"></section>
+    </div>
 
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
     {% block javascript %}
     {% endblock %}
   </body>
