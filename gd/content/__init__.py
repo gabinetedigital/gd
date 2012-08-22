@@ -131,6 +131,7 @@ def index():
 @app.route('/')
 def index():
     """Renders the index template"""
+    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     slideshow = wordpress.getRecentPosts(
         category_name='highlights',
         post_status='publish',
@@ -151,6 +152,7 @@ def index():
         picday=picday,
         last_tweet=get_mayor_last_tweet(),
         videos=wordpress.wpgd.getHighlightedVideos(2),
+        menu=menus,
     )
 
 
