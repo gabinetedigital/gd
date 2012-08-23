@@ -48,11 +48,7 @@
           <div class="titulo">
           	<a href="/audience/{{audience.id}}">
             <h4>{{ audience.title }} <i>(
-				{% for audiencevideo in audiencevideos[i] %}
-          		{% if audiencevideo.key == "data_govesc" %}
-          		{{ audiencevideo.value[3:6]}}{{ audiencevideo.value[:3]}}{{ audiencevideo.value[6:10]}} às {{ audiencevideo.value[11:16]}} 
-          		{% endif %}
-          		{% endfor %}
+				a
 				)</i></h4>
 				</a>
           </div>

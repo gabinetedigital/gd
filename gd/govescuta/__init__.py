@@ -50,13 +50,18 @@ def index(page=0):
 #        count=count,
 #    )
 #
-    pagination, posts = wordpress.getPosts(page=page, 
-                                           post_type='audiencia_govesc' )
+    pagination, posts = wordpress.wpgove.listAudiencia(page=page, 
+                                            post_type='audiencia_govesc' )
+#    pagination, posts = wordpress.wpgove.listAudiencia(wordpress.getPosts(page=page, 
+#                                            post_type='audiencia_govesc' ))
+#    pagination, posts = wordpress.getPosts(page=page, 
+#                                           post_type='audiencia_govesc' )
     
-    audiencevideos = []
-    for post in posts:
-        audiencevideos.append(post.custom_fields)
-        
+#    audiencevideos = []
+#    for post in posts:
+#        audiencevideos.append(post.custom_fields)
+    #print 'leo = ', posts
+
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')    
         
     return render_template(
@@ -64,6 +69,6 @@ def index(page=0):
         sidebar=wordpress.getSidebar,
         pagination=pagination,
         audiences=posts,
-        audiencevideos=audiencevideos,
+#        audiencevideos=audiencevideos,
         how_to=getattr(how_to, 'content', ''),)
 
