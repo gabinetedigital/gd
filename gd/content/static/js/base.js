@@ -15,13 +15,13 @@ $(function(){
         sticky_navigation();
     });
 
-    $('input').focusin(function(){
-        $( "input" ).switchClass( "input-small", "input-big", 300 );
+    $('.busca').focusin(function(){
+        $(".busca").switchClass( "input-small", "input-big", 300 );
         return false;
     });
 
-    $('input').focusout(function(){
-        $( "input" ).switchClass( "input-big", "input-small", 300 );
+    $('.busca').focusout(function(){
+        $(".busca").switchClass( "input-big", "input-small", 300 );
         return false;
     });
 
