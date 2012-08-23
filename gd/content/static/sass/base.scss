@@ -13,7 +13,7 @@ body {
 }
 
 .home h1, .search, .feed, .twitter, .facebook, .news, #tweets,
-.pessoa1, .pessoa2, .pessoa3, .pessoa4 {
+.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male {
     font-size: 1px;
     overflow: hidden;
     text-indent: -9999px;
@@ -111,6 +111,13 @@ body {
     background-position: -142px -152px;
 }
 
+.male {
+    display: block;
+    height: 76px;
+    width: 23px;
+    background-position: 0 -161px;
+}
+
 .popover {
     width: 300px;
 }
@@ -119,14 +126,19 @@ body {
     font-size: 13px;
 }
 
+.login form {
+    margin: 0;
+}
+
+.login .on {
+    padding-top: 20px;
+}
+
+
 /* Subnav */
 
 .subnav .nav {
-    display: block;
-    float: left;
-    left: 0;
-    margin: 0 10px 0 0;
-    position: relative;
+    font-size: 17px;
 }
 
 .subnav .nav > li > a {
