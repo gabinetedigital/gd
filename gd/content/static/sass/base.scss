@@ -9,12 +9,10 @@ $yellow: #f4e400;
 
 body {
     font-family: 'Open Sans', sans-serif;
-    position: relative;
 }
 
 .home h1, .search, .feed, .twitter, .facebook, .news, #tweets,
-.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male {
-    font-size: 1px;
+.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand {
     overflow: hidden;
     text-indent: -9999px;
     background: url(../img/home.png) no-repeat;
@@ -132,6 +130,14 @@ body {
 
 .login .on {
     padding-top: 20px;
+}
+
+.login .control {
+    padding-top: 7px;
+}
+
+.login .control a {
+    color: $red;
 }
 
 

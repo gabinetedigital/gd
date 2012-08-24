@@ -34,4 +34,19 @@ $(function(){
     $('.tweets li').popover(option);
 
     $('.subnav').scrollspy()
+
+    $('.on').hide();
+    $('.logado').hide();
+
+    $('.entrar').click(function(){
+        $('.off').hide();
+        $('.on').fadeIn();
+    });
+
+    $('.form-inline').click(function(){
+        $('.off').hide();
+        $('.on').hide();
+        $('.logado').fadeIn();
+    });
+
 });
