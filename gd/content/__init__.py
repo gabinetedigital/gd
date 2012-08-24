@@ -79,14 +79,14 @@ def formatarDataeHora(s,formato = '%d/%m/%Y %H:%Mh' ):
     z = z.strftime(formato)
     return z
 
-def formatarNomeMes(s,formato = '%b' ):
+def formatarDataeHoraPostType(s,formato = '%b' ):
     z = str(s)
     z = datetime.datetime.strptime(z, "%m/%d/%Y %H:%M")
     z = z.strftime(formato)
     return z
 
 app.jinja_env.filters['formatarDataeHora'] = formatarDataeHora
-app.jinja_env.filters['formatarNomeMes'] = formatarNomeMes
+app.jinja_env.filters['formatarDataeHoraPostType'] = formatarDataeHoraPostType
 
 @app.context_processor
 def extend_context():

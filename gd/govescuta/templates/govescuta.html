@@ -41,21 +41,37 @@
       </select>
     </form>
     <ul>
-      {% set i = 0 %}
       {% for audience in audiences %}
       <li>
         <div class="audiencia">
           <div class="titulo">
           	<a href="/audience/{{audience.id}}">
-            <h4>{{ audience.title }} <i>(
-				a
+            <h4>{{ audience.post_title }} <i>(
+				{{ audience.aud_data_govesc|formatarDataeHoraPostType("%d/%m/%Y %H:%M") }}
 				)</i></h4>
 				</a>
           </div>
-          <div><p class="desc">{{ audience.excerpt|safe }}</p></div>
+          {% if audience.video  %}
+      <div class="video">
+        <a href="javascript:;" onclick='video.play({{ audience.video|tojson|safe }})'>
+          <div class="container">
+            <img class="thumb"
+                 src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
+                 width="300" height="190">
+            <img src="../static/imgs/play.png" class="play">
+          </div>
+        </a>
+        <a href="{{ url_for('videos.details', vid=audience.video.id) }}"
+           class="permalink">
+          <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
+               alt="Permanet link">
+        </a>
+      </div>
+      {% endif %}
+      
+          <div><p class="desc">{{ audience.post_content|safe }}</p></div>
         </div>
       </li>
-      {% set i = i+1 %}
       {% endfor %}
     </ul>
     <div class="row-end"></div>
