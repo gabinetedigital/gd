@@ -66,87 +66,15 @@
           <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
                alt="Permanet link">
         </a>
-      </div>{% extends "base.html" %}
-
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/govescuta.css') }}">
-{% endblock %}
-
-{% block content %}
-<div id="container">
-  <div class="row head">
-    <div id="logo" class="col4">
-      <h1>
-        <a href="{{ url_for('.index') }}">
-          Governador Escuta
-        </a>
-      </h1>
-    </div>
-    <div class="col8">
-      <p>
-        Audiências públicas digitais transmitidas via internet onde você
-        pode enviar sua contribuição
-      </p>
-
-      <ul class="menu">
-        <li class="comofunciona">
-          <a href="">Como Funciona</a>
-        </li>
-      </ul>
-
-    </div>
-    <div class="row-end"></div>
-  </div>
-
-  <div class="row content">
-    <h2>Audiências Anteriores</h2>
-    <form id="filterform" method="get" action="">
-      <input type="hidden" name="theme" value="">
-      <select name="sortby" onchange="">
-        <option value="">filtros</option>
-        <option>Mais recentes</option>
-        <option>Mais antigas</option>
-      </select>
-    </form>
-    <ul>
-      {% for audience in audiences %}
-      <li>
-        <div class="audiencia">
-          <div class="titulo">
-          	<a href="/audience/{{audience.ID}}">
-            <h4>{{ audience.post_title }} <i>(
-				{{ audience.aud_data_govesc|formatarDataeHoraPostType("%d/%m/%Y %H:%M") }}
-				)</i></h4>
-				</a>
-          </div>
-          {% if audience.video  %}
-      <div class="video">
-        <a href="javascript:;" onclick='video.play({{ audience.video|tojson|safe }})'>
-          <div class="container">
-            <img class="thumb"
-                 src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
-                 width="300" height="190">
-            <img src="../static/imgs/play.png" class="play">
-          </div>
-        </a>
-        <a href="{{ url_for('videos.details', vid=audience.video.id) }}"
-           class="permalink">
-          <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
-               alt="Permanet link">
-        </a>
       </div>
-      {% endif %}
-      
-          <div><p class="desc">{{ audience.post_content|safe }}</p></div>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-    <div class="row-end"></div>
-  </div>
-</div>
-{% endblock %}
-
+      {% else %}
+      <div class="video">
+          <div class="container">
+            <img src="static/imgs/logo_aguarde.png" 
+                 alt="Aguarde o vídeo"
+                 width="300" height="190">
+          </div>
+      </div>
       {% endif %}
       
           <div><p class="desc">{{ audience.post_content|safe }}</p></div>

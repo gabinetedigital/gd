@@ -81,7 +81,7 @@ def formatarDataeHora(s,formato = '%d/%m/%Y %H:%Mh' ):
 
 def formatarDataeHoraPostType(s,formato = '%b' ):
     z = str(s)
-    z = datetime.datetime.strptime(z, "%m/%d/%Y %H:%M")
+    z = datetime.datetime.strptime(z, "%Y-%m-%d %H:%M")
     z = z.strftime(formato)
     return z
 

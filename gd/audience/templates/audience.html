@@ -7,7 +7,7 @@
 
 {% block javascript %}
 <script type="text/javascript">
-  var AUDIENCE_ID={{audience.id}};
+  var AUDIENCE_ID={{audiences.ID}};
 </script>
 <script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script>
 <script src="{{ url_for('buzz.static', filename='js/longpool.js') }}"></script>
@@ -19,21 +19,19 @@
 {% endblock %}
 
 {% block content %}
-
+{% for audience in audiences %}
 <div id="container">
   <div id="info-aud" class="row">
     <div class="col9">
       <div id="title">
-        <p class="title">{{ audience.title }}</p>
-        <p class="description">{{ audience.excerpt|safe }}</p>
+        <p class="title">{{ audience.post_title }}</p>
+        <p class="description">{{ audience.post_content|safe }}</p>
       </div>
     </div>
     <div class="col3">
 		<div id="date">
-        	<p class="day">{{ audience.custom_fields[1].value[3:5] }}</p>
-        	<p class="month">{{ audience.custom_fields[1].value|formatarDataeHoraPostType }}</p>
-        	<p class="hour">{{ audience.custom_fields[1].value[11:13] }}h</p>
-        	<p class="min">{{ audience.custom_fields[1].value[14:16] }}</p>
+			{{ audience.aud_data_govesc }}
+        	
         	
         	
       	</div>
@@ -48,7 +46,6 @@
     </div>
     <div class="row-end"></div>
   </div>
-
 
   <div class="row buzzbg">
     <div id="main" class="col8">
@@ -140,7 +137,7 @@
         
         <div id="misc">
           <h5>Governo Escuta</h5>
-          <p>{{ audience.custom_fields[2].value|safe }}</p>
+          <p>{{ audience.aud_detalhes_govesc|safe }}</p>
         </div>
       </div>
     </div>
@@ -184,7 +181,7 @@
   </div>
   <div class="row-end"></div>
 </div>
-
+{% endfor%}
 <script type="text/html" id="buzzTemplate">
   <li>
     <ul class="stream">

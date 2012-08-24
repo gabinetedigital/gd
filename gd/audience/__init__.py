@@ -51,14 +51,16 @@ def index():
 def audience_details(aid):
     """Renders an audience with its public template"""
     #inst = get_or_404(Audience, id=aid, visible=True)
-    inst = wordpress.getPost(aid)
+    #inst = wordpress.getPost(aid)
+    pagination, inst = wordpress.wpgove.getAudiencias(postID=aid)
+    print "a = ", inst
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-    #buzzes = Audience.query.get(aid).get_moderated_buzz()
+    buzzes = Audience.query.get(aid).get_moderated_buzz()
     #buzzesSelec = Audience.query.get(aid).get_last_published_notice()
     return render_template(
         'audience.html',
-        audience=inst,
-        #buzzes = buzzes,
+        audiences=inst,
+        buzzes = buzzes,
         #buzzesSelec = buzzesSelec,
         how_to=getattr(how_to, 'content', ''),
         #notice=inst.get_last_published_notice(),
