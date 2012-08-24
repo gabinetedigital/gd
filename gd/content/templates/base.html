@@ -12,47 +12,20 @@
     {% block css %}{% endblock %}
   </head>
   <body data-spy="scroll" data-target=".subnav">
-
-    <div class="navbar navbar-fixed-top hidden-desktop">
-      <div class="navbar-inner">
-        <div class="container">
-
-          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-
-          <!-- Be sure to leave the brand out there if you want it shown -->
-          <a class="brand" href="#">Gabinete Digital</a>
-
-          <!-- Everything you want hidden at 940px or less, place within here -->
-          <div class="nav-collapse">
-            <!-- .nav, .navbar-search, .navbar-form, etc -->
-            <ul>
-              {{ menu | safe }}
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
     <div class="container">
       <div class="row">
         <section id="home">
           <div class="span3">
-            <a href="#" class="home">
+            <a href="/" class="home">
               <h1>Gabinete Digital <small>Democracia em rede</small></h1>
             </a>
           </div>
           <div class="span6 offset3">
             <div id="social" class="pull-right">
-              <a href="" class="feed">rss</a>
-              <a href="" class="twitter">twitter</a>
-              <a href="" class="facebook">facebook</a>
-              <a href="" class="news">news</a>
+              <a href="http://gabinetedigital.rs.gov.br/feed" class="feed">rss</a>
+              <a href="https://www.facebook.com/gabinetedigital" class="twitter">twitter</a>
+              <a href="https://twitter.com/gabinetedigital" class="facebook">facebook</a>
+              <a href="https://twitter.com/news" class="news">news</a>
             </div>
 
             <div id="search" class="pull-right">
@@ -63,14 +36,19 @@
             </div>
           </div>
 
-          <div class="subnav pull-right visible-desktop">
-            <a class="brand tools" href="#home">Gabinete Digital</a>
-            <ul class="nav nav-pills">
+          <div class="subnav pull-right">
+            <a class="brand pull-left" href="#home">Gabinete Digital</a>
+            <a class="btn btn-navbar pull-right hidden-desktop" data-toggle="collapse" data-target=".nav-collapse">
+              menu
+            </a>
+            <div class="nav-collapse">
+            <ul class="nav nav-pills lava">
               {{ menu | safe }}
             </ul>
             <form class="navbar-search pull-left tools">
               <input class="search-query span2" type="text" placeholder="pesquisar...">
             </form>
+            </div>
           </div>
 
         </section>
@@ -106,7 +84,7 @@
         <div class="span4">
           <div class="login">
             <div class="off">
-              <h4>Olá Visitante!</h4>
+              <p class="saudacao">Olá Visitante!</p>
               <button class="btn btn-primary entrar">Entrar</button>
               <button class="btn btn-primary">Entrar via Facebook</button>
             </div>
@@ -123,7 +101,7 @@
             <div class="logado">
               <div class="male pull-right"></div>
               <div class="profile-control">
-                <h4>Olá, Fernando Machado!</h4>
+                <p class="saudacao">Olá, Fernando Machado!</p>
                 <button class="btn btn-info">Editar perfil</button>
                 <button class="btn btn-danger">Sair</button>
               </div>
@@ -132,12 +110,14 @@
         </div>
       </div>
 
-
     </div>
 
     <div class="space">
       <section id="participe"></section>
       <section id="sobre"></section>
+      <section id="noticias"></section>
+      <section id="videos"></section>
+      <section id="fotos"></section>
     </div>
 
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>

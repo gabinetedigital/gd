@@ -148,11 +148,12 @@ body {
 }
 
 .subnav .nav > li > a {
-  margin: 0;
-  padding-top:    11px;
-  padding-bottom: 11px;
-  color: #333;
-  @include border-radius( 0 );
+    color: $black;
+    display: block;
+    height: 20px;
+    margin: 0;
+    line-height: 18px;
+    @include border-radius( 0 );
 }
 
 .subnav .nav > li > a:hover,
@@ -161,6 +162,11 @@ body {
     padding-left: 13px;
     color: #FFF;
     background-color: $red;
+    font-weight: 600;
+}
+
+.subnav a.brand {
+    display: none;
 }
 
 /* Subnav Fixed */
@@ -185,9 +191,9 @@ body {
 
 .subnav-fixed .nav > li > a {
     margin: 0;
-    padding-top:    11px;
-    padding-bottom: 11px;
     color: #FFF;
+    height: 29px;
+    line-height: 29px;
 }
 
 
@@ -196,22 +202,76 @@ body {
 .subnav-fixed .nav > .active > a:hover {
     padding-left: 13px;
     color: #FFF;
-    background-color: $yellow;
+    background-color: $red;
 }
 
-a.brand {
-    background: url(../img/net.png) no-repeat;
-    font-size: 1px;
-    overflow: hidden;
-    text-indent: -9999px;
-    width: 126px;
-    height: 36px;
-    float: left;
+.subnav-fixed a.brand {
+    background-position: -204px -260px;
+    width: 134px;
+    height: 45px;
     margin-right: 27px;
+    display: inline-block;
+}
+
+.navbar-search {
+    margin-top: 7px;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        margin-top: 60px;
+    }
+
+    .space {
+        height: 5000px;
+        display: block;
+        background: url(../img/bg.png);
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+    .subnav {
+        top: 0;
+        left: 0;
+        margin-bottom: 0;
+        position: fixed;
+        right: 0;
+        z-index: 1030;
+        @include background-image(linear-gradient(center top , #333333, #222222));
+    }
+
+    .subnav .nav {
+        display: block;
+        float: left;
+        left: 0;
+        margin: 0 10px 0 0;
+        position: relative;
+    }
+
+    .subnav a.brand {
+        background-position: -204px -260px;
+        display: block;
+        width: 134px;
+        height: 45px;
+        margin-right: 27px;
+        display: inline-block;
+    }
+
+    .subnav .btn-navbar {
+        margin-right: 10px;
+        margin-top: 7px;
+    }
+
+    .navbar-inverse .nav > li > a {
+        color: #999999;
+    }
+
 }
 
 .space {
     height: 5000px;
     display: block;
     background: url(../img/bg.png);
+
 }
