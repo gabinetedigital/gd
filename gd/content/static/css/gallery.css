@@ -258,6 +258,7 @@ a.next_link {
     padding:5px 0;
     color: #FFF;
     text-transform: capitalize;
+    width: 175px;
 }
 
 #gallerylist li a {
