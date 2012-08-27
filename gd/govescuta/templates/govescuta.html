@@ -2,10 +2,70 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/govescuta.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/how-it.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('audience.static', filename='js/jQueryRotate.2.1.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/govescuta.js') }}"></script>
+<script src="{{ url_for('audience.static', filename='js/timer.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 <div id="container">
+	<div id="works-like-this" class="overlay boverlay">
+  			<ol>
+				<li class="step-1">
+  					<div class="wrapper">
+						<img
+   							src="{{ url_for('audience.static', filename='imgs/couple.png') }}"
+   							class="step-1-couple">
+						<div>
+  							<img
+ 								src="{{ url_for('audience.static', filename='imgs/mail_trail.png') }}"
+ 								class="step-1-mail-trail">
+  							<img
+ 								src="{{ url_for('audience.static', filename='imgs/mail.png') }}"
+ 								class="step-1-mail">
+						</div>
+  					</div>
+  					<p>As pessoas enviam suas contribuições</p>
+				</li>
+				<li class="step-2">
+  					<div class="wrapper">
+						<div class="gears">
+  							<img
+ 								src="{{ url_for('audience.static', filename='imgs/step_2_big_gear.png') }}"
+ 								class="step-2-big-gear">
+  							<img
+ 								src="{{ url_for('audience.static', filename='imgs/step_2_small_gear.png') }}"
+ 								class="step-2-small-gear">
+						</div>
+						<img 
+							src="{{ url_for('audience.static', filename='imgs/networked_cpus.png') }}">
+  					</div>
+  					<p>Nossa equipe processa e modera as contribuições</p>
+				</li>
+				<li class="step-3">
+  					<div class="wrapper">
+						<img
+   							src="{{ url_for('audience.static', filename='imgs/mustache_gentleman.png') }}"
+   							class="mustache-gentleman">
+						<img
+   							src="{{ url_for('audience.static', filename='imgs/empty_dialog.png') }}"
+   							class="mustache-gentleman-dialog">
+  					</div>
+  					<p>O Governador comenta as contribuições selecionadas</p>
+				</li>
+	  		</ol>
+  			<div id="saiba-mais-link">
+				<a href="javascript:show_how_to()"> Saiba mais </a>
+  			</div>
+  			<div id="saiba-mais-text" style="display:none">
+    			{{ how_to|safe }}
+  			</div>
+		</div>
+		
   <div class="row head">
     <div id="logo" class="col4">
       <h1>
@@ -22,30 +82,41 @@
 
       <ul class="menu">
         <li class="comofunciona">
-          <a href="">Como Funciona</a>
+          <a href="#" rel="#works-like-this" id="how-it-works">Como Funciona</a>
         </li>
       </ul>
-
+      
+  		
     </div>
     <div class="row-end"></div>
   </div>
 
   <div class="row content">
     <h2>Audiências Anteriores</h2>
-    <form id="filterform" method="get" action="">
-      <input type="hidden" name="theme" value="">
-      <select name="sortby" onchange="">
+    <form id="filterform" method="get" action="{{ url_for('govescuta.index') }}">
+      <select name="sortby" onchange="$('#filterform').submit()">
         <option value="">filtros</option>
-        <option>Mais recentes</option>
-        <option>Mais antigas</option>
+        <option
+           {% if sortby == 'date' %}selected="selected"{% endif %}
+           value="date">
+          Mais recentes
+        </option>
+        <option
+           {% if sortby == '-date' %}selected="selected"{% endif %}
+           value="-date">
+          Mais antigas
+        </option>
       </select>
     </form>
+  
+    
+    
     <ul>
       {% for audience in audiences %}
       <li>
         <div class="audiencia">
           <div class="titulo">
-          	<a href="/audience/{{audience.ID}}">
+          	<a href="{{ url_for('audience.audience_details', aid=audience.ID) }}">
             <h4>{{ audience.post_title }} <i>(
 				{{ audience.aud_data_govesc|formatarDataeHoraPostType("%d/%m/%Y %H:%M") }}
 				)</i></h4>
@@ -77,7 +148,15 @@
       </div>
       {% endif %}
       
-          <div><p class="desc">{{ audience.post_content|safe }}</p></div>
+          <div>
+          	<p class="desc">{{ audience.post_content|safe }}</p>
+          	{% if audience.category %}
+        		<a 	href="{{ url_for('audience.audience_details', aid=audience.ID) }}"
+           			class="encaminhamento">
+          			Encaminhamentos
+        		</a>
+        	{% endif %}
+          </div>
         </div>
       </li>
       {% endfor %}

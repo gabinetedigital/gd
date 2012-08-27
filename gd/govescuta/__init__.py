@@ -50,9 +50,10 @@ def index(page=0):
 #        count=count,
 #    )
 #
+    sortby = request.values.get('sortby') or 'date'
     pagination, posts = wordpress.wpgove.getAudiencias(
                                             page=page, 
-                                            sortby='date', 
+                                            sortby=sortby, 
                                             totalporpage='10')
 #    pagination, posts = wordpress.wpgove.listAudiencia(wordpress.getPosts(page=page, 
 #                                            post_type='audiencia_govesc' ))
@@ -71,6 +72,7 @@ def index(page=0):
         sidebar=wordpress.getSidebar,
         pagination=pagination,
         audiences=posts,
+        sortby=sortby,
 #        audiencevideos=audiencevideos,
         how_to=getattr(how_to, 'content', ''),)
 
