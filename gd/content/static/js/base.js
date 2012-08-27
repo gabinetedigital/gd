@@ -4,12 +4,11 @@ $(function(){
         var scroll_top = $(window).scrollTop();
         if (scroll_top > sticky_navigation_offset_top) {
             $('.subnav').addClass('subnav-fixed');
-            $('.tools').show();
         } else {
             $('.subnav').removeClass('subnav-fixed');
-            $('.tools').hide();
         }  
     };
+
     sticky_navigation();
     $(window).scroll(function() {
         sticky_navigation();

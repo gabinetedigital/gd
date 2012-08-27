@@ -30,24 +30,29 @@
 
             <div id="search" class="pull-right">
               <form class="form-inline">
-                <input type="text" class="input-small busca" placeholder="pesquisar...">
-                <button type="submit" class="search" >Search</button>
+                <div class="input-append">
+                  <input type="text" class="input-small busca">
+                  <button type="submit" class="btn"><i class="icon-search"></i></button>
+                </div>
               </form>
             </div>
           </div>
 
-          <div class="subnav pull-right">
+          <div class="subnav navbar-invert pull-right">
             <a class="brand pull-left" href="#home">Gabinete Digital</a>
             <a class="btn btn-navbar pull-right hidden-desktop" data-toggle="collapse" data-target=".nav-collapse">
               menu
             </a>
             <div class="nav-collapse">
-            <ul class="nav nav-pills lava">
-              {{ menu | safe }}
-            </ul>
-            <form class="navbar-search pull-left tools">
-              <input class="search-query span2" type="text" placeholder="pesquisar...">
-            </form>
+              <ul class="nav nav-pills">
+                {{ menu | safe }}
+              </ul>
+              <form class="navbar-search form-search pull-right tools">
+                <div class="input-append">
+                  <input type="text" class="input-small busca search-query">
+                  <button type="submit" class="btn"><i class="icon-search"></i></button>
+                </div>
+              </form>
             </div>
           </div>
 

@@ -22,12 +22,15 @@ body {
     display: block;
     width: 270px;
     height: 123px;
+    text-indent: -1000px;
+    overflow: hidden;
 }
 
 #search, #social {
-   text-align: right;
-   margin-top: 50px;
-   margin-left: 20px;
+    text-align: right;
+    margin-top: 50px;
+    margin-left: 20px;
+
 }
 
 .search {
@@ -145,6 +148,10 @@ body {
 
 .subnav .nav {
     font-size: 17px;
+}
+
+.subnav .tools {
+    display: none;
 }
 
 .subnav .nav > li > a {
