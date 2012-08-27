@@ -24,6 +24,28 @@ $(function(){
         return false;
     });
 
+    $('a[href^="#"]').not('.carousel-control').bind('click.smoothscroll',function (e) {
+        e.preventDefault();
+        var target = this.hash,
+        $target = $(target);
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top
+        }, 500, 'swing', function () {
+            window.location.hash = target;
+        });
+    });
+
+    var $container = $('.widgets');
+    $container.imagesLoaded( function(){
+        $container.masonry({
+            itemSelector : '.thumbnails>li',
+            columnWidth: function( containerWidth ) {
+                console.log(containerWidth / 12);
+                return containerWidth / 12;
+            }
+        });
+    });
+
     option = {
         title: '@andrenano',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis ultricies nunc ac euismod. Class aptent taciti sociosqu ad volutpat.',
