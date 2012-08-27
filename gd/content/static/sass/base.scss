@@ -11,10 +11,14 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+a {
+    color: $red;
+}
+
 .home h1, .search, .feed, .twitter, .facebook, .news, #tweets,
 .pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand {
     overflow: hidden;
-    text-indent: -9999px;
+    text-indent: 1000px;
     background: url(../img/home.png) no-repeat;
 }
 
@@ -39,6 +43,7 @@ body {
     height: 19px;
     background-position: 0px -274px;
     border: 0;
+    text-indent: -1000px;
 }
 
 .feed {
@@ -131,6 +136,17 @@ body {
     margin: 0;
 }
 
+.login p.saudacao {
+    font-size: 18px;
+    line-height: 20px;
+    color: inherit;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 1;
+    margin: 10px 0;
+    text-rendering: optimizelegibility;
+}
+
 .login .on {
     padding-top: 20px;
 }
@@ -174,6 +190,8 @@ body {
 
 .subnav a.brand {
     display: none;
+    text-indent: -1000px;
+    overflow: hidden;
 }
 
 /* Subnav Fixed */
@@ -185,7 +203,12 @@ body {
     position: fixed;
     right: 0;
     z-index: 1030;
-    @include background-image(linear-gradient(center top , #333333, #222222));
+    background-color: #1B1B1B;
+    @include background-image(linear-gradient(center top , #222222 , #111111));
+}
+
+.subnav-fixed .tools {
+    display: inline-block;
 }
 
 .subnav-fixed .nav {
@@ -210,6 +233,7 @@ body {
     padding-left: 13px;
     color: #FFF;
     background-color: $red;
+
 }
 
 .subnav-fixed a.brand {
@@ -218,24 +242,28 @@ body {
     height: 45px;
     margin-right: 27px;
     display: inline-block;
+    text-indent: -1000px;
+    overflow: hidden;
 }
 
 .navbar-search {
     margin-top: 7px;
+    margin-right: 20px;
+    border-color: #111111;
 }
 
-@media (max-width: 768px) {
+footer {
+    @include background-image(linear-gradient(center top , #222222, #111111));
+    background-color: #1B1B1B;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #FFF;
+}
+
+@media (max-width: 979px) {
 
     body {
         margin-top: 60px;
-    }
-
-    .space {
-        height: 5000px;
-        display: block;
-        background: url(../img/bg.png);
-        margin-left: -20px;
-        margin-right: -20px;
     }
 
     .subnav {
@@ -245,15 +273,17 @@ body {
         position: fixed;
         right: 0;
         z-index: 1030;
-        @include background-image(linear-gradient(center top , #333333, #222222));
+        @include background-image(linear-gradient(center top , #222222, #111111));
+        background-color: #1B1B1B;
+        border-color: #252525;
     }
 
     .subnav .nav {
         display: block;
-        float: left;
         left: 0;
         margin: 0 10px 0 0;
         position: relative;
+        font-size: 13px;
     }
 
     .subnav a.brand {
