@@ -1,0 +1,113 @@
+#how-it-works {
+    cursor:pointer;
+}
+
+#how-it-works .small-gear {
+    position: relative;
+    top: 18px;
+    left: -13px;
+}
+
+#how-it-works .how-it-works-text {
+    position: relative;
+    top: -32px;
+    left: 38px;
+}
+
+.step-1-couple {
+    opacity:0;
+}
+
+.step-1-mail-trail {
+    opacity:0;
+}
+
+
+.step-1-mail {
+    opacity:0;
+    left: -56px;
+    position: relative;
+}
+
+.step-2 {
+    opacity: 0;
+}
+
+.step-2-small-gear {
+    position: relative;
+    top: 14px;
+    left: -8px;
+}
+
+.mustache-gentleman, .step-3 p {
+    opacity: 0;
+}
+
+.mustache-gentleman-dialog {
+    display: none;
+}
+
+/* -- How it works -- */
+
+#works-like-this {
+    padding:40px;
+    width:590px;
+}
+
+#works-like-this li {
+    display:block;
+    width:195px;
+    height:150px;
+    float:left;
+    text-align:center;
+}
+
+#works-like-this .wrapper {
+    height:100px;
+    margin:0 auto;
+    background:none;
+    box-shadow:none;
+}
+
+#works-like-this p {
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+    clear:both;
+}
+
+/* specific things of how it works */
+
+#works-like-this .gears {
+    margin-left:10%;
+}
+
+#works-like-this ol {
+    height:180px;
+}
+
+#works-like-this .step-3 img {
+    float:left;
+}
+
+#works-like-this .step-3 .wrapper {
+    width:130px;
+}
+
+#works-like-this .mustache-gentleman {
+    margin-top:40px;
+}
+
+#works-like-this #saiba-mais-link {
+    margin-top:30px;
+    float:right;
+}
+
+#works-like-this #saiba-mais-text {
+    margin-top: 40px;
+    float: left;
+}
+
+.boverlay {
+    border-radius: 30px;
+}
