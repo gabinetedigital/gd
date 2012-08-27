@@ -117,18 +117,49 @@
 
     </div>
 
-    <div class="space">
-      <section id="participe"></section>
-      <section id="sobre"></section>
-      <section id="noticias"></section>
-      <section id="videos"></section>
-      <section id="fotos"></section>
-    </div>
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <h2>Contatos</h2>
+            <address>
+              <p class="lead">
+                <strong>Gabinete do Governador<br> Palácio Piratini</strong><br>
+                Praça Marechal Deodoro s/n<br>
+                Porto Alegre - RS<br>
+                CEP 90010-282<br>
+                <a href="mailto:#">gabinetedigital@gg.rs.gov.br</a><br>
+                <abbr title="Telefone">T:</abbr> (51) 3210-4100
+              </p>
+            </address>
+          </div>
+          <div class="span4">
+
+            <h2>Licenças</h2>
+
+            <p class="lead">Todo o conteúdo do site está disponível sobre a licença
+              Creative Commons Attribution 3.0 não adaptada.</p>
+
+            <p class="lead">O código deste site é livre, licenciado sob a Affero GPL.
+              Para saber mais sobre isso, veja a nossa página sobre desenvolvimento.</p>
+          </div>
+
+          <div class="span4">
+            <h2>Rio Grande do Sul</h2>
+            <img src="../img/logors.png">
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.masonry.min.js') }}"></script>
 
     {% block javascript %}
     {% endblock %}
