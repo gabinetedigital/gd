@@ -299,3 +299,7 @@ function show_how_to() {
     $("#saiba-mais-link").hide();
     $("#saiba-mais-text").show();
 }
+
+function showEncaminhada(parentId) {
+    $('#encaminhada-' + parentId).slideToggle();
+}
