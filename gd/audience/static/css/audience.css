@@ -163,8 +163,38 @@
     width: 450px;
 }
 
+#container .answerlink {
+    margin-top:20px;
+    clear:both;
+    margin-bottom: 40px;
+    font-size: 12px;
+}
+
+#container .answerlink .encaminhamento, .referrals .encaminhamento {
+    font-size: 16px;
+    color: #563a11;
+    background: url("../imgs/encaminhamento.png") no-repeat left;
+    padding-left: 20px;
+}
+
+.encaminhada {
+    margin:10px 0 0 30px;
+    display:none;
+}
+
+.encaminhada li {
+    padding:0 0 30px 0;
+    clear:both;
+}
+
+.encaminhada h4 { clear:both; margin:20px 0; }
+
 #beingAnswered {
     min-height:100px;
+}
+
+#beingAnswered-anterior {
+    min-height:60px;
 }
 
 #container #main .content #how-it-works {
@@ -228,29 +258,38 @@
     overflow-y: scroll;
 }
 
-#container .buzz .stream {
+#container .buzz-anterior {
+    margin-top: 100px;
+    margin-left: -18px;
+    height: 500px;
+    width: 304px;
+    overflow-y: scroll;
+}
+
+
+#container .buzz .buzz-anterior .stream {
     width: 285px;
     background: url(../imgs/line.png) no-repeat bottom;
     padding-bottom: 23px;
     margin-bottom: 10px;
 }
 
-#container .buzz  .stream img {
+#container .buzz .buzz-anterior .stream img {
     float: left;
     margin-right: 10px;
 }
 
-#container .buzz  .stream .author {
+#container .buzz .buzz-anterior  .stream .author {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-#container .buzz  .stream .author em {
+#container .buzz .buzz-anterior .stream .author em {
     font-style:normal;
     color:#999;
 }
 
-#container .buzz  .stream a {
+#container .buzz .buzz-anterior .stream a {
     color: #668000;
 }
 
@@ -414,5 +453,4 @@
 .boverlay {
     border-radius: 30px;
 }
-
 
