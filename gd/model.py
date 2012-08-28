@@ -88,6 +88,26 @@ class Term(Entity):
     def __str__(self):
         return self.hashtag
 
+class AudiencePosts(Entity):
+    """Mapper for the wp_usermeta entity, the same used by wordpress"""
+    using_options(tablename='wp_posts')
+    
+    id = Field(Integer, primary_key=True, colname='ID')
+    
+    def __str__(self):
+        return '<%s "%s">' % (
+            self.__class__.__name__, self.id)
+
+    def get_moderated_buzz(self, except_ids=[]):
+        """Returns the moderated notice buzz"""
+        except_ids = except_ids or [-1]
+        return Buzz.query \
+            .filter_by(audience_id=self.id) \
+            .filter(Buzz.status.in_(['approved', 'selected'])) \
+            .filter(not_(Buzz.id.in_(except_ids))) \
+            .order_by(desc('creation_date')) \
+            .all()
+
 class Audience(Entity):
     """Mapper for the `audience' entity
     """
@@ -106,7 +126,7 @@ class Audience(Entity):
     date_started = Field(DateTime)
     owner = Field(Unicode(64))
     embed = Field(Unicode(256))
-    buzzes = OneToMany('Buzz')
+    #buzzes = OneToMany('Buzz')
 
     def __str__(self):
         return '<%s "%s" (%d)>' % (
@@ -178,7 +198,7 @@ class Buzz(Entity):
                    default=u'inserted')
     date_published = Field(DateTime)
     creation_date = Field(DateTime, default=datetime.now)
-    audience = ManyToOne('Audience')
+    audience_id = Field(Integer)
     type_ = ManyToOne('BuzzType')
     user = ManyToOne('User')
 
