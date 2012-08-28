@@ -24,7 +24,7 @@ from flask import Blueprint, render_template, request, abort, redirect
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy import desc
 
-from gd.model import Audience, Term, get_or_404
+from gd.model import Audience, Term, get_or_404, AudiencePosts
 from gd.utils import dumps
 from gd.content.wp import wordpress
 
@@ -42,24 +42,51 @@ def index():
         inst = Audience.query \
             .filter_by(visible=True) \
             .order_by(desc('date')).first()
-        return audience_details(inst.id)
+        return audience_details1(inst.id)
     except (AttributeError, NoResultFound):
         abort(404)
 
+@audience.route('/teste/<int:aid>')
+def audience_details1(aid):
+    inst = get_or_404(Audience, id=aid, visible=True)
+    buzzes = Audience.query.get(aid).get_moderated_buzz()
+    buzzesSelec = Audience.query.get(aid).get_last_published_notice()
+    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
+    return render_template(
+        'audience.html',
+        audience=inst,
+        buzzes = buzzes,
+        buzzesSelec = buzzesSelec,
+        how_to=getattr(how_to, 'content', ''),
+        #notice=inst.get_last_published_notice(),
+    )
 
+    
+    
 @audience.route('/<int:aid>')
 def audience_details(aid):
     """Renders an audience with its public template"""
-    #inst = get_or_404(Audience, id=aid, visible=True)
-    #inst = wordpress.getPost(aid)
+
     pagination, inst = wordpress.wpgove.getAudiencias(postID=aid)
-    print "a = ", inst
+
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-    buzzes = Audience.query.get(aid).get_moderated_buzz()
+
+    for cat in inst:
+        category = cat['category']
+
+    if category:
+        pagination, posts = wordpress.getPostsByCategory(
+            cat=category)
+    else:
+        pagination, posts = None, []
+
+    buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
     #buzzesSelec = Audience.query.get(aid).get_last_published_notice()
     return render_template(
-        'audience.html',
+        'audience-anterior.html',
         audiences=inst,
+        referrals=posts,
+        pagination=pagination,
         buzzes = buzzes,
         #buzzesSelec = buzzesSelec,
         how_to=getattr(how_to, 'content', ''),

@@ -55,18 +55,9 @@ def index(page=0):
                                             page=page, 
                                             sortby=sortby, 
                                             totalporpage='10')
-#    pagination, posts = wordpress.wpgove.listAudiencia(wordpress.getPosts(page=page, 
-#                                            post_type='audiencia_govesc' ))
-#    pagination, posts = wordpress.getPosts(page=page, 
-#                                           post_type='audiencia_govesc' )
-    
-#    audiencevideos = []
-#    for post in posts:
-#        audiencevideos.append(post.custom_fields)
-    print 'leo == ', posts
-    
-    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')    
-        
+
+    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
+
     return render_template(
         'govescuta.html',
         sidebar=wordpress.getSidebar,

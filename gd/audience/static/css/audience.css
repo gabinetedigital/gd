@@ -258,38 +258,30 @@
     overflow-y: scroll;
 }
 
-#container .buzz-anterior {
-    margin-top: 100px;
-    margin-left: -18px;
-    height: 500px;
-    width: 304px;
-    overflow-y: scroll;
-}
 
-
-#container .buzz .buzz-anterior .stream {
+#container .buzz .stream {
     width: 285px;
     background: url(../imgs/line.png) no-repeat bottom;
     padding-bottom: 23px;
     margin-bottom: 10px;
 }
 
-#container .buzz .buzz-anterior .stream img {
+#container .buzz .stream img {
     float: left;
     margin-right: 10px;
 }
 
-#container .buzz .buzz-anterior  .stream .author {
+#container .buzz  .stream .author {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-#container .buzz .buzz-anterior .stream .author em {
+#container .buzz .stream .author em {
     font-style:normal;
     color:#999;
 }
 
-#container .buzz .buzz-anterior .stream a {
+#container .buzz .stream a {
     color: #668000;
 }
 

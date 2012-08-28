@@ -7,7 +7,7 @@
 
 {% block javascript %}
 <script type="text/javascript">
-  var AUDIENCE_ID={{audiences.ID}};
+  var AUDIENCE_ID={{audience.id}};
 </script>
 <script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script>
 <script src="{{ url_for('buzz.static', filename='js/longpool.js') }}"></script>
@@ -19,33 +19,34 @@
 {% endblock %}
 
 {% block content %}
-{% for audience in audiences %}
+
 <div id="container">
   <div id="info-aud" class="row">
     <div class="col9">
       <div id="title">
-        <p class="title">{{ audience.post_title }}</p>
-        <p class="description">{{ audience.post_content|safe }}</p>
+        <p class="title">{{ audience.title }}</p>
+        <p class="description">{{ audience.subject }}</p>
       </div>
     </div>
     <div class="col3">
 		<div id="date">
-			{{ audience.aud_data_govesc }}
-        	
-        	
-        	
+        	<p class="day">{{ audience.date.strftime('%d') }}</p>
+        	<p class="month">{{ audience.date.strftime('%b') }}</p>
+        	<p class="hour">{{ audience.date.strftime('%H') }}h</p>
+        	<p class="min">{{ audience.date.strftime('%M') }}</p>
       	</div>
       	
       	<div id="tag" class="row">
       		<div class="inner">
         		<p>Use a hashtag</p>
-        		<h3><!-- audience.get_main_term() }}--></h3>
+        		<h3>{{ audience.get_main_term() }}</h3>
         		<div class="fraseSMS">Envie SMS para <span class="numeroSMS">27556</span></div>
     		</div>
   		</div>
     </div>
     <div class="row-end"></div>
   </div>
+
 
   <div class="row buzzbg">
     <div id="main" class="col8">
@@ -134,10 +135,12 @@
   			</ul>
   			{% endif %}
         </div>
-        
+        {% if audience.started %}
+        <div id="streaming">{{ audience.embed|safe }}</div>
+        {% endif %}
         <div id="misc">
           <h5>Governo Escuta</h5>
-          <p>{{ audience.aud_detalhes_govesc|safe }}</p>
+          <p>{{ audience.description|safe }}</p>
         </div>
       </div>
     </div>
@@ -181,7 +184,7 @@
   </div>
   <div class="row-end"></div>
 </div>
-{% endfor%}
+
 <script type="text/html" id="buzzTemplate">
   <li>
     <ul class="stream">
