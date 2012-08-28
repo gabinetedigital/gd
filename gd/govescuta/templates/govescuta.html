@@ -118,7 +118,7 @@
           <div class="titulo">
           	<a href="{{ url_for('audience.audience_details', aid=audience.ID) }}">
             <h4>{{ audience.post_title }} <i>(
-				{{ audience.aud_data_govesc|formatarDataeHoraPostType("%d/%m/%Y %H:%M") }}
+				{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d/%m/%Y %H:%M") }}
 				)</i></h4>
 				</a>
           </div>
