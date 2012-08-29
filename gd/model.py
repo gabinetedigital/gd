@@ -98,7 +98,7 @@ class AudiencePosts(Entity):
         return '<%s "%s">' % (
             self.__class__.__name__, self.id)
 
-    def get_moderated_buzz(self, except_ids=[]):
+    def get_moderated_buzz(self, offset=0, limit=-1, except_ids=[]):
         """Returns the moderated notice buzz"""
         except_ids = except_ids or [-1]
         return Buzz.query \
@@ -107,6 +107,44 @@ class AudiencePosts(Entity):
             .filter(not_(Buzz.id.in_(except_ids))) \
             .order_by(desc('creation_date')) \
             .all()
+
+    def get_public_buzz(self, offset=0, limit=-1, except_ids=[]):
+        """Returns the public notice buzz"""
+        except_ids = except_ids or [-1]
+        query = Buzz.query \
+            .filter_by(audience_id=self.id) \
+            .filter(Buzz.status.in_(['inserted'])) \
+            .filter(not_(Buzz.id.in_(except_ids))) \
+            .order_by(desc('creation_date'))
+        return limit > 0 and query[offset:limit] or query.all()
+
+    def get_selected_buzz(self, except_ids=[]):
+        """Returns the selected notice buzz"""
+        except_ids = except_ids or [-1]
+        return Buzz.query \
+            .filter_by(audience_id=self.id) \
+            .filter(Buzz.status.in_(['selected'])) \
+            .filter(not_(Buzz.id.in_(except_ids))) \
+            .order_by(desc('creation_date')) \
+            .all()
+
+    def get_last_published_notice(self):
+        """Returns the last published notice about this audience"""
+        try:
+            return Buzz.query \
+                .filter_by(audience_id=self.id, status=u'published') \
+                .order_by(desc('date_published')) \
+                .first()
+        except NoResultFound:
+            return None
+
+    def get_all_buzz(self):
+        """Returns the selected notice buzz"""
+        return Buzz.query \
+            .filter_by(audience_id=self.id) \
+            .order_by(desc('creation_date')) \
+            .all()
+
 
 class Audience(Entity):
     """Mapper for the `audience' entity
@@ -135,54 +173,6 @@ class Audience(Entity):
     def get_main_term(self):
         """Returns the main term of the current audience"""
         return Term.query.filter_by(main=1, audience=self).one().hashtag
-
-    def get_last_published_notice(self):
-        """Returns the last published notice about this audience"""
-        try:
-            return Buzz.query \
-                .filter_by(audience=self, status=u'published') \
-                .order_by(desc('date_published')) \
-                .first()
-        except NoResultFound:
-            return None
-
-    def get_public_buzz(self, offset=0, limit=-1, except_ids=[]):
-        """Returns the public notice buzz"""
-        except_ids = except_ids or [-1]
-        query = Buzz.query \
-            .filter_by(audience=self) \
-            .filter(Buzz.status.in_(['inserted'])) \
-            .filter(not_(Buzz.id.in_(except_ids))) \
-            .order_by(desc('creation_date'))
-        return limit > 0 and query[offset:limit] or query.all()
-
-    def get_moderated_buzz(self, except_ids=[]):
-        """Returns the moderated notice buzz"""
-        except_ids = except_ids or [-1]
-        return Buzz.query \
-            .filter_by(audience=self) \
-            .filter(Buzz.status.in_(['approved', 'selected'])) \
-            .filter(not_(Buzz.id.in_(except_ids))) \
-            .order_by(desc('creation_date')) \
-            .all()
-    
-    def get_selected_buzz(self, except_ids=[]):
-        """Returns the selected notice buzz"""
-        except_ids = except_ids or [-1]
-        return Buzz.query \
-            .filter_by(audience=self) \
-            .filter(Buzz.status.in_(['selected'])) \
-            .filter(not_(Buzz.id.in_(except_ids))) \
-            .order_by(desc('creation_date')) \
-            .all()
-    
-    def get_all_buzz(self):
-        """Returns the selected notice buzz"""
-        return Buzz.query \
-            .filter_by(audience=self) \
-            .order_by(desc('creation_date')) \
-            .all()
-    
 
 
 class Buzz(Entity):

@@ -42,12 +42,12 @@ def index():
         inst = Audience.query \
             .filter_by(visible=True) \
             .order_by(desc('date')).first()
-        return audience_details1(inst.id)
+        return audience_ativa(inst.id)
     except (AttributeError, NoResultFound):
         abort(404)
 
 @audience.route('/teste/<int:aid>')
-def audience_details1(aid):
+def audience_ativa(aid):
     inst = get_or_404(Audience, id=aid, visible=True)
     buzzes = Audience.query.get(aid).get_moderated_buzz()
     buzzesSelec = Audience.query.get(aid).get_last_published_notice()
@@ -97,17 +97,20 @@ def audience_details(aid):
 def buzz_stream(aid):
     """public_buzz, moderated_buzz, selected_buzz, last_published at once
     filtred by from_id, selected_ids, moderated_ids and last_published_id"""
+    print 'leoooooo-------------------------------------------------------'
+    print 'leoooooo-------------------------------------------------------'
+    print 'leoooooo-------------------------------------------------------'
     public_limit = int(request.values.get('public_limit'))
     public_ids = request.values.getlist('public_ids[]')
     moderated_ids = request.values.getlist('moderated_ids[]')
     selected_ids = request.values.getlist('selected_ids[]')
     last_published_id = int(request.values.get('last_published_id', 0))
 
-    public = Audience.query.get(aid).get_public_buzz(0,public_limit,public_ids)
+    public = AudiencePosts.query.get(aid).get_public_buzz(0,public_limit,public_ids)
 
-    moderated = Audience.query.get(aid).get_moderated_buzz(moderated_ids)
-    selected = Audience.query.get(aid).get_selected_buzz(selected_ids)
-    published = Audience.get(aid).get_last_published_notice()
+    moderated = AudiencePosts.query.get(aid).get_moderated_buzz(moderated_ids)
+    selected = AudiencePosts.query.get(aid).get_selected_buzz(selected_ids)
+    published = AudiencePosts.get(aid).get_last_published_notice()
 
     buzz = {'public': [notice.to_dict() for notice in public],
             'moderated': [notice.to_dict() for notice in moderated],
@@ -119,34 +122,34 @@ def buzz_stream(aid):
 @audience.route('/<int:aid>/public_buzz')
 def public_buzz(aid):
     """Returns the public buzz of an audience in JSON format"""
-    buzz = Audience.query.get(aid).get_public_buzz(0, 10)
+    buzz = AudiencePosts.query.get(aid).get_public_buzz(0, 10)
     return dumps([notice.to_dict() for notice in buzz])
 
 
 @audience.route('/<int:aid>/moderated_buzz')
 def moderated_buzz(aid):
     """Returns the moderated buzz of an audience in JSON format"""
-    buzz = Audience.query.get(aid).get_moderated_buzz()
+    buzz = AudiencePosts.query.get(aid).get_moderated_buzz()
     return dumps([notice.to_dict() for notice in buzz])
 
 @audience.route('/<int:aid>/selected_buzz')
 def selected_buzz(aid):
     """Returns the selected buzz of an audience in JSON format"""
-    buzz = Audience.query.get(aid).get_selected_buzz()
+    buzz = AudiencePosts.query.get(aid).get_selected_buzz()
     return dumps([notice.to_dict() for notice in buzz])
 
 
 @audience.route('/<int:aid>/last_published')
 def last_published(aid):
     """Returns the last published notice of an audience"""
-    notice = Audience.get(aid).get_last_published_notice()
+    notice = AudiencePosts.get(aid).get_last_published_notice()
     return dumps(notice and notice.to_dict() or None)
 
 
 @audience.route('/<int:aid>/all_stream', methods=('GET',))
 def all_buzz(aid):
     """Returns the last published notice of an audience"""
-    public_all = Audience.query.get(aid).get_all_buzz()
+    public_all = AudiencePosts.query.get(aid).get_all_buzz()
     buzz = {'public_all': [notice.to_dict() for notice in public_all]}
     return dumps(buzz)
 
