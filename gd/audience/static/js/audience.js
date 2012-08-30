@@ -159,16 +159,18 @@ $(function() {
 
 
   var msg_area = $("textarea[name=message]");
-  msg_area[0].onkeydown = msg_area[0].onkeyup = (function() {
-    $(".current-msg-length").text(MAX_LENGTH-msg_area.val().length);
-    if (msg_area.val().length > MAX_LENGTH) {
-      $("#send_comment").enable(false);
-      msg_area.addClass("error");
-    } else {
-      $("#send_comment").enable(true);
-      msg_area.removeClass("error");
-    }
-  });
+  if(msg_area[0]){
+	msg_area[0].onkeydown = msg_area[0].onkeyup = (function() {
+    	$(".current-msg-length").text(MAX_LENGTH-msg_area.val().length);
+    	if (msg_area.val().length > MAX_LENGTH) {
+      		$("#send_comment").enable(false);
+      		msg_area.addClass("error");
+    	} else {
+      		$("#send_comment").enable(true);
+      		msg_area.removeClass("error");
+    	}
+  	});
+  }
 });
 
 
