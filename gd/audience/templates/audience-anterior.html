@@ -4,8 +4,11 @@
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
 
 {% endblock %}
-
 {% block javascript %}
+<script type="text/javascript">
+  var AUDIENCE_ID={{audiences.0.ID}};
+</script>
+<script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/statusbar.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
