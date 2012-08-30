@@ -2,28 +2,27 @@
 {% block content %}
 <div class="subcontent">
   <ul class="listing">
-   {% for i in audience.query.all() %}
+   {% for audience in audiences %}
     <li class="last">
       <div class="supercontrols">
-      {% if i.started %}
-      <a href="{{ url_for('.audience_status', aid=i.id, status='false') }}">Stop</a>
+      {% if audience.aud_wp_govescuta_ativa == "s" %}
+      ATIVA
       {% else %}
-      <a href="{{ url_for('.audience_status', aid=i.id, status='true') }}">Start</a>
+      INATIVA
       {% endif %}
-      this audience
       </div>
 
-      <strong class="subject">{{ i.title }}</strong>
-      <em class="date">{{ i.date }}</em>
-      <p>{{ i.subject }}</p>
+      <strong class="subject">{{ audience.post_title }}</strong>
+      <em class="date">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d/%m/%Y %H:%M") }}</em>
+      <p>{{ audience.post_content|safe }}</p>
       
       <div class="controls">
-        <a href="{{ url_for('.moderate', aid=i.id) }}"
+        <a href="{{ url_for('.moderate', aid=audience.ID) }}"
            title="Moderate this audience">
           Moderate
         </a>
 
-        <a href="{{ url_for('.publish', aid=i.id) }}"
+        <a href="{{ url_for('.publish', aid=audience.ID) }}"
            title="Publish posts for this audience">
           Publish posts
         </a>

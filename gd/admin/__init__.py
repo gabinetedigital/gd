@@ -29,6 +29,7 @@ from sqlalchemy import desc, not_
 from gd.model import Audience, Buzz, Term, session
 from gd.utils import msg
 from gd import auth, conf
+from gd.content.wp import wordpress
 
 
 admin = Blueprint(
@@ -71,8 +72,10 @@ def index():
 @auth.checkroles(['administrator'])
 def audiences():
     """Main view, lists all registered audiencces"""
+    pagination, inst = wordpress.wpgove.getAudiencias(allaudiencia='T')
     return render_template('admin/listing.html', title=_(u'Audience'),
-                           audience=Audience)
+                            audiences=inst,
+                            pagination=pagination,)
 
 
 @admin.route('/audience/<int:aid>/status/<status>')
