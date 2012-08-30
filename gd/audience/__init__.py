@@ -39,38 +39,36 @@ audience = Blueprint(
 def index():
     """Returns the last published audience page"""
     try:
-        inst = Audience.query \
-            .filter_by(visible=True) \
-            .order_by(desc('date')).first()
-        return audience_ativa(inst.id)
+        pagination, inst = wordpress.wpgove.getAudiencias(ativa='s',perpage=1)
+        how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
+        
+        if pagination == '0':
+            pagination, inst = wordpress.wpgove.getAudiencias(perpage=1)
+
+        for postid in inst:
+            aid = postid['ID']
+
+        buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
+        buzzesSelec = AudiencePosts.query.get(aid).get_last_published_notice()
+        return render_template(
+            'audience.html',
+            audiences=inst,
+            pagination=pagination,
+            buzzes = buzzes,
+            buzzesSelec = buzzesSelec,
+            how_to=getattr(how_to, 'content', ''),
+           #notice=inst.get_last_published_notice(),
+        )
     except (AttributeError, NoResultFound):
         abort(404)
 
-@audience.route('/teste/<int:aid>')
-def audience_ativa(aid):
-    inst = get_or_404(Audience, id=aid, visible=True)
-    buzzes = Audience.query.get(aid).get_moderated_buzz()
-    buzzesSelec = Audience.query.get(aid).get_last_published_notice()
-    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-    return render_template(
-        'audience.html',
-        audience=inst,
-        buzzes = buzzes,
-        buzzesSelec = buzzesSelec,
-        how_to=getattr(how_to, 'content', ''),
-        #notice=inst.get_last_published_notice(),
-    )
 
-    
-    
 @audience.route('/<int:aid>')
 def audience_details(aid):
     """Renders an audience with its public template"""
-
     pagination, inst = wordpress.wpgove.getAudiencias(postID=aid)
-
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-
+    
     for cat in inst:
         category = cat['category']
 
@@ -81,25 +79,19 @@ def audience_details(aid):
         pagination, posts = None, []
 
     buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
-    #buzzesSelec = Audience.query.get(aid).get_last_published_notice()
     return render_template(
         'audience-anterior.html',
         audiences=inst,
         referrals=posts,
         pagination=pagination,
         buzzes = buzzes,
-        #buzzesSelec = buzzesSelec,
         how_to=getattr(how_to, 'content', ''),
-        #notice=inst.get_last_published_notice(),
     )
 
 @audience.route('/<int:aid>/buzz_stream', methods=('POST',))
 def buzz_stream(aid):
     """public_buzz, moderated_buzz, selected_buzz, last_published at once
     filtred by from_id, selected_ids, moderated_ids and last_published_id"""
-    print 'leoooooo-------------------------------------------------------'
-    print 'leoooooo-------------------------------------------------------'
-    print 'leoooooo-------------------------------------------------------'
     public_limit = int(request.values.get('public_limit'))
     public_ids = request.values.getlist('public_ids[]')
     moderated_ids = request.values.getlist('moderated_ids[]')
