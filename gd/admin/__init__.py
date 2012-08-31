@@ -26,7 +26,7 @@ import json
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc, not_
-from gd.model import Audience, Buzz, Term, session
+from gd.model import Audience, Buzz, Term, session, AudiencePosts
 from gd.utils import msg
 from gd import auth, conf
 from gd.content.wp import wordpress
@@ -173,13 +173,13 @@ def remove(aid):
 @auth.checkroles(['administrator'])
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
-    audience = Audience.query.get(aid)
+    audience = AudiencePosts.query.get(aid)
     print aid
     status = Buzz.status.in_([u'inserted']) \
         if request.values.get('status', 'new') == 'new' \
         else not_(Buzz.status.in_([u'inserted']))
     buzz_list = Buzz.query \
-        .filter_by(audience=audience) \
+        .filter_by(audience_id=audience) \
         .filter(status) \
         .order_by(desc('creation_date'))
         
