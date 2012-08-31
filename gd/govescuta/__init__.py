@@ -21,6 +21,9 @@
 from flask import Blueprint, request, render_template, redirect, \
     url_for, abort
 
+from gd.model import Audience, Term, get_or_404, AudiencePosts
+from gd.utils import dumps
+
 from gd.content.wp import wordpress
 
 govescuta = Blueprint(
@@ -30,26 +33,7 @@ govescuta = Blueprint(
 
 
 @govescuta.route('/')
-@govescuta.route('/<int:page>')
 def index(page=0):
-#   audiences_raw, count = wordpress.gove.getAudiences(
-#        'date',                    # sortby
-#        '',                        # search
-#        'audience.visible = true', # filter
-#        '0',                       # page
-#    )
-
-#    audiences = []
-#    for audience in audiences_raw[::-1]:
-#        audience['video'] = wordpress.wpgd.getVideo(audience['data'])
-#        audiences.append(audience)
-
-#    return render_template(
-#        'govescuta.html',
-#        audiences=audiences,
-#        count=count,
-#    )
-#
     sortby = request.values.get('sortby') or 'date'
     pagination, posts = wordpress.wpgove.getAudiencias(
                                             page=page, 
@@ -64,6 +48,30 @@ def index(page=0):
         pagination=pagination,
         audiences=posts,
         sortby=sortby,
-#        audiencevideos=audiencevideos,
         how_to=getattr(how_to, 'content', ''),)
+
+@govescuta.route('/<int:aid>')
+def govescuta_details(aid):
+    """Renders an audience with its public template"""
+    pagination, inst = wordpress.wpgove.getAudiencias(postID=aid)
+    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
+    
+    for cat in inst:
+        category = cat['category']
+
+    if category:
+        pagination, posts = wordpress.getPostsByCategory(
+            cat=category)
+    else:
+        pagination, posts = None, []
+
+    buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
+    return render_template(
+        'govescuta_edicaoanterior.html',
+        audiences=inst,
+        referrals=posts,
+        pagination=pagination,
+        buzzes = buzzes,
+        how_to=getattr(how_to, 'content', ''),
+    )
 

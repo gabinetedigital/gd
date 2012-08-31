@@ -258,7 +258,6 @@
     overflow-y: scroll;
 }
 
-
 #container .buzz .stream {
     width: 285px;
     background: url(../imgs/line.png) no-repeat bottom;
@@ -282,6 +281,40 @@
 }
 
 #container .buzz .stream a {
+    color: #668000;
+}
+
+#container .buzz-anterior {
+    margin-top: 100px;
+    margin-left: -18px;
+    height: 550px;
+    width: 304px;
+    overflow-y: scroll;
+}
+
+#container .buzz-anterior .stream {
+    width: 285px;
+    background: url(../imgs/line.png) no-repeat bottom;
+    padding-bottom: 23px;
+    margin-bottom: 10px;
+}
+
+#container .buzz-anterior .stream img {
+    float: left;
+    margin-right: 10px;
+}
+
+#container .buzz-anterior  .stream .author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#container .buzz-anterior .stream .author em {
+    font-style:normal;
+    color:#999;
+}
+
+#container .buzz-anterior .stream a {
     color: #668000;
 }
 
