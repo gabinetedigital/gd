@@ -19,7 +19,7 @@
 """
 
 from flask import Blueprint, render_template, request
-from gd.model import Audience, Buzz, BuzzType, session, get_or_create
+from gd.model import Audience, Buzz, BuzzType, session, get_or_create, AudiencePosts
 from gd.utils import msg
 from gd import auth
 
@@ -44,14 +44,14 @@ def post():
     """When ready, this method will post contributions from users that
     choosen to use our internal message service instead of twitter,
     identica or whatever."""
-    audience = Audience.get(request.values.get('aid'))
+    audience = request.values.get('aid')
     newbuzz = Buzz(
         owner_nick=auth.authenticated_user().display_name,
         owner_avatar=u'',
         user=auth.authenticated_user(),
         content=request.values.get('message')[:300],
         type_=get_or_create(BuzzType, name=u'site')[0])
-    newbuzz.audience = audience
+    newbuzz.audience_id = audience
     session.commit()
     return msg.ok(_('Notice posted successfuly. Please wait a few while '
                     'your message is approved.'))
