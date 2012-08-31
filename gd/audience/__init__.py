@@ -68,31 +68,6 @@ def index():
         abort(404)
 
 
-@audience.route('/<int:aid>')
-def audience_details(aid):
-    """Renders an audience with its public template"""
-    pagination, inst = wordpress.wpgove.getAudiencias(postID=aid)
-    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-    
-    for cat in inst:
-        category = cat['category']
-
-    if category:
-        pagination, posts = wordpress.getPostsByCategory(
-            cat=category)
-    else:
-        pagination, posts = None, []
-
-    buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
-    return render_template(
-        'audience-anterior.html',
-        audiences=inst,
-        referrals=posts,
-        pagination=pagination,
-        buzzes = buzzes,
-        how_to=getattr(how_to, 'content', ''),
-    )
-
 @audience.route('/<int:aid>/buzz_stream', methods=('POST',))
 def buzz_stream(aid):
     """public_buzz, moderated_buzz, selected_buzz, last_published at once
