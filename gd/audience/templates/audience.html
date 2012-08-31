@@ -117,7 +117,24 @@
 
         </div>
         <div id="beingAnswered-anterior">
-        	
+			{% if (buzzesSelec) %}
+        	<ul class="stream">
+    			<li class="avatar"><img src="{{ buzzesSelec.avatar }}"></li>
+    			<li class="author">
+					{% if (buzzesSelec.user)  %}
+          				{{ buzzesSelec.user.display_name }}
+        			{% else  %}
+						{% if (buzzesSelec.owner_nick)  %}
+          					@{{ buzzesSelec.owner_nick }}
+						{% else  %}
+							Via SMS
+						{% endif %}
+        			{% endif %}
+					<em> | {{ buzzesSelec.type_.name }}</em>
+				</li>
+    			<li class="answer">{{ buzzesSelec.content }}</li>
+  			</ul>
+  			{% endif %}
         </div>
         <div id="streaming">
 			{{audience.aud_wp_govescuta_video_embed|safe}}
@@ -180,7 +197,7 @@
       <div id="message-statusbar" class="alert"></div>
       <div id="chat">
         <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
-          <input type="hidden" id="aid" name="aid" value="{{ audience.id }}">
+          <input type="hidden" id="aid" name="aid" value="{{ audience.ID}}">
           <textarea id="message-area" name="message" placeholder="Poste sua mensagem aqui."></textarea>
           <span class="current-msg-length">300</span>
           <input id="send_comment" type="submit" value="enviar">
