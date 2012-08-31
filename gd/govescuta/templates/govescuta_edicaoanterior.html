@@ -47,11 +47,11 @@
     <div id="main" class="col8">
       <div class="content">
         <div id="how-it-works" rel="#works-like-this">
-          <img src="{{ url_for('.static', filename='imgs/big_gear.png') }}"
+          <img src="{{ url_for('audience.static', filename='imgs/big_gear.png') }}"
                id="how-it-works-big-gear" class="big-gear">
-          <img src="{{ url_for('.static', filename='imgs/small_gear.png') }}"
+          <img src="{{ url_for('audience.static', filename='imgs/small_gear.png') }}"
                id="how-it-works-small-gear" class="small-gear">
-          <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}"
+          <img src="{{ url_for('audience.static', filename='imgs/como_funciona.png') }}"
                class="how-it-works-text">
         </div>
         <div id="works-like-this" class="overlay boverlay">
@@ -59,14 +59,14 @@
             <li class="step-1">
               <div class="wrapper">
                 <img
-                   src="{{ url_for('.static', filename='imgs/couple.png') }}"
+                   src="{{ url_for('audience.static', filename='imgs/couple.png') }}"
                    class="step-1-couple">
                 <div>
                   <img
-                     src="{{ url_for('.static', filename='imgs/mail_trail.png') }}"
+                     src="{{ url_for('audience.static', filename='imgs/mail_trail.png') }}"
                      class="step-1-mail-trail">
                   <img
-                     src="{{ url_for('.static', filename='imgs/mail.png') }}"
+                     src="{{ url_for('audience.static', filename='imgs/mail.png') }}"
                      class="step-1-mail">
                 </div>
               </div>
@@ -76,13 +76,13 @@
               <div class="wrapper">
                 <div class="gears">
                   <img
-                     src="{{ url_for('.static', filename='imgs/step_2_big_gear.png') }}"
+                     src="{{ url_for('audience.static', filename='imgs/step_2_big_gear.png') }}"
                      class="step-2-big-gear">
                   <img
-                     src="{{ url_for('.static', filename='imgs/step_2_small_gear.png') }}"
+                     src="{{ url_for('audience.static', filename='imgs/step_2_small_gear.png') }}"
                      class="step-2-small-gear">
                 </div>
-                <img src="{{ url_for('.static', filename='imgs/networked_cpus.png') }}">
+                <img src="{{ url_for('audience.static', filename='imgs/networked_cpus.png') }}">
               </div>
 
               <p>Nossa equipe processa e modera as contribuições</p>
@@ -91,10 +91,10 @@
             <li class="step-3">
               <div class="wrapper">
                 <img
-                   src="{{ url_for('.static', filename='imgs/mustache_gentleman.png') }}"
+                   src="{{ url_for('audience.static', filename='imgs/mustache_gentleman.png') }}"
                    class="mustache-gentleman">
                 <img
-                   src="{{ url_for('.static', filename='imgs/empty_dialog.png') }}"
+                   src="{{ url_for('audience.static', filename='imgs/empty_dialog.png') }}"
                    class="mustache-gentleman-dialog">
               </div>
               <p>O Governador comenta as contribuições selecionadas</p>
