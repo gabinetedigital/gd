@@ -15,12 +15,13 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from twisted.web.static import Redirect
 
 """Module that uses the Template and Model APIs to build the Audience web
 interface.
 """
 import datetime
-from flask import Blueprint, render_template, request, abort, redirect
+from flask import Blueprint, render_template, request, abort, redirect, url_for
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy import desc
 
@@ -44,6 +45,10 @@ def index():
         
         if pagination == '0':
             pagination, inst = wordpress.wpgove.getAudiencias(perpage=1)
+            for postid in inst:
+                aid = postid['ID']
+
+            return redirect(url_for('govescuta.govescuta_details', aid=aid))
 
         for postid in inst:
             aid = postid['ID']
