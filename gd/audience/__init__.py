@@ -15,7 +15,6 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-from twisted.web.static import Redirect
 
 """Module that uses the Template and Model APIs to build the Audience web
 interface.
