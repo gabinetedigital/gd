@@ -21,7 +21,7 @@ interface.
 """
 import urllib 
 import json
-
+from urlparse import urlparse
 
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for
@@ -37,6 +37,8 @@ admin = Blueprint(
     template_folder='templates',
     static_folder='static')
 
+objurl = urlparse(conf.BASE_URL)
+objurl = objurl.geturl()
 
 @admin.route('/login', methods=('POST', 'GET'))
 def login():
@@ -192,12 +194,12 @@ def moderate(aid):
 @auth.checkroles(['administrator'])
 def publish(aid):
     """Returns a list of buzzes for publication."""
-    audience = Audience.query.get(aid)
+    audience = AudiencePosts.query.get(aid)
     status = Buzz.status.in_([u'selected']) \
         if request.values.get('status', 'new') == 'new' \
         else Buzz.status.in_([u'published'])
     buzz_list = Buzz.query \
-        .filter_by(audience=audience) \
+        .filter_by(audience_id=audience) \
         .filter(status) \
         .order_by(desc('creation_date'))
     return render_template(
@@ -226,11 +228,12 @@ def accept_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
     
-    avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
-    query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
-    url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
-    f = urllib.urlopen(url, query)
-    f.close()
+    if(objurl == 'http://www.gabinetedigital.rs.gov.br/'):
+        avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
+        query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
+        url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
+        f = urllib.urlopen(url, query)
+        f.close()
     
     session.commit()
     
@@ -265,12 +268,12 @@ def publish_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'published'
     buzz.date_published = datetime.now()
-    
-    avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
-    query = json.dumps({"type": "published", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
-    url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
-    f = urllib.urlopen(url, query)
-    f.close()
+    if(objurl == 'http://www.gabinetedigital.rs.gov.br/'):
+        avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
+        query = json.dumps({"type": "published", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
+        url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
+        f = urllib.urlopen(url, query)
+        f.close()
     
     session.commit()
     return msg.ok('Buzz published')
