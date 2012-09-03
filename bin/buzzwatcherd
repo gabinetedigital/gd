@@ -47,7 +47,7 @@ class Twitter(object):
             sleep(30)
 
     def get_profiles_and_hashtags(self):
-        profiles, hashtags = [], []buzzes
+        profiles, hashtags = [], []
         terms = self.audience.meta_value;
         terms = terms[terms.find('{'):terms.find('}')+1].split(';')
         hash= []
