@@ -7,6 +7,12 @@ $green: #007160;
 $black: #1f1f21;
 $yellow: #f4e400;
 
+
+$default-text-shadow-color: rgba(#333, 0.6);
+$default-text-shadow-blur: 3px;
+$default-text-shadow-v-offset: 1px;
+
+
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -21,6 +27,8 @@ a {
     text-indent: 1000px;
     background: url(../img/home.png) no-repeat;
 }
+
+/* Header */
 
 .home h1 {
     display: block;
@@ -160,6 +168,7 @@ a {
 }
 
 
+
 /* Subnav */
 
 .subnav .nav {
@@ -260,6 +269,280 @@ footer {
     color: #FFF;
 }
 
+
+
+.widgets {
+    display: block;
+    background: url(../img/bg.png);
+}
+
+section {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+section h2 {
+    font-size: 50px;
+    color: $blue;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    font-weight: 300;
+    background-color: #333;
+    padding: 10px 20px;
+    width: 100%;
+    line-height: 1.1em;
+    height: 1.2em;
+    display: inline;
+    @include single-text-shadow;
+}
+
+#sobre {
+    background: url(../img/gd.jpg) no-repeat center center fixed;
+    @include background-size(cover);
+    padding-bottom: 60px;
+}
+
+#participe {
+    /* background: url(../img/participe2.jpg) no-repeat center center fixed;  */
+    /* @include background-size(cover); */
+    background: url(../img/bg.png);
+}
+
+#govpergunta {
+    background: url(../img/seguranca.jpg) no-repeat center center fixed;
+    @include background-size(cover);
+}
+
+.page-header {
+    border: 0;
+}
+
+
+#sobre h3 {
+    color: #FFFFFF;
+    font-size: 40px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    font-style: italic;
+    @include single-text-shadow;
+}
+
+.block {
+    background-color: rgba(0, 0, 0, 0.698);
+    color: #FFFFFF;
+    display: block;
+    font-size: 14px;
+    padding: 10px 20px;
+    position: relative;
+    text-align: left;
+    maring-bottom: 20px;
+}
+
+#sobre blockquote {
+    color: #FFF;
+    border: 0;
+    padding: 10px;
+    @include single-text-shadow;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.sobre a {
+    color: $orange;
+}
+
+
+.thumbnail {
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.3);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
+    display: block;
+    padding: 7px;
+    position: relative;
+    text-align: right;
+}
+
+.fotodia h4 {
+    background: none repeat scroll 0 0 rgba($green, 0.75);
+    bottom: 0;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 7px;
+    font-weight: 600;
+    overflow: hidden;
+    padding: 5px 8px;
+    position: absolute;
+    right: 0;
+    height: 24px;
+    top: 10%;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news1 h4 {
+    background: none repeat scroll 0 0 rgba($black, 0.75);
+    bottom: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    left: 0;
+    line-height: 24px;
+    margin: 7px;
+    overflow: hidden;
+    padding: 5px 8px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rss {
+    text-align: left;
+    background-color: $black;
+}
+
+.rss h3 {
+    color: #FFF;
+    margin-left: 10px;
+}
+
+.rss ul li {
+    background-color: $orange;
+    padding: 14px 20px;
+    color: #FFF;
+    margin: 20px 25px 20px 0px;
+    display: block;
+    position: relative;
+}
+
+
+.rss ul li:before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    border-top: 10px solid $black;
+    border-left: 10px solid $orange;
+    width: 0;
+}
+
+.rss ul li:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 10px solid $black;
+    border-right: 10px solid $orange;
+    width: 0;
+}
+
+.video h4 {
+    background: $black;
+    bottom: 0;
+    color: $yellow;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 7px;
+    font-weight: 600;
+    overflow: hidden;
+    padding: 13px;
+    position: absolute;
+    left: 0;
+    height: 24px;
+    top: 10%;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lasttweet {
+    text-align: left;
+    background-color: $black;
+}
+
+.lasttweet .box {
+    background-color: $blue;
+    padding: 14px;
+    color: #FFF;
+    position: relative;
+}
+
+.lasttweet .box:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 10px solid $black;
+    border-right: 10px solid $blue;
+    width: 0;
+}
+
+#govpergunta .pwhat {
+    color: #FFF;
+    @include single-text-shadow;
+    background-color: $blue;;
+    padding: 20px;
+}
+
+#govpergunta h3 {
+    font-weight: 300;
+    font-size: 30px;
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+
+#participe .phow {
+    color: #FFF;
+    @include single-text-shadow;
+    background-color: #5cbd7c;
+    padding: 20px;
+}
+
+#govpergunta .pwhat {
+    color: #FFF;
+    @include single-text-shadow;
+    background-color: #3ea1e2;
+    padding: 20px;
+}
+
+#govpergunta h3 {
+    font-weight: 300;
+    font-size: 30px;
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+#govpergunta .phow {
+    color: #FFF;
+    @include single-text-shadow;
+    background-color: $orange;
+    padding: 20px;
+}
+
+#govpergunta .pergunta {
+    background: $black;
+    color: #FFF;
+    margin-top: 20px;
+}
+
+#govpergunta .pergunta .choice {
+    padding: 20px;
+}
+
+#govpergunta .pergunta .btn {
+    text-align: left;
+}
+
+#govpergunta .pergunta h1 {
+    padding: 10px;
+}
+
 @media (max-width: 979px) {
 
     body {
@@ -295,20 +578,79 @@ footer {
         display: inline-block;
     }
 
-    .subnav .btn-navbar {
-        margin-right: 10px;
-        margin-top: 7px;
+    .subnav .nav > li > a {
+        margin: 0;
+        line-height: 21px;
     }
 
-    .navbar-inverse .nav > li > a {
-        color: #999999;
+    .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+        border-radius: 3px 3px 3px 3px;
+        color: #FFF;
+        font-weight: bold;
+        padding: 9px 15px;
+    }
+
+    .collapse.in {
+        padding-top: 10px;
+    }
+
+    .subnav .nav > li > a:hover,
+    .subnav .nav > .active > a,
+    .subnav .nav > .active > a:hover {
+        padding-left: 13px;
+        background-color: #111111;
+        color: #FFFFFF;
+        margin-left: 10px;
+    }
+
+    .subnav .btn-navbar {
+        font-weight: 800;
+        line-height: 5px;
+        margin-top: 7px;
+        padding: 12px;
+        color: #FFF;
+        background-color: #0E0E0E;
+        @include text-shadow(0 0 0 #0E0E0E );
+        @include background-image(linear-gradient(center top , #151515, #040404));
+    }
+
+    .subnav .tools {
+        display: none;
+    }
+
+    .subnav-fixed .nav {
+        float: none;
+    }
+
+    .subnav-fixed .nav > li > a {
+        margin: 0;
+        color: #FFF;
+        height: 20px;
     }
 
 }
 
-.space {
-    height: 5000px;
-    display: block;
-    background: url(../img/bg.png);
+@media (max-width: 767px) {
+    .widgets, #sobre, #participe, #govpergunta {
+        margin-right: -20px;
+        margin-left: -20px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    footer {
+        margin-right: -20px;
+        margin-left: -20px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    footer div.span4 {
+        border-bottom: 1px dashed #FFF;
+    }
+
+    .block {
+        margin-bottom: 60px;
+    }
 
 }
