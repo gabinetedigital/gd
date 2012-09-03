@@ -93,6 +93,7 @@ class AudiencePosts(Entity):
     using_options(tablename='wp_posts')
     
     id = Field(Integer, primary_key=True, colname='ID')
+    audience = OneToMany('AudiencePostsMeta')
     
     def __str__(self):
         return '<%s "%s">' % (
@@ -145,6 +146,17 @@ class AudiencePosts(Entity):
             .order_by(desc('creation_date')) \
             .all()
 
+class AudiencePostsMeta(Entity):
+    """Mapper for the wp_usermeta entity, the same used by wordpress"""
+    using_options(tablename='wp_postmeta')
+
+    meta_id = Field(Integer, primary_key=True)
+    post = ManyToOne('AudiencePosts')
+    meta_key = Field(Unicode(256))
+    meta_value = Field(UnicodeText)
+
+    def __str__(self):
+        return '<%s "%s">' % (self.__class__.__name__, self.content)
 
 class Audience(Entity):
     """Mapper for the `audience' entity
