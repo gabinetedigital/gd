@@ -26,7 +26,8 @@ from json import loads
 from tweetstream import FilterStream, ConnectionError
 from sqlalchemy.orm.exc import NoResultFound
 
-from gd.model import Audience, session, Buzz, BuzzType, get_or_create, conf
+from gd.model import Audience, session, Buzz, BuzzType, get_or_create, conf, \
+     AudiencePostsMeta
 
 USER_API_URL = 'http://api.twitter.com/1/users/show.json?screen_name=%s'
 
@@ -47,13 +48,23 @@ class Twitter(object):
 
     def get_profiles_and_hashtags(self):
         profiles, hashtags = [], []
-        for i in self.audience.terms:
-            term = str(i)
-            print term
-            if term.startswith('@'):
-                profiles.append(term)
-            else:
-                hashtags.append(term)
+        terms = self.audience.meta_value;
+        terms = terms[terms.find('{'):terms.find('}')+1].split(';')
+        hash= []
+        for i, v in enumerate(terms):
+            if i%2 != 0:
+                hash.append(v)
+
+        hash = ''.join(hash)
+
+        terms = hash.split('"')
+        for i, v in enumerate(terms):
+            if i%2 !=0:
+                if v.startswith('@'):
+                    profiles.append(v)
+                else:
+                    hashtags.append(v)
+
         return profiles, hashtags
 
     def resolve_profile_ids(self):
@@ -88,7 +99,7 @@ class Twitter(object):
         """Here's the place that we actually call the stream API and
         capture found tweets.
 
-        Each time we receive a new tweet, we create a `Buzz' instance
+        Each time we receive a new tweet, we create a `Buzz' instance.wp_postmeta_
         with it's owner and content info and then yield it to the
         caller. None is saved to the database here.
         """
@@ -111,7 +122,7 @@ class Twitter(object):
                         owner_avatar=tweet['user']['profile_image_url'],
                         content=tweet['text'],
                         type_=type_)
-                    buzz.audience = self.audience
+                    buzz.audience_id = self.audience.post_ID
                     self.audience.buzzes.append(buzz)
                     session.commit()
 
@@ -128,7 +139,8 @@ class Twitter(object):
 
 def main():
     try:
-        audience = Audience.query.filter_by(started=True).one()
+        audience = AudiencePostsMeta.query.filter_by(meta_key = 'wp_govescuta_ativa', meta_value='s').one()
+        audience = AudiencePostsMeta.query.filter_by(meta_key = 'wp_govescuta_hashtags_audiencia', post_ID=audience.post_ID).one()
     except NoResultsFound:
         print 'Nothing to be processed or too much things to process'
         print 'Make sure you have only `one\' audience running'
