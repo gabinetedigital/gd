@@ -6,7 +6,7 @@ $(function(){
             $('.subnav').addClass('subnav-fixed');
         } else {
             $('.subnav').removeClass('subnav-fixed');
-        }  
+        }
     };
 
     sticky_navigation();
@@ -35,7 +35,29 @@ $(function(){
         });
     });
 
-    var $container = $('.widgets');
+    $('.clipping').hide();
+    $('.publicacoes').hide();
+
+    $('.clip').click(function(){
+        $('.equipe').hide();
+        $('.publicacoes').hide();
+        $('.clipping').fadeIn();
+    });
+
+    $('.membros').click(function(){
+        $('.clipping').hide();
+        $('.publicacoes').hide();
+        $('.equipe').fadeIn();
+    });
+
+    $('.pub').click(function(){
+        $('.clipping').hide();
+        $('.equipe').hide();
+        $('.publicacoes').fadeIn();
+    });
+
+
+    var $container = $('.thumbnails');
     $container.imagesLoaded( function(){
         $container.masonry({
             itemSelector : '.thumbnails>li',
@@ -45,6 +67,10 @@ $(function(){
             }
         });
     });
+
+    // $(".scroll").scrollable({ circular: true }).autoscroll({ autoplay: true }).click(function() {
+    //     $(this).data("scrollable").next();
+    // });
 
     option = {
         title: '@andrenano',
