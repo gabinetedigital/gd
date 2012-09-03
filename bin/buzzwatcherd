@@ -47,7 +47,7 @@ class Twitter(object):
             sleep(30)
 
     def get_profiles_and_hashtags(self):
-        profiles, hashtags = [], []
+        profiles, hashtags = [], []buzzes
         terms = self.audience.meta_value;
         terms = terms[terms.find('{'):terms.find('}')+1].split(';')
         hash= []
@@ -97,7 +97,7 @@ class Twitter(object):
 
     def process(self):
         """Here's the place that we actually call the stream API and
-        capture found tweets.
+        capture found tweets.buzzes
 
         Each time we receive a new tweet, we create a `Buzz' instance.wp_postmeta_
         with it's owner and content info and then yield it to the
@@ -123,7 +123,7 @@ class Twitter(object):
                         content=tweet['text'],
                         type_=type_)
                     buzz.audience_id = self.audience.post_ID
-                    self.audience.buzzes.append(buzz)
+                    #self.audience.buzzes.append(buzz)
                     session.commit()
 
         except (ConnectionError, HTTPError), exc:
