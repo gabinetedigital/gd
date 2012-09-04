@@ -1,3 +1,4 @@
+#! -*- encoding: utf8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -47,8 +48,8 @@ def social(form, show=True, default=None):
     #
     # FIXME: Debug and discover why this damn facebook stuff does not
     # work properly.
-    #facebook = checkfblogin() or {}
-    facebook = {}
+    facebook = checkfblogin() or {}
+    #facebook = {}
     data = default or {}
     data.update(facebook)
     inst = form(**data) if show else form()
@@ -70,14 +71,17 @@ def social(form, show=True, default=None):
         del inst.meta['password_confirmation']
 
     if facebook:
+        print "REMOVING PASSWORD for FACEBOOK LOGIN"
         # Removing the password field. It's not needed by a social login
-        del inst.password
-        del inst.password_confirmation
+        if 'password' in inst: del inst.password
+        if 'password_confirmation' in inst: del inst.password_confirmation
 
         # Setting up meta extra fields
         inst.meta['fbid'] = facebook['id']
         inst.meta['fromsocial'] = True
         inst.meta['password'] = urandom(10)
+    else:
+        print "IS NOT FACEBOOK!"
 
     # We're not social right now
     return inst
@@ -149,12 +153,16 @@ def signup_json():
     fromsocial = request.cookies.get('connect_type') == 'social_f'
 
     # Proceeding with the validation of the user fields
+    form.fromsocial = fromsocial
     if form.validate_on_submit():
         print "VALIDADOOOOOOOO!"
         try:
             meta = form.meta
             dget = meta.pop
-            password = dget('password')
+            if fromsocial:
+                password = ""
+            else:
+                password = dget('password')
 
             # Finally, it's time to create the user
             user = authapi.create_user(
@@ -173,7 +181,7 @@ def signup_json():
         utils.send_welcome_email(user)
         return msg.ok({})
     else:
-        print "NAOOOOO VALIDADOOOOOOOO!"
+        print "NAOOOOO VALIDADOOOOOOOO!", form.errors
         return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
 

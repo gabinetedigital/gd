@@ -1,3 +1,4 @@
+#! -*- encoding: utf8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -39,6 +40,10 @@ class UserNotFound(AuthError):
     """Exception raised when an user is not found by its username"""
 
 
+class UserNotConfirmed(AuthError):
+    """Exception raised when an user is not found by its username"""
+
+
 class UserAndPasswordMissmatch(AuthError):
     """Exception raised when user and password missmatches"""
 
@@ -75,11 +80,10 @@ def login(username, password, fromsocial=False):
     """Logs a user in the current session"""
     # Testing if the user exists
     try:
-        print "LOGIN WITH USER:", username
+        print "BUSCAN USUARIO",username,'FROM_SOCIAL', fromsocial
         user = User.query.filter_by(username=username).one()
     except NoResultFound:
         raise UserNotFound()
-    print "USUARIO ENCONTRADO, VALIDANDO SENHA..."
     return login_user_instance(user, password, fromsocial)
 
 
@@ -161,6 +165,7 @@ def create_user(name, username, password, email, meta=None, receive_sms=False, r
 
     # Creating an user instance and getting its id by commiting the
     # chage to the database
+    print "CREATING USER", username, password
     activation_key = md5(username + password).hexdigest()
     user = User(
         name=name, username=username, password=password, email=email,
