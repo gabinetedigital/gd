@@ -1,0 +1,706 @@
+@font-face {
+  font-family: "OpenSansLight";
+  src: url('/css/fonts/../fonts/OpenSans-Light-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Light-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-Light-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansLightItalic";
+  src: url('/css/fonts/../fonts/OpenSans-LightItalic-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-LightItalic-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-LightItalic-webfont.svg#OpenSansLightItalic') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansRegular";
+  src: url('/css/fonts/../fonts/OpenSans-Regular-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Regular-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-Regular-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansItalic";
+  src: url('/css/fonts/../fonts/OpenSans-Italic-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Italic-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-Italic-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-Italic-webfont.svg#OpenSansItalic') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansSemibold";
+  src: url('/css/fonts/../fonts/OpenSans-Semibold-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Semibold-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-Semibold-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansSemiboldItalic";
+  src: url('/css/fonts/../fonts/OpenSans-SemiboldItalic-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-SemiboldItalic-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-SemiboldItalic-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-SemiboldItalic-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-SemiboldItalic-webfont.svg#OpenSansSemiboldItalic') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansBold";
+  src: url('/css/fonts/../fonts/OpenSans-Bold-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Bold-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-Bold-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansBoldItalic";
+  src: url('/css/fonts/../fonts/OpenSans-BoldItalic-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-BoldItalic-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-BoldItalic-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-BoldItalic-webfont.svg#OpenSansBoldItalic') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansExtrabold";
+  src: url('/css/fonts/../fonts/OpenSans-ExtraBold-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-ExtraBold-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-ExtraBold-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-ExtraBold-webfont.svg#OpenSansExtrabold') format('svg');
+}
+
+@font-face {
+  font-family: "OpenSansExtraboldItalic";
+  src: url('/css/fonts/../fonts/OpenSans-ExtraBoldItalic-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-ExtraBoldItalic-webfont.svg#OpenSansExtraboldItalic') format('svg');
+}
+
+/* line 17, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* line 21, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+a {
+  color: #d8001d;
+}
+
+/* line 27, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
+.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand,
+.pri, .pq, .pro, .como {
+  overflow: hidden;
+  text-indent: 1000px;
+  background: url(../img/home.png) no-repeat;
+}
+
+/* Cabeçalho */
+/* line 35, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.home h1 {
+  display: block;
+  width: 270px;
+  height: 123px;
+  text-indent: -1000px;
+  overflow: hidden;
+}
+
+/* line 43, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+#search, #social {
+  text-align: right;
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+/* line 50, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.search {
+  display: inline-block;
+  width: 22px;
+  height: 19px;
+  background-position: 0px -274px;
+  border: 0;
+  text-indent: -1000px;
+}
+
+/* line 59, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.feed {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-position: -46px -270px;
+  border: 0;
+}
+
+/* line 68, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.twitter {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-position: -82px -270px;
+  border: 0;
+}
+
+/* line 76, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.facebook {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-position: -116px -270px;
+  border: 0;
+}
+
+/* line 84, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.mail {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-position: -153px -270px;
+  border: 0;
+}
+
+/* line 92, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.tweets {
+  height: 86px;
+  overflow: hidden;
+}
+
+/* line 97, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.tweets ul > li {
+  display: inline-block;
+  margin-right: 14px;
+}
+
+/* line 102, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.pessoa1 {
+  display: block;
+  height: 86px;
+  width: 23px;
+  background-position: 0 -152px;
+}
+
+/* line 109, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.pessoa2 {
+  display: block;
+  height: 86px;
+  width: 23px;
+  background-position: -42px -152px;
+}
+
+/* line 116, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.pessoa3 {
+  display: block;
+  height: 86px;
+  width: 30px;
+  background-position: -89px -152px;
+}
+
+/* line 123, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.pessoa4 {
+  display: block;
+  height: 86px;
+  width: 30px;
+  background-position: -142px -152px;
+}
+
+/* line 130, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.male {
+  display: block;
+  height: 76px;
+  width: 23px;
+  background-position: 0 -161px;
+}
+
+/* line 137, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.popover {
+  width: 300px;
+}
+
+/* line 141, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.popover-content {
+  font-size: 13px;
+}
+
+/* line 145, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.login form {
+  margin: 0;
+}
+
+/* line 149, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.login p.saudacao {
+  font-size: 18px;
+  line-height: 20px;
+  color: inherit;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1;
+  margin: 10px 0;
+  text-rendering: optimizelegibility;
+}
+
+/* line 160, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.login .on {
+  padding-top: 20px;
+}
+
+/* line 164, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.login .control {
+  padding-top: 7px;
+}
+
+/* line 168, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.login .control a {
+  color: #d8001d;
+}
+
+/* Navegação */
+/* line 176, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav .nav {
+  font-size: 17px;
+}
+
+/* line 180, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav .tools {
+  display: none;
+}
+
+/* line 184, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav .nav > li > a {
+  color: #1f1f21;
+  display: block;
+  height: 20px;
+  margin: 0;
+  line-height: 18px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+
+/* line 195, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav .nav > li > a:hover,
+.subnav .nav > .active > a,
+.subnav .nav > .active > a:hover {
+  padding-left: 13px;
+  color: #FFF;
+  background-color: #d8001d;
+  font-weight: 600;
+}
+
+/* line 202, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav a.brand {
+  display: none;
+  text-indent: -1000px;
+  overflow: hidden;
+}
+
+/* Navegação Fixa */
+/* line 210, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav-fixed {
+  top: 0;
+  left: 0;
+  margin-bottom: 0;
+  position: fixed;
+  right: 0;
+  z-index: 1030;
+  background-color: #1B1B1B;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #111111));
+  background-image: -webkit-linear-gradient(center top, #222222, #111111);
+  background-image: -moz-linear-gradient(center top, #222222, #111111);
+  background-image: -o-linear-gradient(center top, #222222, #111111);
+  background-image: linear-gradient(center top, #222222, #111111);
+}
+
+/* line 221, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav-fixed .tools {
+  display: inline-block;
+}
+
+/* line 225, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav-fixed .nav {
+  display: block;
+  float: left;
+  left: 0;
+  margin: 0 10px 0 0;
+  position: relative;
+}
+
+/* line 233, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav-fixed .nav > li > a {
+  margin: 0;
+  color: #FFF;
+  height: 29px;
+  line-height: 29px;
+}
+
+/* line 243, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav-fixed .nav > li > a:hover,
+.subnav-fixed .nav > .active > a,
+.subnav-fixed .nav > .active > a:hover {
+  padding-left: 13px;
+  color: #FFF;
+  background-color: #d8001d;
+}
+
+/* line 250, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.subnav-fixed a.brand {
+  background-position: -204px -260px;
+  width: 134px;
+  height: 45px;
+  margin-right: 27px;
+  display: inline-block;
+  text-indent: -1000px;
+  overflow: hidden;
+}
+
+/* line 260, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.navbar-search {
+  margin-top: 7px;
+  margin-right: 20px;
+  border-color: #111111;
+}
+
+/* line 268, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+footer {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #111111));
+  background-image: -webkit-linear-gradient(center top, #222222, #111111);
+  background-image: -moz-linear-gradient(center top, #222222, #111111);
+  background-image: -o-linear-gradient(center top, #222222, #111111);
+  background-image: linear-gradient(center top, #222222, #111111);
+  background-color: #1B1B1B;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #FFF;
+}
+
+/* line 279, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+section {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 979px) {
+  /* line 288, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  body {
+    margin-top: 60px;
+  }
+
+  /* line 292, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav {
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1030;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #111111));
+    background-image: -webkit-linear-gradient(center top, #222222, #111111);
+    background-image: -moz-linear-gradient(center top, #222222, #111111);
+    background-image: -o-linear-gradient(center top, #222222, #111111);
+    background-image: linear-gradient(center top, #222222, #111111);
+    background-color: #1B1B1B;
+    border-color: #252525;
+  }
+
+  /* line 304, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav .nav {
+    display: block;
+    left: 0;
+    margin: 0 10px 0 0;
+    position: relative;
+    font-size: 13px;
+  }
+
+  /* line 312, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav a.brand {
+    background-position: -204px -260px;
+    display: block;
+    width: 134px;
+    height: 45px;
+    margin-right: 27px;
+    display: inline-block;
+  }
+
+  /* line 321, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav .nav > li > a {
+    margin: 0;
+    line-height: 21px;
+  }
+
+  /* line 326, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+    border-radius: 3px 3px 3px 3px;
+    color: #FFF;
+    font-weight: bold;
+    padding: 9px 15px;
+  }
+
+  /* line 333, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .collapse.in {
+    padding-top: 10px;
+  }
+
+  /* line 339, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav .nav > li > a:hover,
+  .subnav .nav > .active > a,
+  .subnav .nav > .active > a:hover {
+    padding-left: 13px;
+    background-color: #111111;
+    color: #FFFFFF;
+    margin-left: 10px;
+  }
+
+  /* line 346, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav .btn-navbar {
+    font-weight: 800;
+    line-height: 5px;
+    margin-top: 7px;
+    padding: 12px;
+    color: #FFF;
+    background-color: #0E0E0E;
+    text-shadow: 0 0 0 #0e0e0e;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #151515), color-stop(100%, #040404));
+    background-image: -webkit-linear-gradient(center top, #151515, #040404);
+    background-image: -moz-linear-gradient(center top, #151515, #040404);
+    background-image: -o-linear-gradient(center top, #151515, #040404);
+    background-image: linear-gradient(center top, #151515, #040404);
+  }
+
+  /* line 357, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav .tools {
+    display: none;
+  }
+
+  /* line 361, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav-fixed .nav {
+    float: none;
+  }
+
+  /* line 365, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .subnav-fixed .nav > li > a {
+    margin: 0;
+    color: #FFF;
+    height: 20px;
+  }
+}
+@media (max-width: 767px) {
+  /* line 374, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .widgets, #sobre, #participe, #govpergunta {
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  /* line 381, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  footer {
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  /* line 388, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  footer div.span4 {
+    border-bottom: 1px dashed #FFF;
+  }
+
+  /* line 392, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+  .block {
+    margin-bottom: 60px;
+  }
+}
+/* line 398, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+#signupoverlay {
+  width: 500px;
+}
+
+/* line 402, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.overlay {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 5px solid rgba(55, 55, 55, 0.5);
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 0 10px #333333;
+  display: none;
+  padding: 10px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+/* line 413, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.overlay h1 {
+  width: 100%;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+/* line 418, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.contentWrap {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* line 423, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.contentWrap .control-group {
+  margin-bottom: 0px;
+}
+
+/* line 427, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+.maior {
+  width: 200px !important;
+}
+
+/* line 3, ../sass/posts.scss */
+.news {
+  padding-top: 20px;
+  border-top: 2px solid #DDD;
+  background: url(../img/minsqr.png);
+}
+
+/* line 9, ../sass/posts.scss */
+.post {
+  color: #1f1f21;
+  padding: 0px 16px 16px 16px;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+  border: 1px solid #DDD;
+  overflow: auto;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.7) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.7) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.7) inset;
+}
+
+/* line 19, ../sass/posts.scss */
+.post h2 {
+  font-size: 30px;
+  color: #d8001d;
+  font-weight: 600;
+  width: 100%;
+}
+
+/* line 26, ../sass/posts.scss */
+.post h2 a {
+  color: #d8001d;
+}
+
+/* line 30, ../sass/posts.scss */
+.post a {
+  color: #1f1f21;
+  text-decoration: none;
+}
+
+/* line 35, ../sass/posts.scss */
+.post .content {
+  font-size: 11pt;
+  line-height: 1.5em;
+  margin-top: 10px;
+}
+
+/* line 41, ../sass/posts.scss */
+.post .content a {
+  color: #d8001d;
+  text-decoration: none;
+  border-bottom: 1px dotted #d8001d;
+}
+
+/* line 47, ../sass/posts.scss */
+.post .conten p {
+  margin-bottom: 30px;
+}
+
+/* line 51, ../sass/posts.scss */
+.post .more {
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* line 56, ../sass/posts.scss */
+.meta {
+  /* margin-top: 10px; */
+  /* padding-bottom: 10px; */
+}
+
+/* line 61, ../sass/posts.scss */
+.post .meta ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+/* line 66, ../sass/posts.scss */
+.post .meta ul {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 71, ../sass/posts.scss */
+#comments h2 {
+  color: #FFF;
+}
+
+/* line 75, ../sass/posts.scss */
+#comments h3 {
+  color: #d8001d;
+}
+
+/* line 79, ../sass/posts.scss */
+#comments .form {
+  padding-bottom: 30px;
+}
+
+/* line 83, ../sass/posts.scss */
+#comments img {
+  padding: 10px;
+  width: 80px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid #DDD;
+  -webkit-border-radius: 0 23px 23px 23px;
+  -moz-border-radius: 0 23px 23px 23px;
+  -ms-border-radius: 0 23px 23px 23px;
+  -o-border-radius: 0 23px 23px 23px;
+  border-radius: 0 23px 23px 23px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.48) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.48) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.48) inset;
+}
+
+/* line 93, ../sass/posts.scss */
+#comments .comment .comcontent, .commentbox {
+  color: #000;
+  border: 0;
+  margin-bottom: 20px;
+  margin-left: 120px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 4px;
+  border: 1px solid #DDD;
+  -webkit-border-radius: 0 23px 23px 23px;
+  -moz-border-radius: 0 23px 23px 23px;
+  -ms-border-radius: 0 23px 23px 23px;
+  -o-border-radius: 0 23px 23px 23px;
+  border-radius: 0 23px 23px 23px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.48) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.48) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(221, 221, 221, 0.48) inset;
+}
+
+/* line 106, ../sass/posts.scss */
+#comments .comment .comcontent, .commentbox .enviar {
+  margin-top: -8px;
+  margin-right: 20px;
+}
+
+/* line 111, ../sass/posts.scss */
+#comments textarea {
+  color: #000;
+  border: 0;
+  width: 96%;
+  height: 100px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* line 119, ../sass/posts.scss */
+#comments .comment .comcontent {
+  padding: 10px 30px 30px 30px;
+}
+
+/* line 123, ../sass/posts.scss */
+.sidebar {
+  padding-top: 40px;
+  color: #FFF;
+  font-size: 10pt;
+}
+
+/* line 129, ../sass/posts.scss */
+.sidebar li {
+  color: #BBB;
+}
+
+/* line 133, ../sass/posts.scss */
+.sidebar a {
+  color: #008fd8;
+}
+
+/* line 137, ../sass/posts.scss */
+.sidebar .widget-title {
+  color: #1f1f21;
+}
+
+@media (max-width: 767px) {
+  /* line 142, ../sass/posts.scss */
+  .news {
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
