@@ -1,48 +1,45 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/archive.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
 {% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="row">
-    <div id="post" class="col8">
-      <div id="news">
-        <ul>
-          {% for post in posts %}
-          <li>
-            <ul class="news">
-              <li class="title">
-                <h2>
-                  <a href="{{ post.permalink }}">
-                    {{ post.title }}
-                  </a>
-                </h2>
-                <p class="date">
-                  {{ post.the_date.day }}/{{ post.the_date.month }}/{{ post.the_date.year }}
-                  as {{ post.the_date.hour }}:{{ post.the_date.minute }}
-                </p>
-              </li>
-              <li>
-                <p>{{ post.excerpt|safe }}</p>
-                {% include "sociable.html" %}
-              </li>
+
+<div class="content" id="news">
+  <div class="container">
+    <div class="row">
+      <div class="span9">
+        {% for post in posts %}
+
+        <div class="post">
+          <h2>
+            <a href="{{ post.permalink }}">
+              {{ post.title }}
+            </a>
+          </h2>
+          <div class="meta">
+            <ul>
+              <li><i class="icon-calendar icon-white"></i> {{ post.the_date.day }}, {{ post.the_date.month }} de {{ post.the_date.year }}</li>
+              <li><i class="icon-tag icon-white"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
+              <li><i class="icon-share icon-white"></i> {% include "sociable.html" %}</li>
             </ul>
-          </li>
-          {% endfor %}
-        </ul>
-        <div id="paginator">
-          {{ pagination|safe }}
+          </div>
+          <p>{{ post.excerpt|safe }}</p>
+          <div style="text-align: right;">
+          <a href="{{ post.permalink }}" class="btn btn-danger"> Continue lendo... </a>
+          </div>
         </div>
+
+        {% endfor %}
+
+        {{ pagination|safe }}
       </div>
-    </div>
-    <div id="sidebar" class="col4">
-      <div id="wordpress-sidebar-1">
+      <div class="span3 sidebar">
         {{ sidebar(id='sidebar-1')|safe }}
       </div>
     </div>
   </div>
-  <div class="row-end"></div>
 </div>
+
 {% endblock %}

@@ -196,6 +196,7 @@ def foto_com_gov():
 @app.route('/news/<int:page>')
 def news(page=0):
     """List posts in chronological order"""
+    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     pagination, posts = wordpress.getPosts(page=page)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
@@ -204,6 +205,7 @@ def news(page=0):
         sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
+        menu=menus,
         posts=posts)
 
 
@@ -284,13 +286,14 @@ def post(pid):
         numberposts=4)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-
+    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     return render_template(
         'post.html',
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
         sidebar=wordpress.getSidebar,
         picday=picday,
+        menu=menus,
         comments=wordpress.getComments(status='approve',post_id=pid),
         show_comment_form=is_authenticated(),
         recent_posts=recent_posts)

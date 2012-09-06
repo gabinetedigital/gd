@@ -1,0 +1,97 @@
+@import "base";
+
+.content {
+    background: url(../img/bg.png);
+    padding-top: 20px;
+}
+
+.post {
+    color: #FFF;
+    padding: 10px 30px 30px 30px;
+    background: $black;
+    @include border-radius(23px);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
+    margin-bottom: 20px;
+}
+
+.post :last {
+    border: 0;
+}
+
+.post h2 {
+    font-weight: 300;
+    font-size: 30px;
+    color: $red;
+    @include single-text-shadow;
+}
+
+.meta {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.post .meta ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#comments h2 {
+    color: #FFF;
+}
+
+#comments h3 {
+    color: $red;
+}
+
+#comments .form {
+    padding-bottom: 30px;
+}
+
+#comments img {
+    background: rgba($black, 0.698);
+    padding: 10px;
+    width: 80px;
+    @include border-radius(20px 20px 0px 20px);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
+}
+
+#comments .comment .comcontent, .commentbox {
+    color: #FFF;
+    border: 0;
+    background: rgba($black, 0.698);
+    margin-bottom: 20px;    
+    margin-left: 120px;
+    @include border-radius(0px 20px 20px 20px);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
+ 
+}
+
+#comments textarea {
+    color: #FFF;
+    border: 0;
+    background:rgba($black, 0.0);
+    width: 96%;
+    height: 100px;
+}
+
+#comments .comment .comcontent {
+    padding: 10px 30px 30px 30px;
+}
+
+.sidebar {
+    padding-top: 40px;
+    color: #FFF;
+}
+
+.sidebar a {
+    color: $blue;
+}
+
+@media (max-width: 767px) {
+    .content {
+        margin-right: -20px;
+        margin-left: -20px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
