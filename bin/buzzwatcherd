@@ -115,6 +115,19 @@ class Twitter(object):
                 # tweet received. We are also setting this buzz as a
                 # twitter one and yielding it to the caller that will be
                 # the responsible for saving it in the database.
+                # Test of audience active.
+                try:
+                    audience = AudiencePostsMeta.query.filter_by(meta_key = 'wp_govescuta_ativa', meta_value='s').one()
+                except Exception, exc:
+                    print 'msg = Nenhuma audiencia ativa no momento'
+                    if (NoResultFound):
+                        sleep(30)
+                        main()
+                    else:
+                        print 'Nothing to be processed or too much things to process'
+                        print 'Make sure you have only `one\' audience running'
+                        exit(0)
+                            
                 if tweet.has_key('user'):
                     type_ = get_or_create(BuzzType, name=u'twitter')[0]
                     buzz = Buzz(
@@ -123,7 +136,6 @@ class Twitter(object):
                         content=tweet['text'],
                         type_=type_)
                     buzz.audience_id = self.audience.post_ID
-                    #self.audience.buzzes.append(buzz)
                     session.commit()
 
         except (ConnectionError, HTTPError), exc:
@@ -141,10 +153,15 @@ def main():
     try:
         audience = AudiencePostsMeta.query.filter_by(meta_key = 'wp_govescuta_ativa', meta_value='s').one()
         audience = AudiencePostsMeta.query.filter_by(meta_key = 'wp_govescuta_hashtags_audiencia', post_ID=audience.post_ID).one()
-    except NoResultsFound:
-        print 'Nothing to be processed or too much things to process'
-        print 'Make sure you have only `one\' audience running'
-        exit(0)
+    except Exception, exc:
+        print 'msg = Nenhuma audiencia ativa no momento'
+        if (NoResultFound):
+            sleep(30)
+            main()
+        else:
+            print 'Nothing to be processed or too much things to process'
+            print 'Make sure you have only `one\' audience running'
+            exit(0)
     twitter = Twitter(audience)
     twitter.process()
 
