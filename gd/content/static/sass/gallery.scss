@@ -83,6 +83,7 @@ div.caption .text {
 }
 
 span.image-caption {
+
     display: block;
     position: absolute;
     top: 0;
@@ -98,6 +99,10 @@ div.image-title {
 div.image-desc {
     line-height: 1.3em;
     padding-top: 12px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #thumbs {
@@ -111,6 +116,7 @@ div.image-desc {
 }
 
 .navigation {
+
     padding: 20px 0 0 0;
 }
 
@@ -203,4 +209,30 @@ div.image-desc {
     padding: 17px 13px;
     resize: none;
     height: 40px;
+}
+
+#thumbs ul li.selected img {
+    opacity: 1;
+}
+
+#thumbs ul li img {
+    opacity: 0.5;
+}
+
+.bottom {
+    clear: both;
+    padding: 20px 0 0 25px;
+}
+
+#gallerylist li {
+    float: left;
+    margin-right: 20px;
+    list-style: none;
+}
+
+
+@media (max-width: 767px) {
+    #controls {
+        width: 100%;
+    }
 }
