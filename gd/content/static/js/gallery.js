@@ -24,7 +24,7 @@ $(document).ready(function() {
         imageContainerSel:      '#slideshow',
         controlsContainerSel:   '#controls',
         captionContainerSel:    '#caption',
-        numThumbs:                 10,
+        numThumbs:                 8,
         maxPagesToShow:            20,
         prevLinkText:              '«',
         nextLinkText:              '»',
@@ -38,11 +38,12 @@ $(document).ready(function() {
             caption.width(slideImage.width())
                 .css({
                     'bottom' : ($('#caption').height()+3),
-                    'left' : ((Math.floor(($('#slideshow').width() - slideImage.width()) / 2) + 2 )),
+                    'left' : ((Math.floor(($('#slideshow').width() - slideImage.width()) / 2) )),
                 })
 
             $('#caption span.image-caption').fadeTo(1000, 0.8);
         },
+
     });
 
 
