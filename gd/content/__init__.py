@@ -147,7 +147,6 @@ def index():
 
     return render_template(
         'index.html', wp=wordpress,
-        slideshow=slideshow, news={'big': news[:2], 'small': news[2:]},
         sidebar=wordpress.getSidebar,
         page_about=wordpress.getPageByPath('sobre'),
         page_pri=wordpress.getPageByPath('prioridades'),
@@ -263,7 +262,7 @@ def conselho():
     page = wordpress.getPageByPath(path)
     cmts = wordpress.getComments(status='approve',post_id=page.data['id'], number=1000)
     return render_template(
-        'conselho-comunicacao.html',
+        'post.html',
         page=page,
         sidebar=wordpress.getSidebar,
         picday=picday,
