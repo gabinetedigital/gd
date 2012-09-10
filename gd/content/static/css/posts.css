@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
   font-family: "OpenSansLight";
   src: url('/css/fonts/../fonts/OpenSans-Light-webfont.eot') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/../fonts/OpenSans-Light-webfont.woff') format('woff'), url('/css/fonts/../fonts/OpenSans-Light-webfont.ttf') format('truetype'), url('/css/fonts/../fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
@@ -49,26 +50,44 @@
 }
 
 /* line 17, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+@charset "UTF-8";
+/* line 16, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 body {
   font-family: 'Open Sans', sans-serif;
 }
 
+<<<<<<< HEAD
 /* line 21, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 20, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 a {
   color: #d8001d;
 }
 
+<<<<<<< HEAD
 /* line 27, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
 .home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
 .pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand,
 .pri, .pq, .pro, .como {
+=======
+/* line 25, ../sass/base.scss */
+.home h1, .search, .feed, .twitter, .facebook, .news, #tweets,
+.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand {
+>>>>>>> Arquivos compilados
   overflow: hidden;
   text-indent: 1000px;
   background: url(../img/home.png) no-repeat;
 }
 
 /* Cabeçalho */
+<<<<<<< HEAD
 /* line 35, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 33, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .home h1 {
   display: block;
   width: 270px;
@@ -77,14 +96,22 @@ a {
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 /* line 43, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 41, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 #search, #social {
   text-align: right;
   margin-top: 50px;
   margin-left: 20px;
 }
 
+<<<<<<< HEAD
 /* line 50, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 48, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .search {
   display: inline-block;
   width: 22px;
@@ -94,7 +121,11 @@ a {
   text-indent: -1000px;
 }
 
+<<<<<<< HEAD
 /* line 59, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 57, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .feed {
   display: inline-block;
   width: 32px;
@@ -103,7 +134,11 @@ a {
   border: 0;
 }
 
+<<<<<<< HEAD
 /* line 68, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 66, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .twitter {
   display: inline-block;
   width: 32px;
@@ -112,7 +147,11 @@ a {
   border: 0;
 }
 
+<<<<<<< HEAD
 /* line 76, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 74, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .facebook {
   display: inline-block;
   width: 32px;
@@ -121,8 +160,13 @@ a {
   border: 0;
 }
 
+<<<<<<< HEAD
 /* line 84, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
 .mail {
+=======
+/* line 82, ../sass/base.scss */
+.news {
+>>>>>>> Arquivos compilados
   display: inline-block;
   width: 32px;
   height: 32px;
@@ -130,19 +174,31 @@ a {
   border: 0;
 }
 
+<<<<<<< HEAD
 /* line 92, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 90, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .tweets {
   height: 86px;
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 /* line 97, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 95, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .tweets ul > li {
   display: inline-block;
   margin-right: 14px;
 }
 
+<<<<<<< HEAD
 /* line 102, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 100, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .pessoa1 {
   display: block;
   height: 86px;
@@ -150,7 +206,11 @@ a {
   background-position: 0 -152px;
 }
 
+<<<<<<< HEAD
 /* line 109, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 107, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .pessoa2 {
   display: block;
   height: 86px;
@@ -158,7 +218,11 @@ a {
   background-position: -42px -152px;
 }
 
+<<<<<<< HEAD
 /* line 116, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 114, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .pessoa3 {
   display: block;
   height: 86px;
@@ -166,7 +230,11 @@ a {
   background-position: -89px -152px;
 }
 
+<<<<<<< HEAD
 /* line 123, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 121, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .pessoa4 {
   display: block;
   height: 86px;
@@ -174,7 +242,11 @@ a {
   background-position: -142px -152px;
 }
 
+<<<<<<< HEAD
 /* line 130, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 128, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .male {
   display: block;
   height: 76px;
@@ -182,22 +254,38 @@ a {
   background-position: 0 -161px;
 }
 
+<<<<<<< HEAD
 /* line 137, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 135, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .popover {
   width: 300px;
 }
 
+<<<<<<< HEAD
 /* line 141, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 139, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .popover-content {
   font-size: 13px;
 }
 
+<<<<<<< HEAD
 /* line 145, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 143, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .login form {
   margin: 0;
 }
 
+<<<<<<< HEAD
 /* line 149, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 147, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .login p.saudacao {
   font-size: 18px;
   line-height: 20px;
@@ -209,33 +297,57 @@ a {
   text-rendering: optimizelegibility;
 }
 
+<<<<<<< HEAD
 /* line 160, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 158, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .login .on {
   padding-top: 20px;
 }
 
+<<<<<<< HEAD
 /* line 164, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 162, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .login .control {
   padding-top: 7px;
 }
 
+<<<<<<< HEAD
 /* line 168, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 166, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .login .control a {
   color: #d8001d;
 }
 
 /* Navegação */
+<<<<<<< HEAD
 /* line 176, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 174, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav .nav {
   font-size: 17px;
 }
 
+<<<<<<< HEAD
 /* line 180, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 178, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav .tools {
   display: none;
 }
 
+<<<<<<< HEAD
 /* line 184, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 182, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav .nav > li > a {
   color: #1f1f21;
   display: block;
@@ -249,7 +361,11 @@ a {
   border-radius: 0;
 }
 
+<<<<<<< HEAD
 /* line 195, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 193, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav .nav > li > a:hover,
 .subnav .nav > .active > a,
 .subnav .nav > .active > a:hover {
@@ -259,7 +375,11 @@ a {
   font-weight: 600;
 }
 
+<<<<<<< HEAD
 /* line 202, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 200, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav a.brand {
   display: none;
   text-indent: -1000px;
@@ -267,7 +387,11 @@ a {
 }
 
 /* Navegação Fixa */
+<<<<<<< HEAD
 /* line 210, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 208, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav-fixed {
   top: 0;
   left: 0;
@@ -283,12 +407,20 @@ a {
   background-image: linear-gradient(center top, #222222, #111111);
 }
 
+<<<<<<< HEAD
 /* line 221, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 219, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav-fixed .tools {
   display: inline-block;
 }
 
+<<<<<<< HEAD
 /* line 225, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 223, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav-fixed .nav {
   display: block;
   float: left;
@@ -297,7 +429,11 @@ a {
   position: relative;
 }
 
+<<<<<<< HEAD
 /* line 233, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 231, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav-fixed .nav > li > a {
   margin: 0;
   color: #FFF;
@@ -305,7 +441,11 @@ a {
   line-height: 29px;
 }
 
+<<<<<<< HEAD
 /* line 243, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 241, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav-fixed .nav > li > a:hover,
 .subnav-fixed .nav > .active > a,
 .subnav-fixed .nav > .active > a:hover {
@@ -314,7 +454,11 @@ a {
   background-color: #d8001d;
 }
 
+<<<<<<< HEAD
 /* line 250, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 248, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .subnav-fixed a.brand {
   background-position: -204px -260px;
   width: 134px;
@@ -325,14 +469,22 @@ a {
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 /* line 260, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 258, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 .navbar-search {
   margin-top: 7px;
   margin-right: 20px;
   border-color: #111111;
 }
 
+<<<<<<< HEAD
 /* line 268, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 266, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 footer {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #111111));
   background-image: -webkit-linear-gradient(center top, #222222, #111111);
@@ -345,19 +497,31 @@ footer {
   color: #FFF;
 }
 
+<<<<<<< HEAD
 /* line 279, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+/* line 277, ../sass/base.scss */
+>>>>>>> Arquivos compilados
 section {
   padding-top: 60px;
   padding-bottom: 40px;
 }
 
 @media (max-width: 979px) {
+<<<<<<< HEAD
   /* line 288, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 286, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   body {
     margin-top: 60px;
   }
 
+<<<<<<< HEAD
   /* line 292, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 290, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav {
     top: 0;
     left: 0;
@@ -374,7 +538,11 @@ section {
     border-color: #252525;
   }
 
+<<<<<<< HEAD
   /* line 304, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 302, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav .nav {
     display: block;
     left: 0;
@@ -383,7 +551,11 @@ section {
     font-size: 13px;
   }
 
+<<<<<<< HEAD
   /* line 312, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 310, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav a.brand {
     background-position: -204px -260px;
     display: block;
@@ -393,13 +565,21 @@ section {
     display: inline-block;
   }
 
+<<<<<<< HEAD
   /* line 321, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 319, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav .nav > li > a {
     margin: 0;
     line-height: 21px;
   }
 
+<<<<<<< HEAD
   /* line 326, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 324, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
     border-radius: 3px 3px 3px 3px;
     color: #FFF;
@@ -407,12 +587,20 @@ section {
     padding: 9px 15px;
   }
 
+<<<<<<< HEAD
   /* line 333, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 331, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .collapse.in {
     padding-top: 10px;
   }
 
+<<<<<<< HEAD
   /* line 339, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 337, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav .nav > li > a:hover,
   .subnav .nav > .active > a,
   .subnav .nav > .active > a:hover {
@@ -422,7 +610,11 @@ section {
     margin-left: 10px;
   }
 
+<<<<<<< HEAD
   /* line 346, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 344, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav .btn-navbar {
     font-weight: 800;
     line-height: 5px;
@@ -438,17 +630,29 @@ section {
     background-image: linear-gradient(center top, #151515, #040404);
   }
 
+<<<<<<< HEAD
   /* line 357, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 355, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav .tools {
     display: none;
   }
 
+<<<<<<< HEAD
   /* line 361, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 359, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav-fixed .nav {
     float: none;
   }
 
+<<<<<<< HEAD
   /* line 365, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 363, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .subnav-fixed .nav > li > a {
     margin: 0;
     color: #FFF;
@@ -456,7 +660,11 @@ section {
   }
 }
 @media (max-width: 767px) {
+<<<<<<< HEAD
   /* line 374, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 372, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .widgets, #sobre, #participe, #govpergunta {
     margin-right: -20px;
     margin-left: -20px;
@@ -464,7 +672,11 @@ section {
     padding-left: 20px;
   }
 
+<<<<<<< HEAD
   /* line 381, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 379, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   footer {
     margin-right: -20px;
     margin-left: -20px;
@@ -472,16 +684,25 @@ section {
     padding-left: 20px;
   }
 
+<<<<<<< HEAD
   /* line 388, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 386, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   footer div.span4 {
     border-bottom: 1px dashed #FFF;
   }
 
+<<<<<<< HEAD
   /* line 392, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
+=======
+  /* line 390, ../sass/base.scss */
+>>>>>>> Arquivos compilados
   .block {
     margin-bottom: 60px;
   }
 }
+<<<<<<< HEAD
 /* line 398, /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/content/static/sass/base.scss */
 #signupoverlay {
   width: 500px;
@@ -592,11 +813,56 @@ section {
 }
 
 /* line 61, ../sass/posts.scss */
+=======
+/* line 3, ../sass/posts.scss */
+.content {
+  background: url(../img/bg.png);
+  padding-top: 20px;
+}
+
+/* line 8, ../sass/posts.scss */
+.post {
+  color: #FFF;
+  padding: 10px 30px 30px 30px;
+  background: #1f1f21;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+  border-radius: 23px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+  margin-bottom: 20px;
+}
+
+/* line 17, ../sass/posts.scss */
+.post :last {
+  border: 0;
+}
+
+/* line 21, ../sass/posts.scss */
+.post h2 {
+  font-weight: 300;
+  font-size: 30px;
+  color: #d8001d;
+  text-shadow: 0px 1px 3px rgba(51, 51, 51, 0.6);
+}
+
+/* line 28, ../sass/posts.scss */
+.meta {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 33, ../sass/posts.scss */
+>>>>>>> Arquivos compilados
 .post .meta ul li {
   display: inline;
   margin-right: 20px;
 }
 
+<<<<<<< HEAD
 /* line 66, ../sass/posts.scss */
 .post .meta ul {
   padding: 0;
@@ -604,20 +870,32 @@ section {
 }
 
 /* line 71, ../sass/posts.scss */
+=======
+/* line 38, ../sass/posts.scss */
+>>>>>>> Arquivos compilados
 #comments h2 {
   color: #FFF;
 }
 
+<<<<<<< HEAD
 /* line 75, ../sass/posts.scss */
+=======
+/* line 42, ../sass/posts.scss */
+>>>>>>> Arquivos compilados
 #comments h3 {
   color: #d8001d;
 }
 
+<<<<<<< HEAD
 /* line 79, ../sass/posts.scss */
+=======
+/* line 46, ../sass/posts.scss */
+>>>>>>> Arquivos compilados
 #comments .form {
   padding-bottom: 30px;
 }
 
+<<<<<<< HEAD
 /* line 83, ../sass/posts.scss */
 #comments img {
   padding: 10px;
@@ -669,10 +947,55 @@ section {
 }
 
 /* line 119, ../sass/posts.scss */
+=======
+/* line 50, ../sass/posts.scss */
+#comments img {
+  background: rgba(31, 31, 33, 0.698);
+  padding: 10px;
+  width: 80px;
+  -webkit-border-radius: 20px 20px 0px 20px;
+  -moz-border-radius: 20px 20px 0px 20px;
+  -ms-border-radius: 20px 20px 0px 20px;
+  -o-border-radius: 20px 20px 0px 20px;
+  border-radius: 20px 20px 0px 20px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+}
+
+/* line 58, ../sass/posts.scss */
+#comments .comment .comcontent, .commentbox {
+  color: #FFF;
+  border: 0;
+  background: rgba(31, 31, 33, 0.698);
+  margin-bottom: 20px;
+  margin-left: 120px;
+  -webkit-border-radius: 0px 20px 20px 20px;
+  -moz-border-radius: 0px 20px 20px 20px;
+  -ms-border-radius: 0px 20px 20px 20px;
+  -o-border-radius: 0px 20px 20px 20px;
+  border-radius: 0px 20px 20px 20px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset;
+}
+
+/* line 69, ../sass/posts.scss */
+#comments textarea {
+  color: #FFF;
+  border: 0;
+  background: rgba(31, 31, 33, 0);
+  width: 96%;
+  height: 100px;
+}
+
+/* line 77, ../sass/posts.scss */
+>>>>>>> Arquivos compilados
 #comments .comment .comcontent {
   padding: 10px 30px 30px 30px;
 }
 
+<<<<<<< HEAD
 /* line 123, ../sass/posts.scss */
 .sidebar {
   padding-top: 40px;
@@ -686,10 +1009,20 @@ section {
 }
 
 /* line 133, ../sass/posts.scss */
+=======
+/* line 81, ../sass/posts.scss */
+.sidebar {
+  padding-top: 40px;
+  color: #FFF;
+}
+
+/* line 86, ../sass/posts.scss */
+>>>>>>> Arquivos compilados
 .sidebar a {
   color: #008fd8;
 }
 
+<<<<<<< HEAD
 /* line 137, ../sass/posts.scss */
 .sidebar .widget-title {
   color: #1f1f21;
@@ -698,6 +1031,11 @@ section {
 @media (max-width: 767px) {
   /* line 142, ../sass/posts.scss */
   .news {
+=======
+@media (max-width: 767px) {
+  /* line 91, ../sass/posts.scss */
+  .content {
+>>>>>>> Arquivos compilados
     margin-right: -20px;
     margin-left: -20px;
     padding-right: 20px;

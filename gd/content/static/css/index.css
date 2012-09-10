@@ -776,11 +776,22 @@ section h2 {
 }
 
 /* line 240, ../sass/index.scss */
+<<<<<<< HEAD
+=======
+#govpergunta .gov {
+  background: #1f1f21;
+  cursor: pointer;
+  height: 110px;
+}
+
+/* line 246, ../sass/index.scss */
+>>>>>>> Arquivos compilados
 #govpergunta .pwhat {
   color: #FFF;
   padding: 20px;
 }
 
+<<<<<<< HEAD
 /* line 245, ../sass/index.scss */
 #govpergunta .pergunta {
   background: #1f1f21;
@@ -820,11 +831,43 @@ section h2 {
 #govpergunta .gov h3 {
   font-size: 16pt;
   font-weight: 400;
+=======
+/* line 253, ../sass/index.scss */
+#govpergunta h3 {
+  font-weight: 300;
+  font-size: 30px;
+  text-align: right;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+/* line 262, ../sass/index.scss */
+#participe .phow {
+  color: #FFF;
+  text-shadow: 0px 1px 3px rgba(51, 51, 51, 0.6);
+  background-color: #5cbd7c;
+  padding: 20px;
+}
+
+/* line 269, ../sass/index.scss */
+#govpergunta .pwhat {
+  color: #FFF;
+  text-shadow: 0px 1px 3px rgba(51, 51, 51, 0.6);
+  background-color: #3ea1e2;
+  padding: 20px;
+}
+
+/* line 276, ../sass/index.scss */
+#govpergunta h3 {
+  font-weight: 300;
+  font-size: 30px;
+>>>>>>> Arquivos compilados
   text-align: right;
   line-height: 28px;
   margin-top: 0;
 }
 
+<<<<<<< HEAD
 /* line 280, ../sass/index.scss */
 .pri, .pro, .como, .pq {
   width: 50px;
@@ -871,4 +914,34 @@ section h2 {
 /* line 315, ../sass/index.scss */
 #govpergunta .como {
   background-position: -110px -327px;
+=======
+/* line 284, ../sass/index.scss */
+#govpergunta .phow {
+  color: #FFF;
+  text-shadow: 0px 1px 3px rgba(51, 51, 51, 0.6);
+  background-color: #f33500;
+  padding: 20px;
+}
+
+/* line 291, ../sass/index.scss */
+#govpergunta .pergunta {
+  background: #1f1f21;
+  color: #FFF;
+  margin-top: 20px;
+}
+
+/* line 297, ../sass/index.scss */
+#govpergunta .pergunta .choice {
+  padding: 20px;
+}
+
+/* line 301, ../sass/index.scss */
+#govpergunta .pergunta .btn {
+  text-align: left;
+}
+
+/* line 305, ../sass/index.scss */
+#govpergunta .pergunta h1 {
+  padding: 10px;
+>>>>>>> Arquivos compilados
 }

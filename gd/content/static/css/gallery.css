@@ -1,269 +1,589 @@
-/* Copyright (C) 2012  Lincoln de Sousa <lincoln@comum.org>
- * Copyright (C) 2012  Governo do Estado do Rio Grande do Sul
- *
- *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-h1.stitle {
-    margin-bottom:20px;
+@charset "UTF-8";
+/* line 16, ../sass/base.scss */
+body {
+  font-family: 'Open Sans', sans-serif;
 }
 
-h2.stitle {
-    margin:10px 0;
+/* line 20, ../sass/base.scss */
+a {
+  color: #d8001d;
 }
 
-.currentgallery {
-    background:#111;
-    padding:20px 15px 15px;
-    text-align: center;
-    overflow: auto;
+/* line 25, ../sass/base.scss */
+.home h1, .search, .feed, .twitter, .facebook, .news, #tweets,
+.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand {
+  overflow: hidden;
+  text-indent: 1000px;
+  background: url(../img/home.png) no-repeat;
 }
 
-#title {
-    clear: both;
+/* Cabeçalho */
+/* line 33, ../sass/base.scss */
+.home h1 {
+  display: block;
+  width: 270px;
+  height: 123px;
+  text-indent: -1000px;
+  overflow: hidden;
+}
+
+/* line 41, ../sass/base.scss */
+#search, #social {
+  text-align: right;
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+/* line 48, ../sass/base.scss */
+.search {
+  display: inline-block;
+  width: 22px;
+  height: 19px;
+  background-position: 0px -274px;
+  border: 0;
+  text-indent: -1000px;
+}
+
+/* line 57, ../sass/base.scss */
+.feed {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-position: -46px -270px;
+  border: 0;
+}
+
+/* line 66, ../sass/base.scss */
+.twitter {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-position: -82px -270px;
+  border: 0;
+}
+
+/* line 74, ../sass/base.scss */
+.facebook {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-position: -116px -270px;
+  border: 0;
+}
+
+/* line 82, ../sass/base.scss */
+.news {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-position: -153px -270px;
+  border: 0;
+}
+
+/* line 90, ../sass/base.scss */
+.tweets {
+  height: 86px;
+  overflow: hidden;
+}
+
+/* line 95, ../sass/base.scss */
+.tweets ul > li {
+  display: inline-block;
+  margin-right: 14px;
+}
+
+/* line 100, ../sass/base.scss */
+.pessoa1 {
+  display: block;
+  height: 86px;
+  width: 23px;
+  background-position: 0 -152px;
+}
+
+/* line 107, ../sass/base.scss */
+.pessoa2 {
+  display: block;
+  height: 86px;
+  width: 23px;
+  background-position: -42px -152px;
+}
+
+/* line 114, ../sass/base.scss */
+.pessoa3 {
+  display: block;
+  height: 86px;
+  width: 30px;
+  background-position: -89px -152px;
+}
+
+/* line 121, ../sass/base.scss */
+.pessoa4 {
+  display: block;
+  height: 86px;
+  width: 30px;
+  background-position: -142px -152px;
+}
+
+/* line 128, ../sass/base.scss */
+.male {
+  display: block;
+  height: 76px;
+  width: 23px;
+  background-position: 0 -161px;
+}
+
+/* line 135, ../sass/base.scss */
+.popover {
+  width: 300px;
+}
+
+/* line 139, ../sass/base.scss */
+.popover-content {
+  font-size: 13px;
+}
+
+/* line 143, ../sass/base.scss */
+.login form {
+  margin: 0;
+}
+
+/* line 147, ../sass/base.scss */
+.login p.saudacao {
+  font-size: 18px;
+  line-height: 20px;
+  color: inherit;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1;
+  margin: 10px 0;
+  text-rendering: optimizelegibility;
+}
+
+/* line 158, ../sass/base.scss */
+.login .on {
+  padding-top: 20px;
+}
+
+/* line 162, ../sass/base.scss */
+.login .control {
+  padding-top: 7px;
+}
+
+/* line 166, ../sass/base.scss */
+.login .control a {
+  color: #d8001d;
+}
+
+/* Navegação */
+/* line 174, ../sass/base.scss */
+.subnav .nav {
+  font-size: 17px;
+}
+
+/* line 178, ../sass/base.scss */
+.subnav .tools {
+  display: none;
+}
+
+/* line 182, ../sass/base.scss */
+.subnav .nav > li > a {
+  color: #1f1f21;
+  display: block;
+  height: 20px;
+  margin: 0;
+  line-height: 18px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+
+/* line 193, ../sass/base.scss */
+.subnav .nav > li > a:hover,
+.subnav .nav > .active > a,
+.subnav .nav > .active > a:hover {
+  padding-left: 13px;
+  color: #FFF;
+  background-color: #d8001d;
+  font-weight: 600;
+}
+
+/* line 200, ../sass/base.scss */
+.subnav a.brand {
+  display: none;
+  text-indent: -1000px;
+  overflow: hidden;
+}
+
+/* Navegação Fixa */
+/* line 208, ../sass/base.scss */
+.subnav-fixed {
+  top: 0;
+  left: 0;
+  margin-bottom: 0;
+  position: fixed;
+  right: 0;
+  z-index: 1030;
+  background-color: #1B1B1B;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #111111));
+  background-image: -webkit-linear-gradient(center top, #222222, #111111);
+  background-image: -moz-linear-gradient(center top, #222222, #111111);
+  background-image: -o-linear-gradient(center top, #222222, #111111);
+  background-image: linear-gradient(center top, #222222, #111111);
+}
+
+/* line 219, ../sass/base.scss */
+.subnav-fixed .tools {
+  display: inline-block;
+}
+
+/* line 223, ../sass/base.scss */
+.subnav-fixed .nav {
+  display: block;
+  float: left;
+  left: 0;
+  margin: 0 10px 0 0;
+  position: relative;
+}
+
+/* line 231, ../sass/base.scss */
+.subnav-fixed .nav > li > a {
+  margin: 0;
+  color: #FFF;
+  height: 29px;
+  line-height: 29px;
+}
+
+/* line 241, ../sass/base.scss */
+.subnav-fixed .nav > li > a:hover,
+.subnav-fixed .nav > .active > a,
+.subnav-fixed .nav > .active > a:hover {
+  padding-left: 13px;
+  color: #FFF;
+  background-color: #d8001d;
+}
+
+/* line 248, ../sass/base.scss */
+.subnav-fixed a.brand {
+  background-position: -204px -260px;
+  width: 134px;
+  height: 45px;
+  margin-right: 27px;
+  display: inline-block;
+  text-indent: -1000px;
+  overflow: hidden;
+}
+
+/* line 258, ../sass/base.scss */
+.navbar-search {
+  margin-top: 7px;
+  margin-right: 20px;
+  border-color: #111111;
+}
+
+/* line 266, ../sass/base.scss */
+footer {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #111111));
+  background-image: -webkit-linear-gradient(center top, #222222, #111111);
+  background-image: -moz-linear-gradient(center top, #222222, #111111);
+  background-image: -o-linear-gradient(center top, #222222, #111111);
+  background-image: linear-gradient(center top, #222222, #111111);
+  background-color: #1B1B1B;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #FFF;
+}
+
+/* line 277, ../sass/base.scss */
+section {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 979px) {
+  /* line 286, ../sass/base.scss */
+  body {
+    margin-top: 60px;
+  }
+
+  /* line 290, ../sass/base.scss */
+  .subnav {
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1030;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #111111));
+    background-image: -webkit-linear-gradient(center top, #222222, #111111);
+    background-image: -moz-linear-gradient(center top, #222222, #111111);
+    background-image: -o-linear-gradient(center top, #222222, #111111);
+    background-image: linear-gradient(center top, #222222, #111111);
+    background-color: #1B1B1B;
+    border-color: #252525;
+  }
+
+  /* line 302, ../sass/base.scss */
+  .subnav .nav {
     display: block;
-    height: 30px;
-    margin-bottom: 10px;
-}
+    left: 0;
+    margin: 0 10px 0 0;
+    position: relative;
+    font-size: 13px;
+  }
 
-.currentgallery h2 {
-    text-align:left;
-    color:#fff;
-    padding-bottom:10px;
-    margin-left: 73px;
-    font-size: 14pt;
-    text-transform: capitalize;
-}
-
-.currentgallery #title ul li {
+  /* line 310, ../sass/base.scss */
+  .subnav a.brand {
+    background-position: -204px -260px;
+    display: block;
+    width: 134px;
+    height: 45px;
+    margin-right: 27px;
     display: inline-block;
-    float: left;
-}
+  }
 
-.currentgallery #title li.share {
-    float: right;
-    margin-right: 71px;
-    padding-top: 8px;
-    width: 150px;
-}
+  /* line 319, ../sass/base.scss */
+  .subnav .nav > li > a {
+    margin: 0;
+    line-height: 21px;
+  }
 
-.currentgallery .current .pcontainer {
-    background:#000;
-}
+  /* line 324, ../sass/base.scss */
+  .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+    border-radius: 3px 3px 3px 3px;
+    color: #FFF;
+    font-weight: bold;
+    padding: 9px 15px;
+  }
 
-.currentgallery .current img {
-    max-width:800px;
-    max-height: 533px;
-}
+  /* line 331, ../sass/base.scss */
+  .collapse.in {
+    padding-top: 10px;
+  }
 
-div.slideshow a.advance-link {
-    height: 533px;
-}
+  /* line 337, ../sass/base.scss */
+  .subnav .nav > li > a:hover,
+  .subnav .nav > .active > a,
+  .subnav .nav > .active > a:hover {
+    padding-left: 13px;
+    background-color: #111111;
+    color: #FFFFFF;
+    margin-left: 10px;
+  }
 
-.currentgallery .current p {
-    color:#ccc;
-    padding:10px 0 15px;
-    text-align:left;
-}
-
-#thumbs {
-    margin-top: 10px;
-}
-
-#thumbs ul.images {
-    clear:both;
-    width:820px;
-    margin:0 auto;
-    overflow:hidden;
-    padding-left:23px;
-}
-
-#thumbs ul.images li {
-    float:left;
-    margin:0 11px 10px 0;
-}
-
-#thumbs ul.images li img {
-    opacity: 0.5;
-}
-
-#thumbs ul.images li.selected img {
-    opacity: 1.0;
-}
-
-#thumbs img {
-    width: 70px;
-}
-
-#controls {
-    width:1035px;
-    margin:300px 0 0 -30px;
-    position:absolute;
-    font-size:20px;
-}
-
-#controls .nav-controls  a {
-    font-size:18pt;
-    padding:10px 25px;
-    line-height:normal
-}
-
-#controls .nav-controls .prev {
-    float:left;
-}
-
-#controls .nav-controls .next {
-    float: right;
-}
-
-div#caption {
-    text-align: left;
- }
-
-span.image-caption {
-    display: block;
-    margin: 0 auto;
-}
-
-div.caption {
-    color: #CCCCCC;
-    overflow: auto;
+  /* line 344, ../sass/base.scss */
+  .subnav .btn-navbar {
+    font-weight: 800;
+    line-height: 5px;
+    margin-top: 7px;
     padding: 12px;
-}
-
-div.caption .download a {
-    background: url("../imgs/download.png") no-repeat scroll 0 0 transparent;
-    display: block;
-    float: right;
-    height: 32px;
-    text-indent: -9999px;
-    width: 24px;
-}
-
-#thumbs .pagination a {
     color: #FFF;
-    margin-left: 5px;
-    margin-right: 5px;
-}
+    background-color: #0E0E0E;
+    text-shadow: 0 0 0 #0e0e0e;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #151515), color-stop(100%, #040404));
+    background-image: -webkit-linear-gradient(center top, #151515, #040404);
+    background-image: -moz-linear-gradient(center top, #151515, #040404);
+    background-image: -o-linear-gradient(center top, #151515, #040404);
+    background-image: linear-gradient(center top, #151515, #040404);
+  }
 
-#thumbs .pagination .current {
-    color: #CC0000;
-    margin-left: 5px;
-    margin-right: 5px;
-}
+  /* line 355, ../sass/base.scss */
+  .subnav .tools {
+    display: none;
+  }
 
-a.page_link {
-    background-position: -13px 0px;
-}
+  /* line 359, ../sass/base.scss */
+  .subnav-fixed .nav {
+    float: none;
+  }
 
-a.active_page {
-    background-position: -25px 0px;
-}
-
-a.next_link {
-    background-position: -38px 0;
-    margin-left: 3px
-}
-
-#busca {
-    background: none repeat scroll 0 0 #CC0000;
-    display: block;
-    overflow: auto;
-    padding: 10px 86px 10px 86px;
-}
-
-#busca h2 {
-    font-size: 16pt;
+  /* line 363, ../sass/base.scss */
+  .subnav-fixed .nav > li > a {
+    margin: 0;
     color: #FFF;
+    height: 20px;
+  }
+}
+@media (max-width: 767px) {
+  /* line 372, ../sass/base.scss */
+  .widgets, #sobre, #participe, #govpergunta {
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  /* line 379, ../sass/base.scss */
+  footer {
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  /* line 386, ../sass/base.scss */
+  footer div.span4 {
+    border-bottom: 1px dashed #FFF;
+  }
+
+  /* line 390, ../sass/base.scss */
+  .block {
+    margin-bottom: 60px;
+  }
+}
+/* line 3, ../sass/gallery.scss */
+.gallery {
+  background: url(../img/bg.png);
+  padding-top: 20px;
 }
 
-#search_tool {
-    text-align: right;
-    color: #000;
+/* line 8, ../sass/gallery.scss */
+.gallery h2 {
+  color: #FFF;
+  text-shadow: 0px 1px 3px rgba(51, 51, 51, 0.6);
 }
 
-#search_tool li.feed {
-    margin-left: 40px;
+/* line 13, ../sass/gallery.scss */
+.desk {
+  background: #1f1f21;
+  overflow: auto;
+  padding: 20px 0 20px 0;
 }
 
-#search_tool input {
-    border: 1px solid #880000;
-    background: #CC0000;
-    padding-left: 2px;
-    margin-left: 5px;
-    box-shadow: none;
-    width: 220px;
+/* line 19, ../sass/gallery.scss */
+#controls {
+  font-size: 20px;
+  margin: 180px 0 0 -17px;
+  position: absolute;
 }
 
-#search_tool input.submit {
-    background: url(../imgs/search.png) no-repeat #CC0000;
-    border: 0 none;
-    display: inline-block;
-    height: 19px;
-    margin: 0 0 0 -27px;
-    padding-top: 0;
-    text-align: center;
-    text-indent: -9999px;
-    width: 19px;
+/* line 25, ../sass/gallery.scss */
+#controls .nav-controls a {
+  font-size: 48pt;
+  line-height: normal;
+  padding: 10px 25px;
+  color: #FFF;
+  text-shadow: 0px 1px 3px rgba(51, 51, 51, 0.6);
 }
 
-#galerias {
-    margin-top: 30px;
+/* line 33, ../sass/gallery.scss */
+#controls .nav-controls .prev {
+  float: left;
 }
 
-#galerias h3 a {
-    text-decoration: underline;
+/* line 37, ../sass/gallery.scss */
+#controls .nav-controls .next {
+  float: right;
 }
 
-#galerias h3, h3 a {
-    color: #FFF;
+/* line 41, ../sass/gallery.scss */
+.caption {
+  background: #000;
+  bottom: 0;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  left: 0;
+  line-height: 24px;
+  overflow: hidden;
+  padding: 5px 8px;
+  position: absolute;
+  right: 0;
+  text-align: left;
+  text-overflow: ellipsis;
 }
 
-#galerias p.error {
-    text-align: center;
-    font-size: 20px;
-    color: white;
-    padding: 20px;
-    margin-top: 20px;
-    font-style: italic;
+/* line 57, ../sass/gallery.scss */
+div.caption-container {
+  position: relative;
+  clear: left;
 }
 
-#gallerylist li {
-    display: inline-block;
-    margin-left: 7px;
-    margin-right: 15px;
-    margin-top: 25px;
+/* line 62, ../sass/gallery.scss */
+div.caption .text {
+  width: 70%;
+  float: left;
 }
 
-#gallerylist li img {
-    display:block;
-    width: 136px;
+/* line 67, ../sass/gallery.scss */
+span.image-caption {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
+/* line 73, ../sass/gallery.scss */
+div.caption {
+  padding: 12px;
+}
+
+/* line 76, ../sass/gallery.scss */
+div.image-title {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+/* line 80, ../sass/gallery.scss */
+div.image-desc {
+  line-height: 1.3em;
+  padding-top: 12px;
+}
+
+<<<<<<< HEAD
 #gallerylist li h4 {
     display:block;
     padding:5px 0;
     color: #FFF;
     text-transform: capitalize;
     width: 175px;
+=======
+/* line 85, ../sass/gallery.scss */
+#thumbs {
+  overflow: hidden;
 }
 
-#gallerylist li a {
-    color:#333;
-    display:block;
+/* line 90, ../sass/gallery.scss */
+#thumbs ul li {
+  float: left;
+  list-style: none;
+}
+
+/* line 95, ../sass/gallery.scss */
+.navigation {
+  padding: 20px 0 20px 0;
+}
+
+/* line 99, ../sass/gallery.scss */
+#thumbs ul li.selected img {
+  opacity: 1;
+}
+
+/* line 103, ../sass/gallery.scss */
+#thumbs ul li img {
+  opacity: 0.5;
+}
+
+/* line 107, ../sass/gallery.scss */
+.bottom {
+  clear: both;
+  padding: 20px 0 0 25px;
+}
+
+/* line 112, ../sass/gallery.scss */
+#gallerylist li {
+  float: left;
+  margin-right: 20px;
+  list-style: none;
+>>>>>>> Arquivos compilados
+}
+
+@media (max-width: 767px) {
+  /* line 120, ../sass/gallery.scss */
+  #controls {
+    width: 100%;
+  }
 }
 
 
