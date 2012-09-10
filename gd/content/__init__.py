@@ -154,6 +154,7 @@ def index():
         page_pq=wordpress.getPageByPath('por-que'),
         page_pro=wordpress.getPageByPath('processo'),
         page_como=wordpress.getPageByPath('como-funciona'),
+        page_seg=wordpress.getPageByPath('seguranca-2'),
         menu=menus,
     )
 
