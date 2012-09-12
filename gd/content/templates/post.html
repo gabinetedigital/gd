@@ -14,22 +14,23 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<div class="content" id="news">
+<div class="news" id="news">
   <div class="container">
     <div class="row">
 
       <div class="span9">
+
         <div class="post">
-          <h2>{{ post.title }}</h2>
+        <h2>{{ post.title }}</h2>
           <div class="meta">
             <ul>
-              <li><i class="icon-calendar icon-white"></i> {{ post.the_date.day }}, {{ post.the_date.month }} de {{ post.the_date.year }}</li>
-              <li><i class="icon-tag icon-white"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
-              <li><i class="icon-share icon-white"></i> {% include "sociable.html" %}</li>
+              <li><i class="icon-calendar "></i> {{ post.the_date.day }}, {{ post.the_date.month }} de {{ post.the_date.year }}</li>
+              <li><i class="icon-tag "></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
             </ul>
           </div>
-
-          {{ post.content|safe }}
+          <div class="content">
+            {{ post.content|safe }}
+          </div>
         </div>
         <div id="comments">
           <div class="postcontent">
@@ -65,7 +66,7 @@
                 <h3>{{ comment.author|safe }}</h3>
 
                 <div class="meta">
-                  <i class="icon-calendar icon-white"></i>
+                  <i class="icon-calendar "></i>
                   {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }} às
                   {{ comment.date_created_gmt|formatarDataeHora('%H:%Mh') }}
                 </div>

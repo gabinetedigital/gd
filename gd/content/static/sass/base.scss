@@ -15,13 +15,14 @@ $default-text-shadow-v-offset: 1px;
 
 body {
     font-family: 'Open Sans', sans-serif;
+
 }
 
 a {
     color: $red;
 }
 
-.home h1, .search, .feed, .twitter, .facebook, .news, #tweets,
+.home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
 .pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand {
     overflow: hidden;
     text-indent: 1000px;
@@ -79,7 +80,7 @@ a {
     border: 0;
 }
 
-.news {
+.mail {
     display: inline-block;
     width: 32px;
     height: 32px;

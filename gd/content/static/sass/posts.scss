@@ -1,28 +1,47 @@
 @import "base";
 
-.content {
-    background: url(../img/bg.png);
+.news {
     padding-top: 20px;
+    border-top: 2px solid #DDD;
+    background: url(../img/arches.png);
 }
 
 .post {
-    color: #FFF;
-    padding: 10px 30px 30px 30px;
-    background: $black;
-    @include border-radius(23px);
-    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
+    color: $black;
+    padding: 16px;
+    background-color:rgba(#FFFFFF, 0.7);
     margin-bottom: 20px;
+    /* @include border-radius(23px); */
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#BBB, 0.48) inset);
+
 }
 
-.post :last {
-    border: 0;
-}
 
 .post h2 {
-    font-weight: 300;
+    /* font-weight: 300; */
+    /* font-size: 30px; */
+    /* color: $red; */
+
     font-size: 30px;
-    color: $red;
-    @include single-text-shadow;
+    color: $black;
+    margin-bottom: 44px;
+    margin-top: 20px;
+    font-weight: 300;
+    /* background-color: #333; */
+    /* padding: 4px 20px; */
+    width: 100%;
+      /* @include single-text-shadow; */
+
+}
+
+.post .content {
+    font-size: 12pt;
+    letter-spacing: 0.06em;
+    line-height: 1.5em;
+}
+
+.post .conten  p {
+    margin-bottom: 30px;
 }
 
 .meta {
@@ -48,28 +67,27 @@
 }
 
 #comments img {
-    background: rgba($black, 0.698);
     padding: 10px;
     width: 80px;
-    @include border-radius(20px 20px 0px 20px);
-    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
+    background-color:rgba(#FFFFFF, 0.7);
+    @include border-radius(23px);
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#BBB, 0.6) inset);
 }
 
 #comments .comment .comcontent, .commentbox {
-    color: #FFF;
+    color: #000;
     border: 0;
-    background: rgba($black, 0.698);
     margin-bottom: 20px;    
     margin-left: 120px;
+    background-color:rgba(#FFFFFF, 0.7);
+    padding: 4px;
     @include border-radius(0px 20px 20px 20px);
-    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
- 
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#BBB, 0.6) inset);
 }
 
 #comments textarea {
-    color: #FFF;
+    color: #000;
     border: 0;
-    background:rgba($black, 0.0);
     width: 96%;
     height: 100px;
 }
@@ -81,10 +99,15 @@
 .sidebar {
     padding-top: 40px;
     color: #FFF;
+    font-size: 10pt;
 }
 
 .sidebar a {
-    color: $blue;
+    color: $red;
+}
+
+.sidebar .widget-title {
+    color: $black;
 }
 
 @media (max-width: 767px) {

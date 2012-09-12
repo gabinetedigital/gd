@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="content" id="news">
+<div class="news" id="news">
   <div class="container">
     <div class="row">
       <div class="span9">
@@ -20,12 +20,11 @@
           </h2>
           <div class="meta">
             <ul>
-              <li><i class="icon-calendar icon-white"></i> {{ post.the_date.day }}, {{ post.the_date.month }} de {{ post.the_date.year }}</li>
-              <li><i class="icon-tag icon-white"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
-              <li><i class="icon-share icon-white"></i> {% include "sociable.html" %}</li>
+              <li><i class="icon-calendar"></i> {{ post.the_date.day }}, {{ post.the_date.month }} de {{ post.the_date.year }}</li>
+              <li><i class="icon-tag"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
             </ul>
           </div>
-          <p>{{ post.excerpt|safe }}</p>
+          <div class="content">{{ post.excerpt|safe }}</div>
           <div style="text-align: right;">
           <a href="{{ post.permalink }}" class="btn btn-danger"> Continue lendo... </a>
           </div>
