@@ -56,18 +56,6 @@ $(function(){
         $('.publicacoes').fadeIn();
     });
 
-
-    var $container = $('.thumbnails');
-    $container.imagesLoaded( function(){
-        $container.masonry({
-            itemSelector : '.thumbnails>li',
-            columnWidth: function( containerWidth ) {
-                console.log(containerWidth / 12);
-                return containerWidth / 12;
-            }
-        });
-    });
-
     // $(".scroll").scrollable({ circular: true }).autoscroll({ autoplay: true }).click(function() {
     //     $(this).data("scrollable").next();
     // });
@@ -95,5 +83,20 @@ $(function(){
         $('.on').hide();
         $('.logado').fadeIn();
     });
+
+    //Executa esta funcionalida depois de 400ms por causa dos scripts dos vídeos se tiver na capa, pois 
+    //eles demoram um pouco para redimensionar o video, e se não estiver pronto, o masonry nao funciona direito.
+    document.setTimeout(function() {
+        var $container = $('.thumbnails');
+        $container.imagesLoaded( function(){
+            $container.masonry({
+                itemSelector : '.thumbnails>li',
+                columnWidth: function( containerWidth ) {
+                    console.log(containerWidth / 12);
+                    return containerWidth / 12;
+                }
+            });
+        });
+    }, 400);
 
 });
