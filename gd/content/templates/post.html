@@ -21,44 +21,51 @@
       <div class="span9">
 
         <div class="post">
-        <h2>{{ post.title }}</h2>
-          <div class="meta">
-            <ul>
-              <li><i class="icon-calendar "></i> {{ post.the_date.day }}, {{ post.the_date.month }} de {{ post.the_date.year }}</li>
-              <li><i class="icon-tag "></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
-            </ul>
-          </div>
+          <h2>{{ post.title }}</h2>
+          <i class="icon-calendar "></i> {{ post.the_date.day }} {{ post.the_date.strftime("%B").capitalize() }} de {{ post.the_date.year }}
           <div class="content">
             {{ post.content|safe }}
+          </div>
+          <div class="meta pull-right">
+            <ul>
+              <li><i class="icon-tag "></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
+            </ul>
           </div>
         </div>
         <div id="comments">
           <div class="postcontent">
+            <h3>Comentários</h3>
+
             {% if post.comments.allow_comments %}
 
+            {% if user is not none %} 
             <!-- the comment error msg -->
             <div class="msg error"></div>
             <div class="msg success"></div>
+
 
             <form
                id="blog_comment_form" method="post"
                action="{{ url_for('new_comment') }}">
 
               <input type="hidden" name="post_id" value="{{ post.id }}">
-              <h2>Comentários</h2>
 
-              Deixe seu comentário<br>
+
               <div class="form">
                 <img src="{{ user.avatar_url }}" class="pull-left">
                 <div class="commentbox">
-                  <textarea name="content" class=""></textarea>
-                  <input class="btn btn-danger pull-right" type="submit" value="Enviar">
+                  <textarea name="content" placeholder="Deixe seu comentário…"></textarea>
+                  <input class="btn btn-danger pull-right enviar" type="submit" value="Enviar">
                 </div>
-
               </div>
             </form>
-            {% endif %}
+            {% else %}
+            <div class="alert alert-info">
+              <strong>Aviso!</strong> Você precisa estar logado para comentar.
+            </div>
 
+            {% endif %}
+            {% endif %}
             {% for comment in comments %}
             <div class="comment">
               <img src="{{ comment.user.avatar_url }}" class="pull-left">
@@ -67,8 +74,6 @@
 
                 <div class="meta">
                   <i class="icon-calendar "></i>
-                  {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }} às
-                  {{ comment.date_created_gmt|formatarDataeHora('%H:%Mh') }}
                 </div>
 
                 {{ comment.content|safe }} <br>

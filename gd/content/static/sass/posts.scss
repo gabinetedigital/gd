@@ -3,55 +3,69 @@
 .news {
     padding-top: 20px;
     border-top: 2px solid #DDD;
-    background: url(../img/arches.png);
+    background: url(../img/minsqr.png);
 }
 
 .post {
     color: $black;
-    padding: 16px;
+    padding: 0px 16px 16px 16px;
     background-color:rgba(#FFFFFF, 0.7);
     margin-bottom: 20px;
-    /* @include border-radius(23px); */
-    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#BBB, 0.48) inset);
-
+    border: 1px solid #DDD;
+    overflow: auto;
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.7) inset);
 }
 
-
 .post h2 {
-    /* font-weight: 300; */
-    /* font-size: 30px; */
-    /* color: $red; */
-
     font-size: 30px;
-    color: $black;
-    margin-bottom: 44px;
-    margin-top: 20px;
-    font-weight: 300;
-    /* background-color: #333; */
-    /* padding: 4px 20px; */
+    color: $red;
+    font-weight: 600;
     width: 100%;
-      /* @include single-text-shadow; */
+}
 
+.post h2 a {
+    color: $red;
+}
+
+.post a {
+    color: $black;
+    text-decoration: none;
 }
 
 .post .content {
-    font-size: 12pt;
-    letter-spacing: 0.06em;
+    font-size: 11pt;
     line-height: 1.5em;
+    margin-top: 10px;
+}
+
+.post .content a {
+    color: $red;
+    text-decoration: none;
+    border-bottom: 1px dotted $red;
 }
 
 .post .conten  p {
     margin-bottom: 30px;
 }
 
-.meta {
+.post .more {
+    text-align: right;
     margin-top: 10px;
-    margin-bottom: 10px;
+}
+
+.meta {
+    /* margin-top: 10px; */
+    /* padding-bottom: 10px; */
 }
 
 .post .meta ul li {
     display: inline;
     margin-right: 20px;
+}
+
+.post .meta ul {
+    padding: 0;
+    margin: 0;
 }
 
 #comments h2 {
@@ -70,8 +84,10 @@
     padding: 10px;
     width: 80px;
     background-color:rgba(#FFFFFF, 0.7);
-    @include border-radius(23px);
-    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#BBB, 0.6) inset);
+    border: 1px solid #DDD;
+    @include border-radius(0 23px 23px 23px);
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.48) inset);
+
 }
 
 #comments .comment .comcontent, .commentbox {
@@ -81,8 +97,15 @@
     margin-left: 120px;
     background-color:rgba(#FFFFFF, 0.7);
     padding: 4px;
-    @include border-radius(0px 20px 20px 20px);
-    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#BBB, 0.6) inset);
+
+    border: 1px solid #DDD;
+    @include border-radius(0 23px 23px 23px);
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.48) inset);
+}
+
+#comments .comment .comcontent, .commentbox .enviar {
+    margin-top: -8px;
+    margin-right: 20px;
 }
 
 #comments textarea {
@@ -90,6 +113,7 @@
     border: 0;
     width: 96%;
     height: 100px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #comments .comment .comcontent {
@@ -102,8 +126,12 @@
     font-size: 10pt;
 }
 
+.sidebar li {
+    color: #BBB;
+}
+
 .sidebar a {
-    color: $red;
+    color: $blue;
 }
 
 .sidebar .widget-title {
@@ -111,7 +139,7 @@
 }
 
 @media (max-width: 767px) {
-    .content {
+    .news {
         margin-right: -20px;
         margin-left: -20px;
         padding-right: 20px;

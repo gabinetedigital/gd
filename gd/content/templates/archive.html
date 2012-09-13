@@ -20,19 +20,22 @@
           </h2>
           <div class="meta">
             <ul>
-              <li><i class="icon-calendar"></i> {{ post.the_date.day }}, {{ post.the_date.month }} de {{ post.the_date.year }}</li>
-              <li><i class="icon-tag"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
+              <li><i class="icon-calendar"></i> {{ post.the_date.day }} {{ post.the_date.strftime("%B").capitalize() }} de {{ post.the_date.year }}</li>
+              <!-- <li><i class="icon-tag"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li> -->
             </ul>
           </div>
-          <div class="content">{{ post.excerpt|safe }}</div>
-          <div style="text-align: right;">
-          <a href="{{ post.permalink }}" class="btn btn-danger"> Continue lendo... </a>
+          <a href="{{ post.permalink }}">
+            <div class="content">{{ post.excerpt|safe }}</div>
+          </a>
+          <div class="more">
+            <a href="{{ post.permalink }}" class="btn">Continue lendo</a>
           </div>
         </div>
 
         {% endfor %}
 
         {{ pagination|safe }}
+
       </div>
       <div class="span3 sidebar">
         {{ sidebar(id='sidebar-1')|safe }}
