@@ -68,6 +68,7 @@
     padding-left: 20px;
 }
 
+
 a.otherquestions {
     display:block;
     background:url("../imgs/others.png") no-repeat left;
@@ -473,6 +474,15 @@ h1.questions {
 .encaminhada {
     margin:10px 10px 0 40px;
     display:none;
+}
+
+.encaminhada li a {
+    color: #000;
+}
+
+.encaminhada li a:hover {
+    color: #668000;
+    text-decoration: underline;
 }
 
 .questions .aggregated li {
