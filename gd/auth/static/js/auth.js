@@ -121,7 +121,6 @@ var auth = (function() {
                 var overlay = this.getOverlay();
                 var closeMethod = this.close;
                 wrap.load(url_for('auth.signup') + '?readmore');
-
             }
         })
 
@@ -151,7 +150,16 @@ var auth = (function() {
 
         /** Shows the signup form */
         , showSignupForm: function (params) {
-            this.$signOverlay.load();
+//            this.$signOverlay.load();
+            //alert(':'+url_for('auth.signup'));
+            options = {
+                keyboard: true,
+                show: true,
+                remote: url_for('auth.signup')
+            };
+            $('#myModal').modal(options);
+
+
             return false;
         }
 
