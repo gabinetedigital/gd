@@ -148,11 +148,13 @@
     		<ul  id="encaminhada-{{ audience.ID }}" class="encaminhada">
 	      		{% for post in referrals %}
 	      		<li>
-	        		<h4>
-	          			{{ post.title }}
-	          			<em>({{ post.the_date.strftime('%d/%m/%Y') }})</em>
-	        		</h4>
-	        		<div>{{ post.excerpt }}</div>
+	      			<a href="{{ post.get_field('link', post.permalink) }}">
+	        		    <h4>
+	          			    {{ post.title }}
+	          			    <em>({{ post.the_date.strftime('%d/%m/%Y') }})</em>
+	        		    </h4>
+	        		    <div>{{ post.excerpt }}</div>
+	        		</a>
 	      		</li>
 	      		{% endfor %}
     		</ul>

@@ -189,6 +189,15 @@
 
 .encaminhada h4 { clear:both; margin:20px 0; }
 
+.encaminhada li a {
+    color: #000;
+}
+
+.encaminhada li a:hover {
+    color: #668000;
+    text-decoration: underline;
+}
+
 #beingAnswered {
     min-height:100px;
 }
