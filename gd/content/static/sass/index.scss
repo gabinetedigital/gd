@@ -237,10 +237,15 @@ section h2 {
     width: 0;
 }
 
+#govpergunta .gov {
+    background: $black;
+    cursor: pointer;
+    height: 110px;
+}
+
 #govpergunta .pwhat {
     color: #FFF;
-    @include single-text-shadow;
-    background-color: $blue;;
+    background-color: $red;
     padding: 20px;
 }
 
@@ -262,7 +267,7 @@ section h2 {
 
 #govpergunta .pwhat {
     color: #FFF;
-    @include single-text-shadow;
+
     background-color: #3ea1e2;
     padding: 20px;
 }
@@ -298,4 +303,9 @@ section h2 {
 
 #govpergunta .pergunta h1 {
     padding: 10px;
+}
+
+#govpergunta .pri {
+    background-color: $blue;
+    @include text-shadow(0 0 0);
 }

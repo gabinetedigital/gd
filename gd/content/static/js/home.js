@@ -1,5 +1,5 @@
-/* Copyright (C) 2011  Lincoln de Sousa <lincoln@comum.org>
- * Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+/* Copyright (C) 2012  Guilherme Guerra <guerrinha@comum.org>
+ * Copyright (C) 2012  Governo do Estado do Rio Grande do Sul
  *
  *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
  *
@@ -18,34 +18,37 @@
  */
 
 $(document).ready(function () {
-    $("#time").click(function() {
-        $("#timeline").overlay().load();
+
+    $('#pq').hide();
+    $('#pro').hide();
+    $('#como').hide();
+
+    $('.pri').click(function(){
+        $('#pq').hide();
+        $('#pro').hide();
+        $('#como').hide();
+        $('#pri').fadeIn();
     });
 
-
-    $("#timeline").overlay({
-        mask: {
-            color: '#111',
-            loadSpeed: 200,
-            opacity: 0.9
-        },
-
-        closeOnClick: true,
-        load: true
+    $('.pq').click(function(){
+        $('#pri').hide();
+        $('#pro').hide();
+        $('#como').hide();
+        $('#pq').fadeIn();
     });
 
-
-
-    $('#slideshow .controls').tabs('ul.carousel > li', {
-        effect: 'fade',
-        rotate: true
-    }).slideshow({
-        clickable: false
+    $('.pro').click(function(){
+        $('#pq').hide();
+        $('#pri').hide();
+        $('#como').hide();
+        $('#pro').fadeIn();
     });
 
-    if ($('#slideshow .controls').length > 0) {
-        window.setInterval(function () {
-            $("#slideshow .controls").data("tabs").next();
-        }, 7000);
-    }
+    $('.como').click(function(){
+        $('#pq').hide();
+        $('#pro').hide();
+        $('#pri').hide();
+        $('#como').fadeIn();
+    });
+
 });

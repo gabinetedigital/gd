@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block javascript %}
-<!-- <script src="{{ url_for('.static', filename='js/home.js') }}"></script> -->
+<script src="{{ url_for('.static', filename='js/home.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -163,32 +163,69 @@
           <h2>Segurança no Transito: O que é prioridade?</h2>
         </div>
         <div class="row">
+
+          <div class="span4">
+            <ul class="thumbnails">
+              <li class="span2">
+                <div class="thumbnail pri gov">
+                  <h3>Prioridades</h3>
+                </div>
+              </li>
+              <li class="span2">
+                <div class="thumbnail pq gov">
+                  <h3>Por que trânsito?</h3>
+                </div>
+              </li>
+              <li class="span2">
+                <div class="thumbnail pro gov">
+                  <h3>Entenda o Processo</h3>
+                </div>
+              </li>
+              <li class="span2">
+                <div class="thumbnail como gov">
+                  <h3>Como funciona?</h3>
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <div class="span8">
-            <div class="pwhat">
-              {{ page_seg.content|safe }}
-              <h3>{{ page_seg.title|safe }}</h3>
+            <div id="pri" class="pwhat">
+              <h3>{{ page_pri.title|safe }}</h3>
+              {{ page_pri.content|safe }}
+            </div>
+            <div id="pq" class="pwhat">
+              <h3>{{ page_pq.title|safe }}</h3>
+              {{ page_pq.content|safe }}
+            </div>
+            <div id="pro" class="pwhat">
+              <h3>{{ page_pro.title|safe }}</h3>
+              {{ page_pro.content|safe }}
+            </div>
+            <div id="como" class="pwhat">
+              <h3>{{ page_como.title|safe }}</h3>
+              {{ page_como.content|safe }}
             </div>
           </div>
 
-          <div class="span4">
 
-          </div>
         </div>
 
         <div class="row">
           <div class="span12">
             <div class="pergunta">
-              <h1>Tema: Legislação</h1>
-              <div class="row">
-                <div class="span6">
-                  <div class="choice">
-                    <button class="btn btn-success">{{ page_seg.content|safe }}</button>
-                  </div>
-                </div>
-                <div class="span6">
-                  <div class="choice">
-                    <button class="btn btn-success">{{ page_seg.content|safe }}</button>
-                  </div>
+              <!-- <iframe src='http://widget.allourideas.org/fisl' width='550' height='650' frameborder='0' scrolling='no'></iframe> -->
+                            <h1>Tema: Legislação</h1>
+                            <div class="row">
+                              <div class="span6">
+                                <div class="choice">
+                                  <button class="btn btn-success">{{ page_about.content|safe }}</button>
+                                </div>
+                              </div>
+                              <div class="span6">
+                                <div class="choice">
+                                  <button class="btn btn-success"><p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia dapibus erat, quis accumsan dui placerat non. Curabitur faucibus congue pretium. Aliquam commodo cursus sapien, non feugiat diam mattis vitae. Vestibulum facilisis vestibulum quam ut ornare. Fusce vitae dolor in turpis ornare metus.</p>
+              </button>
                 </div>
               </div>
             </div>
