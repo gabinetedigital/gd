@@ -15,7 +15,6 @@ $default-text-shadow-v-offset: 1px;
 
 body {
     font-family: 'Open Sans', sans-serif;
-
 }
 
 a {
@@ -23,7 +22,8 @@ a {
 }
 
 .home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
-.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand {
+.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand,
+.pri, .pq, .pro, .como {
     overflow: hidden;
     text-indent: 1000px;
     background: url(../img/home.png) no-repeat;
