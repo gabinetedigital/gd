@@ -89,29 +89,32 @@
         </div>
         <div class="span4">
           <div class="login">
-            <div class="off">
-              <p class="saudacao">Olá Visitante!</p>
-              <button class="btn btn-primary entrar">Entrar</button>
-              <button class="btn btn-primary">Entrar via Facebook</button>
-            </div>
             <div class="on">
-              <form class="form-inline">
-                <input type="text" class="input-small" placeholder="Usuário">
-                <input type="password" class="input-small" placeholder="Senha">
+              <form class="form-inline" method="post" id="login" action="{{ url_for('auth.login_json') }}">
+                <input type="text" class="input-small" id="username" name="username" placeholder="Usuário">
+                <input type="password" id="password" name="password" class="input-small" placeholder="Senha">
                 <button type="submit" class="btn logar">Entrar</button>
                 <div class="control">
                   <a href="">Esqueci minha senha</a>
                 </div>
               </form>
             </div>
+            {% if user is not none %}
             <div class="logado">
               <div class="male pull-right"></div>
               <div class="profile-control">
-                <p class="saudacao">Olá, Fernando Machado!</p>
-                <button class="btn btn-info">Editar perfil</button>
-                <button class="btn btn-danger">Sair</button>
+                <p class="saudacao">Olá, {{ user.display_name }}!</p>
+                <a href="{{ url_for('auth.profile_form') }}" class="btn btn-info">Editar perfil</a>
+                <a href="{{ url_for('auth.logout_json') }}" onclick="auth.logout(); return false;" class="btn btn-danger">Sair</a>
               </div>
             </div>
+            {% else %}
+            <div class="off">
+              <p class="saudacao">Olá Visitante!</p>
+              <button class="btn btn-primary entrar">Entrar</button>
+              <button class="btn btn-primary">Entrar via Facebook</button>
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -122,10 +125,11 @@
     <footer>
       <div class="container">
         <div class="row">
+
           <div class="span4">
             <h2>Contatos</h2>
             <address>
-              <p class="lead">
+              <p class="">
                 <strong>Gabinete do Governador<br> Palácio Piratini</strong><br>
                 Praça Marechal Deodoro s/n<br>
                 Porto Alegre - RS<br>
@@ -135,21 +139,25 @@
               </p>
             </address>
           </div>
+
+
+
           <div class="span4">
 
             <h2>Licenças</h2>
 
-            <p class="lead">Todo o conteúdo do site está disponível sobre a licença
+            <p class="">Todo o conteúdo do site está disponível sobre a licença
               Creative Commons Attribution 3.0 não adaptada.</p>
 
-            <p class="lead">O código deste site é livre, licenciado sob a Affero GPL.
+            <p class="">O código deste site é livre, licenciado sob a Affero GPL.
               Para saber mais sobre isso, veja a nossa página sobre desenvolvimento.</p>
           </div>
 
           <div class="span4">
-            <h2>Rio Grande do Sul</h2>
-            <img src="../img/logors.png">
+            <h3>Rio Grande do Sul</h3>
+            <img src="{{ url_for('static', filename='img/logors.png') }}">
           </div>
+
         </div>
       </div>
     </footer>
@@ -159,6 +167,19 @@
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.masonry.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.tools.min.js') }}"></script>
+
+    <!-- {% if user %} -->
+    <!-- <script>auth.userAuthenticated({{ user.public_json()|safe }});</script> -->
+    <!-- {% endif %} -->
+
+    <!-- {% if 'signup' in request.values %} -->
+    <!-- <script> $(function () { auth.showSignupForm(); }); </script> -->
+    <!-- {% endif %} -->
+
+    <!-- {% if 'login' in request.values and not user %} -->
+    <!-- <script> $(function () { auth.showLoginForm(); }); </script> -->
+    <!-- {% endif %} -->
 
     {% block javascript %}
     {% endblock %}
