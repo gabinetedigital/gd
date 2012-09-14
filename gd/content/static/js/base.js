@@ -71,18 +71,18 @@ $(function(){
     $('.subnav').scrollspy()
 
     $('.on').hide();
-    $('.logado').hide();
+    // $('.logado').hide();
 
     $('.entrar').click(function(){
         $('.off').hide();
         $('.on').fadeIn();
     });
 
-    $('.form-inline').click(function(){
-        $('.off').hide();
-        $('.on').hide();
-        $('.logado').fadeIn();
-    });
+    // $('.form-inline').click(function(){
+    //     $('.off').hide();
+    //     $('.on').hide();
+    //     $('.logado').fadeIn();
+    // });
 
     //Executa esta funcionalida depois de 400ms por causa dos scripts dos vídeos se tiver na capa, pois 
     //eles demoram um pouco para redimensionar o video, e se não estiver pronto, o masonry nao funciona direito.
