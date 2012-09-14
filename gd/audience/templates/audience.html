@@ -2,7 +2,6 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
-
 {% endblock %}
 
 {% block javascript %}
@@ -17,6 +16,7 @@
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
 {% endblock %}
+
 
 
 {% block content %}
@@ -115,7 +115,28 @@
         <!--   </div> -->
 
 
+          <!--     </li> -->
+          <!--     <li class="step-3"> -->
+          <!--       <div class="wrapper"> -->
+          <!--         <img -->
+          <!--            src="{{ url_for('.static', filename='imgs/mustache_gentleman.png') }}" -->
+          <!--            class="mustache-gentleman"> -->
+          <!--         <img -->
+          <!--            src="{{ url_for('.static', filename='imgs/empty_dialog.png') }}" -->
+          <!--            class="mustache-gentleman-dialog"> -->
+          <!--       </div> -->
+          <!--       <p>O Governador comenta as contribuições selecionadas</p> -->
+          <!--     </li> -->
+          <!--   </ol> -->
+
+          <!--   <div id="saiba-mais-link"> -->
+          <!--     <a href="javascript:show_how_to()"> Saiba mais </a> -->
+          <!--   </div> -->
+          <!--   <div id="saiba-mais-text" style="display:none"> -->
+          <!--     {{ how_to|safe }} -->
+          <!--   </div> -->
         </div>
+
 
         <div id="beingAnswered-anterior">
 	  {% if (buzzesSelec) %}
@@ -137,6 +158,7 @@
   	  </ul>
   	  {% endif %}
         </div>
+
         <div id="streaming">
 	  {{audience.aud_wp_govescuta_video_embed|safe}}
 	</div>
@@ -167,6 +189,7 @@
   	</div>
 
       </div>
+
 
     <div class="span4">
       <a class="filter" href="javascript:;"
@@ -203,10 +226,13 @@
           <span class="current-msg-length">300</span>
           <input id="send_comment" type="submit" value="enviar">
         </form>
+
       </div>
     </div>
   </div>
-  <div class="row-end"></div>
+</div>
+</div>
+</div>
 </div>
 {% endfor%}
 </div>
