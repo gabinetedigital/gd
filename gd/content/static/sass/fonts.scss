@@ -1,0 +1,62 @@
+@import "compass/css3/font-face";
+
+@include font-face("OpenSansLight", font-files("../fonts/OpenSans-Light-webfont.eot",
+"../fonts/OpenSans-Light-webfont.eot?#iefix",
+"../fonts/OpenSans-Light-webfont.woff",
+"../fonts/OpenSans-Light-webfont.ttf",
+"../fonts/OpenSans-Light-webfont.svg#OpenSansLight"));
+
+@include font-face("OpenSansLightItalic", font-files("../fonts/OpenSans-LightItalic-webfont.eot",
+"../fonts/OpenSans-LightItalic-webfont.eot?#iefix",
+"../fonts/OpenSans-LightItalic-webfont.woff",
+"../fonts/OpenSans-LightItalic-webfont.ttf",
+"../fonts/OpenSans-LightItalic-webfont.svg#OpenSansLightItalic"));
+
+@include font-face("OpenSansRegular", font-files("../fonts/OpenSans-Regular-webfont.eot",
+"../fonts/OpenSans-Regular-webfont.eot?#iefix",
+"../fonts/OpenSans-Regular-webfont.woff",
+"../fonts/OpenSans-Regular-webfont.ttf",
+"../fonts/OpenSans-Regular-webfont.svg#OpenSansRegular"));
+
+@include font-face("OpenSansItalic", font-files("../fonts/OpenSans-Italic-webfont.eot",
+"../fonts/OpenSans-Italic-webfont.eot?#iefix",
+"../fonts/OpenSans-Italic-webfont.woff",
+"../fonts/OpenSans-Italic-webfont.ttf",
+"../fonts/OpenSans-Italic-webfont.svg#OpenSansItalic"));
+
+@include font-face("OpenSansSemibold", font-files("../fonts/OpenSans-Semibold-webfont.eot",
+"../fonts/OpenSans-Semibold-webfont.eot?#iefix",
+"../fonts/OpenSans-Semibold-webfont.woff",
+"../fonts/OpenSans-Semibold-webfont.ttf",
+"../fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold"));
+
+@include font-face("OpenSansSemiboldItalic", font-files("../fonts/OpenSans-SemiboldItalic-webfont.eot",
+"../fonts/OpenSans-SemiboldItalic-webfont.eot?#iefix",
+"../fonts/OpenSans-SemiboldItalic-webfont.woff",
+"../fonts/OpenSans-SemiboldItalic-webfont.ttf",
+"../fonts/OpenSans-SemiboldItalic-webfont.svg#OpenSansSemiboldItalic"));
+
+
+@include font-face("OpenSansBold", font-files("../fonts/OpenSans-Bold-webfont.eot",
+"../fonts/OpenSans-Bold-webfont.eot?#iefix",
+"../fonts/OpenSans-Bold-webfont.woff",
+"../fonts/OpenSans-Bold-webfont.ttf",
+"../fonts/OpenSans-Bold-webfont.svg#OpenSansBold"));
+
+@include font-face("OpenSansBoldItalic", font-files("../fonts/OpenSans-BoldItalic-webfont.eot",
+"../fonts/OpenSans-BoldItalic-webfont.eot?#iefix",
+"../fonts/OpenSans-BoldItalic-webfont.woff",
+"../fonts/OpenSans-BoldItalic-webfont.ttf",
+"../fonts/OpenSans-BoldItalic-webfont.svg#OpenSansBoldItalic"));
+
+@include font-face("OpenSansExtrabold", font-files("../fonts/OpenSans-ExtraBold-webfont.eot",
+"../fonts/OpenSans-ExtraBold-webfont.eot?#iefix",
+"../fonts/OpenSans-ExtraBold-webfont.woff",
+"../fonts/OpenSans-ExtraBold-webfont.ttf",
+"../fonts/OpenSans-ExtraBold-webfont.svg#OpenSansExtrabold"));
+
+@include font-face("OpenSansExtraboldItalic", font-files("../fonts/OpenSans-ExtraBoldItalic-webfont.eot",
+"../fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix",
+"../fonts/OpenSans-ExtraBoldItalic-webfont.woff",
+"../fonts/OpenSans-ExtraBoldItalic-webfont.ttf",
+"../fonts/OpenSans-ExtraBoldItalic-webfont.svg#OpenSansExtraboldItalic"));
