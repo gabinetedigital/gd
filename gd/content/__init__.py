@@ -149,9 +149,11 @@ def index():
         'index.html', wp=wordpress,
         slideshow=slideshow, news={'big': news[:2], 'small': news[2:]},
         sidebar=wordpress.getSidebar,
-        picday=picday,
-        last_tweet=get_mayor_last_tweet(),
-        videos=wordpress.wpgd.getHighlightedVideos(2),
+        page_about=wordpress.getPageByPath('sobre'),
+        page_pri=wordpress.getPageByPath('prioridades'),
+        page_pq=wordpress.getPageByPath('por-que'),
+        page_pro=wordpress.getPageByPath('processo'),
+        page_como=wordpress.getPageByPath('como-funciona'),
         menu=menus,
     )
 
