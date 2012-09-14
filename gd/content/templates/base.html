@@ -89,32 +89,59 @@
         </div>
         <div class="span4">
           <div class="login">
+
+            <!-- Signup Modal -->
+            <div id="myModal" class="modal hide fade in" style="display: none; ">  
+              <div class="modal-header">  
+                <a class="close" data-dismiss="modal">×</a>  
+                <h3>Cadastro de novo usuário</h3>  
+              </div>  
+              <div class="modal-body">  
+
+                <strong>Carregando</strong>
+                  <img src="{{ url_for('static', filename='imgs/loading.gif') }}"
+                       alt="Carregando, por favor aguarde" class="loading">
+
+              </div>  
+              <div class="modal-footer">  
+                <a href="#" class="btn btn-success">Cadastrar</a>  
+                <a href="#" class="btn" data-dismiss="modal">Fechar</a>  
+              </div>  
+            </div>  
+
             <div class="on">
-              <form class="form-inline" method="post" id="login" action="{{ url_for('auth.login_json') }}">
+              <form class="form-inline" method="post" id="frmLogin" action="{{ url_for('auth.login_json') }}">
                 <input type="text" class="input-small" id="username" name="username" placeholder="Usuário">
                 <input type="password" id="password" name="password" class="input-small" placeholder="Senha">
                 <button type="submit" class="btn logar">Entrar</button>
                 <div class="control">
-                  <a href="">Esqueci minha senha</a>
+                  <a href="" onclick="auth.togglePasswordReminder(); return false;" >Esqueci a senha</a> | 
+                  <a href="" onclick="auth.showSignupForm() ;return false;">Novo Cadastro</a>
                 </div>
               </form>
+              <span id="loginmsg" class="alert"></span>
             </div>
-            {% if user is not none %}
             <div class="logado">
               <div class="male pull-right"></div>
               <div class="profile-control">
                 <p class="saudacao">Olá, {{ user.display_name }}!</p>
                 <a href="{{ url_for('auth.profile_form') }}" class="btn btn-info">Editar perfil</a>
-                <a href="{{ url_for('auth.logout_json') }}" onclick="auth.logout(); return false;" class="btn btn-danger">Sair</a>
+                <button onclick="auth.logout(); return false;" class="btn btn-danger">Sair</button>
               </div>
             </div>
-            {% else %}
             <div class="off">
               <p class="saudacao">Olá Visitante!</p>
               <button class="btn btn-primary entrar">Entrar</button>
               <button class="btn btn-primary">Entrar via Facebook</button>
             </div>
-            {% endif %}
+            <div class="passwordReminder">
+              <form class="form-horizontal" action="/auth/remember_password" id="remember_password" method="post">
+                <input type="text" id="email" name="email" placeholder="Seu email">
+                <button type="submit" class="btn logar">Lembrar</button>
+              </form>
+              <a href="" onclick="auth.togglePasswordReminder(); return false;" >Cancelar</a>
+              <span id="loginmsg" class="alert"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -162,16 +189,25 @@
       </div>
     </footer>
 
+    <script>
+      var SIO_BASE = "{{ host }}";
+      var BASE_URL = "{{ request.url_root }}";
+      var CURRENT_URL = "{{ request.url }}";
+    </script>
+
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.form.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.tools.min.js') }}"></script>
+    <script src="{{ url_for('auth.static', filename='js/auth.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/urls.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.masonry.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.tools.min.js') }}"></script>
 
-    <!-- {% if user %} -->
-    <!-- <script>auth.userAuthenticated({{ user.public_json()|safe }});</script> -->
-    <!-- {% endif %} -->
+    {% if user %}
+    <script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
+    {% endif %}
 
     <!-- {% if 'signup' in request.values %} -->
     <!-- <script> $(function () { auth.showSignupForm(); }); </script> -->

@@ -84,7 +84,9 @@ $(function(){
     //     $('.logado').fadeIn();
     // });
 
-    //Executa esta funcionalida depois de 400ms por causa dos scripts dos vídeos se tiver na capa, pois 
+    auth.updateLoginWidget();
+
+    //Executa esta funcionalida depois de 400ms por causa dos scripts dos vídeos se tiver na capa, pois
     //eles demoram um pouco para redimensionar o video, e se não estiver pronto, o masonry nao funciona direito.
     window.setTimeout(function() {
         var $container = $('.thumbnails');
@@ -92,11 +94,54 @@ $(function(){
             $container.masonry({
                 itemSelector : '.thumbnails>li',
                 columnWidth: function( containerWidth ) {
-                    console.log(containerWidth / 12);
+                    //console.log(containerWidth / 12);
                     return containerWidth / 12;
                 }
             });
         });
     }, 1000);
+
+    //Auth functions
+    function handleBeforeSubmit(form) {
+        $('span#loginmsg').fadeOut();
+        return true;
+    }
+
+    function handleSuccess(form, data) {
+        var errors = data.msg.data;
+        var code = data.code;
+        var csrfToken = data.msg.csrf;
+
+        /* It's everything ok, let's get out */
+        $('span#loginmsg').html(data.msg);
+        if (data.status === 'ok') {
+            $('span#loginmsg').addClass('alert-success');
+            auth.userAuthenticated(data.msg.user);
+            $('span#loginmsg').fadeIn();
+        } else {
+            $('span#loginmsg').addClass('alert-error');
+            $('span#loginmsg').fadeIn();
+        }
+
+        window.setTimeout(function(){
+            $('span#loginmsg').fadeOut();
+        },5000);
+    }
+
+    $('#frmLogin').ajaxForm({
+        dataType: 'json',
+        beforeSubmit: function () { handleBeforeSubmit($('#frmLogin')); },
+        success: function (data) { handleSuccess($('#frmLogin'), data); }
+    });
+
+    $('#remember_password').ajaxForm({
+        dataType: 'json',
+        beforeSubmit: function () { handleBeforeSubmit($('#frmLogin')); },
+        success: function (data) { handleSuccess($('#frmLogin'), data); }
+    });
+
+    $('span#loginmsg').hide();
+    $('.passwordReminder').hide();
+    $('#signupoverlay').hide();
 
 });
