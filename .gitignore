@@ -1,4 +1,5 @@
 gd/conf.py
 po/*/LC_MESSAGES/gabinetedigital.mo
 *.pyc
+*.css
 .sass-cache/
