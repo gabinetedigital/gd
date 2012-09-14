@@ -52,6 +52,23 @@ $(document).ready(function() {
     $('.next').addClass('awesome');
     $('.play').hide();
 
-
+    $('.download a').live('click', function(e){
+    	alert($(this).attr('href'));
+    	e.preventDefault();
+    	
+        $url = url_for('gallery.fotoDownload', url=$(this).attr('href'));
+        $.ajax({
+            type: 'GET',
+            url: $url,
+            success: function(data){
+                   if(data == true){
+                    alert('This file is not available for download.');
+                   }else{
+                    window.location =""+$url+"";
+                   }
+            }
+         
+        })
+    })
 
 });

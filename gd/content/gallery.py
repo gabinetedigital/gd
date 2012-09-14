@@ -21,6 +21,7 @@
 from flask import Blueprint, render_template, abort, request, jsonify
 from gd.content.wp import wordpress, gallery as api
 import math
+import urllib
 
 gallery = Blueprint(
     'gallery', __name__,
@@ -73,3 +74,9 @@ def vote(gid, rate=-1):
     except RuntimeError as e:
         print e.errno, e.strerror
         return jsonify("{'vote': 'False', 'msg': ''}")
+
+@gallery.route('/fotoDownload/<url>')
+def fotoDownload(url=None):
+    tes = "http://localhost/wordpress/wp-content/gallery/galeria-de-teste/201209071214214490ca070912.jpg_backup"
+    urllib.urlretrieve(tes)
+    
