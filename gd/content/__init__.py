@@ -154,7 +154,6 @@ def index():
         page_pq=wordpress.getPageByPath('por-que'),
         page_pro=wordpress.getPageByPath('processo'),
         page_como=wordpress.getPageByPath('como-funciona'),
-        page_seg=wordpress.getPageByPath('seguranca-2'),
         menu=menus,
     )
 
@@ -319,7 +318,7 @@ def post(pid):
 @app.route('/new_contribution', methods=('POST',))
 def new_contribution():
     """Posts new contributions on the page 'conselho-comunicacao' """
-    
+
     try:
         mostrar_nome = request.form['mostrar_nome']
     except KeyError :
