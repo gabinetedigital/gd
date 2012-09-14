@@ -86,7 +86,7 @@ $(function(){
 
     //Executa esta funcionalida depois de 400ms por causa dos scripts dos vídeos se tiver na capa, pois 
     //eles demoram um pouco para redimensionar o video, e se não estiver pronto, o masonry nao funciona direito.
-    document.setTimeout(function() {
+    window.setTimeout(function() {
         var $container = $('.thumbnails');
         $container.imagesLoaded( function(){
             $container.masonry({
@@ -97,6 +97,6 @@ $(function(){
                 }
             });
         });
-    }, 400);
+    }, 1000);
 
 });
