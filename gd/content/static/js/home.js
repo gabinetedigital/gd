@@ -23,28 +23,28 @@ $(document).ready(function () {
     $('#pro').hide();
     $('#como').hide();
 
-    $('.pri').click(function(){
+    $('.prioridade').click(function(){
         $('#pq').hide();
         $('#pro').hide();
         $('#como').hide();
         $('#pri').fadeIn();
     });
 
-    $('.pq').click(function(){
+    $('.porque').click(function(){
         $('#pri').hide();
         $('#pro').hide();
         $('#como').hide();
         $('#pq').fadeIn();
     });
 
-    $('.pro').click(function(){
+    $('.processo').click(function(){
         $('#pq').hide();
         $('#pri').hide();
         $('#como').hide();
         $('#pro').fadeIn();
     });
 
-    $('.como').click(function(){
+    $('.comofunciona').click(function(){
         $('#pq').hide();
         $('#pro').hide();
         $('#pri').hide();

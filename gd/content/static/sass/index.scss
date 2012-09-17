@@ -237,53 +237,8 @@ section h2 {
     width: 0;
 }
 
-#govpergunta .gov {
-    background: $black;
-    cursor: pointer;
-    height: 110px;
-}
-
 #govpergunta .pwhat {
     color: #FFF;
-    background-color: $red;
-    padding: 20px;
-}
-
-#govpergunta h3 {
-    font-weight: 300;
-    font-size: 30px;
-    text-align: right;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-
-
-#participe .phow {
-    color: #FFF;
-    @include single-text-shadow;
-    background-color: #5cbd7c;
-    padding: 20px;
-}
-
-#govpergunta .pwhat {
-    color: #FFF;
-
-    background-color: #3ea1e2;
-    padding: 20px;
-}
-
-#govpergunta h3 {
-    font-weight: 300;
-    font-size: 30px;
-    text-align: right;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-
-#govpergunta .phow {
-    color: #FFF;
-    @include single-text-shadow;
-    background-color: $orange;
     padding: 20px;
 }
 
@@ -305,7 +260,58 @@ section h2 {
     padding: 10px;
 }
 
-#govpergunta .pri {
+#govpergunta .thumbnail {
+    @include box-shadow(0 0 0 rgba(255, 255, 255, 0.0), 0 0 0 0 rgba(0, 0, 0, 0.0) inset);
+}
+
+#govpergunta .gov {
+    cursor: pointer;
+    height: 130px;
+}
+
+#govpergunta .gov h3 {
+    font-size: 16pt;
+    font-weight: 400;
+    text-align: right;
+    line-height: 28px;
+    margin-top: 0;
+}
+
+.pri, .pro, .como, .pq {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+}
+
+#govpergunta .prioridade, #govpergunta #pri {
     background-color: $blue;
-    @include text-shadow(0 0 0);
+}
+
+#govpergunta .pri {
+    background-position: -41px -335px;
+}
+
+#govpergunta .porque, #govpergunta #pq {
+    background-color: $red;
+}
+
+#govpergunta .pq {
+    background-position: -174px -325px;
+}
+
+#govpergunta .processo, #govpergunta #pro {
+    background-color: $orange;
+}
+
+#govpergunta .pro {
+    background-position: -243px -327px;
+}
+
+#govpergunta .comofunciona, #govpergunta #como {
+    background-color: $green;
+}
+
+#govpergunta .como {
+    background-position: -110px -327px;
 }
