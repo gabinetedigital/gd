@@ -121,7 +121,7 @@ def logout_json():
 @auth.route('/signup')
 def signup_form():
     """Renders the signup form"""
-    
+
     default_data=None
     print session.keys()
     if request.cookies.get('connect_type') == 'social_f':
@@ -137,12 +137,22 @@ def signup_form():
     else:
         print "NAO TEM FACEBOOK_DATA !!!!!!"
 
-    form = social(forms.SignupForm, default=default_data)
-    return render_template(
-        'signup.html', form=form,
-        tos=wordpress.getPageByPath('tos'),
-        readmore=wordpress.getPageByPath('signup-read-more')
-    )
+    form = social(forms.SignupForm)
+    if 'readmore' in request.args:
+        return render_template(
+            'signup.html', form=form,
+            readmore=wordpress.getPageByPath('signup-read-more'),
+        )
+    elif 'tos' in request.args:
+        return render_template(
+            'signup.html', form=form,
+            tos=wordpress.getPageByPath('tos'),
+        )
+    else:
+        return render_template(
+            'signup.html', form=form,
+        )
+
 
 
 @auth.route('/signup_json', methods=('POST',))
