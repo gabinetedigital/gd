@@ -10,19 +10,32 @@
   <h1>{{ readmore.title|safe }}</h1>
   {{ readmore.content|safe }}
   <button class="btn pull-right" onclick="auth.toggleSignupTab('form');">Ir para o cadastro</button>
+<<<<<<< HEAD
   <br>&nbsp;
+=======
+  <br>
+>>>>>>> (login) Implementacao para novo layout, cadastro
 {%elif tos%}
   <h1>{{ tos.title|safe }}</h1>
   {{ tos.content|safe }}
   <button class="btn pull-right" onclick="auth.toggleSignupTab('form');">Ir para o cadastro</button>
+<<<<<<< HEAD
   <br>&nbsp;
+=======
+  <br>
+>>>>>>> (login) Implementacao para novo layout, cadastro
 {%else%}
     <h1>Cadastro</h1>
     <form class="form-horizontal" method="post" id="signup" action="{{ url_for('.signup_json') }}">
 
       {{ form.csrf }}
+<<<<<<< HEAD
       <div id="auth-error" class="msg error alert alert-error hide"></div>
       <div id="auth-success" class="msg success alert alert-success hide"></div>
+=======
+      <div class="msg error"></div>
+      <div class="msg success"></div>
+>>>>>>> (login) Implementacao para novo layout, cadastro
       <!-- <div class="signup-form"> -->
       {% if form.social %}
       <div class="help">
@@ -36,7 +49,11 @@
           <div class="controls">
             {{ form.name }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg name-error"></p><br>
+=======
+          <p class="errmsg name-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -44,7 +61,11 @@
           <div class="controls">
             {{ form.email }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg email-error"></p><br>
+=======
+          <p class="errmsg email-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -52,7 +73,11 @@
           <div class="controls">
             {{ form.email_confirmation }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg email_confirmation-error"></p><br>
+=======
+          <p class="errmsg email_confirmation-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         {% if not form.social %}
@@ -61,7 +86,11 @@
           <div class="controls">
             {{ form.password }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg password-error"></p><br>
+=======
+          <p class="errmsg password-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -69,7 +98,11 @@
           <div class="controls">
             {{ form.password_confirmation }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg password_confirmation-error"></p><br>
+=======
+          <p class="errmsg password_confirmation-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
         {% endif %}
 
@@ -78,14 +111,29 @@
           <div class="controls">
             {{ form.state }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg state-error"></p><br>
+=======
+          <p class="errmsg state-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
         <div class="control-group">
           {{ form.city.label }}
           <div class="controls">
             {{ form.city }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg city-error"></p><br>
+=======
+          <p class="errmsg city-error"></p>
+        </div>
+        <div class="control-group">
+          {{ form.phone.label }}
+          <div class="controls">
+            {{ form.phone }}
+          </div>
+          <p class="errmsg phone-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -116,6 +164,7 @@
           </div>
         </div>
 
+<<<<<<< HEAD
         <h4>Opcional</h4>
 
         <div class="control-group">
@@ -135,11 +184,27 @@
         </div>
 
         <div class="control-group">
+=======
+
+        <div class="control-group">
+          {{ form.gender.label }}
+          <div class="controls">
+            {{ form.gender }}
+          </div>
+          <p class="errmsg gender-error"></p>
+        </div>
+
+        <div class="control-group">
+>>>>>>> (login) Implementacao para novo layout, cadastro
           {{ form.age_group.label }}
           <div class="controls">
             {{ form.age_group }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg age_group-error"></p><br>
+=======
+          <p class="errmsg age_group-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -147,7 +212,11 @@
           <div class="controls">
             {{ form.twitter }}
           </div>
+<<<<<<< HEAD
           <p class="errmsg twitter-error"></p><br>
+=======
+          <p class="errmsg twitter-error"></p>
+>>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -161,8 +230,11 @@
 $(function(){
   //$('#tab-cadastro a:last').tab('show');
   $('#signup label').addClass('control-label');
+<<<<<<< HEAD
   $('.errmsg').hide();
 
+=======
+>>>>>>> (login) Implementacao para novo layout, cadastro
 });
 
 showTos = function(){
