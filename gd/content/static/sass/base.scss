@@ -393,3 +393,36 @@ section {
     }
 
 }
+
+#signupoverlay {
+    width:500px;
+}
+
+.overlay {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 5px solid rgba(55, 55, 55, 0.5);
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 10px #333333;
+    display: none;
+    padding: 10px;
+    max-height: 80%;
+    overflow-y:auto;
+}
+
+.overlay h1{
+    width: 100%;
+    border-bottom: 1px solid #c5c5c5;
+}
+
+.contentWrap {
+    height:100%;
+    overflow-y:auto;
+}
+
+.contentWrap .control-group{
+    margin-bottom: 0px;
+}
+
+.maior{
+    width: 200px !important;
+}

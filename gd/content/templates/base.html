@@ -90,24 +90,18 @@
         <div class="span4">
           <div class="login">
 
-            <!-- Signup Modal -->
-            <div id="myModal" class="modal hide fade in" style="display: none; ">  
-              <div class="modal-header">  
-                <a class="close" data-dismiss="modal">×</a>  
-                <h3>Cadastro de novo usuário</h3>  
-              </div>  
-              <div class="modal-body">  
-
-                <strong>Carregando</strong>
+<!-- Signup Modal -->
+            <div id="signupoverlay" class="overlay loading" style="position: absolute; z-index: 9999; top: 47.8px; left: 692.5px; display: block;">
+              <div class="contentWrap">
+                <div class="ct">
+                  <strong>Carregando</strong>
                   <img src="{{ url_for('static', filename='imgs/loading.gif') }}"
                        alt="Carregando, por favor aguarde" class="loading">
+                </div>
+              </div>
+            </div>
 
-              </div>  
-              <div class="modal-footer">  
-                <a href="#" class="btn btn-success">Cadastrar</a>  
-                <a href="#" class="btn" data-dismiss="modal">Fechar</a>  
-              </div>  
-            </div>  
+<!-- Signup Modal -->
 
             <div class="on">
               <form class="form-inline" method="post" id="frmLogin" action="{{ url_for('auth.login_json') }}">
@@ -115,7 +109,7 @@
                 <input type="password" id="password" name="password" class="input-small" placeholder="Senha">
                 <button type="submit" class="btn logar">Entrar</button>
                 <div class="control">
-                  <a href="" onclick="auth.togglePasswordReminder(); return false;" >Esqueci a senha</a> | 
+                  <a href="" onclick="auth.togglePasswordReminder(); return false;" >Esqueci a senha</a> |
                   <a href="" onclick="auth.showSignupForm() ;return false;">Novo Cadastro</a>
                 </div>
               </form>
@@ -133,6 +127,7 @@
               <p class="saudacao">Olá Visitante!</p>
               <button class="btn btn-primary entrar">Entrar</button>
               <button class="btn btn-primary">Entrar via Facebook</button>
+              <button class="btn btn-success" onclick="auth.showSignupForm() ;return false;">Novo Cadastro</button>
             </div>
             <div class="passwordReminder">
               <form class="form-horizontal" action="/auth/remember_password" id="remember_password" method="post">

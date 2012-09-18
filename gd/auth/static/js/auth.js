@@ -108,8 +108,8 @@ var auth = (function() {
         /** Configuring the DOM element that holds the signup form */
         , $signOverlay: $('#signupoverlay').overlay({
             api: true,
-            fixed: false,
-            top: '5px',
+            fixed: true,
+            top: '10%',
             mask: {
                 color: '#333',
                 opacity: 0.8
@@ -120,7 +120,7 @@ var auth = (function() {
                 var wrap = this.getOverlay().find(".contentWrap");
                 var overlay = this.getOverlay();
                 var closeMethod = this.close;
-
+                wrap.load(url_for('auth.signup') + '?readmore');
 
             }
         })
@@ -151,17 +151,24 @@ var auth = (function() {
 
         /** Shows the signup form */
         , showSignupForm: function (params) {
-//            this.$signOverlay.load();
+            this.$signOverlay.load();
             //alert(':'+url_for('auth.signup'));
-            options = {
-                keyboard: true,
-                show: true,
-                remote: url_for('auth.signup')
-            };
-            $('#myModal').modal(options);
 
+            //$('#signupoverlay .contentWrap .ct').load(url_for('auth.signup') + '?readmore');
 
             return false;
+        }
+
+        /** Toggles tabs of the signup overlay (readmore, tos, form) */
+        , toggleSignupTab: function (tabName) {
+            var wrap = $('#signupoverlay').find(".contentWrap");
+            if(tabName == 'tos'){
+                wrap.load(url_for('auth.signup') + '?tos');
+            }else if (tabName == 'readmore'){
+                wrap.load(url_for('auth.signup') + '?readmore');
+            }else{
+                wrap.load(url_for('auth.signup'));
+            }
         }
 
         /** Method called after a successful authentication. It saves
@@ -224,21 +231,6 @@ var auth = (function() {
                     $lgForm.fadeIn();
                     $lgForm.find('input[name=username]').focus();
                 });
-            }
-        }
-
-        /** Toggles tabs of the signup overlay (readmore, tos, form) */
-        , toggleSignupTab: function (tabName) {
-            var $target = $('div.tab.' + tabName);
-            if (!$target.is(':visible')) {
-                $('div.tab').each(function () {
-                    if (!$(this).hasClass(tabName)) {
-                        $(this).fadeOut(200);
-                    }
-                });
-                window.setTimeout(function () {
-                    $target.fadeIn();
-                }, 200);
             }
         }
 
