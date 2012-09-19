@@ -116,11 +116,17 @@ var auth = (function() {
             },
             oneInstance: false,
             speed: 'fast',
+
+            alternativeUrl: '',
             onBeforeLoad: function() {
                 var wrap = this.getOverlay().find(".contentWrap");
                 var overlay = this.getOverlay();
                 var closeMethod = this.close;
-                wrap.load(url_for('auth.signup') + '?readmore');
+                if(this.alternativeUrl){
+                    wrap.load(this.alternativeUrl);
+                }else{
+                    wrap.load(url_for('auth.signup') + '?readmore');
+                }
 
 
 
@@ -153,6 +159,9 @@ var auth = (function() {
 
         /** Shows the signup form */
         , showSignupForm: function (params) {
+            if( params['directToForm'] || params == 'directToForm' ){
+                this.$signOverlay.alternativeUrl = url_for('auth.signup');
+            }
             this.$signOverlay.load();
             //alert(':'+url_for('auth.signup'));
 
@@ -180,20 +189,20 @@ var auth = (function() {
                             var pData = $.parseJSON(data);
                             if (pData.status !== 'ok') {
                                 $('#auth-error').html('Corrija os campos abaixo').fadeIn('fast');
-                                for(campo in pData.msg.data){
-                                    console.log('item:'+campo);
-                                    console.log('.'+campo+'-error');
-                                    console.log(pData.msg.data[campo][0]);
-                                    $('#signupoverlay')
-                                        .find('.'+campo+'-error')
-                                        .html( pData.msg.data[campo][0] )
-                                        .fadeIn('fast');
+                                if( typeof pData.msg.data==="string" ){
+                                    $('#auth-error').html(pData.msg.data).fadeIn('fast');
+                                }else{
+                                    for(campo in pData.msg.data){
+                                        console.log('item:'+campo);
+                                        console.log('.'+campo+'-error');
+                                        console.log(pData.msg.data[campo][0]);
+                                        $('#signupoverlay')
+                                            .find('.'+campo+'-error')
+                                            .html( pData.msg.data[campo][0] )
+                                            .fadeIn('fast');
 
+                                    }
                                 }
-                                // $('#signupoverlay')
-                                //     .find('#auth-error')
-                                //     .html(pData.msg)
-                                //     .fadeIn('fast');
                             } else {
                                 $('#auth-success')
                                    .html('Obrigado! Agora siga os passos no email que você recebeu para concluir seu cadastro.')
@@ -201,6 +210,7 @@ var auth = (function() {
                                 $('#signupoverlay').scrollTop();
                                 //auth.close();
                                 //auth.userAuthenticated(pData.msg.user);
+                                $('#signupoverlay').find('form').fadeOut('fast');
                             }
                             return false;
                         }

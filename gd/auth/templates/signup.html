@@ -10,35 +10,26 @@
   <h1>{{ readmore.title|safe }}</h1>
   {{ readmore.content|safe }}
   <button class="btn pull-right" onclick="auth.toggleSignupTab('form');">Ir para o cadastro</button>
-<<<<<<< HEAD
-  <br>&nbsp;
-=======
   <br>
->>>>>>> (login) Implementacao para novo layout, cadastro
 {%elif tos%}
   <h1>{{ tos.title|safe }}</h1>
   {{ tos.content|safe }}
   <button class="btn pull-right" onclick="auth.toggleSignupTab('form');">Ir para o cadastro</button>
-<<<<<<< HEAD
   <br>&nbsp;
-=======
-  <br>
->>>>>>> (login) Implementacao para novo layout, cadastro
 {%else%}
     <h1>Cadastro</h1>
+    <div id="auth-error" class="msg error alert alert-error hide"></div>
+    <div id="auth-success" class="msg success alert alert-success hide"></div>
     <form class="form-horizontal" method="post" id="signup" action="{{ url_for('.signup_json') }}">
 
       {{ form.csrf }}
-<<<<<<< HEAD
       <div id="auth-error" class="msg error alert alert-error hide"></div>
       <div id="auth-success" class="msg success alert alert-success hide"></div>
-=======
       <div class="msg error"></div>
       <div class="msg success"></div>
->>>>>>> (login) Implementacao para novo layout, cadastro
       <!-- <div class="signup-form"> -->
       {% if form.social %}
-      <div class="help">
+      <div class="alert">
         Você está se autenticando através de uma rede social. Para
         terminar o processo falta apenas preencher os campos abaixo.
       </div>
@@ -49,11 +40,7 @@
           <div class="controls">
             {{ form.name }}
           </div>
-<<<<<<< HEAD
           <p class="errmsg name-error"></p><br>
-=======
-          <p class="errmsg name-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -61,11 +48,7 @@
           <div class="controls">
             {{ form.email }}
           </div>
-<<<<<<< HEAD
           <p class="errmsg email-error"></p><br>
-=======
-          <p class="errmsg email-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -73,11 +56,7 @@
           <div class="controls">
             {{ form.email_confirmation }}
           </div>
-<<<<<<< HEAD
           <p class="errmsg email_confirmation-error"></p><br>
-=======
-          <p class="errmsg email_confirmation-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         {% if not form.social %}
@@ -86,11 +65,7 @@
           <div class="controls">
             {{ form.password }}
           </div>
-<<<<<<< HEAD
           <p class="errmsg password-error"></p><br>
-=======
-          <p class="errmsg password-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -98,11 +73,7 @@
           <div class="controls">
             {{ form.password_confirmation }}
           </div>
-<<<<<<< HEAD
           <p class="errmsg password_confirmation-error"></p><br>
-=======
-          <p class="errmsg password_confirmation-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
         {% endif %}
 
@@ -111,20 +82,14 @@
           <div class="controls">
             {{ form.state }}
           </div>
-<<<<<<< HEAD
           <p class="errmsg state-error"></p><br>
-=======
-          <p class="errmsg state-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
         <div class="control-group">
           {{ form.city.label }}
           <div class="controls">
             {{ form.city }}
           </div>
-<<<<<<< HEAD
-          <p class="errmsg city-error"></p><br>
-=======
+
           <p class="errmsg city-error"></p>
         </div>
         <div class="control-group">
@@ -133,7 +98,6 @@
             {{ form.phone }}
           </div>
           <p class="errmsg phone-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
         </div>
 
         <div class="control-group">
@@ -164,7 +128,7 @@
           </div>
         </div>
 
-<<<<<<< HEAD
+
         <h4>Opcional</h4>
 
         <div class="control-group">
@@ -175,16 +139,6 @@
           <p class="errmsg phone-error"></p><br>
         </div>
 
-        <div class="control-group">
-          {{ form.gender.label }}
-          <div class="controls">
-            {{ form.gender }}
-          </div>
-          <p class="errmsg gender-error"></p><br>
-        </div>
-
-        <div class="control-group">
-=======
 
         <div class="control-group">
           {{ form.gender.label }}
@@ -195,16 +149,14 @@
         </div>
 
         <div class="control-group">
->>>>>>> (login) Implementacao para novo layout, cadastro
+
           {{ form.age_group.label }}
           <div class="controls">
             {{ form.age_group }}
           </div>
-<<<<<<< HEAD
+
           <p class="errmsg age_group-error"></p><br>
-=======
-          <p class="errmsg age_group-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
+
         </div>
 
         <div class="control-group">
@@ -212,11 +164,9 @@
           <div class="controls">
             {{ form.twitter }}
           </div>
-<<<<<<< HEAD
+
           <p class="errmsg twitter-error"></p><br>
-=======
-          <p class="errmsg twitter-error"></p>
->>>>>>> (login) Implementacao para novo layout, cadastro
+
         </div>
 
         <div class="control-group">
@@ -226,18 +176,51 @@
     <br>
 {%endif%}
 
+
+<div id="tos" class="overlay hide loading" style="position: absolute; z-index: 9999; top: 27.8px; left: 392.5px; display: block;">
+  <div class="contentWrap"></div>
+  <p>
+    <button class="close"> Fechar </button>
+  </p>
+</div>
+
 <script type="text/javascript">
 $(function(){
   //$('#tab-cadastro a:last').tab('show');
   $('#signup label').addClass('control-label');
-<<<<<<< HEAD
+
   $('.errmsg').hide();
 
-=======
->>>>>>> (login) Implementacao para novo layout, cadastro
+
+
+    // select the overlay element - and "make it an overlay"
+    $("#tos").overlay({
+      // custom top position
+      top: '10%',
+      oneInstance: false,
+      // some mask tweaks suitable for facebox-looking dialogs
+      mask: {
+        // you might also consider a "transparent" color for the mask
+        color: '#fff',
+        // load mask a little faster
+        loadSpeed: 200,
+        // very transparent
+        opacity: 0.5
+      },
+      // disable this for modal dialog-type of overlays
+      closeOnClick: false,
+      // load it immediately after the construction
+      load: false,
+      onBeforeLoad: function() {
+          $("#tos").find(".contentWrap")
+                   .load(url_for('auth.signup') + '?tos');
+      }
+    });
+
+
 });
 
 showTos = function(){
-  auth.toggleSignupTab('tos');
+  $("#tos").overlay().load();
 }
 </script>

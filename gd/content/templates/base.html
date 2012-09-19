@@ -95,7 +95,8 @@
 
 
 <!-- Signup Modal -->
-            <div id="signupoverlay" class="overlay loading" style="position: absolute; z-index: 9999; top: 47.8px; left: 692.5px; display: block;">
+            <div id="signupoverlay" class="overlay loading" style="position: absolute; z-index: 9990; top: 47.8px; left: 692.5px; display: block;">
+              <div class="close"></div>
               <div class="contentWrap">
                 <div class="ct">
                   <strong>Carregando</strong>
@@ -214,7 +215,7 @@
     {% endif %}
 
     {% if 'signup' in request.values %}
-    <script> $(function () { auth.showSignupForm(); }); </script>
+    <script> $(function () { auth.showSignupForm('directToForm'); }); </script>
     {% endif %}
 
     {% if 'login' in request.values and not user %}
