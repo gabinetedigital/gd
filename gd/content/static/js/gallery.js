@@ -53,10 +53,11 @@ $(document).ready(function() {
     $('.play').hide();
 
     $('.download a').live('click', function(e){
-    	alert($(this).attr('href'));
     	e.preventDefault();
-    	
-        $url = url_for('gallery.fotoDownload', url=$(this).attr('href'));
+    	arq = $(this).attr('href');
+    	arq = replaceAll(arq, "/", "$");
+    	alert(arq);
+        $url = url_for('gallery.fotoDownload', url=arq);
         $.ajax({
             type: 'GET',
             url: $url,
@@ -69,6 +70,16 @@ $(document).ready(function() {
             }
          
         })
+        
     })
 
 });
+    
+function replaceAll(str, de, para){
+    var pos = str.IndexOf(de);
+    while (pos > -1){
+        str = str.replace(de, para);
+        pos = str.IndexOIf(de);
+    }
+    return (str);
+}

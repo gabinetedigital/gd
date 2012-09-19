@@ -18,10 +18,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template, abort, request, jsonify
+from flask import Blueprint, render_template, abort, request, jsonify, send_from_directory
 from gd.content.wp import wordpress, gallery as api
 import math
-import urllib
+import urllib2
 
 gallery = Blueprint(
     'gallery', __name__,
@@ -75,8 +75,26 @@ def vote(gid, rate=-1):
         print e.errno, e.strerror
         return jsonify("{'vote': 'False', 'msg': ''}")
 
-@gallery.route('/fotoDownload/<url>')
-def fotoDownload(url=None):
-    tes = "http://localhost/wordpress/wp-content/gallery/galeria-de-teste/201209071214214490ca070912.jpg_backup"
-    urllib.urlretrieve(tes)
+@gallery.route('/fotoDownload/<string:slug>')
+def fotoDownload(slug=None):
+    arq = slug
+    print "1 = ", arq
+    #url = "http://homologa.gabinetedigital.rs.gov.br/wp/wp-content/gallery/"
+    #print "2 = ", url
+    nomearq = arq.replace("$", "/")
+    print "3 == ", nomearq
+    #arq = slug
+    arq = nomearq
+    arq = str(arq)
+    print "4 == ", arq
+    nomearq = str.split(arq, '/')
+    nomearq = nomearq[len(nomearq)-1]
+    nomearq = nomearq.replace("_backup", "")
+    print "aa == ", "/tmp/"+nomearq
+    u = urllib2.urlopen(arq)
+    localFile = open('/tmp/'+nomearq, 'wb')
+    localFile.write(u.read())
+    localFile.close()
+    
+    return send_from_directory("/tmp",nomearq, as_attachment=True)
     
