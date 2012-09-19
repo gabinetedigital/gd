@@ -126,8 +126,9 @@
             <div class="off">
               <p class="saudacao">Olá Visitante!</p>
               <button class="btn btn-primary entrar">Entrar</button>
-              <button class="btn btn-primary">Entrar via Facebook</button>
+              <a href="/auth/fb" class="btn btn-primary">Entrar via Facebook</a>
               <button class="btn btn-success" onclick="auth.showSignupForm() ;return false;">Novo Cadastro</button>
+
             </div>
             <div class="passwordReminder">
               <form class="form-horizontal" action="/auth/remember_password" id="remember_password" method="post">
@@ -204,13 +205,13 @@
     <script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
     {% endif %}
 
-    <!-- {% if 'signup' in request.values %} -->
-    <!-- <script> $(function () { auth.showSignupForm(); }); </script> -->
-    <!-- {% endif %} -->
+    {% if 'signup' in request.values %}
+    <script> $(function () { auth.showSignupForm(); }); </script>
+    {% endif %}
 
-    <!-- {% if 'login' in request.values and not user %} -->
-    <!-- <script> $(function () { auth.showLoginForm(); }); </script> -->
-    <!-- {% endif %} -->
+    {% if 'login' in request.values and not user %}
+    <script> $(function () { auth.showLoginForm(); }); </script> 
+    {% endif %}
 
     {% block javascript %}
     {% endblock %}

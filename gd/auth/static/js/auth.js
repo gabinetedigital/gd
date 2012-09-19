@@ -152,10 +152,6 @@ var auth = (function() {
         /** Shows the signup form */
         , showSignupForm: function (params) {
             this.$signOverlay.load();
-            //alert(':'+url_for('auth.signup'));
-
-            //$('#signupoverlay .contentWrap .ct').load(url_for('auth.signup') + '?readmore');
-
             return false;
         }
 
@@ -167,7 +163,43 @@ var auth = (function() {
             }else if (tabName == 'readmore'){
                 wrap.load(url_for('auth.signup') + '?readmore');
             }else{
-                wrap.load(url_for('auth.signup'));
+                wrap.load(url_for('auth.signup'), function(){
+                    $($('#signupoverlay').find('form')).ajaxForm({
+                        beforeSubmit: function () {
+                            $('.errmsg').fadeOut();
+                            $('#auth-error').fadeOut();
+                        },
+
+                        success: function (data) {
+                            var pData = $.parseJSON(data);
+                            if (pData.status !== 'ok') {
+                                $('#auth-error').html('Corrija os campos abaixo').fadeIn('fast');
+                                for(campo in pData.msg.data){
+                                    console.log('item:'+campo);
+                                    console.log('.'+campo+'-error');
+                                    console.log(pData.msg.data[campo][0]);
+                                    $('#signupoverlay')
+                                        .find('.'+campo+'-error')
+                                        .html( pData.msg.data[campo][0] )
+                                        .fadeIn('fast');
+
+                                }
+                                // $('#signupoverlay')
+                                //     .find('#auth-error')
+                                //     .html(pData.msg)
+                                //     .fadeIn('fast');
+                            } else {
+                                $('#auth-success')
+                                   .html('Obrigado! Agora siga os passos no email que você recebeu para concluir seu cadastro.')
+                                   .fadeIn('fast');
+                                $('#signupoverlay').scrollTop();
+                                //auth.close();
+                                //auth.userAuthenticated(pData.msg.user);
+                            }
+                            return false;
+                        }
+                    });
+                });
             }
         }
 

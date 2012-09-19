@@ -55,7 +55,8 @@ def index(slug=None):
         'gallery.html',
         galleries=galleries,
         s=search_terms,
-        current=current)
+        current=current
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 @gallery.route('/vote/<int:gid>/')
 @gallery.route('/vote/<int:gid>/<int:rate>/')

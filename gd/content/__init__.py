@@ -171,23 +171,26 @@ def teaser():
     return render_template('teaser.html')
 
 
-@app.route('/sobre')
+@app.route('/sobre/')
 def sobre():
     """Renders the about template"""
-    return render_template('sobre.html', page=wordpress.getPageByPath('sobre'))
+    return render_template('sobre.html', page=wordpress.getPageByPath('sobre'),
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
-@app.route('/about')
+@app.route('/about/')
 def about():
     """Renders the about template"""
-    return render_template('about.html', page=wordpress.getPageByPath('about'))
+    return render_template('about.html', page=wordpress.getPageByPath('about')
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
-@app.route('/acerca')
+@app.route('/acerca/')
 def acerca():
     """Renders the about template"""
-    return render_template('acerca.html', page=wordpress.getPageByPath('acerca'))
+    return render_template('acerca.html', page=wordpress.getPageByPath('acerca')
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
-@app.route('/foto_com_gov')
+@app.route('/foto_com_gov/')
 def foto_com_gov():
     return render_template('galeria.html')
 
@@ -195,8 +198,8 @@ def foto_com_gov():
 # -- Blog specific views --
 
 
-@app.route('/news')
-@app.route('/news/<int:page>')
+@app.route('/news/')
+@app.route('/news/<int:page>/')
 def news(page=0):
     """List posts in chronological order"""
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
@@ -212,8 +215,8 @@ def news(page=0):
         posts=posts)
 
 
-@app.route('/cat/<int:cid>')
-@app.route('/cat/<int:cid>/<int:page>')
+@app.route('/cat/<int:cid>/')
+@app.route('/cat/<int:cid>/<int:page>/')
 def category(cid, page=0):
     """List posts of a given category"""
     pagination, posts = wordpress.getPostsByCategory(cat=cid, page=page)
@@ -224,11 +227,12 @@ def category(cid, page=0):
         #sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
-        posts=posts)
+        posts=posts
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
-@app.route('/tag/<string:slug>')
-@app.route('/tag/<string:slug>/<int:page>')
+@app.route('/tag/<string:slug>/')
+@app.route('/tag/<string:slug>/<int:page>/')
 def tag(slug, page=0):
     """List posts of a given tag"""
     pagination, posts = wordpress.getPostsByTag(tag=slug, page=page)
@@ -239,11 +243,12 @@ def tag(slug, page=0):
         sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
-        posts=posts)
+        posts=posts
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
 
-@app.route('/conselho-comunicacao')
+@app.route('/conselho-comunicacao/')
 def conselho():
     """Renders a wordpress page special"""
     path = 'conselho-comunicacao'
@@ -257,11 +262,12 @@ def conselho():
         picday=picday,
         comments=cmts,
         show_comment_form=is_authenticated(),
-        categoria_contribuicao_text=categoria_contribuicao_text,
+        categoria_contribuicao_text=categoria_contribuicao_text
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
 
-@app.route('/pages/<path:path>')
+@app.route('/pages/<path:path>/')
 def pages(path):
     """Renders a wordpress page"""
     #Retorna a ultima foto inserida neste album.
@@ -270,7 +276,8 @@ def pages(path):
         'page.html',
         page=wordpress.getPageByPath(path),
         sidebar=wordpress.getSidebar,
-        picday=picday,
+        picday=picday
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
 
@@ -281,7 +288,7 @@ def page_json(path):
     return dumps(page and page.data or None)
 
 
-@app.route('/post/<int:pid>')
+@app.route('/post/<int:pid>/')
 def post(pid):
     """View that renders a post template"""
     recent_posts = wordpress.getRecentPosts(
@@ -327,7 +334,7 @@ def new_contribution():
     except xmlrpclib.Fault, err:
         return msg.error(_(err.faultString), code='CommentError')
 
-@app.route('/new_comment', methods=('POST',))
+@app.route('/new_comment/', methods=('POST',))
 def new_comment():
     """Posts new comments to the blog"""
     if not is_authenticated():
@@ -344,8 +351,8 @@ def new_comment():
         return msg.error(_(err.faultString), code='CommentError')
 
 
-@app.route('/search')
-@app.route('/search/<int:page>')
+@app.route('/search/')
+@app.route('/search/<int:page>/')
 def search(page=0):
     """Renders the search template"""
     query = request.values.get('s', '')
@@ -358,17 +365,18 @@ def search(page=0):
         picday=picday,
         pagination=pagination,
         search_term=query,
-        posts=posts)
+        posts=posts
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
-@app.route('/feed')
+@app.route('/feed/')
 def feed():
     """Renders the RSS wordpress function"""
     header = {'Content-Type': 'application/rss+xml; charset=utf-8'}
     return wordpress.getRSS(), 200, header
 
-@app.route('/archive/<int:m>')
-@app.route('/archive/<int:m>/<int:page>')
+@app.route('/archive/<int:m>/')
+@app.route('/archive/<int:m>/<int:page>/')
 def archive(m, page=0):
     """List posts of the archive given yyyymm format"""
     pagination, posts = wordpress.getArchivePosts(m=m, page=page)
@@ -382,7 +390,7 @@ def archive(m, page=0):
         posts=posts)
 
 
-@app.route('/confirm_signup/<string:key>')
+@app.route('/confirm_signup/<string:key>/')
 def confirm_signup(key):
     try:
         user = User.query.filter_by(user_activation_key=key).one()

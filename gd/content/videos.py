@@ -30,14 +30,16 @@ videos = Blueprint(
 def listing():
     videos = wordpress.wpgd.getVideos(
         where='status=true', orderby='date DESC')
-    return render_template('videos.html', videos=videos)
+    return render_template('videos.html', videos=videos
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
 @videos.route('/<int:vid>')
 def details(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)
-    return render_template('video.html', video=video, sources=sources)
+    return render_template('video.html', video=video, sources=sources
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
 @videos.route('/embed/<int:vid>')

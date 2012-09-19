@@ -20,7 +20,7 @@
 
 from os import urandom
 from sqlalchemy.orm.exc import NoResultFound
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, session, make_response
 from werkzeug import FileStorage
 
 from gd import utils
@@ -115,7 +115,11 @@ def login_json():
 def logout_json():
     """Logs the user out and returns an ok message"""
     authapi.logout()
-    return msg.ok(_(u'User loged out'))
+
+    resp = make_response( msg.ok(_(u'User loged out')) )
+    resp.set_cookie('connect_type', '')
+    return resp
+    # return msg.ok(_(u'User loged out'))
 
 
 @auth.route('/signup')

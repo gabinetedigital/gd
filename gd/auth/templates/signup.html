@@ -10,19 +10,19 @@
   <h1>{{ readmore.title|safe }}</h1>
   {{ readmore.content|safe }}
   <button class="btn pull-right" onclick="auth.toggleSignupTab('form');">Ir para o cadastro</button>
-  <br>
+  <br>&nbsp;
 {%elif tos%}
   <h1>{{ tos.title|safe }}</h1>
   {{ tos.content|safe }}
   <button class="btn pull-right" onclick="auth.toggleSignupTab('form');">Ir para o cadastro</button>
-  <br>
+  <br>&nbsp;
 {%else%}
     <h1>Cadastro</h1>
     <form class="form-horizontal" method="post" id="signup" action="{{ url_for('.signup_json') }}">
 
       {{ form.csrf }}
-      <div class="msg error"></div>
-      <div class="msg success"></div>
+      <div id="auth-error" class="msg error alert alert-error hide"></div>
+      <div id="auth-success" class="msg success alert alert-success hide"></div>
       <!-- <div class="signup-form"> -->
       {% if form.social %}
       <div class="help">
@@ -36,7 +36,7 @@
           <div class="controls">
             {{ form.name }}
           </div>
-          <p class="errmsg name-error"></p>
+          <p class="errmsg name-error"></p><br>
         </div>
 
         <div class="control-group">
@@ -44,7 +44,7 @@
           <div class="controls">
             {{ form.email }}
           </div>
-          <p class="errmsg email-error"></p>
+          <p class="errmsg email-error"></p><br>
         </div>
 
         <div class="control-group">
@@ -52,7 +52,7 @@
           <div class="controls">
             {{ form.email_confirmation }}
           </div>
-          <p class="errmsg email_confirmation-error"></p>
+          <p class="errmsg email_confirmation-error"></p><br>
         </div>
 
         {% if not form.social %}
@@ -61,7 +61,7 @@
           <div class="controls">
             {{ form.password }}
           </div>
-          <p class="errmsg password-error"></p>
+          <p class="errmsg password-error"></p><br>
         </div>
 
         <div class="control-group">
@@ -69,7 +69,7 @@
           <div class="controls">
             {{ form.password_confirmation }}
           </div>
-          <p class="errmsg password_confirmation-error"></p>
+          <p class="errmsg password_confirmation-error"></p><br>
         </div>
         {% endif %}
 
@@ -78,21 +78,14 @@
           <div class="controls">
             {{ form.state }}
           </div>
-          <p class="errmsg state-error"></p>
+          <p class="errmsg state-error"></p><br>
         </div>
         <div class="control-group">
           {{ form.city.label }}
           <div class="controls">
             {{ form.city }}
           </div>
-          <p class="errmsg city-error"></p>
-        </div>
-        <div class="control-group">
-          {{ form.phone.label }}
-          <div class="controls">
-            {{ form.phone }}
-          </div>
-          <p class="errmsg phone-error"></p>
+          <p class="errmsg city-error"></p><br>
         </div>
 
         <div class="control-group">
@@ -123,13 +116,22 @@
           </div>
         </div>
 
+        <h4>Opcional</h4>
+
+        <div class="control-group">
+          {{ form.phone.label }}
+          <div class="controls">
+            {{ form.phone }}
+          </div>
+          <p class="errmsg phone-error"></p><br>
+        </div>
 
         <div class="control-group">
           {{ form.gender.label }}
           <div class="controls">
             {{ form.gender }}
           </div>
-          <p class="errmsg gender-error"></p>
+          <p class="errmsg gender-error"></p><br>
         </div>
 
         <div class="control-group">
@@ -137,7 +139,7 @@
           <div class="controls">
             {{ form.age_group }}
           </div>
-          <p class="errmsg age_group-error"></p>
+          <p class="errmsg age_group-error"></p><br>
         </div>
 
         <div class="control-group">
@@ -145,7 +147,7 @@
           <div class="controls">
             {{ form.twitter }}
           </div>
-          <p class="errmsg twitter-error"></p>
+          <p class="errmsg twitter-error"></p><br>
         </div>
 
         <div class="control-group">
@@ -159,6 +161,8 @@
 $(function(){
   //$('#tab-cadastro a:last').tab('show');
   $('#signup label').addClass('control-label');
+  $('.errmsg').hide();
+
 });
 
 showTos = function(){

@@ -35,20 +35,22 @@ def index():
     videos = [wordpress.wpgd.getVideo(i) for i in (14, 16, 12)]
     return render_template(
         'balanco.html', posts=posts, images=images, videos=videos,
-        pagename='govpergunta',
+        pagename='govpergunta'
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
 
-@balanco.route('/govresponde')
+@balanco.route('/govresponde/')
 def govresponde():
     return render_template(
         'balanco_govresponde.html',
         pagename='govresponde',
         videos=[wordpress.wpgd.getVideo(i) for i in range(17, 23)]
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
 
-@balanco.route('/govescuta')
+@balanco.route('/govescuta/')
 def govescuta():
     imgs = {
         'bullying': gallery.search('bullying'),
@@ -58,11 +60,12 @@ def govescuta():
     return render_template(
         'balanco_govescuta.html',
         pagename='govescuta',
-        imgs=imgs,
+        imgs=imgs
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
 
-@balanco.route('/agenda')
+@balanco.route('/agenda/')
 def agenda():
     images = {
         'bage': gallery.search('bagé'),
@@ -73,5 +76,6 @@ def agenda():
     return render_template(
         'balanco_agenda.html',
         pagename='agenda',
-        images=images,
+        images=images
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
