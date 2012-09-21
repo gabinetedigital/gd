@@ -78,23 +78,15 @@ def vote(gid, rate=-1):
 @gallery.route('/fotoDownload/<string:slug>')
 def fotoDownload(slug=None):
     arq = slug
-    print "1 = ", arq
-    #url = "http://homologa.gabinetedigital.rs.gov.br/wp/wp-content/gallery/"
-    #print "2 = ", url
     nomearq = arq.replace("$", "/")
-    print "3 == ", nomearq
-    #arq = slug
-    arq = nomearq
-    arq = str(arq)
-    print "4 == ", arq
+    arq = str(nomearq)
     nomearq = str.split(arq, '/')
     nomearq = nomearq[len(nomearq)-1]
     nomearq = nomearq.replace("_backup", "")
-    print "aa == ", "/tmp/"+nomearq
     u = urllib2.urlopen(arq)
     localFile = open('/tmp/'+nomearq, 'wb')
     localFile.write(u.read())
     localFile.close()
-    
+
     return send_from_directory("/tmp",nomearq, as_attachment=True)
     

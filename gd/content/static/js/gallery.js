@@ -52,34 +52,6 @@ $(document).ready(function() {
     $('.next').addClass('awesome');
     $('.play').hide();
 
-    $('.download a').live('click', function(e){
-    	e.preventDefault();
-    	arq = $(this).attr('href');
-    	arq = replaceAll(arq, "/", "$");
-    	alert(arq);
-        $url = url_for('gallery.fotoDownload', url=arq);
-        $.ajax({
-            type: 'GET',
-            url: $url,
-            success: function(data){
-                   if(data == true){
-                    alert('This file is not available for download.');
-                   }else{
-                    window.location =""+$url+"";
-                   }
-            }
-         
-        })
-        
-    })
+
 
 });
-    
-function replaceAll(str, de, para){
-    var pos = str.IndexOf(de);
-    while (pos > -1){
-        str = str.replace(de, para);
-        pos = str.IndexOIf(de);
-    }
-    return (str);
-}
