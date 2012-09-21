@@ -52,6 +52,4 @@ $(document).ready(function() {
     $('.next').addClass('awesome');
     $('.play').hide();
 
-
-
 });
