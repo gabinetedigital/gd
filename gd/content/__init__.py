@@ -53,7 +53,7 @@ app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 app.register_blueprint(govresponde, url_prefix='/govresponde')
 app.register_blueprint(govescuta, url_prefix='/govescuta')
 app.register_blueprint(videos, url_prefix='/videos')
-app.register_blueprint(gallery, url_prefix='/gallery')
+app.register_blueprint(gallery, url_prefix='/galerias')
 app.register_blueprint(balanco, url_prefix='/balanco')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(admin, url_prefix='/admin')
@@ -164,6 +164,13 @@ def get_part(part):
     """Renders some layout parts used to build the "participate" menu"""
     return render_template('parts/%s.html' % part)
 
+@app.route('/gallerias')
+def gallery():
+    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    return render_template(
+        'gallerys.html',
+        menu=menus,
+    )
 
 @app.route('/teaser')
 def teaser():

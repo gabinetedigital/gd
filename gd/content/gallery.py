@@ -28,8 +28,18 @@ gallery = Blueprint(
     static_folder='static')
 
 
-@gallery.route('/')
 @gallery.route('/<slug>/')
+def galerias(slug=None):
+    galleries = wordpress.wpgd.getGalleries()
+    if slug and (str(slug) not in [i['slug'] for i in galleries]):
+        abort(404)
+    current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
+    return render_template(
+        'gallery.html',
+        current=current
+,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+
+@gallery.route('/')
 def index(slug=None):
     search_terms = ''
     if 's' in request.args and request.args.get('s', ''):
@@ -40,23 +50,12 @@ def index(slug=None):
         if not galleries:
             abort(404)
     current = None
-    if galleries:
-        if slug and (str(slug) not in [i['slug'] for i in galleries]):
-            abort(404)
-        current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
-        if 'avg' in current.keys() and current['avg']:
-            current['avg'] = float(str(current['avg']))/10
-            current['star'] = math.ceil(current['avg'])
-        else:
-            current['avg'] = 0
-            current['star'] = 0
-        
+
     return render_template(
-        'gallery.html',
+        'gallerys.html',
         galleries=galleries,
         s=search_terms,
-        current=current
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')) 
 
 @gallery.route('/vote/<int:gid>/')
 @gallery.route('/vote/<int:gid>/<int:rate>/')
