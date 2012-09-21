@@ -19,94 +19,62 @@
 <div class="gallery">
   <div class="container">
     <div class="row">
-
+      <div class="span8">
       <h2>Galeria de fotos {% if current %} - {{ current.title }} {% endif %}</h2>
-
-
-      <div class="desk">
-
-        <div id="gallery" class="span8 content">
-          <div id="controls" class="span8 controls"></div>
-          <div class="slideshow-container">
-            <div id="loading" class="loader"></div>
-            <div id="slideshow" class="slideshow"></div>
+      </div>
+      <div class="span4">
+        <div class="controls busca pull-right">
+          <div class="input-prepend">
+            <span class="add-on"><i class="icon-picture"></i></span>
+            <input class="span2" id="inputIcon" type="text">
           </div>
-          <div id="caption" class="caption-container"></div>
-        </div>
-
-        <div id="thumbs"  class="span4 navigation">
-          <ul class="thumbs">
-            {% for image in current.images %}
-            <li>
-              <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
-                 {% if loop.index == 1 %}class="selected"{% endif %}
-                 >
-                <img src="{{ image.thumbURL }}" alt="{{ image.description }}">
-              </a>
-	      <div class="caption">
-	        <div class="text">{{ image.description }}</div>
-	        <div class="download">
-	          <a href="{{ url_for('gallery.fotoDownload', slug=txtimage) }}">Download Original</a>
-
-                  <!-- AddThis Button BEGIN -->
-                  <!-- AddThis Button BEGIN -->
-                  <div class="addthis_toolbox addthis_default_style ">
-                    <a class="addthis_button_preferred_1"></a>
-                    <a class="addthis_button_preferred_2"></a>
-                    <a class="addthis_button_preferred_3"></a>
-                    <a class="addthis_button_preferred_4"></a>
-                    <a class="addthis_button_compact"></a>
-                    <a class="addthis_counter addthis_bubble_style"></a>
-                  </div>
-                  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-502bb44573d2fc0a"></script>
-                  <!-- AddThis Button END -->
-
-	        </div>
-
-	      </div>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-
-
-        <div id="busca">
-          <h2> Galerias </h2>
-
-          <form method="GET" action="/gallery" id="search_tool" class="form-inline">
-            <div class="input-append">
-              <input type="text" class="input-small busca" name="s" id="s" value="{{s}}">
-              <button type="submit" class="btn"><i class="icon-search"></i></button>
-            </div>
-          </form>
-
-          <div id="galerias">
-            <ul id="gallerylist">
-              {% if s %}
-              <h3>
-                <a href="/gallery">Todas as galerias</a>
-
-                > Resutado busca por: <i>{{s}}</i>
-
-              </h3>
-              {% endif %}
-              {% if galleries %}
-              {% for gallery in galleries  %}
-              <li>
-                <a href="{{ url_for('.index', slug=gallery.slug) }}{%if s%}?s={{s}}{%endif%}" title="{{ gallery.title }}">
-                  <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
-                  <h4>{{ gallery.title }}</h4>
-                </a>
-              </li>
-              {% endfor %}
-              {% else %}
-              <p class="error">Nenhuma galeria de fotos foi encontrada.</p>
-              {% endif %}
-            </ul>
-          </div>
-
         </div>
       </div>
+    </div>
+    <div class="row desk">
+      <div id="gallery" class="span8 content">
+        <div id="controls" class="span8 controls"></div>
+        <div class="slideshow-container">
+          <div id="loading" class="loader"></div>
+          <div id="slideshow" class="slideshow"></div>
+        </div>
+        <div id="caption" class="caption-container"></div>
+      </div>
+
+      <div id="thumbs"  class="span4 navigation">
+        <ul class="thumbs">
+          {% for image in current.images %}
+          <li>
+            <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
+               {% if loop.index == 1 %}class="selected"{% endif %}
+               >
+              <img src="{{ image.thumbURL }}" alt="{{ image.description }}" width="150px">
+            </a>
+	    <div class="caption">
+	      <div class="text">{{ image.description }}</div>
+	      <div class="download">
+	        <a href="{{ image.imageURL }}_backup">Download Original</a>
+                <!-- AddThis Button BEGIN -->
+                <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style ">
+                  <a class="addthis_button_preferred_1"></a>
+                  <a class="addthis_button_preferred_2"></a>
+                  <a class="addthis_button_preferred_3"></a>
+                  <a class="addthis_button_preferred_4"></a>
+                  <a class="addthis_button_compact"></a>
+                  <a class="addthis_counter addthis_bubble_style"></a>
+                </div>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-502bb44573d2fc0a"></script>
+                <!-- AddThis Button END -->
+	      </div>
+	    </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+
+
     </div>
 
     {% endif %}
