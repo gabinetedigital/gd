@@ -1,5 +1,23 @@
 @import "base";
 
+.thumbnail {
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    display: block;
+    background-color: rgba($black, 0.3);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
+    display: block;
+    padding: 7px;
+    position: relative;
+    text-align: left;
+    color: #FFF;
+}
+
+
+.busca {
+    padding-top: 16px;
+}
+
 .gallery {
     background: url(../img/bg.png);
     padding-top: 20px;
@@ -93,31 +111,92 @@ div.image-desc {
 }
 
 .navigation {
-    padding: 20px 0 20px 0;
-}
-
-#thumbs ul li.selected img {
-    opacity: 1;
-}
-
-#thumbs ul li img {
-    opacity: 0.5;
+    padding: 20px 0 0 0;
 }
 
 .bottom {
     clear: both;
-    padding: 20px 0 0 25px;
+    padding: 22px 0 0 25px;
 }
-
-#gallerylist li {
-    float: left;
-    margin-right: 20px;
-    list-style: none;
-}
-
 
 @media (max-width: 767px) {
     #controls {
         width: 100%;
     }
+}
+
+/* Videos */
+
+.videos h2 {
+    font-size: 30px;
+    color: $blue;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    font-weight: 300;
+    background-color: $black;
+    padding: 10px 20px;
+    width: 100%;
+    line-height: 1.5em;
+    height: 1.2em;
+    display: inline;
+    @include single-text-shadow;
+}
+
+.video a {
+    color: $blue;
+}
+
+.videos {
+    padding-top: 20px;
+    color: #FFF;
+}
+
+.videos ul.thumbnails {
+    margin-top: 40px;
+}
+
+.video .meta {
+    background: none repeat scroll 0 0 rgba($black, 0.8);
+    bottom: 0;
+    color: $blue;
+    font-size: 14px;
+    font-weight: 600;
+    left: 0;
+    line-height: 24px;
+    margin: 7px;
+    overflow: hidden;
+    padding: 5px 8px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+.video .permalink {
+    float: right;
+}
+
+.videos .stage {
+    margin-top: 20px;
+    background-color: #000;
+    text-align: center;
+}
+
+.videos p.desc {
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+.videos h3 {
+    color: $blue;
+    @include single-text-shadow;
+}
+
+.videos textarea {
+    border: 0;
+    background: $black;
+    color: #FFF;
+    padding: 17px 13px;
+    resize: none;
+    height: 40px;
 }

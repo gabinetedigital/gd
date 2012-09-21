@@ -1,28 +1,30 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/videos.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
 {% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="gallery boxed">
+<div class="gallery boxed">
+  <div class="container">
+    <div class="videos">
+      <h2>{{ video.title }}</h2>
 
-    <div class="video">
-      <h1>{{ video.title }}</h1>
-      <video
-         id="{{ video.id }}"
-         width="{{ video.video_width }}"
-         height="{{ video.video_height }}">
-        {% for source in sources %}
-        <source type="{{ source.format }}" src="{{ source.url }}">
-          {% endfor %}
-      </video>
-
-      <p>{{ video.description }}</p>
-
+      <div class="stage">
+        <video
+           id="{{ video.id }}"
+           width="{{ video.video_width }}"
+           height="{{ video.video_height }}">
+          {% for source in sources %}
+          <source type="{{ source.format }}" src="{{ source.url }}">
+            {% endfor %}
+        </video>
+      <p class="desc">{{ video.description }}</p>
+      </div>
       <h3>Embed</h3>
-      <textarea class="embed" readonly="readonly">&lt;iframe style="border:0" src="{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"&gt;&lt;iframe&gt;</textarea>
+      <div class="">
+      <textarea class="embed span4" readonly="readonly" onfocus="$(this).select()">&lt;iframe style="border:0" src="{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"&gt;&lt;iframe&gt;</textarea>
+      </div>
     </div>
   </div>
 </div>

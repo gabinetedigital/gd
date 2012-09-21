@@ -1,36 +1,49 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/videos.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/video.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="gallery boxed">
-    <h1>Vídeos do Gabinete Digital</h1>
-    <ul>
-      {% for video in videos %}
-      <li class="video">
-        <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
-          <div class="container">
-            <img class="thumb"
-                 src="{{ video.thumbnail }}" alt="{{ video.title }}"
-                 width="193" height="110">
-            <img src="../static/imgs/play.png" class="play">
-          </div>
-          <a href="{{ url_for('.details', vid=video.id) }}" class="permalink">
-            <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
-                 alt="Permanet link">
-          </a>
-        </a>
-        <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
-          <strong>{{ video.title }}</strong>
-          <p>{{ video.description|truncate(length=80) }}</p>
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-    <div class="row-end"></div>
+<div class="gallery boxed">
+
+  <div class="container">
+    <div class="row">
+      <div class="container">
+        <div class="videos">
+          <h2>Vídeos do Gabinete Digital</h2>
+          <ul class="thumbnails">
+            {% for video in videos %}
+            <li class="span3">
+              <div class="thumbnail video">
+                <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
+                  <img class="thumb"
+                       src="{{ video.thumbnail }}" alt="{{ video.title }}"
+                       width="100%">
+                  <img src="../static/imgs/play.png" class="play">
+
+
+                </a>
+                <div class="meta">
+                  <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
+                    <strong>{{ video.title }}</strong>
+                  </a>
+                  <a href="{{ url_for('.details', vid=video.id) }}" class="permalink">
+                    <i class="icon-share icon-white"></i>
+                  </a>
+                </div>
+                <!-- <p>{{ video.description|truncate(length=80) }}</p> -->
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
