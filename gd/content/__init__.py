@@ -210,7 +210,7 @@ def foto_com_gov():
 def news(page=0):
     """List posts in chronological order"""
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
-    pagination, posts = wordpress.getPosts(page=page)
+    pagination, posts = wordpress.getPosts(page=page, thumbsizes=['newsbox', 'widenewsbox'])
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     return render_template(
