@@ -177,13 +177,6 @@
 {%endif%}
 
 
-<div id="tos" class="overlay hide loading" style="position: absolute; z-index: 9999; top: 27.8px; left: 392.5px; display: block;">
-  <div class="contentWrap"></div>
-  <p>
-    <button class="close"> Fechar </button>
-  </p>
-</div>
-
 <script type="text/javascript">
 $(function(){
   //$('#tab-cadastro a:last').tab('show');
@@ -208,7 +201,7 @@ $(function(){
         opacity: 0.5
       },
       // disable this for modal dialog-type of overlays
-      closeOnClick: false,
+      closeOnClick: true,
       // load it immediately after the construction
       load: false,
       onBeforeLoad: function() {
@@ -217,6 +210,43 @@ $(function(){
       }
     });
 
+    $('#signup').ajaxForm({
+        dataType: 'json',
+        beforeSubmit: function () {  
+          $('#auth-error').fadeOut();
+          $('#auth-success').fadeOut();
+          $('.errmsg').fadeOut();
+        },
+        success: function (data) { 
+
+          var errors = data.msg.data;
+          var code = data.code;
+          var csrfToken = data.msg.csrf;
+
+          /* It's everything ok, let's get out */
+          if (data.status === 'ok') {
+            $('#auth-success').html(data.msg);
+            $('#auth-success').fadeIn();
+          } else {
+            console.log(typeof data.msg.data);
+            if( typeof data.msg.data==="string" ){
+                $('#auth-error').html(data.msg.data).fadeIn('fast');
+            }else{
+              for(campo in data.msg.data){
+                  $('#signup')
+                      .find('.'+campo+'-error')
+                      .html( data.msg.data[campo][0] )
+                      .fadeIn('fast');
+
+              }
+              $('#auth-error').html('Corrija os campos abaixo').fadeIn('fast');
+            }
+            // $('#auth-error').html(data.msg.data);
+            $('#auth-error').fadeIn();
+          }
+
+        }
+    });
 
 });
 

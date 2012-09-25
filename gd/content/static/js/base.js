@@ -107,7 +107,7 @@ $(function(){
         return true;
     }
 
-    function handleSuccess(form, data) {
+    handleSuccess = function(form, data) {
         var errors = data.msg.data;
         var code = data.code;
         var csrfToken = data.msg.csrf;
@@ -134,6 +134,7 @@ $(function(){
         success: function (data) { handleSuccess($('#frmLogin'), data); }
     });
 
+
     $('#remember_password').ajaxForm({
         dataType: 'json',
         beforeSubmit: function () { handleBeforeSubmit($('#frmLogin')); },
@@ -143,5 +144,29 @@ $(function(){
     $('span#loginmsg').hide();
     $('.passwordReminder').hide();
     $('#signupoverlay').hide();
+    $('#tos').hide();
+
+    auth.callback_login = function(action){
+        //alert('callback:' + action);
+        if( $('#iframevotacao') ){
+            var ifr = $('#iframevotacao')[0];
+            if(ifr.contentWindow && ifr.contentWindow.trata_botao_adicionar_ideia){
+                var pode = action == 'login';
+                ifr.contentWindow.trata_botao_adicionar_ideia(pode);
+            }
+        }
+    };
+
+    document.domain = "localhost";
+
+    _verifica_pode_adicionar_idea = function(){
+        return auth.isAuthenticated();
+    }
+
+    _chama_tela_login = function(){
+        alert('É necessário estar logado para poder contribuir.');
+        scroll(0,0);
+        auth.showLoginForm();
+    }
 
 });

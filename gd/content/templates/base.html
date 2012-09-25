@@ -100,12 +100,22 @@
               <div class="contentWrap">
                 <div class="ct">
                   <strong>Carregando</strong>
-                  <img src="{{ url_for('static', filename='imgs/loading.gif') }}"
+                  <img src="{{ url_for('static', filename='img/loading.gif') }}"
                        alt="Carregando, por favor aguarde" class="loading">
                 </div>
               </div>
             </div>
-
+<!-- Toss Modal -->
+            <div id="tos" class="overlay loading" style="position: absolute; z-index: 9999; top: 23.8px; left: 302.5px; display: block;">
+              <div class="contentWrap">
+                <strong>Carregando</strong>
+                <img src="{{ url_for('static', filename='img/loading.gif') }}"
+                     alt="Carregando, por favor aguarde" class="loading">
+              </div>
+              <p>
+                <button class="close hide"> X </button>
+              </p>
+            </div>
 <!-- Signup Modal -->
 
             <div class="on">

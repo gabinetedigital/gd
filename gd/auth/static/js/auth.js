@@ -137,6 +137,8 @@ var auth = (function() {
          *  authentication */
         , success: function () {}
 
+        , callback_login: function (action) {}
+
         /** Returns True if there is someone authenticated */
         , isAuthenticated: function () {
             return this.user !== null;
@@ -150,16 +152,16 @@ var auth = (function() {
         /** Shows the login form and register callbacks to be called when
          *  it returns successfuly or not */
         , showLoginForm: function (params) {
-            this.$loginOverlay.load();
-            if (params && typeof params.success === 'function') {
-                this.success = params.success;
-            }
+            $('.off').hide();
+            $('.on').fadeIn(function(){
+                $('#username').focus();
+            });
             return false;
         }
 
         /** Shows the signup form */
         , showSignupForm: function (params) {
-            if( params['directToForm'] || params == 'directToForm' ){
+            if( params && params['directToForm'] || params == 'directToForm' ){
                 this.$signOverlay.alternativeUrl = url_for('auth.signup');
             }
             this.$signOverlay.load();
@@ -193,9 +195,6 @@ var auth = (function() {
                                     $('#auth-error').html(pData.msg.data).fadeIn('fast');
                                 }else{
                                     for(campo in pData.msg.data){
-                                        console.log('item:'+campo);
-                                        console.log('.'+campo+'-error');
-                                        console.log(pData.msg.data[campo][0]);
                                         $('#signupoverlay')
                                             .find('.'+campo+'-error')
                                             .html( pData.msg.data[campo][0] )
@@ -226,6 +225,9 @@ var auth = (function() {
         , userAuthenticated: function (user) {
             this.user = user;
             this.success();
+            if(auth.callback_login && typeof auth.callback_login === 'function'){
+                auth.callback_login('login');
+            }
             this.updateLoginWidget();
         }
 
@@ -236,7 +238,9 @@ var auth = (function() {
                 $('.logado').show();
                 $('.off').hide();
                 $('.on').hide();
+                $('.saudacao').html('Olá, ' + this.user.display_name + '!');
             }else{
+                $('.saudacao').html('Olá, Visitante!');
                 $('.logado').hide();
                 $('.off').show();
                 $('.on').hide();
@@ -247,6 +251,9 @@ var auth = (function() {
         , logout: function () {
             $.get(url_for('auth.logout_json'), function () {
                 auth.user = null;
+                if(auth.callback_login && typeof auth.callback_login === 'function'){
+                    auth.callback_login('logout');
+                }
                 auth.updateLoginWidget();
                 //$(".comment-error").show();
                 if (window.location.href.indexOf('profile') > 0) {
