@@ -24,7 +24,7 @@ a {
 
 .home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
 .pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand,
-.pri, .pq, .pro, .como {
+.pri, .pq, .pro, .como, .logors {
     overflow: hidden;
     text-indent: 1000px;
     background: url(../img/home.png) no-repeat;
@@ -263,24 +263,29 @@ a {
     border-color: #111111;
 }
 
-
-
 footer {
     @include background-image(linear-gradient(center top , #222222, #111111));
     background-color: #1B1B1B;
     padding-top: 20px;
     padding-bottom: 20px;
     color: #FFF;
+    font-size: 10pt;
 }
 
-
-
+.logors {
+    background-position: -42px -406px;
+    border: 0 none;
+    display: block;
+    height: 164px;
+    margin-top: 20px;
+    width: 180px;
+    text-indent: -1000px;
+}
 
 section {
-    padding-top: 60px;
+    padding-top: 30px;
     padding-bottom: 40px;
 }
-
 
 
 @media (max-width: 979px) {
