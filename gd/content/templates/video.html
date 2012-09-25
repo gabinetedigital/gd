@@ -9,21 +9,22 @@
   <div class="container">
     <div class="videos">
       <h2>{{ video.title }}</h2>
-
-      <div class="stage">
-        <video
-           id="{{ video.id }}"
-           width="{{ video.video_width }}"
-           height="{{ video.video_height }}">
-          {% for source in sources %}
-          <source type="{{ source.format }}" src="{{ source.url }}">
-            {% endfor %}
-        </video>
-      <p class="desc">{{ video.description }}</p>
-      </div>
-      <h3>Embed</h3>
-      <div class="">
-      <textarea class="embed span4" readonly="readonly" onfocus="$(this).select()">&lt;iframe style="border:0" src="{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"&gt;&lt;iframe&gt;</textarea>
+      <div class="row">
+        <div class="span8 stage">
+          <video
+             id="{{ video.id }}"
+             width="{{ video.video_width }}"
+             height="{{ video.video_height }}">
+            {% for source in sources %}
+            <source type="{{ source.format }}" src="{{ source.url }}">
+              {% endfor %}
+          </video>
+        </div>
+        <div class="span4">
+          <p class="desc">{{ video.description }}</p>
+          <h3>Embed</h3>
+            <textarea class="embed span4" readonly="readonly" onfocus="$(this).select()">&lt;iframe style="border:0" src="{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"&gt;&lt;iframe&gt;</textarea>
+        </div>
       </div>
     </div>
   </div>

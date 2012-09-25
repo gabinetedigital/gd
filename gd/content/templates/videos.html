@@ -18,7 +18,7 @@
           <h2>Vídeos do Gabinete Digital</h2>
           <ul class="thumbnails">
             {% for video in videos %}
-            <li class="span3">
+            <li class="span4">
               <div class="thumbnail video">
                 <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
                   <img class="thumb"

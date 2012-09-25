@@ -127,11 +127,13 @@ div.image-desc {
 
 /* Videos */
 
+.videos {
+    margin-bottom: 30px;
+}
+
 .videos h2 {
     font-size: 30px;
     color: $blue;
-    margin-bottom: 30px;
-    margin-top: 20px;
     font-weight: 300;
     background-color: $black;
     padding: 10px 20px;
@@ -177,14 +179,16 @@ div.image-desc {
 }
 
 .videos .stage {
-    margin-top: 20px;
+    margin-top: 30px;
     background-color: #000;
     text-align: center;
 }
 
 .videos p.desc {
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 30px 0px;
+    font-size: 11pt;
+    margin-top: 20px;
+    font-style: italic;
 }
 
 .videos h3 {
