@@ -1,6 +1,5 @@
 @import "base";
 
-
 section h2 {
     font-size: 50px;
     color: $blue;
@@ -81,8 +80,12 @@ section h2 {
 
 }
 
+#sobre .btn-sobre {
+    text-align: right;
+}
+
 #sobre .equipe .thumbnail {
-    background: $black;
+    background-color: $black;
     padding-left: 10px;
 }
 
@@ -108,18 +111,6 @@ section h2 {
     background: url(../img/seguranca.jpg) no-repeat center center fixed;
     @include background-size(cover);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 .fotodia h4 {
     background: none repeat scroll 0 0 rgba($green, 0.75);
@@ -212,7 +203,6 @@ section h2 {
     top: 10%;
     text-align: left;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .lasttweet {
