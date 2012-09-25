@@ -24,6 +24,26 @@
               <!-- <li><i class="icon-tag"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li> -->
             </ul>
           </div>
+            {% if post.thumbs %}
+            <li>
+              <a href="{{ post.permalink }}">
+                {% if post.has_category('wide') %}
+                <img
+                   src="{{ post.thumbs.widenewsbox.url }}"
+                   alt="{{ post.title }}"
+                   width="{{ post.thumbs.widenewsbox.width }}"
+                   height="{{ post.thumbs.widenewsbox.height }}"
+                   class="wide">
+                {% elif post.thumbs %}
+                <img
+                   src="{{ post.thumbs.newsbox.url }}"
+                   alt="{{ post.title }}"
+                   width="{{ post.thumbs.newsbox.width }}"
+                   height="{{ post.thumbs.newsbox.height }}">
+                {% endif %}
+              </a>
+            </li>
+            {% endif %}
           <a href="{{ post.permalink }}">
             <div class="content">{{ post.excerpt|safe }}</div>
           </a>
