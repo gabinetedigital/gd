@@ -20,7 +20,7 @@
             {% for video in videos %}
             <li class="span4">
               <div class="thumbnail video">
-                <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
+                <a href="/videos/{{video.id}}/">
                   <img class="thumb"
                        src="{{ video.thumbnail }}" alt="{{ video.title }}"
                        width="100%">

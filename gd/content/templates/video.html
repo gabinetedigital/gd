@@ -12,21 +12,40 @@
       <div class="row">
         <div class="span8 stage">
           <video
-             id="{{ video.id }}"
+             id="video{{ video.id }}"
              width="{{ video.video_width }}"
-             height="{{ video.video_height }}">
-            {% for source in sources %}
-            <source type="{{ source.format }}" src="{{ source.url }}">
-              {% endfor %}
+             height="{{ video.video_height }}"
+             poster="{{video.thumbnail}}">
+            {%for s in sources%}
+              {{s|safe}}
+            {%endfor%}
+            Your browser does not support the video tag.
           </video>
         </div>
         <div class="span4">
           <p class="desc">{{ video.description }}</p>
           <h3>Embed</h3>
-            <textarea class="embed span4" readonly="readonly" onfocus="$(this).select()">&lt;iframe style="border:0" src="{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"&gt;&lt;iframe&gt;</textarea>
+            <textarea class="embed span4" readonly="readonly" onfocus="$(this).select()">&lt;iframe style="border:0" src="{{base_url}}{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"&gt;&lt;iframe&gt;</textarea>
         </div>
       </div>
     </div>
   </div>
 </div>
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+  jwplayer("video{{video.id}}").setup({
+    skin: "/static/jw/whotube/whotube.xml",
+    width: '100%',
+    modes: [
+      { type: "html5" },
+      { type: "flash", src: "//static/jw/player.swf" },
+      { type: "download" }
+    ]
+  });
+</script>
+
 {% endblock %}
