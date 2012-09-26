@@ -72,34 +72,7 @@
           {% endfor %}
         </ul>
       </div>
-
-
-
     </div>
-
-    {% endif %}
-  </div>
-  <div id="caption" class="caption-container"></div>
-  <div id="thumbs"  class="navigation images">
-    <ul class="thumbs images">
-      {% for image in current.images %}
-      <li>
-        <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
-           {% if loop.index == 1 %}class="selected"{% endif %}
-           >
-          <img src="{{ image.thumbURL }}" alt="{{ image.description }}">
-        </a>
-	<div class="caption">
-	  <div class="download">
-        {% set txtimage = image.imageURL+"_backup" %}
-        {% set txtimage = txtimage.replace("/", "$") %}
-        <a href="{{ url_for('gallery.fotoDownload', slug=txtimage) }}">Download Original</a>
-	  </div>
-	  <div class="text">{{ image.title }}<br>{{ image.description }}</div>
-	</div>
-      </li>
-      {% endfor %}
-    </ul>
   </div>
 </div>
 {% endblock %}
