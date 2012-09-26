@@ -20,7 +20,7 @@
   <div class="container">
     <div class="row">
       <div class="span8">
-      <h2>Galeria de fotos {% if current %} - {{ current.title }} {% endif %}</h2>
+      <h2>{% if current %}{{ current.title }} {% endif %}</h2>
       </div>
       <div class="span4">
         <div class="controls busca pull-right">
