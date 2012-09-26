@@ -29,7 +29,7 @@
 
                 </a>
                 <div class="meta">
-                  <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
+                  <a href="/videos/{{video.id}}/">
                     <strong>{{ video.title }}</strong>
                   </a>
                   <a href="{{ url_for('.details', vid=video.id) }}" class="permalink">
