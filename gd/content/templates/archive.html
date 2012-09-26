@@ -24,8 +24,9 @@
               <!-- <li><i class="icon-tag"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li> -->
             </ul>
           </div>
-            {% if post.thumbs %}
-            <li>
+          <a href="{{ post.permalink }}">
+            <div class="content">
+                          {% if post.thumbs %}
               <a href="{{ post.permalink }}">
                 {% if post.has_category('wide') %}
                 <img
@@ -42,10 +43,9 @@
                    height="{{ post.thumbs.newsbox.height }}">
                 {% endif %}
               </a>
-            </li>
             {% endif %}
-          <a href="{{ post.permalink }}">
-            <div class="content">{{ post.excerpt|safe }}</div>
+
+{{ post.excerpt|safe }}</div>
           </a>
           <div class="more">
             <a href="{{ post.permalink }}" class="btn">Continue lendo</a>
@@ -54,8 +54,9 @@
 
         {% endfor %}
 
-        {{ pagination|safe }}
-
+        <div class="pagination">
+          {{ pagination|safe }}
+        </div>
       </div>
       <div class="span3 sidebar">
         {{ sidebar(id='sidebar-1')|safe }}
