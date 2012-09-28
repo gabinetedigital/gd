@@ -92,8 +92,11 @@ def get_facebook_oauth_token():
 
 def checkfblogin():
     try:
-        req = facebook.get('/me')
-    except (ServerNotFoundError, OAuthException):
+        if request.cookies.get('connect_type') == 'social_f':
+            req = facebook.get('/me')
+        else:
+            return {}
+    except :
         return {}
 
     if 'error' in req.data or not 'oauth_token' in session:

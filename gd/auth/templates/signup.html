@@ -89,18 +89,7 @@
             {{ form.city }}
           </div>
 
-<<<<<<< HEAD
           <p class="errmsg city-error"></p><br>
-=======
-          <p class="errmsg city-error"></p>
->>>>>>> (login) Resposta da autenticacao via Face e overlay para Termos de Uso
-        </div>
-        <div class="control-group">
-          {{ form.phone.label }}
-          <div class="controls">
-            {{ form.phone }}
-          </div>
-          <p class="errmsg phone-error"></p>
         </div>
 
         <div class="control-group">
@@ -148,19 +137,11 @@
           <div class="controls">
             {{ form.gender }}
           </div>
-<<<<<<< HEAD
           <p class="errmsg gender-error"></p><br>
         </div>
 
         <div class="control-group">
 
-=======
-          <p class="errmsg gender-error"></p>
-        </div>
-
-        <div class="control-group">
-
->>>>>>> (login) Resposta da autenticacao via Face e overlay para Termos de Uso
           {{ form.age_group.label }}
           <div class="controls">
             {{ form.age_group }}
@@ -188,16 +169,6 @@
 {%endif%}
 
 
-<<<<<<< HEAD
-=======
-<div id="tos" class="overlay hide loading" style="position: absolute; z-index: 9999; top: 27.8px; left: 392.5px; display: block;">
-  <div class="contentWrap"></div>
-  <p>
-    <button class="close"> Fechar </button>
-  </p>
-</div>
-
->>>>>>> (login) Resposta da autenticacao via Face e overlay para Termos de Uso
 <script type="text/javascript">
 $(function(){
   //$('#tab-cadastro a:last').tab('show');
@@ -212,10 +183,7 @@ $(function(){
       // custom top position
       top: '10%',
       oneInstance: false,
-<<<<<<< HEAD
       left: '10%',
-=======
->>>>>>> (login) Resposta da autenticacao via Face e overlay para Termos de Uso
       // some mask tweaks suitable for facebox-looking dialogs
       mask: {
         // you might also consider a "transparent" color for the mask
@@ -226,15 +194,10 @@ $(function(){
         opacity: 0.5
       },
       // disable this for modal dialog-type of overlays
-<<<<<<< HEAD
       close: '.close-tos',
       closeOnClick: false,
       closeOnEsc: false,
     // load it immediately after the construction
-=======
-      closeOnClick: false,
-      // load it immediately after the construction
->>>>>>> (login) Resposta da autenticacao via Face e overlay para Termos de Uso
       load: false,
       onBeforeLoad: function() {
           $("#tos").find(".contentWrap")
@@ -242,7 +205,6 @@ $(function(){
       }
     });
 
-<<<<<<< HEAD
     $('#signup').ajaxForm({
         dataType: 'json',
         beforeSubmit: function () {  
@@ -280,8 +242,6 @@ $(function(){
 
         }
     });
-=======
->>>>>>> (login) Resposta da autenticacao via Face e overlay para Termos de Uso
 
 });
 
