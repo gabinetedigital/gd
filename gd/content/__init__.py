@@ -405,4 +405,4 @@ def confirm_signup(key):
         dbsession.commit()
     except NoResultFound:
         return redirect(url_for('.index'))
-    return redirect('%s?login' % url_for('.index'))
+    return redirect('%s?concluido' % url_for('.index'))

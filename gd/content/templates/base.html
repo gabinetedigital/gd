@@ -96,7 +96,7 @@
 
 <!-- Signup Modal -->
             <div id="signupoverlay" class="overlay loading" style="position: absolute; z-index: 9990; top: 47.8px; left: 692.5px; display: block;">
-              <div class="close"></div>
+              <div class="close close-signup">X</div>
               <div class="contentWrap">
                 <div class="ct">
                   <strong>Carregando</strong>
@@ -106,14 +106,15 @@
               </div>
             </div>
 <!-- Toss Modal -->
-            <div id="tos" class="overlay loading" style="position: absolute; z-index: 9999; top: 23.8px; left: 302.5px; display: block;">
+            <div id="tos" class="overlay loading" style="z-index: 9999; width: 80%; left: 10%;">
+              <div class="close close-tos">X</div>
               <div class="contentWrap">
                 <strong>Carregando</strong>
                 <img src="{{ url_for('static', filename='img/loading.gif') }}"
                      alt="Carregando, por favor aguarde" class="loading">
               </div>
               <p>
-                <button class="close hide"> X </button>
+              <div class="close close-tos">X</div>
               </p>
             </div>
 <!-- Signup Modal -->
@@ -228,11 +229,15 @@
     <script> $(function () { auth.showSignupForm('directToForm'); }); </script>
     {% endif %}
 
-    {% if 'login' in request.values and not user %}
-    <script> $(function () { auth.showLoginForm(); }); </script>
+    {% if 'concluido' in request.values and not user %}
+    <script> $(function () { showModalAgradecimento(); }); </script>
     {% endif %}
 
     {% block javascript %}
+    $(function(){
+      $('#signupoverlay').hide();
+      $('#tos').hide();
+    });
     {% endblock %}
   </body>
 </html>

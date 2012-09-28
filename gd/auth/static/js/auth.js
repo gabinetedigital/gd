@@ -116,6 +116,9 @@ var auth = (function() {
             },
             oneInstance: false,
             speed: 'fast',
+            close: '.close-signup',
+            closeOnClick: false,
+            closeOnEsc: false,
 
             alternativeUrl: '',
             onBeforeLoad: function() {

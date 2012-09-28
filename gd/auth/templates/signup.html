@@ -14,7 +14,6 @@
 {%elif tos%}
   <h1>{{ tos.title|safe }}</h1>
   {{ tos.content|safe }}
-  <button class="btn pull-right" onclick="auth.toggleSignupTab('form');">Ir para o cadastro</button>
   <br>&nbsp;
 {%else%}
     <h1>Cadastro</h1>
@@ -90,7 +89,7 @@
             {{ form.city }}
           </div>
 
-          <p class="errmsg city-error"></p>
+          <p class="errmsg city-error"></p><br>
         </div>
         <div class="control-group">
           {{ form.phone.label }}
@@ -145,7 +144,7 @@
           <div class="controls">
             {{ form.gender }}
           </div>
-          <p class="errmsg gender-error"></p>
+          <p class="errmsg gender-error"></p><br>
         </div>
 
         <div class="control-group">
@@ -191,6 +190,7 @@ $(function(){
       // custom top position
       top: '10%',
       oneInstance: false,
+      left: '10%',
       // some mask tweaks suitable for facebox-looking dialogs
       mask: {
         // you might also consider a "transparent" color for the mask
@@ -201,8 +201,10 @@ $(function(){
         opacity: 0.5
       },
       // disable this for modal dialog-type of overlays
-      closeOnClick: true,
-      // load it immediately after the construction
+      close: '.close-tos',
+      closeOnClick: false,
+      closeOnEsc: false,
+    // load it immediately after the construction
       load: false,
       onBeforeLoad: function() {
           $("#tos").find(".contentWrap")

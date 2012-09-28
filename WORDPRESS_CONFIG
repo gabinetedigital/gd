@@ -1,0 +1,30 @@
+Plugins:
+ - NextGEN Gallery
+ - MetaData
+
+Páginas:
+ - sobre (home)
+ - about (home)
+ - acerca (home)
+ - prioridades (home)
+ - porque (home)
+ - processo (home)
+ - como-funciona (home)
+ - how-to-use-governo-escuta (audience)
+ - signup-read-more (signup)
+ - tos (signup)
+ - conselho-comunicao (consulta sobre conselho)
+ - how-to-use-governo-escuta (govescuta)
+ - /results/<path:path> (govpergunta)
+ - govpergunta/o-que-e
+ - govpergunta/como-funciona
+ - govpergunta/temas
+ - govpergunta/faq
+ - govresponde/como-funciona
+ - govresponde/lembre-se
+
+Menu:
+ - menu-principal
+
+Áreas de Widgets:
+ - 

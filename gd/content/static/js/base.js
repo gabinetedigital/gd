@@ -150,10 +150,12 @@ $(function(){
         //alert('callback:' + action);
         if( $('#iframevotacao') ){
             var ifr = $('#iframevotacao')[0];
-            if(ifr.contentWindow && ifr.contentWindow.trata_botao_adicionar_ideia){
-                var pode = action == 'login';
-                ifr.contentWindow.trata_botao_adicionar_ideia(pode);
-            }
+            try{
+                if(ifr.contentWindow && ifr.contentWindow.trata_botao_adicionar_ideia){
+                    var pode = action == 'login';
+                    ifr.contentWindow.trata_botao_adicionar_ideia(pode);
+                }
+            }catch(erro){ }
         }
     };
 
