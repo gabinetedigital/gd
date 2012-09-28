@@ -27,15 +27,29 @@ li {
     padding-top: 20px;
     border-top: 2px solid #DDD;
     background: url(../img/minsqr.png);
-    /* background: url(../img/seguranca.jpg) no-repeat center center fixed; */
 }
 
 
 .info-head {
     color: $black;
-    padding: 16px;
     border-right: 1px solid #CCC;
     border-left: 1px solid #CCC;
+}
+
+.info-desc {
+    padding: 16px;
+    border-bottom: 1px solid #CCC;
+}
+
+.info-btn {
+    text-align: right;
+}
+
+.share {
+    display: block;
+    clear: both;
+    height: 20px;
+    padding: 6px;
 }
 
 .info-aud {
@@ -50,70 +64,19 @@ li {
 
 .aud-date {
     border-right: 1px solid #CCC;
-    height: 120px;
+    height: 130px;
     padding-top: 20px;
 }
 
-.stage {
-   background-color: $black;
+
+.hashtag {
+    padding-right: 20px;
 }
-
-.room {
-    color: $black;
-    padding: 16px;
-    background-color: #FFF;
-    border-left: 1px solid #DDD;
-    border-right: 1px solid #DDD;
-}
-
-.droom {
-    color: #FFF;
-    padding: 16px;
-    background-color: $black;
-}
-
-.streaming {
-    /* background: $black; */
-    /* text-align: center; */
-    /* @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset); */
-}
-
-#beingAnswered-anterior {
-
-}
-
-.buzzs {
-    height: 400px;
-    overflow-y: scroll;
-}
-
-
-#poster {
-    width: 140px;
-    margin-right: 20px;
-}
-
-
-/* h2.title { */
-/*     font-size: 50px; */
-/*     color: $blue; */
-/*     margin-top: 20px; */
-/*     font-weight: 400; */
-/*     width: 100%; */
-/*     line-height: 1.1em; */
-/*     height: 1.2em; */
-/*     display: inline; */
-/* } */
-
-/* p.description { */
-/*     font-size: 17px; */
-/*     padding-right: 200px; */
-/*     color: $black; */
-/* } */
 
 #date {
     width: 80px;
     height: 70px;
+    margin-right: 20px;
 }
 
 #date div {
@@ -153,23 +116,90 @@ div.time {
     text-align: center;
 }
 
-/* #date p.hour { */
-/*     clear: both; */
-/*     padding-left: 95px; */
-/*     padding-top: 0; */
-/*     font-size: 20pt; */
+.stage {
+   background-color: $black;
+}
+
+.room {
+    color: $black;
+    background-color: #FFF;
+    border-left: 1px solid #DDD;
+}
+
+.droom {
+    color: #FFF;
+    background-color: $black;
+    margin-left: -30px;
+    padding-top: 10px;
+}
+
+.streaming {
+    /* background: $black; */
+    /* text-align: center; */
+    /* @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset); */
+}
+
+#beingAnswered-anterior {
+    background-color: #000;
+    color: #FFF;
+
+}
+
+.buzzs {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+
+#poster {
+    width: 140px;
+    margin-right: 20px;
+}
+
+.astream {
+    background-color: #000;
+}
+
+.stream, .astream, .bstream {
+    padding: 10px;
+}
+
+.stream .avatar, .astream .avatar, .bstream .avatar {
+    float: left;
+    margin-right: 10px;
+    display: block;
+}
+
+.stream .author, .astream .author, .bstream .author {
+    color: $blue;
+    padding-left: 68px;
+    padding-bottom: 10px;
+    font-size: 10pt;
+}
+
+.stream .answer, .astream .answer, .bstream .answer {
+    padding-left: 68px;
+    font-size: 13px;
+}
+
+
+
+/* h2.title { */
+/*     font-size: 50px; */
+/*     color: $blue; */
+/*     margin-top: 20px; */
+/*     font-weight: 400; */
+/*     width: 100%; */
+/*     line-height: 1.1em; */
+/*     height: 1.2em; */
+/*     display: inline; */
 /* } */
 
-/* #date p.min { */
-/*     padding-top: 0; */
-/*     font-size: 20pt; */
-/* } */
-
-/* #tag { */
+/* p.description { */
+/*     font-size: 17px; */
+/*     padding-right: 200px; */
 /*     color: $black; */
 /* } */
-
-
 
 /* #streaming .chat { */
 /*     background: none repeat scroll 0 0 rgba($black, 0.75); */
@@ -197,29 +227,4 @@ div.time {
 /*     margin-bottom: 20px; */
 /*     /\* @include border-radius(23px 23px 23px 0); *\/ */
 /*     @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset); */
-/* } */
-
-
-
-/* .stream { */
-/*     padding: 10px 0 10px 0; */
-/* } */
-
-/* .stream .avatar { */
-/*     float: left; */
-/*     margin-right: 10px; */
-/*     display: block; */
-/*     height: 100%; */
-/* } */
-
-/* .stream .author { */
-/*     color: $blue; */
-/*     padding-left: 68px; */
-/*     font-weight: 600; */
-/*     padding-bottom: 10px; */
-/* } */
-
-/* .stream .answer { */
-/*     padding-left: 68px; */
-/*     font-size: 13px; */
 /* } */

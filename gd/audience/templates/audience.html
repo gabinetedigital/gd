@@ -8,6 +8,8 @@
 <script type="text/javascript">
   var AUDIENCE_ID={{audiences.0.ID}};
 </script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
 <script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script>
 <script src="{{ url_for('buzz.static', filename='js/longpool.js') }}"></script>
 <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
@@ -19,50 +21,72 @@
 
 
 
+
+
+
 {% block content %}
 {% for audience in audiences %}
 <div class="content">
   <div class="container">
     <div class="info-aud">
       <div class="row">
-        <div class="infor-more">
-          <div class="span8">
-            <div class="info-head">
+
+        <div class="span8">
+          <div class="info-head">
+            <div class="info-desc">
               <div id="poster" class="pull-left">
                 <img src="{{ url_for('.static', filename='img/seguranca.jpg') }}">
               </div>
               <div id="title">
                 <h2 class="title">{{ audience.post_title }}</h2>
                 <p class="description">{{ audience.post_content|safe }}</p>
+                <div class="info-btn">
+                  <a href="" class="btn btn-info">mais detalhes</a>
+                  <a href="" class="btn btn-success">como funciona?</a>
+                </div>
+                <!-- <div id="how-it-works" rel="#works-like-this"> -->
+                <!--   <img src="{{ url_for('.static', filename='img/big_gear.png') }}" -->
+                <!--        id="how-it-works-big-gear" class="big-gear"> -->
+                <!--   <img src="{{ url_for('.static', filename='img/small_gear.png') }}" -->
+                <!--        id="how-it-works-small-gear" class="small-gear"> -->
+                <!--   <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}" -->
+                <!--        class="how-it-works-text"> -->
+                <!-- </div> -->
               </div>
             </div>
+            <div class="share">
+              Compartilhe
+              <span class='st_facebook_hcount' displayText='Facebook'></span>
+              <span class='st_twitter_hcount' displayText='Tweet'></span>
+              <span class='st_plusone_hcount' displayText='Google +1'></span>
+            </div>
           </div>
+        </div>
 
-          <div class="span4">
-            <div class="aud-date">
-      	      <!-- <p>Use a hashtag</p> -->
-              <!-- <h3>{{ audience.hashtag[0] }}</h3> -->
-              <div id="date">
-                <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
-
-                <div class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</div>
-
-                <div class="time">
-                  {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}:{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}
-                </div>
+        <div class="span4  hidden-phone">
+          <div class="aud-date">
+            <div class="hashtag pull-left">
+              <p>Participe também pelo twitter,</p>
+              <h3>{{ audience.hashtag[0] }}</h3>
+            </div>
+            <div id="date" class="pull-right">
+              <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
+              <div class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</div>
+              <div class="time">
+                {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}:{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
     <div class="stage">
       <div class="row">
-
-          <div class="span8">
-            <div class="room">
-              <div class="streaming">
-                {{audience.aud_wp_govescuta_video_embed|safe}}
+        <div class="span8">
+          <div class="room">
+            <div class="streaming">
+              {{audience.aud_wp_govescuta_video_embed|safe}}
               <div id="beingAnswered-anterior">
                 {% if (buzzesSelec) %}
                 <ul class="stream">
@@ -83,165 +107,127 @@
                 </ul>
                 {% endif %}
               </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="span4">
-            <div class="droom">
-              <div class="buzzs">
-                <a class="filter" href="javascript:;"
-                   title="Alternar a exibição de mensagens moderadas">filtro</a>
-                <ul id="buzz-public" class="buzz" style="display:none">
-                </ul>
-                <ul id="buzz-moderated" class="buzz">
-                  {% for buzz in buzzes %}
-                  <li id="msgid_{{ buzz.id }}">
-    	            <ul class="stream">
-      	              <li class="avatar"><img src="{{ buzz.avatar}}"></li>
-      	              <li class="author">
-                        {% if (buzz.user)  %}
-                        {{ buzz.user.display_name }}
-                        {%  else  %}
-                        {% if (buzz.owner_nick)  %}
-                        @{{ buzz.owner_nick }}
-                        {% else  %}
-                        Via SMS
-                        {% endif %}
-                        {% endif %}
-                        <em>| {{ buzz.type_name }}</em>
-      	              </li>
-      	              <li class="answer">{{ buzz.content }}</li>
-    	            </ul>
-  	          </li>
-                  {% endfor %}
-                </ul >
-                <div id="message-statusbar" class="alert"></div>
-                <div id="chat">
-                  <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
-                    <input type="hidden" id="aid" name="aid" value="{{ audience.ID}}">
-                    <textarea id="message-area" name="message" placeholder="Poste sua mensagem aqui."></textarea>
-                    <span class="current-msg-length">300</span>
-                    <input id="send_comment" type="submit" value="enviar">
-                  </form>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-
+        <div class="span4 hidden-phone">
+          <div class="droom">
+            <div class="buzzs">
+              <div id="message-statusbar" class="alert"></div>
+              <div id="chat">
+                <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
+                  <input type="hidden" id="aid" name="aid" value="{{ audience.ID}}">
+                  <textarea id="message-area" name="message" placeholder="Poste sua mensagem aqui."></textarea>
+                  <span class="current-msg-length">300</span>
+                  <input id="send_comment" type="submit" value="enviar">
+                </form>
+              </div>
+              <a class="filter" href="javascript:;"
+                 title="Alternar a exibição de mensagens moderadas">filtro</a>
+              <ul id="buzz-public" class="buzz" style="display:none">
+              </ul>
+              <ul id="buzz-moderated" class="buzz">
+                {% for buzz in buzzes %}
+                <li id="msgid_{{ buzz.id }}">
+                  <ul class="{{ loop.cycle('astream', 'bstream') }}">
+                    <li class="avatar"><img src="{{ buzz.avatar}}"></li>
+                    <li class="author">
+                      {% if (buzz.user)  %}
+                      {{ buzz.user.display_name }}
+                      {%  else  %}
+                      {% if (buzz.owner_nick)  %}
+                      @{{ buzz.owner_nick }}
+                      {% else  %}
+                      Via SMS
+                      {% endif %}
+                      {% endif %}
+                      <em>| {{ buzz.type_name }}</em>
+                    </li>
+                    <li class="answer">{{ buzz.content }}</li>
+                  </ul>
+                </li>
+                {% endfor %}
+              </ul >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-  <!-- <div class="row buzzbg"> -->
-  <!--   <div id="main" class="span8"> -->
-  <!--     <div class="content"> -->
-  <!--       <\!-- <div id="how-it-works" rel="#works-like-this"> -\-> -->
-  <!--       <\!--   <img src="{{ url_for('.static', filename='imgs/big_gear.png') }}" -\-> -->
-  <!--       <\!--        id="how-it-works-big-gear" class="big-gear"> -\-> -->
-  <!--       <\!--   <img src="{{ url_for('.static', filename='imgs/small_gear.png') }}" -\-> -->
-  <!--       <\!--        id="how-it-works-small-gear" class="small-gear"> -\-> -->
-  <!--       <\!--   <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}" -\-> -->
-  <!--       <\!--        class="how-it-works-text"> -\-> -->
-  <!--       <\!-- </div> -\-> -->
-  <!--       <\!-- <div id="works-like-this" class="overlay boverlay"> -\-> -->
-  <!--       <\!--   <ol> -\-> -->
-  <!--       <\!--     <li class="step-1"> -\-> -->
-  <!--       <\!--       <div class="wrapper"> -\-> -->
-  <!--       <\!--         <img -\-> -->
-  <!--       <\!--            src="{{ url_for('.static', filename='imgs/couple.png') }}" -\-> -->
-  <!--       <\!--            class="step-1-couple"> -\-> -->
-  <!--       <\!--         <div> -\-> -->
-  <!--       <\!--           <img -\-> -->
-  <!--       <\!--              src="{{ url_for('.static', filename='imgs/mail_trail.png') }}" -\-> -->
-  <!--       <\!--              class="step-1-mail-trail"> -\-> -->
-  <!--       <\!--           <img -\-> -->
-  <!--       <\!--              src="{{ url_for('.static', filename='imgs/mail.png') }}" -\-> -->
-  <!--       <\!--              class="step-1-mail"> -\-> -->
-  <!--       <\!--         </div> -\-> -->
-  <!--       <\!--       </div> -\-> -->
-  <!--       <\!--       <p>As pessoas enviam suas contribuições</p> -\-> -->
-  <!--       <\!--     </li> -\-> -->
-  <!--       <\!--     <li class="step-2"> -\-> -->
-  <!--       <\!--       <div class="wrapper"> -\-> -->
-  <!--       <\!--         <div class="gears"> -\-> -->
-  <!--       <\!--           <img -\-> -->
-  <!--       <\!--              src="{{ url_for('.static', filename='imgs/step_2_big_gear.png') }}" -\-> -->
-  <!--       <\!--              class="step-2-big-gear"> -\-> -->
-  <!--       <\!--           <img -\-> -->
-  <!--       <\!--              src="{{ url_for('.static', filename='imgs/step_2_small_gear.png') }}" -\-> -->
-  <!--       <\!--              class="step-2-small-gear"> -\-> -->
-  <!--       <\!--         </div> -\-> -->
-  <!--       <\!--         <img src="{{ url_for('.static', filename='imgs/networked_cpus.png') }}"> -\-> -->
-  <!--       <\!--       </div> -\-> -->
 
-  <!--       <\!--       <p>Nossa equipe processa e modera as contribuições</p> -\-> -->
+<!-- <div class="row buzzbg"> -->
+<!--   <div id="main" class="span8"> -->
+<!--     <div class="content"> -->
+<!--       <\!-- <div id="how-it-works" rel="#works-like-this"> -\-> -->
+<!--       <\!--   <img src="{{ url_for('.static', filename='imgs/big_gear.png') }}" -\-> -->
+<!--       <\!--        id="how-it-works-big-gear" class="big-gear"> -\-> -->
+<!--       <\!--   <img src="{{ url_for('.static', filename='imgs/small_gear.png') }}" -\-> -->
+<!--       <\!--        id="how-it-works-small-gear" class="small-gear"> -\-> -->
+<!--       <\!--   <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}" -\-> -->
+<!--       <\!--        class="how-it-works-text"> -\-> -->
+<!--       <\!-- </div> -\-> -->
+<div id="works-like-this" class="modal hide fade">
+  <ol>
+    <li class="step-1">
+      <div class="wrapper">
+        <img
+           src="{{ url_for('.static', filename='img/couple.png') }}"
+           class="step-1-couple">
+        <div>
+          <img
+             src="{{ url_for('.static', filename='img/mail_trail.png') }}"
+             class="step-1-mail-trail">
+          <img
+             src="{{ url_for('.static', filename='img/mail.png') }}"
+             class="step-1-mail">
+        </div>
+      </div>
+      <p>As pessoas enviam suas contribuições</p>
+    </li>
+    <li class="step-2">
+      <div class="wrapper">
+        <div class="gears">
+          <img
+             src="{{ url_for('.static', filename='img/step_2_big_gear.png') }}"
+             class="step-2-big-gear">
+          <img
+             src="{{ url_for('.static', filename='img/step_2_small_gear.png') }}"
+             class="step-2-small-gear">
+        </div>
+        <img src="{{ url_for('.static', filename='img/networked_cpus.png') }}">
+      </div>
 
-  <!--       <\!--     </li> -\-> -->
-  <!--       <\!--     <li class="step-3"> -\-> -->
-  <!--       <\!--       <div class="wrapper"> -\-> -->
-  <!--       <\!--         <img -\-> -->
-  <!--       <\!--            src="{{ url_for('.static', filename='imgs/mustache_gentleman.png') }}" -\-> -->
-  <!--       <\!--            class="mustache-gentleman"> -\-> -->
-  <!--       <\!--         <img -\-> -->
-  <!--       <\!--            src="{{ url_for('.static', filename='imgs/empty_dialog.png') }}" -\-> -->
-  <!--       <\!--            class="mustache-gentleman-dialog"> -\-> -->
-  <!--       <\!--       </div> -\-> -->
-  <!--       <\!--       <p>O Governador comenta as contribuições selecionadas</p> -\-> -->
-  <!--       <\!--     </li> -\-> -->
-  <!--       <\!--   </ol> -\-> -->
-
-  <!--       <\!--   <div id="saiba-mais-link"> -\-> -->
-  <!--       <\!--     <a href="javascript:show_how_to()"> Saiba mais </a> -\-> -->
-  <!--       <\!--   </div> -\-> -->
-  <!--       <\!--   <div id="saiba-mais-text" style="display:none"> -\-> -->
-  <!--       <\!--     {{ how_to|safe }} -\-> -->
-  <!--       <\!--   </div> -\-> -->
+      <p>Nossa equipe processa e modera as contribuições</p>
 
 
+    </li>
+    <li class="step-3">
+      <div class="wrapper">
+        <img
+           src="{{ url_for('.static', filename='img/mustache_gentleman.png') }}"
+           class="mustache-gentleman">
+        <img
+           src="{{ url_for('.static', filename='img/empty_dialog.png') }}"
+           class="mustache-gentleman-dialog">
+      </div>
+      <p>O Governador comenta as contribuições selecionadas</p>
+    </li>
+  </ol>
 
-  <!--       </div> -->
+  <div id="saiba-mais-link">
+    <a href="javascript:show_how_to()"> Saiba mais </a>
+  </div>
+  <div id="saiba-mais-text" style="display:none">
+    {{ how_to|safe }}
+  </div>
 
 
 
-  <!--       <div id="streaming"> -->
-  <!--         {{audience.aud_wp_govescuta_video_embed|safe}} -->
-  <!--       </div> -->
-  <!--       <div id="misc"> -->
-  <!--         <h5>Governo Escuta</h5> -->
-  <!--         {{ audience.aud_wp_govescuta_detalhes_govesc|safe }} -->
-  <!--       </div> -->
-  <!--       <div class="answerlink"> -->
-  <!--   	  {% if referrals %} -->
-  <!--   	  <a href="javascript:;" -->
-  <!--      	     onclick="showEncaminhada({{ audience.ID  }})" -->
-  <!--      	     class="encaminhamento"> -->
-  <!--     	    Encaminhamentos -->
-  <!--   	  </a> -->
-  <!--   	  <ul  id="encaminhada-{{ audience.ID }}" class="encaminhada"> -->
-  <!--           {% for post in referrals %} -->
-  <!--           <li> -->
-  <!--             <h4> -->
-  <!--               {{ post.title }} -->
-  <!--               <em>({{ post.the_date.strftime('%d/%m/%Y') }})</em> -->
-  <!--             </h4> -->
-  <!--             <div>{{ post.excerpt }}</div> -->
-  <!--           </li> -->
-  <!--           {% endfor %} -->
-  <!--   	  </ul> -->
-  <!--   	  {% endif %} -->
-
-  <!-- 	</div> -->
-
-  <!--     </div> -->
-
-
-
-  <div class="row-end"></div>
 
 </div>
+
 {% endfor%}
 </div>
 
@@ -255,11 +241,11 @@
         <% if (obj.user) { %>
         <%= obj.user.display_name %>
         <% } else { %>
-	<% if (obj.owner_nick) { %>
+        <% if (obj.owner_nick) { %>
         @<%= obj.owner_nick %>
-	<% } else { %>
-	Via SMS
-	<% } %>
+        <% } else { %>
+        Via SMS
+        <% } %>
         <% } %>
         <em>| <%= obj.type_.name %></em>
       </li>
@@ -279,11 +265,11 @@
         <% if (obj.user) { %>
         <%= obj.user.display_name %>
         <% } else { %>
-	<% if (obj.owner_nick) { %>
+        <% if (obj.owner_nick) { %>
         @<%= obj.owner_nick %>
-	<% } else { %>
-	Via SMS
-	<% } %>
+        <% } else { %>
+        Via SMS
+        <% } %>
         <% } %>
         <em>| <%= obj.type_.name %></em>
       </li>
