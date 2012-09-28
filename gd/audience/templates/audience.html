@@ -40,13 +40,16 @@
 
           <div class="span4">
             <div class="aud-date">
-      	      <p>Use a hashtag</p>
-              <h3>{{ audience.hashtag[0] }}</h3>
+      	      <!-- <p>Use a hashtag</p> -->
+              <!-- <h3>{{ audience.hashtag[0] }}</h3> -->
               <div id="date">
-                <p class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</p>
-                <p class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</p>
-                <p class="hour">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}h</p>
-                <p class="min">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}</p>
+                <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
+
+                <div class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</div>
+
+                <div class="time">
+                  {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}:{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}
+                </div>
               </div>
             </div>
           </div>
