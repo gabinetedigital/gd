@@ -41,6 +41,7 @@ def index():
     try:
         pagination, inst = wordpress.wpgove.getAudiencias(ativa='s',perpage=1)
         how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
+        menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
         
         if pagination == '0':
             pagination, inst = wordpress.wpgove.getAudiencias(perpage=1)
@@ -59,6 +60,7 @@ def index():
             audiences=inst,
             pagination=pagination,
             buzzes = buzzes,
+            menu=menus,
             buzzesSelec = buzzesSelec,
             how_to=getattr(how_to, 'content', ''),
            #notice=inst.get_last_published_notice(),
