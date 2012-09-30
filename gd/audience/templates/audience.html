@@ -100,14 +100,6 @@
         <div class="span8">
           <div class="room">
             <div class="streaming">
-              <video
-                id="aovivo"
-                width="100%"
-                height="400px"
-                poster="http://s4.procergs.com.br/static2/procergs.jpg"
-              >
-                <source src="{{audience.aud_wp_govescuta_video_embed|safe}}" type="video/ogg">
-              </video>
               <div id="beingAnswered-anterior">
                 {% if (buzzesSelec) %}
                 <ul class="stream">
@@ -128,23 +120,34 @@
                 </ul>
                 {% endif %}
               </div>
+
+              <video
+                id="aovivo"
+                width="100%"
+                height="400px"
+                poster="http://s4.procergs.com.br/static2/procergs.jpg"
+              >
+                <source src="{{audience.aud_wp_govescuta_video_embed|safe}}" type="video/ogg">
+              </video>
             </div>
           </div>
         </div>
         <div class="span4 hidden-phone">
           <div class="droom">
-            <div class="buzzs">
-              <div id="message-statusbar" class="alert"></div>
+              <div id="message-statusbar" class="alert alert-info span3"></div>
               <div id="chat">
                 <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
                   <input type="hidden" id="aid" name="aid" value="{{ audience.ID}}">
-                  <textarea id="message-area" name="message" placeholder="Poste sua mensagem aqui."></textarea>
-                  <span class="current-msg-length">300</span>
-                  <input id="send_comment" type="submit" value="enviar">
+                  <textarea id="message-area" name="message" class="span3" placeholder="Poste sua mensagem aqui."></textarea>
+                  <input id="send_comment" class="btn" type="submit" value="enviar">
+                  <!-- <span class="current-msg-length">300</span> -->
+
                 </form>
               </div>
-              <a class="filter" href="javascript:;"
-                 title="Alternar a exibição de mensagens moderadas">filtro</a>
+
+            <div class="buzzs">
+              <!-- <a class="filter" href="javascript:;" -->
+              <!--    title="Alternar a exibição de mensagens moderadas">filtro</a> -->
               <ul id="buzz-public" class="buzz" style="display:none">
               </ul>
               <ul id="buzz-moderated" class="buzz">
