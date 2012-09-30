@@ -56,7 +56,7 @@
                 <p class="description">{{ audience.post_content|safe }}</p>
                 <div class="info-btn">
                   <a href="" class="btn btn-info">mais detalhes</a>
-                  <a href="" class="btn btn-success">como funciona?</a>
+                  <div class="btn btn-success" rel="#works-like-this">como funciona?</div>
                 </div>
                 <!-- <div id="how-it-works" rel="#works-like-this"> -->
                 <!--   <img src="{{ url_for('.static', filename='img/big_gear.png') }}" -->
@@ -192,7 +192,7 @@
 <!--       <\!--   <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}" -\-> -->
 <!--       <\!--        class="how-it-works-text"> -\-> -->
 <!--       <\!-- </div> -\-> -->
-<div id="works-like-this" class="modal hide fade">
+<div id="works-like-this" class="overlay boverlay">
   <ol>
     <li class="step-1">
       <div class="wrapper">
