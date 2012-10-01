@@ -144,7 +144,10 @@ def index():
         post_status='publish',
         numberposts=6,
         thumbsizes=['newsbox', 'widenewsbox'])
-
+    try:
+        vote_url = app.config['VOTACAO_URL']
+    except KeyError:
+        vote_url = ""
     return render_template(
         'index.html', wp=wordpress,
         sidebar=wordpress.getSidebar,
@@ -155,6 +158,7 @@ def index():
         page_como=wordpress.getPageByPath('como-funciona'),
         page_seg=wordpress.getPageByPath('seguranca-2'),
         menu=menus,
+        VOTACAO_URL=vote_url
     )
 
 
