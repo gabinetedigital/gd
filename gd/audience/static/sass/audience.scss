@@ -34,11 +34,13 @@ li {
     color: $black;
     border-right: 1px solid #CCC;
     border-left: 1px solid #CCC;
+    height: 171px;
 }
 
 .info-desc {
     padding: 16px;
-    border-bottom: 1px solid #CCC;
+    font-size: 14pt;
+    height: 172px;
 }
 
 .info-btn {
@@ -52,10 +54,17 @@ li {
     padding: 6px;
 }
 
+.share p {
+    color: $red;
+    font-size: 13pt;
+    font-style: italic;
+}
+
 .info-aud {
     color: $black;
     border-top: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
+    height: 172px;
     @include box-sizing(border-box);
     @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.7) inset);
     @include background-image(linear-gradient(white, #DDD));
@@ -64,14 +73,26 @@ li {
 
 .aud-date {
     border-right: 1px solid #CCC;
-    height: 130px;
     padding-top: 20px;
+    height: 152px;
 }
 
 
 .hashtag {
+    color: $black;
     padding-right: 20px;
 }
+
+.hashtag p.twt {
+    font-size: 10pt;
+    padding-left: 30px;
+}
+
+.hashtag p.hash {
+    color: #999;
+    font-size: 20pt;
+}
+
 
 #date {
     width: 80px;
@@ -187,7 +208,7 @@ div.time {
 
 
 h2.title {
-    font-size: 50px;
+    font-size: 24pt;
     color: $blue;
     margin-top: 20px;
     font-weight: 400;
@@ -199,8 +220,9 @@ h2.title {
 
 p.description {
     font-size: 17px;
-    padding-right: 200px;
     color: $black;
+    margin-top: 17px;
+    margin-bottom: 15px;
 }
 
 /* .buzz { */
