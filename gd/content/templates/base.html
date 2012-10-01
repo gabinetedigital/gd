@@ -220,6 +220,7 @@
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.masonry.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/easypaginate.js') }}"></script>
 
     {% if user %}
     <script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
