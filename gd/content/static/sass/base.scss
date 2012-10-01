@@ -23,8 +23,9 @@ a {
 }
 
 .home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
-.pessoa1, .pessoa2, .pessoa3, .pessoa4, .male, a.brand,
-.pri, .pq, .pro, .como, .logors {
+.pessoa1, .pessoa2, .pessoa3, .pessoa4,
+.pessoa5, .pessoa6, .pessoa7, .pessoa8,
+.male, a.brand, .pri, .pq, .pro, .como, .logors {
     overflow: hidden;
     text-indent: 1000px;
     background: url(../img/home.png) no-repeat;
@@ -102,30 +103,60 @@ a {
 .pessoa1 {
     display: block;
     height: 86px;
-    width: 23px;
+    width: 44px;
     background-position: 0 -152px;
 }
 
 .pessoa2 {
     display: block;
-    height: 86px;
-    width: 23px;
-    background-position: -42px -152px;
+    background-position: -62px -191px;
+    height: 47px;
+    width: 18px;
 }
 
 .pessoa3 {
+    background-position: -102px -172px;
     display: block;
-    height: 86px;
-    width: 30px;
-    background-position: -89px -152px;
+    height: 66px;
+    width: 66px;
 }
 
 .pessoa4 {
+    background-position: -189px -184px;
     display: block;
-    height: 86px;
-    width: 30px;
-    background-position: -142px -152px;
+    height: 54px;
+    width: 41px;
 }
+
+
+.pessoa5 {
+    display: block;
+    height: 67px;
+    width: 41px;
+    background-position: -250px -171px;
+}
+
+.pessoa6 {
+    display: block;
+    background-position: -311px -175px;
+    height: 63px;
+    width: 21px;
+}
+
+.pessoa7 {
+    background-position: -354px -170px;
+    display: block;
+    height: 67px;
+    width: 23px;
+}
+
+.pessoa8 {
+    background-position: -398px -165px;
+    display: block;
+    height: 71px;
+    width: 21px;
+}
+
 
 .male {
     display: block;
