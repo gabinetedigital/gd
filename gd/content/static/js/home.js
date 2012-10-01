@@ -51,4 +51,20 @@ $(document).ready(function () {
         $('#como').fadeIn();
     });
 
+    $('div#clipping-itemsclipping').easyPaginate({
+        step:document.getElementById('clipping-perpage').value
+    });
+
+    var totequipe_grupo = document.getElementById('equipe-perpage').value;
+    for(i=2;i<=totequipe_grupo;i++){
+        $('#equipe-grupo-'+i).hide();
+    }
+
+    $('.equipe-grupo').click(function(){
+        for(i=1;i<=totequipe_grupo;i++){
+            $('#equipe-grupo-'+i).hide();
+        }
+        $('#equipe-grupo-'+$(this).attr('data-index')).fadeIn();
+    });
+
 });
