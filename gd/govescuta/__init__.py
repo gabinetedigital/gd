@@ -69,6 +69,7 @@ def govescuta_details(aid):
     print inst
     buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
     buzzesSelec = AudiencePosts.query.get(aid).get_last_published_notice()
+    govescuta = True
     return render_template(
         'audience.html', #this template is from gd/audience
         # 'govescuta_edicaoanter.html',
@@ -78,6 +79,6 @@ def govescuta_details(aid):
         buzzes = buzzes,
         buzzesSelec = buzzesSelec,
         menu=menus,
+        govescuta=govescuta,
         how_to=getattr(how_to, 'content', ''),
     )
-

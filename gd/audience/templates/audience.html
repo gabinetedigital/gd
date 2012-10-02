@@ -141,6 +141,7 @@
         </div>
         <div class="span4 hidden-phone">
           <div class="droom">
+              {% if not govescuta %}
               <div id="message-statusbar" class="alert alert-info span3"></div>
               <div id="chat">
                 <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
@@ -151,8 +152,8 @@
 
                 </form>
               </div>
-
-            <div class="buzzs">
+              {% endif %}
+              <div class="buzzs">
               <!-- <a class="filter" href="javascript:;" -->
               <!--    title="Alternar a exibição de mensagens moderadas">filtro</a> -->
               <ul id="buzz-public" class="buzz" style="display:none">
@@ -183,7 +184,23 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>.
+    <!-- <div class="bloggin"> -->
+    <!--   <div class="row"> -->
+    <!-- 	<ul  id="encaminhada-{{ audience.ID }}" class="thumbanails"> -->
+    <!--       {% for post in referrals %} -->
+    <!--       <li class="span6"> -->
+    <!--         <div class="thumbnail"> -->
+    <!--         <a href="{{ post.get_field('link', post.permalink) }}"> -->
+    <!--           <h4>{{ post.title }}</h4> -->
+    <!--           <div>{{ post.content|safe }}</div> -->
+    <!--         </a> -->
+    <!--         </div> -->
+    <!--       </li> -->
+    <!--       {% endfor %} -->
+    <!-- 	</ul> -->
+    <!--   </div> -->
+    <!-- </div> -->
   </div>
 </div>
 
