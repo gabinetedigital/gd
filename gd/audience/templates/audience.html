@@ -128,7 +128,13 @@
                 height="400px"
                 poster="http://s4.procergs.com.br/static2/procergs.jpg"
               >
+                {%if audience.aud_wp_govescuta_ativa == 'n'%}
+                  {%for video in audience.video_sources%}
+                    <source src="{{video.url|safe}}" type="{{video.format.split('; ')[0]|safe}}">
+                  {%endfor%}
+                {%else%}
                 <source src="{{audience.aud_wp_govescuta_video_embed|safe}}" type="video/ogg">
+                {%endif%}
               </video>
             </div>
           </div>
