@@ -12,156 +12,128 @@
 {% endblock %}
 
 {% block content %}
-<div id="container">
-	<div id="works-like-this" class="overlay boverlay">
-  			<ol>
-				<li class="step-1">
-  					<div class="wrapper">
-						<img
-   							src="{{ url_for('audience.static', filename='imgs/couple.png') }}"
-   							class="step-1-couple">
-						<div>
-  							<img
- 								src="{{ url_for('audience.static', filename='imgs/mail_trail.png') }}"
- 								class="step-1-mail-trail">
-  							<img
- 								src="{{ url_for('audience.static', filename='imgs/mail.png') }}"
- 								class="step-1-mail">
-						</div>
-  					</div>
-  					<p>As pessoas enviam suas contribuições</p>
-				</li>
-				<li class="step-2">
-  					<div class="wrapper">
-						<div class="gears">
-  							<img
- 								src="{{ url_for('audience.static', filename='imgs/step_2_big_gear.png') }}"
- 								class="step-2-big-gear">
-  							<img
- 								src="{{ url_for('audience.static', filename='imgs/step_2_small_gear.png') }}"
- 								class="step-2-small-gear">
-						</div>
-						<img 
-							src="{{ url_for('audience.static', filename='imgs/networked_cpus.png') }}">
-  					</div>
-  					<p>Nossa equipe processa e modera as contribuições</p>
-				</li>
-				<li class="step-3">
-  					<div class="wrapper">
-						<img
-   							src="{{ url_for('audience.static', filename='imgs/mustache_gentleman.png') }}"
-   							class="mustache-gentleman">
-						<img
-   							src="{{ url_for('audience.static', filename='imgs/empty_dialog.png') }}"
-   							class="mustache-gentleman-dialog">
-  					</div>
-  					<p>O Governador comenta as contribuições selecionadas</p>
-				</li>
-	  		</ol>
-  			<div id="saiba-mais-link">
-				<a href="javascript:show_how_to()"> Saiba mais </a>
-  			</div>
-  			<div id="saiba-mais-text" style="display:none">
-    			{{ how_to|safe }}
-  			</div>
-		</div>
-		
-  <div class="row head">
-    <div id="logo" class="col4">
-      <h1>
-        <a href="{{ url_for('.index') }}">
-          Governador Escuta
-        </a>
-      </h1>
-    </div>
-    <div class="col8">
-      <p>
-        Audiências públicas digitais transmitidas via internet onde você
-        pode enviar sua contribuição
-      </p>
-
-      <ul class="menu">
-        <li class="comofunciona">
-          <a href="#" rel="#works-like-this" id="how-it-works">Como Funciona</a>
+<div class="content">
+  <div class="container">
+    <div id="works-like-this" class="overlay boverlay">
+      <ol>
+        <li class="step-1">
+          <div class="wrapper">
+            <img
+               src="{{ url_for('audience.static', filename='imgs/couple.png') }}"
+               class="step-1-couple">
+            <div>
+              <img
+                 src="{{ url_for('audience.static', filename='imgs/mail_trail.png') }}"
+                 class="step-1-mail-trail">
+              <img
+                 src="{{ url_for('audience.static', filename='imgs/mail.png') }}"
+                 class="step-1-mail">
+            </div>
+          </div>
+          <p>As pessoas enviam suas contribuições</p>
         </li>
-      </ul>
-      
-  		
+        <li class="step-2">
+          <div class="wrapper">
+            <div class="gears">
+              <img
+                 src="{{ url_for('audience.static', filename='imgs/step_2_big_gear.png') }}"
+                 class="step-2-big-gear">
+              <img
+                 src="{{ url_for('audience.static', filename='imgs/step_2_small_gear.png') }}"
+                 class="step-2-small-gear">
+            </div>
+            <img
+               src="{{ url_for('audience.static', filename='imgs/networked_cpus.png') }}">
+          </div>
+          <p>Nossa equipe processa e modera as contribuições</p>
+        </li>
+        <li class="step-3">
+          <div class="wrapper">
+            <img
+               src="{{ url_for('audience.static', filename='imgs/mustache_gentleman.png') }}"
+               class="mustache-gentleman">
+            <img
+               src="{{ url_for('audience.static', filename='imgs/empty_dialog.png') }}"
+               class="mustache-gentleman-dialog">
+          </div>
+          <p>O Governador comenta as contribuições selecionadas</p>
+        </li>
+      </ol>
+      <div id="saiba-mais-link">
+        <a href="javascript:show_how_to()"> Saiba mais </a>
+      </div>
+      <div id="saiba-mais-text" style="display:none">
+        {{ how_to|safe }}
+      </div>
     </div>
-    <div class="row-end"></div>
-  </div>
 
-  <div class="row content">
-    <h2>Audiências Anteriores</h2>
-    <form id="filterform" method="get" action="{{ url_for('govescuta.index') }}">
-      <select name="sortby" onchange="$('#filterform').submit()">
-        <option value="">filtros</option>
-        <option
-           {% if sortby == 'date' %}selected="selected"{% endif %}
-           value="date">
-          Mais recentes
-        </option>
-        <option
-           {% if sortby == '-date' %}selected="selected"{% endif %}
-           value="-date">
-          Mais antigas
-        </option>
-      </select>
-    </form>
-  
-    
-    
-    <ul>
-      {% for audience in audiences %}
-      <li>
-        <div class="audiencia">
-          <div class="titulo">
-          	<a href="{{ url_for('.govescuta_details', aid=audience.ID) }}">
-            <h4>{{ audience.post_title }} <i>(
-				{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d/%m/%Y %H:%M") }}
-				)</i></h4>
-				</a>
-          </div>
-          {% if audience.video  %}
-      <div class="video">
-        <a href="javascript:;" onclick='video.play({{ audience.video|tojson|safe }})'>
-          <div class="container">
-            <img class="thumb"
-                 src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
-                 width="300" height="190">
-            <img src="../static/imgs/play.png" class="play">
-          </div>
-        </a>
-        <a href="{{ url_for('videos.details', vid=audience.video.id) }}"
-           class="permalink">
-          <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
-               alt="Permanet link">
-        </a>
+    <div class="row">
+      <div class="span8">
+        <p>
+          Audiências públicas digitais transmitidas via internet onde você
+          pode enviar sua contribuição
+        </p>
+
+        <ul class="menu">
+          <li class="comofunciona">
+            <a href="#" rel="#works-like-this" id="how-it-works">Como Funciona</a>
+          </li>
+        </ul>
       </div>
-      {% else %}
-      <div class="video">
-          <div class="container">
-            <img src="static/imgs/logo_aguarde.png" 
-                 alt="Aguarde o vídeo"
-                 width="300" height="190">
+
+    </div>
+
+    <div class="row">
+      <h2>
+        Assita as edições anteriores...
+      </h2>
+      <form id="filterform" method="get" action="{{ url_for('govescuta.index') }}">
+        <select name="sortby" onchange="$('#filterform').submit()">
+          <option value="">filtros</option>
+          <option
+             {% if sortby == 'date' %}selected="selected"{% endif %}
+             value="date">
+            Mais recentes
+          </option>
+          <option
+             {% if sortby == '-date' %}selected="selected"{% endif %}
+             value="-date">
+            Mais antigas
+          </option>
+        </select>
+      </form>
+
+
+      <ul class="thumbnails">
+        {% for audience in audiences %}
+        {% if audience.video  %}
+        <li class="span6">
+          <div class="thumbnail">
+
+            <div id="date" class="pull-left">
+              <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
+              <div class="day">
+                {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d") }}
+              </div>
+            </div>
+            <a href="{{ url_for('.govescuta_details', aid=audience.ID) }}">
+              <h4>{{ audience.post_title }}</h4>
+            </a>
+            <a href="{{ url_for('.govescuta_details', aid=audience.ID) }}">
+              <img class="thumb"
+                   src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
+                   width="100%">
+            </a>
+            <div>
+              <p class="desc">{{ audience.post_content|safe }}</p>
+            </div>
           </div>
-      </div>
-      {% endif %}
-      
-          <div>
-          	<p class="desc">{{ audience.post_content|safe }}</p>
-          	{% if audience.category %}
-        		<a 	href="{{ url_for('.govescuta_details', aid=audience.ID) }}"
-           			class="encaminhamento">
-          			Encaminhamentos
-        		</a>
-        	{% endif %}
-          </div>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-    <div class="row-end"></div>
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+    </div>
   </div>
 </div>
 {% endblock %}

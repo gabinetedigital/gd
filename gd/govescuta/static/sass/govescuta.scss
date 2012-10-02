@@ -1,0 +1,64 @@
+@import "base";
+@import "compass/css3";
+
+.content {
+    color: #FFF;
+    padding-top: 20px;
+    border-top: 2px solid #DDD;
+    background: url(../img/minsqr.png);
+}
+
+.thumbnail {
+    @include border-radius(0);
+}
+
+.thumbnail p {
+    background: none repeat scroll 0 0 rgba($black, 0.75);
+    bottom: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    left: 0;
+    line-height: 24px;
+    margin: 7px;
+    overflow: hidden;
+    padding: 5px 8px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+#date {
+    width: 45px;
+    height: 40px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+#date div {
+    font-weight: bold;
+}
+
+#date div.day {
+    font-size: 14pt;
+    text-align: center;
+    border-right: 2px solid #CCC;
+    border-bottom: 2px solid #CCC;
+    border-left: 2px solid #CCC;
+    background-color: #DDD;
+    padding: 2px 0;
+    color: black;
+    @include background-image(linear-gradient(white, #DDD));
+}
+
+#date div.month {
+    font-size: 10pt;
+    background-color: #D72314;
+    color: #FFF;
+    text-align: center;
+    border-top: 2px solid #D72314;
+    border-right: 2px solid #D72314;
+    border-left: 2px solid #D72314;
+    @include background-image(linear-gradient(#D72314, #A81704));
+}
