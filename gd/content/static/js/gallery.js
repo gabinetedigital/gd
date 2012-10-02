@@ -20,7 +20,7 @@
 $(document).ready(function() {
 
     // Initialize Minimal Galleriffic Gallery
-    $('#thumbs').galleriffic({
+    var gallery = $('#thumbs').galleriffic({
         imageContainerSel:      '#slideshow',
         controlsContainerSel:   '#controls',
         captionContainerSel:    '#caption',
@@ -30,6 +30,7 @@ $(document).ready(function() {
         nextLinkText:              '»',
         nextPageLinkText:          '>',
         prevPageLinkText:          '<',
+        enableHistory:             true,
         onTransitionIn: function(slide, caption, isSync) {
             var duration = this.getDefaultTransitionDuration(isSync);
             var slideImage = slide.find('img');
@@ -46,6 +47,15 @@ $(document).ready(function() {
 
     });
 
+    function pageload(hash) {
+        // hash doesn't contain the first # character.
+        if(hash) {
+            $.galleriffic.gotoImage(hash);
+        } else {
+            gallery.gotoIndex(0);
+        }
+    };
+    $.historyInit(pageload, { unescape: ",/" } );
 
     $('#slideshow > img').hide();
     $('.prev').addClass('awesome');
