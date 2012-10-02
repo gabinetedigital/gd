@@ -148,6 +148,8 @@ div.time {
     margin-left: -30px;
     border-left: 4px solid $black;
     padding-top: 10px;
+    height: 500px;
+    overflow: hidden;
 }
 
 #beingAnswered-anterior {
@@ -173,7 +175,7 @@ div.time {
     background-color: black;
     color: white;
     width: 300px;
-    height: 100px;
+    height: 160px;
 }
 
 .droom #chat .current-msg-length {
@@ -181,10 +183,9 @@ div.time {
 }
 
 .buzzs {
-    height: 445px;
+    height: 465px;
     overflow-y: scroll;
 }
-
 
 #poster {
     width: 140px;
@@ -220,7 +221,7 @@ div.time {
 
 
 h2.title {
-    font-size: 24pt;
+    font-size: 18pt;
     color: $blue;
     margin-top: 20px;
     font-weight: 400;
