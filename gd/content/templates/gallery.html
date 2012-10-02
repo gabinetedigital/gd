@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/jquery.galleriffic.js') }}"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
-<script src="{{ url_for('.static', filename='js/jquery.galleriffic.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
 {% endblock %}
@@ -57,7 +57,7 @@
 	    <div class="caption">
 	      <div class="text">{{ image.description }}</div>
 	      <div class="download">
-	        <a href="{{ image.imageURL }}_backup" class="btn btn-danger">Baixar original</a>
+	        <a href="{{ url_for('gallery.fotoDownload', gallery=image.slug, filename=image.filename) }}" class="btn btn-danger">Baixar original</a>
 	      </div>
               <div class="share">
                 <span class='st_facebook_hcount' displayText='Facebook'></span>

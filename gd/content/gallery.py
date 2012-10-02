@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template, abort, request, jsonify, send_from_directory
+from flask import Blueprint, render_template, abort, request, jsonify, send_from_directory, current_app
 from gd.content.wp import wordpress, gallery as api
 import math
 import urllib2
@@ -75,9 +75,10 @@ def vote(gid, rate=-1):
         print e.errno, e.strerror
         return jsonify("{'vote': 'False', 'msg': ''}")
 
-@gallery.route('/fotoDownload/<string:slug>')
-def fotoDownload(slug=None):
-    arq = slug
+@gallery.route('/fotoDownload/<gallery>/<string:filename>')
+def fotoDownload(gallery=None,filename=None):
+    arquive_url = "%s/wp-content/gallery/%s/%s_backup" % (current_app.config['WORDPRESS_ADDRESS'], gallery, filename)
+    arq = arquive_url
     nomearq = arq.replace("$", "/")
     arq = str(nomearq)
     nomearq = str.split(arq, '/')
