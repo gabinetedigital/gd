@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/auth.css') }}">
+{% endblock %}
+
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/profile.js') }}"></script>
 {% endblock %}
@@ -7,91 +11,81 @@
 {% block bodyclass %}profile{% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="row">
-    <div id="pedit" class="col12">
-      <div id="content">
-        <h2>Editar perfil</h2>
+<div class="content auth">
+  {{ profile.csrf }}
+  <form
+     class="form-horizontal" method="post" id="profile_form"
+     action="{{ url_for('.profile_json') }}"
+     enctype="multipart/form-data">
 
-        {% if not profile.social %}
-        <div id="tab">
-          <ul class="tabs">
-            <li><a href="#">Geral</a></li>
-            <li><a href="#">Alterar senha</a></li>
-          </ul>
+    <div class="container">
+      <div class="row header">
+        <div class="span4">
+          <h2>Editar perfil</h2>
         </div>
-        {% endif %}
-
+        <div class="span8">
+          <img src="{{ user.avatar_url }}" alt="{{ user.name }}">
+          {{ profile.avatar.label }} {{ profile.avatar(value='') }}
+        </div>
+      </div>
+      <div class="row">
         <div class="msg error"></div>
         <div class="msg success"></div>
+        <div class="span4">
+          {{ profile.name.label }} {{ profile.name }}
 
-        <div class="panes">
-          <form
-             class="auth" method="post" id="profile_form"
-             action="{{ url_for('.profile_json') }}"
-             enctype="multipart/form-data">
 
-            {{ profile.csrf }}
+          {{ profile.email.label }} {{ profile.email }}
 
-            <ol>
-              <li class="field avatar">
-                <img src="{{ user.avatar_url }}" alt="{{ user.name }}">
-                {{ profile.avatar.label }} {{ profile.avatar(value='') }}
-              </li>
-              <li class="field name frmcol1">
-                {{ profile.name.label }} {{ profile.name }}
-              </li>
-              <li class="field email">
-                {{ profile.email.label }} {{ profile.email }}
-              </li>
-              <li class="field state frmcol2">
-                {{ profile.state.label }} {{ profile.state }}
-              </li>
-              <li class="field city frmcol2">
-                {{ profile.city.label }} {{ profile.city }}
-              </li>
-              <li class="field phone">
-                {{ profile.phone.label }} {{ profile.phone }}
-              </li>
-              <li class="field gender frmcol2">
-                {{ profile.gender.label }} {{ profile.gender }}
-              </li>
-              <li class="field age_group frmcol2">
-                {{ profile.age_group.label }} {{ profile.age_group }}
-              </li>
-              <li class="field twitter">
-                {{ profile.twitter.label }} {{ profile.twitter }}
-              </li>
-              <li class="sep"><hr></li>
-              <li class="submit"><button class="awesome">Salvar</button></li>
-            </ol>
-          </form>
 
-          {% if not profile.social %}
-          <form
-             class="auth" method="post" id="password_form"
-             action="{{ url_for('.profile_passwd_json') }}">
+          {{ profile.state.label }} {{ profile.state }}
 
-            {{ passwd.csrf(id='password_csrf') }}
 
-            <ol>
-              <li class="field password">
-                {{ passwd.current_password.label }} {{ passwd.current_password }}
-              </li>
-              <li class="field password frmcol1">
-                {{ passwd.password.label }} {{ passwd.password }}
-              </li>
-              <li class="field password_confirmation">
-                {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
-              </li>
-              <li class="submit"><button class="awesome">Alterar senha</button></li>
-            </ol>
-          </form>
-          {% endif %}
-        </div> <!-- .panes -->
-      </div><!-- content -->
-    </div> <!-- #pedit -->
-  </div> <!-- row -->
-  <div class="row-end"></div>
+          {{ profile.city.label }} {{ profile.city }}
+        </div>
+        <div class="span8">
+          {{ profile.phone.label }} {{ profile.phone }}
+
+
+          {{ profile.gender.label }} {{ profile.gender }}
+
+
+          {{ profile.age_group.label }} {{ profile.age_group }}
+
+
+          {{ profile.twitter.label }} {{ profile.twitter }}
+        </div>
+        <div class="span2 offset6 enviar">
+          <input type="submit" class="btn btn-primary" value="Atualizar">
+        </div>
+  </form>
+
+  {% if not profile.social %}
+  <form
+     class="auth" method="post" id="password_form"
+     action="{{ url_for('.profile_passwd_json') }}">
+
+    {{ passwd.csrf(id='password_csrf') }}
+
+    <ol>
+      <li class="field password">
+        {{ passwd.current_password.label }} {{ passwd.current_password }}
+      </li>
+      <li class="field password frmcol1">
+        {{ passwd.password.label }} {{ passwd.password }}
+      </li>
+      <li class="field password_confirmation">
+        {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
+      </li>
+      <li class="submit"><button class="awesome">Alterar senha</button></li>
+    </ol>
+  </form>
+  {% endif %}
+
+
+  </div> <!-- .panes -->
+  </div><!-- content -->
+</div> <!-- #pedit -->
+</div> <!-- row -->
 </div>
 {% endblock %}

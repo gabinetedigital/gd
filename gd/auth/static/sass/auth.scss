@@ -1,8 +1,32 @@
 @import "system";
 
 .content {
-    color: #FFF;
-    padding-top: 20px;
+    color: $black;
+    padding-top: 30px;
     border-top: 2px solid #DDD;
     background: url(../img/minsqr.png);
+    padding-bottom: 20px;
+}
+
+.auth .header {
+    margin-bottom: 20px;
+}
+
+.auth h2 {
+    font-size: 50px;
+    color: $blue;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    font-weight: 300;
+    background-color: #333;
+    padding: 10px 20px;
+    width: 100%;
+    line-height: 1.1em;
+    height: 1.2em;
+    display: inline;
+    @include single-text-shadow;
+}
+
+.auth .enviar {
+    margin-top: 20px;
 }
