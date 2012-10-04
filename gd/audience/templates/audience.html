@@ -75,8 +75,12 @@
         <div class="span4  hidden-phone">
           <div class="aud-date">
             <div class="hashtag pull-left">
+              {% if not govescuta %}
               <p class="twt">Participe também pelo twitter</p>
               <p class="hash">{{ audience.hashtag[0] }}</p>
+              {% else %}
+              <a href="./" class="btn btn-primary todas">Ver mais audiências</a>
+              {% endif%}
             </div>
             <div id="date" class="pull-right">
               <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
