@@ -1,17 +1,4 @@
-@import 'base';
-@import "compass/css3";
-
-$red: #d8001d;
-$orange: #f33500;
-$blue: #008fd8;
-$green: #007160;
-$black: #1f1f21;
-$yellow: #f4e400;
-
-
-$default-text-shadow-color: rgba(#333, 0.6);
-$default-text-shadow-blur: 3px;
-$default-text-shadow-v-offset: 1px;
+@import 'system';
 
 ul, ol {
     margin: 0;
