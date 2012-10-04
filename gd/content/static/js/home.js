@@ -51,6 +51,53 @@ $(document).ready(function () {
         $('#como').fadeIn();
     });
 
+    $('.go1').click(function(){
+        $('.step1').fadeIn();
+        $('.step2').hide();
+        $('.step3').hide();
+        $('.step4').hide();
+        $('.go1 a').addClass('active');
+        $('.go4 a').removeClass('active');
+        $('.go2 a').removeClass('active');
+        $('.go3 a').removeClass('active');
+    });
+
+    $('.go2').click(function(){
+        $('.step2').fadeIn();
+        $('.step1').hide();
+        $('.step3').hide();
+        $('.step4').hide();
+        $('.go2 a').addClass('active');
+        $('.go1 a').removeClass('active');
+        $('.go4 a').removeClass('active');
+        $('.go3 a').removeClass('active');
+    });
+
+    $('.go3').click(function(){
+        $('.step3').fadeIn();
+        $('.step2').hide();
+        $('.step1').hide();
+        $('.step4').hide();
+        $('.go3 a').addClass('active');
+        $('.go1 a').removeClass('active');
+        $('.go2 a').removeClass('active');
+        $('.go4 a').removeClass('active');
+    });
+
+    $('.go4').click(function(){
+        $('.step4').fadeIn();
+        $('.step2').hide();
+        $('.step3').hide();
+        $('.step1').hide();
+        $('.go4 a').addClass('active');
+        $('.go1 a').removeClass('active');
+        $('.go2 a').removeClass('active');
+        $('.go3 a').removeClass('active');
+    });
+
+
+
+
     $('div#clipping-itemsclipping').easyPaginate({
         step:document.getElementById('clipping-perpage').value
     });
