@@ -13,79 +13,64 @@
 {% block content %}
 <div class="content auth">
   {{ profile.csrf }}
-  <form
-     class="form-horizontal" method="post" id="profile_form"
-     action="{{ url_for('.profile_json') }}"
-     enctype="multipart/form-data">
+  <div class="container">
+    <form
+       class="form-horizontal" method="post" id="profile_form"
+       action="{{ url_for('.profile_json') }}"
+       enctype="multipart/form-data">
 
-    <div class="container">
       <div class="row header">
         <div class="span4">
           <h2>Editar perfil</h2>
-        </div>
-        <div class="span8">
-          <img src="{{ user.avatar_url }}" alt="{{ user.name }}">
-          {{ profile.avatar.label }} {{ profile.avatar(value='') }}
         </div>
       </div>
       <div class="row">
         <div class="msg error"></div>
         <div class="msg success"></div>
-        <div class="span4">
-          {{ profile.name.label }} {{ profile.name }}
-
-
-          {{ profile.email.label }} {{ profile.email }}
-
-
-          {{ profile.state.label }} {{ profile.state }}
-
-
-          {{ profile.city.label }} {{ profile.city }}
-        </div>
         <div class="span8">
-          {{ profile.phone.label }} {{ profile.phone }}
+          <div class="senha">
+            <!-- <img src="{{ user.avatar_url }}" alt="{{ user.name }}"> -->
+            <!-- {{ profile.avatar.label }} {{ profile.avatar(value='') }} -->
+            <div class="pull-left">
+              {{ profile.name.label }} {{ profile.name }}
+              {{ profile.email.label }} {{ profile.email }}
+              {{ profile.age_group.label }} {{ profile.age_group }}
+              {{ profile.twitter.label }} {{ profile.twitter }}
+              <div class="enviar">
+                <input type="submit" class="btn btn-primary" value="Atualizar">
+              </div>
+            </div>
 
-
-          {{ profile.gender.label }} {{ profile.gender }}
-
-
-          {{ profile.age_group.label }} {{ profile.age_group }}
-
-
-          {{ profile.twitter.label }} {{ profile.twitter }}
+            <div class="pull-right">
+              {{ profile.city.label }} {{ profile.city }}
+              {{ profile.state.label }} {{ profile.state }}
+              {{ profile.phone.label }} {{ profile.phone }}
+              {{ profile.gender.label }} {{ profile.gender }}
+            </div>
+          </div>
         </div>
-        <div class="span2 offset6 enviar">
-          <input type="submit" class="btn btn-primary" value="Atualizar">
-        </div>
-  </form>
+    </form>
+    <div class="span4">
 
-  {% if not profile.social %}
-  <form
-     class="auth" method="post" id="password_form"
-     action="{{ url_for('.profile_passwd_json') }}">
+      <div class="senha">
+        <p class="lost">Esqueceu sua senha?</p>
+        {% if not profile.social %}
+        <form
+           class="auth" method="post" id="password_form"
+           action="{{ url_for('.profile_passwd_json') }}">
+          {{ passwd.csrf(id='password_csrf') }}
+          {{ passwd.current_password.label }} {{ passwd.current_password }}
+          {{ passwd.password.label }} {{ passwd.password }}
+          {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
+          <div class="enviar">
+          <button class="btn btn-primary">Alterar senha</button>
+          </div>
+        </form>
+      </div>
+      {% endif %}
+    </div>
 
-    {{ passwd.csrf(id='password_csrf') }}
-
-    <ol>
-      <li class="field password">
-        {{ passwd.current_password.label }} {{ passwd.current_password }}
-      </li>
-      <li class="field password frmcol1">
-        {{ passwd.password.label }} {{ passwd.password }}
-      </li>
-      <li class="field password_confirmation">
-        {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
-      </li>
-      <li class="submit"><button class="awesome">Alterar senha</button></li>
-    </ol>
-  </form>
-  {% endif %}
-
-
-  </div> <!-- .panes -->
+    </div> <!-- .panes -->
   </div><!-- content -->
 </div> <!-- #pedit -->
-</div> <!-- row -->
-</div>
 {% endblock %}

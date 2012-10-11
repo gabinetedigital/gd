@@ -9,14 +9,12 @@
 }
 
 .auth .header {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .auth h2 {
     font-size: 50px;
     color: $blue;
-    margin-bottom: 60px;
-    margin-top: 20px;
     font-weight: 300;
     background-color: #333;
     padding: 10px 20px;
@@ -29,4 +27,17 @@
 
 .auth .enviar {
     margin-top: 20px;
+}
+
+.senha {
+    border: 1px solid #CCC;
+    overflow: auto;
+    padding: 15px 20px;
+    @include border-radius(20px);
+}
+
+.lost {
+    color: $red;
+    font-size: 18pt;
+    font-style: italic;
 }
