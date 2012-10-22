@@ -352,3 +352,9 @@ section h2 {
 #govpergunta .como {
     background-position: -110px -327px;
 }
+
+#resultados {
+   background: url(../img/resultados.jpg) no-repeat center center fixed;
+    @include background-size(cover);
+    padding-bottom: 60px;
+}
