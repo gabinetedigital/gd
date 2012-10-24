@@ -12,7 +12,8 @@ a {
 .home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
 .pessoa1, .pessoa2, .pessoa3, .pessoa4,
 .pessoa5, .pessoa6, .pessoa7, .pessoa8,
-.male, a.brand, .pri, .pq, .pro, .como, .logors {
+.male, a.brand, .pri, .pq, .pro, .como, .logors,
+.ftweet, .ffb, .frss {
     overflow: hidden;
     text-indent: 1000px;
     background: url(../img/home.png) no-repeat;
@@ -282,21 +283,83 @@ a {
 }
 
 footer {
-    @include background-image(linear-gradient(center top , #222222, #111111));
+    @include background-image(image-url("footer.png"), linear-gradient(center top , #222222, #111111));
     background-color: #1B1B1B;
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 20px;
     color: #FFF;
     font-size: 10pt;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+footer ul {
+    margin: 27px 0;
+
+}
+
+footer li {
+    font-weight: bold;
+    line-height: 14px;
+    list-style: none outside none;
+    margin-bottom: 13px;
+}
+
+
+.ftweet {
+    width: 16px;
+    height: 16px;
+    background-position: -49px -599px;
+    border: 0;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.ffb {
+    width: 16px;
+    height: 16px;
+    background-position: 0px -599px;
+    border: 0;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.frss {
+    width: 16px;
+    height: 16px;
+    background-position: -25px -599px;
+    border: 0;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+
+.bloco {
+    background-color: rgba(black, 0.6);
+    padding: 19px 20px 0;
+    height: 146px;
+    display: block;
+    font-size: 8pt;
+    overflow: hidden;
+}
+
+.contato {
+    width: 200px;
+}
+
+.contato address {
+    margin-bottom: 0;
 }
 
 .logors {
     background-position: -42px -406px;
     border: 0 none;
     display: block;
-    height: 164px;
-    margin-top: 20px;
-    width: 180px;
+    height: 116px;
+    width: 130px;
     text-indent: -1000px;
 }
 
@@ -391,6 +454,21 @@ section {
         height: 20px;
     }
 
+    .contato {
+        width: 146px;
+    }
+
+    .bloco {
+        height: 180px;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 0 20px 4px;
+    }
+
+    .bloco p {
+        margin: 0;
+    }
+
 }
 
 @media (max-width: 767px) {
@@ -408,12 +486,15 @@ section {
         padding-left: 20px;
     }
 
-    footer div.span4 {
-        border-bottom: 1px dashed #FFF;
-    }
-
     .block {
         margin-bottom: 60px;
+    }
+
+    .bloco {
+        display: block;
+        height: 110px;
+        margin-bottom: 20px;
+        padding: 25px 20px;
     }
 
 }
