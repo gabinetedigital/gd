@@ -73,7 +73,13 @@ section h2 {
     border: 0;
     padding: 10px;
     @include single-text-shadow;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
+    display: block;
+    clear: both;
+}
+
+#sobre blockquote p {
+    font-weight: 400;
 }
 
 #sobre a {
@@ -113,6 +119,8 @@ section h2 {
     @include background-size(cover);
 }
 
+/* Widgets */
+
 .fotodia h4 {
     background: none repeat scroll 0 0 rgba($green, 0.75);
     bottom: 0;
@@ -133,6 +141,23 @@ section h2 {
 }
 
 .news1 h4 {
+    background: none repeat scroll 0 0 rgba($black, 0.75);
+    bottom: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    left: 0;
+    line-height: 24px;
+    margin: 7px;
+    overflow: hidden;
+    padding: 5px 8px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+.publicacoes h4 {
     background: none repeat scroll 0 0 rgba($black, 0.75);
     bottom: 0;
     color: #FFFFFF;
@@ -216,6 +241,7 @@ section h2 {
     padding: 14px;
     color: #FFF;
     position: relative;
+    margin-bottom: 10px;
 }
 
 .lasttweet .box:after {
@@ -267,25 +293,31 @@ section h2 {
     text-align: right;
     line-height: 28px;
     margin-top: 0;
+    padding: 10px 16px 0 96px;
+    color: #FFF;
 }
 
 .pri, .pro, .como, .pq {
     width: 50px;
     height: 50px;
-    position: absolute;
-    bottom: 0;
+    display: block;
+    float: left;
+    margin-top: 75px;
+    margin-left: 9px;
 }
 
 #govpergunta .prioridade, #govpergunta #pri {
-    background-color: $blue;
+    @include background-image(linear-gradient(#00aacc, #0089af));
+
 }
 
 #govpergunta .pri {
-    background-position: -41px -335px;
+    background-position: -41px -328px;
 }
 
 #govpergunta .porque, #govpergunta #pq {
-    background-color: $red;
+    @include background-image(linear-gradient(#e04251, #d12d33));
+
 }
 
 #govpergunta .pq {
@@ -293,7 +325,7 @@ section h2 {
 }
 
 #govpergunta .processo, #govpergunta #pro {
-    background-color: $orange;
+    @include background-image(linear-gradient(#ff9338, #ff7f1e));
     overflow: auto;
 }
 
@@ -346,11 +378,15 @@ section h2 {
 
 
 #govpergunta .comofunciona, #govpergunta #como {
-    background-color: $green;
+    @include background-image(linear-gradient(#00b59b, #00a087));
 }
 
 #govpergunta .como {
     background-position: -110px -327px;
+}
+
+.textos {
+    margin-top: 20px;
 }
 
 #resultados {
