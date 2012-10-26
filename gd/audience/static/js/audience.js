@@ -38,6 +38,11 @@ $(function() {
         return false;
     });
 
+    $('#bla').click(
+        function() {
+            $('#myModal').modal('toggle');
+        }
+    );
 
     $("a.filter").click(
         function() {

@@ -10,9 +10,9 @@
 </script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
-<script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script>
-<script src="{{ url_for('buzz.static', filename='js/longpool.js') }}"></script>
-<script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
+<!-- <script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script> -->
+<!-- <script src="{{ url_for('buzz.static', filename='js/longpool.js') }}"></script> -->
+<!-- <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script> -->
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/statusbar.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
@@ -22,7 +22,6 @@
   jwplayer("aovivo").setup({
     skin: "/static/jw/bekle/bekle.xml",
     width: '100%',
-    autoplay: true,
     modes: [
       { type: "html5" },
       { type: "flash", src: "/static/jw/player.swf" },
@@ -55,20 +54,11 @@
                 <h2 class="title">{{ audience.post_title }}</h2>
                 <p class="description">{{ audience.post_content|safe }}</p>
                 <div class="info-btn">
-                  <a href="" class="btn btn-info">mais detalhes</a>
+                  <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-info">mais detalhe</button>
                   <div class="btn btn-success" rel="#works-like-this">como funciona?</div>
                 </div>
-                <!-- <div id="how-it-works" rel="#works-like-this"> -->
-                <!--   <img src="{{ url_for('.static', filename='img/big_gear.png') }}" -->
-                <!--        id="how-it-works-big-gear" class="big-gear"> -->
-                <!--   <img src="{{ url_for('.static', filename='img/small_gear.png') }}" -->
-                <!--        id="how-it-works-small-gear" class="small-gear"> -->
-                <!--   <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}" -->
-                <!--        class="how-it-works-text"> -->
-                <!-- </div> -->
               </div>
             </div>
-
           </div>
         </div>
 
@@ -189,38 +179,27 @@
         </div>
       </div>
     </div>.
-    <!-- <div class="bloggin"> -->
-    <!--   <div class="row"> -->
-    <!-- 	<ul  id="encaminhada-{{ audience.ID }}" class="thumbanails"> -->
-    <!--       {% for post in referrals %} -->
-    <!--       <li class="span6"> -->
-    <!--         <div class="thumbnail"> -->
-    <!--         <a href="{{ post.get_field('link', post.permalink) }}"> -->
-    <!--           <h4>{{ post.title }}</h4> -->
-    <!--           <div>{{ post.content|safe }}</div> -->
-    <!--         </a> -->
-    <!--         </div> -->
-    <!--       </li> -->
-    <!--       {% endfor %} -->
-    <!-- 	</ul> -->
-    <!--   </div> -->
-    <!-- </div> -->
+    <div class="bloggin">
+      <div class="row">
+    	<ul  id="encaminhada-{{ audience.ID }}" class="thumbanails">
+          {% for post in referrals %}
+          <li class="span6">
+            <div class="thumbnail">
+            <a href="{{ post.get_field('link', post.permalink) }}">
+              <h4>{{ post.title }}</h4>
+              <div>{{ post.content|safe }}</div>
+            </a>
+            </div>
+          </li>
+          {% endfor %}
+    	</ul>
+      </div>
+    </div>
   </div>
 </div>
 
-
-<!-- <div class="row buzzbg"> -->
-<!--   <div id="main" class="span8"> -->
-<!--     <div class="content"> -->
-<!--       <\!-- <div id="how-it-works" rel="#works-like-this"> -\-> -->
-<!--       <\!--   <img src="{{ url_for('.static', filename='imgs/big_gear.png') }}" -\-> -->
-<!--       <\!--        id="how-it-works-big-gear" class="big-gear"> -\-> -->
-<!--       <\!--   <img src="{{ url_for('.static', filename='imgs/small_gear.png') }}" -\-> -->
-<!--       <\!--        id="how-it-works-small-gear" class="small-gear"> -\-> -->
-<!--       <\!--   <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}" -\-> -->
-<!--       <\!--        class="how-it-works-text"> -\-> -->
-<!--       <\!-- </div> -\-> -->
 <div id="works-like-this" class="overlay boverlay">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   <ol>
     <li class="step-1">
       <div class="wrapper">
@@ -277,7 +256,16 @@
 
 
 
+</div>
 
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Mais informações</h3>
+  </div>
+  <div class="modal-body">
+    {{audience.aud_wp_govescuta_detalhes_govesc|safe}}
+  </div>
 </div>
 
 {% endfor%}
