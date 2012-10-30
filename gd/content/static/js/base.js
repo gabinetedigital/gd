@@ -68,7 +68,7 @@ $(function(){
     };
     $('.tweets li').popover(option);
 
-    $('.subnav').scrollspy()
+    $('#menu').scrollspy()
 
     $('.on').hide();
     // $('.logado').hide();
