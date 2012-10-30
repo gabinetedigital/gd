@@ -130,6 +130,7 @@ $(function(){
 
     $('#frmLogin').ajaxForm({
         dataType: 'json',
+
         beforeSubmit: function () { handleBeforeSubmit($('#frmLogin')); },
         success: function (data) { handleSuccess($('#frmLogin'), data); }
     });
@@ -170,5 +171,11 @@ $(function(){
         scroll(0,0);
         auth.showLoginForm();
     }
+
+    //Controle sinistro do menu! Utilizando o atributo data-link.
+    $('a[data-link]').unbind("click").click(function(event){
+        event.preventDefault();
+        document.location = $(this).attr('data-link');
+    });
 
 });
