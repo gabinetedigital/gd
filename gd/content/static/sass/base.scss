@@ -294,22 +294,29 @@ footer {
 }
 
 footer ul {
-    margin: 27px 0;
+    margin: 0;
 
+}
+
+footer a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 footer li {
     font-weight: bold;
-    line-height: 14px;
+    line-height: 29px;
     list-style: none outside none;
-    margin-bottom: 13px;
+    margin-bottom: 15px;
+    font-size: 10pt;
 }
 
 
 .ftweet {
-    width: 16px;
-    height: 16px;
-    background-position: -49px -599px;
+    width: 32px;
+    height: 32px;
+    background-position: -86px -583px;
     border: 0;
     display: block;
     float: left;
@@ -317,9 +324,9 @@ footer li {
 }
 
 .ffb {
-    width: 16px;
-    height: 16px;
-    background-position: 0px -599px;
+    width: 32px;
+    height: 32px;
+    background-position: 0px -583px;
     border: 0;
     display: block;
     float: left;
@@ -327,9 +334,9 @@ footer li {
 }
 
 .frss {
-    width: 16px;
-    height: 16px;
-    background-position: -25px -599px;
+    width: 32px;
+    height: 32px;
+    background-position: -43px -584px;
     border: 0;
     display: block;
     float: left;
@@ -469,6 +476,14 @@ section {
         margin: 0;
     }
 
+    footer ul {
+        padding-top: 20px;
+    }
+
+    footer li {
+        display: inline-block;
+    }
+
 }
 
 @media (max-width: 767px) {
@@ -495,6 +510,14 @@ section {
         height: 110px;
         margin-bottom: 20px;
         padding: 25px 20px;
+    }
+
+    footer ul {
+        padding-top: 0px;
+    }
+
+    footer li {
+        display: block;
     }
 
 }
