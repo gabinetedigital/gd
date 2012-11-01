@@ -16,11 +16,12 @@
 
 .thumbnail p {
     font-size: 10pt;
-    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #CCC;
 }
 
 .thumbnail img {
-    margin-top: 5px;
+    margin-top: 10px;
     margin-right: 10px;
 }
 
