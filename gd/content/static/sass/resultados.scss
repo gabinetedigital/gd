@@ -1,0 +1,49 @@
+@import "system";
+
+.resultados {
+    padding-top: 20px;
+    border-top: 2px solid #DDD;
+    background: url(../img/minsqr.png);
+}
+
+.thumbnail {
+    border: 1px solid #CCC;
+    padding: 0 15px;
+    overflow: auto;
+    @include border-radius(0);
+    @include background-image(linear-gradient(#FFF, #DDD));
+}
+
+.thumbnail p {
+    font-size: 10pt;
+    margin-top: 10px;
+}
+
+.thumbnail img {
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.thumbnail button {
+    margin-bottom: 10px;
+}
+
+.score {
+    color: $blue;
+    font-size: 13pt;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    margin-top: 5px;
+}
+
+.score .ptn {
+    font-size: 18pt;
+    font-weight: bold;
+    color: black;
+    clear: both;
+    display: block;
+    margin-top: 4px;
+}
+
+

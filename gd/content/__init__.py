@@ -276,6 +276,14 @@ def conselho():
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
+@app.route('/resultados/')
+def resultados():
+    """Renders a wordpress page special"""
+    return render_template(
+        'resultados.html',
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    )
+
 
 @app.route('/pages/<path:path>/')
 def pages(path):
