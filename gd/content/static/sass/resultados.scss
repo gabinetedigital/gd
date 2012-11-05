@@ -14,6 +14,10 @@
     @include background-image(linear-gradient(#FFF, #DDD));
 }
 
+.thumbnail h3 {
+    font-size: 15pt;
+}
+
 .thumbnail p {
     font-size: 10pt;
     padding-top: 10px;
@@ -33,7 +37,7 @@
     color: $blue;
     font-size: 13pt;
     text-align: center;
-    width: 45px;
+    width: 79px;
     height: 45px;
     margin-top: 5px;
 }
@@ -47,4 +51,41 @@
     margin-top: 4px;
 }
 
+.mais .span12 {
+    border-top: 2px solid #CCC;
+    padding-top: 15px;
+}
 
+.mais h1 {
+    font-size: 22pt;
+}
+
+.mais img {
+    background: #CCC;
+    padding: 4px;
+    text-align: center;
+}
+
+.mais p {
+    font-size: 14pt;
+}
+
+.agregadas {
+    margin-top: 20px;
+
+}
+
+.agregadas .thumbnail p {
+    font-size: 9pt;
+}
+
+.resposta h2 {
+    color: $blue;
+}
+
+.resp {
+    padding: 20px;
+    background: #d7e3f4;
+    border: 1px solid #DDD;
+    margin-bottom: 20px;
+}
