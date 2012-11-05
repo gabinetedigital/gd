@@ -35,26 +35,7 @@ $(function(){
         });
     });
 
-    $('.clipping').hide();
-    $('.publicacoes').hide();
 
-    $('.clip').click(function(){
-        $('.equipe').hide();
-        $('.publicacoes').hide();
-        $('.clipping').fadeIn();
-    });
-
-    $('.membros').click(function(){
-        $('.clipping').hide();
-        $('.publicacoes').hide();
-        $('.equipe').fadeIn();
-    });
-
-    $('.pub').click(function(){
-        $('.clipping').hide();
-        $('.equipe').hide();
-        $('.publicacoes').fadeIn();
-    });
 
     // $(".scroll").scrollable({ circular: true }).autoscroll({ autoplay: true }).click(function() {
     //     $(this).data("scrollable").next();

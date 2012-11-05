@@ -67,6 +67,10 @@ section h2 {
     @include single-text-shadow;
 }
 
+#sobre .clipping a {
+    color: $orange;
+}
+
 #sobre blockquote {
     color: #FFF;
     border: 0;
@@ -82,16 +86,48 @@ section h2 {
 }
 
 #sobre a {
-    color: $orange;
-
+    color: white;
+    font-weight: bold;
 }
 
 #sobre .btn-sobre {
     text-align: right;
 }
 
+#sobre .nav-tabs {
+    border-bottom: 1px solid #333;
+}
+
+#sobre .nav-tabs > li, .nav-pills > li {
+    float: right;
+
+}
+
+#sobre .nav-tabs > li a:hover {
+    background-color: #333;
+    border-color: #333 #333 transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    color: $blue;
+    cursor: default;
+    @include border-radius(0);
+}
+
+#sobre .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+    background-color: #333;
+    border-color: #333 #333 transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    color: $blue;
+    cursor: default;
+    @include border-radius(0);
+}
+
 #sobre .subgrupo {
-    margin: 15px 10px;
+    margin-bottom: 20px;
+    margin-top: 47px;
 }
 
 #sobre .equipe .thumbnail {

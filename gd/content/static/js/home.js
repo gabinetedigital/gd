@@ -95,6 +95,8 @@ $(document).ready(function () {
         $('.go3 a').removeClass('active');
     });
 
+    $('#myTab a:last').tab('show');
+
 
 
 
@@ -107,6 +109,26 @@ $(document).ready(function () {
         $('#equipe-grupo-'+i).hide();
     }
 
+    $('.clipping').hide();
+    $('.publicacoes').hide();
+
+    $('.clip').click(function(){
+        $('.equipe').hide();
+        $('.publicacoes').hide();
+        $('.clipping').fadeIn();
+    });
+
+    $('.membros').click(function(){
+        $('.clipping').hide();
+        $('.publicacoes').hide();
+        $('.equipe').fadeIn();
+    });
+
+    $('.pub').click(function(){
+        $('.clipping').hide();
+        $('.equipe').hide();
+        $('.publicacoes').fadeIn();
+    });
 
     $('.equipe-grupo-1').addClass('active');
 

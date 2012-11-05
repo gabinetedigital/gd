@@ -39,11 +39,11 @@
           </div>
 
           <div class="span6">
-            <div class="btn-group btn-sobre"  data-toggle="buttons-radio">
-              <button class="btn btn-inverse membros active">Equipe</button>
-              <button class="btn btn-inverse clip">Clipping</button>
-              <button class="btn btn-inverse pub">Publicações</button>
-            </div>
+            <ul class="nav nav-tabs" id="myTab">
+              <li><a class="pub" data-toggle="tab">Publicações</a></li>
+              <li><a class="clip" data-toggle="tab">Clipping</a></li>
+              <li><a class="membros" data-toggle="tab">Equipe</a></li>
+            </ul>
             {{ sidebar(id='sidebar-6')|safe }}
           </div>
 
