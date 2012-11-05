@@ -63,7 +63,6 @@ section h2 {
     color: #FFFFFF;
     font-size: 40px;
     font-weight: 300;
-    margin-bottom: 30px;
     font-style: italic;
     @include single-text-shadow;
 }
@@ -89,6 +88,10 @@ section h2 {
 
 #sobre .btn-sobre {
     text-align: right;
+}
+
+#sobre .subgrupo {
+    margin: 15px 10px;
 }
 
 #sobre .equipe .thumbnail {
@@ -185,8 +188,11 @@ section h2 {
 }
 
 .rss h3 {
-    color: #FFF;
-    margin-left: 10px;
+    color: #FFFFFF;
+    font-size: 12pt;
+    line-height: 31px;
+    margin: 10px;
+    padding: 0;
 }
 
 .rss ul li {
@@ -218,27 +224,27 @@ section h2 {
     width: 0;
 }
 
+.video {
+    background: #000;
+    overflow: auto;
+    display: block;
+}
+
 .video h4 {
-    background: $black;
-    bottom: 0;
     color: $yellow;
+    margin: 7px 0px 19px 7px;
     font-size: 16px;
     line-height: 24px;
-    margin: 7px;
     font-weight: 600;
-    overflow: hidden;
-    padding: 13px;
-    position: absolute;
-    left: 0;
-    height: 24px;
-    top: 10%;
-    text-align: left;
-    text-overflow: ellipsis;
 }
 
 .lasttweet {
     text-align: left;
     background-color: $black;
+}
+
+.lasttweet h4 {
+    text-align: right;
 }
 
 .lasttweet .box {

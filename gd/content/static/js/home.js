@@ -107,11 +107,16 @@ $(document).ready(function () {
         $('#equipe-grupo-'+i).hide();
     }
 
-    $('.equipe-grupo').click(function(){
+
+    $('.equipe-grupo-1').addClass('active');
+
+    $('.subgrupo button').click(function(){
         for(i=1;i<=totequipe_grupo;i++){
             $('#equipe-grupo-'+i).hide();
         }
+        $('.equipe-grupo').removeClass('active');
         $('#equipe-grupo-'+$(this).attr('data-index')).fadeIn();
+        $('.equipe-grupo-'+$(this).attr('data-index')).addClass('active');
     });
 
 });
