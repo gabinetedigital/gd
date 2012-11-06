@@ -11,8 +11,77 @@
 {% block content %}
 <div class="resultados" id="resultados">
   <div class="container">
+    <div class="row header">
+      <div class="span10">
+        <h1>COMO GOVERNO E SOCIEDADE PODEM, JUNTOS, PROMOVER A PAZ NO TRÂNSITO?</h1>
+      </div>
+    </div>
     <div class="row">
       <div class="span12">
+      <p class="desc">O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <div id="myCarousel" class="carousel slide">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            <div class="active item"><img src="{{ url_for('.static', filename='img/1.jpg') }}"></div>
+            <div class="item"><img src="{{ url_for('.static', filename='img/2.jpg') }}"></div>
+            <div class="item"><img src="{{ url_for('.static', filename='img/3.jpg') }}"></div>
+            <div class="item"><img src="{{ url_for('.static', filename='img/4.jpg') }}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row buttons">
+      <div class="span3">
+        <div class="priorizadas">
+          <div class="cell">
+            30 dias <small>de Consulta</small>
+          </div>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="propostas">
+          <div class="cell">
+            1388 mil <small>propostas</small>
+          </div>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="pessoas">
+          <div class="cell">
+            60 mil <small>pessoas envolvidas</small>
+          </div>
+        </div>
+      </div>
+      <div class="span3">
+        <div class="votos">
+          <div class="cell">
+            300 mil <small>votos</small>
+          </div>
+        </div>
+      </div>
+      <div class="span12 dados">
+        <div class="board">
+          <h2>30 Dias de Consulta Pública</h2>
+
+          <p>Com o objetivo de coletar junto a população informações e subsídios para a criação de políticas públicas, o Governador Pergunta abriu uma consulta pública que durou 30 dias e resultou no envolvimento de milhares de pessoas. Todo processo de participação digital foi dividido em quatro etapas.</p>
+
+          <p>No primeiro momento o Governador fez o questionamento à população “Como podemos melhorar o atendimento na saúde pública”, inaugurando assim, no dia 9 de novembro, a primeira edição do Governador Pergunta. No evento com transmissão ao vivo pela internet e a presença do Secretario Estadual da Saúde, a ferramenta foi apresentada à população.  A partir do final do dia 9, qualquer cidadão pode enviar propostas para o Governador através do site, até o dia 28 de novembro, resultando em 1,3 mil contribuições.</p>
+
+          <p>Na terceira fase, aconteceu a votação, que se iniciou no dia 28 de novembro e foi até o dia 10 de dezembro. O objetivo foi permitir aos participantes se colocarem no papel de gestores da saúde, tendo que decidir sobre as prioridades em cada área. Na quarta e última etapa foram conhecidos os autores das 50 propostas mais priorizadas, que serão recebidos pelo Governador no dia 14 de dezembro no Palácio Piratini.</p>
+
+          <p>A escolha da Saúde como tema para a primeira edição do Governador Pergunta, se baseou pelo interesse dos próprios gaúchos. O tema foi elencado como prioridade na discussão do PPA participativo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row lista">
+      <div class="span12">
+          <h2>Propostas priorizadas</h2>
         <ul class="thumbnails">
           <li class="span4">
             <div class="thumbnail">
@@ -105,7 +174,7 @@
           Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
           vista para a rua, sendo menos claustrofóbico.
         </p>
-        <button class="btn btn-link aggrlink">Agregadas(7)</button>
+        <a class="aggrlink">Agregadas(7)</a>
       </div>
     </div>
 

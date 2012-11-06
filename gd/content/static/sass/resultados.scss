@@ -6,6 +6,89 @@
     background: url(../img/minsqr.png);
 }
 
+.resultados .header h1 {
+    background: url("../img/logo_gp.png") no-repeat scroll 0 12px transparent;
+    color: $blue;
+    display: block;
+    font-weight: 400;
+    height: 80px;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    padding-left: 250px;
+}
+
+.resultados p.desc {
+    font-size: 13pt;
+    margin-bottom: 20px;
+    color: #898e8c;
+}
+
+.resultados .buttons {
+    font-size: 20pt;
+    color: #FFF;
+    margin-bottom: 20px;
+    overflow: auto;
+}
+
+.cell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 1000px;
+    height: 100px;
+}
+
+.priorizadas, .propostas, .pessoas, .votos {
+    display: block;
+    height: 100px;
+    text-align: center;
+    @include border-radius(0px 26px 26px 26px);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 1.0), 0 1px 7px 0 rgba(0, 0, 0, 0.3) inset);
+}
+
+.resultados small {
+    display: block;
+    clear: both;
+    font-size: 11pt;
+}
+
+.priorizadas {
+    @include background-image(linear-gradient($lblue, $blue));
+}
+
+.propostas {
+    @include background-image(linear-gradient($lgreen, $green));
+}
+
+.pessoas {
+    @include background-image(linear-gradient($lred, $red));
+}
+
+.votos {
+    @include background-image(linear-gradient($lorange, $orange));
+}
+
+.dados {
+    display: none;
+    font-size: 12pt;
+    color: $black;
+}
+
+.dados .board {
+    border: 1px solid #CCC;
+    padding: 20px;
+    margin-top: 20px;
+    background: #FFF;
+}
+
+.lista h2 {
+    border-top: 1px solid #CCCCCC;
+    font-size: 25pt;
+    font-weight: normal;
+    margin-bottom: 24px;
+    margin-top: 10px;
+    padding-top: 16px;
+}
+
 .thumbnail {
     border: 1px solid #CCC;
     padding: 0 15px;
@@ -52,7 +135,7 @@
 }
 
 .mais .span12 {
-    border-top: 2px solid #CCC;
+    border-top: 1px solid #CCC;
     padding-top: 15px;
 }
 
@@ -72,7 +155,7 @@
 
 .agregadas {
     margin-top: 20px;
-
+    display: none;
 }
 
 .agregadas .thumbnail p {
