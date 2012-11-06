@@ -101,7 +101,7 @@ $(document).ready(function () {
 
 
     $('div#clipping-itemsclipping').easyPaginate({
-        step:document.getElementById('clipping-perpage').value
+        step:$('#clipping-perpage').val()
     });
 
     var totequipe_grupo = document.getElementById('equipe-perpage').value;
