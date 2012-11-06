@@ -80,7 +80,7 @@ $(function(){
                 }
             });
         });
-    }, 1000);
+    }, 1500);
 
     //Auth functions
     function handleBeforeSubmit(form) {
