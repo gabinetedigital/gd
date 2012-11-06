@@ -172,3 +172,19 @@
     border: 1px solid #DDD;
     margin-bottom: 20px;
 }
+
+.comments .avatar {
+    /* margin: 0 auto; */
+    /* background: #CCC; */
+    text-align: center;
+    /* @include border-radius(20px);    */
+}
+
+.comments textarea {
+    width: 100%;
+    height: 120px;
+}
+
+.comments {
+    margin-bottom: 20px;
+}

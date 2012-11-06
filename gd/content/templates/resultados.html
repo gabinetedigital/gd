@@ -254,8 +254,8 @@
         </ul>
       </div>
     </div>
-    <div class="resposta">
-      <div class="span12">
+    <div class="row">
+      <div class="span12 resposta">
         <h2>Encaminhamento do Governador</h2>
       </div>
       <div class="span12">
@@ -265,8 +265,38 @@
           Lançada no dia 9 de outubro, a ferramenta de participação do Gabinete Digital já registrou mais de 110 mil votos até esta segunda-feira (22). Entre as sugestões submetidas à votação popular, 32 advêm das discussões do Comitê Estadual de Mobilização pela Segurança no Trânsito, enquanto as demais são contribuições espontâneas da população gaúcha.
         </div>
       </div>
-    </div>
+      <div class="span12">
+        <h3>Comentários</h3>
+      </div>
+      <div class="span12 comments">
+        <div class="row">
+          <div class="span2">
+            <div class="avatar">
+              <img src="{{ url_for('.static', filename='img/user_big.jpg') }}" class="img-polaroid">
+            </div>
+          </div>
+          <div class="span10">
+            <h5>Da silta</h5>
+            <p>A Brigada Militar está engajada na divulgação e mobilização para a consulta pública sobre segurança no trânsito do Gabinete Digital. Além da distribuição de material informativo sobre a consulta nas rodovias gaúchas, através do Batalhão Rodoviário, mais de 60 pontos fixos de votação foram espalhados pelo Estado, em Batalhões da BM.</p>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="span12">
+            <h4>Deixe seu comentário</h4>
+          </div>
+          <div class="span2">
+            <div class="avatar">
+              <img src="{{ url_for('.static', filename='img/user_big.jpg') }}" class="img-polaroid">
+            </div>
+          </div>
+          <div class="span10">
+            <textarea placeholder="Deixe seu comentário…" name="content"></textarea>
+            <button class="btn pull-right">Enviar comentário</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
