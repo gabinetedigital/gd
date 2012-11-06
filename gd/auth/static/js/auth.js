@@ -206,6 +206,7 @@ var auth = (function() {
                                     }
                                 }
                             } else {
+                                alert('ok!');
                                 $('#auth-success')
                                    .html('Obrigado! Agora siga os passos no email que você recebeu para concluir seu cadastro.')
                                    .fadeIn('fast');

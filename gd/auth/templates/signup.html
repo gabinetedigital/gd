@@ -220,10 +220,10 @@ $(function(){
 
           /* It's everything ok, let's get out */
           if (data.status === 'ok') {
-            $('#auth-success').html(data.msg);
-            $('#auth-success').fadeIn();
+            $('#auth-success').html('Obrigado! Agora siga os passos no email que você recebeu para concluir seu cadastro.').fadeIn();
+            $('#signup').fadeOut();
           } else {
-            console.log(typeof data.msg.data);
+            //console.log(typeof data.msg.data);
             if( typeof data.msg.data==="string" ){
                 $('#auth-error').html(data.msg.data).fadeIn('fast');
             }else{
