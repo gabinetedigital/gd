@@ -8,17 +8,15 @@
 
 <h1 class="respgov">Respostas do Governador</h1>
 <div class="highlight questions">
-  <ul>
     {% for contrib in contribs %}
     {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
-
-    <li>
       <div>
         <h3 class="respgov">{{ contrib.theme.name }}</h3>
       </div>  
 	
       <a href="{{ url_for('.results', rid=contrib.id) }}" class="respgov title">
         {{ contrib.title }} 
+
         <p class="qdate">{{ date }} - ({{ contrib.real_score }} votos) </p>
       </a>      
 

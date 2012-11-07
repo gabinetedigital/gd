@@ -5,100 +5,95 @@
 {% endblock %}
 
 {% block rcolumn %}
+
 <div class="highlight questions">
-  <ul>
-    {% for contrib in contribs %}
-    {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
-    {% set datedia = contrib.answered_at.strftime('%d') %}
-    {% set datemes = contrib.answered_at.strftime('%b') %}
-    {% set dateano = contrib.answered_at.strftime('%Y') %}
 
-    <li {% if date == base_date %}class="first"{% endif %}>
+  {% for contrib in contribs %}
+  {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
+  {% set datedia = contrib.answered_at.strftime('%d') %}
+  {% set datemes = contrib.answered_at.strftime('%b') %}
+  {% set dateano = contrib.answered_at.strftime('%y') %}
 
-      {% if contrib.video and date == base_date %}
-      <div>
-        <div class="date">
-	<div class="dia">{{ datedia }}</div>
-	<div class="mes">{{ datemes }}</div>
-	<div class="ano">{{ dateano }}</div>
-	</div>
-        <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
-          {{ contrib.title }} ({{ contrib.real_score }} votos)
-        </a>
-        <h3>{{ contrib.theme.name }}</h3>
-      </div>
+  {% if contrib.video and date == base_date %}
 
-      <div class="videobox">
-        <video
-           id="{{ contrib.video.id }}"
-           width="{{ contrib.video.video_width }}"
-           height="{{ contrib.video.video_height }}">
-          {% for source in contrib.video_sources %}
-          <source type="{{ source.format }}" src="{{ source.url }}">
-            {% endfor %}
-        </video>
-      </div>
+  <div id="date" class="pull-left">
+    <div class="month">{{ datemes }} {{ dateano }}</div>
+    <div class="day">{{ datedia }}</div>
+  </div>
+
+  <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
+    {{ contrib.title }} ({{ contrib.real_score }} votos)
+  </a>
+  <h3>{{ contrib.theme.name }}</h3>
+
+
+  <div class="videobox span12">
+    <video
+       id="{{ contrib.video.id }}"
+       width="{{ contrib.video.video_width }}"
+       height="{{ contrib.video.video_height }}">
+      {% for source in contrib.video_sources %}
+      <source type="{{ source.format }}" src="{{ source.url }}">
+        {% endfor %}
+    </video>
+    {% endif %}
+
+    {% if contrib.video and date != base_date %}
+    <div class="video">
+      <a href="javascript:;" onclick='video.play({{ contrib.video|tojson|safe }})'>
+        <div class="container">
+          <img class="thumb"
+               src="{{ contrib.video.thumbnail }}" alt="{{ contrib.video.title }}"
+               width="193" height="110">
+          <img src="../static/imgs/play.png" class="play">
+        </div>
+      </a>
+      <a href="{{ url_for('videos.details', vid=contrib.video.id) }}"
+         class="permalink">
+        <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
+             alt="Permanet link">
+      </a>
+    </div>
+
+    <div>
+      <p class="date">{{ date }}</p>
+      <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
+        {{ contrib.title }} ({{ contrib.real_score }} votos)
+      </a>
+    </div>
+    {% endif %}
+
+    <div class="span10 pergunta">{{ contrib.content|safe }} <h5>Pergunta</h5></div>
+
+    <div class="caso">{{ contrib.answer|safe }} <h5>Entenda o caso</h5></div>
+
+
+    <div class="answerlink">
+      {% if contrib.category %}
+      <a href="{{ url_for('.results', rid=contrib.id) }}"
+         class="encaminhamento">
+        Encaminhamentos
+      </a>
+      {% endif %}
+      {% if contrib.aggregated %}
+      <a href="javascript:;"
+         onclick="showAggregated({{ contrib.id  }})"
+         class="otherquestions">
+        Demais perguntas incluídas
+      </a>
+      <ul id="aggregated-{{ contrib.id }}" class="aggregated">
+        {% for ag in contrib.aggregated %}
+        <li>
+          <strong>{{ ag.title }}</strong>
+          <p class="desc">{{ ag.content }}</p>
+        </li>
+        {% endfor %}
+      </ul>
       {% endif %}
 
-      {% if contrib.video and date != base_date %}
-      <div class="video">
-        <a href="javascript:;" onclick='video.play({{ contrib.video|tojson|safe }})'>
-          <div class="container">
-            <img class="thumb"
-                 src="{{ contrib.video.thumbnail }}" alt="{{ contrib.video.title }}"
-                 width="193" height="110">
-            <img src="../static/imgs/play.png" class="play">
-          </div>
-        </a>
-        <a href="{{ url_for('videos.details', vid=contrib.video.id) }}"
-           class="permalink">
-          <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
-               alt="Permanet link">
-        </a>
-      </div>
+    </div>
 
-      <div>
-        <p class="date">{{ date }}</p>
-        <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
-          {{ contrib.title }} ({{ contrib.real_score }} votos)
-        </a>
-      </div>
-      {% endif %}
-
-      <div class="pergunta">{{ contrib.content|safe }} <h5>Pergunta</h5></div>
-
-      <div class="caso">{{ contrib.answer|safe }} <h5>Entenda o caso</h5></div>
-
-
-      <div class="answerlink">
-        {% if contrib.category %}
-        <a href="{{ url_for('.results', rid=contrib.id) }}"
-           class="encaminhamento">
-          Encaminhamentos
-        </a>
-        {% endif %}
-        {% if contrib.aggregated %}
-        <a href="javascript:;"
-           onclick="showAggregated({{ contrib.id  }})"
-           class="otherquestions">
-          Demais perguntas incluídas
-        </a>
-        <ul id="aggregated-{{ contrib.id }}" class="aggregated">
-          {% for ag in contrib.aggregated %}
-          <li>
-            <strong>{{ ag.title }}</strong>
-            <p class="desc">{{ ag.content }}</p>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-
-      </div>
-
-    </li>
-    {% endfor %}
-  </ul>
-
-  <div class="row-end"></div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}
