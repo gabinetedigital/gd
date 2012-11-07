@@ -269,7 +269,18 @@
         <h3>Comentários</h3>
       </div>
       <div class="span12 comments">
-        <div class="row">
+        <div class="row comentario">
+          <div class="span2">
+            <div class="avatar">
+              <img src="{{ url_for('.static', filename='img/user_big.jpg') }}" class="img-polaroid">
+            </div>
+          </div>
+          <div class="span10">
+            <h5>Da silta</h5>
+            <p>A Brigada Militar está engajada na divulgação e mobilização para a consulta pública sobre segurança no trânsito do Gabinete Digital. Além da distribuição de material informativo sobre a consulta nas rodovias gaúchas, através do Batalhão Rodoviário, mais de 60 pontos fixos de votação foram espalhados pelo Estado, em Batalhões da BM.</p>
+          </div>
+        </div>
+        <div class="row comentario">
           <div class="span2">
             <div class="avatar">
               <img src="{{ url_for('.static', filename='img/user_big.jpg') }}" class="img-polaroid">
@@ -291,7 +302,7 @@
             </div>
           </div>
           <div class="span10">
-            <textarea placeholder="Deixe seu comentário…" name="content"></textarea>
+            <textarea placeholder="Deixe seu comentário…" name="content" class="span10"></textarea>
             <button class="btn pull-right">Enviar comentário</button>
           </div>
         </div>
