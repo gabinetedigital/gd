@@ -1,0 +1,99 @@
+@import "system";
+
+.comite {
+    padding-top: 20px;
+    border-top: 2px solid #DDD;
+    background: url(../img/seguranca.jpg) no-repeat fixed;
+    background-size: 100% 100%;
+}
+
+h2 {
+    color: #fcb514;
+    @include text-shadow(rgba($black, 0.5) 1px 1px 0, rgba($black, 0.5) 2px 2px 0, rgba($black, 0.5) 3px 3px 0); 
+}
+
+.apresentacao, .content {
+    margin: 20px 0;
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    display: block;
+    background-color: rgba($black, 0.7);
+    display: block;
+    padding: 10px 0px 3px 14px;
+    position: relative;
+    text-align: left;
+    color: #FFF;
+    font-size: 12pt;
+    @include border-radius(0);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 1.0) inset);
+}
+
+.pipe {
+    height: 66px;
+    background: url(../img/comite/pipe.png) repeat-x;
+}
+
+.menu {
+    text-align: center;
+}
+
+.menu div {
+   background: #006e55;
+   display: inline-block;
+   margin-right: 30px;
+    text-align: center;
+    padding: 4px;
+   @include border-radius(4px);
+}
+
+
+.menu img {
+    border: 2px solid white;
+    padding: 7px;
+    @include border-radius(4px);
+}
+
+.feednews {
+    margin: 0;
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    display: block;
+    background-color: rgba($black, 0.7);
+    display: block;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    color: #FFF;
+    font-size: 12pt;
+    @include border-radius(0);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 1.0) inset);
+}
+
+.feednews ul {
+    margin: 0;
+    padding: 0;
+}
+
+.feednews li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #fcb514;
+}
+
+.feednews li:last-child {
+    border: 0;
+}
+
+.feednews li p {
+    padding: 10px;
+    font-size: 11pt;
+}
+
+.fb-like-box {
+    background-color: #FFF;
+}
+
+.faca-content {
+    display: none;
+}

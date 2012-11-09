@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/comite.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/resultados.js') }}"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=211304249001884";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}
+
+{% block content %}
+<div class="comite" id="comite">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <img src="{{ url_for('.static', filename='img/comite/titulo.png') }}">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span12">
+        <div class="apresentacao">
+          <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span12 pipe">
+        <div class="menu">
+          <div class="entenda">
+            <a href="#entenda">
+            <img src="{{ url_for('.static', filename='img/comite/entenda.png') }}">
+            </a>
+          </div>
+          <div class="faca">
+            <img src="{{ url_for('.static', filename='img/comite/faca.png') }}">
+          </div>
+          <div class="envie">
+            <img src="{{ url_for('.static', filename='img/comite/envie.png') }}">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span9">
+        <div class="entenda-content">
+          <h2>Etenda o Processo</h2>
+          <div class="content">
+            <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>
+            <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>
+            <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>      
+          </div>
+        </div>
+
+        <div class="faca-content">
+          <h2>Faça parte do comitê</h2>
+          <div class="content">
+            <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas</p>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="span3">
+        <h2>Notícias</h2>
+
+        <div class="feednews">
+          <ul>
+            <li><p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito.</p></li>
+            <li><p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito.</p></li>
+            <li><p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito.</p></li>
+          </ul>
+        </div>
+        <div class="fb-like-box" data-href="http://www.facebook.com/platform" data-width="270" data-show-faces="true" data-stream="false" data-header="false"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
