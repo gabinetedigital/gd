@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -70,6 +71,87 @@ app.jinja_env = app.jinja_env.overlay(extensions=['jinja2.ext.i18n'])
 app.jinja_env.install_gettext_callables(
     gettext.gettext, gettext.ngettext, newstyle=True)
 
+
+def _format_postsearch(posts):
+    """" Retorna os campos para ser montado na tela:
+        title, url, posttype, data, excerpt, textobotao, thumbs 
+        Chamar assim na outra pagina:
+        for title, url, posttype, txtdata, excerpt, textobotao, thumbs in posts
+    """
+    title = []
+    url = []
+    posttype = []
+    txtdata = []
+    excerpt = []
+    textobotao = []
+    thumbs = []
+    for p in posts:
+        if p.post_type == 'audiencia_govesc':
+            title.append(p.title)
+            aux_date = map(lambda x: x['value'][6:10]+'-'+x['value'][0:2]+'-'+x['value'][3:5]+' '+x['value'][11:13]+':'+x['value'][14:16], filter(lambda x: x['key']  == 'wp_govescuta_data_govesc', p.custom_fields))
+            aux_date = formatarDataeHoraPostType(aux_date[0],"%d")+" "+formatarDataeHoraPostType(aux_date[0],"%B").capitalize()+" de "+formatarDataeHoraPostType(aux_date[0],"%Y")
+            url.append(url_for('govescuta.govescuta_details', aid=p.id))
+            posttype.append('Audiências')
+            txtdata.append(aux_date)
+            excerpt.append(p.excerpt)
+            textobotao.append('Veja como foi')
+            thumbs.append('')
+        elif p.post_type == 'clippinggd_clipping':
+            title.append(p.title)
+            aux_fonte = map(lambda x: x['value'], filter(lambda x: x['key']  == 'wp_clippinggd_fonte', p.custom_fields))
+            aux_fonte = aux_fonte and aux_fonte[0] or ''
+            
+            aux_url_url   = map(lambda x: x['value'], filter(lambda x: x['key']  == 'wp_clippinggd_url', p.custom_fields))
+            aux_url_anexo = map(lambda x: x['value'], filter(lambda x: x['key']  == 'wp_clippinggd_anexo' , p.custom_fields))
+            
+            if aux_url_anexo:
+                aux_url = wordpress.getAttachmentUrl(postid = aux_url_anexo[0]) or ''
+            else:
+                aux_url = aux_url_url and aux_url_url[0] or ''
+
+            url.append(aux_url)
+            posttype.append('Clipping')
+            txtdata.append('')
+            excerpt.append('Fonte: '+aux_fonte)
+            textobotao.append('Continue lendo')
+            thumbs.append('')
+        elif p.post_type == 'equipegd_equipe':
+            title.append(p.title)
+            aux_cargo = map(lambda x: x['value'], filter(lambda x: x['key']  == 'wp_equipegd_cargo', p.custom_fields))
+            aux_cargo = aux_cargo and aux_cargo[0] or ''
+            url.append('')
+            posttype.append('Equipe')
+            txtdata.append('')
+            excerpt.append(aux_cargo)
+            textobotao.append('')
+            thumbs.append('')
+        elif p.post_type == 'oquegd_oque':
+            title.append(p.title)
+            url.append('')
+            posttype.append('Documentos')
+            txtdata.append('')
+            excerpt.append(p.content)
+            textobotao.append('')
+            thumbs.append('')
+        elif p.post_type == 'post':
+            title.append(p.title)
+            aux_img = ''
+            url.append(p.permalink)
+            posttype.append('Notícias')
+            txtdata.append(str(p.the_date.day)+' '+p.the_date.strftime("%B").capitalize()+' de '+str(p.the_date.year))
+            excerpt.append(p.excerpt)
+            textobotao.append('Continue lendo')
+            if p.thumbs:
+                if p.has_category('wide'):
+                    aux_img = "<img src='"+str(p.thumbs['widenewsbox']['url'])+"' alt='"+p.title+"' width='"+ str(p.thumbs['widenewsbox']['width']) +"' height='"+ str(p.thumbs['widenewsbox']['height']) +"' class='wide'>"
+                elif p.thumbs:
+                    aux_img = "<img src='"+str(p.thumbs['newsbox']['url'])+"'     alt='"+p.title+"' width='"+ str(p.thumbs['newsbox']['width']) +"'     height='"+ str(p.thumbs['newsbox']['height']) +"'>"
+            thumbs.append(aux_img or '')
+            
+    
+    psearch = zip(title, url, posttype, txtdata, excerpt, textobotao, thumbs)
+    
+    return psearch
 
 def formatarDataeHora(s,formato = '%d/%m/%Y %H:%Mh' ):
     z = str(s)
@@ -216,13 +298,16 @@ def news(page=0):
     pagination, posts = wordpress.getPosts(page=page, thumbsizes=['newsbox', 'widenewsbox'])
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    
+    psearch = _format_postsearch(posts)
+    
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
         menu=menus,
-        posts=posts)
+        posts=psearch)
 
 
 @app.route('/cat/<int:cid>/')
@@ -232,12 +317,15 @@ def category(cid, page=0):
     pagination, posts = wordpress.getPostsByCategory(cat=cid, page=page)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    
+    psearch = _format_postsearch(posts)
+    
     return render_template(
         'archive.html',
-        #sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
-        posts=posts
+        posts=psearch
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
@@ -248,12 +336,15 @@ def tag(slug, page=0):
     pagination, posts = wordpress.getPostsByTag(tag=slug, page=page)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    
+    psearch = _format_postsearch(posts)
+    
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
-        posts=posts
+        posts=psearch
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
@@ -373,18 +464,23 @@ def new_comment():
 @app.route('/search/<int:page>/')
 def search(page=0):
     """Renders the search template"""
+    
     query = request.values.get('s', '')
-    pagination, posts = wordpress.search(s=query, page=page)
+    #posttype = ['audiencia_govesc', 'clippinggd_clipping', 'equipegd_equipe', 'oquegd_oque', 'post']
+    pagination, posts = wordpress.search(s=query, page=page, thumbsizes=['newsbox', 'widenewsbox'])
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+
+    psearch = _format_postsearch(posts)
+
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
         search_term=query,
-        posts=posts
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+        posts=psearch,
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
 @app.route('/feed/')
@@ -400,12 +496,15 @@ def archive(m, page=0):
     pagination, posts = wordpress.getArchivePosts(m=m, page=page)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    
+    psearch = _format_postsearch(posts)
+    
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
-        posts=posts)
+        posts=psearch)
 
 
 @app.route('/confirm_signup/<string:key>/')
