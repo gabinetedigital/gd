@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -10,53 +10,47 @@
   <div class="container">
     <div class="row">
       <div class="span9">
-        {% for post in posts %}
-
+      {% for title, url, posttype, txtdata, excerpt, textobotao, thumbs in posts %}
         <div class="post">
           <h2>
-            <a href="{{ post.permalink }}">
-              {{ post.title }}
-            </a>
+          	{% if url %}
+                <a href="{{ url }}">{{ title }}</a>
+            {% else %}
+                {{ title }}
+            {% endif %}
           </h2>
+          <h4>{{posttype}}</h4>
+          {% if txtdata %}
           <div class="meta">
             <ul>
-              <li><i class="icon-calendar"></i> {{ post.the_date.day }} {{ post.the_date.strftime("%B").capitalize() }} de {{ post.the_date.year }}</li>
-              <!-- <li><i class="icon-tag"></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li> -->
+              <li>
+                <i class="icon-calendar"></i>
+                  {{ txtdata }}
+                </li>
             </ul>
           </div>
-          <a href="{{ post.permalink }}">
+          {% endif %}
+          {% if url %}
+          <a href="{{ url }}">
+          {% endif %}
             <div class="content">
-                          {% if post.thumbs %}
-              <a href="{{ post.permalink }}">
-                {% if post.has_category('wide') %}
-                <img
-                   src="{{ post.thumbs.widenewsbox.url }}"
-                   alt="{{ post.title }}"
-                   width="{{ post.thumbs.widenewsbox.width }}"
-                   height="{{ post.thumbs.widenewsbox.height }}"
-                   class="wide">
-                {% elif post.thumbs %}
-                <img
-                   src="{{ post.thumbs.newsbox.url }}"
-                   alt="{{ post.title }}"
-                   width="{{ post.thumbs.newsbox.width }}"
-                   height="{{ post.thumbs.newsbox.height }}">
-                {% endif %}
-              </a>
-            {% endif %}
-
-{{ post.excerpt|safe }}</div>
+              {% if thumbs %}
+              <a href="{{ url }}">{{ thumbs|safe }}</a>
+              {% endif %}
+              {{ excerpt|safe }}
+            </div>
+          {% if url %}
           </a>
+          {% endif %}
+          {% if textobotao %}
           <div class="more">
-            <a href="{{ post.permalink }}" class="btn">Continue lendo</a>
+            <a href="{{ url }}" class="btn">{{ textobotao }}</a>
           </div>
+          {% endif %}
         </div>
+      {% endfor %}
 
-        {% endfor %}
-
-        <div class="pagination">
-          {{ pagination|safe }}
-        </div>
+        <div class="pagination">{{ pagination|safe }}</div>
       </div>
       <div class="span3 sidebar">
         {{ sidebar(id='sidebar-1')|safe }}
