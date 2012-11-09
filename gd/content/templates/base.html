@@ -32,9 +32,9 @@
             </div>
 
             <div id="search" class="pull-right">
-              <form class="form-inline">
+              <form class="form-inline" action="/search/">
                 <div class="input-append">
-                  <input type="text" class="input-small busca">
+                  <input type="text" class="input-small busca" id="s" name="s">
                   <button type="submit" class="btn"><i class="icon-search"></i></button>
                 </div>
               </form>
@@ -50,9 +50,9 @@
               <ul class="nav nav-pills">
                 {{ menu | safe }}
               </ul>
-              <form class="navbar-search form-search pull-right tools">
+              <form class="navbar-search form-search pull-right tools" action='/search/'>
                 <div class="input-append">
-                  <input type="text" class="input-small busca search-query">
+                  <input type="text" class="input-small busca search-query"  id="s" name="s">
                   <button type="submit" class="btn"><i class="icon-search"></i></button>
                 </div>
               </form>
