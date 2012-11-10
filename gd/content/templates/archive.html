@@ -19,7 +19,7 @@
                 {{ title }}
             {% endif %}
           </h2>
-          <h4>{{posttype}}</h4>
+          <h4>{{posttype|safe}}</h4>
           {% if txtdata %}
           <div class="meta">
             <ul>
@@ -48,6 +48,9 @@
           </div>
           {% endif %}
         </div>
+      {%else%}
+        <p>Infelizmente não encontramos nada para sua busca.</p>
+        <p>Mas você pode ver as nossas <a href="/news">notícias</a>, <a href="/videos">vídeos</a> ou <a href="/fotos">fotos</a> e continuar a navegar no site para buscar mais informações.</p>
       {% endfor %}
 
         <div class="pagination">{{ pagination|safe }}</div>
