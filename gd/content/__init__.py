@@ -91,7 +91,7 @@ def _format_postsearch(posts):
             aux_date = map(lambda x: x['value'][6:10]+'-'+x['value'][0:2]+'-'+x['value'][3:5]+' '+x['value'][11:13]+':'+x['value'][14:16], filter(lambda x: x['key']  == 'wp_govescuta_data_govesc', p.custom_fields))
             aux_date = formatarDataeHoraPostType(aux_date[0],"%d")+" "+formatarDataeHoraPostType(aux_date[0],"%B").capitalize()+" de "+formatarDataeHoraPostType(aux_date[0],"%Y")
             url.append(url_for('govescuta.govescuta_details', aid=p.id))
-            posttype.append('Audiências')
+            posttype.append(u'Audiências')
             txtdata.append(aux_date)
             excerpt.append(p.excerpt)
             textobotao.append('Veja como foi')
@@ -110,7 +110,7 @@ def _format_postsearch(posts):
                 aux_url = aux_url_url and aux_url_url[0] or ''
 
             url.append(aux_url)
-            posttype.append('Clipping')
+            posttype.append(u'Clipping')
             txtdata.append('')
             excerpt.append('Fonte: '+aux_fonte)
             textobotao.append('Continue lendo')
@@ -120,7 +120,7 @@ def _format_postsearch(posts):
             aux_cargo = map(lambda x: x['value'], filter(lambda x: x['key']  == 'wp_equipegd_cargo', p.custom_fields))
             aux_cargo = aux_cargo and aux_cargo[0] or ''
             url.append('')
-            posttype.append('Equipe')
+            posttype.append(u'Equipe')
             txtdata.append('')
             excerpt.append(aux_cargo)
             textobotao.append('')
@@ -128,7 +128,7 @@ def _format_postsearch(posts):
         elif p.post_type == 'oquegd_oque':
             title.append(p.title)
             url.append('')
-            posttype.append('Documentos')
+            posttype.append(u'Documentos')
             txtdata.append('')
             excerpt.append(p.content)
             textobotao.append('')
@@ -137,7 +137,7 @@ def _format_postsearch(posts):
             title.append(p.title)
             aux_img = ''
             url.append(p.permalink)
-            posttype.append('Notícias')
+            posttype.append(u'Notícias')
             txtdata.append(str(p.the_date.day)+' '+p.the_date.strftime("%B").capitalize()+' de '+str(p.the_date.year))
             excerpt.append(p.excerpt)
             textobotao.append('Continue lendo')
