@@ -114,7 +114,7 @@ p.desc {
 /* -- sidebar -- */
 
 .sidebar {
-    border-right:dotted 1px #aaa;
+    /* border-right:dotted 1px #aaa; */
 }
 
 .sidebar form.search {
@@ -303,13 +303,12 @@ p.desc {
 
 .highlight h4 { clear:both; margin:20px 0; }
 
-.highlight li.first .videobox {
-    margin:10px 0;
+.highlight .videobox {
     width:100%;
     background:#000;
     text-align:center;
-    clear: both;
-    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .highlight li.first .videobox .video-js-box {
@@ -638,10 +637,9 @@ h1.cfunciona {
 }
 
 /* -- result page -- */
-.rcolumn.result {
-    padding:20px 40px;
-    font-size:12px;
-}
+/* .rcolumn.result { */
+/*     font-size:12px; */
+/* } */
 
 h1.respgov {
     background: url("../img/respostasgov.png") no-repeat scroll center left transparent;

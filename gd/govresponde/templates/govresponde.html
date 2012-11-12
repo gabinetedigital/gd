@@ -5,104 +5,104 @@
 {% endblock %}
 
 {% block javascript %}
-  {# This blockception happens to make it possible to custom javascript
-   # in the child templates, like govresponde_enviar #}
-  {% block js %}{% endblock %}
+{# This blockception happens to make it possible to custom javascript
+# in the child templates, like govresponde_enviar #}
+{% block js %}{% endblock %}
 {% endblock %}
 
 {% block content %}
 <div class="govresponde" id="govresponde">
-<div class="container" class="boxed">
-  <div class="row head">
-    <div id="logo" class="span3">
-      <h1 class="title">
-        <a href="{{ url_for('.index') }}">Governador Responde</a>
-      </h1>
-    </div>
-    <div class="span9">
-      <div class="menu">
-        <ul>
-          <li class="enviadas">
-            <a href="{{ url_for('.index') }}?pg=resp">Propostas Enviadas</a>
-          </li>
+  <div class="container" class="boxed">
+    <div class="row head">
+      <div id="logo" class="span3">
+        <h1 class="title">
+          <a href="{{ url_for('.index') }}">Governador Responde</a>
+        </h1>
+      </div>
+      <div class="span9">
+        <div class="menu">
+          <ul>
+            <li class="enviadas">
+              <a href="{{ url_for('.index') }}?pg=resp">Propostas Enviadas</a>
+            </li>
 
-          <li class="respostasgov">
-            <a href="{{ url_for('.index') }}?pg=resp">Respostas do Governador</a>
-          </li>
-          <li class="comofunciona">
-            <a href="{{ url_for('.comofunciona') }}">Como Funciona</a>
-          </li>
-        </ul>
+            <li class="respostasgov">
+              <a href="{{ url_for('.index') }}?pg=resp">Respostas do Governador</a>
+            </li>
+            <li class="comofunciona">
+              <a href="{{ url_for('.comofunciona') }}">Como Funciona</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="span12">
+        <div class="boxfinal">
+          <p>Em 9 edições do Governador Responde, mais de 90 questões foram respondidas em vídeo pelo governador e mais de 25 mil votos foram recebidos.</p>
+          <p>Agora a ferramenta entra em uma nova fase, passará por uma reestruturação técnica e metodológica. Durante esse período, todas as respostas enviadas até o momento serão respondidas gradualmente em texto. O recebimento de perguntas será retomado em 2013.</p>
+          <p>Você pode continuar participando através das demais ferramentas. Exerça sua cidadania. Dúvidas ou sugestões podem ser enviadas para <a href="mailto:gabinetedigital@gg.rs.gov.br">gabinetedigital@gg.rs.gov.br</a></p>
+        </div>
       </div>
     </div>
-    <div class="span12">
-      <div class="boxfinal">
-      <p>Em 9 edições do Governador Responde, mais de 90 questões foram respondidas em vídeo pelo governador e mais de 25 mil votos foram recebidos.</p>
-      <p>Agora a ferramenta entra em uma nova fase, passará por uma reestruturação técnica e metodológica. Durante esse período, todas as respostas enviadas até o momento serão respondidas gradualmente em texto. O recebimento de perguntas será retomado em 2013.</p>
-      <p>Você pode continuar participando através das demais ferramentas. Exerça sua cidadania. Dúvidas ou sugestões podem ser enviadas para <a href="mailto:gabinetedigital@gg.rs.gov.br">gabinetedigital@gg.rs.gov.br</a></p>
-      </div>
-    </div>
-  </div>
 
-  <!-- content -->
- <div class="row">
-    {% if not hidesidebar %}
-    <div class="span3">
-      <div class="sidebar">
-        {#
-        <form class="search">
-          <input class="text" type="text" placeholder="Encontre sua pergunta">
-          <input class="button" type="button" value="Ir">
-        </form>
-        #}
+    <!-- content -->
+    <div class="row">
+      {% if not hidesidebar %}
+      <div class="span3">
+        <div class="sidebar">
+          {#
+          <form class="search">
+            <input class="text" type="text" placeholder="Encontre sua pergunta">
+            <input class="button" type="button" value="Ir">
+          </form>
+          #}
 
-        <dl>
-          {% if pg %}
-          <dt class="section_respostas">
+          <dl>
+            {% if pg %}
+            <dt class="section_respostas">
               <a href="?pg=todos">Escolha o tema</a>
-          {% else %}
-          <dt class="section">
+              {% else %}
+            <dt class="section">
               <a href="{{ url_for('.questions') }}">Temas</a>
-          {% endif %}
-          </dt>
+              {% endif %}
+            </dt>
 
-          <dd {% if not theme and request.path.endswith('questions') %}
-              class="choosen"{% endif %}>
-          </dd>
+            <dd {% if not theme and request.path.endswith('questions') %}
+                class="choosen"{% endif %}>
+            </dd>
 
-          {% for i in wordpress.govr.getThemes(pg) %}
-          <dd {% if theme and theme.id == i.id %}class="choosen"{% endif %}>
-            <a href="{% if pg %}?pg=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
-              {{ i.name }}
-            </a>
-          </dd>
-          {% endfor %}
+            {% for i in wordpress.govr.getThemes(pg) %}
+            <dd {% if theme and theme.id == i.id %}class="choosen"{% endif %}>
+              <a href="{% if pg %}?pg=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
+                {{ i.name }}
+              </a>
+            </dd>
+            {% endfor %}
 
-          {% if user %}
-          <dt>Suas contribuições</dt>
-          <dd>{{ userstats.votes }} votos</dd>
-          <dd>{{ userstats.contribs }} perguntas</dd>
-          {% endif %}
-        </dl>
+            {% if user %}
+            <dt>Suas contribuições</dt>
+            <dd>{{ userstats.votes }} votos</dd>
+            <dd>{{ userstats.contribs }} perguntas</dd>
+            {% endif %}
+          </dl>
+        </div>
+      </div>
+      {% endif %}
+      
+      {% if hidesidebarright %}
+      <div class="span8">
+        {% block lcolumn %}{% endblock %}
+      </div>
+      <div class="span4">
+        {% else%}
+
+        <div class="{% if hidesidebar %}span12{% else %}span9{% endif %}">
+          {% endif%}
+          <div class="rcolumn {{ rclass }}">
+            {% block rcolumn %}{% endblock %}
+          </div>
+        </div>
       </div>
     </div>
-    {% endif %}
-    
-    {% if hidesidebarright %}
-     <div class="span8">
-     {% block lcolumn %}{% endblock %}
-     </div>
-<div class="span4">
-{% else%}
-
-     <div class="{% if hidesidebar %}span12{% else %}span9{% endif %}">
-{% endif%}
-      <div class="rcolumn {{ rclass }}">
-        {% block rcolumn %}{% endblock %}
-      </div>
-    </div>
-
-    <div class="row-end"></div>
   </div>
 </div>
 {% endblock %}

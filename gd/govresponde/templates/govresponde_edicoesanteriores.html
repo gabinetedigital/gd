@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block rcolumn %}
-
+<div class="row">
 <h1 class="respgov">Respostas do Governador</h1>
-<div class="highlight questions">
+</div>
+<div class="row highlight questions">
     {% for contrib in contribs %}
 
     {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
@@ -45,7 +46,7 @@
     </div>
 
     <div class="row">
-    <div class="offset2 span8 caso">{{ contrib.answer|safe }} <h5>Entenda o caso</h5></div>
+    <div class="offset1 span8 caso">{{ contrib.answer|safe }} <h5>Entenda o caso</h5></div>
     </div>
 
 
