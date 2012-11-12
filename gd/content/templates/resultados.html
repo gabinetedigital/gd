@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/resultados.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/resultados.css') }}">
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/resultados.js') }}"></script>
+<script src="{{ url_for('static', filename='js/resultados.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -82,8 +82,23 @@
     <div class="row lista">
       <div class="span12">
           <h2>Propostas priorizadas</h2>
+          <!-- <div>{{questions}}</div> -->
         <ul class="thumbnails">
-          <li class="span4">
+          {%for q in questions%}
+            <li class="span4">
+              <div class="thumbnail">
+                <div class="score pull-right">Pontuação<span class="ptn">{{q['contrib_wp_govpergunta_score']}}</span></div> 
+                <!-- <img class="pull-left" src="{{ url_for('static', filename='img/user.jpg') }}"> -->
+                <img class="pull-left" src="{{q['contrib_foto']}}" width="100" height="100">
+                <h3>{{q['post_title']}}</h3>
+                <p>
+                  {{q['post_content']}}
+                </p>
+                <button class="btn btn-small btn-primary pull-right botaomais" data-id="{{q['ID']}}">saiba mais</button>
+              </div>
+            </li>
+          {%endfor%}
+<!--           <li class="span4">
             <div class="thumbnail">
               <div class="score pull-right">Pontuação<span class="ptn">88</span></div> 
               <img class="pull-left" src="{{ url_for('.static', filename='img/user.jpg') }}">
@@ -96,218 +111,14 @@
               <button class="btn btn-small btn-primary pull-right">saiba mais</button>
             </div>
           </li>
-          <li class="span4">
-            <div class="thumbnail">
-              <div class="score pull-right">Pontuação<span class="ptn">88</span></div> 
-              <img class="pull-left" src="{{ url_for('.static', filename='img/user.jpg') }}">
-              <h3>Joana da Silva</h3>
-              <p>
-                Aumentar de forma gradual, até 80% em 5 anos, o desconto do IPVA para motoristas que não 
-                tem multa e não se envolvem em acidentes.
-              </p>
-              <button class="btn btn-small btn-primary pull-right">saiba mais</button>
-            </div>
-          </li>
-          <li class="span4">
-            <div class="thumbnail">
-              <div class="score pull-right">Pontuação<span class="ptn">88</span></div> 
-              <img class="pull-left" src="{{ url_for('.static', filename='img/user.jpg') }}">
-              <h3>Joana da Silva</h3>
-              <p>
-                Amplo investimento em transporte público de qualidade como metro, trem e ônibus 
-                confortáveis, construção de ciclovias.
-              </p>
-              <button class="btn btn-small btn-primary pull-right">saiba mais</button>
-            </div>
-          </li>
-          <li class="span4">
-            <div class="thumbnail">
-              <div class="score pull-right">Pontuação<span class="ptn">88</span></div> 
-              <img class="pull-left" src="{{ url_for('.static', filename='img/user.jpg') }}">
-              <h3>Joana da Silva</h3>
-              <p>
-                Amplo investimento em transporte público de qualidade como metro, trem e 
-                ônibus confortáveis, construção de ciclovias.
-              </p>
-              <button class="btn btn-small btn-primary pull-right">saiba mais</button>
-            </div>
-          </li>
-          <li class="span4">
-            <div class="thumbnail">
-              <div class="score pull-right">Pontuação<span class="ptn">88</span></div> 
-              <img class="pull-left" src="{{ url_for('.static', filename='img/user.jpg') }}">
-              <h3>Joana da Silva</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec odio mauris, 
-                ac dignissim nulla. Sed non sem et dui adipiscing volutpat nec ac enim. 
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-                Proin convallis arcu non felis venenatis varius. Nulla a amet.
-              </p>
-              <button class="btn btn-small btn-primary pull-right">saiba mais</button>
-            </div>
-          </li>
-          <li class="span4">
-            <div class="thumbnail">
-              <div class="score pull-right">Pontuação<span class="ptn">88</span></div> 
-              <img class="pull-left" src="{{ url_for('.static', filename='img/user.jpg') }}">
-              <h3>Joana da Silva</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec odio mauris, 
-                ac dignissim nulla. Sed non sem et dui adipiscing volutpat nec ac enim. 
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-                Proin convallis arcu non felis venenatis varius. Nulla a amet.
-              </p>
-              <button class="btn btn-small btn-primary pull-right">saiba mais</button>
-            </div>
-          </li>
+ --> 
         </ul>
       </div>
     </div>
+    <div class="detalhes">
+    </div> <!-- fim detalhes -->
 
-    <div class="row mais">
-      <div class="span12"></div>
-      <div class="span2">
-        <img class="pull-left" src="{{ url_for('.static', filename='img/user_big.jpg') }}" width="100%" >
-      </div>
-      <div class="span10">
-        <h1>Joana da Silva</h1>
-        <p>
-          A solução é transporte público eficiente. Metrô subterrâneo é um desperdício de recursos.
-          Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
-          vista para a rua, sendo menos claustrofóbico.
-        </p>
-        <a class="aggrlink">Agregadas(7)</a>
-      </div>
-    </div>
 
-    <div class="row agregadas">
-      <div class="span12">
-        <ul class="thumbnails">
-          <li class="span3">
-            <div class="thumbnail">
-              <h3>Joana da Silva</h3>
-              <p>
-                A solução é transporte público eficiente. Metrô subterrâneo é um desperdício de recursos. 
-                Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
-                vista para a rua, sendo menos claustrofóbico.
-              </p>
-            </div>
-          </li>
-          <li class="span3">
-            <div class="thumbnail">
-              <h3>Joana da Silva</h3>
-              <p>
-                A solução é transporte público eficiente. Metrô subterrâneo é um desperdício de recursos. 
-                Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
-                vista para a rua, sendo menos claustrofóbico.
-              </p>
-            </div>
-          </li>
-          <li class="span3">
-            <div class="thumbnail">
-              <h3>Joana da Silva</h3>
-              <p>
-                A solução é transporte público eficiente. Metrô subterrâneo é um desperdício de recursos. 
-                Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
-                vista para a rua, sendo menos claustrofóbico.
-              </p>
-            </div>
-          </li>
-          <li class="span3">
-            <div class="thumbnail">
-              <h3>Joana da Silva</h3>
-              <p>
-                A solução é transporte público eficiente. Metrô subterrâneo é um desperdício de recursos. 
-                Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
-                vista para a rua, sendo menos claustrofóbico.
-              </p>
-            </div>
-          </li>
-          <li class="span3">
-            <div class="thumbnail">
-              <h3>Joana da Silva</h3>
-              <p>
-                A solução é transporte público eficiente. Metrô subterrâneo é um desperdício de recursos. 
-                Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
-                vista para a rua, sendo menos claustrofóbico.
-              </p>
-            </div>
-          </li>
-          <li class="span3">
-            <div class="thumbnail">
-              <h3>Joana da Silva</h3>
-              <p>
-                A solução é transporte público eficiente. Metrô subterrâneo é um desperdício de recursos. 
-                Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
-                vista para a rua, sendo menos claustrofóbico.
-              </p>
-            </div>
-          </li>
-          <li class="span3">
-            <div class="thumbnail">
-              <h3>Joana da Silva</h3>
-              <p>
-                A solução é transporte público eficiente. Metrô subterrâneo é um desperdício de recursos. 
-                Aeromóvel é muito mais barato, não causa tanto transtorno durante a construção e permite 
-                vista para a rua, sendo menos claustrofóbico.
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span12 resposta">
-        <h2>Encaminhamento do Governador</h2>
-      </div>
-      <div class="span12">
-        <div class="resp">
-          A Brigada Militar está engajada na divulgação e mobilização para a consulta pública sobre segurança no trânsito do Gabinete Digital. Além da distribuição de material informativo sobre a consulta nas rodovias gaúchas, através do Batalhão Rodoviário, mais de 60 pontos fixos de votação foram espalhados pelo Estado, em Batalhões da BM.
-          <em>Comandante-geral da Brigada Militar, coronel Sérgio Roberto de Abreu</em>, <em>vota na Van da Participação no dia do Lançamento da Consulta.</em><br>
-          Lançada no dia 9 de outubro, a ferramenta de participação do Gabinete Digital já registrou mais de 110 mil votos até esta segunda-feira (22). Entre as sugestões submetidas à votação popular, 32 advêm das discussões do Comitê Estadual de Mobilização pela Segurança no Trânsito, enquanto as demais são contribuições espontâneas da população gaúcha.
-        </div>
-      </div>
-      <div class="span12">
-        <h3>Comentários</h3>
-      </div>
-      <div class="span12 comments">
-        <div class="row comentario">
-          <div class="span2">
-            <div class="avatar">
-              <img src="{{ url_for('.static', filename='img/user_big.jpg') }}" class="img-polaroid">
-            </div>
-          </div>
-          <div class="span10">
-            <h5>Da silta</h5>
-            <p>A Brigada Militar está engajada na divulgação e mobilização para a consulta pública sobre segurança no trânsito do Gabinete Digital. Além da distribuição de material informativo sobre a consulta nas rodovias gaúchas, através do Batalhão Rodoviário, mais de 60 pontos fixos de votação foram espalhados pelo Estado, em Batalhões da BM.</p>
-          </div>
-        </div>
-        <div class="row comentario">
-          <div class="span2">
-            <div class="avatar">
-              <img src="{{ url_for('.static', filename='img/user_big.jpg') }}" class="img-polaroid">
-            </div>
-          </div>
-          <div class="span10">
-            <h5>Da silta</h5>
-            <p>A Brigada Militar está engajada na divulgação e mobilização para a consulta pública sobre segurança no trânsito do Gabinete Digital. Além da distribuição de material informativo sobre a consulta nas rodovias gaúchas, através do Batalhão Rodoviário, mais de 60 pontos fixos de votação foram espalhados pelo Estado, em Batalhões da BM.</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="span12">
-            <h4>Deixe seu comentário</h4>
-          </div>
-          <div class="span2">
-            <div class="avatar">
-              <img src="{{ url_for('.static', filename='img/user_big.jpg') }}" class="img-polaroid">
-            </div>
-          </div>
-          <div class="span10">
-            <textarea placeholder="Deixe seu comentário…" name="content" class="span10"></textarea>
-            <button class="btn pull-right">Enviar comentário</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 {% endblock %}

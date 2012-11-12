@@ -110,6 +110,40 @@ def index():
         'results.html', posts=posts, images=images, videos=videos)
 
 
+@govpergunta.route('/resultados/')
+def resultados():
+    """Renders a wordpress page special"""
+    retorno = wordpress.wpgovp.getContribuicoes(principal='S')
+    questions = None
+    for q in retorno:
+        if isinstance(q, list):
+            questions = q
+    return render_template(
+        'resultados.html',
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        questions=questions
+    )
+
+
+@govpergunta.route('/resultados-detalhe/<int:postid>/')
+def resultado_detalhe(postid):
+    """Renders a contribution detail"""
+    principal = wordpress.wpgovp.getContribuicoes(principal='S',postID=postid)
+    # print "PRINCIPAL +++++++++++++++++++++", principal[1][0]
+    retorno = wordpress.wpgovp.getContribuicoes(principal='N',postID=postid)
+    # print "RETORNO +++++++++++++++++++++", retorno
+    qtd = retorno[0]
+    detalhes = retorno[1]
+    return render_template(
+        'resultados-detalhes.html',
+        agregadas=detalhes,
+        qtd_agregadas=qtd,
+        principal=principal[1][0],
+        comments=wordpress.getComments(status='approve',post_id=postid),
+        postid=postid
+    )
+
+
 @govpergunta.route('/results/<path:path>')
 def results_page(path):
     page = wordpress.getPageByPath(path)

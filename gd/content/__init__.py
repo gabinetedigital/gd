@@ -46,6 +46,7 @@ from gd.content.gallery import gallery
 from gd.audience import audience
 from gd.admin import admin
 from gd.buzz.webapp import buzz
+from gd.utils.gravatar import Gravatar
 
 app = Flask(__name__)
 app.register_blueprint(auth, url_prefix='/auth')
@@ -60,6 +61,8 @@ app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 
+gravatar = Gravatar(app,default='mm')
+
 # Registering a secret key to be able to work with sessions
 app.secret_key = conf.SECRET_KEY
 
@@ -70,7 +73,6 @@ app.config.from_object(conf)
 app.jinja_env = app.jinja_env.overlay(extensions=['jinja2.ext.i18n'])
 app.jinja_env.install_gettext_callables(
     gettext.gettext, gettext.ngettext, newstyle=True)
-
 
 def _format_postsearch(posts):
     """" Retorna os campos para ser montado na tela:
@@ -367,15 +369,6 @@ def conselho():
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
-@app.route('/resultados/')
-def resultados():
-    """Renders a wordpress page special"""
-    return render_template(
-        'resultados.html',
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
-    )
-
-
 @app.route('/pages/<path:path>/')
 def pages(path):
     """Renders a wordpress page"""
@@ -388,7 +381,6 @@ def pages(path):
         picday=picday
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
-
 
 @app.route('/pages/<path:path>.json')
 def page_json(path):

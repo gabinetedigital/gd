@@ -1,0 +1,142 @@
+      <div class="row mais">
+        <div class="span12"></div>
+        <div class="span2">
+          <img class="pull-left" src="{{principal['contrib_foto']}}" width="100%" >
+        </div>
+        <div class="span10">
+          <h1>{{principal['post_title']}}</h1>
+          <p>
+            {{principal['post_content']}}
+          </p>
+          {% if not qtd_agregadas == '0' %}
+          <a class="aggrlink">Agregadas({{qtd_agregadas}})</a>
+          {%endif%}
+        </div>
+      </div>
+
+      <div class="row agregadas">
+        <div class="span12">
+          <ul class="thumbnails">
+            {%for agregada in agregadas%}
+            <li class="span3">
+              <div class="thumbnail">
+                <h3>{{agregada['post_title']}}</h3>
+                <p>
+                  {{agregada['post_content']}}
+                </p>
+              </div>
+            </li>
+            {%endfor%}
+          </ul>
+        </div>
+      </div>
+      <div class="row governador">
+        <div class="span12 resposta">
+          <h2>Encaminhamento do Governador</h2>
+        </div>
+        <div class="span12">
+          <div class="resp">
+            {{principal['contrib_wp_govpergunta_resposta_govpergunta']|safe}}
+          </div>
+        </div>
+        <div class="span12">
+          <h3>Comentários</h3>
+        </div>
+        <div class="span12 comments">
+          {% for comment in comments %}
+          <div class="row comentario">
+            <div class="span2">
+              <div class="avatar">
+                <img src="{{ comment.user.email | gravatar (size=50) }}" class="img-polaroid">
+              </div>
+            </div>
+            <div class="span10">
+              <h5>{{ comment.author|safe }}</h5>
+              {{ comment.content|safe }} <br>
+            </div>
+          </div>
+          {%endfor%}
+
+          <div class="row">
+          {% if user is not none %}
+            <div class="span12">
+              <h4>Deixe seu comentário</h4>
+            </div>
+            <div class="span2">
+              <div class="avatar">
+                <img src="{{ user.email | gravatar }}" class="img-polaroid">
+              </div>
+            </div>
+            <div class="span10">
+              <form
+               id="blog_comment_form" method="post"
+               action="{{ url_for('new_comment') }}">
+
+              <!-- the comment error msg -->
+              <div class="msg error"></div>
+              <div class="msg success"></div>
+
+
+              <input type="hidden" name="post_id" value="{{ postid }}">
+
+              <textarea placeholder="Deixe seu comentário…" name="content" class="span10"></textarea>
+              <button class="btn pull-right">Enviar comentário</button>
+
+              </form>
+            </div>
+          {%else%}
+            <div class="alert alert-info">
+              <strong>Aviso!</strong> Você precisa estar logado para comentar.
+            </div>
+          {%endif%}
+          </div>
+        </div>
+      </div>
+<script type="text/javascript">
+  $('.aggrlink').click(function() {
+      $('.agregadas').slideToggle("slow");
+      $('.thumbnails').masonry('reload');
+  });
+
+  $('#blog_comment_form').ajaxForm({
+      beforeSubmit: function () {
+          var form = $('#blog_comment_form');
+          var field = form.find('textarea');
+
+          if ($.trim(field.val()) === '') {
+              field.addClass('fielderror');
+              return false;
+          } else {
+              field.removeClass('fielderror');
+          }
+
+          /* Saving the success callback to be called when the user is
+           * properly logged */
+          var options = this;
+          if (!auth.isAuthenticated()) {
+              auth.showLoginForm({
+                  success: function () {
+                      form.ajaxSubmit(options.success);
+                      return true;
+                  }
+              });
+              return false;
+          }
+          return true;
+      },
+
+      success: function (data) {
+          var pData = $.parseJSON(data);
+
+          /* It's everything ok, let's get out */
+          if (pData.status === 'ok') {
+              $('div.error').fadeOut();
+              $('div.success').fadeIn().html(pData.msg);
+              $('#blog_comment_form textarea').val('');
+          } else {
+              $('div.success').fadeOut();
+              $('div.error').fadeIn().html(pData.msg);
+          }
+      }
+  });
+</script>
