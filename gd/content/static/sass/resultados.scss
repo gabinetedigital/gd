@@ -180,8 +180,18 @@
     /* @include border-radius(20px);    */
 }
 
+.avatar img {
+    float: left;
+}
+
 .comments textarea {
-    height: 128px;
+    height: 100px;
+    margin-left: 28px;
+    width: 87%;
+}
+
+.comments button {
+    margin-bottom: 30px;
 }
 
 .comments {
@@ -191,4 +201,8 @@
 
 .comentario {
     margin-bottom: 20px;
+}
+
+.comentario .content {
+    margin-left: 140px;
 }

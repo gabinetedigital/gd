@@ -30,7 +30,7 @@
           </ul>
         </div>
       </div>
-      <div class="row governador">
+      <div class="row governador comments">
         <div class="span12 resposta">
           <h2>Encaminhamento do Governador</h2>
         </div>
@@ -40,34 +40,17 @@
           </div>
         </div>
         <div class="span12">
-          <h3>Comentários</h3>
-        </div>
-        <div class="span12 comments">
-          {% for comment in comments %}
-          <div class="row comentario">
-            <div class="span2">
-              <div class="avatar">
-                <img src="{{ comment.user.email | gravatar (size=50) }}" class="img-polaroid">
-              </div>
-            </div>
-            <div class="span10">
-              <h5>{{ comment.author|safe }}</h5>
-              {{ comment.content|safe }} <br>
-            </div>
-          </div>
-          {%endfor%}
 
           {% if user is not none %}
-            <div class="span12">
-              <h4>Deixe seu comentário</h4>
+          <div class="span12">
+            <h4>Deixe seu comentário</h4>
+          </div>
+          <div class="span12">
+            <div class="avatar">
+              <img src="{{ user.email | gravatar }}" class="img-polaroid">
             </div>
-            <div class="span2">
-              <div class="avatar">
-                <img src="{{ user.email | gravatar }}" class="img-polaroid">
-              </div>
-            </div>
-            <div class="span10">
-              <form
+
+            <form
                id="blog_comment_form" method="post"
                action="{{ url_for('new_comment') }}">
 
@@ -81,13 +64,38 @@
               <textarea placeholder="Deixe seu comentário…" name="content" class="span10"></textarea>
               <button class="btn pull-right">Enviar comentário</button>
 
-              </form>
-            </div>
+            </form>
+          </div>
+
           {%else%}
-            <div class="alert alert-info">
-              <strong>Aviso!</strong> Você precisa estar logado para comentar.
-            </div>
+          <div class="alert alert-info">
+            <strong>Aviso!</strong> Você precisa estar logado para comentar.
+          </div>
           {%endif%}
+        </div>
+        
+        <div class="span12"></div>
+        <div class="span12">
+          <h3>Comentários</h3>
+        </div>
+        <div class="comments">
+          {% for comment in comments %}
+          <div class="span12 comentario">
+            <div class="row">
+            <div class="span12">
+              <div class="avatar">
+                <img src="{{ comment.user.email | gravatar (size=100) }}" class="img-polaroid">
+              </div>
+              <div class="content">
+                <h4>{{ comment.author|safe }}</h4>
+                {{ comment.content|safe }} <br>
+              </div>
+            </div>
+            </div>
+          </div>
+          {%endfor%}
+
+         
           </div>
 
       </div>
