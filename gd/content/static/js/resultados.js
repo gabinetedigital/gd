@@ -5,8 +5,18 @@ $(function(){
     });
 
     $('.buttons .span3').click(function() {
-        $('.dados').slideToggle("slow");
+        $('#board1' ).hide();
+        $('#board2' ).hide();
+        $('#board3' ).hide();
+        $('#board4' ).hide();
+        $('#' + $(this).attr('data-id') ).slideToggle("slow");
     });
+
+    $('.dados').show();
+    $('#board1' ).hide();
+    $('#board2' ).hide();
+    $('#board3' ).hide();
+    $('#board4' ).hide();
 
     $('.detalhes').hide();
 
@@ -22,5 +32,18 @@ $(function(){
             }
         });
     });
+
+    $('#slideshow .controls').tabs('ul.carousel > li', {
+        effect: 'fade',
+        rotate: true
+    }).slideshow({
+        clickable: false
+    });
+
+    if ($('#slideshow .controls').length > 0) {
+        window.setInterval(function () {
+            $("#slideshow .controls").data("tabs").next();
+        }, 7000);
+    }
 
 });

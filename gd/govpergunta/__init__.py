@@ -113,6 +113,11 @@ def index():
 @govpergunta.route('/resultados/')
 def resultados():
     """Renders a wordpress page special"""
+    slideshow = wordpress.getRecentPosts(
+        category_name='highlights',
+        post_status='publish',
+        numberposts=4,
+        thumbsizes=['slideshow'])
     retorno = wordpress.wpgovp.getContribuicoes(principal='S')
     ano = 2012
     questions = None
@@ -124,7 +129,9 @@ def resultados():
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         questions=questions,
         sidebar=wordpress.getSidebar,
-        ano=ano
+        ano=ano,
+        slideshow=slideshow,
+        wp=wordpress
     )
 
 

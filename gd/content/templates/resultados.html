@@ -18,46 +18,76 @@
     </div>
     <div class="row">
       <div class="span12">
-      <p class="desc">O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>
+        <p class="desc">
+          {{wp.getPageByPath('result-govpergunta-2012-header').content|safe}}
+        </p>
       </div>
     </div>
     <div class="row">
-      <div class="span12">
-        <div id="myCarousel" class="carousel slide">
-          <!-- Carousel items -->
-          <div class="carousel-inner">
-            <div class="active item"><img src="{{ url_for('.static', filename='img/1.jpg') }}"></div>
-            <div class="item"><img src="{{ url_for('.static', filename='img/2.jpg') }}"></div>
-            <div class="item"><img src="{{ url_for('.static', filename='img/3.jpg') }}"></div>
-            <div class="item"><img src="{{ url_for('.static', filename='img/4.jpg') }}"></div>
-          </div>
-        </div>
+      <div id="slideshow" class="span12">
+
+            <ul class="carousel">
+              {%- for post in slideshow %}
+
+              {% set link = post.get_field('link', post.permalink) %}
+              <li>
+                {%- if post.thumbs %}
+                <a href="{{ link }}">
+                  <img
+                     src="{{ post.thumbs.slideshow.url }}"
+                     alt="{{ post.title }}"
+                     width="{{ post.thumbs.slideshow.width }}"
+                     height="{{ post.thumbs.slideshow.height }}">
+                </a>
+                {%- endif %}
+                <h2 class="title">
+                  <a href="{{ link }}">
+                    {{ post.title }}
+                  </a>
+                </h2>
+                <div class="excerpt">
+                  <a href="{{ link }}">
+                    {{ post.excerpt|safe }}
+                  </a>
+                </div>
+              </li>
+              {%- endfor %}
+            </ul>
+
+            {%- if slideshow.__len__() > 1 %}
+            <ol class="controls">
+              {%- for i in slideshow %}
+              <li><a href="#{{ loop.index }}">{{ loop.index }}</a></li>
+              {%- endfor %}
+            </ol>
+            {%- endif %}
+            <div class="row-end"></div>
       </div>
     </div>
 
     <div class="row buttons">
-      <div class="span3">
+      <div class="span3" data-id="board1">
         <div class="priorizadas">
           <div class="cell">
             30 dias <small>de Consulta</small>
           </div>
         </div>
       </div>
-      <div class="span3">
+      <div class="span3" data-id="board2">
         <div class="propostas">
           <div class="cell">
             1388 mil <small>propostas</small>
           </div>
         </div>
       </div>
-      <div class="span3">
+      <div class="span3" data-id="board3">
         <div class="pessoas">
           <div class="cell">
             60 mil <small>pessoas envolvidas</small>
           </div>
         </div>
       </div>
-      <div class="span3">
+      <div class="span3" data-id="board4">
         <div class="votos">
           <div class="cell">
             300 mil <small>votos</small>
@@ -65,16 +95,21 @@
         </div>
       </div>
       <div class="span12 dados">
-        <div class="board">
-          <h2>30 Dias de Consulta Pública</h2>
-
-          <p>Com o objetivo de coletar junto a população informações e subsídios para a criação de políticas públicas, o Governador Pergunta abriu uma consulta pública que durou 30 dias e resultou no envolvimento de milhares de pessoas. Todo processo de participação digital foi dividido em quatro etapas.</p>
-
-          <p>No primeiro momento o Governador fez o questionamento à população “Como podemos melhorar o atendimento na saúde pública”, inaugurando assim, no dia 9 de novembro, a primeira edição do Governador Pergunta. No evento com transmissão ao vivo pela internet e a presença do Secretario Estadual da Saúde, a ferramenta foi apresentada à população.  A partir do final do dia 9, qualquer cidadão pode enviar propostas para o Governador através do site, até o dia 28 de novembro, resultando em 1,3 mil contribuições.</p>
-
-          <p>Na terceira fase, aconteceu a votação, que se iniciou no dia 28 de novembro e foi até o dia 10 de dezembro. O objetivo foi permitir aos participantes se colocarem no papel de gestores da saúde, tendo que decidir sobre as prioridades em cada área. Na quarta e última etapa foram conhecidos os autores das 50 propostas mais priorizadas, que serão recebidos pelo Governador no dia 14 de dezembro no Palácio Piratini.</p>
-
-          <p>A escolha da Saúde como tema para a primeira edição do Governador Pergunta, se baseou pelo interesse dos próprios gaúchos. O tema foi elencado como prioridade na discussão do PPA participativo.</p>
+        <div class="board1" id="board1">
+          <h2>{{wp.getPageByPath('result-govpergunta-2012-1').title|safe}}</h2>
+          {{wp.getPageByPath('result-govpergunta-2012-1').content|safe}}
+        </div>
+        <div class="board2" id="board2">
+          <h2>{{wp.getPageByPath('result-govpergunta-2012-2').title|safe}}</h2>
+          {{wp.getPageByPath('result-govpergunta-2012-2').content|safe}}
+        </div>
+        <div class="board3" id="board3">
+          <h2>{{wp.getPageByPath('result-govpergunta-2012-3').title|safe}}</h2>
+          {{wp.getPageByPath('result-govpergunta-2012-3').content|safe}}
+        </div>
+        <div class="board4" id="board4">
+          <h2>{{wp.getPageByPath('result-govpergunta-2012-4').title|safe}}</h2>
+          {{wp.getPageByPath('result-govpergunta-2012-4').content|safe}}
         </div>
       </div>
     </div>
@@ -92,7 +127,6 @@
     <div class="row lista">
       <div class="span12">
           <h2>Propostas priorizadas</h2>
-          <!-- <div>{{questions}}</div> -->
         <ul class="thumbnails">
           {%for q in questions%}
             <li class="span4">
