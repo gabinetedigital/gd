@@ -81,16 +81,17 @@
   </div>
 </div>
 {% if pagination.pages > 1 %}
-	<div class="questions">
-  	<ol class="pagination">
+<div class="row questions">
+  <ol class="pagination">
     {% for i in range(pagination.pages) %}
-    	<li {% if pagination.page == i %}class="selected"{% endif %}>
-      		<a href="?pg=todos&theme={{ theme.id }}&page={{ i }}">
-        		{{ i+1 }}
-      		</a>
-    	</li>
+    <li {% if pagination.page == i %}class="selected"{% endif %}>
+      <a href="?pg=todos&theme={{ theme.id }}&page={{ i }}">
+        {{ i+1 }}
+      </a>
+    </li>
     {% endfor %}
-  	</ol>
-  	</div>
-  	{% endif %}
+  </ol>
+</div>
+
+{% endif %}
 {% endblock %}
