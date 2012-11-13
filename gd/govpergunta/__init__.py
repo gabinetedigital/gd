@@ -114,6 +114,7 @@ def index():
 def resultados():
     """Renders a wordpress page special"""
     retorno = wordpress.wpgovp.getContribuicoes(principal='S')
+    ano = 2012
     questions = None
     for q in retorno:
         if isinstance(q, list):
@@ -121,7 +122,9 @@ def resultados():
     return render_template(
         'resultados.html',
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
-        questions=questions
+        questions=questions,
+        sidebar=wordpress.getSidebar,
+        ano=ano
     )
 
 

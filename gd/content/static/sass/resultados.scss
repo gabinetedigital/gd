@@ -80,39 +80,51 @@
     background: #FFF;
 }
 
+.widgets .fotodia h3 {
+    display: none;
+}
+
+.widgets .fotodia h4 {
+    display: none;
+}
+
+.widgets .video h4 {
+    display: none;
+}
+
 .lista h2 {
-    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
     font-size: 25pt;
     font-weight: normal;
     margin-bottom: 24px;
     margin-top: 10px;
-    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
-.thumbnail {
+.lista .thumbnail {
     border: 1px solid #CCC;
-    padding: 0 15px;
+    padding: 0 10px;
     overflow: auto;
     @include border-radius(0);
     @include background-image(linear-gradient(#FFF, #DDD));
 }
 
-.thumbnail h3 {
+.lista .thumbnail h3 {
     font-size: 15pt;
 }
 
-.thumbnail p {
+.lista .thumbnail p {
     font-size: 10pt;
     padding-top: 10px;
     border-top: 1px solid #CCC;
 }
 
-.thumbnail img {
+.lista .thumbnail img {
     margin-top: 10px;
     margin-right: 10px;
 }
 
-.thumbnail button {
+.lista .thumbnail button {
     margin-bottom: 10px;
 }
 
