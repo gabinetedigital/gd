@@ -20,17 +20,32 @@ $(function(){
 
     $('.detalhes').hide();
 
-    $('.botaomais').click(function(){
-        // alert( $(this).attr('data-id') );
+
+    
+    chamadetalhes = function(postid){
         $('.detalhes').hide();
-        var url = "/govpergunta/resultados-detalhe/" + $(this).attr('data-id')  + "/";
+        var url = "/govpergunta/resultados-detalhe/" + postid  + "/";
         $.ajax(url,{
             success: function(data, textStatus, jqXHR){
                 // alert('Veio legal!');
+                chamadetalhes.LAST_CALLED_ID = postid;
                 $('.detalhes').html(data);
                 $('.detalhes').slideToggle("slow");
             }
         });
+    };
+    chamadetalhes.LAST_CALLED_ID = 0;
+
+    auth.callback_login = function (action) {
+        //alert(action + '=' + chamadetalhes.LAST_CALLED_ID);
+        if(chamadetalhes.LAST_CALLED_ID != 0){
+            chamadetalhes(chamadetalhes.LAST_CALLED_ID);
+        }
+    };
+
+    $('.botaomais').click(function(){
+        // alert( $(this).attr('data-id') );
+        chamadetalhes( $(this).attr('data-id') );
     });
 
     $('#slideshow .controls').tabs('ul.carousel > li', {
