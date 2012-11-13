@@ -9,7 +9,13 @@ $(function(){
         $('#board2' ).hide();
         $('#board3' ).hide();
         $('#board4' ).hide();
-        $('#' + $(this).attr('data-id') ).slideToggle("slow");
+        $('.lista').hide();
+        if ($(this).attr('data-id') == "board1") {
+            $('.lista').slideToggle();
+            
+        }   
+        $('#' + $(this).attr('data-id') ).slideToggle("slow");       
+        $('.thumbnails').masonry('reload');
     });
 
     $('.dados').show();
@@ -17,6 +23,7 @@ $(function(){
     $('#board2' ).hide();
     $('#board3' ).hide();
     $('#board4' ).hide();
+    $('.lista').hide();     
 
     $('.detalhes').hide();
 

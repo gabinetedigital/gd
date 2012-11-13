@@ -92,6 +92,10 @@
     display: none;
 }
 
+.lista .blah {
+    display: block;
+}
+
 .lista h2 {
     border-bottom: 1px solid #CCCCCC;
     font-size: 25pt;
@@ -222,7 +226,7 @@
 
 #resultados #slideshow {
     height: 263px;
-    background: url(../imgs/slideshow.png) #4e9a06 center center no-repeat;
+    background: #DDD;
     overflow:hidden;
     margin-bottom: 20px;
 }
@@ -234,8 +238,8 @@
 
 #resultados #slideshow li {
     float:left;
-    width:978px;
     margin-right:30px;
+    list-style: none;
 }
 
 #resultados #slideshow img {
@@ -245,7 +249,7 @@
 }
 
 #resultados #slideshow .title a {
-    color:#FFF;
+    color:#999;
 }
 
 #resultados #slideshow .excerpt {
@@ -279,7 +283,7 @@
 }
 
 #resultados #slideshow .controls a.current {
-    background:#8ae234;
+    background:#999;
     color:#fff;
 }
 

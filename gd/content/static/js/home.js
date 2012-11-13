@@ -97,9 +97,6 @@ $(document).ready(function () {
 
     $('#myTab a:last').tab('show');
 
-
-
-
     $('div#clipping-itemsclipping').easyPaginate({
         step:$('#clipping-perpage').val()
     });
@@ -138,6 +135,7 @@ $(document).ready(function () {
         }
         $('.equipe-grupo').removeClass('active');
         $('#equipe-grupo-'+$(this).attr('data-index')).fadeIn();
+        $('.thumbnails').masonry('reload');
         $('.equipe-grupo-'+$(this).attr('data-index')).addClass('active');
     });
 

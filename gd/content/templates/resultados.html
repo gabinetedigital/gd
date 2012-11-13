@@ -61,56 +61,6 @@
               {%- endfor %}
             </ol>
             {%- endif %}
-            <div class="row-end"></div>
-      </div>
-    </div>
-
-    <div class="row buttons">
-      <div class="span3" data-id="board1">
-        <div class="priorizadas">
-          <div class="cell">
-            30 dias <small>de Consulta</small>
-          </div>
-        </div>
-      </div>
-      <div class="span3" data-id="board2">
-        <div class="propostas">
-          <div class="cell">
-            1388 mil <small>propostas</small>
-          </div>
-        </div>
-      </div>
-      <div class="span3" data-id="board3">
-        <div class="pessoas">
-          <div class="cell">
-            60 mil <small>pessoas envolvidas</small>
-          </div>
-        </div>
-      </div>
-      <div class="span3" data-id="board4">
-        <div class="votos">
-          <div class="cell">
-            300 mil <small>votos</small>
-          </div>
-        </div>
-      </div>
-      <div class="span12 dados">
-        <div class="board1" id="board1">
-          <h2>{{wp.getPageByPath('result-govpergunta-2012-1').title|safe}}</h2>
-          {{wp.getPageByPath('result-govpergunta-2012-1').content|safe}}
-        </div>
-        <div class="board2" id="board2">
-          <h2>{{wp.getPageByPath('result-govpergunta-2012-2').title|safe}}</h2>
-          {{wp.getPageByPath('result-govpergunta-2012-2').content|safe}}
-        </div>
-        <div class="board3" id="board3">
-          <h2>{{wp.getPageByPath('result-govpergunta-2012-3').title|safe}}</h2>
-          {{wp.getPageByPath('result-govpergunta-2012-3').content|safe}}
-        </div>
-        <div class="board4" id="board4">
-          <h2>{{wp.getPageByPath('result-govpergunta-2012-4').title|safe}}</h2>
-          {{wp.getPageByPath('result-govpergunta-2012-4').content|safe}}
-        </div>
       </div>
     </div>
 
@@ -123,6 +73,49 @@
         </ul>
       </div>
     </div>
+
+    <div class="row buttons">
+      <div class="span3" data-id="board1">
+        <div class="priorizadas">
+          <div class="cell">
+          {{wp.getPageByPath('result-govpergunta-2012-1').title|safe}}
+          </div>
+        </div>
+      </div>
+      <div class="span3" data-id="board2">
+        <div class="propostas">
+          <div class="cell">
+            {{wp.getPageByPath('result-govpergunta-2012-2').title|safe}}
+          </div>
+        </div>
+      </div>
+      <div class="span3" data-id="board3">
+        <div class="pessoas">
+          <div class="cell">
+            {{wp.getPageByPath('result-govpergunta-2012-3').title|safe}}
+          </div>
+        </div>
+      </div>
+      <div class="span3" data-id="board4">
+        <div class="votos">
+          <div class="cell">
+            {{wp.getPageByPath('result-govpergunta-2012-4').title|safe}}
+          </div>
+        </div>
+      </div>
+      <div class="span12 dados">
+        <div class="board" id="board2">
+          {{wp.getPageByPath('result-govpergunta-2012-2').content|safe}}
+        </div>
+        <div class="board" id="board3">
+          {{wp.getPageByPath('result-govpergunta-2012-3').content|safe}}
+        </div>
+        <div class="board" id="board4">
+          {{wp.getPageByPath('result-govpergunta-2012-4').content|safe}}
+        </div>
+      </div>
+    </div>
+
 
     <div class="row lista">
       <div class="span12">
