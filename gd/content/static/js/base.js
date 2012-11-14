@@ -47,7 +47,7 @@ $(function(){
         trigger: 'hover',
         placement: 'right',
     };
-    $('.tweets li').popover(option);
+    //$('.tweets li').popover(option);
 
     $('#menu').scrollspy()
 
