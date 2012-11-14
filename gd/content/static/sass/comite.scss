@@ -34,6 +34,11 @@
     @include border-radius(7px);
 }
 
+.comite h2 {
+    font-family: 'Road Geek';
+    font-weight: 400;
+}
+
 .seta {
     text-align: center;
     margin-right: 45px;
@@ -100,6 +105,10 @@ h2 {
     border: 2px solid white;
     padding: 7px;
     @include border-radius(4px);
+}
+
+legend {
+    color: #fcb514;
 }
 
 .feednews {
