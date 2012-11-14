@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/resultados.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/comite.js') }}"></script>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -68,6 +68,25 @@
             <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas</p>
           </div>
         </div>
+
+        <div id="error" class="msg error alert alert-error hide"></div>
+        <div id="success" class="msg success alert alert-success hide"></div>
+        <form method="post" action="/enviar-noticia/" class="form-enviar-noticia">
+          <fieldset>
+            <legend>Envie sua notícia</legend>
+
+            <label>Título:</label>
+            <input class="span6" id="titulo" name="titulo" type="text" placeholder="Informe o título da notícia...">
+
+            <label>Texto da notícia:</label>
+            <textarea class="span9" id="noticia" name="noticia" placeholder="Digite ou cole aqui o texto da sua notícia..." rows="10"></textarea>
+            <br/>
+          {% if not user %}
+              <span class="help-block">É necessário estar efetuar login para enviar a notícia.</span>
+          {%endif%}
+            <button type="submit" class="btn">Enviar Notícia</button>
+          </fieldset>
+        </form>
 
 
       </div>

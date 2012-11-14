@@ -1,0 +1,17 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<div class="subcontent">
+  <ul class="listing">
+   {% for noticia in noticias %}
+    <li class="noticia">
+      <strong class="subject">{{ noticia.title }}</strong>
+      <div class="detalhes">
+        Data: <em class="date">{{ noticia.creation_date }}</em><br/>
+        Autor: <em class="creator">{{ noticia.user.name }} / {{ noticia.user.email }}</em>
+      </div>
+      <p>{{ noticia.content|safe }}</p>
+    </li>
+    {% endfor  %}
+  </ul>
+</div>
+{% endblock %}

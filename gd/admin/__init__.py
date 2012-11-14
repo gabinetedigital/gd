@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -26,7 +27,7 @@ from urlparse import urlparse
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc, not_
-from gd.model import Audience, Buzz, Term, session, AudiencePosts
+from gd.model import Audience, Buzz, Term, session, AudiencePosts, ComiteNews
 from gd.utils import msg
 from gd import auth, conf
 from gd.content.wp import wordpress
@@ -68,7 +69,17 @@ def logout():
 @admin.route('/')
 @auth.checkroles(['administrator'])
 def index():
-    return redirect('/admin/audience')
+    return  render_template('admin/admin_index.html')
+    #return redirect('/admin/audience')
+
+@admin.route('/comite/')
+@auth.checkroles(['administrator'])
+def comite():
+    noticias = ComiteNews.query.order_by(desc('creation_date')).all()
+    return render_template('admin/list_comite.html',
+        noticias=noticias,
+    )
+
 
 @admin.route('/audience')
 @auth.checkroles(['administrator'])

@@ -32,8 +32,8 @@ from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
 from gd.content.tweet import get_mayor_last_tweet
-from gd.utils import dumps, msg, categoria_contribuicao_text
-from gd.model import User, session as dbsession
+from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail
+from gd.model import User, ComiteNews, session as dbsession
 
 from gd.auth.webapp import auth
 from gd.auth.fbauth import fbauth
@@ -378,13 +378,40 @@ def resultados():
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
+
 @app.route('/comite-transito')
-def comite():
+def comite_transito():
     """Renders a wordpress page special"""
     return render_template(
         'comite-transito.html',
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        wp=wordpress,
     )
+
+
+@app.route('/enviar-noticia/',methods=('POST',))
+def salvar_noticia_comite():
+    if request.method == 'POST':
+        titulo = request.form['titulo']
+        noticia = request.form['noticia']
+        cn = ComiteNews()
+        cn.title = unicode(titulo)
+        cn.content = unicode(noticia)
+        cn.user = authenticated_user()
+        dbsession.commit()
+
+        #Envia o email avisando que chegou uma nova contribuição
+        sendmail(
+            conf.COMITE_SUBJECT, conf.COMITE_TO_EMAIL,
+            conf.COMITE_MSG % {
+                'titulo': titulo,
+                'noticia': noticia,
+            }
+        )
+
+        return msg.ok(_(u'Thank you. Your contribution was successfuly sent.'))
+    else:
+        return msg.error(_(u'Method not allowed'))
 
 
 @app.route('/pages/<path:path>/')

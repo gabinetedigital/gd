@@ -159,6 +159,9 @@ var auth = (function() {
             $('.on').fadeIn(function(){
                 $('#username').focus();
             });
+            if(params && typeof params.success === 'function' ){
+                this.success = params.success;
+            }
             return false;
         }
 
