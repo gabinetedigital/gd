@@ -141,7 +141,7 @@ $(function(){
         }
     };
 
-    document.domain = "localhost";
+//    document.domain = "localhost";
 
     _verifica_pode_adicionar_idea = function(){
         return auth.isAuthenticated();
