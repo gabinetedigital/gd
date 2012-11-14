@@ -109,13 +109,18 @@ h2 {
     display: block;
     background-color: rgba($black, 0.7);
     display: block;
-    padding: 0;
+    padding: 0 0 10px 0;
     position: relative;
     text-align: left;
     color: #FFF;
     font-size: 12pt;
     @include border-radius(0);
     @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 1.0) inset);
+}
+
+.feednews h3 {
+    color: #fcb514;
+    margin-left: 15px;
 }
 
 .feednews ul {
@@ -128,6 +133,12 @@ h2 {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #fcb514;
+}
+
+.feednews li a {
+    display: block;
+    margin: 5px 17px;
+    color: #FFF;
 }
 
 .feednews li:last-child {
