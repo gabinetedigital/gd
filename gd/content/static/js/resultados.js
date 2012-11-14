@@ -5,6 +5,9 @@ $(function(){
     });
 
     $('.buttons .span3').click(function() {
+        $('.mais').hide();
+        $('.agregadas').hide();
+        $('.comments').hide();
         $('#board1' ).hide();
         $('#board2' ).hide();
         $('#board3' ).hide();

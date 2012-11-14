@@ -102,12 +102,13 @@ govpergunta = Blueprint(
 
 @govpergunta.route('/')
 def index():
-    pagination, posts = wordpress.getPostsByTag(
-        tag='governador-pergunta')
-    images = gallery.search('GovernadorPergunta', limit=24)[::-1]
-    videos = [wordpress.wpgd.getVideo(i) for i in (14, 16, 12)]
-    return render_template(
-        'results.html', posts=posts, images=images, videos=videos)
+    return redirect('/govpergunta/resultados/')
+    # pagination, posts = wordpress.getPostsByTag(
+    #     tag='governador-pergunta')
+    # images = gallery.search('GovernadorPergunta', limit=24)[::-1]
+    # videos = [wordpress.wpgd.getVideo(i) for i in (14, 16, 12)]
+    # return render_template(
+    #     'results.html', posts=posts, images=images, videos=videos)
 
 
 @govpergunta.route('/resultados/')
