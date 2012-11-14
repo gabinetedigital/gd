@@ -370,14 +370,6 @@ def conselho():
     )
 
 
-@app.route('/resultados/')
-def resultados():
-    """Renders a wordpress page special"""
-    return render_template(
-        'resultados.html',
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
-    )
-
 
 @app.route('/comite-transito')
 def comite_transito():
