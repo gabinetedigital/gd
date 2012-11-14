@@ -39,11 +39,13 @@ def index(page=0):
                                             page=page,
                                             sortby=sortby,
                                             totalporpage='10')
-
+    print "POSTS====================="
+    print posts
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
 
     return render_template(
         'govescuta.html',
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         sidebar=wordpress.getSidebar,
         pagination=pagination,
         audiences=posts,

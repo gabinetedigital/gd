@@ -112,15 +112,17 @@ def index():
 
 
 @govpergunta.route('/resultados/')
-def resultados():
+@govpergunta.route('/resultados/<int:ano>/')
+def resultados(ano=2012):
     """Renders a wordpress page special"""
     slideshow = wordpress.getRecentPosts(
         category_name='highlights',
         post_status='publish',
         numberposts=4,
         thumbsizes=['slideshow'])
-    retorno = wordpress.wpgovp.getContribuicoes(principal='S')
-    ano = 2012
+
+    categoria = 'resultados-gov-pergunta-%s' % str(ano)
+    retorno = wordpress.wpgovp.getContribuicoes(principal='S',category=categoria)
     questions = None
     for q in retorno:
         if isinstance(q, list):

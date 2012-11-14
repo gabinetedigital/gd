@@ -5,9 +5,9 @@
         </div>
         <div class="span10">
           <div class="score pull-right">Pontuação<span class="ptn">{{principal['contrib_wp_govpergunta_score']}}</span></div> 
-          <h1>{{principal['post_title']}}<small>{{principal['contrib_wp_govpergunta_cidade']}} | {{principal['tema']}} </small></h1>
+          <h1>{{principal['post_title']|safe}}<small>{{principal['contrib_wp_govpergunta_cidade']}} | {{principal['tema']}} </small></h1>
           <p>
-            {{principal['post_content']}}
+            {{principal['post_content']|safe}}
           </p>
           {% if not qtd_agregadas == '0' %}
           <a class="aggrlink">Agregadas({{qtd_agregadas}})</a>
@@ -21,9 +21,9 @@
             {%for agregada in agregadas%}
             <li class="span3">
               <div class="thumbnail">
-                <h3>{{agregada['post_title']}}</h3>
+                <h3>{{agregada['post_title']|safe}}</h3>
                 <p>
-                  {{agregada['post_content']}}
+                  {{agregada['post_content']|safe}}
                 </p>
               </div>
             </li>
