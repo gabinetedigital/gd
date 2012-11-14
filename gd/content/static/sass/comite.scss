@@ -118,7 +118,7 @@ legend {
     display: block;
     background-color: rgba($black, 0.7);
     display: block;
-    padding: 0 0 10px 0;
+    padding: 0 0 15px 0;
     position: relative;
     text-align: left;
     color: #FFF;
@@ -157,6 +157,15 @@ legend {
 .feednews li p {
     padding: 10px;
     font-size: 11pt;
+}
+
+li {
+   list-style: none;
+}
+
+.thumbnail {
+    padding: 0;
+    border: 0;
 }
 
 .fb-like-box {
