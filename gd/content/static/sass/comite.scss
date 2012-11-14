@@ -1,10 +1,59 @@
 @import "system";
 
+@import "compass/css3/font-face";
+
+@include font-face('Road Geek',
+  font-files(
+      '/static/fonts/roadgeek_2005_series_e-webfont.woff', woff,
+      '/static/fonts/roadgeek_2005_series_e-webfont.ttf', ttf,
+      '/static/fonts/roadgeek_2005_series_e-webfont.svg', svg),
+      '/static/fonts/roadgeek_2005_series_e-webfont.eot',
+      normal, normal);
+
+
 .comite {
     padding-top: 20px;
     border-top: 2px solid #DDD;
     background: url(../img/seguranca.jpg) no-repeat fixed;
     background-size: 100% 100%;
+}
+
+.placa {
+    background: #006bb1;
+    padding: 1px 10px;
+}
+
+.comite h1 {
+    font-family: 'Road Geek';
+    color: #FFF;
+    font-size: 65px;
+    font-weight: 400;
+    line-height: 86px;
+    border: 6px solid white;
+    padding: 20px;
+    @include border-radius(7px);
+}
+
+.seta {
+    text-align: center;
+    margin-right: 45px;
+    margin-top: 64px;
+}
+
+.haste {
+    height: 50px;
+    background: #FFF;
+    height: 70px;
+    margin-left: 20px;
+    width: 38px;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-top: 47px solid #FFF;
 }
 
 h2 {
