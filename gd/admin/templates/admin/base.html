@@ -21,6 +21,8 @@
           <a href="{{ url_for('.audiences') }}">Audiencias - Lista</a></li>
         <li {% if request.url_rule.rule.endswith('/comite/') %}class="selected"{% endif %}>
           <a href="{{ url_for('.comite') }}">Notícias Comitê</a></li>
+        <li {% if request.url_rule.rule.endswith('/cadastros/') %}class="selected"{% endif %}>
+          <a href="{{ url_for('.cadastros') }}">Cadastros p/ Comitê</a></li>
       </ul>
       {% endif %}
       {% block content %}{% endblock %}

@@ -424,6 +424,14 @@ class ComiteNews(Entity):
     title = Field(String(500,convert_unicode=True))
     content = Field(Text(convert_unicode=True))
 
+class CadastroComite(Entity):
+    """Cadastro de dados para participar do comite de transito"""
+    using_options(tablename='cadastro_comite')
+    nome = Field(String(500,convert_unicode=True))
+    email = Field(String(500,convert_unicode=True))
+    telefone = Field(String(500,convert_unicode=True))
+    cidade = Field(String(500,convert_unicode=True))
+    creation_date = Field(DateTime, default=datetime.now)
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(lsession, flush_context):

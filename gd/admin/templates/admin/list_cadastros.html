@@ -1,0 +1,17 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<div class="subcontent">
+  <ul class="listing">
+   {% for cadastro in cadastros %}
+    <li class="noticia">
+      <strong class="subject">{{ cadastro.nome }}</strong> (em: <em class="date">{{ cadastro.creation_date }}</em>)
+      <div class="detalhes">
+        E-Mail: <em class="email">{{ cadastro.email }}</em><br/>
+        Telefone: <em class="email">{{ cadastro.telefone }}</em><br/>
+        Cidade: <em class="email">{{ cadastro.cidade }}</em><br/>
+      </div>
+    </li>
+    {% endfor  %}
+  </ul>
+</div>
+{% endblock %}

@@ -78,5 +78,43 @@ $(function(){
         }
     });
 
+    $(".form-cadastrar").ajaxForm({
+        beforeSubmit: function () {
+            $('.msg').fadeOut();
+        },
+
+        success: function (data) {
+            var pData = $.parseJSON(data);
+            if (pData.status !== 'ok') {
+                $('#error-cad')
+                    .html(pData.msg)
+                    .fadeIn('fast');
+            } else {
+                $('#success-cad')
+                    .html(pData.msg)
+                    .fadeIn('fast');
+                ResetForm();
+            }
+            return false;
+        }
+    });
+
+
+    $(".entenda").click(function(e){
+        $('.entenda-content').show();
+        $('.faca-content').hide();
+        $('.envie-content').hide();
+    });
+    $(".faca").click(function(e){
+        $('.entenda-content').hide();
+        $('.faca-content').show();
+        $('.envie-content').hide();
+    });
+    $(".envie").click(function(e){
+        $('.entenda-content').hide();
+        $('.faca-content').hide();
+        $('.envie-content').show();
+    });
+
 
 });

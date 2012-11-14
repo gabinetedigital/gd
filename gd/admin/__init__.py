@@ -27,7 +27,7 @@ from urlparse import urlparse
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc, not_
-from gd.model import Audience, Buzz, Term, session, AudiencePosts, ComiteNews
+from gd.model import Audience, Buzz, Term, session, AudiencePosts, ComiteNews, CadastroComite
 from gd.utils import msg
 from gd import auth, conf
 from gd.content.wp import wordpress
@@ -80,6 +80,13 @@ def comite():
         noticias=noticias,
     )
 
+@admin.route('/cadastros/')
+@auth.checkroles(['administrator'])
+def cadastros():
+    cadastros = CadastroComite.query.order_by(desc('creation_date')).all()
+    return render_template('admin/list_cadastros.html',
+        cadastros=cadastros,
+    )
 
 @admin.route('/audience')
 @auth.checkroles(['administrator'])

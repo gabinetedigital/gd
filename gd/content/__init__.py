@@ -33,7 +33,7 @@ from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
 from gd.content.tweet import get_mayor_last_tweet
 from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail
-from gd.model import User, ComiteNews, session as dbsession
+from gd.model import User, ComiteNews, CadastroComite, session as dbsession
 
 from gd.auth.webapp import auth
 from gd.auth.fbauth import fbauth
@@ -386,6 +386,7 @@ def comite_transito():
         'comite-transito.html',
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         wp=wordpress,
+        sidebar=wordpress.getSidebar,
     )
 
 
@@ -408,6 +409,34 @@ def salvar_noticia_comite():
                 'noticia': noticia,
             }
         )
+
+        return msg.ok(_(u'Thank you. Your contribution was successfuly sent.'))
+    else:
+        return msg.error(_(u'Method not allowed'))
+
+
+@app.route('/cadastrar-comite/',methods=('POST',))
+def salvar_noticia_comite():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        email = request.form['email']
+        telefone = request.form['telefone']
+        cidade = request.form['cidade']
+        cn = CadastroComite()
+        cn.nome = unicode(nome)
+        cn.email = unicode(email)
+        cn.telefone = unicode(telefone)
+        cn.cidade = unicode(cidade)
+        dbsession.commit()
+
+        # #Envia o email avisando que chegou uma nova contribuição
+        # sendmail(
+        #     conf.COMITE_SUBJECT, conf.COMITE_TO_EMAIL,
+        #     conf.COMITE_MSG % {
+        #         'titulo': titulo,
+        #         'noticia': noticia,
+        #     }
+        # )
 
         return msg.ok(_(u'Thank you. Your contribution was successfuly sent.'))
     else:

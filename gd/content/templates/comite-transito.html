@@ -22,13 +22,14 @@
     <div class="row">
       <div class="span12">
         <img src="{{ url_for('.static', filename='img/comite/titulo.png') }}">
+        <h1>{{wp.getPageByPath('comite-transito-header').title|safe}}</h1>
       </div>
     </div>
 
     <div class="row">
       <div class="span12">
         <div class="apresentacao">
-          <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>
+          {{wp.getPageByPath('comite-transito-header').content|safe}}
         </div>
       </div>
     </div>
@@ -38,14 +39,18 @@
         <div class="menu">
           <div class="entenda">
             <a href="#entenda">
-            <img src="{{ url_for('.static', filename='img/comite/entenda.png') }}">
+              <img src="{{ url_for('.static', filename='img/comite/entenda.png') }}">
             </a>
           </div>
           <div class="faca">
-            <img src="{{ url_for('.static', filename='img/comite/faca.png') }}">
+            <a href="#entenda">
+              <img src="{{ url_for('.static', filename='img/comite/faca.png') }}">
+            </a>
           </div>
           <div class="envie">
-            <img src="{{ url_for('.static', filename='img/comite/envie.png') }}">
+            <a href="#entenda">
+              <img src="{{ url_for('.static', filename='img/comite/envie.png') }}">
+            </a>
           </div>
         </div>
       </div>
@@ -54,54 +59,72 @@
     <div class="row">
       <div class="span9">
         <div class="entenda-content">
-          <h2>Etenda o Processo</h2>
+          <h2>{{wp.getPageByPath('comite-transito-entenda').title|safe}}</h2>
           <div class="content">
-            <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>
-            <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>
-            <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas e tornar o trânsito mais seguro, mais humano e que respeite todos os cidadãos. As dez ações mais votadas serão prioridade do governo do Rio Grande do Sul nos próximos dois anos.</p>      
+            {{wp.getPageByPath('comite-transito-entenda').content|safe}}
           </div>
         </div>
 
-        <div class="faca-content">
+        <div id="facaparte" class="faca-content">
           <h2>Faça parte do comitê</h2>
           <div class="content">
             <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas</p>
+
+            <div id="error-cad" class="msg error alert alert-error hide"></div>
+            <div id="success-cad" class="msg success alert alert-success hide"></div>
+            <form method="post" action="/cadastrar-comite/" class="form-cadastrar">
+              <fieldset>
+                <legend>Cadastre-se</legend>
+
+                <label>Nome:</label>
+                <input class="span6" id="nome" name="nome" type="text" placeholder="Nome completo">
+
+                <label>Email:</label>
+                <input class="span6" id="email" name="email" type="text" placeholder="Email para contato">
+
+                <label>Cidade:</label>
+                <input class="span4" id="cidade" name="cidade" type="text" placeholder="Cidade onde mora">
+
+                <label>Telefone:</label>
+                <input class="span4" id="telefone" name="telefone" type="text" placeholder="Cód de Área + Nro. Telefone">
+
+                <br/>
+                <br/>
+                <button type="submit" class="btn">Enviar os dados</button>
+              </fieldset>
+            </form>
+
           </div>
         </div>
 
-        <div id="error" class="msg error alert alert-error hide"></div>
-        <div id="success" class="msg success alert alert-success hide"></div>
-        <form method="post" action="/enviar-noticia/" class="form-enviar-noticia">
-          <fieldset>
-            <legend>Envie sua notícia</legend>
+        <div class="envie-content">
+          <div id="error" class="msg error alert alert-error hide"></div>
+          <div id="success" class="msg success alert alert-success hide"></div>
+          <form method="post" action="/enviar-noticia/" class="form-enviar-noticia">
+            <fieldset>
+              <legend>Envie sua notícia</legend>
 
-            <label>Título:</label>
-            <input class="span6" id="titulo" name="titulo" type="text" placeholder="Informe o título da notícia...">
+              <label>Título:</label>
+              <input class="span6" id="titulo" name="titulo" type="text" placeholder="Informe o título da notícia...">
 
-            <label>Texto da notícia:</label>
-            <textarea class="span9" id="noticia" name="noticia" placeholder="Digite ou cole aqui o texto da sua notícia..." rows="10"></textarea>
-            <br/>
-          {% if not user %}
-              <span class="help-block">É necessário estar efetuar login para enviar a notícia.</span>
-          {%endif%}
-            <button type="submit" class="btn">Enviar Notícia</button>
-          </fieldset>
-        </form>
-
+              <label>Texto da notícia:</label>
+              <textarea class="span9" id="noticia" name="noticia" placeholder="Digite ou cole aqui o texto da sua notícia..." rows="10"></textarea>
+              <br/>
+            {% if not user %}
+                <span class="help-block">É necessário estar efetuar login para enviar a notícia.</span>
+            {%endif%}
+              <button type="submit" class="btn">Enviar Notícia</button>
+            </fieldset>
+          </form>
+        </div>
 
       </div>
 
 
       <div class="span3">
-        <h2>Notícias</h2>
 
-        <div class="feednews">
-          <ul>
-            <li><p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito.</p></li>
-            <li><p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito.</p></li>
-            <li><p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito.</p></li>
-          </ul>
-        </div>
+        {{ sidebar(id='sidebar-9')|safe }}
+
         <div class="fb-like-box" data-href="http://www.facebook.com/platform" data-width="270" data-show-faces="true" data-stream="false" data-header="false"></div>
       </div>
     </div>
