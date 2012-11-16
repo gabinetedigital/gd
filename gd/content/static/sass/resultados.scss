@@ -35,6 +35,8 @@
     vertical-align: middle;
     width: 1000px;
     height: 100px;
+    line-height: 30px;
+    font-size: 30pt;
 }
 
 .priorizadas, .propostas, .pessoas, .votos {
@@ -231,6 +233,7 @@
     margin-bottom: 20px;
 }
 
+
 #resultados #slideshow .carousel {
     padding-top:20px;
     height:185px;
@@ -250,11 +253,10 @@
 
 #resultados #slideshow .title a {
     color:#999;
+    font-size: 19pt;
 }
 
 #resultados #slideshow .excerpt {
-    margin-left:355px;
-    padding:15px 30px 10px 30px;
     font-size:16px;
 }
 
