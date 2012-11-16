@@ -113,18 +113,21 @@ $(document).ready(function () {
         $('.equipe').hide();
         $('.publicacoes').hide();
         $('.clipping').fadeIn();
+        $('.thumbnails').masonry('reload');
     });
 
     $('.membros').click(function(){
         $('.clipping').hide();
         $('.publicacoes').hide();
         $('.equipe').fadeIn();
+        $('.thumbnails').masonry('reload');
     });
 
     $('.pub').click(function(){
         $('.clipping').hide();
         $('.equipe').hide();
         $('.publicacoes').fadeIn();
+        $('.thumbnails').masonry('reload');
     });
 
     $('.equipe-grupo-1').addClass('active');

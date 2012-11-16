@@ -79,6 +79,7 @@ $(function(){
                     return containerWidth / 12;
                 }
             });
+            $('.thumbnails').masonry('reload');
         });
     }, 1500);
 
@@ -141,7 +142,7 @@ $(function(){
         }
     };
 
-//    document.domain = "localhost";
+//    documentin = "localhost";
 
     _verifica_pode_adicionar_idea = function(){
         return auth.isAuthenticated();

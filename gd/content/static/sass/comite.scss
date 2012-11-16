@@ -137,21 +137,28 @@ legend {
     padding: 0;
 }
 
-.feednews li {
+.feednews ul li {
     list-style: none;
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #fcb514;
+    padding: 10px;
+    color: #FFF;
+    display: block;
+    position: relative;
+}
+
+.feednews h4 {
+    text-align: right;
+    font-size: 10pt;
+    margin-right: 12px;
+    padding-bottom: 10px;
 }
 
 .feednews li a {
     display: block;
     margin: 5px 17px;
     color: #FFF;
-}
-
-.feednews li:last-child {
-    border: 0;
 }
 
 .feednews li p {

@@ -71,6 +71,13 @@ section h2 {
     color: $orange;
 }
 
+
+#sobre .clipping #pagination {
+    clear: both;
+    float: right;
+ 
+}
+
 #sobre blockquote {
     color: #FFF;
     border: 0;
@@ -204,6 +211,7 @@ section h2 {
     right: 0;
     text-align: left;
     text-overflow: ellipsis;
+    display: none;
 }
 
 .news1 h4 {
@@ -251,6 +259,12 @@ section h2 {
     line-height: 31px;
     margin: 10px;
     padding: 0;
+}
+
+.ultimas h4 {
+    text-align: right;
+    font-size: 10pt;
+    margin-right: 30px;
 }
 
 .ultimas ul li {
