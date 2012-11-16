@@ -116,7 +116,7 @@ def index():
 def resultados(ano=2012):
     """Renders a wordpress page special"""
     slideshow = wordpress.getRecentPosts(
-        category_name='highlights',
+        category_name='destaque-govpergunta-%s' % str(ano),
         post_status='publish',
         numberposts=4,
         thumbsizes=['slideshow'])
