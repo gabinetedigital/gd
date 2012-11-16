@@ -104,39 +104,40 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="span12">
-          <ul class="thumbnails audiencias">
-            {% for audience in audiences %}
-            {% if audience.video  %}
-            <li class="span6">
-              <div class="thumbnail">
-                <a href="{{ url_for('.govescuta_details', aid=audience.ID) }}">
-                  <div class="header">
-                    <div id="date" class="pull-left">
-                      <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }} {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%y") }}</div>
-                      <div class="day">
-                        {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d") }}
-                      </div>
-                    </div>
-                  </div>
-                  <img class="thumb"
-                       src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
-                       width="100%">
-                  <div>
-                    <div class="desc">
-                      <h4>{{ audience.post_title }}</h4>
-                      {{ audience.post_content|safe }}
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
+      <!-- <div class="row"> -->
+      <!--   <div class="span12"> -->
+      <!--     <ul class="thumbnails audiencias"> -->
+      <!--       {% for audience in audiences %} -->
+      <!--       {% if audience.video  %} -->
+      <!--       <li class="span6"> -->
+      <!--         <div class="thumbnail"> -->
+      <!--           <a href="{{ url_for('.govescuta_details', aid=audience.ID) }}"> -->
+      <!--             <div class="header"> -->
+      <!--               <div id="date" class="pull-left"> -->
+      <!--                 <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }} {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%y") }}</div> -->
+      <!--                 <div class="day"> -->
+      <!--                   {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d") }} -->
+      <!--                 </div> -->
+      <!--               </div> -->
+      <!--             </div> -->
+      <!--             <img class="thumb" -->
+      <!--                  src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}" -->
+      <!--                  width="100%"> -->
+      <!--             <div> -->
+      <!--               <div class="desc"> -->
+      <!--                 <h4>{{ audience.post_title }}</h4> -->
+      <!--                 {{ audience.post_content|safe }} -->
+      <!--               </div> -->
+      <!--             </div> -->
+      <!--           </a> -->
+      <!--         </div> -->
+      <!--       </li> -->
+      <!--       {% endif %} -->
+      <!--       {% endfor %} -->
+      <!--     </ul> -->
+      <!--   </div> -->
+      <!-- </div> -->
+
     </section>
   </div>
 </div>
