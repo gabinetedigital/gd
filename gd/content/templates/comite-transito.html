@@ -71,9 +71,9 @@
         </div>
 
         <div id="facaparte" class="faca-content">
-          <h2>Faça parte do comitê</h2>
+          <h2>{{wp.getPageByPath('comite-transito-facaparte').title|safe}}</h2>
           <div class="content">
-            <p>O Governador quer saber a sua opinião para melhorar a segurança no nosso trânsito. Vote nas ações que você considera como prioridades para resolver problemas</p>
+            {{wp.getPageByPath('comite-transito-facaparte').content|safe}}
 
             <div id="error-cad" class="msg error alert alert-error hide"></div>
             <div id="success-cad" class="msg success alert alert-success hide"></div>
@@ -103,8 +103,11 @@
         </div>
 
         <div class="envie-content">
-          <h2>Faça parte do comitê</h2>
+          <h2>{{wp.getPageByPath('comite-transito-envie').title|safe}}</h2>
           <div class="content">
+          
+          {{wp.getPageByPath('comite-transito-envie').content|safe}}
+
           <div id="error" class="msg error alert alert-error hide"></div>
           <div id="success" class="msg success alert alert-success hide"></div>
           <form method="post" action="/enviar-noticia/" class="form-enviar-noticia">
@@ -115,7 +118,7 @@
               <input class="span6" id="titulo" name="titulo" type="text" placeholder="Informe o título da notícia...">
 
               <label>Texto da notícia:</label>
-              <textarea class="span9" id="noticia" name="noticia" placeholder="Digite ou cole aqui o texto da sua notícia..." rows="10"></textarea>
+              <textarea class="span8" id="noticia" name="noticia" placeholder="Digite ou cole aqui o texto da sua notícia..." rows="10"></textarea>
               <br/>
             {% if not user %}
                 <span class="help-block">É necessário estar efetuar login para enviar a notícia.</span>
@@ -131,10 +134,6 @@
 
       <div class="span3">
         {{ sidebar(id='sidebar-9')|safe }}
-        <li class="span3">
-        <div class="fb-like-box" data-href="https://www.facebook.com/RedePelaPazNoTransito" data-width="270" data-show-faces="true" data-stream="false" data-header="true"></div>
-        </li>
-
       </div>
 
   </div>
