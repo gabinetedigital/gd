@@ -61,15 +61,21 @@
               {%- endfor %}
             </ol>
             {%- endif %}
-            <a class="btn btn-inverse btn-mini pull-right" href="/cat/4/">Ver mais notícias</a>
+        {% if ano == 2012 %}
+            <a class="btn btn-inverse btn-mini pull-right" href="/cat/801/">Ver mais notícias</a>
+        {%else%}
+            <a class="btn btn-inverse btn-mini pull-right" href="/cat/800/">Ver mais notícias</a>
+        {% endif %}
       </div>
     </div>
 
     <div class="row widgets">
       <div class="span12">
         <ul class="thumbnails">
-        {% if ano %}
+        {% if ano == 2012 %}
         {{ sidebar(id='sidebar-7')|safe }}
+        {%else%}
+        {{ sidebar(id='sidebar-8')|safe }}
         {% endif %}
         </ul>
       </div>
@@ -127,7 +133,9 @@
               <div class="thumbnail">
                 <div class="score pull-right">Pontuação<span class="ptn">{{q['contrib_wp_govpergunta_score']}}</span></div> 
                 <!-- <img class="pull-left" src="{{ url_for('static', filename='img/user.jpg') }}"> -->
+                {%if q['contrib_foto']%}
                 <img class="pull-left" src="{{q['contrib_foto']}}" width="100" height="100">
+                {%endif%}
                 <h3>{{q['post_title']|safe}}</h3>
                 <p>
                   {{q['post_content']|safe}}

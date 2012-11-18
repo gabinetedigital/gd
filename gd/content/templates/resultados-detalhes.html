@@ -1,7 +1,9 @@
       <div class="row mais">
         <div class="span12"></div>
         <div class="span2">
+          {%if principal['contrib_foto']%}
           <img class="pull-right" src="{{principal['contrib_foto']}}" width="100%" >
+          {%endif%}
         </div>
         <div class="span10">
           <div class="score pull-right">Pontuação<span class="ptn">{{principal['contrib_wp_govpergunta_score']}}</span></div> 
