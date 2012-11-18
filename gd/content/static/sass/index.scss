@@ -75,7 +75,7 @@ section h2 {
 #sobre .clipping #pagination {
     clear: both;
     float: right;
- 
+
 }
 
 #sobre blockquote {
@@ -325,11 +325,23 @@ section h2 {
 }
 
 .video h4 a {
+    background: none repeat scroll 0 0 rgba($black, 0.85);
+    bottom: 0;
     color: $yellow;
-    margin: 7px 0px 19px 7px;
-    font-size: 16px;
+    font-size: 12pt;
     line-height: 24px;
+    margin: 0px;
     font-weight: 600;
+    overflow: hidden;
+    padding: 5px 8px;
+    position: absolute;
+    left: 0;
+    height: 24px;
+    top: 10%;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 1020;
 }
 
 .lasttweet {
