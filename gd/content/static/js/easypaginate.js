@@ -79,7 +79,7 @@
 				
 				if(options.nextprev){
 					//prev = $('<li class="prev">Previous</li>')
-					prev = $('<a class="prev page-numbers"><</a>')
+					prev = $('<a class="prev page-numbers" style="cursor:pointer;"><</a>')
 						.hide()
 						.appendTo(ol)
 						.click(function(){
@@ -92,7 +92,7 @@
 				if(options.numeric){
 					for(var i=1;i<=pages;i++){
 					//$('<li data-index="'+ i +'">'+ i +'</li>')
-					$('<a data-index="'+ i +'" class="page-numbers" href="">'+ i +'</a>')
+					$('<a data-index="'+ i +'" class="page-numbers" style="cursor:pointer;" >'+ i +'</a>')
 						.appendTo(ol)
 						.click(function(){	
 							clicked = true;
@@ -104,7 +104,7 @@
 				
 				if(options.nextprev){
 					//next = $('<li class="next">Next</li>')
-					next = $('<a class="next page-numbers" href="">></a>')
+					next = $('<a class="next page-numbers" style="cursor:pointer;"> ></a>')
 						.hide()
 						.appendTo(ol)
 						.click(function(){
