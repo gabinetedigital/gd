@@ -13,6 +13,10 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
+{% block id %}
+<div id="news"></div>
+{% endblock %}
+
 {% block content %}
 <div class="news" id="news">
   <div class="container">
@@ -38,7 +42,7 @@
 
             {% if post.comments.allow_comments %}
 
-            {% if user is not none %} 
+            {% if user is not none %}
             <!-- the comment error msg -->
             <div class="msg error"></div>
             <div class="msg success"></div>

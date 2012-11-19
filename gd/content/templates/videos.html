@@ -8,8 +8,12 @@
 <script src="{{ url_for('.static', filename='js/video.js') }}"></script>
 {% endblock %}
 
+{% block id %}
+<div id="videos"></div>
+{% endblock %}
+
 {% block content %}
-<div id="videos" class="gallery boxed">
+<div class="gallery boxed">
 
   <div class="container">
     <div class="row">
@@ -24,9 +28,6 @@
                   <img class="thumb"
                        src="{{ video.thumbnail }}" alt="{{ video.title }}"
                        width="100%">
-                  <img src="../static/imgs/play.png" class="play">
-
-
                 </a>
                 <div class="meta">
                   <a href="/videos/{{video.id}}/">

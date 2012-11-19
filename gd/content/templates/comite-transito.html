@@ -105,7 +105,7 @@
         <div class="envie-content">
           <h2>{{wp.getPageByPath('comite-transito-envie').title|safe}}</h2>
           <div class="content">
-          
+
           {{wp.getPageByPath('comite-transito-envie').content|safe}}
 
           <div id="error" class="msg error alert alert-error hide"></div>
@@ -133,7 +133,12 @@
 
 
       <div class="span3">
+        <ul class="sidebar">
         {{ sidebar(id='sidebar-9')|safe }}
+        <li class="span3">
+        <div class="fb-like-box" data-href="https://www.facebook.com/RedePelaPazNoTransito" data-width="270" data-show-faces="true" data-stream="false" data-header="true"></div>
+        </li>
+        </ul>
       </div>
 
   </div>

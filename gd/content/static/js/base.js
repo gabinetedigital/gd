@@ -49,7 +49,9 @@ $(function(){
     };
     //$('.tweets li').popover(option);
 
-    $('#menu').scrollspy()
+    $('#menu').each(function () {
+        var $spy = $(this).scrollspy('refresh')
+    });
 
     $('.on').hide();
     // $('.logado').hide();

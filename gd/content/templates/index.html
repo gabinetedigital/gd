@@ -9,6 +9,10 @@
 <script src="{{ url_for('.static', filename='js/home.js') }}"></script>
 {% endblock %}
 
+{% block id %}
+<div id="home"></div>
+{% endblock %}
+
 {% block content %}
 
 <div class="content">
@@ -24,12 +28,12 @@
     </div>
   </div>
 
-  <div id="sobre">
+  <div class="sobre">
     <div class="container">
       <div class="row">
         <section>
           <div class="page-header">
-            <h2>{{ page_about.title|safe }}</h2>
+            <h2 id="sobre">{{ page_about.title|safe }}</h2>
           </div>
 
           <div class="span6">

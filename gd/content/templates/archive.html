@@ -4,9 +4,13 @@
   <link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
 {% endblock %}
 
+{% block id %}
+<div id="news"></div>
+{% endblock %}
+
 {% block content %}
 
-<div class="news" id="news">
+<div class="news">
   <div class="container">
     <div class="row">
       <div class="span9">

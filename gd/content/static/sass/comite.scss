@@ -63,7 +63,7 @@
 
 h2 {
     color: #fcb514;
-    @include text-shadow(rgba($black, 0.5) 1px 1px 0, rgba($black, 0.5) 2px 2px 0, rgba($black, 0.5) 3px 3px 0); 
+    @include text-shadow(rgba($black, 0.5) 1px 1px 0, rgba($black, 0.5) 2px 2px 0, rgba($black, 0.5) 3px 3px 0);
 }
 
 .apresentacao, .content {
@@ -185,4 +185,12 @@ li {
 
 .envie-content {
     display: none;
+}
+
+.sidebar {
+    margin-top: 40px;
+}
+
+.sidebar li {
+    margin-bottom: 20px;
 }

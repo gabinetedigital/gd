@@ -13,10 +13,10 @@
     {% block css %}{% endblock %}
   </head>
   <body data-spy="scroll" data-target="#menu">
-
+    {% block id %}
+    {% endblock %}
     <script src="{{ url_for('static', filename='jw/jwplayer.js') }}"></script>
     <div class="container">
-      <div id="home"></div>
       <div class="row">
         <section>
           <div class="span3">
