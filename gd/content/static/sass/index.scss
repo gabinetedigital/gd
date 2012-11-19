@@ -325,22 +325,21 @@ section h2 {
 }
 
 .video h4 a {
-    background: none repeat scroll 0 0 rgba($black, 0.85);
-    bottom: 0;
     color: $yellow;
     font-size: 12pt;
     line-height: 24px;
-    margin: 0px;
+    text-align: left;
+    background: none repeat scroll 0 0 rgba($black, 0.75);
     font-weight: 600;
+    left: 0;
+    top: 10%;
+    line-height: 24px;
+    margin: 7px;
     overflow: hidden;
     padding: 5px 8px;
     position: absolute;
-    left: 0;
-    height: 24px;
-    top: 10%;
     text-align: left;
     text-overflow: ellipsis;
-    white-space: nowrap;
     z-index: 1020;
 }
 
