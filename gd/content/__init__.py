@@ -371,7 +371,7 @@ def conselho():
 
 
 
-@app.route('/comite-transito')
+@app.route('/comite-transito/')
 def comite_transito():
     """Renders a wordpress page special"""
     return render_template(
@@ -382,8 +382,9 @@ def comite_transito():
     )
 
 
-@app.route('/enviar-noticia/',methods=('POST',))
+@app.route('/enviar-noticia/', methods=['POST',])
 def salvar_noticia_comite():
+    print "RECEBEU NOTICIA!!!"
     if request.method == 'POST':
         titulo = request.form['titulo']
         noticia = request.form['noticia']
@@ -401,14 +402,13 @@ def salvar_noticia_comite():
                 'noticia': noticia,
             }
         )
-
         return msg.ok(_(u'Thank you. Your contribution was successfuly sent.'))
     else:
         return msg.error(_(u'Method not allowed'))
 
 
-@app.route('/cadastrar-comite/',methods=('POST',))
-def salvar_noticia_comite():
+@app.route('/cadastrar-comite/', methods=['POST',])
+def cadastrar_comite():
     if request.method == 'POST':
         nome = request.form['nome']
         email = request.form['email']
