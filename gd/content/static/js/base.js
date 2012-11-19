@@ -41,13 +41,6 @@ $(function(){
     //     $(this).data("scrollable").next();
     // });
 
-    option = {
-        title: '@andrenano',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis ultricies nunc ac euismod. Class aptent taciti sociosqu ad volutpat.',
-        trigger: 'hover',
-        placement: 'right',
-    };
-    //$('.tweets li').popover(option);
 
     $('#menu').each(function () {
         var $spy = $(this).scrollspy('refresh')
@@ -162,4 +155,20 @@ $(function(){
         document.location = $(this).attr('data-link');
     });
 
+});
+
+$(document).ready(function(){
+   $.getJSON("http://search.twitter.com/search.json?rpp=100&callback=?&q=%23transitors",function(data){
+        for(var i=0; i < 20; i++){
+            option = {
+                title: '@'+data.results[i].from_user_name,
+                content: data.results[i].text,
+                trigger: 'hover',
+                placement: 'right',
+            };
+            var number = 1 + Math.floor(Math.random() * 8);
+            $('.tweets ul').prepend("<li class='pessoa"+number+"' id='"+i+"'> </li>");
+            $('.tweets li').popover(option);
+        }
+   });
 });
