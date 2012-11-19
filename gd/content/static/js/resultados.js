@@ -15,10 +15,15 @@ $(function(){
         $('.lista').hide();
         if ($(this).attr('data-id') == "board1") {
             $('.lista').slideToggle();
-            
-        }   
-        $('#' + $(this).attr('data-id') ).slideToggle("slow");       
+
+        }
+        $('#' + $(this).attr('data-id') ).slideToggle("slow");
         $('.thumbnails').masonry('reload');
+        if ($(this).attr('data-id') == "board1") {
+            $('html, body').stop().animate({
+                'scrollTop': $('.lista').offset().top
+            }, 500, 'swing');
+        }
     });
 
     $('.dados').show();
@@ -26,12 +31,11 @@ $(function(){
     $('#board2' ).hide();
     $('#board3' ).hide();
     $('#board4' ).hide();
-    $('.lista').hide();     
+    $('.lista').hide();
 
     $('.detalhes').hide();
 
 
-    
     chamadetalhes = function(postid){
         $('.detalhes').hide();
         var url = "/govpergunta/resultados-detalhe/" + postid  + "/";
@@ -41,9 +45,13 @@ $(function(){
                 chamadetalhes.LAST_CALLED_ID = postid;
                 $('.detalhes').html(data);
                 $('.detalhes').slideToggle("slow");
+                $('html, body').stop().animate({
+                    'scrollTop': $('.mais').offset().top
+                }, 500, 'swing');
             }
         });
     };
+1
     chamadetalhes.LAST_CALLED_ID = 0;
 
     auth.callback_login = function (action) {
