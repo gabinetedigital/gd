@@ -23,8 +23,53 @@
         </p>
       </div>
     </div>
+
+    <div class="row buttons">
+      <div class="span3" data-id="board1">
+        <div class="priorizadas">
+          <div class="cell">
+          {{wp.getPageByPath('result-govpergunta-%s-1' % ano).title|safe}}
+          </div>
+        </div>
+      </div>
+      <div class="span3" data-id="board2">
+        <div class="propostas">
+          <div class="cell">
+            {{wp.getPageByPath('result-govpergunta-%s-2' % ano).title|safe}}
+          </div>
+        </div>
+      </div>
+      <div class="span3" data-id="board3">
+        <div class="pessoas">
+          <div class="cell">
+            {{wp.getPageByPath('result-govpergunta-%s-3' % ano).title|safe}}
+          </div>
+        </div>
+      </div>
+      <div class="span3" data-id="board4">
+        <div class="votos">
+          <div class="cell">
+            {{wp.getPageByPath('result-govpergunta-%s-4' % ano).title|safe}}
+          </div>
+        </div>
+      </div>
+      <div class="span12 dados">
+        <div class="board" id="board2">
+          {{wp.getPageByPath('result-govpergunta-%s-2' % ano).content|safe}}
+        </div>
+        <div class="board" id="board3">
+          {{wp.getPageByPath('result-govpergunta-%s-3' % ano).content|safe}}
+        </div>
+        <div class="board" id="board4">
+          {{wp.getPageByPath('result-govpergunta-%s-4' % ano).content|safe}}
+        </div>
+      </div>
+    </div>
+
+        
     <div class="row">
-      <div id="slideshow" class="span12">
+
+        <div id="slideshow" class="span12">
 
             <ul class="carousel">
               {%- for post in slideshow %}
@@ -80,49 +125,6 @@
         </ul>
       </div>
     </div>
-
-    <div class="row buttons">
-      <div class="span3" data-id="board1">
-        <div class="priorizadas">
-          <div class="cell">
-          {{wp.getPageByPath('result-govpergunta-%s-1' % ano).title|safe}}
-          </div>
-        </div>
-      </div>
-      <div class="span3" data-id="board2">
-        <div class="propostas">
-          <div class="cell">
-            {{wp.getPageByPath('result-govpergunta-%s-2' % ano).title|safe}}
-          </div>
-        </div>
-      </div>
-      <div class="span3" data-id="board3">
-        <div class="pessoas">
-          <div class="cell">
-            {{wp.getPageByPath('result-govpergunta-%s-3' % ano).title|safe}}
-          </div>
-        </div>
-      </div>
-      <div class="span3" data-id="board4">
-        <div class="votos">
-          <div class="cell">
-            {{wp.getPageByPath('result-govpergunta-%s-4' % ano).title|safe}}
-          </div>
-        </div>
-      </div>
-      <div class="span12 dados">
-        <div class="board" id="board2">
-          {{wp.getPageByPath('result-govpergunta-%s-2' % ano).content|safe}}
-        </div>
-        <div class="board" id="board3">
-          {{wp.getPageByPath('result-govpergunta-%s-3' % ano).content|safe}}
-        </div>
-        <div class="board" id="board4">
-          {{wp.getPageByPath('result-govpergunta-%s-4' % ano).content|safe}}
-        </div>
-      </div>
-    </div>
-
 
     <div class="row lista">
       <div class="span12">
