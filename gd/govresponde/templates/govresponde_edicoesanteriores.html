@@ -5,63 +5,62 @@
 {% endblock %}
 
 {% block rcolumn %}
-
+<div class="row">
 <h1 class="respgov">Respostas do Governador</h1>
-<div class="highlight questions">
-  <ul>
+</div>
+<div class="row highlight questions">
     {% for contrib in contribs %}
+
     {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
+    {% set datedia = contrib.answered_at.strftime('%d') %}
+    {% set datemes = contrib.answered_at.strftime('%b') %}
+    {% set dateano = contrib.answered_at.strftime('%y') %}
+    <div class="row">
+      <div class="span9">
+        <div id="date" class="pull-left">
+          <div class="month">{{ datemes }} {{ dateano }}</div>
+          <div class="day">{{ datedia }}</div>
+        </div>
 
-    <li>
-      <div>
-        <h3 class="respgov">{{ contrib.theme.name }}</h3>
-      </div>  
-	
-      <a href="{{ url_for('.results', rid=contrib.id) }}" class="respgov title">
-        {{ contrib.title }} 
-        <p class="qdate">{{ date }} - ({{ contrib.real_score }} votos) </p>
-      </a>      
-
-      <div class="respgov_balao">
- 	<a href="{{ url_for('.results', rid=contrib.id) }}">
- 	{{ contrib.content[:300]|safe }}
- 	{% if contrib.content|safe|length > 300 %}
-        ...
-	[continue lendo]
-	{% endif %}
-        <h4>Pergunta</h4></a>
-      </div> 
-
-      {% if contrib.video  %}
-      <div class="video">
-        <a href="javascript:;" onclick='video.play({{ contrib.video|tojson|safe }})'>
-          <div class="container">
-            <img class="thumb"
-                 src="{{ contrib.video.thumbnail }}" alt="{{ contrib.video.title }}"
-                 width="300" height="190">
-            <img src="../static/imgs/play.png" class="play">
-          </div>
+        <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
+          {{ contrib.title }} 
         </a>
-        <a href="{{ url_for('videos.details', vid=contrib.video.id) }}"
-           class="permalink">
-          <img src="{{ url_for('static', filename='imgs/permalink.png') }}"
-               alt="Permanet link">
-        </a>
+        <h3>{{ contrib.theme.name }} - ({{ contrib.real_score }} votos)</h3>
       </div>
-      {% endif %}
-      
-      
+    </div>
+    <div class="row">
+      <div class="videobox span9">
+      <video
+         id="{{ contrib.video.id }}"
+         width="{{ contrib.video.video_width }}"
+         height="{{ contrib.video.video_height }}">
+        {% for source in contrib.video_sources %}
+        <source type="{{ source.format }}" src="{{ source.url }}">
+          {% endfor %}
+      </video>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span8 pergunta">{{ contrib.content|safe }} <h5>Pergunta</h5></div>
+    </div>
+
+    <div class="row">
+    <div class="offset1 span8 caso">{{ contrib.answer|safe }} <h5>Entenda o caso</h5></div>
+    </div>
+
+
       <div class="answerlink">
       	{% if contrib.category %}
         <a href="{{ url_for('.results', rid=contrib.id) }}"
-           class="encaminhamento">
+           class="btn btn-warning">
           Encaminhamentos
         </a>
         {% endif %}
         {% if contrib.aggregated %}
         <a href="javascript:;"
            onclick="showAggregated({{ contrib.id  }})"
-           class="otherquestions">
+           class="btn btn-success">
           Demais perguntas incluídas
         </a>
         <ul id="aggregated-{{ contrib.id }}" class="aggregated">
@@ -75,26 +74,24 @@
         {% endif %}
       </div>
 
-
-
     </li>
     {% endfor %}
   </ul>
   
-  <div class="row-end">
   </div>
 </div>
 {% if pagination.pages > 1 %}
-	<div class="questions">
-  	<ol class="pagination">
+<div class="row questions">
+  <ol class="pagination">
     {% for i in range(pagination.pages) %}
-    	<li {% if pagination.page == i %}class="selected"{% endif %}>
-      		<a href="?pg=todos&theme={{ theme.id }}&page={{ i }}">
-        		{{ i+1 }}
-      		</a>
-    	</li>
+    <li {% if pagination.page == i %}class="selected"{% endif %}>
+      <a href="?pg=todos&theme={{ theme.id }}&page={{ i }}">
+        {{ i+1 }}
+      </a>
+    </li>
     {% endfor %}
-  	</ol>
-  	</div>
-  	{% endif %}
+  </ol>
+</div>
+
+{% endif %}
 {% endblock %}

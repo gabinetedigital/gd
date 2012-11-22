@@ -1,5 +1,5 @@
-/* Copyright (C) 2011  Lincoln de Sousa <lincoln@comum.org>
- * Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+/* Copyright (C) 2012  Guilherme Guerra <guerrinha@comum.org>
+ * Copyright (C) 2012  Governo do Estado do Rio Grande do Sul
  *
  *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
  *
@@ -18,34 +18,128 @@
  */
 
 $(document).ready(function () {
-    $("#time").click(function() {
-        $("#timeline").overlay().load();
+
+    $('#pq').hide();
+    $('#pro').hide();
+    $('#como').hide();
+
+    $('.prioridade').click(function(){
+        $('#pq').hide();
+        $('#pro').hide();
+        $('#como').hide();
+        $('#pri').fadeIn();
     });
 
-
-    $("#timeline").overlay({
-        mask: {
-            color: '#111',
-            loadSpeed: 200,
-            opacity: 0.9
-        },
-
-        closeOnClick: true,
-        load: true
+    $('.porque').click(function(){
+        $('#pri').hide();
+        $('#pro').hide();
+        $('#como').hide();
+        $('#pq').fadeIn();
     });
 
-
-
-    $('#slideshow .controls').tabs('ul.carousel > li', {
-        effect: 'fade',
-        rotate: true
-    }).slideshow({
-        clickable: false
+    $('.processo').click(function(){
+        $('#pq').hide();
+        $('#pri').hide();
+        $('#como').hide();
+        $('#pro').fadeIn();
     });
 
-    if ($('#slideshow .controls').length > 0) {
-        window.setInterval(function () {
-            $("#slideshow .controls").data("tabs").next();
-        }, 7000);
+    $('.comofunciona').click(function(){
+        $('#pq').hide();
+        $('#pro').hide();
+        $('#pri').hide();
+        $('#como').fadeIn();
+    });
+
+    $('.go1').click(function(){
+        $('.step1').fadeIn();
+        $('.step2').hide();
+        $('.step3').hide();
+        $('.step4').hide();
+        $('.go1 a').addClass('active');
+        $('.go4 a').removeClass('active');
+        $('.go2 a').removeClass('active');
+        $('.go3 a').removeClass('active');
+    });
+
+    $('.go2').click(function(){
+        $('.step2').fadeIn();
+        $('.step1').hide();
+        $('.step3').hide();
+        $('.step4').hide();
+        $('.go2 a').addClass('active');
+        $('.go1 a').removeClass('active');
+        $('.go4 a').removeClass('active');
+        $('.go3 a').removeClass('active');
+    });
+
+    $('.go3').click(function(){
+        $('.step3').fadeIn();
+        $('.step2').hide();
+        $('.step1').hide();
+        $('.step4').hide();
+        $('.go3 a').addClass('active');
+        $('.go1 a').removeClass('active');
+        $('.go2 a').removeClass('active');
+        $('.go4 a').removeClass('active');
+    });
+
+    $('.go4').click(function(){
+        $('.step4').fadeIn();
+        $('.step2').hide();
+        $('.step3').hide();
+        $('.step1').hide();
+        $('.go4 a').addClass('active');
+        $('.go1 a').removeClass('active');
+        $('.go2 a').removeClass('active');
+        $('.go3 a').removeClass('active');
+    });
+
+    $('#myTab a:last').tab('show');
+
+    $('div#clipping-itemsclipping').easyPaginate({
+        step:$('#clipping-perpage').val()
+    });
+
+    var totequipe_grupo = document.getElementById('equipe-perpage').value;
+    for(i=2;i<=totequipe_grupo;i++){
+        $('#equipe-grupo-'+i).hide();
     }
+
+    $('.clipping').hide();
+    $('.publicacoes').hide();
+
+    $('.clip').click(function(){
+        $('.equipe').hide();
+        $('.publicacoes').hide();
+        $('.clipping').fadeIn();
+        $('.thumbnails').masonry('reload');
+    });
+
+    $('.membros').click(function(){
+        $('.clipping').hide();
+        $('.publicacoes').hide();
+        $('.equipe').fadeIn();
+        $('.thumbnails').masonry('reload');
+    });
+
+    $('.pub').click(function(){
+        $('.clipping').hide();
+        $('.equipe').hide();
+        $('.publicacoes').fadeIn();
+        $('.thumbnails').masonry('reload');
+    });
+
+    $('.equipe-grupo-1').addClass('active');
+
+    $('.subgrupo button').click(function(){
+        for(i=1;i<=totequipe_grupo;i++){
+            $('#equipe-grupo-'+i).hide();
+        }
+        $('.equipe-grupo').removeClass('active');
+        $('#equipe-grupo-'+$(this).attr('data-index')).fadeIn();
+        $('.thumbnails').masonry('reload');
+        $('.equipe-grupo-'+$(this).attr('data-index')).addClass('active');
+    });
+
 });

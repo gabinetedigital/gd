@@ -20,16 +20,17 @@
 $(document).ready(function() {
 
     // Initialize Minimal Galleriffic Gallery
-    $('#thumbs').galleriffic({
+    var gallery = $('#thumbs').galleriffic({
         imageContainerSel:      '#slideshow',
         controlsContainerSel:   '#controls',
         captionContainerSel:    '#caption',
-        numThumbs:                 10,
+        numThumbs:                 8,
         maxPagesToShow:            20,
         prevLinkText:              '«',
         nextLinkText:              '»',
         nextPageLinkText:          '>',
         prevPageLinkText:          '<',
+        enableHistory:             true,
         onTransitionIn: function(slide, caption, isSync) {
             var duration = this.getDefaultTransitionDuration(isSync);
             var slideImage = slide.find('img');
@@ -38,19 +39,27 @@ $(document).ready(function() {
             caption.width(slideImage.width())
                 .css({
                     'bottom' : ($('#caption').height()+3),
-                    'left' : ((Math.floor(($('#slideshow').width() - slideImage.width()) / 2) + 2 )),
+                    'left' : ((Math.floor(($('#slideshow').width() - slideImage.width()) / 2) )),
                 })
 
             $('#caption span.image-caption').fadeTo(1000, 0.8);
         },
+
     });
 
+    function pageload(hash) {
+        // hash doesn't contain the first # character.
+        if(hash) {
+            $.galleriffic.gotoImage(hash);
+        } else {
+            gallery.gotoIndex(0);
+        }
+    };
+    $.historyInit(pageload, { unescape: ",/" } );
 
     $('#slideshow > img').hide();
     $('.prev').addClass('awesome');
     $('.next').addClass('awesome');
     $('.play').hide();
-
-
 
 });

@@ -1,48 +1,69 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/archive.css') }}">
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
+{% endblock %}
+
+{% block id %}
+<div id="news"></div>
 {% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="row">
-    <div id="post" class="col8">
-      <div id="news">
-        <ul>
-          {% for post in posts %}
-          <li>
-            <ul class="news">
-              <li class="title">
-                <h2>
-                  <a href="{{ post.permalink }}">
-                    {{ post.title }}
-                  </a>
-                </h2>
-                <p class="date">
-                  {{ post.the_date.day }}/{{ post.the_date.month }}/{{ post.the_date.year }}
-                  as {{ post.the_date.hour }}:{{ post.the_date.minute }}
-                </p>
-              </li>
+
+<div class="news">
+  <div class="container">
+    <div class="row">
+      <div class="span9">
+      {% for title, url, posttype, txtdata, excerpt, textobotao, thumbs in posts %}
+        <div class="post">
+          <h2>
+          	{% if url %}
+                <a href="{{ url }}">{{ title }}</a>
+            {% else %}
+                {{ title }}
+            {% endif %}
+          </h2>
+          <h4>{{posttype|safe}}</h4>
+          {% if txtdata %}
+          <div class="meta">
+            <ul>
               <li>
-                <p>{{ post.excerpt|safe }}</p>
-                {% include "sociable.html" %}
-              </li>
+                <i class="icon-calendar"></i>
+                  {{ txtdata }}
+                </li>
             </ul>
-          </li>
-          {% endfor %}
-        </ul>
-        <div id="paginator">
-          {{ pagination|safe }}
+          </div>
+          {% endif %}
+          {% if url %}
+          <a href="{{ url }}">
+          {% endif %}
+            <div class="content">
+              {% if thumbs %}
+              <a href="{{ url }}">{{ thumbs|safe }}</a>
+              {% endif %}
+              {{ excerpt|safe }}
+            </div>
+          {% if url %}
+          </a>
+          {% endif %}
+          {% if textobotao %}
+          <div class="more">
+            <a href="{{ url }}" class="btn">{{ textobotao }}</a>
+          </div>
+          {% endif %}
         </div>
+      {%else%}
+        <p>Infelizmente não encontramos nada para sua busca.</p>
+        <p>Mas você pode ver as nossas <a href="/news">notícias</a>, <a href="/videos">vídeos</a> ou <a href="/fotos">fotos</a> e continuar a navegar no site para buscar mais informações.</p>
+      {% endfor %}
+
+        <div class="pagination">{{ pagination|safe }}</div>
       </div>
-    </div>
-    <div id="sidebar" class="col4">
-      <div id="wordpress-sidebar-1">
+      <div class="span3 sidebar">
         {{ sidebar(id='sidebar-1')|safe }}
       </div>
     </div>
   </div>
-  <div class="row-end"></div>
 </div>
+
 {% endblock %}

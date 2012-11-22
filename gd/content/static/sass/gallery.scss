@@ -1,0 +1,237 @@
+@import "system";
+
+.thumbnail {
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    display: block;
+    background-color: rgba($black, 0.3);
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset);
+    display: block;
+    padding: 7px;
+    position: relative;
+    text-align: left;
+    color: #FFF;
+}
+
+
+.busca {
+    padding-top: 16px;
+}
+
+.gallery {
+    background: url(../img/bg.png);
+    padding-top: 20px;
+}
+
+.gallery h2 {
+    color: #FFF;
+    @include single-text-shadow;
+}
+
+.desk {
+    background: $black;
+    overflow: auto;
+    padding: 20px 0 20px 0;
+}
+
+#controls {
+    font-size: 20px;
+    margin: 180px 0 0 -17px;
+    position: absolute;
+}
+
+#controls .nav-controls a {
+    font-size: 48pt;
+    line-height: normal;
+    padding: 10px 25px;
+    color: #FFF;
+    @include single-text-shadow;
+}
+
+#controls .nav-controls .prev {
+    float: left;
+}
+
+#controls .nav-controls .next {
+    float: right;
+}
+
+.caption {
+    background: #000;
+    bottom: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    left: 0;
+    line-height: 24px;
+    overflow: hidden;
+    padding: 5px 8px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+div.caption-container {
+    position: relative;
+    clear: left;
+}
+
+div.caption .text {
+    width: 60%;
+    float: left;
+    margin-right: 10px;
+}
+
+span.image-caption {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+div.caption {
+    padding: 12px;
+}
+div.image-title {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+div.image-desc {
+    line-height: 1.3em;
+    padding-top: 12px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#thumbs {
+    overflow: hidden;
+}
+
+
+#thumbs ul li {
+    float: left;
+    list-style: none;
+}
+
+.navigation {
+    padding: 20px 0 0 0;
+}
+
+.bottom {
+    clear: both;
+    padding: 22px 0 0 25px;
+}
+
+@media (max-width: 767px) {
+    #controls {
+        width: 100%;
+    }
+}
+
+/* Videos */
+
+.videos {
+    margin-bottom: 30px;
+}
+
+.videos h2 {
+    font-size: 30px;
+    color: $blue;
+    font-weight: 300;
+    background-color: $black;
+    padding: 10px 20px;
+    width: 100%;
+    line-height: 1.5em;
+    height: 1.2em;
+    display: inline;
+    @include single-text-shadow;
+}
+
+.video a {
+    color: $blue;
+}
+
+.videos {
+    padding-top: 20px;
+    color: #FFF;
+}
+
+.videos ul.thumbnails {
+    margin-top: 40px;
+}
+
+.video .meta {
+    background: none repeat scroll 0 0 rgba($black, 0.8);
+    bottom: 0;
+    color: $blue;
+    font-size: 14px;
+    font-weight: 600;
+    left: 0;
+    line-height: 24px;
+    margin: 7px;
+    overflow: hidden;
+    padding: 5px 8px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+.video .permalink {
+    float: right;
+}
+
+.videos .stage {
+    margin-top: 30px;
+    background-color: #000;
+    text-align: center;
+}
+
+.videos p.desc {
+    padding: 30px 0px;
+    font-size: 11pt;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.videos h3 {
+    color: $blue;
+    @include single-text-shadow;
+}
+
+.videos textarea {
+    border: 0;
+    background: $black;
+    color: #FFF;
+    padding: 17px 13px;
+    resize: none;
+    height: 40px;
+}
+
+#thumbs ul li.selected img {
+    opacity: 1;
+}
+
+#thumbs ul li img {
+    opacity: 0.5;
+}
+
+.bottom {
+    clear: both;
+    padding: 20px 0 0 25px;
+}
+
+#gallerylist li {
+    float: left;
+    margin-right: 20px;
+    list-style: none;
+}
+
+
+@media (max-width: 767px) {
+    #controls {
+        width: 100%;
+    }
+}

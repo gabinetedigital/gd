@@ -102,12 +102,59 @@ govpergunta = Blueprint(
 
 @govpergunta.route('/')
 def index():
-    pagination, posts = wordpress.getPostsByTag(
-        tag='governador-pergunta')
-    images = gallery.search('GovernadorPergunta', limit=24)[::-1]
-    videos = [wordpress.wpgd.getVideo(i) for i in (14, 16, 12)]
+    return redirect('/govpergunta/resultados/')
+    # pagination, posts = wordpress.getPostsByTag(
+    #     tag='governador-pergunta')
+    # images = gallery.search('GovernadorPergunta', limit=24)[::-1]
+    # videos = [wordpress.wpgd.getVideo(i) for i in (14, 16, 12)]
+    # return render_template(
+    #     'results.html', posts=posts, images=images, videos=videos)
+
+
+@govpergunta.route('/resultados/')
+@govpergunta.route('/resultados/<int:ano>/')
+def resultados(ano=2012):
+    """Renders a wordpress page special"""
+    slideshow = wordpress.getRecentPosts(
+        category_name='destaque-govpergunta-%s' % str(ano),
+        post_status='publish',
+        numberposts=4,
+        thumbsizes=['slideshow'])
+
+    categoria = 'resultados-gov-pergunta-%s' % str(ano)
+    retorno = wordpress.wpgovp.getContribuicoes(principal='S',category=categoria)
+    questions = None
+    for q in retorno:
+        if isinstance(q, list):
+            questions = q
     return render_template(
-        'results.html', posts=posts, images=images, videos=videos)
+        'resultados.html',
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        questions=questions,
+        sidebar=wordpress.getSidebar,
+        ano=ano,
+        slideshow=slideshow,
+        wp=wordpress
+    )
+
+
+@govpergunta.route('/resultados-detalhe/<int:postid>/')
+def resultado_detalhe(postid):
+    """Renders a contribution detail"""
+    principal = wordpress.wpgovp.getContribuicoes(principal='S',postID=postid)
+    # print "PRINCIPAL +++++++++++++++++++++", principal[1][0]
+    retorno = wordpress.wpgovp.getContribuicoes(principal='N',postID=postid)
+    # print "RETORNO +++++++++++++++++++++", retorno
+    qtd = retorno[0]
+    detalhes = retorno[1]
+    return render_template(
+        'resultados-detalhes.html',
+        agregadas=detalhes,
+        qtd_agregadas=qtd,
+        principal=principal[1][0],
+        comments=wordpress.getComments(status='approve',post_id=postid),
+        postid=postid
+    )
 
 
 @govpergunta.route('/results/<path:path>')

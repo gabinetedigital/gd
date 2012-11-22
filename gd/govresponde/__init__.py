@@ -38,7 +38,7 @@ govresponde = Blueprint(
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
-CONTRIBS_PER_PAGE = 10
+CONTRIBS_PER_PAGE = 5
 
 statusedicao = ''
 
@@ -84,7 +84,7 @@ def index():
     ctx = _get_context()
     theme = ctx['theme']
     page  = ctx['page']
-    pg    = ctx['pg']
+    pg    = ctx['pg'] or 'resp'
     # Discovering the theme id
     theme_id = theme and \
          theme['id'] or ''

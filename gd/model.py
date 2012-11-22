@@ -26,7 +26,7 @@ import locale
 
 from datetime import datetime
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, Boolean, \
-    Integer, Enum, ManyToOne, OneToMany, ManyToMany, String, using_options, \
+    Integer, Enum, ManyToOne, OneToMany, ManyToMany, String, Text, using_options, \
     setup_all, metadata, session
 from elixir.events import after_insert, before_insert
 from flask import url_for, abort
@@ -415,6 +415,23 @@ class Contrib(Entity):
         u'medicamentos', u'regional'
     ))
 
+
+class ComiteNews(Entity):
+    """Mapper for the `comite` news, sent by users"""
+    using_options(tablename='comite_news')
+    user = ManyToOne('User')
+    creation_date = Field(DateTime, default=datetime.now)
+    title = Field(String(500,convert_unicode=True))
+    content = Field(Text(convert_unicode=True))
+
+class CadastroComite(Entity):
+    """Cadastro de dados para participar do comite de transito"""
+    using_options(tablename='cadastro_comite')
+    nome = Field(String(500,convert_unicode=True))
+    email = Field(String(500,convert_unicode=True))
+    telefone = Field(String(500,convert_unicode=True))
+    cidade = Field(String(500,convert_unicode=True))
+    creation_date = Field(DateTime, default=datetime.now)
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(lsession, flush_context):

@@ -36,14 +36,16 @@ govescuta = Blueprint(
 def index(page=0):
     sortby = request.values.get('sortby') or 'date'
     pagination, posts = wordpress.wpgove.getAudiencias(
-                                            page=page, 
-                                            sortby=sortby, 
+                                            page=page,
+                                            sortby=sortby,
                                             totalporpage='10')
-
+    print "POSTS====================="
+    print posts
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
 
     return render_template(
         'govescuta.html',
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         sidebar=wordpress.getSidebar,
         pagination=pagination,
         audiences=posts,
@@ -55,7 +57,8 @@ def govescuta_details(aid):
     """Renders an audience with its public template"""
     pagination, inst = wordpress.wpgove.getAudiencias(postID=aid)
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-    
+    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    category = None
     for cat in inst:
         category = cat['category']
 
@@ -65,13 +68,19 @@ def govescuta_details(aid):
     else:
         pagination, posts = None, []
 
+    print inst
     buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
+    buzzesSelec = AudiencePosts.query.get(aid).get_last_published_notice()
+    govescuta = True
     return render_template(
-        'govescuta_edicaoanterior.html',
+        'audience.html', #this template is from gd/audience
+        # 'govescuta_edicaoanter.html',
         audiences=inst,
         referrals=posts,
         pagination=pagination,
         buzzes = buzzes,
+        buzzesSelec = buzzesSelec,
+        menu=menus,
+        govescuta=govescuta,
         how_to=getattr(how_to, 'content', ''),
     )
-

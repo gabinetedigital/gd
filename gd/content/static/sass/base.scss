@@ -1,0 +1,572 @@
+@import "system";
+@import "fonts";
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    color: $red;
+}
+
+.home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
+.pessoa1, .pessoa2, .pessoa3, .pessoa4,
+.pessoa5, .pessoa6, .pessoa7, .pessoa8,
+.male, a.brand, .pri, .pq, .pro, .como, .logors,
+.ftweet, .ffb, .frss {
+    overflow: hidden;
+    text-indent: 1000px;
+    background: url(../img/home.png) no-repeat;
+}
+
+/* Cabeçalho */
+
+.home h1 {
+    display: block;
+    width: 270px;
+    height: 123px;
+    text-indent: -1000px;
+    overflow: hidden;
+}
+
+#search, #social {
+    text-align: right;
+    margin-top: 50px;
+    margin-left: 20px;
+
+}
+
+.search {
+    display: inline-block;
+    width: 22px;
+    height: 19px;
+    background-position: 0px -274px;
+    border: 0;
+    text-indent: -1000px;
+}
+
+.feed {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: -46px -270px;
+    border: 0;
+}
+
+
+.twitter {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: -82px -270px;
+    border: 0;
+}
+
+.facebook {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: -116px -270px;
+    border: 0;
+}
+
+.mail {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: -153px -270px;
+    border: 0;
+}
+
+.tweets {
+    height: 86px;
+    overflow: hidden;
+}
+
+.tweets ul > li {
+    display: inline-block;
+    margin-right: 14px;
+}
+
+.pessoa1 {
+    display: block;
+    height: 86px;
+    width: 44px;
+    background-position: 0 -152px;
+}
+
+.pessoa2 {
+    display: block;
+    background-position: -62px -191px;
+    height: 47px;
+    width: 18px;
+}
+
+.pessoa3 {
+    background-position: -102px -172px;
+    display: block;
+    height: 66px;
+    width: 66px;
+}
+
+.pessoa4 {
+    background-position: -189px -184px;
+    display: block;
+    height: 54px;
+    width: 41px;
+}
+
+
+.pessoa5 {
+    display: block;
+    height: 67px;
+    width: 41px;
+    background-position: -250px -171px;
+}
+
+.pessoa6 {
+    display: block;
+    background-position: -311px -175px;
+    height: 63px;
+    width: 21px;
+}
+
+.pessoa7 {
+    background-position: -354px -170px;
+    display: block;
+    height: 67px;
+    width: 23px;
+}
+
+.pessoa8 {
+    background-position: -398px -165px;
+    display: block;
+    height: 71px;
+    width: 21px;
+}
+
+
+.male {
+    display: block;
+    height: 76px;
+    width: 23px;
+    background-position: 0 -161px;
+}
+
+.popover {
+    width: 300px;
+}
+
+.popover-content {
+    font-size: 13px;
+}
+
+.login form {
+    margin: 0;
+}
+
+.login p.saudacao {
+    font-size: 18px;
+    line-height: 20px;
+    color: inherit;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 1;
+    margin: 10px 0;
+    text-rendering: optimizelegibility;
+}
+
+.login .on {
+    padding-top: 20px;
+}
+
+.login .control {
+    padding-top: 7px;
+}
+
+.login .control a {
+    color: $red;
+}
+
+
+
+/* Navegação */
+
+.subnav .nav {
+    font-size: 17px;
+    text-transform: lowercase;
+}
+
+.subnav .tools {
+    display: none;
+}
+
+.subnav .nav > li > a {
+    color: $black;
+    display: block;
+    height: 20px;
+    margin: 0;
+    line-height: 18px;
+    @include border-radius( 0 );
+}
+
+.subnav .nav > li > a:hover,
+.subnav .nav > .active > a,
+.subnav .nav > .active > a:hover {
+    padding-left: 13px;
+    color: #FFF;
+    background-color: $red;
+    font-weight: 600;
+}
+
+.subnav a.brand {
+    display: none;
+    text-indent: -1000px;
+    overflow: hidden;
+}
+
+/* Navegação Fixa */
+
+.subnav-fixed {
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1030;
+    background-color: #1B1B1B;
+    @include background-image(linear-gradient(center top , #222222 , #111111));
+}
+
+.subnav-fixed .tools {
+    display: inline-block;
+}
+
+.subnav-fixed .nav {
+    display: block;
+    float: left;
+    left: 0;
+    margin: 0 10px 0 0;
+    position: relative;
+}
+
+.subnav-fixed .nav > li > a {
+    margin: 0;
+    color: #FFF;
+    height: 29px;
+    line-height: 29px;
+}
+
+
+.subnav-fixed .nav > li > a:hover,
+.subnav-fixed .nav > .active > a,
+.subnav-fixed .nav > .active > a:hover {
+    padding-left: 13px;
+    color: #FFF;
+    background-color: $red;
+
+}
+
+.subnav-fixed a.brand {
+    background-position: -204px -260px;
+    width: 134px;
+    height: 45px;
+    margin-right: 27px;
+    display: inline-block;
+    text-indent: -1000px;
+    overflow: hidden;
+}
+
+.navbar-search {
+    margin-top: 7px;
+    margin-right: 20px;
+    border-color: #111111;
+}
+
+footer {
+    @include background-image(image-url("footer.png"), linear-gradient(center top , #222222, #111111));
+    background-color: #1B1B1B;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    color: #FFF;
+    font-size: 10pt;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+footer ul {
+    margin: 0;
+
+}
+
+footer a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer li {
+    font-weight: bold;
+    line-height: 29px;
+    list-style: none outside none;
+    margin-bottom: 15px;
+    font-size: 10pt;
+}
+
+
+.ftweet {
+    width: 32px;
+    height: 32px;
+    background-position: -86px -583px;
+    border: 0;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.ffb {
+    width: 32px;
+    height: 32px;
+    background-position: 0px -583px;
+    border: 0;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.frss {
+    width: 32px;
+    height: 32px;
+    background-position: -43px -584px;
+    border: 0;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+
+.bloco {
+    background-color: rgba(black, 0.6);
+    padding: 19px 20px 0;
+    height: 146px;
+    display: block;
+    font-size: 8pt;
+    overflow: hidden;
+}
+
+.contato {
+    width: 200px;
+}
+
+.contato address {
+    margin-bottom: 0;
+}
+
+.logors {
+    background-position: -42px -406px;
+    border: 0 none;
+    display: block;
+    height: 116px;
+    width: 130px;
+    text-indent: -1000px;
+}
+
+section {
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+
+@media (max-width: 979px) {
+
+    body {
+        margin-top: 60px;
+    }
+
+    .subnav {
+        top: 0;
+        left: 0;
+        margin-bottom: 0;
+        position: fixed;
+        right: 0;
+        z-index: 1030;
+        @include background-image(linear-gradient(center top , #222222, #111111));
+        background-color: #1B1B1B;
+        border-color: #252525;
+    }
+
+    .subnav .nav {
+        display: block;
+        left: 0;
+        margin: 0 10px 0 0;
+        position: relative;
+        font-size: 13px;
+    }
+
+    .subnav a.brand {
+        background-position: -204px -260px;
+        display: block;
+        width: 134px;
+        height: 45px;
+        margin-right: 27px;
+        display: inline-block;
+    }
+
+    .subnav .nav > li > a {
+        margin: 0;
+        line-height: 21px;
+    }
+
+    .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+        border-radius: 3px 3px 3px 3px;
+        color: #FFF;
+        font-weight: bold;
+        padding: 9px 15px;
+    }
+
+    .collapse.in {
+        padding-top: 10px;
+    }
+
+    .subnav .nav > li > a:hover,
+    .subnav .nav > .active > a,
+    .subnav .nav > .active > a:hover {
+        padding-left: 13px;
+        background-color: #111111;
+        color: #FFFFFF;
+        margin-left: 10px;
+    }
+
+    .subnav .btn-navbar {
+        font-weight: 800;
+        line-height: 5px;
+        margin-top: 7px;
+        padding: 12px;
+        color: #FFF;
+        background-color: #0E0E0E;
+        @include text-shadow(0 0 0 #0E0E0E );
+        @include background-image(linear-gradient(center top , #151515, #040404));
+    }
+
+    .subnav .tools {
+        display: none;
+    }
+
+    .subnav-fixed .nav {
+        float: none;
+    }
+
+    .subnav-fixed .nav > li > a {
+        margin: 0;
+        color: #FFF;
+        height: 20px;
+    }
+
+    .contato {
+        width: 146px;
+    }
+
+    .bloco {
+        height: 180px;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 0 20px 4px;
+    }
+
+    .bloco p {
+        margin: 0;
+    }
+
+    footer ul {
+        padding-top: 20px;
+    }
+
+    footer li {
+        display: inline-block;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .widgets, #sobre, #participe, #govpergunta {
+        margin-right: -20px;
+        margin-left: -20px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    footer {
+        margin-right: -20px;
+        margin-left: -20px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .block {
+        margin-bottom: 60px;
+    }
+
+    .bloco {
+        display: block;
+        height: 110px;
+        margin-bottom: 20px;
+        padding: 25px 20px;
+    }
+
+    footer ul {
+        padding-top: 0px;
+    }
+
+    footer li {
+        display: block;
+    }
+
+}
+
+#signupoverlay {
+    width:500px;
+}
+
+.overlay {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 5px solid rgba(55, 55, 55, 0.5);
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 10px #333333;
+    display: none;
+    padding: 10px;
+    max-height: 80%;
+    overflow-y:auto;
+}
+
+.overlay h1{
+    width: 100%;
+    border-bottom: 1px solid #c5c5c5;
+}
+
+
+.overlay h4{
+    width: 100%;
+    border-bottom: 1px solid #c5c5c5;
+}
+
+.overlay p.errmsg {
+    width: 100%;
+    font-weight: bold;
+    clear: both;
+    color: rgba(255,0,0,0.8);
+}
+
+
+
+.contentWrap {
+    height:100%;
+    overflow-y:auto;
+}
+
+.contentWrap .control-group{
+    margin-bottom: 0px;
+}
+
+.maior{
+    width: 200px !important;
+}

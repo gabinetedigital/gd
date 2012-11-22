@@ -30,160 +30,117 @@ var auth = (function() {
         user: null
 
         /** Configuring the DOM element that holds the login form */
-        , $loginOverlay: $('#loginoverlay').overlay({
-            api: true,
-            top: '5px',
-            oneInstance: false,
-            speed: 'fast',
-            mask: {
-                color: '#111',
-                opacity: 0.7
-            },
-            onBeforeLoad: function() {
-                var overlay = this.getOverlay();
-                var wrap = overlay.find(".contentWrap");
-                var closeMethod = this.close;
-                wrap.load(url_for('auth.login'), function () {
-                    /* Just focus the username when overlay shows up */
-                    overlay.find('input[name=username]').focus();
 
-                    /* We're done! */
-                    overlay.removeClass('loading');
+        // , $loginOverlay: $('#loginoverlay').overlay({
+        //     api: true,
+        //     top: '5px',
+        //     oneInstance: false,
+        //     speed: 'fast',
+        //     mask: {
+        //         color: '#111',
+        //         opacity: 0.7
+        //     },
+        //     onBeforeLoad: function() {
+        //         var overlay = this.getOverlay();
+        //         var wrap = overlay.find(".contentWrap");
+        //         var closeMethod = this.close;
+        //         wrap.load(url_for('auth.login'), function () {
+        //             /* Just focus the username when overlay shows up */
+        //             overlay.find('input[name=username]').focus();
 
-                    $(overlay.find('form')).ajaxForm({
-                        beforeSubmit: function () {
-                            $('.msg').fadeOut();
-                        },
+        //             /* We're done! */
+        //             overlay.removeClass('loading');
 
-                        success: function (data) {
-                            var pData = $.parseJSON(data);
-                            if (pData.status !== 'ok') {
-                                overlay
-                                    .find('#auth-error')
-                                    .html(pData.msg)
-                                    .fadeIn('fast');
-                            } else {
-                                closeMethod();
-                                auth.userAuthenticated(pData.msg.user);
-                            }
-                            return false;
-                        }
-                    });
+        //             $(overlay.find('form')).ajaxForm({
+        //                 beforeSubmit: function () {
+        //                     $('.msg').fadeOut();
+        //                 },
 
-                    overlay.find('#remember_password').ajaxForm({
-                        beforeSubmit: function () {
-                            overlay.find('.msg').fadeOut();
-                        },
+        //                 success: function (data) {
+        //                     var pData = $.parseJSON(data);
+        //                     if (pData.status !== 'ok') {
+        //                         overlay
+        //                             .find('#auth-error')
+        //                             .html(pData.msg)
+        //                             .fadeIn('fast');
+        //                     } else {
+        //                         closeMethod();
+        //                         auth.userAuthenticated(pData.msg.user);
+        //                     }
+        //                     return false;
+        //                 }
+        //             });
 
-                        success: function (data) {
-                            var pData = $.parseJSON(data);
-                            if (pData.status !== 'ok') {
-                                overlay
-                                    .find('#remember-password-error')
-                                    .html(pData.msg)
-                                    .fadeIn('fast');
-                                overlay
-                                    .find('#remember-password-success')
-                                    .hide();
-                            } else {
-                                overlay
-                                    .find('#remember-password-success')
-                                    .html(pData.msg)
-                                    .fadeIn('fast');
-                                overlay
-                                    .find('#remember-password-error')
-                                    .hide();
-                                overlay.find('input[name=email]').val('');
-                            }
-                            window.setTimeout(function () {
-                                overlay.find('.msg').fadeOut();
-                            }, 10000);
-                        }
-                    });
-                });
-            }
-        })
+        //             overlay.find('#remember_password').ajaxForm({
+        //                 beforeSubmit: function () {
+        //                     overlay.find('.msg').fadeOut();
+        //                 },
+
+        //                 success: function (data) {
+        //                     var pData = $.parseJSON(data);
+        //                     if (pData.status !== 'ok') {
+        //                         overlay
+        //                             .find('#remember-password-error')
+        //                             .html(pData.msg)
+        //                             .fadeIn('fast');
+        //                         overlay
+        //                             .find('#remember-password-success')
+        //                             .hide();
+        //                     } else {
+        //                         overlay
+        //                             .find('#remember-password-success')
+        //                             .html(pData.msg)
+        //                             .fadeIn('fast');
+        //                         overlay
+        //                             .find('#remember-password-error')
+        //                             .hide();
+        //                         overlay.find('input[name=email]').val('');
+        //                     }
+        //                     window.setTimeout(function () {
+        //                         overlay.find('.msg').fadeOut();
+        //                     }, 10000);
+        //                 }
+        //             });
+        //         });
+        //     }
+        // })
 
         /** Configuring the DOM element that holds the signup form */
         , $signOverlay: $('#signupoverlay').overlay({
             api: true,
-            fixed: false,
-            top: '5px',
+            fixed: true,
+            top: '10%',
             mask: {
                 color: '#333',
                 opacity: 0.8
             },
             oneInstance: false,
             speed: 'fast',
+            close: '.close-signup',
+            closeOnClick: false,
+            closeOnEsc: false,
+
+            alternativeUrl: '',
             onBeforeLoad: function() {
                 var wrap = this.getOverlay().find(".contentWrap");
                 var overlay = this.getOverlay();
                 var closeMethod = this.close;
+                if(this.alternativeUrl){
+                    wrap.load(this.alternativeUrl);
+                }else{
+                    wrap.load(url_for('auth.signup') + '?readmore');
+                }
 
-                wrap.load(url_for('auth.signup'), function () {
-                    /* focus the name field */
-                    overlay.find('input[name=name]').focus();
 
-                    $(overlay.find('form')).ajaxForm({
-                        beforeSubmit: function () {
-                            /* Maybe it's not the first time the user is
-                             * trying to send the form, let's clear the
-                             * error state for now to allow him to try
-                             * again */
-                            overlay.find('input,select').removeClass('fielderror');
-                            overlay.find('.errmsg').html('').hide();
-                        },
 
-                        success: function (rdata) {
-                            var data = $.parseJSON(rdata);
-
-                            if (data.status === 'ok') {
-                                closeMethod();
-                                auth.feedbackAfterSignup();
-                                return;
-                            }
-
-                            /* Here we know that something is wrong */
-                            var form = overlay.find('form');
-                            var code = data.code;
-                            var errors = data.msg;
-
-                            /* Just updating this object with received data */
-                            if (data.msg.data)
-                                errors = data.msg.data;
-
-                            /* The first step now is to set the new csrf
-                             * token to our form. If we don't do it, we
-                             * can't try to register again. */
-                            if (data.msg.csrf !== undefined)
-                                form.find('[name=csrf]').val(data.msg.csrf);
-
-                            /* The user made a mistake when filling the form */
-                            if (code === 'ValidationError') {
-                                for (var f in errors) {
-                                    overlay
-                                        .find('[name=' + f  + ']')
-                                        .addClass('fielderror');
-                                    overlay
-                                        .find('.'+ f + '-error')
-                                        .html(errors[f][0])
-                                        .show();
-                                }
-                            } else {
-                                overlay
-                                    .find('div.error')
-                                    .fadeIn()
-                                    .html(errors);
-                            }
-                        }
-                    });
-                });
             }
         })
 
         /** Callback that will be fired after a successful
          *  authentication */
         , success: function () {}
+
+        , callback_login: function (action) {}
 
         /** Returns True if there is someone authenticated */
         , isAuthenticated: function () {
@@ -198,8 +155,11 @@ var auth = (function() {
         /** Shows the login form and register callbacks to be called when
          *  it returns successfuly or not */
         , showLoginForm: function (params) {
-            this.$loginOverlay.load();
-            if (params && typeof params.success === 'function') {
+            $('.off').hide();
+            $('.on').fadeIn(function(){
+                $('#username').focus();
+            });
+            if(params && typeof params.success === 'function' ){
                 this.success = params.success;
             }
             return false;
@@ -207,8 +167,63 @@ var auth = (function() {
 
         /** Shows the signup form */
         , showSignupForm: function (params) {
+            if( params && params['directToForm'] || params == 'directToForm' ){
+                this.$signOverlay.alternativeUrl = url_for('auth.signup');
+            }
             this.$signOverlay.load();
+            //alert(':'+url_for('auth.signup'));
+
+            //$('#signupoverlay .contentWrap .ct').load(url_for('auth.signup') + '?readmore');
+
             return false;
+        }
+
+        /** Toggles tabs of the signup overlay (readmore, tos, form) */
+        , toggleSignupTab: function (tabName) {
+            var wrap = $('#signupoverlay').find(".contentWrap");
+            if(tabName == 'tos'){
+                wrap.load(url_for('auth.signup') + '?tos');
+            }else if (tabName == 'readmore'){
+                wrap.load(url_for('auth.signup') + '?readmore');
+            }else{
+                wrap.load(url_for('auth.signup'), function(){
+                    $($('#signupoverlay').find('form')).ajaxForm({
+                        beforeSubmit: function () {
+                            $('.errmsg').fadeOut();
+                            $('#auth-error').fadeOut();
+                        },
+
+                        success: function (data) {
+                            var pData = $.parseJSON(data);
+                            if (pData.status !== 'ok') {
+                                $('#auth-error').html('Corrija os campos abaixo').fadeIn('fast');
+                                if( typeof pData.msg.data==="string" ){
+                                    $('#auth-error').html(pData.msg.data).fadeIn('fast');
+                                }else{
+                                    for(campo in pData.msg.data){
+                                        $('#signupoverlay')
+                                            .find('.'+campo+'-error')
+                                            .html( pData.msg.data[campo][0] )
+                                            .fadeIn('fast');
+
+                                    }
+                                }
+                            } else {
+                                alert('ok!');
+                                $('#auth-success')
+                                   .html('Obrigado! Agora siga os passos no email que você recebeu para concluir seu cadastro.')
+                                   .fadeIn('fast');
+                                $('#signupoverlay').scrollTop();
+                                //auth.close();
+                                //auth.userAuthenticated(pData.msg.user);
+                                $('#signupoverlay').find('form').fadeOut('fast');
+                            }
+                            return false;
+                        }
+                    });
+                });
+
+            }
         }
 
         /** Method called after a successful authentication. It saves
@@ -217,27 +232,37 @@ var auth = (function() {
         , userAuthenticated: function (user) {
             this.user = user;
             this.success();
+            if(auth.callback_login && typeof auth.callback_login === 'function'){
+                auth.callback_login('login');
+            }
             this.updateLoginWidget();
         }
 
         /** This method updates the login widget to show links that
          *  only makes sense to be shown after logged in or logged out */
         , updateLoginWidget: function () {
-            $('ul.login li').fadeOut('slow', function () {
-                var $ul = $('ul.login');
-                var template = (auth.isAuthenticated() ? 'loggedin' : 'loggedout');
-                template += 'Template';
-                $ul.html('');
-                $(tmpl(template, auth.user || {})).appendTo($ul);
-            });
+            if( auth.isAuthenticated() ){
+                $('.logado').show();
+                $('.off').hide();
+                $('.on').hide();
+                $('.saudacao').html('Olá, ' + this.user.display_name + '!');
+            }else{
+                $('.saudacao').html('Olá, Visitante!');
+                $('.logado').hide();
+                $('.off').show();
+                $('.on').hide();
+            }
         }
 
         /** Logs the user out */
         , logout: function () {
             $.get(url_for('auth.logout_json'), function () {
                 auth.user = null;
+                if(auth.callback_login && typeof auth.callback_login === 'function'){
+                    auth.callback_login('logout');
+                }
                 auth.updateLoginWidget();
-                $(".comment-error").show();
+                //$(".comment-error").show();
                 if (window.location.href.indexOf('profile') > 0) {
                     window.location.href = INDEX_URL;
                 }
@@ -257,7 +282,7 @@ var auth = (function() {
          *  the login form */
         , togglePasswordReminder: function () {
             var $prForm = $('div.passwordReminder');
-            var $lgForm = $('div.loginForm');
+            var $lgForm = $('div.on');
 
             if ($lgForm.is(':visible')) {
                 $lgForm.fadeOut('fast', function () {
@@ -269,21 +294,6 @@ var auth = (function() {
                     $lgForm.fadeIn();
                     $lgForm.find('input[name=username]').focus();
                 });
-            }
-        }
-
-        /** Toggles tabs of the signup overlay (readmore, tos, form) */
-        , toggleSignupTab: function (tabName) {
-            var $target = $('div.tab.' + tabName);
-            if (!$target.is(':visible')) {
-                $('div.tab').each(function () {
-                    if (!$(this).hasClass(tabName)) {
-                        $(this).fadeOut(200);
-                    }
-                });
-                window.setTimeout(function () {
-                    $target.fadeIn();
-                }, 200);
             }
         }
 

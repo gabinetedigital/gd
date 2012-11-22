@@ -1,3 +1,4 @@
+#! -*- encoding: utf8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -19,15 +20,15 @@
 
 from os import urandom
 from sqlalchemy.orm.exc import NoResultFound
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session, make_response
 from werkzeug import FileStorage
 
 from gd import utils
 from gd.utils import msg
 from gd import auth as authapi
-from gd.auth.fbauth import checkfblogin
+from gd.auth.fbauth import checkfblogin, facebook as remote_facebook
 from gd.auth import forms
-from gd.model import Upload, session, User
+from gd.model import Upload, session as dbsession, User
 from gd.content.wp import wordpress
 
 
@@ -47,8 +48,8 @@ def social(form, show=True, default=None):
     #
     # FIXME: Debug and discover why this damn facebook stuff does not
     # work properly.
-    #facebook = checkfblogin() or {}
-    facebook = {}
+    facebook = checkfblogin() or {}
+    #facebook = {}
     data = default or {}
     data.update(facebook)
     inst = form(**data) if show else form()
@@ -56,6 +57,8 @@ def social(form, show=True, default=None):
 
     # Preparing form meta data
     inst.social = bool(facebook)
+    if default and 'social' in default:
+        inst.social = default['social']
     inst.meta = inst.data.copy()
 
     # Cleaning unwanted metafields (they are not important after
@@ -68,14 +71,17 @@ def social(form, show=True, default=None):
         del inst.meta['password_confirmation']
 
     if facebook:
+        print "REMOVING PASSWORD for FACEBOOK LOGIN"
         # Removing the password field. It's not needed by a social login
-        del inst.password
-        del inst.password_confirmation
+        if 'password' in inst: del inst.password
+        if 'password_confirmation' in inst: del inst.password_confirmation
 
         # Setting up meta extra fields
         inst.meta['fbid'] = facebook['id']
         inst.meta['fromsocial'] = True
         inst.meta['password'] = urandom(10)
+    else:
+        print "IS NOT FACEBOOK!"
 
     # We're not social right now
     return inst
@@ -109,18 +115,48 @@ def login_json():
 def logout_json():
     """Logs the user out and returns an ok message"""
     authapi.logout()
-    return msg.ok(_(u'User loged out'))
+
+    resp = make_response( msg.ok(_(u'User loged out')) )
+    resp.set_cookie('connect_type', '')
+    return resp
+    # return msg.ok(_(u'User loged out'))
 
 
 @auth.route('/signup')
 def signup_form():
     """Renders the signup form"""
+
+    default_data=None
+    print session.keys()
+    if request.cookies.get('connect_type') == 'social_f':
+        f_data=remote_facebook.get('/me').data
+        default_data = {
+            'gender': f_data['gender'][:1], #'m' e 'f'
+            'name': f_data['name'],
+            'email': f_data['email'],
+            'email_confirmation': f_data['email'],
+            'social': True
+        }
+        print  "DEFAULT DATA FORM ::::::::::::::::: ", default_data
+    else:
+        print "NAO TEM FACEBOOK_DATA !!!!!!"
+
     form = social(forms.SignupForm)
-    return render_template(
-        'signup.html', form=form,
-        tos=wordpress.getPageByPath('tos'),
-        readmore=wordpress.getPageByPath('signup-read-more'),
-    )
+    if 'readmore' in request.args:
+        return render_template(
+            'signup.html', form=form,
+            readmore=wordpress.getPageByPath('signup-read-more'),
+        )
+    elif 'tos' in request.args:
+        return render_template(
+            'signup.html', form=form,
+            tos=wordpress.getPageByPath('tos'),
+        )
+    else:
+        return render_template(
+            'signup.html', form=form,
+        )
+
 
 
 @auth.route('/signup_json', methods=('POST',))
@@ -128,13 +164,19 @@ def signup_json():
     """Register a new user that sent his/her informations through the
     signup form"""
     form = social(forms.SignupForm, False)
+    fromsocial = request.cookies.get('connect_type') == 'social_f'
 
     # Proceeding with the validation of the user fields
+    form.fromsocial = fromsocial
     if form.validate_on_submit():
+        print "VALIDADOOOOOOOO!"
         try:
             meta = form.meta
             dget = meta.pop
-            password = dget('password')
+            if fromsocial:
+                password = ""
+            else:
+                password = dget('password')
 
             # Finally, it's time to create the user
             user = authapi.create_user(
@@ -218,7 +260,7 @@ def profile_passwd_json():
     if form.validate_on_submit():
         user = authapi.authenticated_user()
         user.set_password(form.password.data)
-        session.commit()
+        dbsession.commit()
         return msg.ok({
             'data': _('Password updated successful'),
             'csrf': form.csrf.data,
@@ -241,9 +283,9 @@ def remember_password():
         new_pass = utils.generate_random_password()
         if utils.send_password(request.values['email'], new_pass):
             user.set_password(new_pass)
-            session.commit()
+            dbsession.commit()
         else:
-            session.rollback()
+            dbsession.rollback()
             raise Exception('Unable to send the email')
     except NoResultFound:
         return msg.error(

@@ -1,3 +1,4 @@
+
 # -*- coding:utf-8 -*-
 #
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
@@ -17,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, current_app
 from gd.content.wp import wordpress
 
 videos = Blueprint(
@@ -30,17 +31,27 @@ videos = Blueprint(
 def listing():
     videos = wordpress.wpgd.getVideos(
         where='status=true', orderby='date DESC')
-    return render_template('videos.html', videos=videos)
+    return render_template('videos.html', videos=videos
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
-@videos.route('/<int:vid>')
+@videos.route('/<int:vid>/')
 def details(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)
-    return render_template('video.html', video=video, sources=sources)
+    base_url = current_app.config['BASE_URL']
+    base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
+    video_sources = []
+    for s in sources:
+        print s['format'], s['format'][0:s['format'].find(';')]
+        f = s['format'][0:s['format'].find(';')]
+        video_sources.append("<source type=\"%s\" src=\"%s\">" % ( f, s['url'] ))
+    return render_template('video.html', video=video, sources=video_sources
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+        ,base_url=base_url)
 
 
-@videos.route('/embed/<int:vid>')
+@videos.route('/embed/<int:vid>/')
 def embed(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)

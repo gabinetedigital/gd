@@ -1,0 +1,49 @@
+@import "compass/css3/font-face";
+
+@include font-face('Open Sans',
+  font-files(
+      '/static/fonts/OpenSans-Light-webfont.woff', woff,
+      '/static/fonts/OpenSans-Light-webfont.ttf', ttf,
+      '/static/fonts/OpenSans-Light-webfont.svg', svg),
+      '/static/fonts/OpenSans-Light-webfont.eot',
+      300, normal);
+
+@include font-face('Open Sans',
+  font-files(
+      '/static/fonts/OpenSans-LightItalic-webfont.woff', woff,
+      '/static/fonts/OpenSans-LightItalic-webfont.ttf', ttf,
+      '/static/fonts/OpenSans-LightItalic-webfont.svg', svg),
+      '/static/fonts/OpenSans-LightItalic-webfont.eot',
+      300, italic);
+
+@include font-face('Open Sans',
+  font-files(
+      '/static/fonts/OpenSans-Regular-webfont.woff', woff,
+      '/static/fonts/OpenSans-Regular-webfont.ttf', ttf,
+      '/static/fonts/OpenSans-Regular-webfont.svg', svg),
+      '/static/fonts/OpenSans-Regular-webfont.eot',
+      400, normal);
+
+@include font-face('Open Sans',
+  font-files(
+      '/static/fonts/OpenSans-Italic-webfont.woff', woff,
+      '/static/fonts/OpenSans-Italic-webfont.ttf', ttf,
+      '/static/fonts/OpenSans-Italic-webfont.svg', svg),
+      '/static/fonts/OpenSans-Italic-webfont.eot',
+      400, italic);
+
+@include font-face('Open Sans',
+  font-files(
+      '/static/fonts/OpenSans-Bold-webfont.woff', woff,
+      '/static/fonts/OpenSans-Bold-webfont.ttf', ttf,
+      '/static/fonts/OpenSans-Bold-webfont.svg', svg),
+      '/static/fonts/OpenSans-Bold-webfont.eot',
+      700, normal);
+
+@include font-face('Open Sans',
+  font-files(
+      '/static/fonts/OpenSans-BoldItalic-webfont.woff', woff,
+      '/static/fonts/OpenSans-BoldItalic-webfont.ttf', ttf,
+      '/static/fonts/OpenSans-BoldItalic-webfont.svg', svg),
+      '/static/fonts/OpenSans-BoldItalic-webfont.eot',
+      700, italic);

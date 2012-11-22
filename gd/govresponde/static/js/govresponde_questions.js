@@ -57,3 +57,15 @@ $('#mensagemfim').overlay({
     closeOnClick: false,
     closeOnEsc: false
 });
+
+$('video').each(function(){
+    jwplayer(this.id).setup({  
+        skin: "/static/jw/bekle/bekle.xml",  
+        width: '600',  
+        modes: [    
+            { type: "html5" },    
+            { type: "flash", src: "//static/jw/player.swf" },    
+            { type: "download" }  
+        ]
+    });
+});

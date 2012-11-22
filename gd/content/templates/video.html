@@ -1,29 +1,62 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/videos.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
+{% endblock %}
+
+{% block id %}
+<div id="videos"></div>
 {% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="gallery boxed">
-
-    <div class="video">
-      <h1>{{ video.title }}</h1>
-      <video
-         id="{{ video.id }}"
-         width="{{ video.video_width }}"
-         height="{{ video.video_height }}">
-        {% for source in sources %}
-        <source type="{{ source.format }}" src="{{ source.url }}">
-          {% endfor %}
-      </video>
-
-      <p>{{ video.description }}</p>
-
-      <h3>Embed</h3>
-      <textarea class="embed" readonly="readonly">&lt;iframe style="border:0" src="{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"&gt;&lt;iframe&gt;</textarea>
+<div class="gallery boxed">
+  <div class="container">
+    <div class="videos">
+      <h2>{{ video.title }}</h2>
+      <div class="row">
+        <div class="span8 stage">
+          <video
+             id="video{{ video.id }}"
+             width="{{ video.video_width }}"
+             height="{{ video.video_height }}"
+             poster="{{video.thumbnail}}">
+            {%for s in sources%}
+              {{s|safe}}
+            {%endfor%}
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="span4">
+          <p class="desc">{{ video.description }}</p>
+          <div class="share">
+            <span class='st_facebook_hcount' displayText='Facebook'></span>
+            <span class='st_twitter_hcount' displayText='Tweet'></span>
+            <span class='st_plusone_hcount' displayText='Google +1'></span>
+          </div>
+          <h3>Embed</h3>
+            <textarea class="embed span4" readonly="readonly" onfocus="$(this).select()"> <iframe style="border:0" src="{{base_url}}{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"</iframe></textarea>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+  jwplayer("video{{video.id}}").setup({
+    skin: "/static/jw/bekle/bekle.xml",
+    width: '100%',
+    modes: [
+      { type: "html5" },
+      { type: "flash", src: "//static/jw/player.swf" },
+      { type: "download" }
+    ]
+  });
+</script>
+
 {% endblock %}

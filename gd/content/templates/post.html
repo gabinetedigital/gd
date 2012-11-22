@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/blog.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
 <!--[if IE]>
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
-<![endif]-->
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
+    <![endif]-->
 {% endblock %}
 
 {% block javascript %}
@@ -13,67 +13,88 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
+{% block id %}
+<div id="news"></div>
+{% endblock %}
+
 {% block content %}
-<div id="container">
-  <div class="row">
-    <div id="post" class="col8">
-      <div id="news">
-          <h1>{{ post.title }}</h1>
-           {{ post.the_date.day }}/
-           {{- post.the_date.month }}/
-           {{- post.the_date.year }} às
-           {{ post.the_date.hour }}:
-           {{- post.the_date.minute }}h
+<div class="news" id="news">
+  <div class="container">
+    <div class="row">
 
-          {% include "sociable.html" %}
+      <div class="span9">
 
-          {{ post.content|safe }}
-          <div id="comments">
+        <div class="post">
+          <h2>{{ post.title }}</h2>
+          <i class="icon-calendar "></i> {{ post.the_date.day }} {{ post.the_date.strftime("%B").capitalize() }} de {{ post.the_date.year }}
+          <div class="content">
+            {{ post.content|safe }}
+          </div>
+          <div class="meta pull-right">
+            <ul>
+              <li><i class="icon-tag "></i> <a href="">{{ ', '.join(post.tags.split(',')[:3]) }}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div id="comments">
           <div class="postcontent">
+            <h3>Comentários</h3>
+
             {% if post.comments.allow_comments %}
 
+            {% if user is not none %}
             <!-- the comment error msg -->
             <div class="msg error"></div>
             <div class="msg success"></div>
+
 
             <form
                id="blog_comment_form" method="post"
                action="{{ url_for('new_comment') }}">
 
               <input type="hidden" name="post_id" value="{{ post.id }}">
-              <h4>Comentários</h4>
 
-              Deixe seu comentário<br>
-              <textarea name="content"></textarea>
-              <input type="submit" value="Enviar">
+
+              <div class="form">
+                <img src="{{ user.avatar_url }}" class="pull-left">
+                <div class="commentbox">
+                  <textarea name="content" placeholder="Deixe seu comentário…"></textarea>
+                  <input class="btn btn-danger pull-right enviar" type="submit" value="Enviar">
+                </div>
+              </div>
             </form>
-            {% endif %}
+            {% else %}
+            <div class="alert alert-info">
+              <strong>Aviso!</strong> Você precisa estar logado para comentar.
+            </div>
 
+            {% endif %}
+            {% endif %}
             {% for comment in comments %}
             <div class="comment">
-              <img src="{{ comment.user.avatar_url }}">
-              <div class="content">
-                <h3>
-                  {{ comment.author|safe }} em
-                  {{ comment.date_created_gmt|formatarDataeHora('%d/%m/%Y') }} às
-                  {{ comment.date_created_gmt|formatarDataeHora('%H:%Mh') }}
-                  
-                </h3>
+              <img src="{{ comment.user.avatar_url }}" class="pull-left">
+              <div class="comcontent">
+                <h3>{{ comment.author|safe }}</h3>
+
+                <div class="meta">
+                  <i class="icon-calendar "></i>
+                </div>
+
                 {{ comment.content|safe }} <br>
               </div>
             </div>
             {% endfor %}
           </div>
-          </div>
+        </div>
       </div>
+
+      <div class="sidebar span3">
+        <div id="wordpress-sidebar-1">
+          {{ sidebar(id='sidebar-1')|safe }}
+        </div>
       </div>
+
     </div>
-    <div id="sidebar" class="col4">
-      <div id="wordpress-sidebar-1">
-        {{ sidebar(id='sidebar-1')|safe }}
-      </div>
-   </div>
   </div>
-  <div class="row-end"></div>
 </div>
 {% endblock %}

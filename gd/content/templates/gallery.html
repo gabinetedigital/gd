@@ -1,104 +1,96 @@
 {% extends "base.html" %}
 
+{% block title %}
+{% if current %}Galeria de Fotos - {{ current.title }} {% endif %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/jquery.galleriffic.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/jquery.galleriffic.js') }}"></script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
 <script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/jquery.rating.pack.js') }}"></script>
+{% endblock %}
+
+{% block id %}
+<div id="fotos"></div>
 {% endblock %}
 
 {% block content %}
-
-<h1 class="stitle">Galeria de fotos</h1>
-<div id="gallery" class="content currentgallery">
-
-  <div id="controls"></div>
-  <div id="loading"></div>
-  <div id="slideshow">
-    {% if current %}
-    <div id="title">
-      <ul>
-        <li><h2>{{ current.title }}</h2></li>
-        <li class="share">
-          <!-- AddThis Button BEGIN -->
-            <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style ">
-            <a class="addthis_button_preferred_1"></a>
-            <a class="addthis_button_preferred_2"></a>
-            <a class="addthis_button_preferred_3"></a>
-            <a class="addthis_button_preferred_4"></a>
-            <a class="addthis_button_compact"></a>
-            <a class="addthis_counter addthis_bubble_style"></a>
-            </div>
-            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-502bb44573d2fc0a"></script>
-            <!-- AddThis Button END -->
-        </li>
-      </ul>
+<div class="gallery">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+      <h2>{% if current %}{{ current.title }} {% endif %}</h2>
+      </div>
+      <div class="span4">
+        <div class="controls gbusca pull-right">
+          <form class="form-search">
+            <a href="../" class="btn btn-primary">Voltar para galerias</a>
+            <div class="input-prepend">
+            <span class="add-on"><i class="icon-picture"></i></span>
+            <input class="span2 searcher" id="inputIcon" type="text">
+                  <script type="text/javascript">
+                    $(document).ready(function() {
+                      $('.searcher').typeahead({
+                        source: [{%for t in titulos%}'{{t[1]}}',{%endfor%}],
+                        items: 5,
+                        minLength: 1,
+                        updater: function(item){
+                          //Slugs é um dicionário que contém como chave o Título da Galeria, e como valor o slug,
+                          //para poder recdirecionar diretamente para a galeria.
+                          slugs = { {%for t in titulos%}
+                                   '{{t[1]}}':'{{t[0]}}',
+                                  {%endfor%} }
+                          document.location = "/fotos/" + slugs[item]
+                        }
+                      });
+                    });
+                  </script>
+          </div>
+          </form>
+        </div>
+      </div>
     </div>
-    {% endif %}
-  </div>
-  <div id="caption" class="caption-container"></div>
-  <div id="thumbs"  class="navigation images">
-    <ul class="thumbs images">
-      {% for image in current.images %}
-      <li>
-        <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
-           {% if loop.index == 1 %}class="selected"{% endif %}
-           >
-          <img src="{{ image.thumbURL }}" alt="{{ image.description }}">
-        </a>
-	<div class="caption">
-	  <div class="download">
-	    <a href="{{ image.imageURL }}_backup">Download Original</a>
-	  </div>
-	  <div class="text">{{ image.title }}<br>{{ image.description }}</div>
-	</div>
-      </li>
-      {% endfor %}
-    </ul>
+    <div class="row desk">
+      <div id="gallery" class="span8 content">
+        <div id="controls" class="span8 controls"></div>
+        <div class="slideshow-container">
+          <div id="loading" class="loader"></div>
+          <div id="slideshow" class="slideshow"></div>
+        </div>
+        <div id="caption" class="caption-container"></div>
+      </div>
+      <div id="thumbs"  class="span4 navigation visible-desktop">
+        <ul class="thumbs">
+          {% for image in current.images %}
+          <li>
+            <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
+               {% if loop.index == 1 %}class="selected"{% endif %}
+               >
+              <img src="{{ image.thumbURL }}" alt="{{ image.description }}" width="150px">
+            </a>
+	    <div class="caption">
+	      <div class="text">{{ image.description }}</div>
+	      <div class="download">
+	        <a href="{{ url_for('gallery.fotoDownload', gallery=image.slug, filename=image.filename) }}" class="btn btn-danger">Baixar original</a>
+	      </div>
+              <div class="share">
+                <span class='st_facebook_hcount' displayText='Facebook'></span>
+                <span class='st_twitter_hcount' displayText='Tweet'></span>
+                <span class='st_plusone_hcount' displayText='Google +1'></span>
+              </div>
+	    </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
-
-<div id="busca">
-  <h2> Galerias </h2>
-
-  <form method="GET" action="/gallery" id="search_tool">
-    busca: <input type="text" name="s" id="s" value="{{s}}">
-    <input type="submit" class="submit" value="ir">
-
-  </form>
-
-  <div id="galerias">
-    <ul id="gallerylist">
-      {% if s %}
-      <h3>
-        <a href="/gallery">Todas as galerias</a>
-
-        > Resutado busca por: <i>{{s}}</i>
-
-      </h3>
-      {% endif %}
-      {% if galleries %}
-      {% for gallery in galleries  %}
-      <li>
-        <a href="{{ url_for('.index', slug=gallery.slug) }}{%if s%}?s={{s}}{%endif%}" title="{{ gallery.title }}">
-          <img src="{{ gallery.front.thumbURL }}" alt="{{ gallery.title }}">
-          <h4>{{ gallery.title }}</h4>
-        </a>
-      </li>
-      {% endfor %}
-      {% else %}
-      <p class="error">Nenhuma galeria de fotos foi encontrada.</p>
-      {% endif %}
-    </ul>
-  </div>
-
-</div>
-<div class="row-end"></div>
-
 {% endblock %}

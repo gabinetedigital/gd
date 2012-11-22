@@ -26,6 +26,24 @@ $(function() {
     //max length of message a user can send
     var MAX_LENGTH = 300;
 
+    // Increase textarea height on focus
+
+    $('.droom #chat textarea').focusin(function(){
+        $(".droom #chat textarea").switchClass( "tiny", "toon", 300 );
+        return false;
+    });
+
+    $('.droom #chat textarea').focusout(function(){
+        $(".droom #chat textarea").switchClass( "toon", "tiny", 300 );
+        return false;
+    });
+
+    $('#bla').click(
+        function() {
+            $('#myModal').modal('toggle');
+        }
+    );
+
     $("a.filter").click(
         function() {
             $(this).toggleClass('off');

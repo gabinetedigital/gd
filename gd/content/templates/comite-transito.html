@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/comite.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/comite.js') }}"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=159464544196767";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}
+
+{% block content %}
+<div class="comite" id="comite">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="placa">
+          <div class="seta pull-right">
+            <div class="haste"></div>
+            <div class="arrow"></div>
+          </div>
+          <h1>{{wp.getPageByPath('comite-transito-header').title|safe}}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span12">
+        <div class="apresentacao">
+          {{wp.getPageByPath('comite-transito-header').content|safe}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span12 pipe">
+        <div class="menu">
+          <div class="entenda">
+            <a href="#entenda">
+              <img src="{{ url_for('.static', filename='img/comite/entenda.png') }}">
+            </a>
+          </div>
+          <div class="faca">
+            <a href="#entenda">
+              <img src="{{ url_for('.static', filename='img/comite/faca.png') }}">
+            </a>
+          </div>
+          <div class="envie">
+            <a href="#entenda">
+              <img src="{{ url_for('.static', filename='img/comite/envie.png') }}">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span9">
+        <div class="entenda-content">
+          <h2>{{wp.getPageByPath('comite-transito-entenda').title|safe}}</h2>
+          <div class="content">
+            {{wp.getPageByPath('comite-transito-entenda').content|safe}}
+          </div>
+        </div>
+
+        <div id="facaparte" class="faca-content">
+          <h2>{{wp.getPageByPath('comite-transito-facaparte').title|safe}}</h2>
+          <div class="content">
+            {{wp.getPageByPath('comite-transito-facaparte').content|safe}}
+
+            <div id="error-cad" class="msg error alert alert-error hide"></div>
+            <div id="success-cad" class="msg success alert alert-success hide"></div>
+            <form method="post" action="/cadastrar-comite/" class="form-cadastrar">
+              <fieldset>
+                <legend>Cadastre-se</legend>
+
+                <label>Nome:</label>
+                <input class="span6" id="nome" name="nome" type="text" placeholder="Nome completo">
+
+                <label>Email:</label>
+                <input class="span6" id="email" name="email" type="text" placeholder="Email para contato">
+
+                <label>Cidade:</label>
+                <input class="span4" id="cidade" name="cidade" type="text" placeholder="Cidade onde mora">
+
+                <label>Telefone:</label>
+                <input class="span4" id="telefone" name="telefone" type="text" placeholder="Cód de Área + Nro. Telefone">
+
+                <br/>
+                <br/>
+                <button type="submit" class="btn">Enviar os dados</button>
+              </fieldset>
+            </form>
+
+          </div>
+        </div>
+
+        <div class="envie-content">
+          <h2>{{wp.getPageByPath('comite-transito-envie').title|safe}}</h2>
+          <div class="content">
+
+          {{wp.getPageByPath('comite-transito-envie').content|safe}}
+
+          <div id="error" class="msg error alert alert-error hide"></div>
+          <div id="success" class="msg success alert alert-success hide"></div>
+          <form method="post" action="/enviar-noticia/" class="form-enviar-noticia">
+            <fieldset>
+              <legend>Envie sua notícia</legend>
+
+              <label>Título:</label>
+              <input class="span6" id="titulo" name="titulo" type="text" placeholder="Informe o título da notícia...">
+
+              <label>Texto da notícia:</label>
+              <textarea class="span8" id="noticia" name="noticia" placeholder="Digite ou cole aqui o texto da sua notícia..." rows="10"></textarea>
+              <br/>
+            {% if not user %}
+                <span class="help-block">É necessário estar efetuar login para enviar a notícia.</span>
+            {%endif%}
+              <button type="submit" class="btn">Enviar Notícia</button>
+            </fieldset>
+          </form>
+        </div>
+          </div>
+
+      </div>
+
+
+      <div class="span3">
+        <ul class="sidebar">
+        {{ sidebar(id='sidebar-9')|safe }}
+        <li class="span3">
+        <div class="fb-like-box" data-href="https://www.facebook.com/RedePelaPazNoTransito" data-width="270" data-show-faces="true" data-stream="false" data-header="true"></div>
+        </li>
+        </ul>
+      </div>
+
+  </div>
+</div>
+{% endblock %}

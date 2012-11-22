@@ -18,9 +18,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template, abort, request, jsonify
+from flask import Blueprint, render_template, abort, request, jsonify, send_from_directory, current_app, redirect, url_for
 from gd.content.wp import wordpress, gallery as api
 import math
+import urllib2
 
 gallery = Blueprint(
     'gallery', __name__,
@@ -28,34 +29,43 @@ gallery = Blueprint(
     static_folder='static')
 
 
-@gallery.route('/')
 @gallery.route('/<slug>/')
+def galerias(slug=None):
+    galleries = wordpress.wpgd.getGalleries()
+    if slug and (str(slug) not in [i['slug'] for i in galleries]):
+        abort(404)
+    current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
+    titulos = [ (g['slug'],g['title']) for g in galleries ]
+    return render_template(
+        'gallery.html',
+        current=current,
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        titulos=titulos
+    )
+
+
+@gallery.route('/')
 def index(slug=None):
     search_terms = ''
     if 's' in request.args and request.args.get('s', ''):
         search_terms = request.args.get('s', '')
         galleries = wordpress.wpgd.searchGalleries('%s' % search_terms)
+        if len(galleries) == 1:
+            return redirect(url_for('.galerias', slug=galleries[0]['slug']))
     else:
         galleries = wordpress.wpgd.getGalleries()
         if not galleries:
             abort(404)
     current = None
-    if galleries:
-        if slug and (str(slug) not in [i['slug'] for i in galleries]):
-            abort(404)
-        current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
-        if 'avg' in current.keys() and current['avg']:
-            current['avg'] = float(str(current['avg']))/10
-            current['star'] = math.ceil(current['avg'])
-        else:
-            current['avg'] = 0
-            current['star'] = 0
-        
+
+    titulos = [ (g['slug'],g['title']) for g in galleries ]
+
     return render_template(
-        'gallery.html',
+        'gallerys.html',
         galleries=galleries,
         s=search_terms,
-        current=current)
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        titulos=titulos) 
 
 @gallery.route('/vote/<int:gid>/')
 @gallery.route('/vote/<int:gid>/<int:rate>/')
@@ -73,3 +83,20 @@ def vote(gid, rate=-1):
     except RuntimeError as e:
         print e.errno, e.strerror
         return jsonify("{'vote': 'False', 'msg': ''}")
+
+@gallery.route('/fotoDownload/<gallery>/<string:filename>')
+def fotoDownload(gallery=None,filename=None):
+    arquive_url = "%s/wp-content/gallery/%s/%s_backup" % (current_app.config['WORDPRESS_ADDRESS'], gallery, filename)
+    arq = arquive_url
+    nomearq = arq.replace("$", "/")
+    arq = str(nomearq)
+    nomearq = str.split(arq, '/')
+    nomearq = nomearq[len(nomearq)-1]
+    nomearq = nomearq.replace("_backup", "")
+    u = urllib2.urlopen(arq)
+    localFile = open('/tmp/'+nomearq, 'wb')
+    localFile.write(u.read())
+    localFile.close()
+
+    return send_from_directory("/tmp",nomearq, as_attachment=True)
+    

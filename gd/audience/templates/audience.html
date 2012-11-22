@@ -2,212 +2,275 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
-
 {% endblock %}
 
 {% block javascript %}
 <script type="text/javascript">
   var AUDIENCE_ID={{audiences.0.ID}};
 </script>
-<script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script>
-<script src="{{ url_for('buzz.static', filename='js/longpool.js') }}"></script>
-<script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
+<!-- <script src="{{ url_for('buzz.static', filename='js/jquery.longpool.js') }}"></script> -->
+<!-- <script src="{{ url_for('buzz.static', filename='js/longpool.js') }}"></script> -->
+<!-- <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script> -->
 <script src="{{ url_for('.static', filename='js/jQueryRotate.2.1.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/statusbar.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
+
+<script type="text/javascript">
+  jwplayer("aovivo").setup({
+    skin: "/static/jw/bekle/bekle.xml",
+    width: '100%',
+    modes: [
+      { type: "html5" },
+      { type: "flash", src: "/static/jw/player.swf" },
+      { type: "download" }
+    ]
+  });
+</script>
+
 {% endblock %}
+
+
+
+
 
 
 {% block content %}
 {% for audience in audiences %}
-<div id="container">
-  <div id="info-aud" class="row">
-    <div class="col9">
-      <div id="title">
-        <p class="title">{{ audience.post_title }}</p>
-        <p class="description">{{ audience.post_content|safe }}</p>
-      </div>
-    </div>
-    <div class="col3">
-		<div id="date">
-        	<p class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</p>
-        	<p class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</p>
-        	<p class="hour">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}h</p>
-        	<p class="min">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}</p>
-        	
-        	
-      	</div>
-      	
-      	<div id="tag" class="row">
-      		<div class="inner">
-      			<p>Use a hashtag</p>
-        		<h3>{{ audience.hashtag[0] }}</h3>
-    		</div>
-  		</div>
-    </div>
-    <div class="row-end"></div>
-  </div>
+<div class="content">
+  <div class="container">
+    <div class="info-aud">
+      <div class="row">
 
-  <div class="row buzzbg">
-    <div id="main" class="col8">
-      <div class="content">
-        <div id="how-it-works" rel="#works-like-this">
-          <img src="{{ url_for('.static', filename='imgs/big_gear.png') }}"
-               id="how-it-works-big-gear" class="big-gear">
-          <img src="{{ url_for('.static', filename='imgs/small_gear.png') }}"
-               id="how-it-works-small-gear" class="small-gear">
-          <img src="{{ url_for('.static', filename='imgs/como_funciona.png') }}"
-               class="how-it-works-text">
-        </div>
-        <div id="works-like-this" class="overlay boverlay">
-          <ol>
-            <li class="step-1">
-              <div class="wrapper">
-                <img
-                   src="{{ url_for('.static', filename='imgs/couple.png') }}"
-                   class="step-1-couple">
-                <div>
-                  <img
-                     src="{{ url_for('.static', filename='imgs/mail_trail.png') }}"
-                     class="step-1-mail-trail">
-                  <img
-                     src="{{ url_for('.static', filename='imgs/mail.png') }}"
-                     class="step-1-mail">
+        <div class="span8">
+          <div class="info-head">
+            <div class="info-desc">
+              <div id="poster" class="pull-left">
+                <img src="{{ url_for('.static', filename='img/seguranca.jpg') }}">
+              </div>
+              <div id="title">
+                <h2 class="title">{{ audience.post_title }}</h2>
+                <p class="description">{{ audience.post_content|safe }}</p>
+                <div class="info-btn">
+                  <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-info">mais detalhe</button>
+                  <div class="btn btn-success" rel="#works-like-this">como funciona?</div>
                 </div>
               </div>
-              <p>As pessoas enviam suas contribuições</p>
-            </li>
-            <li class="step-2">
-              <div class="wrapper">
-                <div class="gears">
-                  <img
-                     src="{{ url_for('.static', filename='imgs/step_2_big_gear.png') }}"
-                     class="step-2-big-gear">
-                  <img
-                     src="{{ url_for('.static', filename='imgs/step_2_small_gear.png') }}"
-                     class="step-2-small-gear">
-                </div>
-                <img src="{{ url_for('.static', filename='imgs/networked_cpus.png') }}">
-              </div>
-
-              <p>Nossa equipe processa e modera as contribuições</p>
-
-            </li>
-            <li class="step-3">
-              <div class="wrapper">
-                <img
-                   src="{{ url_for('.static', filename='imgs/mustache_gentleman.png') }}"
-                   class="mustache-gentleman">
-                <img
-                   src="{{ url_for('.static', filename='imgs/empty_dialog.png') }}"
-                   class="mustache-gentleman-dialog">
-              </div>
-              <p>O Governador comenta as contribuições selecionadas</p>
-            </li>
-          </ol>
-
-          <div id="saiba-mais-link">
-            <a href="javascript:show_how_to()"> Saiba mais </a>
+            </div>
           </div>
-          <div id="saiba-mais-text" style="display:none">
-            {{ how_to|safe }}
+        </div>
+
+        <div class="span4  hidden-phone">
+          <div class="aud-date">
+            <div class="hashtag pull-left">
+              {% if not govescuta %}
+              <p class="twt">Participe também pelo twitter</p>
+              <p class="hash">{{ audience.hashtag[0] }}</p>
+              {% else %}
+              <a href="./" class="btn btn-primary todas">Ver mais audiências</a>
+              {% endif%}
+            </div>
+            <div id="date" class="pull-right">
+              <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
+              <div class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</div>
+              <div class="time">
+                {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}:{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}
+              </div>
+            </div>
+            <div class="share">
+              <p>Compartilhe</p>
+              <span class='st_facebook_hcount' displayText='Facebook'></span>
+              <span class='st_twitter_hcount' displayText='Tweet'></span>
+              <span class='st_plusone_hcount' displayText='Google +1'></span>
+            </div>
           </div>
-
-
         </div>
-        <div id="beingAnswered-anterior">
-			{% if (buzzesSelec) %}
-        	<ul class="stream">
-    			<li class="avatar"><img src="{{ buzzesSelec.avatar }}"></li>
-    			<li class="author">
-					{% if (buzzesSelec.user)  %}
-          				{{ buzzesSelec.user.display_name }}
-        			{% else  %}
-						{% if (buzzesSelec.owner_nick)  %}
-          					@{{ buzzesSelec.owner_nick }}
-						{% else  %}
-							Via SMS
-						{% endif %}
-        			{% endif %}
-					<em> | {{ buzzesSelec.type_.name }}</em>
-				</li>
-    			<li class="answer">{{ buzzesSelec.content }}</li>
-  			</ul>
-  			{% endif %}
-        </div>
-        <div id="streaming">
-			{{audience.aud_wp_govescuta_video_embed|safe}}
-		</div>
-        <div id="misc">
-          <h5>Governo Escuta</h5>
-          {{ audience.aud_wp_govescuta_detalhes_govesc|safe }}
-        </div>
-        <div class="answerlink">
-    		{% if referrals %}
-    		<a href="javascript:;"
-       			onclick="showEncaminhada({{ audience.ID  }})"
-       			class="encaminhamento">
-      			Encaminhamentos
-    		</a>
-    		<ul  id="encaminhada-{{ audience.ID }}" class="encaminhada">
-	      		{% for post in referrals %}
-	      		<li>
-	        		<h4>
-	          			{{ post.title }}
-	          			<em>({{ post.the_date.strftime('%d/%m/%Y') }})</em>
-	        		</h4>
-	        		<div>{{ post.excerpt }}</div>
-	      		</li>
-	      		{% endfor %}
-    		</ul>
-    		{% endif %} 
-
-  		</div>
 
       </div>
     </div>
-    <div class="col4">
-      <a class="filter" href="javascript:;"
-         title="Alternar a exibição de mensagens moderadas">filtro</a>
-      <ul id="buzz-public" class="buzz" style="display:none">
-      </ul>
-      <ul id="buzz-moderated" class="buzz">
-      {% for buzz in buzzes %}
-		<li id="msgid_{{ buzz.id }}">
-    		<ul class="stream">
-      			<li class="avatar"><img src="{{ buzz.avatar}}"></li>
-      			<li class="author">
-        			{% if (buzz.user)  %}
-          				{{ buzz.user.display_name }}
-        			{%  else  %}
-						{% if (buzz.owner_nick)  %}
-          					@{{ buzz.owner_nick }}
-						{% else  %}
-							Via SMS
-						{% endif %}
-        			{% endif %}
-        			<em>| {{ buzz.type_name }}</em>
-      			</li>
-      			<li class="answer">{{ buzz.content }}</li>
-    		</ul>
-  		</li>
-      {% endfor %}	
-      </ul >
-      <div id="message-statusbar" class="alert"></div>
-      <div id="chat">
-        <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
-          <input type="hidden" id="aid" name="aid" value="{{ audience.ID}}">
-          <textarea id="message-area" name="message" placeholder="Poste sua mensagem aqui."></textarea>
-          <span class="current-msg-length">300</span>
-          <input id="send_comment" type="submit" value="enviar">
-        </form>
+    <div class="stage">
+      <div class="row">
+        <div class="span8">
+          <div class="room">
+            <div class="streaming">
+              <div id="beingAnswered-anterior">
+                {% if (buzzesSelec) %}
+                <ul class="stream">
+                  <li class="avatar"><img src="{{ buzzesSelec.avatar }}"></li>
+                  <li class="author">
+                    {% if (buzzesSelec.user)  %}
+                    {{ buzzesSelec.user.display_name }}
+                    {% else  %}
+                    {% if (buzzesSelec.owner_nick)  %}
+                    @{{ buzzesSelec.owner_nick }}
+                    {% else  %}
+                    Via SMS
+                    {% endif %}
+                    {% endif %}
+                    <em> | {{ buzzesSelec.type_.name }}</em>
+                  </li>
+                  <li class="answer">{{ buzzesSelec.content }}</li>
+                </ul>
+                {% endif %}
+              </div>
+
+              <video
+                id="aovivo"
+                width="100%"
+                height="400px"
+                poster="http://s4.procergs.com.br/static2/procergs.jpg"
+              >
+                {%if audience.aud_wp_govescuta_ativa == 'n'%}
+                  {%for video in audience.video_sources%}
+                    <source src="{{video.url|safe}}" type="{{video.format.split('; ')[0]|safe}}">
+                  {%endfor%}
+                {%else%}
+                <source src="{{audience.aud_wp_govescuta_video_embed|safe}}" type="video/ogg">
+                {%endif%}
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="span4 hidden-phone">
+          <div class="droom">
+              {% if not govescuta %}
+              <div id="message-statusbar" class="alert alert-info span3"></div>
+              <div id="chat">
+                <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
+                  <input type="hidden" id="aid" name="aid" value="{{ audience.ID}}">
+                  <textarea id="message-area" name="message" class="tiny" placeholder="Poste sua mensagem aqui."></textarea>
+                  <input id="send_comment" class="btn" type="submit" value="enviar">
+                  <!-- <span class="current-msg-length">300</span> -->
+
+                </form>
+              </div>
+              {% endif %}
+              <div class="buzzs">
+              <!-- <a class="filter" href="javascript:;" -->
+              <!--    title="Alternar a exibição de mensagens moderadas">filtro</a> -->
+              <ul id="buzz-public" class="buzz" style="display:none">
+              </ul>
+              <ul id="buzz-moderated" class="buzz">
+                {% for buzz in buzzes %}
+                <li id="msgid_{{ buzz.id }}">
+                  <ul class="{{ loop.cycle('astream', 'bstream') }}">
+                    <li class="avatar"><img src="{{ buzz.avatar}}"></li>
+                    <li class="author">
+                      {% if (buzz.user)  %}
+                      {{ buzz.user.display_name }}
+                      {%  else  %}
+                      {% if (buzz.owner_nick)  %}
+                      @{{ buzz.owner_nick }}
+                      {% else  %}
+                      Via SMS
+                      {% endif %}
+                      {% endif %}
+                      <em>| {{ buzz.type_name }}</em>
+                    </li>
+                    <li class="answer">{{ buzz.content }}</li>
+                  </ul>
+                </li>
+                {% endfor %}
+              </ul >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>.
+    <div class="bloggin">
+      <div class="row">
+    	<ul  id="encaminhada-{{ audience.ID }}" class="thumbanails">
+          {% for post in referrals %}
+          <li class="span6">
+            <div class="thumbnail">
+            <a href="{{ post.get_field('link', post.permalink) }}">
+              <h4>{{ post.title }}</h4>
+              <div>{{ post.content|safe }}</div>
+            </a>
+            </div>
+          </li>
+          {% endfor %}
+    	</ul>
       </div>
     </div>
   </div>
-  <div class="row-end"></div>
 </div>
+
+<div id="works-like-this" class="overlay boverlay">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <ol>
+    <li class="step-1">
+      <div class="wrapper">
+        <img
+           src="{{ url_for('.static', filename='img/couple.png') }}"
+           class="step-1-couple">
+        <div>
+          <img
+             src="{{ url_for('.static', filename='img/mail_trail.png') }}"
+             class="step-1-mail-trail">
+          <img
+             src="{{ url_for('.static', filename='img/mail.png') }}"
+             class="step-1-mail">
+        </div>
+      </div>
+      <p>As pessoas enviam suas contribuições</p>
+    </li>
+    <li class="step-2">
+      <div class="wrapper">
+        <div class="gears">
+          <img
+             src="{{ url_for('.static', filename='img/step_2_big_gear.png') }}"
+             class="step-2-big-gear">
+          <img
+             src="{{ url_for('.static', filename='img/step_2_small_gear.png') }}"
+             class="step-2-small-gear">
+        </div>
+        <img src="{{ url_for('.static', filename='img/networked_cpus.png') }}">
+      </div>
+
+      <p>Nossa equipe processa e modera as contribuições</p>
+
+
+    </li>
+    <li class="step-3">
+      <div class="wrapper">
+        <img
+           src="{{ url_for('.static', filename='img/mustache_gentleman.png') }}"
+           class="mustache-gentleman">
+        <img
+           src="{{ url_for('.static', filename='img/empty_dialog.png') }}"
+           class="mustache-gentleman-dialog">
+      </div>
+      <p>O Governador comenta as contribuições selecionadas</p>
+    </li>
+  </ol>
+
+  <div id="saiba-mais-link">
+    <a href="javascript:show_how_to()"> Saiba mais </a>
+  </div>
+  <div id="saiba-mais-text" style="display:none">
+    {{ how_to|safe }}
+  </div>
+
+
+
+</div>
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Mais informações</h3>
+  </div>
+  <div class="modal-body">
+    {{audience.aud_wp_govescuta_detalhes_govesc|safe}}
+  </div>
+</div>
+
 {% endfor%}
+</div>
+
 <script type="text/html" id="buzzTemplate">
   <li>
     <ul class="stream">
@@ -216,13 +279,13 @@
       </li>
       <li class="author">
         <% if (obj.user) { %>
-          <%= obj.user.display_name %>
+        <%= obj.user.display_name %>
         <% } else { %>
-			<% if (obj.owner_nick) { %>
-          		@<%= obj.owner_nick %>
-			<% } else { %>
-				Via SMS
-			<% } %>
+        <% if (obj.owner_nick) { %>
+        @<%= obj.owner_nick %>
+        <% } else { %>
+        Via SMS
+        <% } %>
         <% } %>
         <em>| <%= obj.type_.name %></em>
       </li>
@@ -240,36 +303,36 @@
       </li>
       <li class="author">
         <% if (obj.user) { %>
-          <%= obj.user.display_name %>
+        <%= obj.user.display_name %>
         <% } else { %>
-			<% if (obj.owner_nick) { %>
-          		@<%= obj.owner_nick %>
-			<% } else { %>
-				Via SMS
-			<% } %>
+        <% if (obj.owner_nick) { %>
+        @<%= obj.owner_nick %>
+        <% } else { %>
+        Via SMS
+        <% } %>
         <% } %>
         <em>| <%= obj.type_.name %></em>
       </li>
       <li class="answer"><%= obj.content %></li>
     </ul>
   </li>
-<% } %>
+  <% } %>
 </script>
 
 <script type="text/html" id="selectedNotice">
   <ul class="stream">
     <li class="avatar"><img src="<%= obj.avatar %>"></li>
     <li class="author">
-		<% if (obj.user) { %>
-          <%= obj.user.display_name %>
-        <% } else { %>
-			<% if (obj.owner_nick) { %>
-          		@<%= obj.owner_nick %>
-			<% } else { %>
-				Via SMS
-			<% } %>
-        <% } %>
-	<em> | <%= obj.type_.name %></em></li>
+      <% if (obj.user) { %>
+      <%= obj.user.display_name %>
+      <% } else { %>
+      <% if (obj.owner_nick) { %>
+      @<%= obj.owner_nick %>
+      <% } else { %>
+      Via SMS
+      <% } %>
+      <% } %>
+      <em> | <%= obj.type_.name %></em></li>
     <li class="answer"><%= obj.content %></li>
   </ul>
 </script>

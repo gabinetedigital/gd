@@ -139,3 +139,10 @@ li:hover .controls { visibility:visible; }
 /* ---- publish.html customized stuff  ---- */
 .moderate.publish li p { padding-left:0; }
 .moderate.publish .controls { margin-left:65px; }
+
+.noticia {
+    background-color: rgba(0,0,0,0.05);
+    border: 3px solid rgba(255,255,255,.5);
+    margin-bottom: 5px;
+    padding: 3px;
+}

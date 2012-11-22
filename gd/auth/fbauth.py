@@ -18,7 +18,7 @@
 """Authentication machinery for facebook"""
 
 from httplib2 import ServerNotFoundError
-from flask import Blueprint, url_for, session, request, redirect
+from flask import Blueprint, url_for, session, request, redirect, make_response
 from flaskext.oauth import OAuth, OAuthException
 
 from gd import conf
@@ -33,7 +33,7 @@ facebook = OAuth().remote_app('facebook',
     authorize_url='https://www.facebook.com/dialog/oauth',
     consumer_key=conf.FACEBOOK_APP_ID,
     consumer_secret=conf.FACEBOOK_APP_SECRET,
-    request_token_params={'scope': 'email,user_location'}
+    request_token_params={'scope': 'email,user_location,user_about_me,user_birthday,user_hometown,user_website'}
 )
 
 
@@ -62,15 +62,26 @@ def facebook_authorized(resp):
 
     # This is the flag that says that a user is logged in from a social
     # network!
+    print "========>>>>> OAUTH_TOKEN"
     session['oauth_token'] = (resp['access_token'], '')
 
     # Let's log the user in if he/she has already signed up.
-    username = facebook.get('/me').data['email']
+    userdata = facebook.get('/me')
+
+    username = userdata.data['email']
+    print "LOGANDO VIA FACE:", username
     try:
-        auth.login(username, None)
+        auth.login(username, None, fromsocial=True)
+        print "FACE LOGADO!"
     except auth.UserNotFound:
-        return redirect('%s?signup' % url_for('index'))
-    return redirect(url_for('index'))
+        print "NAO LOGADO, CADASTRANDO..."
+        resp = make_response( redirect('%s?signup' % url_for('index')) )
+        resp.set_cookie('connect_type', 'social_f')
+        return resp
+
+    resp = make_response( redirect(url_for('index')) )
+    resp.set_cookie('connect_type', 'social_f')
+    return resp
 
 
 @facebook.tokengetter
@@ -81,8 +92,11 @@ def get_facebook_oauth_token():
 
 def checkfblogin():
     try:
-        req = facebook.get('/me')
-    except (ServerNotFoundError, OAuthException):
+        if request.cookies.get('connect_type') == 'social_f':
+            req = facebook.get('/me')
+        else:
+            return {}
+    except :
         return {}
 
     if 'error' in req.data or not 'oauth_token' in session:

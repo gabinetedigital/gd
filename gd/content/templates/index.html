@@ -1,13 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/home.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/newsbox.css') }}">
-
-<!--[if IE]>
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-home.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/ie-newsbox.css') }}">
-<![endif]-->
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/index.css') }}">
 
 {% endblock %}
 
@@ -15,191 +9,65 @@
 <script src="{{ url_for('.static', filename='js/home.js') }}"></script>
 {% endblock %}
 
-{% block bodyclass %}home{% endblock %}
-
-{% block slideshow %}
-<div class="row">
-  <div id="slideshow" class="col12">
-    <ul class="carousel">
-      {%- for post in slideshow %}
-
-      {% set link = post.get_field('link', post.permalink) %}
-      <li>
-        {%- if post.thumbs %}
-        <a href="{{ link }}">
-          <img
-             src="{{ post.thumbs.slideshow.url }}"
-             alt="{{ post.title }}"
-             width="{{ post.thumbs.slideshow.width }}"
-             height="{{ post.thumbs.slideshow.height }}">
-        </a>
-        {%- endif %}
-        <h2 class="title">
-          <a href="{{ link }}">
-            {{ post.title }}
-          </a>
-        </h2>
-        <div class="excerpt">
-          <a href="{{ link }}">
-            {{ post.excerpt|safe }}
-          </a>
-        </div>
-      </li>
-      {%- endfor %}
-    </ul>
-
-    {%- if slideshow.__len__() > 1 %}
-    <ol class="controls">
-      {%- for i in slideshow %}
-      <li><a href="#{{ loop.index }}">{{ loop.index }}</a></li>
-      {%- endfor %}
-    </ol>
-    {%- endif %}
-    <div class="row-end"></div>
-  </div>
-</div>
+{% block id %}
+<div id="home"></div>
 {% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="row">
-    <div id="news" class="col8">
-      <ul>
-        {% for post in news.big %}
-        <li>
-          <ul class="news">
-            {% set link = post.get_field('link', post.permalink) %}
-            {% if post.thumbs %}
-            <li>
-              <a href="{{ link }}">
-                {% if post.has_category('wide') %}
-                <img
-                   src="{{ post.thumbs.widenewsbox.url }}"
-                   alt="{{ post.title }}"
-                   width="{{ post.thumbs.widenewsbox.width }}"
-                   height="{{ post.thumbs.widenewsbox.height }}"
-                   class="wide">
-                {% elif post.thumbs %}
-                <img
-                   src="{{ post.thumbs.newsbox.url }}"
-                   alt="{{ post.title }}"
-                   width="{{ post.thumbs.newsbox.width }}"
-                   height="{{ post.thumbs.newsbox.height }}">
-                {% endif %}
-              </a>
-            </li>
-            {% endif %}
 
-            {% if post.has_category('wide') %}
-            <li class="title">
-              <a href="{{ link }}">
-                {{ post.title }}
-              </a>
-            </li>
-            <li class="meta"></li>
-            {% else %}
-            <li>
-              <h2>
-                <a href="{{ link }}">
-                  {{ post.title }}
-                </a>
-              </h2>
-            </li>
-            <li>
-              <a href="{{ link }}">
-                {{ post.excerpt|safe }}
-              </a>
-            </li>
-            <li class="meta">
-              <a href="{{ link }}#comments">
-                Comentários (<strong>{{ post.comments.count }}</strong>)
-              </a>
-            </li>
-            {% endif %}
-          </ul>
-        </li>
-        {% endfor %}
-      </ul>
-
-      <ul class="bulletnews">
-        {% for post in news.small %}
-        <li><a href="{{ post.permalink }}">{{ post.title }}</a></li>
-        {% endfor %}
-      </ul>
-
-      <div class="allnews">
-        <a href="{{ url_for('news') }}">Ver todas as notícias</a>
-      </div>
-
-      <ul id="videogallery">
-        {% for video in videos %}
-        <li class="video{% if loop.last %} last {% endif %}">
-          <ul>
-            <li class="row">
-              <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
-                <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="thumb">
-                <img src="../static/imgs/play.png" class="play">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;" onclick='video.play({{ video|tojson|safe }})'>
-                {{ video.title }}
-              </a>
-            </li>
-          </ul>
-        </li>
-        {% endfor %}
-      </ul>
-
-      <div class="allvideos">
-        <a href="{{ url_for('videos.listing') }}">Assista a outros vídeos</a>
-      </div>
+<div class="content">
+  <div class="row widgets">
+    <div class="container">
+      <section>
+        {% if sidebar %}
+        <ul class="thumbnails">
+          {{ sidebar(id='sidebar-4')|safe }}
+        </ul>
+        {% endif %}
+      </section>
     </div>
-
-    <div id="sidebar" class="col4">
-
-      {% if sidebar %}
-      {{ sidebar(id='sidebar-4')|safe }}
-      {% endif %}
-
-      <div id="picday">
-        <aside id="widget_sp_image-3" class="widget widget_sp_image">
-        {%if picday %}
-          <h3 class="widget-title">Foto do Dia</h3>
-          <a class="widget_sp_image-image-link" href="{{ url_for('gallery.index',slug=picday['slug']) }}" target="_self">
-            <img src="{{ picday['imageURL'] }}" style="max-width: 299px;max-height: 193px;" alt="{{ picday['title'] }}" />
-          </a>
-          <div class="widget_sp_image-description" >
-            {{ picday['description']}}
-          </div>
-        {%endif%}
-
-        </aside>
-      </div>
-
-      <div id="lasttweet">
-        <div class="shadow">
-          <div class="tweet">
-            {{ last_tweet|safe }}
-            <a href="http://twitter.com/#!/GabineteDigital" target="_blank">
-              <h3>@GabineteDigital</h3>
-            </a>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-    <div class="row-end"></div>
   </div>
 
+  <div class="sobre">
+    <div class="container">
+      <div class="row">
+        <section>
+          <div class="page-header">
+            <h2 id="sobre">{{ page_about.title|safe }}</h2>
+          </div>
 
-  <!-- <div id="timeline"> -->
-  <!--   <a class="close"></a> -->
-  <!--   <h1>1 ano de Gabinete Digital</h1> -->
+          <div class="span6">
+            <div class="block">
+              {{ page_about.content|safe }}
+            </div>
+          </div>
 
-  <!--   <iframe src='http://embed.verite.co/timeline/?source=0Atq_zfYL8urOdG1ORkR4RU1zVWZpQ0ZWMHFQaGpER1E&font=BreeSerif-OpenSans&maptype=toner&lang=pt-br&width=900&height=650' width='900' height='650' frameborder='0'></iframe> -->
-  <!-- </div> -->
+          <div class="span6">
+            <ul class="nav nav-tabs" id="myTab">
+              <li><a class="pub" data-toggle="tab">Publicações</a></li>
+              <li><a class="clip" data-toggle="tab">Clipping</a></li>
+              <li><a class="membros" data-toggle="tab">Equipe</a></li>
+            </ul>
+            {{ sidebar(id='sidebar-6')|safe }}
+          </div>
 
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="resultados">
+    <div class="container">
+      <section>
+        <div class="page-header">
+          <h2>Resultados</h2>
+        </div>
+        <ul class="thumbnails">
+          {{ sidebar(id='sidebar-5')|safe }}
+        </ul>
+      </section>
+    </div>
+  </div>
 </div>
+
 {% endblock %}

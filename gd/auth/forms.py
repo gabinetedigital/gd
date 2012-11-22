@@ -73,11 +73,39 @@ class BaseDataForm(Form):
         _('Twitter'),
     )
 
+
+    receive_email = BooleanField(
+        _('I want to receive updates by email.'),
+        default=True,
+    )
+
+    receive_sms = BooleanField(
+        _('I want to receive updates by sms.'),
+        default=True,
+    )
+
+    def validate_receive_sms(self, field):
+        print "VALIDANDO RECEBIMENTO DE SMS com ou sem telefone!!!!", field.data, self.phone.data
+        """Validate if cel-phone number is present"""
+        if ( (field.data in ['Y','y'] or field.data == True) and not self.phone.data):
+            raise ValidationError(
+                _(u'Cel phone number is required'))
+
+
+    def validate_email_confirmation(self, field):
+        """Compound validation between email and its confirmation"""
+        if field.data != self.email.data:
+            raise ValidationError(
+                _(u'Email does not match its confirmation'))
+
+
     def validate_phone(self, field):
         if self.receive_sms:
             if self.receive_sms.data and not field.data:
                 raise ValidationError(
                     _(u'This field is required.'))
+
+
 
 
 class BasePasswordForm(Form):
@@ -130,8 +158,9 @@ class SignupForm(BaseDataForm, BasePasswordForm):
     )
 
     def validate_receive_sms(self, field):
+        print "VALIDANDO RECEBIMENTO DE SMS com ou sem telefone!!!!", field.data, self.phone.data
         """Validate if cel-phone number is present"""
-        if ( field.data and not self.phone.data):
+        if ( (field.data in ['Y','y'] or field.data == True) and not self.phone.data):
             raise ValidationError(
                 _(u'Cel phone number is required'))
 
