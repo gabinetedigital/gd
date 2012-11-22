@@ -29,12 +29,29 @@
       <h2>{% if current %}{{ current.title }} {% endif %}</h2>
       </div>
       <div class="span4">
-        <div class="controls busca pull-right">
+        <div class="controls gbusca pull-right">
           <form class="form-search">
             <a href="../" class="btn btn-primary">Voltar para galerias</a>
             <div class="input-prepend">
             <span class="add-on"><i class="icon-picture"></i></span>
-            <input class="span2" id="inputIcon" type="text">
+            <input class="span2 searcher" id="inputIcon" type="text">
+                  <script type="text/javascript">
+                    $(document).ready(function() {
+                      $('.searcher').typeahead({
+                        source: [{%for t in titulos%}'{{t[1]}}',{%endfor%}],
+                        items: 5,
+                        minLength: 1,
+                        updater: function(item){
+                          //Slugs é um dicionário que contém como chave o Título da Galeria, e como valor o slug,
+                          //para poder recdirecionar diretamente para a galeria.
+                          slugs = { {%for t in titulos%}
+                                   '{{t[1]}}':'{{t[0]}}',
+                                  {%endfor%} }
+                          document.location = "/fotos/" + slugs[item]
+                        }
+                      });
+                    });
+                  </script>
           </div>
           </form>
         </div>

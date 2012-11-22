@@ -29,10 +29,27 @@ Galeria de Fotos
               <h2>Fotos</h2>
             </div>
             <div class="span4">
-              <div class="controls busca pull-right">
+              <div class="controls gbusca pull-right">
                 <div class="input-prepend">
                   <span class="add-on"><i class="icon-picture"></i></span>
-                  <input class="span3" id="inputIcon" type="text" placeholder="procure aqui sua galeria...">
+                  <input class="span3 searcher" id="inputIcon" type="text" placeholder="procure aqui sua galeria..."></input>
+                  <script type="text/javascript">
+                    $(document).ready(function() {
+                      $('.searcher').typeahead({
+                        source: [{%for t in titulos%}'{{t[1]}}',{%endfor%}],
+                        items: 5,
+                        minLength: 1,
+                        updater: function(item){
+                          //Slugs é um dicionáraio que contém como chave o Título da Galeria, e como valor o slug,
+                          //para poder recdirecionar diretamente para a galeria.
+                          slugs = { {%for t in titulos%}
+                                   '{{t[1]}}':'{{t[0]}}',
+                                  {%endfor%} }
+                          document.location = "/fotos/" + slugs[item]
+                        }
+                      });
+                    });
+                  </script>
                 </div>
               </div>
             </div>
@@ -46,6 +63,11 @@ Galeria de Fotos
                   <div class="meta">{{ gallery.title }}</div>
                 </a>
               </div>
+            </li>
+            {%else%}
+            <li class="span9">
+              <p>Infelizmente não encontramos nenhuma galeria de fotos com este texto disponível.</p>
+              <p>Mas você pode ver a <a href="/fotos/">lista de galerias completa</a>.</p>
             </li>
             {% endfor %}
           </ul>

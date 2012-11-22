@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template, abort, request, jsonify, send_from_directory, current_app
+from flask import Blueprint, render_template, abort, request, jsonify, send_from_directory, current_app, redirect, url_for
 from gd.content.wp import wordpress, gallery as api
 import math
 import urllib2
@@ -35,10 +35,14 @@ def galerias(slug=None):
     if slug and (str(slug) not in [i['slug'] for i in galleries]):
         abort(404)
     current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
+    titulos = [ (g['slug'],g['title']) for g in galleries ]
     return render_template(
         'gallery.html',
-        current=current
-,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+        current=current,
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        titulos=titulos
+    )
+
 
 @gallery.route('/')
 def index(slug=None):
@@ -46,17 +50,22 @@ def index(slug=None):
     if 's' in request.args and request.args.get('s', ''):
         search_terms = request.args.get('s', '')
         galleries = wordpress.wpgd.searchGalleries('%s' % search_terms)
+        if len(galleries) == 1:
+            return redirect(url_for('.galerias', slug=galleries[0]['slug']))
     else:
         galleries = wordpress.wpgd.getGalleries()
         if not galleries:
             abort(404)
     current = None
 
+    titulos = [ (g['slug'],g['title']) for g in galleries ]
+
     return render_template(
         'gallerys.html',
         galleries=galleries,
         s=search_terms,
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')) 
+        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        titulos=titulos) 
 
 @gallery.route('/vote/<int:gid>/')
 @gallery.route('/vote/<int:gid>/<int:rate>/')
