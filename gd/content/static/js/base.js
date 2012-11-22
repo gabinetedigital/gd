@@ -158,7 +158,7 @@ $(function(){
 });
 
 $(document).ready(function(){
-   $.getJSON("http://search.twitter.com/search.json?rpp=100&callback=?&q=%23transitors",function(data){
+   $.getJSON("http://search.twitter.com/search.json?rpp=100&callback=?&q=%40governo_rs&rpp=20",function(data){
         for(var i=0; i < 20 && i < data.results.length; i++){
             option = {
                 title: '@'+data.results[i].from_user_name,
