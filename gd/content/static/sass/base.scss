@@ -346,7 +346,7 @@ footer li {
 
 
 .bloco {
-    background-color: rgba(black, 0.6);
+    @include rgba-background(rgba(0,0,0,0.6));
     padding: 19px 20px 0;
     height: 146px;
     display: block;

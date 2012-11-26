@@ -20,7 +20,7 @@ section h2 {
 }
 
 .block {
-    background-color: rgba($black, 0.698);
+    @include rgba-background(rgba($black,0.698));
     color: #FFFFFF;
     display: block;
     font-size: 14px;
@@ -34,7 +34,7 @@ section h2 {
     border: 0 none;
     border-radius: 0 0 0 0;
     display: block;
-    background-color: rgba($black, 0.3);
+    @include rgba-background(rgba($black,0.3));
     display: block;
     padding: 7px;
     position: relative;
@@ -83,7 +83,7 @@ section h2 {
     border: 0;
     padding: 10px;
     @include single-text-shadow;
-    background-color: rgba(0, 0, 0, 0.8);
+    @include rgba-background(rgba(black,0.8));
     display: block;
     clear: both;
 }
@@ -173,7 +173,7 @@ section h2 {
 /* Widgets */
 
 .fotodia h4 {
-    background: none repeat scroll 0 0 rgba($green, 0.75);
+    @include rgba-background(rgba($green,0.8));
     bottom: 0;
     color: #FFFFFF;
     font-size: 12pt;
@@ -197,7 +197,7 @@ section h2 {
 }
 
 .fotodia h3 {
-    background: none repeat scroll 0 0 rgba($green, 0.75);
+    @include rgba-background(rgba($green,0.75));
     bottom: 0;
     color: #FFFFFF;
     font-size: 14px;
@@ -215,7 +215,7 @@ section h2 {
 }
 
 .news1 h4 {
-    background: none repeat scroll 0 0 rgba($black, 0.75);
+    @include rgba-background(rgba($black,0.75));
     bottom: 0;
     color: #FFFFFF;
     font-size: 14px;
@@ -232,7 +232,7 @@ section h2 {
 }
 
 .publicacoes h4 {
-    background: none repeat scroll 0 0 rgba($black, 0.75);
+    @include rgba-background(rgba($black,0.75));
     bottom: 0;
     color: #FFFFFF;
     font-size: 14px;
@@ -329,12 +329,11 @@ section h2 {
     font-size: 12pt;
     line-height: 24px;
     text-align: left;
-    background: none repeat scroll 0 0 rgba($black, 0.75);
+    @include rgba-background(rgba($black,0.75));
     font-weight: 600;
     left: 0;
-    top: 10%;
+    top: 5%;
     line-height: 24px;
-    margin: 7px;
     overflow: hidden;
     padding: 5px 8px;
     position: absolute;
