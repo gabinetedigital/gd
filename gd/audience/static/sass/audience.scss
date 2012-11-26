@@ -132,7 +132,7 @@ div.time {
 
 .stage {
    background-color: black;
-   height: 520px;
+   height: 570px;
 }
 
 .droom {
@@ -141,7 +141,7 @@ div.time {
     margin-left: -30px;
     border-left: 4px solid $black;
     padding-top: 10px;
-    height: 509px;
+    height: 559px;
     overflow: hidden;
 }
 
@@ -378,3 +378,14 @@ p.description {
     @include border-radius(30px);
 }
 
+.streaming {
+    background: url(../imgs/video.png) 50%;
+    display: block;
+    width: 600px;
+    height: 480px;
+    /*margin:0 auto 20px auto;*/
+}
+
+.streaming video.video-js {
+    height: 400px;
+}

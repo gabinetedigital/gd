@@ -116,20 +116,20 @@
                 {% endif %}
               </div>
 
-              <video
-                id="aovivo"
-                width="100%"
-                height="400px"
-                poster="http://s4.procergs.com.br/static2/procergs.jpg"
-              >
                 {%if audience.aud_wp_govescuta_ativa == 'n'%}
+                  <video
+                    id="aovivo"
+                    width="100%"
+                    height="400px"
+                    poster="http://s4.procergs.com.br/static2/procergs.jpg"
+                  >
                   {%for video in audience.video_sources%}
                     <source src="{{video.url|safe}}" type="{{video.format.split('; ')[0]|safe}}">
                   {%endfor%}
+                  </video>
                 {%else%}
-                <source src="{{audience.aud_wp_govescuta_video_embed|safe}}" type="video/ogg">
+                  <div class="stream">{{audience.aud_wp_govescuta_video_embed|safe}}</div>
                 {%endif%}
-              </video>
             </div>
           </div>
         </div>
