@@ -22,7 +22,7 @@
 
 
 from json import loads
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, url_for, current_app
 from flask import session as fsession
 
 from gd import auth
@@ -123,6 +123,11 @@ def resultados(ano=2012):
 
     categoria = 'resultados-gov-pergunta-%s' % str(ano)
     retorno = wordpress.wpgovp.getContribuicoes(principal='S',category=categoria)
+    try:
+        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
     questions = None
     for q in retorno:
         if isinstance(q, list):
@@ -132,6 +137,7 @@ def resultados(ano=2012):
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         questions=questions,
         sidebar=wordpress.getSidebar,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         ano=ano,
         slideshow=slideshow,
         wp=wordpress

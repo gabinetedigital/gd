@@ -232,6 +232,11 @@ def index():
         vote_url = app.config['VOTACAO_URL']
     except KeyError:
         vote_url = ""
+
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'index.html', wp=wordpress,
         sidebar=wordpress.getSidebar,
@@ -242,7 +247,8 @@ def index():
         page_como=wordpress.getPageByPath('como-funciona'),
         page_seg=wordpress.getPageByPath('seguranca-2'),
         menu=menus,
-        VOTACAO_URL=vote_url
+        VOTACAO_URL=vote_url,
+        twitter_hash_cabecalho=twitter_hash_cabecalho
     )
 
 
@@ -254,8 +260,13 @@ def get_part(part):
 @app.route('/gallerias')
 def gallery():
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'gallerys.html',
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
     )
 
@@ -302,10 +313,15 @@ def news(page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     
     psearch = _format_postsearch(posts)
-    
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         picday=picday,
         pagination=pagination,
         menu=menus,
@@ -321,10 +337,14 @@ def category(cid, page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     
     psearch = _format_postsearch(posts)
-    
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         picday=picday,
         pagination=pagination,
         posts=psearch
@@ -340,10 +360,14 @@ def tag(slug, page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     
     psearch = _format_postsearch(posts)
-    
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         picday=picday,
         pagination=pagination,
         posts=psearch
@@ -358,11 +382,16 @@ def conselho():
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     page = wordpress.getPageByPath(path)
     cmts = wordpress.getComments(status='approve',post_id=page.data['id'], number=1000)
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'post.html',
         page=page,
         sidebar=wordpress.getSidebar,
         picday=picday,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         comments=cmts,
         show_comment_form=is_authenticated(),
         categoria_contribuicao_text=categoria_contribuicao_text
@@ -374,9 +403,14 @@ def conselho():
 @app.route('/comite-transito/')
 def comite_transito():
     """Renders a wordpress page special"""
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'comite-transito.html',
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         wp=wordpress,
         sidebar=wordpress.getSidebar,
     )
@@ -440,9 +474,14 @@ def pages(path):
     """Renders a wordpress page"""
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'page.html',
         page=wordpress.getPageByPath(path),
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         sidebar=wordpress.getSidebar,
         picday=picday
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
@@ -464,12 +503,17 @@ def post(pid):
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'post.html',
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
         sidebar=wordpress.getSidebar,
         picday=picday,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
         comments=wordpress.getComments(status='approve',post_id=pid),
         show_comment_form=is_authenticated(),
@@ -530,12 +574,17 @@ def search(page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
 
     psearch = _format_postsearch(posts)
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
 
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         picday=picday,
         pagination=pagination,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         search_term=query,
         posts=psearch,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
@@ -556,11 +605,15 @@ def archive(m, page=0):
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     
     psearch = _format_postsearch(posts)
-    
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         picday=picday,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         pagination=pagination,
         posts=psearch)
 

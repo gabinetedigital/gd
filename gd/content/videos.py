@@ -31,7 +31,13 @@ videos = Blueprint(
 def listing():
     videos = wordpress.wpgd.getVideos(
         where='status=true', orderby='date DESC')
+    try:
+        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
     return render_template('videos.html', videos=videos
+        ,twitter_hash_cabecalho=twitter_hash_cabecalho
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 
@@ -46,8 +52,14 @@ def details(vid):
         print s['format'], s['format'][0:s['format'].find(';')]
         f = s['format'][0:s['format'].find(';')]
         video_sources.append("<source type=\"%s\" src=\"%s\">" % ( f, s['url'] ))
+    try:
+        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
     return render_template('video.html', video=video, sources=video_sources
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+        ,twitter_hash_cabecalho=twitter_hash_cabecalho
         ,base_url=base_url)
 
 

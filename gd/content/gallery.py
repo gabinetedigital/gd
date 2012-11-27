@@ -36,9 +36,15 @@ def galerias(slug=None):
         abort(404)
     current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
     titulos = [ (g['slug'],g['title']) for g in galleries ]
+    try:
+        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
     return render_template(
         'gallery.html',
         current=current,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         titulos=titulos
     )
@@ -59,11 +65,16 @@ def index(slug=None):
     current = None
 
     titulos = [ (g['slug'],g['title']) for g in galleries ]
+    try:
+        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
 
     return render_template(
         'gallerys.html',
         galleries=galleries,
         s=search_terms,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         titulos=titulos) 
 
