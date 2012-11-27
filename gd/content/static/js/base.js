@@ -164,7 +164,7 @@ $(document).ready(function(){
                 title: '@'+data.results[i].from_user_name,
                 content: data.results[i].text,
                 trigger: 'hover',
-                placement: 'right',
+                placement: 'right'
             };
             var number = 1 + Math.floor(Math.random() * 8);
             $('.tweets ul').prepend("<li class='pessoa"+number+"' id='"+i+"'> </li>");
