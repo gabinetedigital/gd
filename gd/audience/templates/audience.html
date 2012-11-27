@@ -60,7 +60,7 @@
               <a href="./" class="btn btn-primary todas">Ver mais audiências</a>
               {% endif%}
             </div>
-            <div id="date" class="pull-right">
+            <div id="date" class="pull-right visible-desktop">
               <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
               <div class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</div>
               <div class="time">
@@ -71,7 +71,6 @@
               <p>Compartilhe</p>
               <span class='st_facebook_hcount' displayText='Facebook'></span>
               <span class='st_twitter_hcount' displayText='Tweet'></span>
-              <span class='st_plusone_hcount' displayText='Google +1'></span>
             </div>
           </div>
         </div>
@@ -121,7 +120,7 @@
             </div>
           </div>
         </div>
-        <div class="span4 hidden-phone">
+        <div class="span4 visible-desktop">
           <div class="droom">
               {% if not govescuta %}
               <div id="message-statusbar" class="alert alert-info span3"></div>
