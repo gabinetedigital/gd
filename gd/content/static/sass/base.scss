@@ -284,7 +284,7 @@ a {
 }
 
 footer {
-    @include background-image(image-url("footer.png"), linear-gradient(center top , #222222, #111111));
+    @include background-with-css2-fallback(image-url("footer.png"), linear-gradient(center top , #222222, #111111), #222222);
     background-color: #1B1B1B;
     padding-top: 30px;
     padding-bottom: 20px;
