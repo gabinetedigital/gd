@@ -143,19 +143,26 @@ def all_buzz(aid):
 @audience.route('/<int:aid>/tv')
 def tv(aid):
     """Visualization for the last notice published"""
-    inst = get_or_404(Audience, id=aid, visible=True)
+    #inst = get_or_404(Audience, id=aid, visible=True)
+    pagination, inst = wordpress.wpgove.getAudiencias(ativa='s',perpage=1)
+    notice = AudiencePosts.query.get(aid).get_last_published_notice()
     return render_template(
         'tv.html', audience=inst,
-        notice=inst.get_last_published_notice())
+        #notice=inst.get_last_published_notice()
+        notice=notice
+        )
 
 
 @audience.route('/<int:aid>/tvbuzz')
 def tvbuzz(aid):
     """Visualization for the buzz of an audience"""
-    inst = get_or_404(Audience, id=aid, visible=True)
+    #inst = get_or_404(Audience, id=aid, visible=True)
+    pagination, inst = wordpress.wpgove.getAudiencias(ativa='s',perpage=1)
+    buzz = AudiencePosts.query.get(aid).get_moderated_buzz()
     return render_template(
         'tvbuzz.html', audience=inst,
-        buzz=inst.get_moderated_buzz())
+        #buzz=inst.get_moderated_buzz()
+        buzz=buzz)
 
 
 @audience.route('/<int:aid>/tvsms')
