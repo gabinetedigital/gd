@@ -40,7 +40,7 @@ $(function () {
             width: '100%',  
             modes: [    
                 { type: "html5" },    
-                { type: "flash", src: "//static/jw/player.swf" },    
+                { type: "flash", src: "/static/jw/player.swf" },    
                 { type: "download" }  
             ]
         });
