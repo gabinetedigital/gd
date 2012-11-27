@@ -18,18 +18,6 @@
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
 
-<script type="text/javascript">
-  jwplayer("aovivo").setup({
-    skin: "/static/jw/bekle/bekle.xml",
-    width: '100%',
-    modes: [
-      { type: "html5" },
-      { type: "flash", src: "/static/jw/player.swf" },
-      { type: "download" }
-    ]
-  });
-</script>
-
 {% endblock %}
 
 
@@ -267,6 +255,20 @@
     {{audience.aud_wp_govescuta_detalhes_govesc|safe}}
   </div>
 </div>
+
+{%if audience.aud_wp_govescuta_ativa == 'n'%}
+<script type="text/javascript">
+  jwplayer("aovivo").setup({
+    skin: "/static/jw/bekle/bekle.xml",
+    width: '100%',
+    modes: [
+      { type: "html5" },
+      { type: "flash", src: "/static/jw/player.swf" },
+      { type: "download" }
+    ]
+  });
+</script>
+{%endif%}
 
 {% endfor%}
 </div>
