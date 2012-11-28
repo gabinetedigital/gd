@@ -29,7 +29,7 @@ var buzz_longpool = $.longPoll (
         {
           if ( data.type == 'published')
           {
-            $('#beingAnswered').fadeOut ().html ( '<ul class="stream"><li class="avatar"><img src="' + data.avatar + '"></li><li class="author">' + data.author + ' <em>| ' + data.authortype + '</em></li><li class="answer">' + data.content + '</li></ul>').fadeIn ();
+            $('#beingAnswered-anterior').fadeOut ().html ( '<ul class="stream"><li class="avatar"><img src="' + data.avatar + '"></li><li class="author">' + data.author + ' <em>| ' + data.authortype + '</em></li><li class="answer">' + data.content + '</li></ul>').fadeIn ();
           }
           if ( data.type == 'moderated' || data.type == 'public')
           {
