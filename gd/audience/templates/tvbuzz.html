@@ -40,7 +40,7 @@
     <script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
     <script>
       var BASE_URL = "{{ request.url_root }}";
-      var AUDIENCE_ID={{audience.id}};
+      var AUDIENCE_ID={{audience.0.id}};
       $(function () {
           new Buzz(BASE_URL,{
               buzz_accepted: function (msg) {
