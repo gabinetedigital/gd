@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Rodrigo Sebastiao da Rosa <rodrigo-rosa@procergs.rs.gov.br>
