@@ -1,4 +1,6 @@
 $(function(){
+    $('.hide').hide();
+
     var sticky_navigation_offset_top = $('.subnav').offset().top;
     var sticky_navigation = function(){
         var scroll_top = $(window).scrollTop();
@@ -46,7 +48,7 @@ $(function(){
         var $spy = $(this).scrollspy('refresh')
     });
 
-    $('.on').hide();
+    //$('.on').hide();
     // $('.logado').hide();
 
     $('.entrar').click(function(){
@@ -119,10 +121,10 @@ $(function(){
         success: function (data) { handleSuccess($('#frmLogin'), data); }
     });
 
-    $('span#loginmsg').hide();
-    $('.passwordReminder').hide();
-    $('#signupoverlay').hide();
-    $('#tos').hide();
+    // $('span#loginmsg').hide();
+    // $('.passwordReminder').hide();
+    // $('#signupoverlay').hide();
+    // $('#tos').hide();
 
     auth.callback_login = function(action){
         //alert('callback:' + action);

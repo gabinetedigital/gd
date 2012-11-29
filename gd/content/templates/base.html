@@ -80,7 +80,7 @@
 
 
 <!-- Signup Modal -->
-            <div id="signupoverlay" class="overlay loading" style="position: absolute; z-index: 9990; top: 47.8px; left: 692.5px; display: block;">
+            <div id="signupoverlay" class="overlay loading hide" style="position: absolute; z-index: 9990; top: 47.8px; left: 692.5px; display: block;">
               <div class="close close-signup">X</div>
               <div class="contentWrap">
                 <div class="ct">
@@ -91,7 +91,7 @@
               </div>
             </div>
 <!-- Toss Modal -->
-            <div id="tos" class="overlay loading" style="z-index: 9999; width: 80%; left: 10%;">
+            <div id="tos" class="overlay loading hide" style="z-index: 9999; width: 80%; left: 10%;">
               <div class="close close-tos">X</div>
               <div class="contentWrap">
                 <strong>Carregando</strong>
@@ -104,7 +104,7 @@
             </div>
 <!-- Signup Modal -->
 
-            <div class="on">
+            <div class="on hide">
               <form class="form-inline" method="post" id="frmLogin" action="{{ url_for('auth.login_json') }}">
                 <input type="text" class="input-small" id="username" name="username" placeholder="Usuário">
                 <input type="password" id="password" name="password" class="input-small" placeholder="Senha">
@@ -114,9 +114,9 @@
                   <a href="" onclick="auth.showSignupForm() ;return false;">Novo Cadastro</a>
                 </div>
               </form>
-              <span id="loginmsg" class="alert"></span>
+              <span id="loginmsg" class="alert hide"></span>
             </div>
-            <div class="logado">
+            <div class="logado hide">
               <div class="male pull-right"></div>
               <div class="profile-control">
                 <p class="saudacao">Olá, {{ user.display_name }}!</p>
@@ -133,7 +133,7 @@
 
 
             </div>
-            <div class="passwordReminder">
+            <div class="passwordReminder hide">
               <form class="form-horizontal" action="/auth/remember_password" id="remember_password" method="post">
                 <input type="text" id="email" name="email" placeholder="Seu email">
                 <button type="submit" class="btn logar">Lembrar</button>
