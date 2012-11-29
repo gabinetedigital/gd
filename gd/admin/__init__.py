@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- encoding: utf-8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -20,6 +20,7 @@
 """Module that uses the Template and Model APIs to build the Admin web
 interface.
 """
+
 import urllib 
 import json
 from urlparse import urlparse
@@ -159,8 +160,8 @@ def accept_buzz(bid):
     buzz.status = u'approved'
     
     if(objurlConta > 1):
-        avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
-        query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
+        avatar = buzz.owner_avatar or "/static/imgs/avatar.png"
+        query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": buzz.content.encode('utf8'), "authortype": str(buzz.type_) }, ensure_ascii=False )
         url = objurl+"/buzz/pub?id="+str(buzz.audience_id)
         f = urllib.urlopen(url, query)
         f.close()
