@@ -41,6 +41,9 @@ admin = Blueprint(
 objurl = urlparse(conf.BASE_URL)
 objurl = objurl.geturl()
 
+objurlConta= objurl.find("rs.gov.br")
+
+
 @admin.route('/login', methods=('POST', 'GET'))
 def login():
     """Renders the login form and calls login machinery"""
@@ -155,10 +158,10 @@ def accept_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
     
-    if(objurl == 'http://www.gabinetedigital.rs.gov.br/'):
+    if(objurlConta > 1):
         avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
         query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
-        url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
+        url = objurl+"/buzz/pub?id="+str(buzz.audience_id)
         f = urllib.urlopen(url, query)
         f.close()
     
@@ -195,10 +198,11 @@ def publish_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'published'
     buzz.date_published = datetime.now()
-    if(objurl == 'http://www.gabinetedigital.rs.gov.br/'):
+    
+    if(objurlConta > 1):
         avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
         query = json.dumps({"type": "published", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
-        url = "http://www.gabinetedigital.rs.gov.br/buzz/pub?id="+str(buzz.audience.id)
+        url = objurl+"/buzz/pub?id="+str(buzz.audience_id)
         f = urllib.urlopen(url, query)
         f.close()
     
