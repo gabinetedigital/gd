@@ -54,19 +54,19 @@
 }
 
 .priorizadas {
-    @include background-image(linear-gradient($lblue, $blue));
+    @include background-with-css2-fallback(linear-gradient($lblue, $blue), $blue);
 }
 
 .propostas {
-    @include background-image(linear-gradient($lgreen, $green));
+    @include background-with-css2-fallback(linear-gradient($lgreen, $green), $green);
 }
 
 .pessoas {
-    @include background-image(linear-gradient($lred, $red));
+    @include background-with-css2-fallback(linear-gradient($lred, $red), $red);
 }
 
 .votos {
-    @include background-image(linear-gradient($lorange, $orange));
+    @include background-with-css2-fallback(linear-gradient($lorange, $orange), $orange);
 }
 
 .dados {
@@ -112,7 +112,7 @@
     padding: 0 10px;
     overflow: auto;
     @include border-radius(0);
-    @include background-image(linear-gradient(#FFF, #DDD));
+    @include background-with-css2-fallback(linear-gradient(#FFF, #DDD), #FFF);
 }
 
 .lista .thumbnail h3 {
