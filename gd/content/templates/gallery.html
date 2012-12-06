@@ -17,16 +17,6 @@
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.resizecrop-1.0.3.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
-<script>
-
-  $(document).ready(function(){
-    $('.fancybox img').resizecrop({
-      width:200,
-      height:200,
-    });
-  });
-
-</script>
 {% endblock %}
 
 {% block id %}
@@ -74,7 +64,7 @@
       <ul class="album">
         {% for image in current.images %}
         <li class="span2">
-          <a class="fancybox" rel="{{ current.title }}" href="{{ image.thumbURL }}" title="{{ image.description }}">
+          <a class="fancybox" rel="{{ current.title }}" href="{{ image.thumbURL }}" data-download="{{ image.imageURL }}" title="{{ image.description }}">
             <img src="{{ image.thumbURL }}" alt="{{ image.description }}" rel="#foto{{ image.pid }}">
           </a>
         </li>

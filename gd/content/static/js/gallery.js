@@ -19,6 +19,11 @@
 
 $(document).ready(function() {
 
+    $('.fancybox img').resizecrop({
+      width:200,
+      height:200,
+    });
+
     $(".fancybox").fancybox({
         // beforeShow: function () {
         //     if (this.title) {
@@ -30,6 +35,14 @@ $(document).ready(function() {
         //         this.title += '</div>';
         //     }
         // },
+        beforeShow: function () {
+            var $download = $(this.element).attr('data-download');
+            if (this.title) {
+                this.title += '<br>';
+
+                this.title += '<a href="'+$download+'" class="btn btn-danger pull-right hidden-phone">Download original</a>';
+            }
+        },
     	openEffect	: 'elastic',
     	closeEffect	: 'elastic',
         helpers		: {
