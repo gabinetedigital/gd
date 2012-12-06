@@ -6,6 +6,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/bootstrap-lightbox.min.css') }}">
 {% endblock %}
 
 {% block javascript %}
@@ -15,6 +16,7 @@
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
 <script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/bootstrap-lightbox.min.js') }}"></script>
 {% endblock %}
 
 {% block id %}
@@ -26,66 +28,58 @@
   <div class="container">
     <div class="row">
       <div class="span8">
-      <h2>{% if current %}{{ current.title }} {% endif %}</h2>
+        <h2>{% if current %}{{ current.title }} {% endif %}</h2>
       </div>
       <div class="span4">
-        <div class="controls gbusca pull-right">
+        <div class="controls gbusca pull-right busca">
           <form class="form-search">
             <a href="../" class="btn btn-primary">Voltar para galerias</a>
             <div class="input-prepend">
-            <span class="add-on"><i class="icon-picture"></i></span>
-            <input class="span2 searcher" id="inputIcon" type="text">
-                  <script type="text/javascript">
-                    $(document).ready(function() {
-                      $('.searcher').typeahead({
-                        source: [{%for t in titulos%}'{{t[1]}}',{%endfor%}],
-                        items: 5,
-                        minLength: 1,
-                        updater: function(item){
-                          //Slugs é um dicionário que contém como chave o Título da Galeria, e como valor o slug,
-                          //para poder recdirecionar diretamente para a galeria.
-                          slugs = { {%for t in titulos%}
-                                   '{{t[1]}}':'{{t[0]}}',
-                                  {%endfor%} }
-                          document.location = "/fotos/" + slugs[item]
-                        }
-                      });
-                    });
-                  </script>
-          </div>
+              <span class="add-on"><i class="icon-picture"></i></span>
+              <input class="span2 searcher" id="inputIcon" type="text">
+              <script type="text/javascript">
+                $(document).ready(function() {
+                   $('.searcher').typeahead({
+                      source: [{%for t in titulos%}'{{t[1]}}',{%endfor%}],
+                      items: 5,
+                      minLength: 1,
+                      updater: function(item){
+                         //Slugs é um dicionário que contém como chave o Título da Galeria, e como valor o slug,
+                         //para poder recdirecionar diretamente para a galeria.
+                         slugs = { {%for t in titulos%}
+                         '{{t[1]}}':'{{t[0]}}',
+                         {%endfor%} }
+                      document.location = "/fotos/" + slugs[item]
+                      }
+                   });
+
+                });
+              </script>
+            </div>
           </form>
         </div>
       </div>
     </div>
-    <div class="row desk">
-      <div id="gallery" class="span8 content">
-        <div id="controls" class="span8 controls"></div>
-        <div class="slideshow-container">
-          <div id="loading" class="loader"></div>
-          <div id="slideshow" class="slideshow"></div>
-        </div>
-        <div id="caption" class="caption-container"></div>
-      </div>
-      <div id="thumbs"  class="span4 navigation visible-desktop">
-        <ul class="thumbs">
+    <div class="row">
+      <div class="span12">
+
+        <ul class="album">
           {% for image in current.images %}
-          <li>
-            <a href="{{ image.imageURL }}" title="{{ image.description }}" class="thumb"
-               {% if loop.index == 1 %}class="selected"{% endif %}
-               >
-              <img src="{{ image.thumbURL }}" alt="{{ image.description }}" width="150px">
-            </a>
-	    <div class="caption">
-	      <div class="text">{{ image.description }}</div>
-	      <div class="download">
-	        <a href="{{ url_for('gallery.fotoDownload', gallery=image.slug, filename=image.filename) }}" class="btn btn-danger">Baixar original</a>
-	      </div>
-              <div class="share">
-                <span class='st_facebook_hcount' displayText='Facebook'></span>
-                <span class='st_twitter_hcount' displayText='Tweet'></span>
-                <span class='st_plusone_hcount' displayText='Google +1'></span>
+          <li class="span2">
+              <a data-toggle="lightbox" href="#foto{{ image.pid }}" title="{{ image.description }}" class="thumb">
+                <img src="{{ image.thumbURL }}" alt="{{ image.description }}" rel="#foto{{ image.pid }}">
+              </a>
+              <div id="foto{{ image.pid }}" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+	        <div class='lightbox-header'>
+                  <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+                </div>
+	        <div class='lightbox-content'>
+                  <img src="{{ image.imageURL }}" alt="{{ image.description }}" width="800px">
+                </div>
+	        <div class='lightbox-footer'>
+                  <p> {{ image.description }} </p>
+                </div>
               </div>
-	    </div>
           </li>
           {% endfor %}
         </ul>

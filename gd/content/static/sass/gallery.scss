@@ -1,6 +1,6 @@
 @import "system";
 
-.thumbnail {
+.gallerylist .thumbnail {
     border: 0 none;
     border-radius: 0 0 0 0;
     display: block;
@@ -25,110 +25,40 @@
 
 .gallery h2 {
     color: #FFF;
+    text-transform: capitalize;
     @include single-text-shadow;
 }
 
-.desk {
-    background: $black;
-    overflow: auto;
-    padding: 20px 0 20px 0;
+.busca {
+    margin-top: 10px;
 }
 
-#controls {
-    font-size: 20px;
-    margin: 180px 0 0 -17px;
-    position: absolute;
+.album {
+    margin: 20px 60px;
 }
 
-#controls .nav-controls a {
-    font-size: 48pt;
-    line-height: normal;
-    padding: 10px 25px;
-    color: #FFF;
-    @include single-text-shadow;
+.album  > li {
+    display: inline-block;
+    margin: 0;
 }
 
-#controls .nav-controls .prev {
-    float: left;
-}
-
-#controls .nav-controls .next {
-    float: right;
-}
-
-.caption {
-    background: #000;
-    bottom: 0;
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 600;
-    left: 0;
-    line-height: 24px;
-    overflow: hidden;
-    padding: 5px 8px;
-    position: absolute;
-    right: 0;
-    text-align: left;
-    text-overflow: ellipsis;
-}
-
-div.caption-container {
-    position: relative;
-    clear: left;
-}
-
-div.caption .text {
-    width: 60%;
-    float: left;
-    margin-right: 10px;
-}
-
-span.image-caption {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-div.caption {
-    padding: 12px;
-}
-div.image-title {
-    font-weight: bold;
-    font-size: 1.4em;
-}
-div.image-desc {
-    line-height: 1.3em;
-    padding-top: 12px;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#thumbs {
-    overflow: hidden;
-}
-
-
-#thumbs ul li {
-    float: left;
-    list-style: none;
-}
-
-.navigation {
-    padding: 20px 0 0 0;
-}
-
-.bottom {
-    clear: both;
-    padding: 22px 0 0 25px;
+.album .thumbnail {
+    border: none;
 }
 
 @media (max-width: 767px) {
-    #controls {
-        width: 100%;
+    .album {
+        margin: 20px 0px;
+    }
+
+   .album  > li {
+        width: 30%;
+        margin: 6px 4px;
+        padding: 0;
     }
 }
+
+
 
 /* Videos */
 
@@ -136,7 +66,7 @@ div.image-desc {
     margin-bottom: 30px;
 }
 
-.videos h2 {
+.gallery h2, .videos h2 {
     font-size: 30px;
     color: $blue;
     font-weight: 300;
@@ -234,4 +164,51 @@ div.image-desc {
     #controls {
         width: 100%;
     }
+}
+
+
+.simple_overlay {
+
+    /* must be initially hidden */
+    display:none;
+
+    /* place overlay on top of other elements */
+    z-index:10000;
+
+    /* styling */
+    background-color:#333;
+
+    width:675px;
+    min-height:200px;
+    border:1px solid #666;
+
+    /* CSS3 styling for latest browsers */
+    @include box-shadow(0 0 90px #000);
+}
+
+/* close button positioned on upper right corner */
+.simple_overlay .close {
+    background-image:url(/media/img/overlay/close.png);
+    position:absolute;
+    right:-15px;
+    top:-15px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}
+
+
+/* styling for elements inside overlay */
+.details {
+    position:absolute;
+    top:15px;
+    right:15px;
+    font-size:11px;
+    color:#fff;
+    width:150px;
+}
+
+.details h3 {
+    color:#aba;
+    font-size:15px;
 }
