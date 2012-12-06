@@ -29,17 +29,21 @@
     @include single-text-shadow;
 }
 
-.busca {
-    margin-top: 10px;
-}
-
-.album {
-    margin: 20px 60px;
+.formb {
+    margin-top: 20px;
 }
 
 .album  > li {
     display: inline-block;
     margin: 0;
+}
+
+.album li a img {
+    opacity: 0.4;
+}
+
+.album li a img:hover {
+    opacity: 1.0;
 }
 
 .album .thumbnail {
@@ -57,7 +61,6 @@
         padding: 0;
     }
 }
-
 
 
 /* Videos */

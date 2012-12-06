@@ -19,32 +19,22 @@
 
 $(document).ready(function() {
 
-    // Initialize Minimal Galleriffic Gallery
-    var gallery = $('#thumbs').galleriffic({
-        imageContainerSel:      '#slideshow',
-        controlsContainerSel:   '#controls',
-        captionContainerSel:    '#caption',
-        numThumbs:                 8,
-        maxPagesToShow:            20,
-        prevLinkText:              '«',
-        nextLinkText:              '»',
-        nextPageLinkText:          '>',
-        prevPageLinkText:          '<',
-        enableHistory:             true,
-        onTransitionIn: function(slide, caption, isSync) {
-            var duration = this.getDefaultTransitionDuration(isSync);
-            var slideImage = slide.find('img');
-            slide.fadeTo(duration, 1.0);
-
-            caption.width(slideImage.width())
-                .css({
-                    'bottom' : ($('#caption').height()+3),
-                    'left' : ((Math.floor(($('#slideshow').width() - slideImage.width()) / 2) )),
-                })
-
-            $('#caption span.image-caption').fadeTo(1000, 0.8);
-        },
-
+    $(".fancybox").fancybox({
+        // beforeShow: function () {
+        //     if (this.title) {
+        //         this.title += '<br>';
+        //         this.title += '<div class="share">';
+        //         this.title += '<span class="st_facebook_hcount" displayText="Facebook"></span>';
+        //         this.title += '<span class="st_twitter_hcount" displayText="Tweet"></span>';
+        //         this.title += '<span class="st_plusone_hcount" displayText="Google +1"></span>';
+        //         this.title += '</div>';
+        //     }
+        // },
+    	openEffect	: 'elastic',
+    	closeEffect	: 'elastic',
+        helpers		: {
+	    title	: { type : 'inside' },
+	}
     });
 
     function pageload(hash) {

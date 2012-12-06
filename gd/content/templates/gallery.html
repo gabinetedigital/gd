@@ -6,17 +6,16 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/bootstrap-lightbox.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/jquery.fancybox.css') }}">
 {% endblock %}
 
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/jquery.galleriffic.js') }}"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
 <script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/bootstrap-lightbox.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
 {% endblock %}
 
 {% block id %}
@@ -31,7 +30,7 @@
         <h2>{% if current %}{{ current.title }} {% endif %}</h2>
       </div>
       <div class="span4">
-        <div class="controls gbusca pull-right busca">
+        <div class="controls gbusca pull-right formb">
           <form class="form-search">
             <a href="../" class="btn btn-primary">Voltar para galerias</a>
             <div class="input-prepend">
@@ -61,29 +60,15 @@
       </div>
     </div>
     <div class="row">
-      <div class="span12">
-
-        <ul class="album">
-          {% for image in current.images %}
-          <li class="span2">
-              <a data-toggle="lightbox" href="#foto{{ image.pid }}" title="{{ image.description }}" class="thumb">
-                <img src="{{ image.thumbURL }}" alt="{{ image.description }}" rel="#foto{{ image.pid }}">
-              </a>
-              <div id="foto{{ image.pid }}" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
-	        <div class='lightbox-header'>
-                  <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
-                </div>
-	        <div class='lightbox-content'>
-                  <img src="{{ image.imageURL }}" alt="{{ image.description }}" width="800px">
-                </div>
-	        <div class='lightbox-footer'>
-                  <p> {{ image.description }} </p>
-                </div>
-              </div>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
+      <ul class="album">
+        {% for image in current.images %}
+        <li class="span2">
+          <a class="fancybox" rel="{{ current.title }}" href="{{ image.imageURL }}" title="{{ image.description }}">
+            <img src="{{ image.thumbURL }}" alt="{{ image.description }}" rel="#foto{{ image.pid }}">
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </div>
