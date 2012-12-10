@@ -26,6 +26,7 @@ GENDER = (
     (u'', _(u'--')),
     (u'm', _(u'Male')),
     (u'f', _(u'Female')),
+    (u'o', _(u'Other')),
 )
 
 
