@@ -214,6 +214,22 @@ section h2 {
     display: none;
 }
 
+.news1 h3 {
+    font-size: 12pt;
+    line-height: 24px;
+    text-align: left;
+    font-weight: 600;
+    left: 0;
+    line-height: 24px;
+    overflow: hidden;
+    padding: 0px 20px;
+    position: absolute;
+    text-align: left;
+    text-overflow: ellipsis;
+    @include single-text-shadow;
+    /* @include rgba-background(rgba($black,0.75));*/
+}
+
 .news1 h4 {
     @include rgba-background(rgba($black,0.75));
     bottom: 0;
