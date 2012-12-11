@@ -13,6 +13,13 @@
 <div class="news">
   <div class="container">
     <div class="row">
+      <div class="span12">
+        {% if  search_term %}
+        <h2>Você buscou por: "{{ search_term }}"</h2>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
       <div class="span9">
       {% for title, url, posttype, txtdata, excerpt, textobotao, thumbs in posts %}
         <div class="post">
@@ -23,7 +30,9 @@
                 {{ title }}
             {% endif %}
           </h2>
+          {% if  search_term %}
           <h4>{{posttype|safe}}</h4>
+          {% endif %}
           {% if txtdata %}
           <div class="meta">
             <ul>
