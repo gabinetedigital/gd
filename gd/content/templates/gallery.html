@@ -64,7 +64,7 @@
       <ul class="album">
         {% for image in current.images %}
         <li class="span2">
-          <a class="fancybox" rel="{{ current.title }}" href="{{ image.thumbURL }}" data-download="{{ image.imageURL }}" title="{{ image.description }}">
+          <a class="fancybox" rel="{{ current.title }}" href="{{ image.imageURL }}" data-download="{{url_for('.fotoDownload', gallery=image.slug, filename=image.filename)}}" title="{{ image.description }}">
             <img src="{{ image.thumbURL }}" alt="{{ image.description }}" rel="#foto{{ image.pid }}">
           </a>
         </li>
