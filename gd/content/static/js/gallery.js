@@ -43,8 +43,10 @@ $(document).ready(function() {
                 this.title += '<a href="'+$download+'" class="btn btn-danger pull-right hidden-phone">Download original</a>';
             }
         },
-    	openEffect	: 'elastic',
-    	closeEffect	: 'elastic',
+
+        nextEffect	: 'fade',
+        prevEffect	: 'fade',
+
         helpers		: {
 	    title	: { type : 'inside' },
 	}
