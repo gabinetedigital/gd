@@ -162,6 +162,19 @@ var auth = (function() {
             if(params && typeof params.success === 'function' ){
                 this.success = params.success;
             }
+
+            window.setTimeout(function(){
+                $('#username').tooltip({
+                    placement: 'top',
+                    trigger: 'manual',
+                    title: 'Por favor, informe seu usuário e senha para efetuar o login e completar sua operação!'
+                });
+                $('#username').tooltip('show');
+                window.setTimeout(function(){
+                    $('#username').tooltip('hide');
+                },5000);
+            },1000);
+
             return false;
         }
 
