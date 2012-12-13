@@ -87,7 +87,7 @@
         </div>
       </div>
       {% endif %}
-      
+
       {% if hidesidebarright %}
       <div class="span8">
         {% block lcolumn %}{% endblock %}
@@ -97,9 +97,9 @@
 
         <div class="{% if hidesidebar %}span12{% else %}span9{% endif %}">
           {% endif%}
-          <div class="rcolumn {{ rclass }}">
+
             {% block rcolumn %}{% endblock %}
-          </div>
+
         </div>
       </div>
     </div>

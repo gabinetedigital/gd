@@ -305,7 +305,6 @@ p.desc {
 
 .highlight .videobox {
     width:100%;
-    background:#000;
     text-align:center;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -391,7 +390,7 @@ form#send .helptext {
 
 .questions .head {
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     height: 38px;
 }
 
@@ -711,11 +710,11 @@ h3.respgov {
 .resultpage .videobox {
     margin:10px 0;
     width:100%;
-    background:#000;
     text-align:center;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 
 .resultpage .videobox .video-js-box {
     margin:0 auto;
@@ -774,7 +773,7 @@ h3.respgov {
     -moz-box-shadow: 0 0 50px #ccc;
     -webkit-box-shadow: 0 0 50px #ccc;
 }
- 
+
 .modal h2 {
     background:url(../img/alert-overlay.png) 0 50% no-repeat;
     margin:0px;
