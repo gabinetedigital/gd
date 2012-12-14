@@ -2,7 +2,6 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/govescuta.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/how-it.css') }}">
 {% endblock %}
 
 {% block javascript %}
@@ -14,58 +13,7 @@
 {% block content %}
 <div class="content">
   <div class="container">
-    <div id="works-like-this" class="overlay boverlay">
-      <ol>
-        <li class="step-1">
-          <div class="wrapper">
-            <img
-               src="{{ url_for('audience.static', filename='imgs/couple.png') }}"
-               class="step-1-couple">
-            <div>
-              <img
-                 src="{{ url_for('audience.static', filename='imgs/mail_trail.png') }}"
-                 class="step-1-mail-trail">
-              <img
-                 src="{{ url_for('audience.static', filename='imgs/mail.png') }}"
-                 class="step-1-mail">
-            </div>
-          </div>
-          <p>As pessoas enviam suas contribuições</p>
-        </li>
-        <li class="step-2">
-          <div class="wrapper">
-            <div class="gears">
-              <img
-                 src="{{ url_for('audience.static', filename='imgs/step_2_big_gear.png') }}"
-                 class="step-2-big-gear">
-              <img
-                 src="{{ url_for('audience.static', filename='imgs/step_2_small_gear.png') }}"
-                 class="step-2-small-gear">
-            </div>
-            <img
-               src="{{ url_for('audience.static', filename='imgs/networked_cpus.png') }}">
-          </div>
-          <p>Nossa equipe processa e modera as contribuições</p>
-        </li>
-        <li class="step-3">
-          <div class="wrapper">
-            <img
-               src="{{ url_for('audience.static', filename='imgs/mustache_gentleman.png') }}"
-               class="mustache-gentleman">
-            <img
-               src="{{ url_for('audience.static', filename='imgs/empty_dialog.png') }}"
-               class="mustache-gentleman-dialog">
-          </div>
-          <p>O Governador comenta as contribuições selecionadas</p>
-        </li>
-      </ol>
-      <div id="saiba-mais-link">
-        <a href="javascript:show_how_to()"> Saiba mais </a>
-      </div>
-      <div id="saiba-mais-text" style="display:none">
-        {{ how_to|safe }}
-      </div>
-    </div>
+
     <section class="govescuta">
       <div class="row">
         <div class="span8">
@@ -82,7 +30,7 @@
           <div class="menu pull-right">
             <ul>
               <li class="comofunciona">
-                <a href="#" rel="#works-like-this" id="how-it-works">Como Funciona</a>
+                <a href="#works-like-this" id="how-it-works" data-toggle="modal">Como Funciona</a>
               </li>
             </ul>
             <!-- <form id="filterform" method="get" action="{{ url_for('govescuta.index') }}"> -->
@@ -114,7 +62,7 @@
                  <a href="{{ url_for('.govescuta_details', aid=audience.ID) }}">
                    <div class="header">
                      <div id="date" class="pull-left">
-                       <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }} {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%y") }}</div> 
+                       <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }} {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%y") }}</div>
                        <div class="day">
                          {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d") }}
                        </div>
@@ -140,5 +88,62 @@
 
     </section>
   </div>
+
 </div>
+
+<div id="works-like-this" class="modal hide fade" tabindex="-1" role="dialog">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <ol>
+    <li class="step-1">
+      <div class="wrapper">
+        <img
+           src="{{ url_for('audience.static', filename='img/couple.png') }}"
+           class="step-1-couple">
+        <div>
+          <img
+             src="{{ url_for('audience.static', filename='img/mail_trail.png') }}"
+             class="step-1-mail-trail">
+          <img
+             src="{{ url_for('audience.static', filename='img/mail.png') }}"
+             class="step-1-mail">
+        </div>
+      </div>
+      <p>As pessoas enviam suas contribuições</p>
+    </li>
+    <li class="step-2">
+      <div class="wrapper">
+        <div class="gears">
+          <img
+             src="{{ url_for('audience.static', filename='img/step_2_big_gear.png') }}"
+             class="step-2-big-gear">
+          <img
+             src="{{ url_for('audience.static', filename='img/step_2_small_gear.png') }}"
+             class="step-2-small-gear">
+        </div>
+        <img
+           src="{{ url_for('audience.static', filename='img/networked_cpus.png') }}">
+      </div>
+      <p>Nossa equipe processa e modera as contribuições</p>
+    </li>
+    <li class="step-3">
+      <div class="wrapper">
+        <img
+           src="{{ url_for('audience.static', filename='img/mustache_gentleman.png') }}"
+           class="mustache-gentleman">
+        <img
+           src="{{ url_for('audience.static', filename='img/empty_dialog.png') }}"
+           class="mustache-gentleman-dialog">
+      </div>
+      <p>O Governador comenta as contribuições selecionadas</p>
+    </li>
+  </ol>
+  <div id="saiba-mais-link">
+    <a href="javascript:show_how_to()"> Saiba mais </a>
+  </div>
+  <div id="saiba-mais-text" style="display:none">
+    {{ how_to|safe }}
+  </div>
+</div>
+
+
 {% endblock %}

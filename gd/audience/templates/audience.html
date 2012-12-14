@@ -43,7 +43,7 @@
                 <p class="description">{{ audience.post_content|safe }}</p>
                 <div class="info-btn visible-desktop">
                   <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-info">mais detalhe</button>
-                  <div class="btn btn-success" rel="#works-like-this">como funciona?</div>
+                  <a href="#works-like-this" id="how-it-works"  class="btn btn-success" data-toggle="modal">Como Funciona</a>
                 </div>
               </div>
             </div>
@@ -184,8 +184,7 @@
     </div>
   </div>
 </div>
-
-<div id="works-like-this" class="overlay boverlay">
+<div id="works-like-this" class="modal hide fade" tabindex="-1" role="dialog">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   <ol>
     <li class="step-1">

@@ -26,7 +26,7 @@ $(function(){
         return false;
     });
 
-    $('a[href^="#"]').not('.carousel-control').bind('click.smoothscroll',function (e) {
+    $('#menu a[href^="#"]').not('.carousel-control').bind('click.smoothscroll',function (e) {
         e.preventDefault();
         var target = this.hash,
         $target = $(target);

@@ -56,7 +56,7 @@ $(function() {
                     }
                 }, 'updatepage');
             } else {
-            	$('#buzz-public').html('');            	
+                $('#buzz-public').html('');
             }
         });
 
@@ -158,22 +158,12 @@ $(function() {
     // Initializing "how it works" stuff
     audience_how_it_works_spinning_gears_setup();
 
-    $('div[rel]').overlay({
-        oneInstance: false,
-        speed: 'fast',
-        fixed: false,
-        mask: {
-            color: '#111',
-            opacity: 0.7
-        },
-
-        onLoad: function () {
-            if ($(this.getOverlay()).data('firstRun') === undefined) {
-                audience_show_how_it_works();
-                $(this.getOverlay()).data('firstRun', 1);
-            }
+    $('#works-like-this').on('show', function () {
+        if ($('#works-like-this').data('firstRun') === undefined) {
+            audience_show_how_it_works();
+            $('#works-like-this').data('firstRun', 1);
         }
-    });
+    })
 
 
   var msg_area = $("textarea[name=message]");

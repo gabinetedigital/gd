@@ -22,22 +22,32 @@
 $(function() {
 
     // Initializing "how it works" stuff
-    $('a[rel]').overlay({
-        oneInstance: false,
-        speed: 'fast',
-        fixed: false,
-        mask: {
-            color: '#111',
-            opacity: 0.7
-        },
+    // $('a[rel]').overlay({
+    //     oneInstance: false,
+    //     speed: 'fast',
+    //     fixed: false,
+    //     mask: {
+    //         color: '#111',
+    //         opacity: 0.7
+    //     },
 
-        onLoad: function () {
-            if ($(this.getOverlay()).data('firstRun') === undefined) {
-                audience_show_how_it_works();
-                $(this.getOverlay()).data('firstRun', 1);
-            }
+    //     onLoad: function () {
+    //         if ($(this.getOverlay()).data('firstRun') === undefined) {
+    //             audience_show_how_it_works();
+    //             $(this.getOverlay()).data('firstRun', 1);
+    //         }
+    //     }
+    // });
+
+
+    $('#works-like-this').on('show', function () {
+        if ($('#works-like-this').data('firstRun') === undefined) {
+            audience_show_how_it_works();
+            $('#works-like-this').data('firstRun', 1);
         }
-    });
+    })
+
+
 
 });
 
