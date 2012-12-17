@@ -39,9 +39,10 @@ $(document).ready(function() {
             var $download = $(this.element).attr('data-download');
             if (this.title) {
                 this.title += '<br>';
-
-                this.title += '<a href="'+$download+'" class="btn btn-danger pull-right hidden-phone">Download original</a>';
+            }else{
+                this.title = '<br>';
             }
+            this.title += '<a href="'+$download+'" class="btn btn-danger pull-right hidden-phone">Download original</a>';
         },
 
         nextEffect	: 'fade',
