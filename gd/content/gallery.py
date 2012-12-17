@@ -29,6 +29,17 @@ gallery = Blueprint(
     static_folder='static')
 
 
+def getThumborUrls():
+    """
+    Apenas monta as urls do thumbor, configuradas no conf.py em um dicionário
+    para facilitar o manuseio.
+    """
+    return {
+        'thumb':    current_app.config['THUMBOR_THUMB_URL'] ,
+        'normal':   current_app.config['THUMBOR_NORMAL_URL'] ,
+        'orig':     current_app.config['THUMBOR_ORIGINAL_URL']
+    }
+
 @gallery.route('/<slug>/')
 def galerias(slug=None):
     galleries = wordpress.wpgd.getGalleries()
@@ -41,12 +52,15 @@ def galerias(slug=None):
     except KeyError:
         twitter_hash_cabecalho = ""
 
+    thumbor = getThumborUrls()
+
     return render_template(
         'gallery.html',
         current=current,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
-        titulos=titulos
+        titulos=titulos,
+        thumbor=thumbor
     )
 
 
@@ -63,6 +77,7 @@ def index(slug=None):
         if not galleries:
             abort(404)
     current = None
+    thumbor = getThumborUrls()
 
     titulos = [ (g['slug'],g['title']) for g in galleries ]
     try:
@@ -76,7 +91,8 @@ def index(slug=None):
         s=search_terms,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
-        titulos=titulos) 
+        titulos=titulos,
+        thumbor=thumbor) 
 
 @gallery.route('/vote/<int:gid>/')
 @gallery.route('/vote/<int:gid>/<int:rate>/')
@@ -97,17 +113,18 @@ def vote(gid, rate=-1):
 
 @gallery.route('/fotoDownload/<gallery>/<string:filename>')
 def fotoDownload(gallery=None,filename=None):
-    arquive_url = "%s/wp-content/gallery/%s/%s_backup" % (current_app.config['WORDPRESS_ADDRESS'], gallery, filename)
-    arq = arquive_url
-    nomearq = arq.replace("$", "/")
-    arq = str(nomearq)
-    nomearq = str.split(arq, '/')
-    nomearq = nomearq[len(nomearq)-1]
-    nomearq = nomearq.replace("_backup", "")
-    u = urllib2.urlopen(arq)
-    localFile = open('/tmp/'+nomearq, 'wb')
+    arquive_url = "%s/wp-content/gallery/%s/%s" % (current_app.config['WORDPRESS_ADDRESS'], gallery, filename)
+    print arquive_url
+    # arq = arquive_url
+    # nomearq = arq.replace("$", "/")
+    # arq = str(nomearq)
+    # nomearq = str.split(arq, '/')
+    # nomearq = nomearq[len(nomearq)-1]
+    # nomearq = nomearq.replace("_backup", "")
+    u = urllib2.urlopen(arquive_url)
+    localFile = open('/tmp/'+filename, 'wb')
     localFile.write(u.read())
     localFile.close()
 
-    return send_from_directory("/tmp",nomearq, as_attachment=True)
+    return send_from_directory("/tmp",filename, as_attachment=True)
     
