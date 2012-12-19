@@ -28,18 +28,6 @@ gallery = Blueprint(
     template_folder='templates',
     static_folder='static')
 
-
-def getThumborUrls():
-    """
-    Apenas monta as urls do thumbor, configuradas no conf.py em um dicionário
-    para facilitar o manuseio.
-    """
-    return {
-        'thumb':    current_app.config['THUMBOR_THUMB_URL'] ,
-        'normal':   current_app.config['THUMBOR_NORMAL_URL'] ,
-        'orig':     current_app.config['THUMBOR_ORIGINAL_URL']
-    }
-
 @gallery.route('/<slug>/')
 def galerias(slug=None):
     galleries = wordpress.wpgd.getGalleries()
@@ -52,15 +40,12 @@ def galerias(slug=None):
     except KeyError:
         twitter_hash_cabecalho = ""
 
-    thumbor = getThumborUrls()
-
     return render_template(
         'gallery.html',
         current=current,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         titulos=titulos,
-        thumbor=thumbor
     )
 
 
@@ -77,7 +62,6 @@ def index(slug=None):
         if not galleries:
             abort(404)
     current = None
-    thumbor = getThumborUrls()
 
     titulos = [ (g['slug'],g['title']) for g in galleries ]
     try:
@@ -91,8 +75,7 @@ def index(slug=None):
         s=search_terms,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
-        titulos=titulos,
-        thumbor=thumbor) 
+        titulos=titulos) 
 
 @gallery.route('/vote/<int:gid>/')
 @gallery.route('/vote/<int:gid>/<int:rate>/')

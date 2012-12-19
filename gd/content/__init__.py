@@ -47,6 +47,7 @@ from gd.audience import audience
 from gd.admin import admin
 from gd.buzz.webapp import buzz
 from gd.utils.gravatar import Gravatar
+from libthumbor import CryptoURL
 
 app = Flask(__name__)
 app.register_blueprint(auth, url_prefix='/auth')
@@ -204,6 +205,25 @@ def cleanup(response):
     next request"""
     dbsession.close()
     return response
+
+@app.context_processor
+def inject_thumborurl():
+    def thumborurl(image, size):
+        '''
+        Método que cria, através da libthumbor
+        a url codificada para exibição de imagens na galeria
+        '''
+        #print "CODIFICANDO:", size, image
+        crypto = CryptoURL(key=app.config['THUMBOR_KEY'])
+        codigo = crypto.generate(
+            width=size[0] if isinstance(size[0], int) else None,
+            height=size[1] if isinstance(size[1], int) else None,
+            smart=True,
+            image_url=image.replace('http://','')
+        )
+        #print "CODIGO:", codigo
+        return app.config['THUMBOR_URL'] + codigo
+    return dict(thumborurl=thumborurl)
 
 
 # --- Static special pages ---

@@ -59,7 +59,7 @@ Galeria de Fotos
             <li class="span3">
               <div class="thumbnail video">
                 <a href="{{ url_for('gallery.galerias', slug=gallery.slug) }}" title="{{ gallery.title }}">
-                  <img src="{{ thumbor['thumb'] + gallery.front.imageURL }}" alt="{{ gallery.title }}" width="100%">
+                  <img src="{{ thumborurl(gallery.front.imageURL, (150,150) ) }}" alt="{{ gallery.title }}" width="100%">
                   <div class="meta">{{ gallery.title }}</div>
                 </a>
               </div>
