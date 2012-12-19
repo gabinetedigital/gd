@@ -55,7 +55,8 @@ Galeria de Fotos
             </div>
           </div>
           <ul class="thumbnails gallerylist">
-            {% for gallery in galleries  %}
+            {% for gallery in galleries %}
+            {%if gallery.counter > 0%}
             <li class="span3">
               <div class="thumbnail video">
                 <a href="{{ url_for('gallery.galerias', slug=gallery.slug) }}" title="{{ gallery.title }}">
@@ -64,6 +65,7 @@ Galeria de Fotos
                 </a>
               </div>
             </li>
+            {%endif%}
             {%else%}
             <li class="span9">
               <p>Infelizmente não encontramos nenhuma galeria de fotos com este texto disponível.</p>
