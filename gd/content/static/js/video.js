@@ -76,3 +76,23 @@ var video = (function () {
 function toggleEmbed(obj) {
     $('.overlay.video textarea').slideToggle();
 }
+
+var video_page = 1;
+$(".thumbnails").append("")
+$("#readmorevideos").click(function(){
+    $.ajax({
+        url:"/videos/nextpage/" + video_page,
+        success: function(resp){
+            if(!resp){ 
+                $("#readmorevideos").attr("disabled", "disabled");
+                return; 
+            }
+            $(".thumbnails").append(resp)
+            //alert(resp);
+            video_page = video_page + 1;
+            window.setTimeout(function(){
+                $('.thumbnails').masonry('reload');
+            },1000);
+        }
+    });
+});

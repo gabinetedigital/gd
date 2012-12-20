@@ -26,11 +26,10 @@ videos = Blueprint(
     template_folder='templates',
     static_folder='static')
 
-
 @videos.route('/')
 def listing():
     videos = wordpress.wpgd.getVideos(
-        where='status=true', orderby='date DESC')
+        where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO'])
     try:
         twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
@@ -39,6 +38,16 @@ def listing():
     return render_template('videos.html', videos=videos
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+
+
+@videos.route('/nextpage/<int:pagina>/')
+def nextpage(pagina):
+    print 'PAGINA:', current_app.config['VIDEO_PAGINACAO']
+    print "OFFSET:", pagina * current_app.config['VIDEO_PAGINACAO']
+    videos = wordpress.wpgd.getVideos(
+        where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO'], 
+        offset=pagina * current_app.config['VIDEO_PAGINACAO'])
+    return render_template('videos_pagina.html', videos=videos)
 
 
 @videos.route('/<int:vid>/')
