@@ -64,6 +64,16 @@ def index(slug=None):
     current = None
 
     titulos = [ (g['slug'],g['title']) for g in galleries ]
+
+    galerias_destacadas = []
+    try:
+        if current_app.config['GALERIAS_DESTACADAS_ID']:
+            galerias_destacadas = [ gal for gal in galleries if int(gal['gid']) in current_app.config['GALERIAS_DESTACADAS_ID'] ]
+            galleries = [ gal for gal in galleries if int(gal['gid']) not in current_app.config['GALERIAS_DESTACADAS_ID'] ]
+            #ordenada = <- Gerar a lista da galeria destacada ordenada pelo que está configurada.
+    except KeyError:
+        pass
+
     try:
         twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
@@ -72,6 +82,7 @@ def index(slug=None):
     return render_template(
         'gallerys.html',
         galleries=galleries,
+        galerias_especiais=galerias_destacadas,
         s=search_terms,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),

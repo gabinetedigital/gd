@@ -55,12 +55,25 @@ Galeria de Fotos
             </div>
           </div>
           <ul class="thumbnails gallerylist">
+            {% for gallery in galerias_especiais %}
+              {%if gallery.counter > 0%}
+                <li class="span4">
+                  <div class="thumbnail video especial">
+                    <a href="{{ url_for('gallery.galerias', slug=gallery.slug) }}" title="{{ gallery.title }}">
+                      <img src="{{ thumborurl(gallery.front.imageURL, (300,200) ) }}" alt="{{ gallery.title }}" width="100%">
+                      <div class="meta">{{ gallery.title }}</div>
+                    </a>
+                  </div>
+                </li>
+              {%endif%}
+            {% endfor %}
+
             {% for gallery in galleries %}
             {%if gallery.counter > 0%}
             <li class="span3">
               <div class="thumbnail video">
                 <a href="{{ url_for('gallery.galerias', slug=gallery.slug) }}" title="{{ gallery.title }}">
-                  <img src="{{ thumborurl(gallery.front.imageURL, (150,150) ) }}" alt="{{ gallery.title }}" width="100%">
+                  <img src="{{ thumborurl(gallery.front.imageURL, (250,170) ) }}" alt="{{ gallery.title }}" width="100%">
                   <div class="meta">{{ gallery.title }}</div>
                 </a>
               </div>
