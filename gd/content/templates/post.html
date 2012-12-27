@@ -28,22 +28,23 @@
 
         <div class="post">
           <h2>{{ post.title }}</h2>
-          <i class="icon-calendar "></i> {{ post.the_date.day }} {{ post.the_date.strftime("%B").capitalize() }} de {{ post.the_date.year }}
+          <div class="meta">
+            <div class="pull-left">
+              <i class="icon-calendar "></i> {{ post.the_date.day }} {{ post.the_date.strftime("%B").capitalize() }} de {{ post.the_date.year }}</div>
+            <div class="tag pull-left">
+              <ul>
+                <li><i class="icon-tag "></i> {% for tag in post.tags_object %}<a href="/tag/{{tag.slug}}/">{{tag.name}}</a> {%if not loop.last%},{%endif%} {%endfor%} </li>
+              </ul>
+            </div>
+          </div>
           <div class="content">
             {{ post.content|safe }}
           </div>
-          <div class="meta pull-right">
-            <ul>
-              <li><i class="icon-tag "></i> {% for tag in post.tags_object %}<a href="/tag/{{tag.slug}}/">{{tag.name}}</a> {%if not loop.last%},{%endif%} {%endfor%} </li>
-            </ul>
+          <div class="pull-right">
+            <span class='st_facebook_hcount' displayText='Facebook'></span>
+            <span class='st_twitter_hcount' displayText='Tweet'></span>
+            <span class='st_plusone_hcount' displayText='Google +1'></span>
           </div>
-        </div>
-        <div class="offset6 span3">
-            <div class="share">
-              <span class='st_facebook_hcount' displayText='Facebook'></span>
-              <span class='st_twitter_hcount' displayText='Tweet'></span>
-              <span class='st_plusone_hcount' displayText='Google +1'></span>
-            </div>
         </div>
         <div id="comments">
           <div class="postcontent">

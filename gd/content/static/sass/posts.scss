@@ -60,13 +60,23 @@
 }
 
 .meta {
-    /* margin-top: 10px; */
-    /* padding-bottom: 10px; */
+    margin-top: 10px;
+    padding-bottom: 10px;
+    clear: both;
+    display: block;
+}
+
+.meta .tag {
+    margin-left: 20px;
 }
 
 .post .meta ul li {
     display: inline;
     margin-right: 20px;
+}
+
+.post .meta ul li a:hover {
+    text-decoration: underline;
 }
 
 .post .meta ul {
