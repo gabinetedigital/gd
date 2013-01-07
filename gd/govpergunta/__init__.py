@@ -23,6 +23,7 @@
 
 from json import loads
 from flask import Blueprint, request, render_template, redirect, url_for, current_app
+from flask.ext.cache import Cache
 from flask import session as fsession
 
 from gd import auth
@@ -44,6 +45,7 @@ govpergunta = Blueprint(
     template_folder='templates',
     static_folder='static')
 
+cache = Cache()
 
 # @govpergunta.route('/contribuir')
 # def index():
@@ -113,6 +115,7 @@ def index():
 
 @govpergunta.route('/resultados/')
 @govpergunta.route('/resultados/<int:ano>/')
+@cache.memoize()
 def resultados(ano=2012):
     """Renders a wordpress page special"""
     slideshow = wordpress.getRecentPosts(
@@ -145,6 +148,7 @@ def resultados(ano=2012):
 
 
 @govpergunta.route('/resultados-detalhe/<int:postid>/')
+@cache.memoize()
 def resultado_detalhe(postid):
     """Renders a contribution detail"""
     principal = wordpress.wpgovp.getContribuicoes(principal='S',postID=postid)
@@ -164,6 +168,7 @@ def resultado_detalhe(postid):
 
 
 @govpergunta.route('/results/<path:path>')
+@cache.memoize()
 def results_page(path):
     page = wordpress.getPageByPath(path)
     return render_template('results_page.html', page=page)
@@ -215,6 +220,7 @@ def _format_contrib(contrib):
 
 
 @govpergunta.route('/contribs/all.json')
+@cache.cached()
 def contribs_all():
     """Lists all contributions in the JSON format"""
     return dumps([
@@ -223,6 +229,7 @@ def contribs_all():
 
 
 @govpergunta.route('/contribs/user.json')
+@cache.cached()
 def contribs_user():
     """Lists all contributions in the JSON format"""
     try:

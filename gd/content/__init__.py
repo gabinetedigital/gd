@@ -235,9 +235,16 @@ def index():
     return redirect('/audience')
 """
 
+@app.route('/cachecleargd/')
+def cachecleargd():
+    global cache
+    cache.cache.clear()
+    return redirect(url_for('.index'))
+
 @app.route('/')
-@cache.cached()
+@cache.cached(unless=is_authenticated)
 def index():
+    print " ######################################################################## BASE "
     """Renders the index template"""
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     slideshow = wordpress.getRecentPosts(
@@ -277,13 +284,13 @@ def index():
 
 
 @app.route('/getpart/<part>')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def get_part(part):
     """Renders some layout parts used to build the "participate" menu"""
     return render_template('parts/%s.html' % part)
 
 @app.route('/gallerias')
-@cache.memoize(3800) #3800 segundos = 3 hrs
+@cache.memoize(unless=is_authenticated)
 def gallery():
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     try:
@@ -297,28 +304,28 @@ def gallery():
     )
 
 @app.route('/teaser')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def teaser():
     """Renders the teaser template"""
     return render_template('teaser.html')
 
 
 @app.route('/sobre/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def sobre():
     """Renders the about template"""
     return render_template('sobre.html', page=wordpress.getPageByPath('sobre'),
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 @app.route('/about/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def about():
     """Renders the about template"""
     return render_template('about.html', page=wordpress.getPageByPath('about')
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
 
 @app.route('/acerca/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def acerca():
     """Renders the about template"""
     return render_template('acerca.html', page=wordpress.getPageByPath('acerca')
@@ -326,7 +333,7 @@ def acerca():
 
 
 @app.route('/foto_com_gov/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def foto_com_gov():
     return render_template('galeria.html')
 
@@ -336,7 +343,7 @@ def foto_com_gov():
 
 @app.route('/news/')
 @app.route('/news/<int:page>/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def news(page=0):
     """List posts in chronological order"""
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
@@ -362,7 +369,7 @@ def news(page=0):
 
 @app.route('/cat/<int:cid>/')
 @app.route('/cat/<int:cid>/<int:page>/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def category(cid, page=0):
     """List posts of a given category"""
     pagination, posts = wordpress.getPostsByCategory(cat=cid, page=page)
@@ -386,7 +393,7 @@ def category(cid, page=0):
 
 @app.route('/tag/<string:slug>/')
 @app.route('/tag/<string:slug>/<int:page>/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def tag(slug, page=0):
     """List posts of a given tag"""
     pagination, posts = wordpress.getPostsByTag(tag=slug, page=page)
@@ -410,7 +417,7 @@ def tag(slug, page=0):
 
 
 @app.route('/conselho-comunicacao/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def conselho():
     """Renders a wordpress page special"""
     path = 'conselho-comunicacao'
@@ -436,7 +443,7 @@ def conselho():
 
 
 @app.route('/comite-transito/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def comite_transito():
     """Renders a wordpress page special"""
     try:
@@ -506,7 +513,7 @@ def cadastrar_comite():
 
 
 @app.route('/pages/<path:path>/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def pages(path):
     """Renders a wordpress page"""
     #Retorna a ultima foto inserida neste album.
@@ -525,7 +532,7 @@ def pages(path):
     )
 
 @app.route('/pages/<path:path>.json')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def page_json(path):
     """Returns a page data in the JSON format"""
     page = wordpress.getPageByPath(path)
@@ -533,7 +540,7 @@ def page_json(path):
 
 
 @app.route('/post/<int:pid>/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def post(pid):
     """View that renders a post template"""
     recent_posts = wordpress.getRecentPosts(

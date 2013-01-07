@@ -20,6 +20,7 @@
 
 from flask import Blueprint, render_template, current_app
 from flask.ext.cache import Cache
+from gd.auth import is_authenticated
 from gd.content.wp import wordpress
 
 videos = Blueprint(
@@ -30,7 +31,7 @@ videos = Blueprint(
 cache = Cache()
 
 @videos.route('/')
-@cache.cached()
+@cache.cached(unless=is_authenticated)
 def listing():
     videos = wordpress.wpgd.getVideos(
         where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO'])
@@ -45,7 +46,7 @@ def listing():
 
 
 @videos.route('/nextpage/<int:pagina>/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def nextpage(pagina):
     print 'PAGINA:', current_app.config['VIDEO_PAGINACAO']
     print "OFFSET:", pagina * current_app.config['VIDEO_PAGINACAO']
@@ -56,7 +57,7 @@ def nextpage(pagina):
 
 
 @videos.route('/<int:vid>/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def details(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)
@@ -79,7 +80,7 @@ def details(vid):
 
 
 @videos.route('/embed/<int:vid>/')
-@cache.memoize()
+@cache.memoize(unless=is_authenticated)
 def embed(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)
