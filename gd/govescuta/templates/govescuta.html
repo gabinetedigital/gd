@@ -61,7 +61,7 @@
                <div class="thumbnail">
                  <a href="{{ url_for('.govescuta_details', aid=audience.ID) }}">
                    <div class="header">
-                     <div id="date" class="pull-left">
+                     <div class="date pull-left">
                        <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }} {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%y") }}</div>
                        <div class="day">
                          {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d") }}
@@ -70,7 +70,7 @@
                    </div>
                    <img class="thumb"
                         src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"
-                        width="100%">
+                        width="100">
                    <div>
                      <div class="desc">
                        <h4>{{ audience.post_title }}</h4>
@@ -98,14 +98,14 @@
       <div class="wrapper">
         <img
            src="{{ url_for('audience.static', filename='img/couple.png') }}"
-           class="step-1-couple">
+           class="step-1-couple" alt="pessoas">
         <div>
           <img
              src="{{ url_for('audience.static', filename='img/mail_trail.png') }}"
-             class="step-1-mail-trail">
+             class="step-1-mail-trail" alt="rastro contribuições">
           <img
              src="{{ url_for('audience.static', filename='img/mail.png') }}"
-             class="step-1-mail">
+             class="step-1-mail" alt="contribuição">
         </div>
       </div>
       <p>As pessoas enviam suas contribuições</p>
@@ -115,13 +115,13 @@
         <div class="gears">
           <img
              src="{{ url_for('audience.static', filename='img/step_2_big_gear.png') }}"
-             class="step-2-big-gear">
+             class="step-2-big-gear" alt="engrenagem grande">
           <img
              src="{{ url_for('audience.static', filename='img/step_2_small_gear.png') }}"
-             class="step-2-small-gear">
+             class="step-2-small-gear" alt="engrenagem pequena">
         </div>
         <img
-           src="{{ url_for('audience.static', filename='img/networked_cpus.png') }}">
+           src="{{ url_for('audience.static', filename='img/networked_cpus.png') }}" alt="servidores">
       </div>
       <p>Nossa equipe processa e modera as contribuições</p>
     </li>
@@ -129,10 +129,10 @@
       <div class="wrapper">
         <img
            src="{{ url_for('audience.static', filename='img/mustache_gentleman.png') }}"
-           class="mustache-gentleman">
+           class="mustache-gentleman" alt="governador">
         <img
            src="{{ url_for('audience.static', filename='img/empty_dialog.png') }}"
-           class="mustache-gentleman-dialog">
+           class="mustache-gentleman-dialog" alt="dialogo">
       </div>
       <p>O Governador comenta as contribuições selecionadas</p>
     </li>

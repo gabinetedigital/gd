@@ -286,10 +286,13 @@ section h2 {
 .ultimas ul li {
     background-color: $green;
     padding: 14px 20px;
-    color: #FFF;
     margin: 20px 25px 20px 0px;
     display: block;
     position: relative;
+}
+
+.ultimas ul li a {
+    color: #FFF;
 }
 
 .rss {
@@ -388,6 +391,10 @@ section h2 {
     border-bottom: 10px solid $black;
     border-right: 10px solid $blue;
     width: 0;
+}
+
+.banner img, .news1 img, .fotodia img {
+    width: 100%;
 }
 
 #govpergunta .pwhat {

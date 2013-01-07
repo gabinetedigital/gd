@@ -64,8 +64,8 @@
       <ul class="album">
         {% for image in current.images %}
         <li class="span2">
-          <a class="fancybox" rel="{{ current.title }}" href="{{ thumborurl(image.imageURL, (800,600) ) }}" data-download="{{url_for('.fotoDownload', gallery=image.slug, filename=image.filename)}}" title="{{ image.description }}">
-            <img src="{{ thumborurl(image.imageURL, (150,150) ) }}" alt="{{ image.description }}" rel="#foto{{ image.pid }}">
+          <a class="fancybox" data-fancybox-group="{{ current.title }}" href="{{ thumborurl(image.imageURL, (800,600) ) }}" data-download="{{url_for('.fotoDownload', gallery=image.slug, filename=image.filename)}}" title="{{ image.description }}">
+            <img src="{{ thumborurl(image.imageURL, (150,150) ) }}" alt="{{ image.description }}">
           </a>
         </li>
         {% endfor %}

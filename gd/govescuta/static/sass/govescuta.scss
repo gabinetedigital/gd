@@ -54,6 +54,10 @@ li {
     display: block;
 }
 
+img.thumb {
+    width: 100%;
+}
+
 .thumbnail {
     @include border-radius(0);
 }
@@ -90,17 +94,17 @@ li {
 }
 
 
-#date {
+.date {
     width: 45px;
     height: 40px;
     margin-bottom: 30px;
 }
 
-#date div {
+.date div {
     font-weight: bold;
 }
 
-#date div.day {
+.date div.day {
     font-size: 14pt;
     text-align: center;
     border-right: 2px solid #CCC;
@@ -112,7 +116,7 @@ li {
     @include background-image(linear-gradient(white, #DDD));
 }
 
-#date div.month {
+.date div.month {
     font-size: 8pt;
     background-color: #D72314;
     color: #FFF;

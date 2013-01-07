@@ -48,11 +48,11 @@
       <div class="content">
         <div id="how-it-works" rel="#works-like-this">
           <img src="{{ url_for('audience.static', filename='imgs/big_gear.png') }}"
-               id="how-it-works-big-gear" class="big-gear">
+               id="how-it-works-big-gear" class="big-gear" alt="engrenagem grande">
           <img src="{{ url_for('audience.static', filename='imgs/small_gear.png') }}"
-               id="how-it-works-small-gear" class="small-gear">
+               id="how-it-works-small-gear" class="small-gear" alt="engrenagem pequena">
           <img src="{{ url_for('audience.static', filename='imgs/como_funciona.png') }}"
-               class="how-it-works-text">
+               class="how-it-works-text" alt="como funciona?">
         </div>
         <div id="works-like-this" class="overlay boverlay">
           <ol>
@@ -60,14 +60,14 @@
               <div class="wrapper">
                 <img
                    src="{{ url_for('audience.static', filename='imgs/couple.png') }}"
-                   class="step-1-couple">
+                   class="step-1-couple" alt="pessoas">
                 <div>
                   <img
                      src="{{ url_for('audience.static', filename='imgs/mail_trail.png') }}"
-                     class="step-1-mail-trail">
+                     class="step-1-mail-trail" alt="rastro">
                   <img
                      src="{{ url_for('audience.static', filename='imgs/mail.png') }}"
-                     class="step-1-mail">
+                     class="step-1-mail" alt="carta">
                 </div>
               </div>
               <p>As pessoas enviam suas contribuições</p>
@@ -77,12 +77,12 @@
                 <div class="gears">
                   <img
                      src="{{ url_for('audience.static', filename='imgs/step_2_big_gear.png') }}"
-                     class="step-2-big-gear">
+                     class="step-2-big-gear" alt="engrenagem grande">
                   <img
                      src="{{ url_for('audience.static', filename='imgs/step_2_small_gear.png') }}"
-                     class="step-2-small-gear">
+                     class="step-2-small-gear" alt="engrenagem pequena">
                 </div>
-                <img src="{{ url_for('audience.static', filename='imgs/networked_cpus.png') }}">
+                <img src="{{ url_for('audience.static', filename='imgs/networked_cpus.png') }}" alt="servidores">
               </div>
 
               <p>Nossa equipe processa e modera as contribuições</p>
@@ -92,10 +92,10 @@
               <div class="wrapper">
                 <img
                    src="{{ url_for('audience.static', filename='imgs/mustache_gentleman.png') }}"
-                   class="mustache-gentleman">
+                   class="mustache-gentleman" alt="governador">
                 <img
                    src="{{ url_for('audience.static', filename='imgs/empty_dialog.png') }}"
-                   class="mustache-gentleman-dialog">
+                   class="mustache-gentleman-dialog" alt="balão de fala">
               </div>
               <p>O Governador comenta as contribuições selecionadas</p>
             </li>

@@ -32,7 +32,7 @@ Galeria de Fotos
               <div class="controls gbusca pull-right">
                 <div class="input-prepend">
                   <span class="add-on"><i class="icon-picture"></i></span>
-                  <input class="span3 searcher" id="inputIcon" type="text" placeholder="procure aqui sua galeria..."></input>
+                  <input class="span3 searcher" id="inputIcon" type="text" placeholder="procure aqui sua galeria...">
                   <script type="text/javascript">
                     $(document).ready(function() {
                       $('.searcher').typeahead({
@@ -60,7 +60,7 @@ Galeria de Fotos
                 <li class="span4">
                   <div class="thumbnail video especial">
                     <a href="{{ url_for('gallery.galerias', slug=gallery.slug) }}" title="{{ gallery.title }}">
-                      <img src="{{ thumborurl(gallery.front.imageURL, (300,200) ) }}" alt="{{ gallery.title }}" width="100%">
+                      <img src="{{ thumborurl(gallery.front.imageURL, (300,200) ) }}" alt="{{ gallery.title }}" width="100">
                       <div class="meta">{{ gallery.title }}</div>
                     </a>
                   </div>
@@ -73,7 +73,7 @@ Galeria de Fotos
             <li class="span3">
               <div class="thumbnail video">
                 <a href="{{ url_for('gallery.galerias', slug=gallery.slug) }}" title="{{ gallery.title }}">
-                  <img src="{{ thumborurl(gallery.front.imageURL, (250,170) ) }}" alt="{{ gallery.title }}" width="100%">
+                  <img src="{{ thumborurl(gallery.front.imageURL, (250,170) ) }}" alt="{{ gallery.title }}" width="100">
                   <div class="meta">{{ gallery.title }}</div>
                 </a>
               </div>

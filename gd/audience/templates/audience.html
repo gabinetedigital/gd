@@ -36,7 +36,7 @@
           <div class="info-head">
             <div class="info-desc">
               <div id="poster" class="pull-left">
-                <img src="{{ url_for('.static', filename='img/seguranca.jpg') }}">
+                <img src="{{ url_for('.static', filename='img/seguranca.jpg') }}" alt="{{ audience.post_title }}">
               </div>
               <div id="title">
                 <h2 class="title">{{ audience.post_title }}</h2>
@@ -69,8 +69,8 @@
             </div>
             <div class="share">
               <p>Compartilhe</p>
-              <span class='st_facebook_hcount' displayText='Facebook'></span>
-              <span class='st_twitter_hcount' displayText='Tweet'></span>
+              <span class='st_facebook_hcount'></span>
+              <span class='st_twitter_hcount'></span>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
               <div id="beingAnswered-anterior">
                 {% if (buzzesSelec) %}
                 <ul class="stream">
-                  <li class="avatar"><img src="{{ buzzesSelec.avatar }}"></li>
+                  <li class="avatar"><img src="{{ buzzesSelec.avatar }}" alt="{{ buzzesSelec.user.display_name }}"></li>
                   <li class="author">
                     {% if (buzzesSelec.user)  %}
                     {{ buzzesSelec.user.display_name }}
@@ -143,7 +143,7 @@
                 {% for buzz in buzzes %}
                 <li id="msgid_{{ buzz.id }}">
                   <ul class="{{ loop.cycle('astream', 'bstream') }}">
-                    <li class="avatar"><img src="{{ buzz.avatar}}"></li>
+                    <li class="avatar"><img src="{{ buzz.avatar}}" alt="{{ buzz.owner_nick }}"></li>
                     <li class="author">
                       {% if (buzz.user)  %}
                       {{ buzz.user.display_name }}
@@ -191,14 +191,14 @@
       <div class="wrapper">
         <img
            src="{{ url_for('.static', filename='img/couple.png') }}"
-           class="step-1-couple">
+           class="step-1-couple" alt="pessoas">
         <div>
           <img
              src="{{ url_for('.static', filename='img/mail_trail.png') }}"
-             class="step-1-mail-trail">
+             class="step-1-mail-trail" alt="rastro">
           <img
              src="{{ url_for('.static', filename='img/mail.png') }}"
-             class="step-1-mail">
+             class="step-1-mail" alt="proposta">
         </div>
       </div>
       <p>As pessoas enviam suas contribuições</p>
@@ -208,12 +208,12 @@
         <div class="gears">
           <img
              src="{{ url_for('.static', filename='img/step_2_big_gear.png') }}"
-             class="step-2-big-gear">
+             class="step-2-big-gear" alt="engrenagem grande">
           <img
              src="{{ url_for('.static', filename='img/step_2_small_gear.png') }}"
-             class="step-2-small-gear">
+             class="step-2-small-gear" alt="engrenagem pequena">
         </div>
-        <img src="{{ url_for('.static', filename='img/networked_cpus.png') }}">
+        <img src="{{ url_for('.static', filename='img/networked_cpus.png') }}" alt="servidores">
       </div>
 
       <p>Nossa equipe processa e modera as contribuições</p>
@@ -224,10 +224,10 @@
       <div class="wrapper">
         <img
            src="{{ url_for('.static', filename='img/mustache_gentleman.png') }}"
-           class="mustache-gentleman">
+           class="mustache-gentleman" alt="governador">
         <img
            src="{{ url_for('.static', filename='img/empty_dialog.png') }}"
-           class="mustache-gentleman-dialog">
+           class="mustache-gentleman-dialog" alt="balão de fala">
       </div>
       <p>O Governador comenta as contribuições selecionadas</p>
     </li>
