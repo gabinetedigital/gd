@@ -19,6 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from flask import Blueprint, render_template, current_app
+from flask.ext.cache import Cache
 from gd.content.wp import wordpress
 
 videos = Blueprint(
@@ -26,7 +27,10 @@ videos = Blueprint(
     template_folder='templates',
     static_folder='static')
 
+cache = Cache()
+
 @videos.route('/')
+@cache.cached()
 def listing():
     videos = wordpress.wpgd.getVideos(
         where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO'])
@@ -41,6 +45,7 @@ def listing():
 
 
 @videos.route('/nextpage/<int:pagina>/')
+@cache.memoize()
 def nextpage(pagina):
     print 'PAGINA:', current_app.config['VIDEO_PAGINACAO']
     print "OFFSET:", pagina * current_app.config['VIDEO_PAGINACAO']
@@ -51,6 +56,7 @@ def nextpage(pagina):
 
 
 @videos.route('/<int:vid>/')
+@cache.memoize()
 def details(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)
@@ -73,6 +79,7 @@ def details(vid):
 
 
 @videos.route('/embed/<int:vid>/')
+@cache.memoize()
 def embed(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)
