@@ -36,8 +36,12 @@ a {
 
 }
 
+.home h1, .search, .feed, .twitter, .facebook, .mail {
+    display: block;
+    float: left;
+}
+
 .search {
-    display: inline-block;
     width: 22px;
     height: 19px;
     background-position: 0px -274px;
@@ -46,7 +50,6 @@ a {
 }
 
 .feed {
-    display: inline-block;
     width: 32px;
     height: 32px;
     background-position: -46px -270px;
@@ -55,7 +58,6 @@ a {
 
 
 .twitter {
-    display: inline-block;
     width: 32px;
     height: 32px;
     background-position: -82px -270px;
@@ -63,7 +65,6 @@ a {
 }
 
 .facebook {
-    display: inline-block;
     width: 32px;
     height: 32px;
     background-position: -116px -270px;
@@ -71,7 +72,6 @@ a {
 }
 
 .mail {
-    display: inline-block;
     width: 32px;
     height: 32px;
     background-position: -153px -270px;
