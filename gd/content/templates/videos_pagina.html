@@ -1,0 +1,17 @@
+{% for video in videos %}
+<li class="span4">
+  <div class="thumbnail video">
+    <a href="/videos/{{video.id}}/">
+      <img class="thumb"
+           src="{{ video.thumbnail }}" alt="{{ video.title }}"
+           width="100%">
+    </a>
+    <div class="meta">
+      <a href="/videos/{{video.id}}/">
+        <strong>{{ video.title }}</strong>
+      </a>
+    </div>
+    <!-- <p>{{ video.description|truncate(length=80) }}</p> -->
+  </div>
+</li>
+{% endfor %}
