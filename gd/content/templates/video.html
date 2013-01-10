@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
 {% block css %}
+
+<meta property="og:type" content="movie" /> 
+<meta property="og:video:height" content="{{ video.video_height }}" /> 
+<meta property="og:video:width" content="{{ video.video_width }}" /> 
+<meta property="og:video:type" content="application/x-shockwave-flash" />
+<meta property="og:title" content="{{ video.title }}" /> 
+<meta property="og:description" content="{{ video.description }}" />
+<meta property="og:image" content="{{video.thumbnail}}" />
+<meta property="og:video" content="{{ url_for('static', filename="jw/jwplayer.flash.swf") }}?file=http%3A%2F%2Fwww.example.com%2Fbunny.flv&autostart=true" /> 
+
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
@@ -17,16 +27,15 @@
       <h2>{{ video.title }}</h2>
       <div class="row">
         <div class="span8 stage">
-          <video
+<!--
+          <div
              id="video{{ video.id }}"
              width="{{ video.video_width }}"
              height="{{ video.video_height }}"
              poster="{{video.thumbnail}}">
-            {%for s in sources%}
-              {{s|safe}}
-            {%endfor%}
-            Your browser does not support the video tag.
-          </video>
+          </div>
+ -->
+          <div id="video{{ video.id }}">Loading the player ...</div>
         </div>
         <div class="span4">
           <p class="desc">{{ video.description }}</p>
@@ -46,18 +55,35 @@
 </div>
 {% endblock %}
 
+{{sources}}
 
 {% block javascript %}
 
 <script type="text/javascript">
   jwplayer("video{{video.id}}").setup({
-    skin: "/static/jw/bekle/bekle.xml",
+    file: "{{sources['video/mp4']}}",
+    provider: "http",
+    autoplay: "false",
     width: '100%',
-    modes: [
-      { type: "html5" },
-      { type: "flash", src: "/static/jw/player.swf" },
-      { type: "download" }
-    ]
+    flashplayer: "/static/jw/jwplayer.flash.swf",
+    events: {
+      onReady: function() {
+        alert(this.container.tagName);
+         if (this.container.tagName.toLowerCase() == "object") {
+            // Flash case
+            alert('flash');
+            this.load({
+                 file: "{{sources['video/x-flv']}}", provider: "http" 
+            });
+         } else {
+            // HTML5 case 
+            alert('html5');
+            this.load({
+                 file: "{{sources['video/mp4']}}"
+            });
+         }
+      }
+    }
   });
 </script>
 

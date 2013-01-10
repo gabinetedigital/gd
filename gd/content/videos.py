@@ -61,13 +61,20 @@ def nextpage(pagina):
 def details(vid):
     video = wordpress.wpgd.getVideo(vid)
     sources = wordpress.wpgd.getVideoSources(vid)
+
+    print "#################### VIDEO SOURCES",sources
+
     base_url = current_app.config['BASE_URL']
     base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
-    video_sources = []
+    video_sources = {}
     for s in sources:
-        print s['format'], s['format'][0:s['format'].find(';')]
-        f = s['format'][0:s['format'].find(';')]
-        video_sources.append("<source type=\"%s\" src=\"%s\">" % ( f, s['url'] ))
+        if(s['format'].find(';') > 0):
+            f = s['format'][0:s['format'].find(';')]
+        else:
+            f = s['format']
+        print " === VIDEO === >>>> f:", f
+        print " === VIDEO === >>>> format:", s['format']
+        video_sources[f] = s['url']
     try:
         twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
