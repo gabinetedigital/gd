@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
-<!--[if IE]>
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
+  <!--[if IE]>
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
-    <![endif]-->
+  <![endif]-->
+  <meta property="og:site_name" content="The Mozilla Blog">
+  <meta property="og:title" content="{{ post.title }}">
+  <meta property="og:url" content="{{request.url}}">
+  <meta property="og:description" content="{{ post.excerpt }}">
 {% endblock %}
 
 {% block javascript %}
