@@ -15,6 +15,7 @@
     margin-bottom: 10px;
     padding-bottom: 20px;
     padding-left: 250px;
+    font-size: 18pt;
 }
 
 .resultados h2 {
@@ -35,12 +36,9 @@
 }
 
 .cell {
-    display: table-cell;
-    vertical-align: middle;
-    width: 1000px;
-    height: 100px;
     line-height: 30px;
     font-size: 30pt;
+    padding-top: 20px;
 }
 
 .priorizadas, .propostas, .pessoas, .votos {

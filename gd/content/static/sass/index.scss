@@ -22,22 +22,17 @@ section h2 {
 .block {
     @include rgba-background(rgba($black,0.698));
     color: #FFFFFF;
-    display: block;
     font-size: 14px;
     padding: 10px 20px;
-    position: relative;
-    text-align: left;
     maring-bottom: 20px;
 }
 
 .thumbnail {
     border: 0 none;
     border-radius: 0 0 0 0;
-    display: block;
     @include rgba-background(rgba($black,0.3));
     display: block;
     padding: 7px;
-    position: relative;
     text-align: left;
     color: #FFF;
     @include border-radius(0);
@@ -47,7 +42,6 @@ section h2 {
 /* Inicio */
 
 .widgets {
-    display: block;
     background: url(../img/bg.png);
 }
 
@@ -84,8 +78,6 @@ section h2 {
     padding: 10px;
     @include single-text-shadow;
     @include rgba-background(rgba(black,0.8));
-    display: block;
-    clear: both;
 }
 
 .sobre blockquote p {
@@ -289,6 +281,7 @@ section h2 {
     margin: 20px 25px 20px 0px;
     display: block;
     position: relative;
+    list-style-type: none;
 }
 
 .ultimas ul li a {
@@ -536,4 +529,9 @@ section h2 {
    background: url(../img/resultados.jpg) no-repeat center center fixed;
     @include background-size(cover);
     padding-bottom: 60px;
+}
+
+.fixie {
+    margin: 1px 0 1px;
+    padding-bottom: 1px;
 }
