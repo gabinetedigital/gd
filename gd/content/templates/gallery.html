@@ -52,7 +52,6 @@
                       document.location = "/fotos/" + slugs[item]
                       }
                    });
-
                 });
               </script>
             </div>
@@ -60,17 +59,26 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <ul class="album">
-        {% for image in current.images %}
-        <li class="span2">
-          <a class="fancybox" data-fancybox-group="{{ current.title }}" href="{{ thumborurl(image.imageURL, (800,600) ) }}" data-download="{{url_for('.fotoDownload', gallery=image.slug, filename=image.filename)}}" title="{{ image.description }}">
-            <img src="{{ thumborurl(image.imageURL, (150,150) ) }}" alt="{{ image.description }}">
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
+
+    <div class="album"  data-toggle="modal-gallery" data-target="#modal-gallery"  data-selector="img.gallery-item">
+      {% for image in current.images %}
+      <img src="{{ thumborurl(image.imageURL, (127,127) ) }}" alt="{{ image.description }}" title="{{ image.description }}" data-href="{{ thumborurl(image.imageURL, (800,600) ) }}" class="gallery-item" data-download="{{url_for('.fotoDownload', gallery=image.slug, filename=image.filename)}}">
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal"></a>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div>
+      <p class="modal-title"></p>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-danger modal-download" target="_blank"><i class="icon-download icon-white"></i> Baixar original</a>
     </div>
   </div>
 </div>
-{% endblock %}
+  {% endblock %}

@@ -23,7 +23,7 @@
 
 .gallery {
     background: url(../img/bg.png);
-    padding-top: 20px;
+    padding: 20px 0;
 }
 
 .gallery h2 {
@@ -36,36 +36,36 @@
     margin-top: 20px;
 }
 
-.album  > li {
-    display: inline-block;
-    margin: 0;
-    width: 200px;
+.album img {
+    margin-bottom: 3px;
+    cursor: pointer;
 }
 
-.album li a img {
-    opacity: 0.4;
+
+.modal-gallery .modal-title {
+    overflow: visible;
+    padding-top: 8px;
 }
 
-.album li a img:hover {
+.modal-gallery .modal-body {
+    padding-bottom: 0;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 0;
+}
+
+.modal-header .close {
+    background: url("../img/fancybox.png") repeat scroll transparent;
+    cursor: pointer;
+    height: 32px;
+    position: absolute;
+    right: 4px;
+    width: 32px;
+    z-index: 1103;
     opacity: 1.0;
 }
-
-.album .thumbnail {
-    border: none;
-}
-
-@media (max-width: 767px) {
-    .album {
-        margin: 20px 0px;
-    }
-
-   .album  > li {
-        margin: 6px 4px;
-        padding: 0;
-    }
-
-}
-
 
 /* Videos */
 
@@ -164,58 +164,4 @@
     float: left;
     margin-right: 20px;
     list-style: none;
-}
-
-
-@media (max-width: 767px) {
-    #controls {
-        width: 100%;
-    }
-}
-
-
-.simple_overlay {
-
-    /* must be initially hidden */
-    display:none;
-
-    /* place overlay on top of other elements */
-    z-index:10000;
-
-    /* styling */
-    background-color:#333;
-
-    width:675px;
-    min-height:200px;
-    border:1px solid #666;
-
-    /* CSS3 styling for latest browsers */
-    @include box-shadow(0 0 90px #000);
-}
-
-/* close button positioned on upper right corner */
-.simple_overlay .close {
-    background-image:url(/media/img/overlay/close.png);
-    position:absolute;
-    right:-15px;
-    top:-15px;
-    cursor:pointer;
-    height:35px;
-    width:35px;
-}
-
-
-/* styling for elements inside overlay */
-.details {
-    position:absolute;
-    top:15px;
-    right:15px;
-    font-size:11px;
-    color:#fff;
-    width:150px;
-}
-
-.details h3 {
-    color:#aba;
-    font-size:15px;
 }

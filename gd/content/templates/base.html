@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
     <script src="{{ url_for('static', filename='js/jquery-1.8.3.min.js') }}"></script>
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -212,7 +214,8 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.masonry.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/easypaginate.js') }}"></script>
-
+    <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-image-gallery.min.js')}}"></script>
     {% if user %}
     <script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
     {% endif %}

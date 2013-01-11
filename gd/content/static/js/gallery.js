@@ -19,38 +19,4 @@
 
 $(document).ready(function() {
 
-    $(".fancybox").fancybox({
-        beforeShow: function () {
-            var $download = $(this.element).attr('data-download');
-            if (this.title) {
-                this.title += '<br>';
-            }else{
-                this.title = '<br>';
-            }
-            this.title += '<a href="'+$download+'" class="btn btn-danger pull-right hidden-phone">Download original</a>';
-        },
-
-        nextEffect	: 'fade',
-        prevEffect	: 'fade',
-
-        helpers		: {
-	    title	: { type : 'inside' },
-	}
-    });
-
-    function pageload(hash) {
-        // hash doesn't contain the first # character.
-        if(hash) {
-            $.galleriffic.gotoImage(hash);
-        } else {
-            gallery.gotoIndex(0);
-        }
-    };
-    $.historyInit(pageload, { unescape: ",/" } );
-
-    $('#slideshow > img').hide();
-    $('.prev').addClass('awesome');
-    $('.next').addClass('awesome');
-    $('.play').hide();
-
 });
