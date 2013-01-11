@@ -9,7 +9,7 @@
 <meta property="og:title" content="{{ video.title }}" /> 
 <meta property="og:description" content="{{ video.description }}" />
 <meta property="og:image" content="{{video.thumbnail}}" />
-<meta property="og:video" content="{{ url_for('static', filename="jw/jwplayer.flash.swf") }}?file=http%3A%2F%2Fwww.example.com%2Fbunny.flv&autostart=true" /> 
+<meta property="og:video" content="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}?file={{sources['video/x-flv']}}&autostart=true" /> 
 
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -27,15 +27,32 @@
       <h2>{{ video.title }}</h2>
       <div class="row">
         <div class="span8 stage">
-<!--
-          <div
-             id="video{{ video.id }}"
-             width="{{ video.video_width }}"
-             height="{{ video.video_height }}"
-             poster="{{video.thumbnail}}">
-          </div>
- -->
-          <div id="video{{ video.id }}">Loading the player ...</div>
+
+          <!-- <video width="{{ video.video_width }}" height="{{ video.video_height }}" id="video{{ video.id }}" poster="{{video.thumbnail}}" controls="controls" preload="none"> -->
+          <video width="100%" height="100%" id="video{{ video.id }}" poster="{{video.thumbnail}}" controls="controls" preload="none">
+            <!-- MP4 source must come first for iOS -->
+            <source type="video/mp4" src="{{sources['video/mp4']}}" />
+            <!-- WebM for Firefox 4 and Opera -->
+            <source type="video/webm" src="{{sources['video/webm']}}" />
+            <!-- OGG for Firefox 3 -->
+            <!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
+            <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
+            <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">    
+              <param name="movie" value="../build/flashmediaelement.swf" /> 
+              <param name="flashvars" value="controls=true&amp;file={{sources['video/mp4']}}" />     
+              <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
+              <img src="{{video.thumbnail}}" width="{{ video.video_width }}" height="{{ video.video_height }}" alt="Here we are" 
+                title="No video playback capabilities" />
+            </object>
+          </video>
+          <script type="text/javascript">
+            $('video').mediaelementplayer({
+              success: function(player, node) {
+                $('#video-mode').html('mode: ' + player.pluginType);
+              }
+            });
+          </script>
+
         </div>
         <div class="span4">
           <p class="desc">{{ video.description }}</p>
@@ -47,7 +64,11 @@
           <div class="visible-desktop">
             <h3>Embed</h3>
             <textarea class="embed span4" readonly="readonly" onfocus="$(this).select()"> <iframe style="border:0" src="{{base_url}}{{ url_for('.embed', vid=video.id) }}" width="{{ video.video_width }}" height="{{ video.video_height }}"</iframe></textarea>
-                                                                                                  </div>
+          <h3>Download</h3>
+          <p>
+            <a class="btn btn-info" href="{{sources['video/mp4']}}">MP4</a>&nbsp;
+            <a class="btn btn-info" href="{{sources['video/webm']}}">Webm</a>
+          </p>
         </div>
       </div>
     </div>
@@ -55,36 +76,6 @@
 </div>
 {% endblock %}
 
-{{sources}}
-
 {% block javascript %}
-
-<script type="text/javascript">
-  jwplayer("video{{video.id}}").setup({
-    file: "{{sources['video/mp4']}}",
-    provider: "http",
-    autoplay: "false",
-    width: '100%',
-    flashplayer: "/static/jw/jwplayer.flash.swf",
-    events: {
-      onReady: function() {
-        alert(this.container.tagName);
-         if (this.container.tagName.toLowerCase() == "object") {
-            // Flash case
-            alert('flash');
-            this.load({
-                 file: "{{sources['video/x-flv']}}", provider: "http" 
-            });
-         } else {
-            // HTML5 case 
-            alert('html5');
-            this.load({
-                 file: "{{sources['video/mp4']}}"
-            });
-         }
-      }
-    }
-  });
-</script>
 
 {% endblock %}

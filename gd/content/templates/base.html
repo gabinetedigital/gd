@@ -20,7 +20,9 @@
   <body data-spy="scroll" data-target="#menu">
     {% block id %}
     {% endblock %}
-    <script src="{{ url_for('static', filename='jw/jwplayer.js') }}"></script>
+    <!--script src="{{ url_for('static', filename='jw/jwplayer.js') }}"></script-->
+    <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
     <div class="container">
       <div class="row">
         <section>
