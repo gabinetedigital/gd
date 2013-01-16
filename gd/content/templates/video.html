@@ -2,14 +2,24 @@
 
 {% block css %}
 
-<meta property="og:type" content="movie" /> 
-<meta property="og:video:height" content="{{ video.video_height }}" /> 
-<meta property="og:video:width" content="{{ video.video_width }}" /> 
-<meta property="og:video:type" content="application/x-shockwave-flash" />
+<meta property="og:type" content="video.movie">
+<meta property="og:url" content="{{base_url}}{{url_for('.details',vid=video.id)}}">
 <meta property="og:title" content="{{ video.title }}" /> 
 <meta property="og:description" content="{{ video.description }}" />
 <meta property="og:image" content="{{video.thumbnail}}" />
-<meta property="og:video" content="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}?file={{sources['video/x-flv']}}&autostart=true" /> 
+<meta property="og:video" content="{{base_url}}{{ url_for('static', filename="me/build/flashmediaelement.swf") }}?controls=true&file={{sources['video/x-flv']}}" /> 
+<meta property="og:video:type" content="application/x-shockwave-flash">
+<meta property="og:video:height" content="{{ video.video_height }}" /> 
+<meta property="og:video:width" content="{{ video.video_width }}" /> 
+<meta property="og:site_name" content="GabineteDigital">
+<meta property="fb:app_id" content="159464544196767">
+
+<meta name="twitter:card" value="player">
+<meta name="twitter:site" value="@gabinetedigital">
+<meta name="twitter:player" value="{{base_url}}{{ url_for('.embed', vid=video.id) }}">
+<meta property="twitter:player:width" content="{{ video.video_width }}">
+<meta property="twitter:player:height" content="{{ video.video_height }}">
+
 
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>

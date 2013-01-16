@@ -2,21 +2,40 @@
 <html>
   <head>
     <title>{{ video.title }}</title>
-    <link rel="stylesheet" href="{{ conf.WORDPRESS_ADDRESS }}?wpgd/video/embedcss">
-    <style>* { margin:0; padding:0; }</style>
+<!--     <link rel="stylesheet" href="{{ conf.WORDPRESS_ADDRESS }}?wpgd/video/embedcss"> -->
+    <script src="{{ url_for('static', filename='js/jquery-1.8.3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
+    <style>body { margin:0; padding:0; overflow: hidden;}</style>
   </head>
   <body>
-    <video
-       id="{{ video.id }}"
-       width="{{ video.video_width }}"
-       height="{{ video.video_height }}">
-      {%- for source in sources %}
-      <source type="{{ source.format }}" src="{{ source.url }}">
-      {%- endfor %}
+
+
+
+    <video width="100%" height="100%" id="video{{ video.id }}" poster="{{video.thumbnail}}" controls="controls" preload="none">
+      <!-- MP4 source must come first for iOS -->
+      <source type="video/mp4" src="{{sources['video/mp4']}}" />
+      <!-- WebM for Firefox 4 and Opera -->
+      <source type="video/webm" src="{{sources['video/webm']}}" />
+      <!-- OGG for Firefox 3 -->
+      <!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
+      <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
+      <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">    
+        <param name="movie" value="../build/flashmediaelement.swf" /> 
+        <param name="flashvars" value="controls=true&amp;file={{sources['video/mp4']}}" />     
+        <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
+        <img src="{{video.thumbnail}}" width="{{ video.video_width }}" height="{{ video.video_height }}" alt="Here we are" 
+          title="No video playback capabilities" />
+      </object>
     </video>
-    <script>var VIDEO_BASE = "{{ conf.WORDPRESS_ADDRESS }}?wpgd/video/sources";</script>
-    <script src="{{ url_for('static', filename='js/jquery-1.5.1.min.js') }}"></script>
-    <script src="{{ conf.WORDPRESS_ADDRESS }}?wpgd/video/embedjs"></script>
-    <script>$(function () { avl.init({sourcesUrl: VIDEO_BASE}).loadPlayers(); });</script>
+    <script type="text/javascript">
+      $('video').mediaelementplayer({
+        success: function(player, node) {
+          $('#video-mode').html('mode: ' + player.pluginType);
+        }
+      });
+    </script>
+
+
   </body>
 </html>
