@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
-{% block css %}
+{% block head %}prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# video: http://ogp.me/ns/video#"{% endblock %}
 
-<meta property="og:type" content="video.movie">
+{% block video %}
+  <meta property="fb:app_id"      content="410061562412374" /> 
+  <meta property="og:type"        content="video.movie" /> 
+  <meta property="og:url"         content="{{base_url}}{{ url_for('static', filename="me/build/flashmediaelement.swf") }}?controls=true&file={{sources['video/x-flv']}}" /> 
+  <meta property="og:title"       content="{{ video.title }}" /> 
+  <meta property="og:image"       content="{{video.thumbnail}}" /> 
+  <meta property="video:actor:id" content="http://gabinetedigital.rs.gov.br" /> 
+
+<!-- <meta property="og:type" content="video.movie">
 <meta property="og:url" content="{{base_url}}{{url_for('.details',vid=video.id)}}">
 <meta property="og:title" content="{{ video.title }}" /> 
 <meta property="og:description" content="{{ video.description }}" />
@@ -10,17 +18,17 @@
 <meta property="og:video" content="{{base_url}}{{ url_for('static', filename="me/build/flashmediaelement.swf") }}?controls=true&file={{sources['video/x-flv']}}" /> 
 <meta property="og:video:type" content="application/x-shockwave-flash">
 <meta property="og:video:height" content="{{ video.video_height }}" /> 
-<meta property="og:video:width" content="{{ video.video_width }}" /> 
-<meta property="og:site_name" content="GabineteDigital">
-<meta property="fb:app_id" content="159464544196767">
+<meta property="og:video:width" content="{{ video.video_width }}" />  -->
 
 <meta name="twitter:card" value="player">
 <meta name="twitter:site" value="@gabinetedigital">
 <meta name="twitter:player" value="{{base_url}}{{ url_for('.embed', vid=video.id) }}">
 <meta property="twitter:player:width" content="{{ video.video_width }}">
 <meta property="twitter:player:height" content="{{ video.video_height }}">
+{% endblock %}
 
 
+{% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
@@ -48,7 +56,7 @@
             <!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
             <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
             <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">    
-              <param name="movie" value="../build/flashmediaelement.swf" /> 
+              <param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" /> 
               <param name="flashvars" value="controls=true&amp;file={{sources['video/mp4']}}" />     
               <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
               <img src="{{video.thumbnail}}" width="{{ video.video_width }}" height="{{ video.video_height }}" alt="Here we are" 
@@ -56,11 +64,7 @@
             </object>
           </video>
           <script type="text/javascript">
-            $('video').mediaelementplayer({
-              success: function(player, node) {
-                $('#video-mode').html('mode: ' + player.pluginType);
-              }
-            });
+            $('video').mediaelementplayer({});
           </script>
 
         </div>

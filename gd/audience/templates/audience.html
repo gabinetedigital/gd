@@ -104,16 +104,37 @@
               </div>
 
                 {%if audience.aud_wp_govescuta_ativa == 'n'%}
-                  <video
-                    id="aovivo"
-                    width="100%"
-                    height="400px"
-                    poster="http://s4.procergs.com.br/static2/procergs.jpg"
-                  >
-                  {%for video in audience.video_sources%}
-                    <source src="{{video.url|safe}}" type="{{video.format.split('; ')[0]|safe}}">
-                  {%endfor%}
+
+                  <video width="100%" height="100%" id="aovivo" poster="http://s4.procergs.com.br/static2/procergs.jpg" controls="controls" preload="none">
+
+                    {%if sources['video/mp4'] %}
+                    <!-- MP4 source must come first for iOS -->
+                    <source type="video/mp4" src="{{sources['video/mp4']}}" />
+                    {%endif%}
+
+                    <!-- WebM for Firefox 4 and Opera -->
+                    <source type="video/webm" src="{{sources['video/webm']}}" />
+
+                    {%if not sources['video/mp4'] %}
+                    <!-- Ogg/Vorbis for older Firefox and Opera versions -->
+                    <source type="video/ogg" src="{{sources['video/ogg']}}" />
+                    {%endif%}
+
+
+                    <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
+                    <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">    
+                      <param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" /> 
+                      <param name="flashvars" value="controls=true&amp;file={{sources['video/mp4']}}" />
+                      <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
+                      <img src="http://s4.procergs.com.br/static2/procergs.jpg" alt="Governador Escuta" 
+                        title="No video playback capabilities" />
+                    </object>
                   </video>
+                  <script type="text/javascript">
+                    $('video').mediaelementplayer();
+                  </script>
+
+
                 {%else%}
                   <div class="stream">{{audience.aud_wp_govescuta_video_embed|safe}}</div>
                 {%endif%}

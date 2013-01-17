@@ -68,13 +68,22 @@ def govescuta_details(aid):
     else:
         pagination, posts = None, []
 
-    print inst
     buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
     buzzesSelec = AudiencePosts.query.get(aid).get_last_published_notice()
     govescuta = True
+    video_sources = {}
+    audience = inst[0]
+    if audience['video_sources']:
+        for s in audience['video_sources']:
+            if(s['format'].find(';') > 0):
+                f = s['format'][0:s['format'].find(';')]
+            else:
+                f = s['format']
+            video_sources[f] = s['url']
     return render_template(
         'audience.html', #this template is from gd/audience
         # 'govescuta_edicaoanter.html',
+        sources=video_sources,
         audiences=inst,
         referrals=posts,
         pagination=pagination,
