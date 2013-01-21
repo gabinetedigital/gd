@@ -79,22 +79,28 @@ app.jinja_env.install_gettext_callables(
 cache = Cache(app)
 
 @app.errorhandler(403)
-def page_not_found(e):
+def error403(e):
     return render_template('403.html',
         sidebar=wordpress.getSidebar,
     ), 403
 
 @app.errorhandler(404)
-def page_not_found(e):
+def error404(e):
     return render_template('404.html',
         sidebar=wordpress.getSidebar,
     ), 404
 
 @app.errorhandler(500)
-def page_not_found(e):
+def error500(e):
     return render_template('500.html',
         sidebar=wordpress.getSidebar,
     ), 500
+
+@app.errorhandler(502)
+def error502(e):
+    return render_template('502.html',
+        sidebar=wordpress.getSidebar,
+    ), 502
 
 def _format_postsearch(posts):
     """" Retorna os campos para ser montado na tela:
@@ -160,7 +166,7 @@ def _format_postsearch(posts):
         elif p.post_type == 'post':
             title.append(p.title)
             aux_img = ''
-            url.append(p.permalink)
+            url.append('/post/'+p.slug)
             posttype.append(u'Notícias')
             txtdata.append(str(p.the_date.day)+' '+p.the_date.strftime("%B").capitalize()+' de '+str(p.the_date.year))
             excerpt.append(p.excerpt)
@@ -557,6 +563,45 @@ def page_json(path):
     return dumps(page and page.data or None)
 
 
+@app.route('/post/<slug>/')
+@cache.memoize(unless=is_authenticated)
+def post_slug(slug):
+
+    post = wordpress.getPostByPath(slug)
+    print "===> POST:", post
+    print "===> POST TYPE :", type(post)
+
+    pid = post['id']
+    print "PID:",pid
+
+    if 'the_date' not in post.keys():
+        # post['the_date'] = post['date']['date'].value
+        post['the_date'] = datetime.datetime.strptime(post['date']['date'].value,'%Y%m%dT%H:%M:%S')
+
+    """View that renders a post template"""
+    recent_posts = wordpress.getRecentPosts(
+        post_status='publish',
+        numberposts=4)
+    #Retorna a ultima foto inserida neste album.
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+    return render_template(
+        'post.html',
+        post=post,
+        tags=wordpress.getTagCloud(),
+        sidebar=wordpress.getSidebar,
+        # picday=picday,
+        twitter_hash_cabecalho='#gov',
+        menu=menus,
+        comments=wordpress.getComments(status='approve',post_id=pid),
+        show_comment_form=is_authenticated(),
+        recent_posts=recent_posts)
+
+
 @app.route('/post/<int:pid>/')
 @cache.memoize(unless=is_authenticated)
 def post(pid):
@@ -565,7 +610,7 @@ def post(pid):
         post_status='publish',
         numberposts=4)
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
@@ -576,7 +621,7 @@ def post(pid):
         post=wordpress.getPost(pid),
         tags=wordpress.getTagCloud(),
         sidebar=wordpress.getSidebar,
-        picday=picday,
+        # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
         comments=wordpress.getComments(status='approve',post_id=pid),
