@@ -28,14 +28,41 @@
 
 
   <div class="videobox span12">
-    <video
-       id="{{ contrib.video.id }}"
-       width="{{ contrib.video.video_width }}"
-       height="{{ contrib.video.video_height }}">
+
+    <video style="width: 100%; height: 100%; max-width: 100%; max-height: 100%" id="video{{ contrib.video.id }}" poster="{{contrib.video.thumbnail}}" controls="controls" preload="none">
+      <!-- MP4 source must come first for iOS -->
       {% for source in contrib.video_sources %}
-      <source type="{{ source.format }}" src="{{ source.url }}">
-        {% endfor %}
+        {% if 'mp4' in source.format %}
+          <source type="{{ source.format }}" src="{{ source.url }}">
+        {%endif%}
+      {% endfor %}
+
+      <!-- WebM for Firefox 4 and Opera -->
+      {% for source in contrib.video_sources %}
+        {% if 'webm' in source.format %}
+          <source type="{{ source.format }}" src="{{ source.url }}">
+        {%endif%}
+      {% endfor %}
+
+      <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
+
+      <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">
+        <param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" />
+      {% for source in contrib.video_sources %}
+        {% if 'mp4' in source.format %}
+        <param name="flashvars" value="controls=true&amp;file={{source.url}}" />
+        {%endif%}
+      {% endfor %}
+        <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
+        <img src="{{contrib.video.thumbnail}}" width="{{ contrib.video.video_width }}" height="{{ contrib.video.video_height }}" alt="Here we are"
+          title="No video playback capabilities" />
+      </object>
     </video>
+    <script type="text/javascript">
+      $('video').mediaelementplayer({});
+    </script>
+
+
     {% endif %}
 
     {% if contrib.video and date != base_date %}

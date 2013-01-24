@@ -22,7 +22,7 @@
 import locale
 
 from flask import Blueprint, request, render_template, redirect, \
-    url_for, abort
+    url_for, abort, current_app
 from dateutil import parser as dateparser
 from math import ceil
 
@@ -138,11 +138,19 @@ def index():
     #base_date = contribs[0]['answered_at'].strftime('%d/%m/%Y')
     base_date = contribs[0]['answered_at'].strftime('%d/%m/%Y')
 
+    try:
+        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
+
     #govresponde_edicoesanteriores
     return render_template(
         pagerender, **_get_context({
         'contribs': contribs,
         'count': count,
+        'menu':wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        'twitter_hash_cabecalho':twitter_hash_cabecalho,
         'base_date': base_date,
         'statusedicao': statusedicao,
         'pagination': pagination,
