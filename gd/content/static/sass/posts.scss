@@ -86,11 +86,16 @@
 
 .post img {
     margin: 10px 0px;
+    float: left;
+    margin-right: 15px;
 }
 
 .post img.aligncenter {
     clear: both;
     display:block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
 }
 
 .post img.alignleft {
