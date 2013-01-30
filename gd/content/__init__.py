@@ -676,7 +676,7 @@ def new_comment():
 def search(page=0):
     """Renders the search template"""
     
-    query = request.values.get('s', '')
+    query = request.values.get('s', '') or request.values.get('buscatop', '')
     #posttype = ['audiencia_govesc', 'clippinggd_clipping', 'equipegd_equipe', 'oquegd_oque', 'post']
     pagination, posts = wordpress.search(s=query, page=page, thumbsizes=['newsbox', 'widenewsbox'])
     #Retorna a ultima foto inserida neste album.
