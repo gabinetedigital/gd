@@ -82,7 +82,7 @@ $(function(){
 
     //Auth functions
     function handleBeforeSubmit(form) {
-        $('span#loginmsg').fadeOut();
+        $('span.loginmsg').fadeOut();
         return true;
     }
 
@@ -92,18 +92,18 @@ $(function(){
         var csrfToken = data.msg.csrf;
 
         /* It's everything ok, let's get out */
-        $('span#loginmsg').html(data.msg);
+        $('span.loginmsg').html(data.msg);
         if (data.status === 'ok') {
-            $('span#loginmsg').addClass('alert-success');
+            $('span.loginmsg').addClass('alert-success');
             auth.userAuthenticated(data.msg.user);
-            $('span#loginmsg').fadeIn();
+            $('span.loginmsg').fadeIn();
         } else {
-            $('span#loginmsg').addClass('alert-error');
-            $('span#loginmsg').fadeIn();
+            $('span.loginmsg').addClass('alert-error');
+            $('span.loginmsg').fadeIn();
         }
 
         window.setTimeout(function(){
-            $('span#loginmsg').fadeOut();
+            $('span.loginmsg').fadeOut();
         },5000);
     }
 
