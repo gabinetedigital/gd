@@ -46,6 +46,11 @@ $(function () {
         });
     });
 
+    $(".content a").fancybox({
+        'titleShow'     : false
+    });
+
+
 });
 
 $('#blog_comment_form').ajaxForm({
