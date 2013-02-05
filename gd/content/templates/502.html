@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
+{% endblock %}
+
+{% block id %}
+<div id="news"></div>
+{% endblock %}
+
+{% block content %}
+
+<div class="news">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        {% if  search_term %}
+        <h2>Você buscou por: "{{ search_term }}"</h2>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="span9">
+
+        <h1>502 - Problemas de execução!</h1>
+        <p>Infelizmente ocorreu um erro em sua ação.</p>
+        <p>Mas você pode ver as nossas <a href="/news">notícias</a>, <a href="/videos">vídeos</a> ou <a href="/fotos">fotos</a> e continuar a navegar no site para buscar mais informações.</p>
+
+        <div class="pagination">{{ pagination|safe }}</div>
+      </div>
+      <div class="span3 sidebar">
+        {{ sidebar(id='sidebar-1')|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
