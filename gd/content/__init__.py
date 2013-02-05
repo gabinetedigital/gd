@@ -26,7 +26,7 @@ import gettext
 import xmlrpclib
 from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
-     redirect, url_for
+     redirect, url_for, abort
 from flask.ext.cache import Cache
 
 from gd import conf
@@ -605,6 +605,10 @@ def post_slug(slug):
 @app.route('/post/<int:pid>/')
 @cache.memoize(unless=is_authenticated)
 def post(pid):
+    try:
+        p = wordpress.getPost(pid)
+    except:
+        return abort(404)
     """View that renders a post template"""
     recent_posts = wordpress.getRecentPosts(
         post_status='publish',
@@ -612,13 +616,14 @@ def post(pid):
     #Retorna a ultima foto inserida neste album.
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
     return render_template(
         'post.html',
-        post=wordpress.getPost(pid),
+        post=p,
         tags=wordpress.getTagCloud(),
         sidebar=wordpress.getSidebar,
         # picday=picday,
