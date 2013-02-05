@@ -566,13 +566,14 @@ def page_json(path):
 @app.route('/post/<slug>/')
 @cache.memoize(unless=is_authenticated)
 def post_slug(slug):
-
-    post = wordpress.getPostByPath(slug)
-    print "===> POST:", post
-    print "===> POST TYPE :", type(post)
+    try:
+        post = wordpress.getPostByPath(slug)
+        if not post['id']:
+            abort(404)
+    except:
+        abort(404)
 
     pid = post['id']
-    print "PID:",pid
 
     if 'the_date' not in post.keys():
         # post['the_date'] = post['date']['date'].value
