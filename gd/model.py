@@ -333,6 +333,7 @@ class User(Entity):
             id=self.id,
             name=self.name,
             nickname=self.nickname,
+            email=self.email,
             display_name=self.display_name,
             avatar_url=self.avatar_url,
             creation_date=self.creation_date,

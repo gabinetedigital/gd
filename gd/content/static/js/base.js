@@ -127,13 +127,23 @@ $(function(){
     // $('#tos').hide();
 
     auth.callback_login = function(action){
-        //alert('callback:' + action);
+        // alert('callback:' + action);
+        console.log('callback do login:' + action);
         if( $('#iframevotacao') ){
             var ifr = $('#iframevotacao')[0];
             try{
-                if(ifr.contentWindow && ifr.contentWindow.trata_botao_adicionar_ideia){
-                    var pode = action == 'login';
-                    ifr.contentWindow.trata_botao_adicionar_ideia(pode);
+                console.log('iframe');
+                if(ifr.contentWindow){
+                    if(action == 'login'){
+                        url = VOTACAO_ROOT + "/visit/?email=" + auth.user.email + "&callback=" + VOTACAO_URL;
+                        console.log(auth.user);
+                        ifr.src = url;
+                    }
+                    if(action == 'logout'){
+                        url = VOTACAO_ROOT + "/sign_out/?callback=" + VOTACAO_URL;
+                        ifr.src = url;
+                    }
+                    console.log(url);
                 }
             }catch(erro){ }
         }

@@ -271,22 +271,30 @@ def index():
     print " ######################################################################## BASE "
     """Renders the index template"""
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
-    slideshow = wordpress.getRecentPosts(
-        category_name='highlights',
-        post_status='publish',
-        numberposts=4,
-        thumbsizes=['slideshow'])
+    # slideshow = wordpress.getRecentPosts(
+    #     category_name='highlights',
+    #     post_status='publish',
+    #     numberposts=4,
+    #     thumbsizes=['slideshow'])
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    news = wordpress.getRecentPosts(
-        category_name='news',
-        post_status='publish',
-        numberposts=6,
-        thumbsizes=['newsbox', 'widenewsbox'])
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    # news = wordpress.getRecentPosts(
+    #     category_name='news',
+    #     post_status='publish',
+    #     numberposts=6,
+    #     thumbsizes=['newsbox', 'widenewsbox'])
     try:
         vote_url = app.config['VOTACAO_URL']
     except KeyError:
         vote_url = ""
+    try:
+        vote_root = app.config['VOTACAO_ROOT']
+    except KeyError:
+        vote_root = ""
+    try:
+        vote_altura = app.config['VOTACAO_ALTURA']
+    except KeyError:
+        vote_altura = ""
 
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
@@ -303,6 +311,8 @@ def index():
         page_seg=wordpress.getPageByPath('seguranca-2'),
         menu=menus,
         VOTACAO_URL=vote_url,
+        VOTACAO_ROOT=vote_root,
+        VOTACAO_ALTURA=vote_altura,
         twitter_hash_cabecalho=twitter_hash_cabecalho
     )
 
