@@ -61,7 +61,7 @@ li {
 .aud-date {
     border-right: 1px solid #CCC;
     padding-top: 20px;
-    height: 152px;
+    height: 150px;
 }
 
 .todas {
@@ -131,16 +131,15 @@ div.time {
 
 .stage {
    background-color: black;
-   height: 590px;
+   max-height: 630px;
 }
 
 .droom {
     color: #FFF;
     background-color: $black;
     margin-left: -30px;
-    border-left: 4px solid $black;
-    padding-top: 10px;
-    height: 579px;
+    height: 100%;
+    max-height: 630px;
     overflow: hidden;
 }
 
@@ -175,7 +174,8 @@ div.time {
 }
 
 .buzzs {
-    height: 541px;
+    height: 100%;
+    max-height: 630px;
     overflow-y: scroll;
 }
 
