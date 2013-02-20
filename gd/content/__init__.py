@@ -268,7 +268,7 @@ def cachecleargd():
 @app.route('/')
 @cache.cached(unless=is_authenticated)
 def index():
-    print " ######################################################################## BASE "
+    app.logger.error( " ######################################################################## BASE " )
     """Renders the index template"""
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     # slideshow = wordpress.getRecentPosts(

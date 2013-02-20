@@ -19,12 +19,12 @@
 """Module that uses the Template and Model APIs to build the Audience web
 interface.
 """
-import datetime
-from flask import Blueprint, render_template, request, abort, redirect, url_for
+#import datetime
+from flask import Blueprint, render_template, request, abort, redirect, url_for, current_app
 from sqlalchemy.orm.exc import NoResultFound
-from sqlalchemy import desc
+#from sqlalchemy import desc
 
-from gd.model import Audience, Term, get_or_404, AudiencePosts
+from gd.model import Audience, get_or_404, AudiencePosts #Term,
 from gd.utils import dumps
 from gd.content.wp import wordpress
 
@@ -35,10 +35,14 @@ audience = Blueprint(
     static_folder='static')
 
 
-@audience.route('/')
+@audience.route('/',methods=['POST','GET'])
 def index():
     """Returns the last published audience page"""
     try:
+        current_app.logger.debug( "================================================ AUDIENCE" )
+        current_app.logger.debug( request.args )
+        current_app.logger.debug( 'facebook' in request.args )
+
         pagination, inst = wordpress.wpgove.getAudiencias(ativa='s',perpage=1)
         how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
         menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
@@ -74,6 +78,7 @@ def index():
             buzzes = buzzes,
             govescuta = govescuta,
             menu=menus,
+            facebook = 'facebook' in request.args,
             buzzesSelec = buzzesSelec,
             how_to=getattr(how_to, 'content', ''),
            #notice=inst.get_last_published_notice(),

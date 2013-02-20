@@ -1,7 +1,12 @@
-{% extends "base.html" %}
+{%if facebook%}
+  {% extends "base_slim.html" %}
+{%else%}
+  {% extends "base.html" %}
+{%endif%}
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
+<meta property="fb:app_id" content="211304249001884"/>
 {% endblock %}
 
 {% block javascript %}
@@ -20,10 +25,16 @@
 
 {% endblock %}
 
-
-
-
-
+{%block id%}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=211304249001884";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{%endblock%}
 
 {% block content %}
 {% for audience in audiences %}
@@ -67,11 +78,13 @@
                 {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}:{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}
               </div>
             </div>
+            {%if not facebook%}
             <div class="share">
               <p>Compartilhe</p>
               <span class='st_facebook_hcount'></span>
               <span class='st_twitter_hcount'></span>
             </div>
+            {%endif%}
           </div>
         </div>
 
@@ -144,45 +157,8 @@
         <div class="span4 visible-desktop">
           <div class="droom">
               {% if not govescuta %}
-              <div id="message-statusbar" class="alert alert-info span3"></div>
-              <div id="chat">
-                <form id="internal_chat" method="post" action="{{ url_for('buzz.post') }}">
-                  <input type="hidden" id="aid" name="aid" value="{{ audience.ID}}">
-                  <textarea id="message-area" name="message" class="tiny" placeholder="Poste sua mensagem aqui."></textarea>
-                  <input id="send_comment" class="btn" type="submit" value="enviar">
-                  <!-- <span class="current-msg-length">300</span> -->
-
-                </form>
-              </div>
+              <div class="fb-comments" data-href="https://gabinetedigital.rs.gov.br/audience" data-width="400" data-num-posts="50"></div>
               {% endif %}
-              <div class="buzzs">
-              <!-- <a class="filter" href="javascript:;" -->
-              <!--    title="Alternar a exibição de mensagens moderadas">filtro</a> -->
-              <ul id="buzz-public" class="buzz" style="display:none">
-              </ul>
-              <ul id="buzz-moderated" class="buzz">
-                {% for buzz in buzzes %}
-                <li id="msgid_{{ buzz.id }}">
-                  <ul class="{{ loop.cycle('astream', 'bstream') }}">
-                    <li class="avatar"><img src="{{ buzz.avatar}}" alt="{{ buzz.owner_nick }}"></li>
-                    <li class="author">
-                      {% if (buzz.user)  %}
-                      {{ buzz.user.display_name }}
-                      {%  else  %}
-                      {% if (buzz.owner_nick)  %}
-                      @{{ buzz.owner_nick }}
-                      {% else  %}
-                      Via SMS
-                      {% endif %}
-                      {% endif %}
-                      <em>| {{ buzz.type_name }}</em>
-                    </li>
-                    <li class="answer">{{ buzz.content }}</li>
-                  </ul>
-                </li>
-                {% endfor %}
-              </ul >
-            </div>
           </div>
         </div>
       </div>
