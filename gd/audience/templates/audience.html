@@ -187,17 +187,17 @@
         </div>
       </div>
     </div>
-    <div class="bloggin">
+    <div class="instagram">
       <div class="row">
-        <div class="span12">
+        <div class="span12" data-toggle="modal-gallery" data-target="#modal-gallery">
     	<ul  id="encaminhada-{{ audience.ID }}" class="thumbnails">
-          {% for post in referrals %}
+          {% for photo in photos %}
           <li class="span6">
             <div class="thumbnail">
-            <a href="{{ post.get_field('link', post.permalink) }}">
-              <h4>{{ post.title }}</h4>
-              <div>{{ post.content|safe }}</div>
+            <a href="{{ photo.url }}" data-gallery="gallery"  title="{{ photo.caption }}">
+              <img src="{{ photo.thumb }}" alt="{{ photo.caption }}" title="{{ photo.caption }}">
             </a>
+            <p>{{ photo.caption }}</p>
             </div>
           </li>
           {% endfor %}
@@ -274,6 +274,16 @@
   </div>
   <div class="modal-body">
     {{audience.aud_wp_govescuta_detalhes_govesc|safe}}
+  </div>
+</div>
+
+<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal"></a>
+  </div>
+  <div class="modal-body"><div class="modal-image"></div></div>
+  <div class="modal-footer">
+    <p class="modal-title"></p>
   </div>
 </div>
 

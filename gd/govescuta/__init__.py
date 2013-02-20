@@ -19,12 +19,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from flask import Blueprint, request, render_template, redirect, \
-    url_for, abort
+    url_for, abort, current_app
 
 from gd.model import Audience, Term, get_or_404, AudiencePosts
 from gd.utils import dumps
+from gd import conf
 
 from gd.content.wp import wordpress
+
+# Instagram API
+from instagram.client import InstagramAPI
 
 govescuta = Blueprint(
     'govescuta', __name__,
@@ -59,14 +63,33 @@ def govescuta_details(aid):
     how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
     menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     category = None
+    tag = None
     for cat in inst:
         category = cat['category']
+        tag = cat['category_slug']
 
     if category:
         pagination, posts = wordpress.getPostsByCategory(
             cat=category)
     else:
         pagination, posts = None, []
+
+    try:
+        access_token = current_app.config['INSTAGRAM_TOKEN']
+    except KeyError:
+        access_token = ""
+
+    api = InstagramAPI(access_token=access_token)
+    recent_media, next = api.user_recent_media(user_id="227330958")
+    photos = []
+    for media in recent_media:
+        if hasattr(media, 'tags'):
+            if tag in [ t.name for t in media.tags ]:
+                content = { 'url': media.images['standard_resolution'].url,
+                            'thumb': media.images['thumbnail'].url,
+                            'caption': media.caption.text }
+                photos.append(content)
+
 
     buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
     buzzesSelec = AudiencePosts.query.get(aid).get_last_published_notice()
@@ -90,6 +113,8 @@ def govescuta_details(aid):
         buzzes = buzzes,
         buzzesSelec = buzzesSelec,
         menu=menus,
+        tag=tag,
         govescuta=govescuta,
+        photos=photos,
         how_to=getattr(how_to, 'content', ''),
     )

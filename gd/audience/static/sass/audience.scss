@@ -230,12 +230,45 @@ p.description {
     margin-bottom: 9px;
 }
 
-.bloggin {
+.instagram {
   margin-top: 20px;
 }
 
-.bloggin ul>li {
+.instagram ul>li {
     margin-bottom: 15px;
+}
+
+.instagram .thumbnail {
+    background: #FFF;
+    overflow: auto;
+}
+
+.instagram .thumbnail img {
+    float: left;
+    margin-right: 20px;
+}
+
+.instagram .thumbnail p {
+    color: #000000;
+    display: table-cell;
+    height: 150px;
+    vertical-align: middle;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 0;
+}
+
+.modal-header .close {
+    background: url("../img/fancybox.png") repeat scroll transparent;
+    cursor: pointer;
+    height: 32px;
+    position: absolute;
+    right: 4px;
+    width: 32px;
+    z-index: 1103;
+    opacity: 1.0;
 }
 
 .modal {
@@ -245,6 +278,7 @@ p.description {
 .modal-body {
     max-height: 600px;
 }
+
 
 /* .buzz { */
 /*     background-color: $black; */
