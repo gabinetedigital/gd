@@ -313,3 +313,11 @@ function show_how_to() {
 function showEncaminhada(parentId) {
     $('#encaminhada-' + parentId).slideToggle();
 }
+
+function updateInstagram(tag) {
+    $.ajax({
+        url: "/govescuta/instagram_update/"+tag
+    }).done(function ( data ) {
+        $("#instaphotos").html(data);
+    });
+}

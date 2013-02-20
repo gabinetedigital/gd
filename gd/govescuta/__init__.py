@@ -25,6 +25,8 @@ from gd.model import Audience, Term, get_or_404, AudiencePosts
 from gd.utils import dumps
 from gd import conf
 
+from json import dumps
+
 from gd.content.wp import wordpress
 
 # Instagram API
@@ -118,3 +120,24 @@ def govescuta_details(aid):
         photos=photos,
         how_to=getattr(how_to, 'content', ''),
     )
+
+@govescuta.route('/instagram_update/<tag>/')
+def instagram_update(tag):
+
+    try:
+        access_token = current_app.config['INSTAGRAM_TOKEN']
+    except KeyError:
+        access_token = ""
+
+    api = InstagramAPI(access_token=access_token)
+    recent_media, next = api.user_recent_media(user_id="227330958")
+    photos = []
+    for media in recent_media:
+        if hasattr(media, 'tags'):
+            if tag in [ t.name for t in media.tags ]:
+                content = { 'url': media.images['standard_resolution'].url,
+                            'thumb': media.images['thumbnail'].url,
+                            'caption': media.caption.text }
+                photos.append(content)
+
+    return render_template('instagram_update.html', photos=photos)

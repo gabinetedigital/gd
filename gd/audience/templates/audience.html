@@ -190,7 +190,7 @@
     <div class="instagram">
       <div class="row">
         <div class="span12" data-toggle="modal-gallery" data-target="#modal-gallery">
-    	<ul  id="encaminhada-{{ audience.ID }}" class="thumbnails">
+          <ul  id="instaphotos" class="thumbnails">
           {% for photo in photos %}
           <li class="span6">
             <div class="thumbnail">
@@ -368,6 +368,10 @@
       <em> | <%= obj.type_.name %></em></li>
     <li class="answer"><%= obj.content %></li>
   </ul>
+</script>
+
+<script>
+  setInterval("updateInstagram('{{ tag }}')", 300000);
 </script>
 
 {% endblock %}

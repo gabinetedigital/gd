@@ -1,0 +1,10 @@
+{% for photo in photos %}
+<li class="span6">
+  <div class="thumbnail">
+    <a href="{{ photo.url }}" data-gallery="gallery"  title="{{ photo.caption }}">
+      <img src="{{ photo.thumb }}" alt="{{ photo.caption }}" title="{{ photo.caption }}">
+    </a>
+    <p>{{ photo.caption }}</p>
+  </div>
+</li>
+{% endfor %}
