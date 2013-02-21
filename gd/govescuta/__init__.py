@@ -76,22 +76,7 @@ def govescuta_details(aid):
     else:
         pagination, posts = None, []
 
-    try:
-        access_token = current_app.config['INSTAGRAM_TOKEN']
-    except KeyError:
-        access_token = ""
-
-    api = InstagramAPI(access_token=access_token)
-    recent_media, next = api.user_recent_media(user_id="227330958")
-    photos = []
-    for media in recent_media:
-        if hasattr(media, 'tags'):
-            if tag in [ t.name for t in media.tags ]:
-                content = { 'url': media.images['standard_resolution'].url,
-                            'thumb': media.images['thumbnail'].url,
-                            'caption': media.caption.text }
-                photos.append(content)
-
+    photos = get_instagram_photos(tag)
 
     buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
     buzzesSelec = AudiencePosts.query.get(aid).get_last_published_notice()
@@ -124,13 +109,20 @@ def govescuta_details(aid):
 @govescuta.route('/instagram_update/<tag>/')
 def instagram_update(tag):
 
+    photos = get_instagram_photos(tag)
+
+    return render_template('instagram_update.html', photos=photos)
+
+
+def get_instagram_photos(tag):
+
     try:
         access_token = current_app.config['INSTAGRAM_TOKEN']
     except KeyError:
         access_token = ""
 
     api = InstagramAPI(access_token=access_token)
-    recent_media, next = api.user_recent_media(user_id="227330958")
+    recent_media, next = api.user_recent_media(user_id="227330958", count=-1)
     photos = []
     for media in recent_media:
         if hasattr(media, 'tags'):
@@ -140,4 +132,4 @@ def instagram_update(tag):
                             'caption': media.caption.text }
                 photos.append(content)
 
-    return render_template('instagram_update.html', photos=photos)
+    return photos
