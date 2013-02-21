@@ -56,15 +56,15 @@
               menu
             </a>
             <div class="nav-collapse">
-              <ul class="nav nav-pills">
-                {{ menu | safe }}
-              </ul>
               <form class="navbar-search form-search pull-right tools" action='/search/'>
                 <div class="input-append">
                   <input type="text" class="input-small busca search-query"  id="buscabar" name="buscabar">
                   <button type="submit" class="btn"><i class="icon-search"></i></button>
                 </div>
               </form>
+              <ul class="nav nav-pills">
+                {{ menu | safe }}
+              </ul>
             </div>
           </div>
 

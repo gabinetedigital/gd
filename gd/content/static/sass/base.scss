@@ -235,6 +235,7 @@ a {
     right: 0;
     z-index: 1030;
     background-color: #1B1B1B;
+    float: right;
     @include background-image(linear-gradient(center top , #222222 , #111111));
 }
 
@@ -244,7 +245,7 @@ a {
 
 .subnav-fixed .nav {
     display: block;
-    float: left;
+    float: right;
     left: 0;
     margin: 0 10px 0 0;
     position: relative;
