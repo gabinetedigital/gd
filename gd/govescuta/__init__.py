@@ -118,13 +118,21 @@ def instagram_update(tag):
 
 def get_instagram_photos(tag):
 
+    # É necessário configurar os campos INSTAGRAM_TOKEN e INSTAGRAM_USER
+    # no conf.py
+
     try:
         access_token = current_app.config['INSTAGRAM_TOKEN']
     except KeyError:
         access_token = ""
 
+    try:
+        user_id = current_app.config['INSTAGRAM_USER']
+    except KeyError:
+        user_id = ""
+
     api = InstagramAPI(access_token=access_token)
-    recent_media, next = api.user_recent_media(user_id="227330958", count=-1)
+    recent_media, next = api.user_recent_media(user_id=user_id, count=-1)
     photos = []
     for media in recent_media:
         if hasattr(media, 'tags'):
