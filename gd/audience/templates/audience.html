@@ -4,9 +4,12 @@
   {% extends "base.html" %}
 {%endif%}
 
+{%block htmldef%} xmlns:fb="http://ogp.me/ns/fb#" {%endblock%}
+
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
-<meta property="fb:app_id" content="211304249001884"/>
+<meta property="fb:app_id" content="{{FACEBOOK_APP_ID}}"/>
+<meta property="fb:admins" content="{{FACEBOOK_COMMENT_MODERATORS}}"/>
 {% endblock %}
 
 {% block javascript %}
@@ -26,14 +29,9 @@
 {% endblock %}
 
 {%block id%}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=211304249001884";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+
+<script src="http://connect.facebook.net/pt_BR/all.js#appId={{FACEBOOK_APP_ID}}&amp;xfbml=1"></script>
+
 {%endblock%}
 
 {% block content %}
@@ -64,10 +62,7 @@
         <div class="span4  hidden-phone">
           <div class="aud-date">
             <div class="hashtag pull-left">
-              {% if not govescuta %}
-              <p class="twt">Participe também pelo twitter</p>
-              <p class="hash">{{ audience.hashtag[0] }}</p>
-              {% else %}
+              {% if govescuta %}
               <a href="./" class="btn btn-primary todas">Ver mais audiências</a>
               {% endif%}
             </div>
@@ -78,13 +73,11 @@
                 {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}:{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}
               </div>
             </div>
-            {%if not facebook%}
             <div class="share">
               <p>Compartilhe</p>
               <span class='st_facebook_hcount'></span>
               <span class='st_twitter_hcount'></span>
             </div>
-            {%endif%}
           </div>
         </div>
 
@@ -95,26 +88,6 @@
         <div class="span8">
           <div class="room">
             <div class="streaming">
-              <div id="beingAnswered-anterior">
-                {% if (buzzesSelec) %}
-                <ul class="stream">
-                  <li class="avatar"><img src="{{ buzzesSelec.avatar }}" alt="{{ buzzesSelec.user.display_name }}"></li>
-                  <li class="author">
-                    {% if (buzzesSelec.user)  %}
-                    {{ buzzesSelec.user.display_name }}
-                    {% else  %}
-                    {% if (buzzesSelec.owner_nick)  %}
-                    @{{ buzzesSelec.owner_nick }}
-                    {% else  %}
-                    Via SMS
-                    {% endif %}
-                    {% endif %}
-                    <em> | {{ buzzesSelec.type_.name }}</em>
-                  </li>
-                  <li class="answer">{{ buzzesSelec.content }}</li>
-                </ul>
-                {% endif %}
-              </div>
 
                 {%if audience.aud_wp_govescuta_ativa == 'n'%}
 
@@ -157,7 +130,7 @@
         <div class="span4 visible-desktop">
           <div class="droom">
               {% if not govescuta %}
-              <div class="fb-comments" data-href="https://gabinetedigital.rs.gov.br/audience" data-width="400" data-num-posts="50"></div>
+              <fb:comments href="{{FACEBOOK_COMMENT_URL}}" width="380" num_posts="5"></fb:comments>
               {% endif %}
           </div>
         </div>

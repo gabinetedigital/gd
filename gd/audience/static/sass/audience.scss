@@ -130,7 +130,7 @@ div.time {
 }
 
 .stage {
-   background-color: black;
+   background-color: #eee;
    max-height: 630px;
 }
 
@@ -140,7 +140,7 @@ div.time {
     margin-left: -30px;
     height: 100%;
     max-height: 630px;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 #beingAnswered-anterior {
@@ -420,10 +420,14 @@ p.description {
 }
 
 .streaming {
-    background: url(../imgs/video.png) 50%;
+    background: #eee;
     display: block;
 }
 
 .streaming video.video-js {
     height: 400px;
+}
+
+.stream{
+    text-align: center;
 }

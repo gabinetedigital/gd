@@ -70,6 +70,21 @@ def index():
         else:
             pagination, posts = None, []
 
+        try:
+            facebook_comment_url = current_app.config['FACEBOOK_COMMENT_URL']
+        except:
+            facebook_comment_url = ""
+
+        try:
+            facebook_app_id = current_app.config['FACEBOOK_APP_ID']
+        except:
+            facebook_app_id = ""
+
+        try:
+            facebook_comment_moderators = current_app.config['FACEBOOK_COMMENT_MODERATORS']
+        except:
+            facebook_comment_moderators = ""
+
         return render_template(
             'audience.html',
             audiences=inst,
@@ -79,6 +94,9 @@ def index():
             govescuta = govescuta,
             menu=menus,
             facebook = 'facebook' in request.args,
+            FACEBOOK_COMMENT_URL = facebook_comment_url,
+            FACEBOOK_APP_ID = facebook_app_id,
+            FACEBOOK_COMMENT_MODERATORS = facebook_comment_moderators,
             buzzesSelec = buzzesSelec,
             how_to=getattr(how_to, 'content', ''),
            #notice=inst.get_last_published_notice(),

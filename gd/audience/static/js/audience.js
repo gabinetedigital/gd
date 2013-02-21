@@ -321,3 +321,10 @@ function updateInstagram(tag) {
         $("#instaphotos").html(data);
     });
 }
+
+//Metodo utilizado para atualizar auomaticamente os comentarios do Facebook na pagina de audiencia...
+function atufbcom(){
+  FB.XFBML.parse();
+}
+setInterval("atufbcom",60000);
+
