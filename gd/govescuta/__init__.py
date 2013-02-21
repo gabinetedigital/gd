@@ -1,9 +1,11 @@
 # -*- coding:utf-8 -*-
 #
+# Copyright (C) 2013  Guilherme Guerra <guerrinha@comum.org>
 # Copyright (C) 2012  Lincoln de Sousa <lincoln@comum.org>
-# Copyright (C) 2012  Governo do Estado do Rio Grande do Sul
+# Copyright (C) 2012-2013  Governo do Estado do Rio Grande do Sul
 #
-#   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
+#   Authors: Lincoln de Sousa <lincoln@gg.rs.gov.br>, Guilherme Guerra
+#   <guilherme-guerra@sgg.rs.gov.br>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
