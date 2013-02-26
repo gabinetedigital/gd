@@ -104,7 +104,7 @@ def error502(e):
 
 def _format_postsearch(posts):
     """" Retorna os campos para ser montado na tela:
-        title, url, posttype, data, excerpt, textobotao, thumbs 
+        title, url, posttype, data, excerpt, textobotao, thumbs
         Chamar assim na outra pagina:
         for title, url, posttype, txtdata, excerpt, textobotao, thumbs in posts
     """
@@ -130,10 +130,10 @@ def _format_postsearch(posts):
             title.append(p.title)
             aux_fonte = map(lambda x: x['value'], filter(lambda x: x['key']  == 'wp_clippinggd_fonte', p.custom_fields))
             aux_fonte = aux_fonte and aux_fonte[0] or ''
-            
+
             aux_url_url   = map(lambda x: x['value'], filter(lambda x: x['key']  == 'wp_clippinggd_url', p.custom_fields))
             aux_url_anexo = map(lambda x: x['value'], filter(lambda x: x['key']  == 'wp_clippinggd_anexo' , p.custom_fields))
-            
+
             if aux_url_anexo:
                 aux_url = wordpress.getAttachmentUrl(postid = aux_url_anexo[0]) or ''
             else:
@@ -177,10 +177,10 @@ def _format_postsearch(posts):
                 elif p.thumbs:
                     aux_img = "<img src='"+str(p.thumbs['newsbox']['url'])+"'     alt='"+unicode(p.title)+"' width='"+ str(p.thumbs['newsbox']['width']) +"'     height='"+ str(p.thumbs['newsbox']['height']) +"'>"
             thumbs.append(aux_img or '')
-            
-    
+
+
     psearch = zip(title, url, posttype, txtdata, excerpt, textobotao, thumbs)
-    
+
     return psearch
 
 def formatarDataeHora(s,formato = '%d/%m/%Y %H:%Mh' ):
@@ -384,7 +384,7 @@ def news(page=0):
     pagination, posts = wordpress.getPosts(page=page, thumbsizes=['newsbox', 'widenewsbox'])
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    
+
     psearch = _format_postsearch(posts)
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
@@ -409,7 +409,7 @@ def category(cid, page=0):
     pagination, posts = wordpress.getPostsByCategory(cat=cid, page=page)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    
+
     psearch = _format_postsearch(posts)
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
@@ -433,7 +433,7 @@ def tag(slug, page=0):
     pagination, posts = wordpress.getPostsByTag(tag=slug, page=page)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    
+
     psearch = _format_postsearch(posts)
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
@@ -464,7 +464,7 @@ def conselho():
         twitter_hash_cabecalho = ""
     return render_template(
         'post.html',
-        page=page,
+        post=page,
         sidebar=wordpress.getSidebar,
         picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
@@ -474,6 +474,55 @@ def conselho():
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
+
+def add_filhos_and_comments_to_post(post_type, lista_de_posts):
+    if type(lista_de_posts) in (tuple,list):
+        for post in lista_de_posts:
+            cmts = wordpress.getComments(status='approve',post_id=post['id'], number=1000)
+            if cmts:
+                post['_comments'] = cmts
+            filhos = wordpress.getCustomPostByParent(post_type, post['id'] )
+            if filhos:
+                post['filhos'] = filhos
+                add_filhos_and_comments_to_post(post_type, filhos)
+    else:
+        post = lista_de_posts
+        cmts = wordpress.getComments(status='approve',post_id=post['id'], number=1000)
+        if cmts:
+            post['_comments'] = cmts
+        filhos = wordpress.getCustomPostByParent(post_type, post['id'] )
+        if filhos:
+            post['filhos'] = filhos
+            add_filhos_and_comments_to_post(post_type, filhos)
+
+
+@app.route('/o-que-voce-espera-da-cultura-nos-proximos-10-anos/')
+@cache.memoize(unless=is_authenticated)
+def cultura():
+    """Renders a wordpress page special"""
+    path = 'artigo-especial-1'
+    post_type = 'artigo-herarquico'
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    post = wordpress.getCustomPostByPath(post_type,path)
+
+    add_filhos_and_comments_to_post(post_type, post)
+
+    print post
+    try:
+        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
+    return render_template(
+        'artigo_hierarquico.html',
+        post=post,
+        sidebar=wordpress.getSidebar,
+        # picday=picday,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
+        show_comment_form=is_authenticated(),
+        categoria_contribuicao_text=categoria_contribuicao_text
+        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    )
 
 
 @app.route('/comite-transito/')
@@ -691,7 +740,7 @@ def new_comment():
 @app.route('/search/<int:page>/')
 def search(page=0):
     """Renders the search template"""
-    
+
     query = request.values.get('s', '') or request.values.get('buscatop', '')
     #posttype = ['audiencia_govesc', 'clippinggd_clipping', 'equipegd_equipe', 'oquegd_oque', 'post']
     pagination, posts = wordpress.search(s=query, page=page, thumbsizes=['newsbox', 'widenewsbox'])
@@ -728,7 +777,7 @@ def archive(m, page=0):
     pagination, posts = wordpress.getArchivePosts(m=m, page=page)
     #Retorna a ultima foto inserida neste album.
     picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    
+
     psearch = _format_postsearch(posts)
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
