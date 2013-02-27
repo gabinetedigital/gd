@@ -140,7 +140,7 @@ $(function(){
                         ifr.src = url;
                     }
                     if(action == 'logout'){
-                        url = VOTACAO_ROOT + "/sign_out/?callback=" + VOTACAO_URL;
+                        url = VOTACAO_ROOT + "/unvisit/?callback=" + VOTACAO_URL;
                         ifr.src = url;
                     }
                     console.log(url);
