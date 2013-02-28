@@ -496,18 +496,36 @@ def add_filhos_and_comments_to_post(post_type, lista_de_posts):
             add_filhos_and_comments_to_post(post_type, filhos)
 
 
-@app.route('/o-que-voce-espera-da-cultura-nos-proximos-10-anos/')
+@app.route('/h/<slug>/')
 @cache.memoize(unless=is_authenticated)
-def cultura():
+def artigo_hierarquico(slug):
     """Renders a wordpress page special"""
-    path = 'artigo-especial-1'
+    path = slug
     post_type = 'artigo-herarquico'
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     post = wordpress.getCustomPostByPath(post_type,path)
 
+    print '===================================================='
+    print post
+    print '===================================================='
+
+    if not post['id']:
+        return abort(404)
+
     add_filhos_and_comments_to_post(post_type, post)
 
-    print post
+    HABILITAR_SANFONA="false"
+    HABILITAR_COMENTARIO_MESTRE="false"
+    HABILITAR_COMENTARIO_FILHOS="false"
+
+    for cf in post['custom_fields']:
+        if cf['key'] == 'artigo_hierarquico_comentario_master' and cf['value'] == '1':
+           HABILITAR_COMENTARIO_MESTRE = 'true'
+        if cf['key'] == 'artigo_hierarquico_comentarios_filhos' and cf['value'] == '1':
+           HABILITAR_COMENTARIO_FILHOS = 'true'
+        if cf['key'] == 'artigo_hierarquico_sanfona' and cf['value'] == '1':
+           HABILITAR_SANFONA = 'true'
+
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
@@ -517,7 +535,9 @@ def cultura():
         'artigo_hierarquico.html',
         post=post,
         sidebar=wordpress.getSidebar,
-        # picday=picday,
+        HABILITAR_SANFONA=HABILITAR_SANFONA,
+        HABILITAR_COMENTARIO_MESTRE=HABILITAR_COMENTARIO_MESTRE,
+        HABILITAR_COMENTARIO_FILHOS=HABILITAR_COMENTARIO_FILHOS,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         show_comment_form=is_authenticated(),
         categoria_contribuicao_text=categoria_contribuicao_text
