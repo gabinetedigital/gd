@@ -34,17 +34,7 @@ $(function () {
         load: true
     });
 
-    $('video').each(function(){
-        jwplayer(this.id).setup({  
-            skin: "/static/jw/bekle/bekle.xml",  
-            width: '100%',  
-            modes: [    
-                { type: "html5" },    
-                { type: "flash", src: "/static/jw/player.swf" },    
-                { type: "download" }  
-            ]
-        });
-    });
+    $('video').mediaelementplayer();
 
     $(".content a").fancybox({
         'titleShow'     : false
