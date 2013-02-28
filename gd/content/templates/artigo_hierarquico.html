@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
+  <!--[if IE]>
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
+  <![endif]-->
+  <meta property="og:site_name" content="The Mozilla Blog">
+  <meta property="og:title" content="{{ post.title }}">
+  <meta property="og:url" content="{{request.url}}">
+  <meta property="og:description" content="{{ post.excerpt }}">
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/lei.css') }}">
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/jquery.fancybox.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/post.js') }}"></script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
+<script type="text/javascript">
+    var HABILITAR_SANFONA={{HABILITAR_SANFONA}};
+    var HABILITAR_COMENTARIO_MESTRE={{HABILITAR_COMENTARIO_MESTRE}};
+    var HABILITAR_COMENTARIO_FILHOS={{HABILITAR_COMENTARIO_FILHOS}};
+</script>
+<script src="{{ url_for('.static', filename='js/lei.js') }}"></script>
+{% endblock %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block id %}
+<div id="news"></div>
+{% endblock %}
+
+{% block content %}
+
+<div class="img-comments">
+  <a id="view-comments" href="#comentarios"><img src="{{ url_for('static', filename='img/comment.png') }}"></a>
+  <a id="add-comment" href="#form-com"><img src="{{ url_for('static', filename='img/comment_add.png') }}"></a>
+</div>
+
+<div class="news" id="news">
+  <div class="container">
+    <div class="row">
+
+        {% if post.custom_fields %}
+          {% for cf in post.custom_fields %}
+            {% if cf.key == 'artigo_hierarquico_banner' %}
+              <div class="span12 banner">
+                <img src="{{cf.value}}"></img>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+      <div class="span9">
+        <div class="post">
+          <h2>{{ post.title }}</h2>
+          <div class="content">
+
+            {{ post.content|safe }}
+
+            <div class="post-children">
+
+              {% for child in post.filhos recursive %}
+              <div class="post-child">
+                {%if child.title%}
+                <h3 class="post-child-title">{{child.title|safe}}</h3>
+                {%endif%}
+                <div class="post-child-content" data-id="{{child.id}}" 
+{% if HABILITAR_SANFONA == 'true' %}
+                style="display:none"
+{% endif %}
+                data-title="{{child.title}}">
+                {{child.content|safe}}
+                </div>
+                {% if child.filhos %}
+                  {{ loop(child.filhos) }}
+                {% endif %}
+
+
+                <div id="comentarios{{child.id}}" style="display:none; width: 600px;">
+                  <ul>
+
+                  {% for comment in child._comments %}
+                    <li>
+                      <strong>Nome: </strong>{{ comment.author|safe }}<br>
+                      {{ comment.content|safe }}
+                    </li>
+                  {% else %}
+                    <li><strong>Não há comentários</strong></li>
+                  {% endfor %}
+
+                  </ul>
+                </div>
+
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+          <div class="pull-right">
+            <span class='st_facebook_hcount' displayText='Facebook'></span>
+            <span class='st_twitter_hcount' displayText='Tweet'></span>
+            <span class='st_plusone_hcount' displayText='Google +1'></span>
+          </div>
+        </div>
+        {% if HABILITAR_COMENTARIO_MESTRE == 'true' %}
+        <div id="comments">
+          <div class="postcontent">
+            <h3>Comentários</h3>
+
+            {% if post.comments.allow_comments %}
+
+            {% if user is not none %}
+            <!-- the comment error msg -->
+            <div class="msg error"></div>
+            <div class="msg success"></div>
+
+
+            <form
+               id="blog_comment_form" method="post"
+               action="{{ url_for('new_comment') }}">
+
+              <input type="hidden" name="post_id" value="{{ post.id }}">
+
+
+              <div class="form">
+                <img src="{{ user.avatar_url }}" class="pull-left">
+                <div class="commentbox">
+                  <textarea name="content" placeholder="Deixe seu comentário…"></textarea>
+                  <input class="btn btn-danger pull-right enviar" type="submit" value="Enviar">
+                </div>
+              </div>
+            </form>
+            {% else %}
+            <div class="alert alert-info">
+              <strong>Aviso!</strong> Você precisa estar logado para comentar.
+            </div>
+
+            {% endif %}
+            {% endif %}
+            {% for comment in post._comments %}
+            <div class="comment">
+              <img src="{{ comment.user.avatar_url }}" class="pull-left">
+              <div class="comcontent">
+                <h3>{{ comment.author|safe }}</h3>
+
+                <div class="meta">
+                  <i class="icon-calendar "></i>
+                </div>
+
+                {{ comment.content|safe }} <br>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="sidebar span3">
+        <div id="wordpress-sidebar-10">
+          {{ sidebar(id='sidebar-10')|safe }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="form-com" style="display:none; width: 500px;">
+    <div class="msg error"></div>
+    <div class="msg success"></div>
+    <form id="form_comentario_filho" method="post" action="{{ url_for('new_comment') }}">
+      <input type="hidden" name="post_id" id="post_id" value="">
+      <label for="content">Comentário para: <strong><span id="nomefilho">Filho 1.1</span></strong></label>
+      <textarea placeholder="Deixe seu comentário…" name="content" id="content"></textarea>
+      <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
+    </form>
+
+</div>
+{% endblock %}
