@@ -1,41 +1,46 @@
 .post-child {
-	margin-left: 30px;
+    margin-left: 30px;
 }
 
 .post-child {
-  border-left: 3px solid #eee;
-  padding-left: 10px;
+    border-left: 3px solid #eee;
+    padding-left: 10px;
 }
 
 .post-child:hover {
-  border-left: 3px solid #555;
-  padding-left: 10px;
+    border-left: 3px solid #DDD;
+    padding-left: 10px;
 }
 
 .post-child > p {
-	text-align:justify;
-	text-justify:inter-word;
+    text-align:justify;
+    text-justify:inter-word;
 }
 
 .img-comments img{
-	display: block;
-	margin-bottom: 3px;
+    display: block;
+    margin-bottom: 3px;
 }
 
 .img-comments{
-	display: none;
-	position: absolute;
-	padding: 5px;
-	/*border: 1px solid black;*/
-	/*margin-right: 30px;*/
-	width: 35px;
-	background-color: transparent;
+    display: none;
+    position: absolute;
+    padding: 5px;
+    /*border: 1px solid black;*/
+    /*margin-right: 30px;*/
+    width: 35px;
+    background-color: transparent;
 }
 
 #form-com > form > textarea {
-	width: 485px;
+    width: 485px;
 }
 
 .banner{
-	margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+h3.post-child-title {
+    font-weight: 400;
+    font-size: 20px;
 }
