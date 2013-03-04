@@ -22,14 +22,16 @@
 from urllib import urlopen
 from urllib2 import HTTPError
 from time import sleep
-from json import loads
+from json import loads, load
 from tweetstream import FilterStream, ConnectionError
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import IntegrityError
 
-from gd.model import Audience, session, Buzz, BuzzType, get_or_create, conf, \
+from gd.model import session, Buzz, User, BuzzType, get_or_create, conf, \
      AudiencePostsMeta
 
 USER_API_URL = 'http://api.twitter.com/1/users/show.json?screen_name=%s'
+face_comments_json = "https://graph.facebook.com/comments/?ids=%s"
 
 class Twitter(object):
     """A twitter stream client that saves tweets from some given
@@ -80,7 +82,7 @@ class Twitter(object):
                 # cage!
                 content = urlopen(USER_API_URL % screen_name).read()
                 parsed = loads(content)
-            except Exception, exc:
+            except Exception:
                 return False
 
             # Everything ok with the request, but the retrieved content
@@ -127,7 +129,7 @@ class Twitter(object):
                         print 'Nothing to be processed or too much things to process'
                         print 'Make sure you have only `one\' audience running'
                         exit(0)
-                            
+
                 if tweet.has_key('user'):
                     type_ = get_or_create(BuzzType, name=u'twitter')[0]
                     buzz = Buzz(
@@ -147,13 +149,54 @@ class Twitter(object):
             sleep(30)
             self.process()
 
+class Facebook(object):
+
+    def __init__(self, audience):
+        self.audience = audience
+
+    def process(self):
+        print "======================================================== Buscando os comentarios do face"
+        try:
+            face_comment_url = conf.FACEBOOK_COMMENT_URL
+        except:
+            face_comment_url = ""
+        if face_comment_url:
+            URL_JSON =face_comments_json % face_comment_url
+            result = load( urlopen(URL_JSON) )
+            if result :
+                print result
+                comentarios = result[face_comment_url]['comments']['data']
+                print "======================================================================"
+                print comentarios
+                tipo=get_or_create(BuzzType, name=u'facebook')[0]
+                user = User.get_by(username='admin')
+                for comentario in comentarios:
+                    print 'comentario_id',comentario['id']
+                    # novouser=get_or_create(User, name=unicode(comentario['from']['name']), username=comentario['from']['id'])
+                    try:
+                        newbuzz = Buzz(
+                            owner_nick=comentario['from']['name'], #auth.authenticated_user().display_name,
+                            owner_avatar=u'',
+                            user=user,
+                            face_msg_id=comentario['id'],
+                            content=comentario['message'][:300], #request.values.get('message')[:300],
+                            type_=tipo)
+                        newbuzz.audience_id = self.audience.post_ID
+                        session.commit()
+                        # session.clear()
+                    except IntegrityError:
+                        print "Jah tem este comentario, duplicacao do face_msg_id %s !" % comentario['id']
+                        session.rollback()
+                print "======================================================================"
+        sleep(30)
+        self.process()
 
 
 def main():
     try:
         audience = AudiencePostsMeta.query.filter_by(meta_key = 'wp_govescuta_ativa', meta_value='s').one()
         audience = AudiencePostsMeta.query.filter_by(meta_key = 'wp_govescuta_hashtags_audiencia', post_ID=audience.post_ID).one()
-    except Exception, exc:
+    except Exception:
         print 'msg = Nenhuma audiencia ativa no momento'
         if (NoResultFound):
             sleep(30)
@@ -162,8 +205,12 @@ def main():
             print 'Nothing to be processed or too much things to process'
             print 'Make sure you have only `one\' audience running'
             exit(0)
-    twitter = Twitter(audience)
-    twitter.process()
+
+    #twitter = Twitter(audience)
+    #twitter.process()
+
+    facebook = Facebook(audience)
+    facebook.process()
 
 if __name__ == '__main__':
     main()

@@ -205,6 +205,12 @@ class Buzz(Entity):
     type_ = ManyToOne('BuzzType')
     user = ManyToOne('User')
 
+    face_msg_id = Field(Unicode(50), unique=True)
+    """
+    ALTER TABLE `buzz` ADD COLUMN `face_msg_id` VARCHAR(50) NULL
+    , ADD UNIQUE INDEX `face_msg_id_UNIQUE` (`face_msg_id` ASC) ;
+    """
+
     def __str__(self):
         return '<%s "%s">' % (self.__class__.__name__, self.content)
 

@@ -36,10 +36,19 @@ li {
 
 .share {
     display: block;
-    clear: both;
+    /*clear: both;*/
     height: 20px;
     padding: 6px;
 }
+
+.nao-tem-face{
+    clear: both;
+    width: 100%;
+    text-align: right;
+    color: $black;
+}
+
+
 
 .share p {
     color: $red;
@@ -147,6 +156,10 @@ div.time {
     background-color: #000;
     color: #FFF;
 
+}
+
+#semfacecom textarea{
+    width: 95%;
 }
 
 .droom #chat form {

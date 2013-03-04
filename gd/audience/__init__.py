@@ -116,7 +116,6 @@ def buzz_stream(aid):
     last_published_id = int(request.values.get('last_published_id', 0))
 
     public = AudiencePosts.query.get(aid).get_public_buzz(0,public_limit,public_ids)
-
     moderated = AudiencePosts.query.get(aid).get_moderated_buzz(moderated_ids)
     selected = AudiencePosts.query.get(aid).get_selected_buzz(selected_ids)
     published = AudiencePosts.get(aid).get_last_published_notice()
@@ -126,6 +125,9 @@ def buzz_stream(aid):
             'selected': [notice.to_dict() for notice in selected],
             'published': published and published.id != last_published_id \
             and published.to_dict() or None}
+    print "=================================================================================="
+    print dumps(buzz)
+    print "=================================================================================="
     return dumps(buzz)
 
 @audience.route('/<int:aid>/public_buzz')

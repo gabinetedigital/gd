@@ -168,7 +168,7 @@ def _format_postsearch(posts):
             aux_img = ''
             url.append('/post/'+p.slug)
             posttype.append(u'Notícias')
-            txtdata.append(str(p.the_date.day)+' '+p.the_date.strftime("%B").capitalize()+' de '+str(p.the_date.year))
+            txtdata.append(str(p.the_date.day)+' '+p.the_date.strftime("%B").capitalize().decode('utf8')+' de '+str(p.the_date.year))
             excerpt.append(p.excerpt)
             textobotao.append('Continue lendo')
             if p.thumbs:
@@ -188,13 +188,18 @@ def formatarDataeHora(s,formato = '%d/%m/%Y %H:%Mh' ):
     z = z.replace("T", "")
     z = z.replace(":", "")
     z = datetime.datetime.strptime(z, "%Y%m%d%H%M%S")
-    z = z.strftime(formato)
+    z = z.strftime(formato).decode('utf8')
     return z
 
 def formatarDataeHoraPostType(s,formato = '%b' ):
     z = str(s)
-    z = datetime.datetime.strptime(z, "%Y-%m-%d %H:%M")
-    z = z.strftime(formato)
+    try:
+        z = datetime.datetime.strptime(z, "%Y-%m-%d %H:%M")
+        z = z.strftime(formato).decode('utf8')
+    except ValueError:
+        app.logger.error("Formato de data não suportado %s" % z)
+        return ""
+
     return z
 
 app.jinja_env.filters['formatarDataeHora'] = formatarDataeHora
@@ -652,6 +657,10 @@ def post_slug(slug):
     except:
         abort(404)
 
+    print '=============================================================================='
+    print post
+    print '=============================================================================='
+
     pid = post['id']
 
     if 'the_date' not in post.keys():
@@ -675,7 +684,7 @@ def post_slug(slug):
         tags=wordpress.getTagCloud(),
         sidebar=wordpress.getSidebar,
         # picday=picday,
-        twitter_hash_cabecalho='#gov',
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
         comments=wordpress.getComments(status='approve',post_id=pid),
         show_comment_form=is_authenticated(),

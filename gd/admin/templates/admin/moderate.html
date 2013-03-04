@@ -38,7 +38,9 @@
   <li>
     <img src="<%= obj.avatar %>">
     <strong>
-		<% if (obj.user) { %>
+      <% if (obj.face_msg_id) { %>
+          <%= obj.owner_nick %> (Facebook)
+		  <% } else if (obj.user) { %>
         	<%= obj.user.display_name %>
         <% } else { %>
 			<% if (obj.owner_nick) { %>
@@ -69,7 +71,9 @@
   <li>
     <img src="<%= obj.avatar %>">
     <strong>
-		<% if (obj.user) { %>
+      <% if (obj.face_msg_id) { %>
+          <%= obj.owner_nick %> (Facebook)
+      <% } else if (obj.user) { %>
         	<%= obj.user.display_name %>
         <% } else { %>
 			<% if (obj.owner_nick) { %>

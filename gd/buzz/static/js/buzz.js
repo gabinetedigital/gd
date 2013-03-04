@@ -99,7 +99,7 @@ function Buzz(base_url, params, updatepage) {
 	        });
 	    }
 	    
-	    setInterval(request_notices, 3000);
+	    setInterval(request_notices, 5000);
 	    request_notices(true);
     
     } else {

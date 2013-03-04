@@ -104,6 +104,7 @@ $(function() {
                             tag: 'message-statusbar',
                             message: parsedData.msg
                         });
+                        setTimeout('$.fancybox.close()', 2000);
                     }
                 } else {
                     // delivery ok
@@ -151,6 +152,13 @@ $(function() {
             postNotice(data);
         }
         return false;
+    });
+
+    $("#comment-sem-face").fancybox({
+      scrolling: 'auto',
+      helpers:  {
+          overlay : null
+      }
     });
 
     $('a.filter').tooltip({ opacity: 0.7 });

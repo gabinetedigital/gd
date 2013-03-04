@@ -38,7 +38,7 @@
           <div class="meta">
             <div class="pull-left">
               <i class="icon-calendar "></i> 
-                {{ post.the_date.day }} de {{ post.the_date.strftime("%B").capitalize() }} de {{ post.the_date.year }}
+                {{ post.the_date.day }} de {{ post.the_date.strftime("%B").capitalize().decode('utf8') }} de {{ post.the_date.year }}
               </div>
             <div class="tag pull-left">
               <ul>

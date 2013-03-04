@@ -21,7 +21,7 @@
 interface.
 """
 
-import urllib 
+import urllib
 import json
 from urlparse import urlparse
 
@@ -107,6 +107,7 @@ def audiences():
 def moderate(aid):
     """Returns a list of buzzes for moderation."""
     audience = AudiencePosts.query.get(aid)
+
     print aid
     status = Buzz.status.in_([u'inserted']) \
         if request.values.get('status', 'new') == 'new' \
@@ -115,7 +116,10 @@ def moderate(aid):
         .filter_by(audience_id=audience) \
         .filter(status) \
         .order_by(desc('creation_date'))
-        
+    print "======================================================================"
+    print buzz_list
+    print "======================================================================"
+
     return render_template(
         'admin/moderate.html', audience=audience, buzz_list=buzz_list,
         title=_(u'Audience'))
@@ -158,16 +162,16 @@ def accept_buzz(bid):
     """Approve messages to appear in the main buzz area"""
     buzz = Buzz.query.get(bid)
     buzz.status = u'approved'
-    
+
     if(objurlConta > 1):
         avatar = buzz.owner_avatar or "/static/imgs/avatar.png"
         query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": buzz.content.encode('utf8'), "authortype": str(buzz.type_) }, ensure_ascii=False )
         url = objurl+"/buzz/pub?id="+str(buzz.audience_id)
         f = urllib.urlopen(url, query)
         f.close()
-    
+
     session.commit()
-    
+
     return msg.ok('Buzz accepted')
 
 
@@ -199,14 +203,14 @@ def publish_buzz(bid):
     buzz = Buzz.query.get(bid)
     buzz.status = u'published'
     buzz.date_published = datetime.now()
-    
+
     if(objurlConta > 1):
-        avatar = buzz.owner_avatar or "/static/imgs/avatar.png" 
+        avatar = buzz.owner_avatar or "/static/imgs/avatar.png"
         query = json.dumps({"type": "published", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
         url = objurl+"/buzz/pub?id="+str(buzz.audience_id)
         f = urllib.urlopen(url, query)
         f.close()
-    
+
     session.commit()
     return msg.ok('Buzz published')
 
