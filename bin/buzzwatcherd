@@ -26,6 +26,7 @@ from json import loads, load
 from tweetstream import FilterStream, ConnectionError
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
+import threading
 
 from gd.model import session, Buzz, User, BuzzType, get_or_create, conf, \
      AudiencePostsMeta
@@ -149,12 +150,8 @@ class Twitter(object):
             sleep(30)
             self.process()
 
-class Facebook(object):
-
-    def __init__(self, audience):
-        self.audience = audience
-
-    def process(self):
+def face(audience):
+    while True:
         print "======================================================== Buscando os comentarios do face"
         try:
             face_comment_url = conf.FACEBOOK_COMMENT_URL
@@ -181,7 +178,7 @@ class Facebook(object):
                             face_msg_id=comentario['id'],
                             content=comentario['message'][:300], #request.values.get('message')[:300],
                             type_=tipo)
-                        newbuzz.audience_id = self.audience.post_ID
+                        newbuzz.audience_id = audience.post_ID
                         session.commit()
                         # session.clear()
                     except IntegrityError:
@@ -189,7 +186,6 @@ class Facebook(object):
                         session.rollback()
                 print "======================================================================"
         sleep(30)
-        self.process()
 
 
 def main():
@@ -206,11 +202,11 @@ def main():
             print 'Make sure you have only `one\' audience running'
             exit(0)
 
-    #twitter = Twitter(audience)
-    #twitter.process()
+    facebook = threading.Thread( target=face, args=(audience,) )
+    facebook.start()
 
-    facebook = Facebook(audience)
-    facebook.process()
+    twitter = Twitter(audience)
+    twitter.process()
 
 if __name__ == '__main__':
     main()
