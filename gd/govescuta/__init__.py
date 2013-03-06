@@ -70,7 +70,10 @@ def govescuta_details(aid):
     tag = None
     for cat in inst:
         category = cat['category']
-        tag = cat['category_slug']
+        try:
+            tag = cat['category_slug']
+        except:
+            tag = ""
 
     if category:
         pagination, posts = wordpress.getPostsByCategory(
@@ -78,7 +81,13 @@ def govescuta_details(aid):
     else:
         pagination, posts = None, []
 
-    photos = get_instagram_photos(tag)
+    try:
+        if tag:
+            photos = get_instagram_photos(tag)
+        else:
+            photos = None
+    except:
+        photos = None
 
     buzzes = AudiencePosts.query.get(aid).get_moderated_buzz()
     buzzesSelec = AudiencePosts.query.get(aid).get_last_published_notice()

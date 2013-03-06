@@ -132,6 +132,7 @@
           </div>
         </div>
         <div class="span4 visible-desktop">
+          {% if not govescuta %}
           <div class="nao-tem-face">
             <a id="comment-sem-face" href="#semfacecom">Comentar sem Facebook</a>
             <div id="semfacecom" style="display:none; width:450px;">
@@ -143,14 +144,45 @@
               </form>
             </div>
           </div>
+          {% endif %}
           <div class="droom">
               {% if not govescuta %}
               <fb:comments href="{{FACEBOOK_COMMENT_URL}}" width="380" num_posts="5"></fb:comments>
+              {%else%}
+                <div class="buzzs">
+                <!-- <a class="filter" href="javascript:;" -->
+                <!-- title="Alternar a exibição de mensagens moderadas">filtro</a> -->
+                <ul id="buzz-public" class="buzz" style="display:none">
+                </ul>
+                <ul id="buzz-moderated" class="buzz">
+                  {% for buzz in buzzes %}
+                  <li id="msgid_{{ buzz.id }}">
+                    <ul class="{{ loop.cycle('astream', 'bstream') }}">
+                      <li class="avatar"><img src="{{ buzz.avatar}}" alt="{{ buzz.owner_nick }}"></li>
+                      <li class="author">
+                        {% if (buzz.user) %}
+                        {{ buzz.user.display_name }}
+                        {% else %}
+                        {% if (buzz.owner_nick) %}
+                        @{{ buzz.owner_nick }}
+                        {% else %}
+                        Via SMS
+                        {% endif %}
+                        {% endif %}
+                        <em>| {{ buzz.type_name }}</em>
+                      </li>
+                      <li class="answer">{{ buzz.content }}</li>
+                    </ul>
+                  </li>
+                  {% endfor %}
+                </ul >
+              </div>
               {% endif %}
           </div>
         </div>
       </div>
     </div>
+    {%if photos%}
     <div class="instagram">
       <div class="row">
         <div class="span12" data-toggle="modal-gallery" data-target="#modal-gallery">
@@ -169,6 +201,7 @@
       </div>
       </div>
     </div>
+    {%endif%}
   </div>
 </div>
 <div id="works-like-this" class="modal hide fade" tabindex="-1" role="dialog">
