@@ -66,10 +66,12 @@
         <div class="span4  hidden-phone">
           <div class="aud-date">
             <div class="hashtag pull-left">
-              {% if govescuta %}
+              {% if not govescuta %}
+              <p class="twt">Participe também pelo twitter</p>
+              <p class="hash">{{ audience.hashtag[0] }}</p>
+              {% else %}
               <a href="./" class="btn btn-primary todas">Ver mais audiências</a>
-              {% endif%}
-            </div>
+              {% endif%}            </div>
             <div id="date" class="pull-right visible-desktop">
               <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
               <div class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</div>
@@ -87,6 +89,17 @@
 
       </div>
     </div>
+          <script type="text/javascript">
+            //Metodo utilizado para atualizar auomaticamente os comentarios do Facebook na pagina de audiencia...
+            function atufbcom(){
+              FB.XFBML.parse();
+            }
+            function agendarfb(){
+              setInterval(atufbcom,120000);
+            }
+            window.setTimeout(agendarfb, 10000);
+          </script>
+
     <div class="stage">
       <div class="row">
         <div class="span8">
@@ -132,7 +145,7 @@
           </div>
         </div>
         <div class="span4 visible-desktop">
-          {% if not govescuta %}
+          {% if not govescuta and not facebook %}
           <div class="nao-tem-face">
             <a id="comment-sem-face" href="#semfacecom">Comentar sem Facebook</a>
             <div id="semfacecom" style="display:none; width:450px;">

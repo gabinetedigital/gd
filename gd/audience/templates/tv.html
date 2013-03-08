@@ -29,7 +29,9 @@
       </div>
       <div class="col10">
         <h2>
-        	<% if (obj.user) { %>
+        <% if (obj.face_msg_id) { %>
+            <%= obj.owner_nick %>
+        <% } else if (obj.user) { %>
           		<%= obj.user.display_name %>
         	<% } else { %>
 				<% if (obj.owner_nick) { %>
