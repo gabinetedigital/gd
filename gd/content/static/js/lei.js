@@ -9,7 +9,7 @@ $(document).ready(function(){
 	        var o = $(this).next();
 	        o.slideDown("slow", function(){
 
-	        	if(HABILITAR_COMENTARIO_FILHOS){
+	        	if(HABILITAR_COMENTARIO_FILHOS && o.attr('data-inibir-comentarios') != 'S'){
 			        icones.show();
 
 		        	$('#nomefilho').html( o.attr('data-title') );

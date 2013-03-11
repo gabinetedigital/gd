@@ -61,15 +61,21 @@
             {{ post.content|safe }}
 
             <div class="post-children">
-
               {% for child in post.filhos recursive %}
-              <div class="post-child">
+              <div class="post-child" >
                 {%if child.title%}
-                <h3 class="post-child-title">{{child.title|safe}}</h3>
-                {%endif%}
-                <div class="post-child-content" data-id="{{child.id}}" 
+                <h3 class="post-child-title"
 {% if HABILITAR_SANFONA == 'true' %}
-                style="display:none"
+                style="cursor: hand; cursor: pointer;"
+{% endif %}
+                >{{child.title|safe}}</h3>
+                {%endif%}
+                <div class="post-child-content" data-id="{{child.id}}"
+{% for cf in child.custom_fields if 'artigo_hierarquico_inibir_comentarios' == cf.key %}
+                data-inibir-comentarios="S"
+{% endfor %}
+{% if HABILITAR_SANFONA == 'true' %}
+                style="display:none;"
 {% endif %}
                 data-title="{{child.title}}">
                 {{child.content|safe}}
@@ -104,6 +110,10 @@
             <span class='st_twitter_hcount' displayText='Tweet'></span>
             <span class='st_plusone_hcount' displayText='Google +1'></span>
           </div>
+        </div>
+        <div class="estatisticas post">
+          <strong>Total de artigos:</strong> {{total_artigos}}<br>
+          <strong>Total de respostas:</strong> {{total_comentarios}}
         </div>
         {% if HABILITAR_COMENTARIO_MESTRE == 'true' %}
         <div id="comments">

@@ -32,7 +32,7 @@ from flask.ext.cache import Cache
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
-from gd.content.tweet import get_mayor_last_tweet
+# from gd.content.tweet import get_mayor_last_tweet
 from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail
 from gd.model import User, ComiteNews, CadastroComite, session as dbsession
 
@@ -479,29 +479,33 @@ def conselho():
         ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
     )
 
-
-def add_filhos_and_comments_to_post(post_type, lista_de_posts):
+@cache.memoize(unless=is_authenticated)
+def add_filhos_and_comments_to_post(post_type, lista_de_posts, total_artigos, total_comentarios):
     if type(lista_de_posts) in (tuple,list):
         for post in lista_de_posts:
+            total_artigos.append(1)
             cmts = wordpress.getComments(status='approve',post_id=post['id'], number=1000)
             if cmts:
                 post['_comments'] = cmts
+                total_comentarios.append(len(cmts))
             filhos = wordpress.getCustomPostByParent(post_type, post['id'] )
             if filhos:
                 post['filhos'] = filhos
-                add_filhos_and_comments_to_post(post_type, filhos)
+                add_filhos_and_comments_to_post(post_type, filhos, total_artigos, total_comentarios)
     else:
         post = lista_de_posts
+        total_artigos.append(1)
         cmts = wordpress.getComments(status='approve',post_id=post['id'], number=1000)
         if cmts:
             post['_comments'] = cmts
+            total_comentarios.append(len(cmts))
         filhos = wordpress.getCustomPostByParent(post_type, post['id'] )
         if filhos:
             post['filhos'] = filhos
-            add_filhos_and_comments_to_post(post_type, filhos)
+            add_filhos_and_comments_to_post(post_type, filhos, total_artigos, total_comentarios)
 
 
-@app.route('/h/<slug>/')
+@app.route('/artigo/<slug>/')
 @cache.memoize(unless=is_authenticated)
 def artigo_hierarquico(slug):
     """Renders a wordpress page special"""
@@ -510,14 +514,16 @@ def artigo_hierarquico(slug):
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     post = wordpress.getCustomPostByPath(post_type,path)
 
-    print '===================================================='
-    print post
-    print '===================================================='
+    # print '===================================================='
+    # print post
+    # print '===================================================='
 
     if not post['id']:
         return abort(404)
 
-    add_filhos_and_comments_to_post(post_type, post)
+    total_artigos = []
+    total_comentarios = []
+    add_filhos_and_comments_to_post(post_type, post, total_artigos, total_comentarios)
 
     HABILITAR_SANFONA="false"
     HABILITAR_COMENTARIO_MESTRE="false"
@@ -539,6 +545,8 @@ def artigo_hierarquico(slug):
     return render_template(
         'artigo_hierarquico.html',
         post=post,
+        total_artigos=sum(total_artigos),
+        total_comentarios=sum(total_comentarios),
         sidebar=wordpress.getSidebar,
         HABILITAR_SANFONA=HABILITAR_SANFONA,
         HABILITAR_COMENTARIO_MESTRE=HABILITAR_COMENTARIO_MESTRE,
