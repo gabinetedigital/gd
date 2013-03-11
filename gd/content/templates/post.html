@@ -60,11 +60,9 @@
             <h3>Comentários</h3>
 
             {% if post.comments.allow_comments %}
-
-            {% if user is not none %}
             <!-- the comment error msg -->
-            <div class="msg error"></div>
-            <div class="msg success"></div>
+            <div class="msg error alert alert-error hide"></div>
+            <div class="msg success alert alert-success hide"></div>
 
 
             <form
@@ -77,17 +75,12 @@
               <div class="form">
                 <img src="{{ user.avatar_url }}" class="pull-left">
                 <div class="commentbox">
-                  <textarea name="content" placeholder="Deixe seu comentário…"></textarea>
+                  <textarea name="content" maxlength="2000" onKeyUp="return countChar(this,2000,'#comf_contador')" placeholder="Deixe seu comentário…"></textarea>
+                  <span id="contador">Restam ainda <span id="comf_contador">2000</span> caracteres.</span>
                   <input class="btn btn-danger pull-right enviar" type="submit" value="Enviar">
                 </div>
               </div>
             </form>
-            {% else %}
-            <div class="alert alert-info">
-              <strong>Aviso!</strong> Você precisa estar logado para comentar.
-            </div>
-
-            {% endif %}
             {% endif %}
             {% for comment in comments %}
             <div class="comment">

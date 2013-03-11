@@ -157,7 +157,9 @@ var auth = (function() {
         , showLoginForm: function (params) {
             $('.off').hide();
             $('.on').fadeIn(function(){
-                $('#username').focus();
+                $("html, body").animate({ scrollTop: 0 }, "slow", function(){
+                    $('#username').focus();
+                });
             });
             if(params && typeof params.success === 'function' ){
                 this.success = params.success;
