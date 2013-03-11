@@ -186,3 +186,15 @@ $(document).ready(function(){
         });
     }
 });
+
+// Metodo para exibir o contador de carcteres restantes para os comentarios
+// Uso: <textarea maxlength="500" onKeyUp="countChar(this,500,'#contador')"></textarea>
+function countChar(obj, total_bytes, id_contador) {
+    var len = obj.value.length;
+    if (len > total_bytes) {
+      obj.value = obj.value.substring(0, total_bytes);
+      return false;
+  } else {
+      $(id_contador).text(total_bytes - len);
+  }
+};

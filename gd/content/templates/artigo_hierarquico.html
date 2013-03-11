@@ -138,7 +138,8 @@
               <div class="form">
                 <img src="{{ user.avatar_url }}" class="pull-left">
                 <div class="commentbox">
-                  <textarea name="content" placeholder="Deixe seu comentário…"></textarea>
+                  <textarea name="content" maxlength="500" placeholder="Deixe seu comentário…" onKeyUp="countChar(this,500,'#com_contador')"></textarea>
+                  <span id="com_contador">Contador</span>
                   <input class="btn btn-danger pull-right enviar" type="submit" value="Enviar">
                 </div>
               </div>
@@ -185,7 +186,8 @@
     <form id="form_comentario_filho" method="post" action="{{ url_for('new_comment') }}">
       <input type="hidden" name="post_id" id="post_id" value="">
       <label for="content">Comentário para: <strong><span id="nomefilho">Filho 1.1</span></strong></label>
-      <textarea placeholder="Deixe seu comentário…" name="content" id="content"></textarea>
+      <textarea placeholder="Deixe seu comentário…" rows="7" maxlength="500" name="content" id="content" onKeyUp="return countChar(this,500,'#comf_contador')"></textarea>
+      Restam ainda <span id="comf_contador">500</span> caracteres.
       <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
     </form>
 
