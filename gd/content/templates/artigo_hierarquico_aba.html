@@ -43,12 +43,6 @@
 <div class="news" id="news">
   <div class="container">
     <div class="row">
-      <div class="span12">
-        <input id="txtSearch" type="text" placeholder="buscar...">
-        <button id="btnSearch">Procurar</button>
-      </div>
-    </div>
-    <div class="row">
 
         {% if post.custom_fields %}
           {% for cf in post.custom_fields %}
@@ -145,7 +139,7 @@
                 <img src="{{ user.avatar_url }}" class="pull-left">
                 <div class="commentbox">
                   <textarea name="content" maxlength="500" placeholder="Deixe seu comentário…" onKeyUp="countChar(this,500,'#com_contador')"></textarea>
-                  <span id="com_contador">Contador</span>
+                  <span id="contador">Restam ainda <span id="com_contador">500</span> caracteres.</span>
                   <input class="btn btn-danger pull-right enviar" type="submit" value="Enviar">
                 </div>
               </div>
@@ -187,7 +181,7 @@
       <input type="hidden" name="post_id" id="post_id" value="">
       <label for="content">Comentário para: <strong><span id="nomefilho">Filho 1.1</span></strong></label>
       <textarea placeholder="Deixe seu comentário…" rows="7" maxlength="500" name="content" id="content" onKeyUp="return countChar(this,500,'#comf_contador')"></textarea>
-      Restam ainda <span id="comf_contador">500</span> caracteres.
+      <span id="contador">Restam ainda <span id="comf_contador">500</span> caracteres.</span>
       <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
     </form>
 

@@ -127,8 +127,10 @@ $(document).ready(function(){
 	});
 
 	$("#btnSearch").click(function () {
-        $("div.post-child-content:contains('"+$('#txtSearch').val()+"')").slideDown('slow');
-        $("div.post-child-content:not(:contains('"+$('#txtSearch').val()+"'))").hide();
+		if (HABILITAR_SANFONA){
+	        $("div.post-child-content:contains('"+$('#txtSearch').val()+"')").slideDown('slow');
+	        $("div.post-child-content:not(:contains('"+$('#txtSearch').val()+"'))").hide();
+		}
     });
 
 
