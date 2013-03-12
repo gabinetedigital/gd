@@ -93,11 +93,13 @@
 
 
                 <div id="comentarios{{child.id}}" style="display:none; width: 600px;">
-                  <ul>
+                  <ul class="comentarios">
 
                   {% for comment in child._comments %}
                     <li>
+                      {%if comment.nao_exibir_nome != '1'%}
                       <strong>Nome: </strong>{{ comment.author|safe }}<br>
+                      {%endif%}
                       {{ comment.content|safe }}
                     </li>
                   {% else %}
@@ -187,6 +189,7 @@
       <input type="hidden" name="post_id" id="post_id" value="">
       <label for="content">Comentário para: <strong><span id="nomefilho">Filho 1.1</span></strong></label>
       <textarea placeholder="Deixe seu comentário…" rows="7" maxlength="500" name="content" id="content" onKeyUp="return countChar(this,500,'#comf_contador')"></textarea>
+      <label class="checkbox naoexibir" for="nao_exibir_nome"><input id="nao_exibir_nome" name="nao_exibir_nome" type="checkbox" value="1" > Não exibir meu nome no comentário</label>
       <span id="contador">Restam ainda <span id="comf_contador">500</span> caracteres.</span>
       <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
     </form>

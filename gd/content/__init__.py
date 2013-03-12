@@ -768,12 +768,22 @@ def new_comment():
     """Posts new comments to the blog"""
     if not is_authenticated():
         return msg.error(_(u'User not authenticated'))
+
+    try:
+        print request.form
+        nao_exibir_nome = request.form['nao_exibir_nome']
+        print "NAO EXIBIR O NOME!!!!!!!"
+    except:
+        print "NAO EXIBIR O NOME!!!!!!!NÃO"
+        nao_exibir_nome = ""
+
     try:
         wordpress.newComment(
             username=session['username'],
             password=session['password'],
             post_id=request.form['post_id'],
-            content=request.form['content']
+            content=request.form['content'],
+            nao_exibir_nome=nao_exibir_nome
         )
         return msg.ok(_(u'Thank you. Your comment was successfuly sent'))
     except xmlrpclib.Fault, err:

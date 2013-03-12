@@ -48,3 +48,17 @@ h3.post-child-title {
 button.post-child-button{
     float:left top;
 }
+
+label.naoexibir{
+    color: #999999;
+    font-size: 11px;
+    padding-left: 26px;
+}
+
+.comentarios > li {
+  background-color: rgba(200, 200, 200, 0.2);
+  list-style-type: none;
+  margin-bottom: 3px;
+  margin-left: -22px;
+  padding: 5px;
+}

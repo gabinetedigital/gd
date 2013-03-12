@@ -2,8 +2,19 @@ $(document).ready(function(){
 
 	if (HABILITAR_ABAS){
 		$(".post-child-title-button").click(function(){
+			var icones = $('.img-comments');
+			// icones.hide();
+
 			$('.post-child').hide();
-			$('#div-aba-'+$(this).attr('data-id')).show();
+			var o = $('#div-aba-'+$(this).attr('data-id'));
+			o.show();
+
+			var options = {
+			    "my": "right center",
+			    "at": "left center",
+			    "of": o.find('.post-child-content')
+			};
+			icones.position(options);
 		});
 	}
 
@@ -71,6 +82,10 @@ $(document).ready(function(){
 		'titleShow'		: false,
 		'autoDimensions': true,
 		'width'         : 400,
+		'beforeShow'    : function(){
+			$('div.error-filho').hide();
+			$('div.success-filho').hide();
+		}
 	});
 
 
@@ -98,7 +113,7 @@ $(document).ready(function(){
 	         * properly logged */
 	        var options = this;
 	        if (!auth.isAuthenticated()) {
-	        	$('div.error').fadeIn().html('É necessário estar logado.');
+	        	$('div.error-filho').fadeIn().html('É necessário estar logado.');
 	            auth.showLoginForm({
 	                // success: function () {
 	                //     form.ajaxSubmit(options.success);
@@ -115,13 +130,13 @@ $(document).ready(function(){
 
 	        /* It's everything ok, let's get out */
 	        if (pData.status === 'ok') {
-	            $('div.error').fadeOut();
-	            $('div.success').fadeIn().html(pData.msg);
+	            $('div.error-filho').fadeOut();
+	            $('div.success-filho').fadeIn().html(pData.msg);
 	            $('#form_comentario_filho textarea').val('');
 	            setTimeout('$.fancybox.close()', 2000);
 	        } else {
-	            $('div.success').fadeOut();
-	            $('div.error').fadeIn().html(pData.msg);
+	            $('div.success-filho').fadeOut();
+	            $('div.error-filho').fadeIn().html(pData.msg);
 	        }
 	    }
 	});

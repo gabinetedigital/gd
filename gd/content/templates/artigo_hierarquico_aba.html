@@ -87,11 +87,14 @@
                 </div>
 
                 <div id="comentarios{{child.id}}" style="display:none; width: 600px;">
-                  <ul>
+                  <h4 id="nomefilhov">{{child.title}}</h4>
+                  <ul class="comentarios">
 
                   {% for comment in child._comments %}
-                    <li>
+                    <li >
+                      {%if comment.nao_exibir_nome != '1'%}
                       <strong>Nome: </strong>{{ comment.author|safe }}<br>
+                      {%endif%}
                       {{ comment.content|safe }}
                     </li>
                   {% else %}
@@ -122,11 +125,9 @@
             <h3>Comentários</h3>
 
             {% if post.comments.allow_comments %}
-
             <!-- the comment error msg -->
             <div class="msg error alert alert-error hide"></div>
             <div class="msg success alert alert-success hide"></div>
-
 
             <form
                id="blog_comment_form" method="post"
@@ -175,15 +176,16 @@
 </div>
 
 <div id="form-com" style="display:none; width: 500px;">
-    <div class="msg error"></div>
-    <div class="msg success"></div>
+    <div class="msg error-filho alert alert-error hide"></div>
+    <div class="msg success-filho alert alert-success hide"></div>
     <form id="form_comentario_filho" method="post" action="{{ url_for('new_comment') }}">
       <input type="hidden" name="post_id" id="post_id" value="">
       <label for="content">Comentário para: <strong><span id="nomefilho">Filho 1.1</span></strong></label>
-      <textarea placeholder="Deixe seu comentário…" rows="7" maxlength="500" name="content" id="content" onKeyUp="return countChar(this,500,'#comf_contador')"></textarea>
+      <textarea placeholder="Escreva sua contribuição aqui…" rows="7" maxlength="500" name="content" id="content" onKeyUp="return countChar(this,500,'#comf_contador')"></textarea>
+      <label class="checkbox naoexibir" for="nao_exibir_nome"><input id="nao_exibir_nome" name="nao_exibir_nome" type="checkbox" value="1" > Não exibir meu nome no comentário</label>
       <span id="contador">Restam ainda <span id="comf_contador">500</span> caracteres.</span>
       <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
     </form>
-
 </div>
+
 {% endblock %}
