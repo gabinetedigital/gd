@@ -1,16 +1,16 @@
-.post-child {
-    margin-left: 30px;
-}
+/* .post-child {
+/*     margin-left: 30px;
+/* }
 
-.post-child {
-    border-left: 3px solid #eee;
-    padding-left: 10px;
-}
+/* .post-child {
+/*     border-left: 3px solid #eee;
+/*     padding-left: 10px;
+/* }
 
-.post-child:hover {
-    border-left: 3px solid #DDD;
-    padding-left: 10px;
-}
+/* .post-child:hover {
+/*     border-left: 3px solid #DDD;
+/*     padding-left: 10px;
+/* } */
 
 .post-child > p {
     text-align:justify;
@@ -49,6 +49,7 @@ button.post-child-button{
     float:left top;
 }
 
+
 label.naoexibir{
     color: #999999;
     font-size: 11px;
@@ -65,4 +66,10 @@ label.naoexibir{
 
 #contador{
     float:right;
+}
+
+/* Sidebar */
+
+.thumbnail {
+    margin-bottom: 20px;
 }
