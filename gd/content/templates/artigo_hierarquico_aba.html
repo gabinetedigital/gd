@@ -115,10 +115,7 @@
             <span class='st_plusone_hcount' displayText='Google +1'></span>
           </div>
         </div>
-        <div class="estatisticas post">
-          <strong>Total de artigos:</strong> {{total_artigos}}<br>
-          <strong>Total de respostas:</strong> {{total_comentarios}}
-        </div>
+
         {% if HABILITAR_COMENTARIO_MESTRE == 'true' %}
         <div id="comments">
           <div class="postcontent">
@@ -151,11 +148,9 @@
               <img src="{{ comment.user.avatar_url }}" class="pull-left">
               <div class="comcontent">
                 <h3>{{ comment.author|safe }}</h3>
-
                 <div class="meta">
                   <i class="icon-calendar "></i>
                 </div>
-
                 {{ comment.content|safe }} <br>
               </div>
             </div>
@@ -166,6 +161,11 @@
       </div>
 
       <div class="sidebar span3">
+        <div class="estatisticas post thumbnail">
+          <div class="comentarios">{{total_comentarios}}</div>
+          <div class="artigos">{{total_artigos}}</div>
+        </div>
+
         <div id="wordpress-sidebar-10">
           {{ sidebar(id='sidebar-10')|safe }}
         </div>

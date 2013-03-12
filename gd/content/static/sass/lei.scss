@@ -70,6 +70,44 @@ label.naoexibir{
 
 /* Sidebar */
 
+.sidebar {
+    padding-top: 0;
+}
+
 .thumbnail {
     margin-bottom: 20px;
+}
+
+
+.estatisticas {
+    padding: 20px 20px 0;
+}
+
+.estatisticas .artigos, .estatisticas .comentarios {
+    font-size: 19pt;
+    font-weight: bold;
+    padding-top: 22px;
+    color: #003f54;
+}
+
+.estatisticas .artigos {
+    background: url(../img/cultura_artigo.png) no-repeat;
+    height: 82px;
+    padding-left: 60px;
+}
+
+.estatisticas .comentarios {
+    background: url(../img/cultura_comentarios.png) no-repeat;
+    height: 82px;
+    padding-left: 80px;
+    float: right;
+}
+
+
+#comments .comment .comcontent, .commentbox {
+    background: #FFF;
+}
+
+#comments textarea {
+
 }
