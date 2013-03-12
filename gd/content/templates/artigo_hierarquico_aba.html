@@ -91,10 +91,6 @@
                 data-title="{{child.title}}">
                 {{child.content|safe}}
                 </div>
-                {% if child.filhos %}
-                  {{ loop(child.filhos) }}
-                {% endif %}
-
 
                 <div id="comentarios{{child.id}}" style="display:none; width: 600px;">
                   <ul>
