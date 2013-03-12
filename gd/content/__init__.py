@@ -526,9 +526,11 @@ def artigo_hierarquico(slug):
     add_filhos_and_comments_to_post(post_type, post, total_artigos, total_comentarios)
 
     HABILITAR_SANFONA="false"
+    HABILITAR_ABAS="false"
     HABILITAR_COMENTARIO_MESTRE="false"
     HABILITAR_COMENTARIO_FILHOS="false"
 
+    TEMPLATE = "artigo_hierarquico.html"
     for cf in post['custom_fields']:
         if cf['key'] == 'artigo_hierarquico_comentario_master' and cf['value'] == '1':
            HABILITAR_COMENTARIO_MESTRE = 'true'
@@ -536,19 +538,24 @@ def artigo_hierarquico(slug):
            HABILITAR_COMENTARIO_FILHOS = 'true'
         if cf['key'] == 'artigo_hierarquico_sanfona' and cf['value'] == '1':
            HABILITAR_SANFONA = 'true'
+        if cf['key'] == 'artigo_hierarquico_abas' and cf['value'] == '1':
+           HABILITAR_ABAS = 'true'
+           TEMPLATE = "artigo_hierarquico_aba.html"
 
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
 
+
     return render_template(
-        'artigo_hierarquico.html',
+        TEMPLATE,
         post=post,
         total_artigos=sum(total_artigos),
         total_comentarios=sum(total_comentarios),
         sidebar=wordpress.getSidebar,
         HABILITAR_SANFONA=HABILITAR_SANFONA,
+        HABILITAR_ABAS=HABILITAR_ABAS,
         HABILITAR_COMENTARIO_MESTRE=HABILITAR_COMENTARIO_MESTRE,
         HABILITAR_COMENTARIO_FILHOS=HABILITAR_COMENTARIO_FILHOS,
         twitter_hash_cabecalho=twitter_hash_cabecalho,

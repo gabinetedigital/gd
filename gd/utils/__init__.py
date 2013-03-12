@@ -112,7 +112,8 @@ def format_csrf_error(form, orig, code):
     csrf token in the first time can get a new one.
     """
     data = { 'data': orig }
-    data.update({ 'csrf': form.csrf.data })
+    if 'csrf' in dir(form):
+        data.update({ 'csrf': form.csrf.data })
     return msg.error(data, code)
 
 

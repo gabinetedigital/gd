@@ -20,7 +20,7 @@
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
 <script type="text/javascript">
     var HABILITAR_SANFONA={{HABILITAR_SANFONA}};
-    var HABILITAR_ABA={{HABILITAR_ABA}};
+    var HABILITAR_ABAS={{HABILITAR_ABAS}};
     var HABILITAR_COMENTARIO_MESTRE={{HABILITAR_COMENTARIO_MESTRE}};
     var HABILITAR_COMENTARIO_FILHOS={{HABILITAR_COMENTARIO_FILHOS}};
 </script>
@@ -68,22 +68,26 @@
             {{ post.content|safe }}
 
             <div class="post-children">
-              {% for child in post.filhos recursive %}
-              <div class="post-child" >
+              <div class="post-child-buttons btn-group">
+              {% for child in post.filhos %}
                 {%if child.title%}
-                <h3 class="post-child-title"
-{% if HABILITAR_SANFONA == 'true' %}
-                style="cursor: hand; cursor: pointer;"
-{% endif %}
-                >{{child.title|safe}}</h3>
+                <button class="post-child-title-button btn" data-id="{{child.id}}">{{child.title|safe}}</button>
+                {%else%}
+                <button class="post-child-title-button btn" data-id="{{child.id}}">Sem Título</button>
                 {%endif%}
-                <div class="post-child-content" data-id="{{child.id}}"
-{% for cf in child.custom_fields if 'artigo_hierarquico_inibir_comentarios' == cf.key %}
-                data-inibir-comentarios="S"
-{% endfor %}
-{% if HABILITAR_SANFONA == 'true' %}
+              {% endfor %}
+              </div>
+              {% for child in post.filhos %}
+              <div id="div-aba-{{child.id}}" class="post-child"
+              {% if not loop.first %}
                 style="display:none;"
-{% endif %}
+              {% endif %}
+              >
+                <h3 class="post-child-title" data-id="{{child.id}}">{{child.title|safe}}</h3>
+                <div class="post-child-content" data-id="{{child.id}}"
+              {% for cf in child.custom_fields if 'artigo_hierarquico_inibir_comentarios' == cf.key %}
+                data-inibir-comentarios="S"
+              {% endfor %}
                 data-title="{{child.title}}">
                 {{child.content|safe}}
                 </div>

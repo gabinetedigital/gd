@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+	if (HABILITAR_ABAS){
+		$(".post-child-title-button").click(function(){
+			$('.post-child').hide();
+			$('#div-aba-'+$(this).attr('data-id')).show();
+		});
+	}
+
 	if (HABILITAR_SANFONA){
 	    $(".post-child-content").hide();
 	    $(".post-child-title").click(function(){
@@ -118,5 +125,12 @@ $(document).ready(function(){
 	        }
 	    }
 	});
+
+	$("#btnSearch").click(function () {
+        $("div.post-child-content:contains('"+$('#txtSearch').val()+"')").slideDown('slow');
+        $("div.post-child-content:not(:contains('"+$('#txtSearch').val()+"'))").hide();
+    });
+
+
 
 });
