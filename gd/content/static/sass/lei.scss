@@ -69,6 +69,10 @@ label.naoexibir{
   padding: 5px;
 }
 
+#comments .comment .comcontent, .commentbox {
+    margin-left: 0;
+}
+
 #contador{
     float:right;
 }
@@ -108,13 +112,24 @@ label.naoexibir{
     float: right;
 }
 
+.comment {
+    font-size: 9pt;
+}
+
+.comment-content {
+    padding: 5px 0;
+}
+
+.comment-cat {
+    text-align: right;
+}
+
+#comments .comment .comcontent {
+    padding: 10px 15px;
+}
 
 #comments .comment .comcontent, .commentbox {
     background: #FFF;
-}
-
-#comments textarea {
-
 }
 
 .participe-fixed {

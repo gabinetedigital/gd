@@ -145,16 +145,18 @@
             {% for comment in todos_comentarios %}
               {%for com in comment.comments%}
               <div class="comment">
-                <div class="comdetalhe">
-                  <strong>Onde:</strong> {{comment.post_title}}<br>
-                  {%if com.nao_exibir_nome != '1'%}
-                  <strong>Autor:</strong>{{com.author|safe}}<br>
-                  {%endif%}
-                  <strong>Data:</strong>{{com.date_created_gmt|formatarDataeHora('%d/%m/%Y %H:%Mh')}}
-                </div>
-                <div class="comcontent">
 
-                  {{ com.content|safe }} <br>
+                <div class="comcontent">
+                  <div class="comdetalhe">
+                    {%if com.nao_exibir_nome != '1'%}
+                    <i class="icon-user"></i> <strong>{{com.author|safe}} diz:</strong> |
+                    {%endif%}
+                    <i class=" icon-calendar"></i> {{com.date_created_gmt|formatarDataeHora('%d/%m/%Y')}}
+                  </div>
+                  <div class="comment-content">{{ com.content|safe }}</div>
+                  <div class="comment-cat">
+                    em <i>{{comment.post_title}}</i>
+                  </div>
                 </div>
               </div>
               {%endfor%}
