@@ -145,7 +145,6 @@
             {% for comment in todos_comentarios %}
               {%for com in comment.comments%}
               <div class="comment">
-
                 <div class="comcontent">
                   <div class="comdetalhe">
                     {%if com.nao_exibir_nome != '1'%}
@@ -187,7 +186,15 @@
     <div class="msg success-filho alert alert-success hide"></div>
     <form id="form_comentario_filho" method="post" action="{{ url_for('new_comment') }}">
       <input type="hidden" name="post_id" id="post_id" value="">
-      <label for="content">Comentário para: <strong><span id="nomefilho">Filho 1.1</span></strong></label>
+
+      <label for="comentar_em">Comentário para:</label>
+      <select id="comentar_em" name="comentar_em" style="width: 100%;">
+        <option value="{{post.id}}" selected="selected">{{post.title}}</option>
+        {%for f in post.filhos%}
+        <option value="{{f.id}}">{{f.title}}</option>
+        {%endfor%}
+      </select>
+
       <textarea placeholder="Escreva sua contribuição aqui…" rows="7" maxlength="500" name="content" id="content" onKeyUp="return countChar(this,500,'#comf_contador')"></textarea>
       <span id="contador">Restam ainda <span id="comf_contador">500</span> caracteres.</span>
       <label class="checkbox naoexibir" for="nao_exibir_nome"><input id="nao_exibir_nome" name="nao_exibir_nome" type="checkbox" value="1" > Não exibir meu nome no comentário</label>

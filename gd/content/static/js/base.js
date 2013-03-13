@@ -17,20 +17,22 @@ $(function(){
     });
 
 
-    var sticky_participe_offset_top = $('.depois').offset().top;
-    var sticky_participe = function(){
-        var scroll_top_part = $(window).scrollTop();
-        if (scroll_top_part > sticky_participe_offset_top) {
-            $('.participe').addClass('participe-fixed');
-        } else {
-            $('.participe').removeClass('participe-fixed');
-        }
-    };
+    try{
+        var sticky_participe_offset_top = $('.depois').offset().top;
+        var sticky_participe = function(){
+            var scroll_top_part = $(window).scrollTop();
+            if (scroll_top_part > sticky_participe_offset_top) {
+                $('.participe').addClass('participe-fixed');
+            } else {
+                $('.participe').removeClass('participe-fixed');
+            }
+        };
 
-    sticky_participe();
-    $(window).scroll(function() {
         sticky_participe();
-    });
+        $(window).scroll(function() {
+            sticky_participe();
+        });
+    }catch(e){}
 
 
     $('.busca').focusin(function(){

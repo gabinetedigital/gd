@@ -782,10 +782,15 @@ def new_comment():
         nao_exibir_nome = ""
 
     try:
+        post_id = request.form['comentar_em']
+    except:
+        post_id = request.form['post_id']
+
+    try:
         wordpress.newComment(
             username=session['username'],
             password=session['password'],
-            post_id=request.form['post_id'],
+            post_id=post_id,
             content=request.form['content'],
             nao_exibir_nome=nao_exibir_nome
         )

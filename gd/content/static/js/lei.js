@@ -9,6 +9,9 @@ $(document).ready(function(){
 			var o = $('#div-aba-'+$(this).attr('data-id'));
 			o.show();
 
+        	console.log($(this).attr('data-id'));
+        	$('#comentar_em').val($(this).attr('data-id'));
+
 			var options = {
 			    "my": "right center",
 			    "at": "left center",
@@ -89,12 +92,18 @@ $(document).ready(function(){
 	});
 
 
-	$("#view-comments").fancybox({
-		'scrolling'		: 'auto',
-		'overlayShow'   : false,
-		'titleShow'		: false,
-		'autoDimensions': true,
-		'width'         : 400,
+	// $("#view-comments").fancybox({
+	// 	'scrolling'		: 'auto',
+	// 	'overlayShow'   : false,
+	// 	'titleShow'		: false,
+	// 	'autoDimensions': true,
+	// 	'width'         : 400,
+	// });
+
+	$('#view-comments').click(function(){
+		$('html, body').animate({
+			scrollTop: $("#comments").offset().top - 70
+		}, 500);
 	});
 
 	$('#form_comentario_filho').ajaxForm({
