@@ -129,12 +129,10 @@
           <div class="postcontent">
             <h3>Comentários</h3>
 
-            {% if post.comments.allow_comments %}
-
+            {# if post.comments.allow_comments and user is not none #}
             <!-- the comment error msg -->
-            <div class="msg error alert alert-error hide"></div>
+<!--        <div class="msg error alert alert-error hide"></div>
             <div class="msg success alert alert-success hide"></div>
-
 
             <form
                id="blog_comment_form" method="post"
@@ -152,20 +150,25 @@
                 </div>
               </div>
             </form>
-            {% endif %}
-            {% for comment in post._comments %}
-            <div class="comment">
-              <img src="{{ comment.user.avatar_url }}" class="pull-left">
-              <div class="comcontent">
-                <h3>{{ comment.author|safe }}</h3>
-
-                <div class="meta">
-                  <i class="icon-calendar "></i>
+            {# else #}
+            <div class="msg alert alert-error">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm();">AQUI</a></div>
+-->         {# endif #}
+            {% for comment in todos_comentarios %}
+              {%for com in comment.comments%}
+              <div class="comment">
+                <div class="comdetalhe">
+                  <strong>Onde:</strong> {{comment.post_title}}<br>
+                  {%if com.nao_exibir_nome != '1'%}
+                  <strong>Autor:</strong>{{com.author|safe}}<br>
+                  {%endif%}
+                  <strong>Data:</strong>{{com.date_created_gmt|formatarDataeHora('%d/%m/%Y %H:%Mh')}}
                 </div>
+                <div class="comcontent">
 
-                {{ comment.content|safe }} <br>
+                  {{ com.content|safe }} <br>
+                </div>
               </div>
-            </div>
+              {%endfor%}
             {% endfor %}
           </div>
         </div>

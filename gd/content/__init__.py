@@ -480,29 +480,31 @@ def conselho():
     )
 
 @cache.memoize(unless=is_authenticated)
-def add_filhos_and_comments_to_post(post_type, lista_de_posts, total_artigos, total_comentarios):
+def add_filhos_and_comments_to_post(post_type, lista_de_posts, total_artigos, total_comentarios, comentarios_separados):
     if type(lista_de_posts) in (tuple,list):
         for post in lista_de_posts:
             total_artigos.append(1)
             cmts = wordpress.getComments(status='approve',post_id=post['id'], number=1000)
             if cmts:
                 post['_comments'] = cmts
+                comentarios_separados.append({'post_id':post['id'],'post_title':post['title'],'comments':cmts})
                 total_comentarios.append(len(cmts))
             filhos = wordpress.getCustomPostByParent(post_type, post['id'] )
             if filhos:
                 post['filhos'] = filhos
-                add_filhos_and_comments_to_post(post_type, filhos, total_artigos, total_comentarios)
+                add_filhos_and_comments_to_post(post_type, filhos, total_artigos, total_comentarios, comentarios_separados)
     else:
         post = lista_de_posts
         total_artigos.append(1)
         cmts = wordpress.getComments(status='approve',post_id=post['id'], number=1000)
         if cmts:
             post['_comments'] = cmts
+            comentarios_separados.append({'post_id':post['id'],'post_title':post['title'],'comments':cmts})
             total_comentarios.append(len(cmts))
         filhos = wordpress.getCustomPostByParent(post_type, post['id'] )
         if filhos:
             post['filhos'] = filhos
-            add_filhos_and_comments_to_post(post_type, filhos, total_artigos, total_comentarios)
+            add_filhos_and_comments_to_post(post_type, filhos, total_artigos, total_comentarios, comentarios_separados)
 
 
 @app.route('/artigo/<slug>/')
@@ -523,7 +525,8 @@ def artigo_hierarquico(slug):
 
     total_artigos = []
     total_comentarios = []
-    add_filhos_and_comments_to_post(post_type, post, total_artigos, total_comentarios)
+    comentarios_separados = []
+    add_filhos_and_comments_to_post(post_type, post, total_artigos, total_comentarios, comentarios_separados)
 
     HABILITAR_SANFONA="false"
     HABILITAR_ABAS="false"
@@ -553,6 +556,7 @@ def artigo_hierarquico(slug):
         post=post,
         total_artigos=sum(total_artigos),
         total_comentarios=sum(total_comentarios),
+        todos_comentarios=comentarios_separados,
         sidebar=wordpress.getSidebar,
         HABILITAR_SANFONA=HABILITAR_SANFONA,
         HABILITAR_ABAS=HABILITAR_ABAS,

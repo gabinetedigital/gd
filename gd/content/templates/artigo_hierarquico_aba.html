@@ -118,9 +118,9 @@
           <div class="postcontent">
             <h3>Comentários</h3>
 
-            {% if post.comments.allow_comments %}
+            {# if post.comments.allow_comments and user is not none #}
             <!-- the comment error msg -->
-            <div class="msg error alert alert-error hide"></div>
+<!--        <div class="msg error alert alert-error hide"></div>
             <div class="msg success alert alert-success hide"></div>
 
             <form
@@ -139,18 +139,25 @@
                 </div>
               </div>
             </form>
-            {% endif %}
-            {% for comment in post._comments %}
-            <div class="comment">
-              <img src="{{ comment.user.avatar_url }}" class="pull-left">
-              <div class="comcontent">
-                <h3>{{ comment.author|safe }}</h3>
-                <div class="meta">
-                  <i class="icon-calendar "></i>
+            {# else #}
+            <div class="msg alert alert-error">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm();">AQUI</a></div>
+-->         {# endif #}
+            {% for comment in todos_comentarios %}
+              {%for com in comment.comments%}
+              <div class="comment">
+                <div class="comdetalhe">
+                  <strong>Onde:</strong> {{comment.post_title}}<br>
+                  {%if com.nao_exibir_nome != '1'%}
+                  <strong>Autor:</strong>{{com.author|safe}}<br>
+                  {%endif%}
+                  <strong>Data:</strong>{{com.date_created_gmt|formatarDataeHora('%d/%m/%Y %H:%Mh')}}
                 </div>
-                {{ comment.content|safe }} <br>
+                <div class="comcontent">
+
+                  {{ com.content|safe }} <br>
+                </div>
               </div>
-            </div>
+              {%endfor%}
             {% endfor %}
           </div>
         </div>
@@ -173,6 +180,7 @@
 </div>
 
 <div id="form-com" style="display:none; width: 500px;">
+    {%if user is not none%}
     <div class="msg error-filho alert alert-error hide"></div>
     <div class="msg success-filho alert alert-success hide"></div>
     <form id="form_comentario_filho" method="post" action="{{ url_for('new_comment') }}">
@@ -183,6 +191,9 @@
       <label class="checkbox naoexibir" for="nao_exibir_nome"><input id="nao_exibir_nome" name="nao_exibir_nome" type="checkbox" value="1" > Não exibir meu nome no comentário</label>
       <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
     </form>
+    {%else%}
+    <div class="msg alert alert-error">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm();">AQUI</a></div>
+    {%endif%}
 </div>
 
 {% endblock %}
