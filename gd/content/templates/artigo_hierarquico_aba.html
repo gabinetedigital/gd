@@ -35,11 +35,6 @@
 
 {% block content %}
 
-<div class="img-comments hide">
-  <a id="view-comments" href="#comentarios"><img src="{{ url_for('static', filename='img/comment.png') }}"></a>
-  <a id="add-comment" href="#form-com"><img src="{{ url_for('static', filename='img/comment_add.png') }}"></a>
-</div>
-
 <div class="news" id="news">
   <div class="container">
     <div class="row">
@@ -56,6 +51,8 @@
 
       <div class="span9">
         <div class="post">
+            <a id="view-comments" href="#comentarios"><img src="{{ url_for('static', filename='img/cont-comment.png') }}"></a>
+            <a id="add-comment" href="#form-com"><img src="{{ url_for('static', filename='img/add-comment.png') }}"></a>
           <h2>{{ post.title }}</h2>
           <div class="content">
 

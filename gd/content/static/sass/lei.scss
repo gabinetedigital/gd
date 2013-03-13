@@ -17,19 +17,24 @@
     text-justify:inter-word;
 }
 
-.img-comments img{
-    display: block;
-    margin-bottom: 3px;
-}
+/* .img-comments img{ */
+/*     display: block; */
+/*     margin-bottom: 3px; */
+/* } */
 
-.img-comments{
-    display: none;
-    position: absolute;
-    padding: 5px;
-    /*border: 1px solid black;*/
-    /*margin-right: 30px;*/
-    width: 35px;
-    background-color: transparent;
+/* .img-comments{ */
+/*     display: none; */
+/*     position: absolute; */
+/*     padding: 5px; */
+/*     /\*border: 1px solid black;*\/ */
+/*     /\*margin-right: 30px;*\/ */
+/*     width: 35px; */
+/*     background-color: transparent; */
+/* } */
+
+#add-comment, #view-comments {
+    float: right;
+    margin-top: 20px;
 }
 
 #form-com > form > textarea {
@@ -110,4 +115,9 @@ label.naoexibir{
 
 #comments textarea {
 
+}
+
+.participe-fixed {
+    position: fixed;
+    top: 80px;
 }
