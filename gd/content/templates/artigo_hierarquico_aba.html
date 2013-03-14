@@ -214,11 +214,10 @@
       <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
     </form>
     {%else%}
-<<<<<<< HEAD
-    <div class="msg alert alert-error">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm({reload_at_success:true});$.fancybox.close();">AQUI</a></div>
-=======
-    <div class="msg">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm();">AQUI</a></div>
->>>>>>> (cultura) Aumentando tamanho da msg que diz que o usário não esta logado
+
+    <div class="msg">
+      Desculpe, você precisa estar logado para comentar. <a href="#" onclick="auth.showLoginForm();">Entre agoraogin!</a><div class="sorry"><img src="{{ url_for('.static', filename='img/chave.png') }}"></div>
+    </div>
     {%endif%}
 </div>
 
