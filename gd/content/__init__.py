@@ -554,6 +554,7 @@ def artigo_hierarquico(slug):
     return render_template(
         TEMPLATE,
         post=post,
+        wp=wordpress,
         total_artigos=sum(total_artigos),
         total_comentarios=sum(total_comentarios),
         todos_comentarios=comentarios_separados,

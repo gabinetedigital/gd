@@ -165,6 +165,10 @@ var auth = (function() {
                 this.success = params.success;
             }
 
+            if(params && params.reload_at_success ){
+                this.reload_at_success = true;
+            }
+
             window.setTimeout(function(){
                 $('#username').tooltip({
                     placement: 'top',
@@ -247,6 +251,14 @@ var auth = (function() {
         , userAuthenticated: function (user) {
             this.user = user;
             this.success();
+
+            if(this.reload_at_success){
+                $('.loginmsg')
+                   .html('Aguarde...')
+                   .fadeIn('fast');
+                location.reload();
+                return;
+            }
             if(auth.callback_login && typeof auth.callback_login === 'function'){
                 auth.callback_login('login');
             }

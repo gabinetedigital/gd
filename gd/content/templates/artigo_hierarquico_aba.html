@@ -5,10 +5,6 @@
   <!--[if IE]>
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
   <![endif]-->
-  <meta property="og:site_name" content="The Mozilla Blog">
-  <meta property="og:title" content="{{ post.title }}">
-  <meta property="og:url" content="{{request.url}}">
-  <meta property="og:description" content="{{ post.excerpt }}">
   <link rel="stylesheet" href="{{ url_for('.static', filename='css/lei.css') }}">
   <link rel="stylesheet" href="{{ url_for('.static', filename='css/jquery.fancybox.css') }}">
 {% endblock %}
@@ -27,7 +23,7 @@
 <script src="{{ url_for('.static', filename='js/lei.js') }}"></script>
 {% endblock %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{%if post.title%}{{ post.title }}{%endif%}{% endblock %}
 
 {% block id %}
 <div id="news"></div>
@@ -53,7 +49,11 @@
         <div class="post">
             <a id="view-comments" href="#comentarios"><img src="{{ url_for('static', filename='img/cont-comment.png') }}"></a>
             <a id="add-comment" href="#form-com"><img src="{{ url_for('static', filename='img/add-comment.png') }}"></a>
-          <h2>{{ post.title }}</h2>
+          <h2>
+          {%if post.title%}
+          {{ post.title }}
+          {%endif%}&nbsp;
+          </h2>
           <div class="content">
 
             {{ post.content|safe }}
@@ -95,7 +95,7 @@
                       {{ comment.content|safe }}
                     </li>
                   {% else %}
-                    <li><strong>Não há comentários</strong></li>
+                    <li><strong>Não há propostas</strong></li>
                   {% endfor %}
 
                   </ul>
@@ -116,7 +116,7 @@
         {% if HABILITAR_COMENTARIO_MESTRE == 'true' %}
         <div id="comments">
           <div class="postcontent">
-            <h3>Comentários</h3>
+            <h3>Propostas</h3>
 
             {# if post.comments.allow_comments and user is not none #}
             <!-- the comment error msg -->
@@ -158,6 +158,10 @@
                   </div>
                 </div>
               </div>
+              {% else %}
+              <div class="comment">
+                <strong>Não há propostas ainda.</strong>
+              </div>
               {%endfor%}
             {% endfor %}
           </div>
@@ -168,7 +172,7 @@
       <div class="sidebar span3">
         <div class="estatisticas post thumbnail">
           <div class="comentarios">{{total_comentarios}}</div>
-          <div class="artigos">{{total_artigos}}</div>
+          <div class="artigos">286</div>
         </div>
 
         <div id="wordpress-sidebar-10">
@@ -187,9 +191,11 @@
     <form id="form_comentario_filho" method="post" action="{{ url_for('new_comment') }}">
       <input type="hidden" name="post_id" id="post_id" value="">
 
-      <label for="comentar_em">Comentário para:</label>
+      <label for="comentar_em">Proposta para:</label>
       <select id="comentar_em" name="comentar_em" style="width: 100%;">
+        {%if post.title%}
         <option value="{{post.id}}" selected="selected">{{post.title}}</option>
+        {%endif%}
         {%for f in post.filhos%}
         <option value="{{f.id}}">{{f.title}}</option>
         {%endfor%}
@@ -197,12 +203,25 @@
 
       <textarea placeholder="Escreva sua contribuição aqui…" rows="7" maxlength="500" name="content" id="content" onKeyUp="return countChar(this,500,'#comf_contador')"></textarea>
       <span id="contador">Restam ainda <span id="comf_contador">500</span> caracteres.</span>
-      <label class="checkbox naoexibir" for="nao_exibir_nome"><input id="nao_exibir_nome" name="nao_exibir_nome" type="checkbox" value="1" > Não exibir meu nome no comentário</label>
+      <label class="checkbox naoexibir" for="nao_exibir_nome"><input id="nao_exibir_nome" name="nao_exibir_nome" type="checkbox" value="1" > Não exibir meu nome na proposta</label>
       <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
     </form>
     {%else%}
-    <div class="msg alert alert-error">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm();">AQUI</a></div>
+    <div class="msg alert alert-error">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm({reload_at_success:true});$.fancybox.close();">AQUI</a></div>
     {%endif%}
+</div>
+
+<div id="entenda" class="hide">
+  <h2>{{wp.getPageByPath('cultura-entenda').title|safe}}</h2>
+  <div class="content">
+    {{wp.getPageByPath('cultura-entenda').content|safe}}
+  </div>
+</div>
+<div id="depois" class="hide">
+  <h2>{{wp.getPageByPath('cultura-depois').title|safe}}</h2>
+  <div class="content">
+    {{wp.getPageByPath('cultura-depois').content|safe}}
+  </div>
 </div>
 
 {% endblock %}

@@ -79,7 +79,7 @@ $(document).ready(function(){
 		}
 	};
 
-	$("#add-comment").fancybox({
+	$("#add-comment, .participe a").fancybox({
 		'scrolling'		: 'no',
 		'overlayShow'   : false,
 		'titleShow'		: false,
@@ -157,6 +157,17 @@ $(document).ready(function(){
 		}
     });
 
+	$(".entenda").click(function(e){
+        $.fancybox.open("#entenda", {
+		    maxWidth : 900
+		});
+    });
+	
+	$(".depois").click(function(e){
+        $.fancybox.open("#depois", {
+		    maxWidth : 900
+		});
+    });
 
 
 });
