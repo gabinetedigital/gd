@@ -1,25 +1,25 @@
 $(document).ready(function(){
 
-	if (HABILITAR_ABAS){
-		$(".post-child-title-button").click(function(){
-			var icones = $('.img-comments');
-			// icones.hide();
+	// if (HABILITAR_ABAS){
+	// 	$(".post-child-title-button").click(function(){
+	// 		var icones = $('.img-comments');
+	// 		// icones.hide();
 
-			$('.post-child').hide();
-			var o = $('#div-aba-'+$(this).attr('data-id'));
-			o.show();
+	// 		$('.post-child').hide();
+	// 		var o = $('#div-aba-'+$(this).attr('data-id'));
+	// 		// o.show();
 
-        	console.log($(this).attr('data-id'));
-        	$('#comentar_em').val($(this).attr('data-id'));
+        // 	console.log($(this).attr('data-id'));
+        // 	$('#comentar_em').val($(this).attr('data-id'));
 
-			var options = {
-			    "my": "right center",
-			    "at": "left center",
-			    "of": o.find('.post-child-content')
-			};
-			icones.position(options);
-		});
-	}
+	// 		var options = {
+	// 		    "my": "right center",
+	// 		    "at": "left center",
+	// 		    "of": o.find('.post-child-content')
+	// 		};
+	// 		icones.position(options);
+	// 	});
+	// }
 
 	if (HABILITAR_SANFONA){
 	    $(".post-child-content").hide();
@@ -169,5 +169,7 @@ $(document).ready(function(){
 		});
     });
 
+    $('#add-comment').tooltip();
+    $('#view-comments').tooltip();
 
 });

@@ -1,3 +1,43 @@
+@import "system";
+
+.news {
+    padding-top: 20px;
+    border-top: 2px solid #DDD;
+    background: url(../img/minsqr.png);
+}
+
+.post {
+    color: $black;
+    padding: 0px 16px 16px 16px;
+    background-color:rgba(#FFFFFF, 0.7);
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+    overflow: auto;
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.7) inset);
+}
+
+.post h2 {
+    font-size: 30px;
+    color: $red;
+    font-weight: 600;
+    width: 100%;
+}
+
+.post h2 a {
+    color: $red;
+}
+
+.post a {
+    color: $black;
+    text-decoration: none;
+}
+
+.post .content {
+    font-size: 11pt;
+    line-height: 1.5em;
+    margin-top: 10px;
+}
+
 /* .post-child {
 /*     margin-left: 30px;
 /* }
@@ -35,6 +75,8 @@
 #add-comment, #view-comments {
     float: right;
     margin-top: 10px;
+    margin-left: 10px;
+    width: 32px;
 }
 
 #form-com > form > textarea {
@@ -49,11 +91,6 @@ h3.post-child-title {
     font-weight: 400;
     font-size: 20px;
 }
-
-button.post-child-button{
-    float:left top;
-}
-
 
 label.naoexibir{
     color: #999999;
@@ -110,6 +147,41 @@ label.naoexibir{
     height: 82px;
     padding-left: 80px;
     float: right;
+}
+
+#comments h2 {
+    color: #FFF;
+}
+
+#comments h3 {
+    color: $red;
+}
+
+#comments .form {
+    padding-bottom: 30px;
+}
+
+#comments .comment .comcontent, .commentbox {
+    color: #000;
+    border: 0;
+    margin-bottom: 20px;
+    background-color:rgba(#FFFFFF, 0.7);
+    padding: 4px;
+    border: 1px solid #DDD;
+    @include border-radius(0 23px 23px 23px);
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.48) inset);
+}
+
+#comments textarea {
+    color: #000;
+    border: 0;
+    width: 96%;
+    height: 100px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#comments .comment .comcontent {
+    padding: 10px 30px 30px 30px;
 }
 
 .comment {

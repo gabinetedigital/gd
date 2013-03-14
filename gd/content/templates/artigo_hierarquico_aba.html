@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block css %}
-  <link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
   <!--[if IE]>
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
   <![endif]-->
   <link rel="stylesheet" href="{{ url_for('.static', filename='css/lei.css') }}">
+
   <link rel="stylesheet" href="{{ url_for('.static', filename='css/jquery.fancybox.css') }}">
 {% endblock %}
 
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/post.js') }}"></script>
+<!-- <script src="{{ url_for('.static', filename='js/post.js') }}"></script> -->
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
 <script type="text/javascript">
@@ -54,35 +54,41 @@
           {{ post.title }}
           {%endif%}&nbsp;
           </h2>
+
           <div class="content">
 
             {{ post.content|safe }}
 
-            <div class="post-children">
-              <div class="post-child-buttons btn-group">
-              {% for child in post.filhos %}
-                {%if child.title%}
-                <button class="post-child-title-button btn" data-id="{{child.id}}">{{child.title|safe}}</button>
-                {%else%}
-                <button class="post-child-title-button btn" data-id="{{child.id}}">Sem Título</button>
-                {%endif%}
-              {% endfor %}
-              </div>
-              {% for child in post.filhos %}
-              <div id="div-aba-{{child.id}}" class="post-child"
-              {% if not loop.first %}
-                style="display:none;"
-              {% endif %}
-              >
-                <h3 class="post-child-title" data-id="{{child.id}}">{{child.title|safe}}</h3>
-                <div class="post-child-content" data-id="{{child.id}}"
-              {% for cf in child.custom_fields if 'artigo_hierarquico_inibir_comentarios' == cf.key %}
-                data-inibir-comentarios="S"
-              {% endfor %}
-                data-title="{{child.title}}">
-                {{child.content|safe}}
-                </div>
+            <div class="post-children tabbable">
+              <ul class="nav nav-tabs">
+                {% for child in post.filhos %}
+                <li class="{% if loop.first %} active {% endif %}">
+                  {%if child.title%}
+                  <a class="post-child-title-button"
+                     href="#div-aba-{{child.id}}"
+                     data-toggle="tab"
+                     data-id="{{child.id}}">{{child.title|safe}}</a>
 
+                  {%else%}
+                  <a class="post-child-title-button"
+                     data-id="{{child.id}}">Sem Título</a> {%endif%}
+                </li>
+                {% endfor %}
+              </ul>
+              <div class="tab-content">
+                {% for child in post.filhos %}
+                <div id="div-aba-{{child.id}}"
+                     class="post-child tab-pane {% if loop.first %} active {% endif %}">
+                  <h3 class="post-child-title" data-id="{{child.id}}">{{child.title|safe}}</h3>
+                  <div class="post-child-content" data-id="{{child.id}}"
+                       {% for cf in child.custom_fields if 'artigo_hierarquico_inibir_comentarios' == cf.key %}
+                       data-inibir-comentarios="S"
+                       {% endfor %}
+                       data-title="{{child.title}}">
+                    {{child.content|safe}}
+                  </div>
+
+<<<<<<< HEAD
                 <div id="comentarios{{child.id}}" style="display:none; width: 600px;">
                   <h4 id="nomefilhov">{{child.title}}</h4>
                   <ul class="comentarios">
@@ -100,10 +106,29 @@
 
                   </ul>
                 </div>
+=======
+                  <div id="comentarios{{child.id}}" style="display:none; width: 600px;">
+                    <h4 id="nomefilhov">{{child.title}}</h4>
+                    <ul class="comentarios">
 
+                      {% for comment in child._comments %}
+                      <li>
+                        {%if comment.nao_exibir_nome != '1'%}
+                        <strong>Nome: </strong>{{ comment.author|safe }}<br>
+                        {%endif%}
+                        {{ comment.content|safe }}
+                      </li>
+                      {% else %}
+                      <li><strong>Não há comentários</strong></li>
+                      {% endfor %}
+
+                    </ul>
+                  </div>
+>>>>>>> (cultura) Alterando a navegação dos capítulos por abas
+
+                </div>
+                {% endfor %}
               </div>
-              {% endfor %}
-
             </div>
           </div>
           <div class="pull-right">
