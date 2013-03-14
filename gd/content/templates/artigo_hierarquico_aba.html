@@ -88,7 +88,7 @@
                     {{child.content|safe}}
                   </div>
 
-<<<<<<< HEAD
+
                 <div id="comentarios{{child.id}}" style="display:none; width: 600px;">
                   <h4 id="nomefilhov">{{child.title}}</h4>
                   <ul class="comentarios">
@@ -106,25 +106,7 @@
 
                   </ul>
                 </div>
-=======
-                  <div id="comentarios{{child.id}}" style="display:none; width: 600px;">
-                    <h4 id="nomefilhov">{{child.title}}</h4>
-                    <ul class="comentarios">
 
-                      {% for comment in child._comments %}
-                      <li>
-                        {%if comment.nao_exibir_nome != '1'%}
-                        <strong>Nome: </strong>{{ comment.author|safe }}<br>
-                        {%endif%}
-                        {{ comment.content|safe }}
-                      </li>
-                      {% else %}
-                      <li><strong>Não há comentários</strong></li>
-                      {% endfor %}
-
-                    </ul>
-                  </div>
->>>>>>> (cultura) Alterando a navegação dos capítulos por abas
 
                 </div>
                 {% endfor %}
@@ -232,7 +214,11 @@
       <input type="submit" value="Enviar" class="btn btn-danger pull-right enviar">
     </form>
     {%else%}
+<<<<<<< HEAD
     <div class="msg alert alert-error">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm({reload_at_success:true});$.fancybox.close();">AQUI</a></div>
+=======
+    <div class="msg">Você necessita estar logado para comentar. <a href="#" onclick="auth.showLoginForm();">AQUI</a></div>
+>>>>>>> (cultura) Aumentando tamanho da msg que diz que o usário não esta logado
     {%endif%}
 </div>
 
