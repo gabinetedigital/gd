@@ -78,6 +78,8 @@ app.jinja_env.install_gettext_callables(
 
 cache = Cache(app)
 
+from gd.utils.gdcache import fromcache, tocache
+
 @app.errorhandler(403)
 def error403(e):
     return render_template('403.html',
@@ -271,11 +273,11 @@ def cachecleargd():
     return redirect(url_for('.index'))
 
 @app.route('/')
-@cache.cached(unless=is_authenticated)
+# @cache.cached(unless=is_authenticated)
 def index():
     app.logger.error( " ######################################################################## BASE " )
     """Renders the index template"""
-    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     # slideshow = wordpress.getRecentPosts(
     #     category_name='highlights',
     #     post_status='publish',
@@ -305,15 +307,23 @@ def index():
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
+
+    pagesobre = fromcache('pagesobre')  or tocache('pagesobre', wordpress.getPageByPath('sobre'))
+    pagepri = fromcache('pagepri')      or tocache('pagepri', wordpress.getPageByPath('prioridades'))
+    pagepq = fromcache('pagepq')        or tocache('pagepq', wordpress.getPageByPath('por-que'))
+    pageproc = fromcache('pageproc')    or tocache('pageproc', wordpress.getPageByPath('processo'))
+    pagehow = fromcache('pagehow')      or tocache('pagehow', wordpress.getPageByPath('como-funciona'))
+    pageseg = fromcache('pageseg')      or tocache('pageseg', wordpress.getPageByPath('seguranca-2'))
+
     return render_template(
         'index.html', wp=wordpress,
         sidebar=wordpress.getSidebar,
-        page_about=wordpress.getPageByPath('sobre'),
-        page_pri=wordpress.getPageByPath('prioridades'),
-        page_pq=wordpress.getPageByPath('por-que'),
-        page_pro=wordpress.getPageByPath('processo'),
-        page_como=wordpress.getPageByPath('como-funciona'),
-        page_seg=wordpress.getPageByPath('seguranca-2'),
+        page_about=pagesobre,
+        page_pri=pagepri,
+        page_pq=pagepq,
+        page_pro=pageproc,
+        page_como=pagehow,
+        page_seg=pageseg,
         menu=menus,
         VOTACAO_URL=vote_url,
         VOTACAO_ROOT=vote_root,
