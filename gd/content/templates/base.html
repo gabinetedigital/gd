@@ -25,6 +25,23 @@
     <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
     <div class="container">
+      <div id="menu" class="subnav subnav-fixed navbar-invert pull-right">
+        <a class="brand pull-left" href="#home">Gabinete Digital</a>
+        <a class="btn btn-navbar pull-right hidden-desktop" data-toggle="collapse" data-target=".nav-collapse">
+          menu
+        </a>
+        <div class="nav-collapse">
+          <form class="navbar-search form-search pull-right tools" action='/search/'>
+            <div class="input-append">
+              <input type="text" class="input-small busca search-query"  id="buscabar" name="buscabar">
+              <button type="submit" class="btn"><i class="icon-search"></i></button>
+            </div>
+          </form>
+          <ul class="nav nav-pills">
+            {{ menu | safe }}
+          </ul>
+        </div>
+      </div>
       <div class="row">
         <section>
           <div class="span3">
@@ -32,65 +49,12 @@
               <h1>Gabinete Digital <small>Democracia em rede</small></h1>
             </a>
           </div>
-          <div class="span6 offset3">
-            <div id="social" class="pull-right">
-              <a href="http://gabinetedigital.rs.gov.br/feed" class="feed">rss</a>
-              <a href="https://twitter.com/gabinetedigital" class="twitter">twitter</a>
-              <a href="https://www.facebook.com/gabinetedigital" class="facebook">facebook</a>
-              <a href="mailto:&#103;&#097;&#098;&#105;&#110;&#101;&#116;&#101;&#100;&#105;&#103;&#105;&#116;&#097;&#108;&#064;&#103;&#103;&#046;&#114;&#115;&#046;&#103;&#111;&#118;&#046;&#098;&#114;" class="mail">news</a>
-            </div>
-
-            <div id="search" class="pull-right">
-              <form class="form-inline" action="/search/">
-                <div class="input-append">
-                  <input type="text" class="input-small busca" id="buscatop" name="buscatop">
-                  <button type="submit" class="btn"><i class="icon-search"></i></button>
-                </div>
-              </form>
+          <div class="span8 offset1">
+            <div class="tweets">
+              <ul></ul>
             </div>
           </div>
-
-          <div id="menu" class="subnav navbar-invert pull-right">
-            <a class="brand pull-left" href="#home">Gabinete Digital</a>
-            <a class="btn btn-navbar pull-right hidden-desktop" data-toggle="collapse" data-target=".nav-collapse">
-              menu
-            </a>
-            <div class="nav-collapse">
-              <form class="navbar-search form-search pull-right tools" action='/search/'>
-                <div class="input-append">
-                  <input type="text" class="input-small busca search-query"  id="buscabar" name="buscabar">
-                  <button type="submit" class="btn"><i class="icon-search"></i></button>
-                </div>
-              </form>
-              <ul class="nav nav-pills">
-                {{ menu | safe }}
-              </ul>
-            </div>
-          </div>
-
         </section>
-      </div>
-
-      <div class="row visible-desktop">
-        <div class="span7">
-          <div class="tweets">
-            <ul></ul>
-          </div>
-        </div>
-        <div class="span5">
-
-          <div class="user-meta">
-            {%if user%}
-            <p class="saudacao">Olá, {{ user.display_name }}!</p>
-            <a href="/auth//logout/"><img src="{{url_for('auth.static',filename='img/logout.png')}}" alt="Efetuar logout" title="Efetuar logout"></a>
-            <a href="/auth//profile/"><img src="{{url_for('auth.static',filename='img/my_account.png')}}" alt="Efetuar logout" title="Efetuar logout"></a>
-            {%else%}
-            <p class="saudacao">Olá Visitante!</p>
-            <a href="/auth/login/"><img src="{{url_for('auth.static',filename='img/login.png')}}" alt="Efetuar Login" title="Efetuar Login"></a>
-            {%endif%}
-          </div>
-
-        </div>
       </div>
     </div>
     {% block content %}{% endblock %}

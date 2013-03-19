@@ -27,6 +27,7 @@ a {
     height: 123px;
     text-indent: -1000px;
     overflow: hidden;
+    padding-bottom: 15px;
 }
 
 #search, #social {
@@ -81,6 +82,11 @@ a {
 .tweets {
     height: 86px;
     overflow: hidden;
+    margin-top: 72px;
+}
+
+.tweets ul {
+    margin: 0;
 }
 
 .tweets ul > li {
@@ -373,7 +379,7 @@ footer li {
 }
 
 section {
-    padding-top: 30px;
+    padding-top: 60px;
     padding-bottom: 40px;
 }
 

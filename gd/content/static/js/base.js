@@ -1,20 +1,20 @@
 $(function(){
     $('.hide').hide();
 
-    var sticky_navigation_offset_top = $('.subnav').offset().top;
-    var sticky_navigation = function(){
-        var scroll_top = $(window).scrollTop();
-        if (scroll_top > sticky_navigation_offset_top) {
-            $('.subnav').addClass('subnav-fixed');
-        } else {
-            $('.subnav').removeClass('subnav-fixed');
-        }
-    };
+    // var sticky_navigation_offset_top = $('.subnav').offset().top;
+    // var sticky_navigation = function(){
+    //     var scroll_top = $(window).scrollTop();
+    //     if (scroll_top > sticky_navigation_offset_top) {
+    //         $('.subnav').addClass('subnav-fixed');
+    //     } else {
+    //         $('.subnav').removeClass('subnav-fixed');
+    //     }
+    // };
 
-    sticky_navigation();
-    $(window).scroll(function() {
-        sticky_navigation();
-    });
+    // sticky_navigation();
+    // $(window).scroll(function() {
+    //     sticky_navigation();
+    // });
 
 
     try{
@@ -190,13 +190,13 @@ $(function(){
 
 $(document).ready(function(){
     if(TWITTER_HASH_TAG_CABECALHO){
-        $.getJSON("http://search.twitter.com/search.json?rpp=11&callback=?&q=" + TWITTER_HASH_TAG_CABECALHO,function(data){
-            for(var i=0; i < 20 && i < data.results.length; i++){
+        $.getJSON("http://search.twitter.com/search.json?rpp=25&callback=?&q=" + TWITTER_HASH_TAG_CABECALHO,function(data){
+            for(var i=0; i < 25 && i < data.results.length; i++){
                 option = {
                     title: '@'+data.results[i].from_user_name,
                     content: data.results[i].text,
                     trigger: 'hover',
-                    placement: 'right'
+                    placement: 'left'
                 };
                 var number = 1 + Math.floor(Math.random() * 8);
                 $('.tweets ul').prepend("<li class='pessoa"+number+"' id='"+i+"'> </li>");
