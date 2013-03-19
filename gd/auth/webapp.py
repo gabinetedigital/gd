@@ -20,7 +20,7 @@
 
 from os import urandom
 from sqlalchemy.orm.exc import NoResultFound
-from flask import Blueprint, render_template, request, session, make_response
+from flask import Blueprint, render_template, request, session, make_response, flash
 from werkzeug import FileStorage
 
 from gd import utils
@@ -90,10 +90,14 @@ def social(form, show=True, default=None):
 @auth.route('/login/')
 def login_form():
     """Renders the login form"""
-
     formcad = social(forms.SignupForm)
-
     return render_template('login.html', form=formcad)
+
+
+@auth.route('/lost_password/')
+def lost_password():
+    """Renders the lost password form"""
+    return render_template('lost_password.html')
 
 
 @auth.route('/login_json', methods=('POST',))
@@ -291,9 +295,9 @@ def remember_password():
             dbsession.rollback()
             raise Exception('Unable to send the email')
     except NoResultFound:
-        return msg.error(
-            _(u'E-mail not found in the database'), 'UserNotFound')
+        flash( _(u'E-mail not found in the database'), 'alert-error' )
     except Exception, exc:
-        return msg.error(
-            _(u'There was an error sending the e-mail'), 'UnknownError')
-    return msg.ok(_('Password sent to the email'))
+        flash( _(u'There was an error sending the e-mail'), 'alert-error' )
+    else:
+        flash(_('Password sent to the email'), 'alert-success')
+    return render_template('lost_password.html')

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/login.js') }}"></script>
+<!-- <script src="{{ url_for('.static', filename='js/login.js') }}"></script> -->
 {% endblock %}
 
 {% block bodyclass %}login{% endblock %}
@@ -13,13 +13,16 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="offset1 span6">
+    {%include 'parts/flashes.html'%}
+  </div>
+  <div class="row efetuarlogin">
+    <div class="offset1 span7">
       <div id="auth-error" class="msg error"></div>
       <div id="confirmation-success" class="msg success"></div>
 
-      <form class="form-horizontal" ethod="post" id="login" action="{{ url_for('auth.login_json') }}">
+      <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.login_json') }}">
         <fieldset>
-          <legend>Efetuar login:</legend>
+          <legend>Efetuar login no site:</legend>
 
           <div class="control-group">
             <label for="username" class='control-label'>Email</label>
@@ -45,17 +48,22 @@
           </div>
 
           <input type="submit" class="btn" value="Entrar"><br/><br/>
+          <a href="/auth/lost_password/">Esqueci minha senha</a><br>
+          <a href="#novocadastro" onclick="$('.efetuarlogin').slideUp('fast',function(){ $('.novocadastro').slideDown('fast'); });">Quero me cadastrar</a>
 
         </fieldset>
       </form>
     </div>
     <div class="span1"><div class="linha-vertical">&nbsp;</div></div>
     <div class="span3">
-      <a href="/auth/fb"><img src='{{ url_for('.static', filename='imgs/facebook.gif') }}' alt="Facebook Login" title="Facebook Login"/></a>
-      <a href="/auth/tw"><img src='{{ url_for('.static', filename='imgs/facebook.gif') }}' alt="Twitter Login" title="Twitter Login"/></a>
+      <fieldset>
+        <legend>ou entrar através de:</legend>
+        <a href="/auth/fb"><img src='{{ url_for('.static', filename='imgs/facebook.gif') }}' alt="Facebook Login" title="Facebook Login"/></a>
+        <a href="/auth/tw"><img src='{{ url_for('.static', filename='imgs/facebook.gif') }}' alt="Twitter Login" title="Twitter Login"/></a>
+      </fieldset>
     </div>
   </div>
-  <div class="row">
+  <div class="row novocadastro hide">
     <div class="offset1 span10">
       <form class="form-horizontal" method="post" id="signup" action="{{ url_for('auth.login_json') }}">
         <fieldset>
@@ -202,10 +210,10 @@
         </div>
 
         <div class="control-group">
+          <a href="#login" onclick="$('.novocadastro').slideUp('fast',function(){ $('.efetuarlogin').slideDown('fast'); });">Efetuar login</a>
           <input type="submit" class="btn pull-right" value="Cadastrar">
         </div>
 
-        <input type="submit" class="btn" value="Cadastrar"><br/><br/>
         </fieldset>
       </form>
 
@@ -217,6 +225,10 @@
 $(function(){
   //$('#tab-cadastro a:last').tab('show');
   // $('#signup label').addClass('control-label');
+  var hash = window.location.hash;
+  if(hash && hash == '#novocadastro'){
+    $('.efetuarlogin').slideUp('fast',function(){ $('.novocadastro').slideDown('fast'); });
+  }
 });
 </script>
 {% endblock %}

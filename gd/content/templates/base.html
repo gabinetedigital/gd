@@ -78,8 +78,17 @@
           </div>
         </div>
         <div class="span5">
-          
-          <a href="/login/"><img src="{{url_for('auth.static',filename='img/login.png')}}" class="pull-right" alt="Efetuar Login" title="Efetuar Login"></a>
+
+          <div class="user-meta">
+            {%if user%}
+            <p class="saudacao">Olá, {{ user.display_name }}!</p>
+            <a href="/auth//logout/"><img src="{{url_for('auth.static',filename='img/logout.png')}}" alt="Efetuar logout" title="Efetuar logout"></a>
+            <a href="/auth//profile/"><img src="{{url_for('auth.static',filename='img/my_account.png')}}" alt="Efetuar logout" title="Efetuar logout"></a>
+            {%else%}
+            <p class="saudacao">Olá Visitante!</p>
+            <a href="/auth/login/"><img src="{{url_for('auth.static',filename='img/login.png')}}" alt="Efetuar Login" title="Efetuar Login"></a>
+            {%endif%}
+          </div>
 
         </div>
       </div>
