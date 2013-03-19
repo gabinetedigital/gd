@@ -87,10 +87,13 @@ def social(form, show=True, default=None):
     return inst
 
 
-@auth.route('/login')
+@auth.route('/login/')
 def login_form():
     """Renders the login form"""
-    return render_template('login.html')
+
+    formcad = social(forms.SignupForm)
+
+    return render_template('login.html', form=formcad)
 
 
 @auth.route('/login_json', methods=('POST',))

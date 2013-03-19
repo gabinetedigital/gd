@@ -1,248 +1,70 @@
-/* Copyright (C) 2011 Governo do Estado do Rio Grande do Sul
- *
- *   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+/*
+Syntax error: File to import not found or unreadable: rgbapng.
+              Load paths:
+                /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass
+                /var/lib/gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets
+                /var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets
+                Compass::SpriteImporter
+        on line 2 of /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass/system.scss
+        from line 1 of /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass/auth.scss
 
-#pedit {
-    padding-bottom: 25px;
-    -moz-box-shadow: 0px 0px 6px 1px #CCC;
-    -webkit-box-shadow: 0px 0px 6px 1px #CCC;
-    box-shadow: 0px 0px 6px 1px #CCC;
-    background-color: #FFF;
-    color: #2e3436;
-}
+1: /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass/auth.scss
 
-#pedit #content {
-    margin: 20px;
-}
-
-#pedit #content h2 {
-    border-right: 2px solid black;
-    padding-right: 16px;
-    float: left;
-}
-
-#pedit #content #tab {
-    display: block;
-    margin-bottom: 20px;
-    padding: 4px;
-}
-
-#pedit #content .tabs li {
-    margin-left: 14px;
-    display: inline;
-}
-
-#loginoverlay {
-    width:420px;
-}
-
-#signupoverlay {
-    width:500px;
-}
-
-.header.auth {
-    width:100%;
-    margin-right:49px;
-}
-
-.header {
-    background:#333;
-    color:#fff;
-    padding:20px 20px 28px;
-}
-
-.header h1 {
-    margin-bottom:10px;
-}
-
-.header ul {
-    font-size:x-small;
-    height:10px;
-}
-
-.header li {
-    display:block;
-    float:left;
-    padding:0;
-    margin-right:10px;
-}
-
-.header a {
-    color:#fff;
-}
-
-.header a.awesomelink {
-    color:#fff;
-    border-bottom:1px solid rgba(0, 0, 0, 0.25);
-    padding: 5px 10px 6px;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
-    display: inline-block;
-    box-shadow: inset -2px -0.9px 3px rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.header a:hover {
-    text-decoration:none;
-    background-color:#404040;
-}
-
-div.wrapper {
-    box-shadow:0px 0px 5px #666;
-    border-radius:4px;
-    background:#f6f6f6;
-    padding:20px;
-}
-
-wrapper.success {
-    padding:10px;
-}
-
-.msg {
-    display:none;
-    margin:10px 0;
-    padding:8px;
-    color:#fff;
-    border-radius: 4px 4px 4px 4px;
-}
-
-.success {
-    background:#4E9A06;
-}
-
-.error {
-    background:#ce3316;
-    border:1px solid #ef2929;
-}
-
-.fielderror, form.auth input.fielderror {
-    border:1px solid #ef2929 !important;
-}
-
-p.errmsg {
-    display:none;
-    color:#ef2929 !important;
-    margin-bottom:0;
-}
-
-/* specific things to the login form */
-
-div.passwordReminder {
-    display:none;
-}
-
-form.auth .submit input {
-    width:auto;
-    padding:5px 10px 6px;
-    border:none;
-    text-shadow:0 -1px 1px rgba(0, 0, 0, 0.25);
-    box-shadow:0 1px 3px rgba(0, 0, 0, 0.5);
-    box-radius:5px;
-}
-
-
-/* specific things to the signup form */
-
-form.auth p {
-}
-
-form.auth .accept_tos input {
-    width:auto;
-}
-
-form.auth .accept_tos label {
-    display:inline;
-    padding-bottom:2px;
-}
-
-form.auth .receive_email input {
-    width:auto;
-}
-
-form.auth .receive_email label {
-    display:inline;
-    padding-bottom:2px;
-}
-
-form.auth .receive_sms input {
-    width:auto;
-}
-
-form.auth .receive_sms label {
-    display:inline;
-    padding-bottom:2px;
-}
-
-.frmcol1 {
-    width:50%;
-    float:left;
-    margin-right:15px;
-}
-
-.profile .frmcol1 {
-    width:24.5%;
-}
-
-.frmcol2 {
-    width:33%;
-    float:left;
-}
-
-.profile .frmcol2 {
-    width:16%;
-}
-
-.frmcol2.gender, .frmcol2.state {
-    width:20%;
-}
-
-.profile .frmcol2.gender, .profile .frmcol2.state {
-    width:10%;
-}
-
-form.auth input {
-    width:200px;
-}
-
-form.auth select#state, form.auth select#gender {
-    width:60px;
-}
-
-form.auth li.phone {
-    height:64px;
-}
-
-form.auth select#city, form.auth select, form.auth select#age_group {
-    width:120px;
-}
-
-form.auth div.readmore,
-form.auth div.tos {
-    display:none;
-    height: 500px;
-    overflow-y: scroll;
-    font-size: 13px;
-    padding: 20px;
-}
-
-div.tos p {
-    margin-top: 10px;
-}
-
-form.auth button.back {
-    margin-top:20px;
-}
+Backtrace:
+/home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass/system.scss:2
+/home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass/auth.scss:1
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/import_node.rb:67:in `import'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/import_node.rb:28:in `imported_file'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/import_node.rb:37:in `css_import?'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:215:in `visit_import'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:98:in `visit'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:225:in `visit_import'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:225:in `map'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:225:in `visit_import'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:98:in `visit'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:107:in `visit_children'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:119:in `with_environment'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:106:in `visit_children'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:126:in `visit_root'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:98:in `visit'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:7:in `send'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/visitors/perform.rb:7:in `visit'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/tree/root_node.rb:20:in `render'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/engine.rb:315:in `_render'
+/var/lib/gems/1.8/gems/sass-3.2.3/lib/sass/../sass/engine.rb:262:in `render'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `compile'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `compile'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `run'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `each'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `run'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/commands/update_project.rb:45:in `perform'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/var/lib/gems/1.8/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/var/lib/gems/1.8/gems/compass-0.12.2/bin/compass:30
+/var/lib/gems/1.8/gems/compass-0.12.2/bin/compass:44:in `call'
+/var/lib/gems/1.8/gems/compass-0.12.2/bin/compass:44
+/usr/local/bin/compass:23:in `load'
+/usr/local/bin/compass:23
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: rgbapng.\A               Load paths:\A                 /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass\A                 /var/lib/gems/1.8/gems/compass-0.12.2/frameworks/blueprint/stylesheets\A                 /var/lib/gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets\A                 Compass::SpriteImporter\A         on line 2 of /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass/system.scss\A         from line 1 of /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass/auth.scss\A \A 1: /home/berlotto/Desenvolvimento/GabineteDigital/gd/gd/auth/static/sass/auth.scss"; }

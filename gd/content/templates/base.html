@@ -78,73 +78,9 @@
           </div>
         </div>
         <div class="span5">
-          <div class="login">
+          
+          <a href="/login/"><img src="{{url_for('auth.static',filename='img/login.png')}}" class="pull-right" alt="Efetuar Login" title="Efetuar Login"></a>
 
-
-
-
-
-<!-- Signup Modal -->
-            <div id="signupoverlay" class="overlay loading hide" style="position: absolute; z-index: 9990; top: 47.8px; left: 692.5px; display: block;">
-              <div class="close close-signup">X</div>
-              <div class="contentWrap">
-                <div class="ct">
-                  <strong>Carregando</strong>
-                  <img src="{{ url_for('static', filename='img/loading.gif') }}"
-                       alt="Carregando, por favor aguarde" class="loading">
-                </div>
-              </div>
-            </div>
-<!-- Toss Modal -->
-            <div id="tos" class="overlay loading hide" style="z-index: 9999; width: 80%; left: 10%;">
-              <div class="close close-tos">X</div>
-              <div class="contentWrap">
-                <strong>Carregando</strong>
-                <img src="{{ url_for('static', filename='img/loading.gif') }}"
-                     alt="Carregando, por favor aguarde" class="loading">
-              </div>
-              <div class="close close-tos">X</div>
-            </div>
-<!-- Signup Modal -->
-
-            <div class="on hide">
-              <form class="form-inline" method="post" id="frmLogin" action="{{ url_for('auth.login_json') }}">
-                <input type="text" class="input-small" id="username" name="username" placeholder="Usuário">
-                <input type="password" id="password" name="password" class="input-small" placeholder="Senha">
-                <button type="submit" class="btn logar">Entrar</button>
-                <div class="control">
-                  <a href="" onclick="auth.togglePasswordReminder(); return false;" >Esqueci a senha</a> |
-                  <a href="" onclick="auth.showSignupForm() ;return false;">Novo Cadastro</a>
-                </div>
-              </form>
-              <span class="loginmsg alert hide"></span>
-            </div>
-            <div class="logado hide">
-              <div class="male pull-right"></div>
-              <div class="profile-control">
-                <p class="saudacao">Olá, {{ user.display_name }}!</p>
-                <a href="{{ url_for('auth.profile_form') }}" class="btn btn-info">Editar perfil</a>
-                <button onclick="auth.logout(); return false;" class="btn btn-danger">Sair</button>
-              </div>
-            </div>
-            <div class="off">
-              <p class="saudacao">Olá Visitante!</p>
-              <button class="btn btn-primary entrar">Entrar</button>
-
-              <a href="/auth/fb" class="btn btn-primary">Entrar via Facebook</a>
-              <button class="btn btn-success" onclick="auth.showSignupForm() ;return false;">Novo Cadastro</button>
-
-
-            </div>
-            <div class="passwordReminder hide">
-              <form class="form-horizontal" action="/auth/remember_password" id="remember_password" method="post">
-                <input type="text" id="email" name="email" placeholder="Seu email">
-                <button type="submit" class="btn logar">Lembrar</button>
-              </form>
-              <a href="" onclick="auth.togglePasswordReminder(); return false;" >Cancelar</a>
-              <span class="loginmsg alert"></span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
