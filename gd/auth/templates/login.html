@@ -20,10 +20,10 @@
       <div id="auth-error" class="msg error"></div>
       <div id="confirmation-success" class="msg success"></div>
 
-      <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.login_json') }}">
+      <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
         <fieldset>
           <legend>Efetuar login no site:</legend>
-
+          <input type="hidden" name="next" value="{{next}}">
           <div class="control-group">
             <label for="username" class='control-label'>Email</label>
             <div class="controls">
@@ -65,7 +65,7 @@
   </div>
   <div class="row novocadastro hide">
     <div class="offset1 span10">
-      <form class="form-horizontal" method="post" id="signup" action="{{ url_for('auth.login_json') }}">
+      <form class="form-horizontal" method="post" id="signup" action="{{ url_for('auth.logon') }}">
         <fieldset>
           <legend>Novo cadastro:</legend>
 

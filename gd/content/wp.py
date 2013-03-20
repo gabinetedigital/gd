@@ -208,7 +208,10 @@ class Post(object):
         try:
             return super(Post, self).__getattribute__(attr)
         except AttributeError:
-            return self.data[attr]
+            try:
+                return self.data[attr]
+            except:
+                raise AttributeError
 
     @property
     def permalink(self):

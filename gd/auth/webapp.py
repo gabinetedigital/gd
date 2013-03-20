@@ -20,16 +20,18 @@
 
 from os import urandom
 from sqlalchemy.orm.exc import NoResultFound
-from flask import Blueprint, render_template, request, session, make_response, flash
+from flask import Blueprint, render_template, request, session, make_response, flash, redirect
 from werkzeug import FileStorage
 
 from gd import utils
+from gd import conf
 from gd.utils import msg
 from gd import auth as authapi
 from gd.auth.fbauth import checkfblogin, facebook as remote_facebook
 from gd.auth import forms
 from gd.model import Upload, session as dbsession, User
 from gd.content.wp import wordpress
+from gd.utils.gdcache import fromcache, tocache
 
 
 auth = Blueprint(
@@ -91,7 +93,8 @@ def social(form, show=True, default=None):
 def login_form():
     """Renders the login form"""
     formcad = social(forms.SignupForm)
-    return render_template('login.html', form=formcad)
+    next = request.args.get('next')
+    return render_template('login.html', form=formcad, next=next)
 
 
 @auth.route('/lost_password/')
@@ -100,9 +103,9 @@ def lost_password():
     return render_template('lost_password.html')
 
 
-@auth.route('/login_json', methods=('POST',))
-def login_json():
-    """Logs the user in (through ajax) and returns the user object in
+@auth.route('/logon', methods=('POST',))
+def logon():
+    """Logs the user in and returns the user object in
     JSON format"""
     username = request.values.get('username')
     password = request.values.get('password')
@@ -110,13 +113,42 @@ def login_json():
         try:
             user = authapi.login(username, password)
         except authapi.UserNotFound:
-            return msg.error(_(u'User does not exist'), 'UserNotFound')
+            flash(_(u'User does not exist'), 'alert-error')
         except authapi.UserAndPasswordMissmatch:
-            return msg.error(_(u'Wrong password'),
-                             'UserAndPasswordMissmatch')
-        return msg.ok({ 'user': user })
-    return msg.error(_(u'Username or password missing'), 'EmptyFields')
+            flash(_(u'Wrong password'), 'alert-error')
+        else:
+            # msg.ok({ 'user': user })
+            flash(_(u'Login successfuly!'), 'alert-success')
+    else:
+        flash(_(u'Username or password missing'), 'alert-error')
+    formcad = social(forms.SignupForm)
 
+    next = request.values.get('next')
+    if next:
+        return redirect(next)
+    else:
+        return render_template('login.html', form=formcad)
+
+
+@auth.route('/logout/')
+def logout():
+    """Logs the user out and returns """
+    authapi.logout()
+    next = request.values.get('next')
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
+    if next:
+        print "NEXTT=", next
+        return redirect(next)
+    else:
+        return render_template('logout.html',
+            menu=menus,
+            twitter_hash_cabecalho=twitter_hash_cabecalho
+            )
 
 @auth.route('/logout_json')
 def logout_json():
@@ -176,7 +208,6 @@ def signup_json():
     # Proceeding with the validation of the user fields
     form.fromsocial = fromsocial
     if form.validate_on_submit():
-        print "VALIDADOOOOOOOO!"
         try:
             meta = form.meta
             dget = meta.pop

@@ -27,7 +27,6 @@ import xmlrpclib
 from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
      redirect, url_for, abort
-from flask.ext.cache import Cache
 
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
@@ -48,9 +47,11 @@ from gd.audience import audience
 from gd.admin import admin
 from gd.buzz.webapp import buzz
 from gd.utils.gravatar import Gravatar
+from gd.utils.gdcache import cache, fromcache, tocache
 from libthumbor import CryptoURL
 
 app = Flask(__name__)
+
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(fbauth, url_prefix='/auth/fb')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
@@ -76,10 +77,7 @@ app.jinja_env = app.jinja_env.overlay(extensions=['jinja2.ext.i18n'])
 app.jinja_env.install_gettext_callables(
     gettext.gettext, gettext.ngettext, newstyle=True)
 
-cache = Cache(app)
-
-
-from gd.utils.gdcache import fromcache, tocache
+cache.init_app(app)
 
 @app.errorhandler(403)
 def error403(e):
@@ -276,21 +274,9 @@ def cachecleargd():
 @app.route('/')
 # @cache.cached(unless=is_authenticated)
 def index():
-    app.logger.error( " ######################################################################## BASE " )
+    # app.logger.error( " ######################################################################## BASE " )
     """Renders the index template"""
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-    # slideshow = wordpress.getRecentPosts(
-    #     category_name='highlights',
-    #     post_status='publish',
-    #     numberposts=4,
-    #     thumbsizes=['slideshow'])
-    #Retorna a ultima foto inserida neste album.
-    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    # news = wordpress.getRecentPosts(
-    #     category_name='news',
-    #     post_status='publish',
-    #     numberposts=6,
-    #     thumbsizes=['newsbox', 'widenewsbox'])
     try:
         vote_url = app.config['VOTACAO_URL']
     except KeyError:
@@ -309,12 +295,12 @@ def index():
     except KeyError:
         twitter_hash_cabecalho = ""
 
-    pagesobre = fromcache('pagesobre')  or tocache('pagesobre', wordpress.getPageByPath('sobre'))
     pagepri = fromcache('pagepri')      or tocache('pagepri', wordpress.getPageByPath('prioridades'))
     pagepq = fromcache('pagepq')        or tocache('pagepq', wordpress.getPageByPath('por-que'))
     pageproc = fromcache('pageproc')    or tocache('pageproc', wordpress.getPageByPath('processo'))
     pagehow = fromcache('pagehow')      or tocache('pagehow', wordpress.getPageByPath('como-funciona'))
     pageseg = fromcache('pageseg')      or tocache('pageseg', wordpress.getPageByPath('seguranca-2'))
+    pagesobre = fromcache('pagesobre')  or tocache('pagesobre', wordpress.getPageByPath('sobre'))
 
     return render_template(
         'index.html', wp=wordpress,
@@ -326,10 +312,10 @@ def index():
         page_como=pagehow,
         page_seg=pageseg,
         menu=menus,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         VOTACAO_URL=vote_url,
         VOTACAO_ROOT=vote_root,
         VOTACAO_ALTURA=vote_altura,
-        twitter_hash_cabecalho=twitter_hash_cabecalho
     )
 
 
@@ -340,9 +326,8 @@ def get_part(part):
     return render_template('parts/%s.html' % part)
 
 @app.route('/gallerias')
-@cache.memoize(unless=is_authenticated)
 def gallery():
-    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
@@ -353,53 +338,18 @@ def gallery():
         menu=menus,
     )
 
-@app.route('/teaser')
-@cache.memoize(unless=is_authenticated)
-def teaser():
-    """Renders the teaser template"""
-    return render_template('teaser.html')
-
-
-@app.route('/sobre/')
-@cache.memoize(unless=is_authenticated)
-def sobre():
-    """Renders the about template"""
-    return render_template('sobre.html', page=wordpress.getPageByPath('sobre'),
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
-
-@app.route('/about/')
-@cache.memoize(unless=is_authenticated)
-def about():
-    """Renders the about template"""
-    return render_template('about.html', page=wordpress.getPageByPath('about')
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
-
-@app.route('/acerca/')
-@cache.memoize(unless=is_authenticated)
-def acerca():
-    """Renders the about template"""
-    return render_template('acerca.html', page=wordpress.getPageByPath('acerca')
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
-
-
-@app.route('/foto_com_gov/')
-@cache.memoize(unless=is_authenticated)
-def foto_com_gov():
-    return render_template('galeria.html')
-
-
 # -- Blog specific views --
-
 
 @app.route('/news/')
 @app.route('/news/<int:page>/')
-@cache.memoize(unless=is_authenticated)
 def news(page=0):
     """List posts in chronological order"""
-    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
-    pagination, posts = wordpress.getPosts(page=page, thumbsizes=['newsbox', 'widenewsbox'])
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+
+    pagination, posts = fromcache('pag_posts') or tocache("pag_posts", wordpress.getPosts(page=page, thumbsizes=['newsbox', 'widenewsbox']))
+
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
 
     psearch = _format_postsearch(posts)
     try:
@@ -411,7 +361,7 @@ def news(page=0):
         'archive.html',
         sidebar=wordpress.getSidebar,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
-        picday=picday,
+        # picday=picday,
         pagination=pagination,
         menu=menus,
         posts=psearch)
@@ -419,75 +369,81 @@ def news(page=0):
 
 @app.route('/cat/<int:cid>/')
 @app.route('/cat/<int:cid>/<int:page>/')
-@cache.memoize(unless=is_authenticated)
 def category(cid, page=0):
     """List posts of a given category"""
-    pagination, posts = wordpress.getPostsByCategory(cat=cid, page=page)
+
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+
+    pagination, posts = fromcache("pag_posts_cat") or tocache("pag_posts_cat", wordpress.getPostsByCategory(cat=cid, page=page))
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
 
     psearch = _format_postsearch(posts)
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
+
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
-        picday=picday,
+        # picday=picday,
         pagination=pagination,
-        posts=psearch
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+        posts=psearch,
+        menu=menus
+    )
 
 
 @app.route('/tag/<string:slug>/')
 @app.route('/tag/<string:slug>/<int:page>/')
-@cache.memoize(unless=is_authenticated)
+
 def tag(slug, page=0):
     """List posts of a given tag"""
-    pagination, posts = wordpress.getPostsByTag(tag=slug, page=page)
+    pagination, posts = fromcache("pag_posts_tag") or tocache("pag_posts_tag", wordpress.getPostsByTag(tag=slug, page=page) )
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 
     psearch = _format_postsearch(posts)
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
+
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
-        picday=picday,
+        # picday=picday,
         pagination=pagination,
         posts=psearch
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+        ,menu=menus)
 
 
 
 @app.route('/conselho-comunicacao/')
-@cache.memoize(unless=is_authenticated)
 def conselho():
     """Renders a wordpress page special"""
     path = 'conselho-comunicacao'
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    page = wordpress.getPageByPath(path)
-    cmts = wordpress.getComments(status='approve',post_id=page.data['id'], number=1000)
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    page = fromcache("page-%s" %path) or tocache("page-%s" %path,  wordpress.getPageByPath(path) )
+    cmts = fromcache("cmts-page-%s" %path) or tocache("cmts-page-%s" %path, wordpress.getComments(status='approve',post_id=page.data['id'], number=1000))
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template(
         'post.html',
         post=page,
         sidebar=wordpress.getSidebar,
-        picday=picday,
+        # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         comments=cmts,
         show_comment_form=is_authenticated(),
         categoria_contribuicao_text=categoria_contribuicao_text
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+        ,menu=menus
     )
 
 @cache.memoize(unless=is_authenticated)
@@ -519,13 +475,12 @@ def add_filhos_and_comments_to_post(post_type, lista_de_posts, total_artigos, to
 
 
 @app.route('/artigo/<slug>/')
-@cache.memoize(unless=is_authenticated)
 def artigo_hierarquico(slug):
     """Renders a wordpress page special"""
     path = slug
     post_type = 'artigo-herarquico'
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    post = wordpress.getCustomPostByPath(post_type,path)
+    post = fromcache("artigo-%s" % slug) or tocache("artigo-%s" % slug, wordpress.getCustomPostByPath(post_type,path))
 
     # print '===================================================='
     # print post
@@ -561,6 +516,7 @@ def artigo_hierarquico(slug):
     except KeyError:
         twitter_hash_cabecalho = ""
 
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 
     return render_template(
         TEMPLATE,
@@ -577,21 +533,21 @@ def artigo_hierarquico(slug):
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         show_comment_form=is_authenticated(),
         categoria_contribuicao_text=categoria_contribuicao_text
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+        ,menu=menus
     )
 
 
 @app.route('/comite-transito/')
-@cache.memoize(unless=is_authenticated)
 def comite_transito():
     """Renders a wordpress page special"""
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template(
         'comite-transito.html',
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        menu=menus,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         wp=wordpress,
         sidebar=wordpress.getSidebar,
@@ -600,7 +556,6 @@ def comite_transito():
 
 @app.route('/enviar-noticia/', methods=['POST',])
 def salvar_noticia_comite():
-    print "RECEBEU NOTICIA!!!"
     if request.method == 'POST':
         titulo = request.form['titulo']
         noticia = request.form['noticia']
@@ -656,7 +611,8 @@ def cadastrar_comite():
 def pages(path):
     """Renders a wordpress page"""
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
@@ -666,8 +622,8 @@ def pages(path):
         page=wordpress.getPageByPath(path),
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         sidebar=wordpress.getSidebar,
-        picday=picday
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+        # picday=picday
+        menu=menus
     )
 
 @app.route('/pages/<path:path>.json')
@@ -679,10 +635,9 @@ def page_json(path):
 
 
 @app.route('/post/<slug>/')
-@cache.memoize(unless=is_authenticated)
 def post_slug(slug):
     try:
-        post = wordpress.getPostByPath(slug)
+        post = fromcache("post-%s" % slug) or tocache("post-%s" % slug, wordpress.getPostByPath(slug))
         if not post['id']:
             abort(404)
     except:
@@ -699,12 +654,14 @@ def post_slug(slug):
         post['the_date'] = datetime.datetime.strptime(post['date']['date'].value,'%Y%m%dT%H:%M:%S')
 
     """View that renders a post template"""
-    recent_posts = wordpress.getRecentPosts(
+    recent_posts = fromcache("recent_posts") or tocache("recent_posts", wordpress.getRecentPosts(
         post_status='publish',
-        numberposts=4)
+        numberposts=4))
     #Retorna a ultima foto inserida neste album.
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    cmts = fromcache("comentarios_post_slug-%s"%slug) or tocache("comentarios_post_slug-%s"%slug, wordpress.getComments(status='approve',post_id=pid))
+    tags = fromcache("tags") or tocache("tags", wordpress.getTagCloud())
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
@@ -712,31 +669,31 @@ def post_slug(slug):
     return render_template(
         'post.html',
         post=post,
-        tags=wordpress.getTagCloud(),
+        tags=tags,
         sidebar=wordpress.getSidebar,
         # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
-        comments=wordpress.getComments(status='approve',post_id=pid),
+        comments=cmts,
         show_comment_form=is_authenticated(),
         recent_posts=recent_posts)
 
 
 @app.route('/post/<int:pid>/')
-@cache.memoize(unless=is_authenticated)
 def post(pid):
     try:
-        p = wordpress.getPost(pid)
+        p = fromcache("post-%s" % str(pid)) or tocache("post-%s" % str(pid),wordpress.getPost(pid))
     except:
         return abort(404)
     """View that renders a post template"""
-    recent_posts = wordpress.getRecentPosts(
+    recent_posts = fromcache("recent_posts") or tocache("recent_posts", wordpress.getRecentPosts(
         post_status='publish',
-        numberposts=4)
+        numberposts=4))
     #Retorna a ultima foto inserida neste album.
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
-    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
-
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    cmts = fromcache("comentarios%s" % str(pid)) or tocache("comentarios%s" % str(pid),  wordpress.getComments(status='approve',post_id=pid))
+    tags = fromcache("tags") or tocache("tags", wordpress.getTagCloud())
     try:
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
@@ -744,15 +701,15 @@ def post(pid):
     return render_template(
         'post.html',
         post=p,
-        tags=wordpress.getTagCloud(),
+        tags=tags,
         sidebar=wordpress.getSidebar,
         # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
-        comments=wordpress.getComments(status='approve',post_id=pid),
+        comments=cmts,
         show_comment_form=is_authenticated(),
         recent_posts=recent_posts)
-    return post_page(pid)
+    # return post_page(pid)
 
 @app.route('/new_contribution', methods=('POST',))
 def new_contribution():
@@ -820,7 +777,7 @@ def search(page=0):
     #posttype = ['audiencia_govesc', 'clippinggd_clipping', 'equipegd_equipe', 'oquegd_oque', 'post']
     pagination, posts = wordpress.search(s=query, page=page, thumbsizes=['newsbox', 'widenewsbox'])
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
 
     psearch = _format_postsearch(posts)
     try:
@@ -828,30 +785,33 @@ def search(page=0):
     except KeyError:
         twitter_hash_cabecalho = ""
 
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
-        picday=picday,
+        # picday=picday,
         pagination=pagination,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         search_term=query,
         posts=psearch,
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+        menu=menus)
 
 
 @app.route('/feed/')
 def feed():
     """Renders the RSS wordpress function"""
     header = {'Content-Type': 'application/rss+xml; charset=utf-8'}
-    return wordpress.getRSS(), 200, header
+    f = fromcache("feed_rss") or tocache("feed_rss", wordpress.getRSS())
+    return f, 200, header
 
 @app.route('/archive/<int:m>/')
 @app.route('/archive/<int:m>/<int:page>/')
 def archive(m, page=0):
     """List posts of the archive given yyyymm format"""
-    pagination, posts = wordpress.getArchivePosts(m=m, page=page)
+    pagination, posts = fromcache("archive-%s-%s" % (str(m), str(page)) ) or tocache("archive-%s-%s" % (str(m), str(page))
+        ,wordpress.getArchivePosts(m=m, page=page))
     #Retorna a ultima foto inserida neste album.
-    picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
+    # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
 
     psearch = _format_postsearch(posts)
     try:
@@ -861,7 +821,7 @@ def archive(m, page=0):
     return render_template(
         'archive.html',
         sidebar=wordpress.getSidebar,
-        picday=picday,
+        # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         pagination=pagination,
         posts=psearch)

@@ -13,6 +13,7 @@
 <div class="content">
   <div class="row widgets">
     <div class="container">
+      {% cache %}
       <section>
         <div class="fixie">
         </div>
@@ -20,6 +21,7 @@
           {{ sidebar(id='sidebar-4')|safe }}
         </ul>
       </section>
+      {%endcache%}
     </div>
   </div>
 
@@ -32,9 +34,11 @@
             <div class="page-header">
               <h2 id="sobre">{{ page_about.title|safe }}</h2>
             </div>
+            {% cache %}
             <div class="block">
               {{ page_about.content|safe }}
             </div>
+            {%endcache%}
           </div>
 
           <div class="span6">
@@ -43,7 +47,9 @@
               <li><a class="clip" data-toggle="tab">Clipping</a></li>
               <li><a class="membros" data-toggle="tab">Equipe</a></li>
             </ul>
+            {% cache %}
             {{ sidebar(id='sidebar-6')|safe }}
+            {% endcache %}
           </div>
         </div>
 
@@ -76,6 +82,7 @@
   <!-- </div> -->
 
 {%if VOTACAO_URL%}
+{%cache%}
   <div class="row" id="govpergunta">
     <div class="container">
       <section>
@@ -151,11 +158,12 @@
       </section>
     </div>
   </div>
-
+{%endcache%}
 {%endif%}
 
   <div class="row" id="resultados">
     <div class="container">
+      {%cache%}
       <section>
         <div class="page-header">
           <h2>Resultados</h2>
@@ -164,6 +172,7 @@
           {{ sidebar(id='sidebar-5')|safe }}
         </ul>
       </section>
+      {%endcache%}
     </div>
   </div>
 </div>

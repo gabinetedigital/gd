@@ -8,19 +8,17 @@ variable = fromcache('<cachekey>') or tocache('<cachekey>', <live-object> )
 print variable
 
 """
-from gd.content import cache
+from flask.ext.cache import Cache
+cache = Cache()
 
 def fromcache(name):
 	o = cache.get(name)
 	if o:
 		return o
-		print "FromCache:%s" % name
 	else:
 		return False
 
 def tocache(name, obj):
 	global cache
 	cache.add(name, obj)
-	print "ToCache:%s" % name
-	print dir(cache)
 	return obj
