@@ -1,1 +1,0 @@
-../../../audience/static/js/statusbar.js

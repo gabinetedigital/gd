@@ -1,0 +1,196 @@
+.news {
+    padding-top: 20px;
+    border-top: 2px solid #DDD;
+    background: url(../img/minsqr.png);
+}
+
+.post {
+    color: $black;
+    padding: 0px 16px 16px 16px;
+    background-color:rgba(#FFFFFF, 0.7);
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+    overflow: auto;
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.7) inset);
+}
+
+.post h2 {
+    font-size: 30px;
+    color: $red;
+    font-weight: 600;
+    width: 100%;
+}
+
+.post h2 a {
+    color: $red;
+}
+
+.post a {
+    color: $black;
+    text-decoration: none;
+}
+
+.post .content {
+    font-size: 11pt;
+    line-height: 1.5em;
+    margin-top: 10px;
+}
+
+/* .post .content img { */
+/*   float: left; */
+/*       margin-bottom: 10px; */
+/*       margin-right: 20px; */
+/* } */
+
+.post .content a {
+    color: $red;
+    text-decoration: none;
+    border-bottom: 1px dotted $red;
+}
+
+.post .conten  p {
+    margin-bottom: 30px;
+}
+
+.post .more {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.meta {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    clear: both;
+    display: block;
+}
+
+.meta .tag {
+    margin-left: 20px;
+}
+
+.post .meta ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.post .meta ul li a:hover {
+    text-decoration: underline;
+}
+
+.post .meta ul {
+    padding: 0;
+    margin: 0;
+}
+
+.post img {
+    margin: 10px 0px;
+    float: left;
+    margin-right: 15px;
+}
+
+.post img.aligncenter {
+    clear: both;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
+
+.post img.alignleft {
+    float: left;
+    display:inline;
+    margin-right:24px;
+    margin-top:4px;
+}
+
+.post img.alignright {
+    display:inline;
+    float:right;
+    margin-left:24px;
+    margin-top:4px;
+}
+
+#comments h2 {
+    color: #FFF;
+}
+
+#comments h3 {
+    color: $red;
+}
+
+#comments .form {
+    padding-bottom: 30px;
+}
+
+#comments img {
+    padding: 10px;
+    width: 80px;
+    background-color:rgba(#FFFFFF, 0.7);
+    border: 1px solid #DDD;
+    @include border-radius(0 23px 23px 23px);
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.48) inset);
+
+}
+
+#comments .comment .comcontent, .commentbox {
+    color: #000;
+    border: 0;
+    margin-bottom: 20px;
+    margin-left: 120px;
+    background-color:rgba(#FFFFFF, 0.7);
+    padding: 4px;
+
+    border: 1px solid #DDD;
+    @include border-radius(0 23px 23px 23px);
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.48) inset);
+}
+
+#comments .comment .comcontent, .commentbox .enviar {
+    margin-top: -8px;
+    margin-right: 20px;
+}
+
+#comments textarea {
+    color: #000;
+    border: 0;
+    width: 96%;
+    height: 100px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#comments .comment .comcontent {
+    padding: 10px 30px 30px 30px;
+}
+
+.sidebar {
+    padding-top: 40px;
+    color: #FFF;
+    font-size: 10pt;
+}
+
+.sidebar li {
+    color: #BBB;
+}
+
+.sidebar a {
+    color: $blue;
+}
+
+.sidebar .widget-title {
+    color: $black;
+}
+
+@media (max-width: 767px) {
+    .news {
+        margin-right: -20px;
+        margin-left: -20px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+
+#contador{
+  color: #999999;
+  font-size: 11px;
+  padding-left: 10px;
+}

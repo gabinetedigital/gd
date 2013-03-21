@@ -1,0 +1,444 @@
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.content {
+    color: #FFF;
+    padding-top: 20px;
+    border-top: 2px solid #DDD;
+    background: url(../img/minsqr.png);
+}
+
+
+.info-head {
+    color: $black;
+    border-right: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    height: 171px;
+}
+
+.info-desc {
+    padding: 16px;
+    font-size: 14pt;
+    height: 172px;
+}
+
+.info-btn {
+    text-align: right;
+}
+
+.share {
+    display: block;
+    /*clear: both;*/
+    height: 20px;
+    padding: 6px;
+}
+
+.nao-tem-face{
+    clear: both;
+    width: 100%;
+    text-align: right;
+    color: $black;
+}
+
+
+
+.share p {
+    color: $red;
+    font-size: 13pt;
+    font-style: italic;
+}
+
+.info-aud {
+    color: $black;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    height: 172px;
+    @include box-sizing(border-box);
+    @include box-shadow(0 1px 0 rgba(#FFF, 0.1), 0 1px 7px 0 rgba(#DDD, 0.7) inset);
+    @include background-image(linear-gradient(white, #DDD));
+
+}
+
+.aud-date {
+    border-right: 1px solid #CCC;
+    padding-top: 20px;
+    height: 150px;
+}
+
+.todas {
+    font-size: 14pt;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.hashtag {
+    color: $black;
+    padding-right: 20px;
+}
+
+.hashtag p.twt {
+    font-size: 10pt;
+}
+
+.hashtag p.hash {
+    color: #999;
+    font-size: 20pt;
+}
+
+
+#date {
+    width: 80px;
+    height: 70px;
+    margin-right: 20px;
+}
+
+#date div {
+    font-weight: bold;
+}
+
+#date div.day {
+
+    font-size: 35pt;
+    text-align: center;
+    border-right: 2px solid #CCC;
+    border-bottom: 2px solid #CCC;
+    border-left: 2px solid #CCC;
+    background-color: #DDD;
+    padding: 14px 0;
+    @include border-radius(0 0 10px 10px);
+    @include background-image(linear-gradient(white, #DDD));
+}
+
+#date div.month {
+    padding-top: 2px;
+    padding-bottom: 3px;
+    font-size: 15pt;
+    background-color: #D72314;
+    color: #FFF;
+    text-align: center;
+    border-top: 2px solid #D72314;
+    border-right: 2px solid #D72314;
+    border-left: 2px solid #D72314;
+    @include border-radius(10px 10px 0 0);
+    @include background-image(linear-gradient(#D72314, #A81704));
+}
+
+div.time {
+    padding-top: 6px;
+    font-size: 16pt;
+    text-align: center;
+}
+
+.stage {
+   background-color: #eee;
+   max-height: 630px;
+}
+
+.droom {
+    color: #FFF;
+    background-color: #eee;
+    margin-left: -30px;
+    height: 100%;
+    max-height: 630px;
+    overflow-y: auto;
+}
+
+#beingAnswered-anterior {
+    background-color: #000;
+    color: #FFF;
+
+}
+
+#semfacecom textarea{
+    width: 95%;
+}
+
+.droom #chat form {
+    margin: 0;
+}
+
+.droom #chat textarea.tiny {
+    border: 0;
+    background-color: black;
+    color: white;
+    width: 300px;
+    height: 21px;
+}
+
+.droom #chat textarea.toon {
+    border: 0;
+    background-color: black;
+    color: white;
+    width: 300px;
+    height: 160px;
+}
+
+.droom #chat .current-msg-length {
+    float: right;
+}
+
+.buzzs {
+    height: 100%;
+    max-height: 630px;
+    overflow-y: scroll;
+}
+
+#poster {
+    width: 140px;
+    margin-right: 20px;
+}
+
+.astream {
+    background-color: #000;
+}
+
+.stream, .astream, .bstream {
+    padding: 10px;
+}
+
+.stream .avatar, .astream .avatar, .bstream .avatar {
+    float: left;
+    margin-right: 10px;
+    display: block;
+}
+
+.stream .author, .astream .author, .bstream .author {
+    color: $blue;
+    padding-left: 68px;
+    padding-bottom: 10px;
+    font-size: 10pt;
+}
+
+.stream .answer, .astream .answer, .bstream .answer {
+    padding-left: 68px;
+    font-size: 13px;
+}
+
+
+
+h2.title {
+    font-size: 17pt;
+    color: $blue;
+    margin-top: 20px;
+    font-weight: 400;
+    width: 100%;
+    line-height: 1.1em;
+    height: 1.2em;
+    display: inline;
+}
+
+p.description {
+    font-size: 11pt;
+    color: $black;
+    margin-top: 12px;
+    margin-bottom: 9px;
+}
+
+.instagram {
+  margin-top: 20px;
+}
+
+.instagram ul>li {
+    margin-bottom: 15px;
+}
+
+.instagram .thumbnail {
+    background: #FFF;
+    overflow: auto;
+}
+
+.instagram .thumbnail img {
+    float: left;
+    margin-right: 20px;
+}
+
+.instagram .thumbnail p {
+    color: #000000;
+    display: table-cell;
+    height: 150px;
+    vertical-align: middle;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 0;
+}
+
+.modal-header .close {
+    background: url("../img/fancybox.png") repeat scroll transparent;
+    cursor: pointer;
+    height: 32px;
+    position: absolute;
+    right: 4px;
+    width: 32px;
+    z-index: 1103;
+    opacity: 1.0;
+}
+
+.modal {
+    display: none;
+}
+
+.modal-body {
+    max-height: 600px;
+}
+
+.modal-gallery .modal-title {
+    text-align: left;
+}
+
+
+/* .buzz { */
+/*     background-color: $black; */
+/*     display: block; */
+/*     height: 100%; */
+/* } */
+
+/* #buzz-moderated { */
+/*     border: 0 none; */
+/*     display: block; */
+/*     background-color: rgba($black, 1.0); */
+/*     display: block; */
+/*     padding: 12px; */
+/*     position: relative; */
+
+/*     color: #FFF; */
+/*     margin-bottom: 20px; */
+/*     /\* @include border-radius(23px 23px 23px 0); *\/ */
+/*     @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset); */
+/* } */
+
+#how-it-works {
+    cursor:pointer;
+}
+
+#how-it-works .small-gear {
+    position: relative;
+    top: 18px;
+    left: -13px;
+}
+
+#how-it-works .how-it-works-text {
+    position: relative;
+    top: -32px;
+    left: 38px;
+}
+
+.step-1-couple {
+    opacity:0;
+    margin-bottom: 6px;
+}
+
+.step-1-mail-trail {
+    opacity:0;
+}
+
+
+.step-1-mail {
+    opacity:0;
+    left: -56px;
+    position: relative;
+}
+
+.step-2 {
+    opacity: 0;
+}
+
+.step-2-small-gear {
+    position: relative;
+    top: 14px;
+    left: -8px;
+}
+
+.mustache-gentleman, .step-3 p {
+    opacity: 0;
+}
+
+.mustache-gentleman-dialog {
+    display: none;
+}
+
+/* -- How it works -- */
+
+#works-like-this {
+    padding:40px;
+    width: 680px;
+}
+
+#works-like-this li {
+    display:block;
+    width:225px;
+    height:150px;
+    float:left;
+    text-align:center;
+}
+
+#works-like-this .wrapper {
+    height:100px;
+    margin:0 auto;
+    background:none;
+    @include box-shadow(none);
+}
+
+#works-like-this p {
+    display:block;
+    margin-top: 30px;
+    font-weight:bold;
+    clear:both;
+}
+
+/* specific things of how it works */
+
+#works-like-this .gears {
+    margin-left:10%;
+}
+
+#works-like-this ol {
+    height:180px;
+}
+
+#works-like-this .step-3 img {
+    float:left;
+}
+
+#works-like-this .step-3 .wrapper {
+    width:130px;
+}
+
+#works-like-this .mustache-gentleman {
+    margin-top:40px;
+}
+
+#works-like-this #saiba-mais-link {
+    margin-top:30px;
+    float:right;
+}
+
+#works-like-this #saiba-mais-text {
+    margin-top: 40px;
+    float: left;
+}
+
+.boverlay {
+    @include border-radius(30px);
+}
+
+.streaming {
+    background: #eee;
+    display: block;
+}
+
+.streaming video.video-js {
+    height: 400px;
+}
+
+.stream{
+    text-align: center;
+}
