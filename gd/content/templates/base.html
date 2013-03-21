@@ -12,10 +12,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-    {% assets "css_main" %}
-    <link rel="stylesheet" href="{{ ASSET_URL }}">
-    {% endassets %}
 
     {% block css %}{% endblock %}
 
