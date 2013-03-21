@@ -93,7 +93,7 @@ def social(form, show=True, default=None):
 def login_form():
     """Renders the login form"""
     formcad = social(forms.SignupForm)
-    next = request.args.get('next')
+    next = request.args.get('next') or request.referrer
     return render_template('login.html', form=formcad, next=next)
 
 
@@ -109,25 +109,32 @@ def logon():
     JSON format"""
     username = request.values.get('username')
     password = request.values.get('password')
+    gonext = True
     if username and password:
         try:
             user = authapi.login(username, password)
         except authapi.UserNotFound:
-            flash(_(u'User does not exist'), 'alert-error')
+            flash(_(u'Wrong user or password'), 'alert-error')
+            gonext = False
         except authapi.UserAndPasswordMissmatch:
-            flash(_(u'Wrong password'), 'alert-error')
-        else:
+            flash(_(u'Wrong user or password'), 'alert-error')
+            gonext = False
+        # else:
             # msg.ok({ 'user': user })
-            flash(_(u'Login successfuly!'), 'alert-success')
+            # flash(_(u'Login successfuly!'), 'alert-success')
     else:
         flash(_(u'Username or password missing'), 'alert-error')
+        gonext = False
     formcad = social(forms.SignupForm)
 
-    next = request.values.get('next')
-    if next:
+    next = request.values.get('next',default="")
+    if next is not None and gonext:
         return redirect(next)
     else:
-        return render_template('login.html', form=formcad)
+        if request.referrer:
+            return redirect(request.referrer)
+        else:
+            return render_template('login.html', form=formcad)
 
 
 @auth.route('/logout/')

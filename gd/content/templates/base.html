@@ -85,9 +85,7 @@
           </div>
         </section>
       </div>
-    </div>
-    <div class="row">
-      {%include 'parts/flashes.html'%}
+
     </div>
     {% block content %}{% endblock %}
 
@@ -154,7 +152,7 @@
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-ui.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.tools.min.js') }}"></script>
-    <!-- <script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base/urls.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>

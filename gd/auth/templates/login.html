@@ -23,7 +23,9 @@
       <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
         <fieldset>
           <legend>Efetuar login no site:</legend>
+          {%if next%}
           <input type="hidden" name="next" value="{{next}}">
+          {%endif%}
           <div class="control-group">
             <label for="username" class='control-label'>Email</label>
             <div class="controls">
