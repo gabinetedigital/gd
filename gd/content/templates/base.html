@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
 
     {% block css %}{% endblock %}
 
@@ -25,11 +25,10 @@
 
   </head>
   <body data-spy="scroll" data-target="#menu">
+
     {% block id %}
     {% endblock %}
-    <!--script src="{{ url_for('static', filename='jw/jwplayer.js') }}"></script-->
-    <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
+
     <div class="container">
       <div id="menu" class="subnav subnav-fixed navbar-invert pull-right">
         <a class="brand pull-left" href="#home">Gabinete Digital</a>
@@ -159,6 +158,7 @@
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/easypaginate.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/bootstrap-image-gallery.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
 
     {% if user %}
     <script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
