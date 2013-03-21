@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<!-- <script src="{{ url_for('.static', filename='js/login.js') }}"></script> -->
+{% endblock %}
+
+{% block bodyclass %}login{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {%include 'parts/flashes.html'%}
+  </div>
+  <div class="row">
+    <div class="span12">
+
+      <h2>Você foi desconectado</h2>
+      <h3>Obrigado por acessar o Gabinete Digital!</h3>
+      <p>Agora, mesmo deslogado, você poderá continuar navegando no site, acesse a nossa capa para agora e veja todas as informações<br>&nbsp;</p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
