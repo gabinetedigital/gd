@@ -112,7 +112,7 @@ class BasePasswordForm(Form):
     """Form that holds password fields"""
 
     password = PasswordField(
-        _('Password'),
+        _('New Password'),
         [validators.Required(),
          ]
     )

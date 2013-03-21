@@ -45,18 +45,26 @@
               <button type="submit" class="btn"><i class="icon-search"></i></button>
             </div>
             <div class="entrar">
-              <!-- <a class="btn btn-success" href="/auth/login/">Entrar</a> -->
+              {%if user%}
+              <img src="{{ user.email | gravatar(size=16) }}" class="img-polaroid">
               <div class="btn-group">
-                <a class="btn btn-success" href="#"><i class="icon-user icon-white"></i> User</a>
-                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> {{user.name|truncate(20)}}</a>
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                  <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#"><i class="i"></i> Make admin</a></li>
-                </ul>
+                  <li><a href="/auth/profile/"><i class="icon-pencil"></i> Editar perfil</a></li>
+                  <li><a href="/auth/logout/"><i class="icon-ban-circle"></i> Logout</a></li>
+                   <!-- <li class="divider"></li> -->
+                  <!-- <li><a href="#"><i class="i"></i> Make admin</a></li> -->
+<!--                   <li>
+                    <div class="avatar avatarmenu">
+                      <img src="{{ user.email | gravatar }}" class="img-polaroid">
+                    </div>
+                  </li>
+ -->                </ul>
               </div>
+              {%else%}
+              <a class="btn btn-success" href="/auth/login/">Entrar</a>
+              {%endif%}
             </div>
           </form>
 

@@ -236,14 +236,19 @@ def signup_json():
         return utils.format_csrf_error(form, form.errors, 'ValidationError')
 
 
-@auth.route('/profile')
+@auth.route('/profile/')
 def profile_form():
     """Shows the user profile form"""
     data = authapi.authenticated_user().metadata()
     profile = social(forms.ProfileForm, default=data)
     passwd = forms.ChangePasswordForm()
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+    except KeyError:
+        twitter_hash_cabecalho = ""
     return render_template(
-        'profile.html', profile=profile, passwd=passwd)
+        'profile.html', profile=profile, passwd=passwd, menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
 
 
 @auth.route('/profile_json', methods=('POST',))

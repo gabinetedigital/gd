@@ -42,6 +42,10 @@ $(function() {
             $('div.msg').hide();
             $('div.error').fadeOut();
             $('div.success').fadeIn().html(data.msg.data);
+            window.setTimeout(function(){
+                $('div.success').fadeOut()
+            },5000);
+
         } else {
             $('div.msg').hide();
             $('div.success').fadeOut();
