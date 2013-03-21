@@ -24,14 +24,13 @@
     </div>
   </div>
 
-  <div class="sobre">
-    <section>
+  <div class="row" id="sobre">
     <div class="container">
-
+      <section>
         <div class="row">
           <div class="span6">
             <div class="page-header">
-              <h2 id="sobre">{{ page_about.title|safe }}</h2>
+              <h2>{{ page_about.title|safe }}</h2>
             </div>
             {% cache %}
             <div class="block">
@@ -51,114 +50,9 @@
             {% endcache %}
           </div>
         </div>
-
-    </div>
-    </section>
-  </div>
-  <!-- <div class="sobre"> -->
-  <!--   <section> -->
-  <!--     <div class="row"> -->
-  <!--       <div class="container"> -->
-  <!--         <div class="span6"> -->
-  <!--           <div class="page-header"> -->
-  <!--             <h2 id="sobre">{{ page_about.title|safe }}</h2> -->
-  <!--           </div> -->
-  <!--           <div class="block"> -->
-  <!--             {{ page_about.content|safe }} -->
-  <!--           </div> -->
-  <!--         </div> -->
-  <!--         <div class="span6"> -->
-  <!--           <ul class="nav nav-tabs" id="myTab"> -->
-  <!--             <li><a class="pub" data-toggle="tab">Publicações</a></li> -->
-  <!--             <li><a class="clip" data-toggle="tab">Clipping</a></li> -->
-  <!--             <li><a class="membros" data-toggle="tab">Equipe</a></li> -->
-  <!--           </ul> -->
-  <!--           {{ sidebar(id='sidebar-6')|safe }} -->
-  <!--         </div> -->
-  <!--       </div> -->
-  <!--     </div> -->
-  <!--   </section> -->
-  <!-- </div> -->
-
-{%if VOTACAO_URL%}
-{%cache%}
-  <div class="row" id="govpergunta">
-    <div class="container">
-      <section>
-
-        <div class="page-header">
-          <h2>Segurança no Transito: O que é prioridade?</h2>
-        </div>
-        <div class="row">
-
-          <div class="span4">
-            <ul class="thumbnails">
-              <li class="span2">
-                <div class="thumbnail prioridade gov">
-                  <div class="pri"></div>
-                  <h3>Quais são as prioridades do Trânsito?</h3>
-                </div>
-              </li>
-              <li class="span2">
-                <div class="thumbnail porque gov">
-                  <div class="pq"></div>
-                  <h3>Por que trânsito?</h3>
-                </div>
-              </li>
-              <li class="span2">
-                <div class="thumbnail processo gov">
-                  <div class="pro"></div>
-                  <h3>Entenda o Processo</h3>
-                </div>
-              </li>
-              <li class="span2">
-                <div class="thumbnail comofunciona gov">
-                  <div class="como"></div>
-                  <h3>Como funciona?</h3>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="span8">
-            <div id="pri" class="pwhat">
-              <h3>{{ page_pri.title|safe }}</h3>
-              {{ page_pri.content|safe }}
-            </div>
-            <div id="pq" class="pwhat">
-              <h3>{{ page_pq.title|safe }}</h3>
-              {{ page_pq.content|safe }}
-            </div>
-            <div id="pro" class="pwhat">
-              <h3>{{ page_pro.title|safe }}</h3>
-              {{ page_pro.content|safe }}
-            </div>
-            <div id="como" class="pwhat">
-              <h3>{{ page_como.title|safe }}</h3>
-              {{ page_como.content|safe }}
-            </div>
-          </div>
-
-
-        </div>
-
-        <div class="row">
-          <div class="span12">
-            <div class="pergunta">
-              {%if VOTACAO_ALTURA%}
-              <iframe id="iframevotacao" src='{{VOTACAO_URL}}' width='100%' height='{{VOTACAO_ALTURA}}' frameborder='0' scrolling='auto'></iframe>
-              {%else%}
-              <iframe id="iframevotacao" src='{{VOTACAO_URL}}' width='100%' height='100%' frameborder='0' scrolling='auto'></iframe>
-              {%endif%}
-            </div>
-          </div>
-        </div>
-
       </section>
     </div>
   </div>
-{%endcache%}
-{%endif%}
 
   <div class="row" id="resultados">
     <div class="container">
