@@ -28,7 +28,6 @@ from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
      redirect, url_for, abort
 from flask.ext.cache import Cache
-from flask.ext.assets import Environment, Bundle
 
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
@@ -78,11 +77,7 @@ app.jinja_env.install_gettext_callables(
     gettext.gettext, gettext.ngettext, newstyle=True)
 
 cache = Cache(app)
-assets = Environment(app)
-assets.url = app.static_url_path
 
-css = Bundle('sass/main.scss', filters='compass', output='css/main.css')
-assets.register('css_main', css)
 
 from gd.utils.gdcache import fromcache, tocache
 
