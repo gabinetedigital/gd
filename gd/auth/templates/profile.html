@@ -14,70 +14,73 @@
 <div class="content auth">
   {# profile.csrf #}
   <div class="container">
-    <form
-       class="form-horizontal" method="post" id="profile_form"
-       action="{{ url_for('.profile_json') }}"
-       enctype="multipart/form-data">
 
-      <div class="row header">
-        <div class="span4">
-          <h2>Editar perfil</h2>
-        </div>
+    <div class="row header">
+      <div class="span4">
+        <h2>Editar perfil</h2>
       </div>
-      <div class="row">
-        <div class="msg error  alert alert-error hide"></div>
-        <div class="msg success alert alert-success hide"></div>
-          <div class="senha">
-            <!-- <img src="{{ user.avatar_url }}" alt="{{ user.name }}"> -->
-            <!-- {{ profile.avatar.label }} {{ profile.avatar(value='') }} -->
-            <div class="span3">
-              {{ profile.name.label }} {{ profile.name }}
-              {{ profile.email.label }} {{ profile.email }}
-              {{ profile.age_group.label }} {{ profile.age_group }}
-              {{ profile.twitter.label }} {{ profile.twitter }}
-              <div class="enviar">
-              <br>
-                <input type="submit" class="btn btn-primary" value="Atualizar">
-              </div>
-            </div>
-
-            <div class="span3">
-              {{ profile.city.label }} {{ profile.city }}
-              {{ profile.state.label }} {{ profile.state }}
-              {{ profile.phone.label }} {{ profile.phone }}
-              {{ profile.gender.label }} {{ profile.gender }}
-            </div>
-
-            <div class="span3">
-              <strong>Sua imagem</strong><br><br>
-              <img src="{{ user.email | gravatar(size=150) }}" class="img-polaroid">
-              <br><small><br>
-                Esta imagem é obtida do site <a href="gravatar.com">gravatar.com</a>. Para alterá-la, vá até o site, ou se você não tem uma imagem, crie uma conta e defina a imagem para seu email.
-              </small>
-            </div>
-        </div>
-    </form>
-    <div class="span3">
-
+    </div>
+    <div class="row">
+      {%include 'parts/flashes.html'%}
+    </div>
+    <div class="row">
+      <div class="msg error  alert alert-error hide"></div>
+      <div class="msg success alert alert-success hide"></div>
       <div class="senha">
-        <h3>Trocar Senha</h3>
-        {% if not profile.social %}
+
         <form
-           class="auth" method="post" id="password_form"
-           action="{{ url_for('.profile_passwd_json') }}">
-          {# passwd.csrf(id='password_csrf') #}
-          {{ passwd.current_password.label }} {{ passwd.current_password }}
-          {{ passwd.password.label }} {{ passwd.password }}
-          {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
-          <div class="enviar"><br>
-          <button class="btn btn-primary">Alterar senha</button>
+        class="form-horizontal" method="post" id="profile_form"
+        action="{{ url_for('.profile_json') }}"
+        enctype="multipart/form-data">
+
+        <!-- <img src="{{ user.avatar_url }}" alt="{{ user.name }}"> -->
+        <!-- {{ profile.avatar.label }} {{ profile.avatar(value='') }} -->
+        <div class="span3">
+          {{ profile.name.label }} {{ profile.name }}
+          {{ profile.email.label }} {{ profile.email }}
+          {{ profile.age_group.label }} {{ profile.age_group }}
+          {{ profile.twitter.label }} {{ profile.twitter }}
+          <div class="enviar">
+            <br>
+            <input type="submit" class="btn btn-primary" value="Atualizar">
           </div>
-        </form>
-      </div>
-      {% endif %}
+        </div>
+
+        <div class="span3">
+          {{ profile.city.label }} {{ profile.city }}
+          {{ profile.state.label }} {{ profile.state }}
+          {{ profile.phone.label }} {{ profile.phone }}
+          {{ profile.gender.label }} {{ profile.gender }}
+        </div>
+
+      </form>
+      <div class="span3">
+        <strong>Sua imagem</strong><br><br>
+        <img src="{{ user.email | gravatar(size=150) }}" class="img-polaroid">
+        <br><small><br>
+        Esta imagem é obtida do site <a href="gravatar.com">gravatar.com</a>. Para alterá-la, vá até o site, ou se você não tem uma imagem, crie uma conta e defina a imagem para seu email.
+      </small>
     </div>
 
-    </div> <!-- .panes -->
-  </div><!-- content -->
+    <div class="span3">
+
+      <h3>Trocar Senha</h3>
+      {% if not profile.social %}
+      <form
+      class="auth" method="post" id="password_form"
+      action="{{ url_for('.profile_passwd_json') }}">
+      {# passwd.csrf(id='password_csrf') #}
+      {{ passwd.current_password.label }} {{ passwd.current_password }}
+      {{ passwd.password.label }} {{ passwd.password }}
+      {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
+      <div class="enviar"><br>
+        <button class="btn btn-primary">Alterar senha</button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+
+</div> <!-- .panes -->
+</div><!-- content -->
 </div> <!-- #pedit -->
 {% endblock %}

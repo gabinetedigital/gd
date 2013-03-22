@@ -138,6 +138,7 @@ def sendmail(subject, to_addr, message):
     smtp = smtplib.SMTP(conf.SMTP)
     smtp.sendmail(conf.FROM_ADDR, to_addr, msg.as_string())
     smtp.quit()
+
     return True
 
 

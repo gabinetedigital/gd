@@ -20,7 +20,8 @@
 
 from os import urandom
 from sqlalchemy.orm.exc import NoResultFound
-from flask import Blueprint, render_template, request, session, make_response, flash, redirect
+from flask import Blueprint, render_template, request, session, make_response, flash, \
+                  url_for, redirect
 from werkzeug import FileStorage
 
 from gd import utils
@@ -28,7 +29,7 @@ from gd import conf
 from gd.utils import msg
 from gd import auth as authapi
 from gd.auth.fbauth import checkfblogin, facebook as remote_facebook
-from gd.auth import forms
+from gd.auth.forms import SignupForm, ProfileForm, ChangePasswordForm
 from gd.model import Upload, session as dbsession, User
 from gd.content.wp import wordpress
 from gd.utils.gdcache import fromcache, tocache
@@ -90,11 +91,22 @@ def social(form, show=True, default=None):
 
 
 @auth.route('/login/')
-def login_form():
+def login():
     """Renders the login form"""
-    formcad = social(forms.SignupForm)
+    if authapi.is_authenticated():
+        return redirect(url_for('.profile'))
+    # signup_process = g.signup_process
     next = request.args.get('next') or request.referrer
-    return render_template('login.html', form=formcad, next=next)
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+    except KeyError:
+        twitter_hash_cabecalho = ""
+    return render_template('login.html', next=next,
+        # signup_process=signup_process,
+        menu=menus,
+        twitter_hash_cabecalho=twitter_hash_cabecalho
+    )
 
 
 @auth.route('/lost_password/')
@@ -125,7 +137,7 @@ def logon():
     else:
         flash(_(u'Username or password missing'), 'alert-error')
         gonext = False
-    formcad = social(forms.SignupForm)
+    formcad = social(SignupForm)
 
     next = request.values.get('next',default="")
     if next is not None and gonext:
@@ -140,6 +152,8 @@ def logon():
 @auth.route('/logout/')
 def logout():
     """Logs the user out and returns """
+    if not authapi.is_authenticated():
+        return redirect(url_for('index'))
     authapi.logout()
     next = request.values.get('next')
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
@@ -154,7 +168,8 @@ def logout():
     else:
         return render_template('logout.html',
             menu=menus,
-            twitter_hash_cabecalho=twitter_hash_cabecalho
+            twitter_hash_cabecalho=twitter_hash_cabecalho,
+            voltar=request.referrer or "/"
             )
 
 @auth.route('/logout_json')
@@ -168,53 +183,18 @@ def logout_json():
     # return msg.ok(_(u'User loged out'))
 
 
-@auth.route('/signup')
-def signup_form():
+@auth.route('/signup/', methods=('GET','POST',))
+def signup():
     """Renders the signup form"""
 
     default_data=None
-    print session.keys()
-    if request.cookies.get('connect_type') == 'social_f':
-        f_data=remote_facebook.get('/me').data
-        default_data = {
-            'gender': f_data['gender'][:1], #'m' e 'f'
-            'name': f_data['name'],
-            'email': f_data['email'],
-            'email_confirmation': f_data['email'],
-            'social': True
-        }
-        print  "DEFAULT DATA FORM ::::::::::::::::: ", default_data
-    else:
-        print "NAO TEM FACEBOOK_DATA !!!!!!"
-
-    form = social(forms.SignupForm)
-    if 'readmore' in request.args:
-        return render_template(
-            'signup.html', form=form,
-            readmore=wordpress.getPageByPath('signup-read-more'),
-        )
-    elif 'tos' in request.args:
-        return render_template(
-            'signup.html', form=form,
-            tos=wordpress.getPageByPath('tos'),
-        )
-    else:
-        return render_template(
-            'signup.html', form=form,
-        )
-
-
-
-@auth.route('/signup_json', methods=('POST',))
-def signup_json():
-    """Register a new user that sent his/her informations through the
-    signup form"""
-    form = social(forms.SignupForm, False)
+    form = social(SignupForm)
+    #form = SignupForm()
     fromsocial = request.cookies.get('connect_type') == 'social_f'
-
-    # Proceeding with the validation of the user fields
     form.fromsocial = fromsocial
-    if form.validate_on_submit():
+    print "METHOD::::::::::::", request.method
+    if request.method == 'POST' and form.validate_on_submit():
+        print "VALIDATE ON SUBMIT"
         try:
             meta = form.meta
             dget = meta.pop
@@ -228,27 +208,50 @@ def signup_json():
                 dget('name'), dget('email'), password,
                 dget('email_confirmation'), form.meta,
                 dget('receive_sms'), dget('receive_email') )
+
             utils.send_welcome_email(user)
         except authapi.UserExists:
-            return utils.format_csrf_error(
-                form, _(u'User already exists'), 'UserExists')
+            flash( _(u'User already exists'), 'alert-error')
         except authapi.EmailAddressExists:
-            return utils.format_csrf_error(
-                form,
-                _(u'The email address informed is being used '
-                  u'by another person'), 'EmailAddressExists')
-        utils.send_welcome_email(user)
-        return msg.ok({})
+            flash(_(u'The email address informed is being used by another person'), 'alert-error')
+        flash(_(u'Your user was registered with successful!'), 'alert-success')
     else:
-        return utils.format_csrf_error(form, form.errors, 'ValidationError')
+        if request.method == 'POST' :
+            flash(_(u'Correct the validation errors and resend'),'alert-error')
+
+    if request.cookies.get('connect_type') == 'social_f':
+        f_data=remote_facebook.get('/me').data
+        default_data = {
+            'gender': f_data['gender'][:1], #'m' e 'f'
+            'name': f_data['name'],
+            'email': f_data['email'],
+            'email_confirmation': f_data['email'],
+            'social': True
+        }
+    #     print  "DEFAULT DATA FORM ::::::::::::::::: ", default_data
+    # else:
+    #     print "NAO TEM FACEBOOK_DATA !!!!!!"
+
+    tos = fromcache('tossigin') or tocache('tossigin',wordpress.getPageByPath('tos'))
+    rm = fromcache('moresigin') or tocache('moresigin',wordpress.getPageByPath('signup-read-more'))
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
+    return render_template(
+        'signup.html', form=form,
+        readmore=rm,tos=tos, menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho,
+    )
 
 
 @auth.route('/profile/')
-def profile_form():
+def profile():
     """Shows the user profile form"""
     data = authapi.authenticated_user().metadata()
-    profile = social(forms.ProfileForm, default=data)
-    passwd = forms.ChangePasswordForm()
+    profile = social(ProfileForm, default=data)
+    passwd = ChangePasswordForm()
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
         twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
@@ -266,7 +269,7 @@ def profile_json():
     authenticated one. If there's nobody authenticated, there's no way
     to execute it successfuly.
     """
-    form = social(forms.ProfileForm, False)
+    form = social(ProfileForm, False)
     if not form.validate_on_submit():
         # This field is special, it must be validated before anything. If it
         # doesn't work, the action must be aborted.
@@ -297,32 +300,42 @@ def profile_json():
     for key, val in form.meta.items():
         user.set_meta(key, val)
 
-    return msg.ok({
-        'data': _('User profile updated successfuly'),
-        'csrf': form.csrf.data,
-    })
+    # return msg.ok({
+    #     'data': _('User profile updated successfuly'),
+    #     'csrf': form.csrf.data,
+    # })
+    flash(_(u'Profile update successful'), 'alert-success')
+    return redirect(url_for('.profile'))
 
 
 @auth.route('/profile_passwd_json', methods=('POST',))
 def profile_passwd_json():
     """Update the user password"""
-    form = forms.ChangePasswordForm()
+    form = ChangePasswordForm()
     if form.validate_on_submit():
         user = authapi.authenticated_user()
         user.set_password(form.password.data)
         dbsession.commit()
-        return msg.ok({
-            'data': _('Password updated successful'),
-            'csrf': form.csrf.data,
-        })
+        # return msg.ok({
+        #     'data': _('Password updated successful'),
+        #     'csrf': form.csrf.data,
+        # })
+        flash(_(u'Password updated successful'), 'alert-success')
+        return redirect(url_for('.profile'))
     else:
         # This field is special, it must be validated before anything. If it
         # doesn't work, the action must be aborted.
-        if not form.csrf_is_valid:
-            return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
+        # if not form.csrf_is_valid:
+        #     flash(_(u'Invalid csrf token'), 'alert-error')
+            # return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
 
         # Usual validation error
-        return utils.format_csrf_error(form, form.errors, 'ValidationError')
+        # return utils.format_csrf_error(form, form.errors, 'ValidationError')
+        for fd in form:
+            if fd.errors:
+                for er in fd.errors:
+                    flash(er, 'alert-error')
+        return redirect(url_for('.profile'))
 
 
 @auth.route('/remember_password', methods=('POST',))

@@ -1,25 +1,30 @@
-<!-- <div class="header"> -->
+{% macro fielderrors(field) -%}
+    {%- if field.errors %}
+      {%- for error in field.errors %}
+        <p class="errmsg name-error alert alert-error">{{error}}</p><br>
+      {%- endfor %}
+    {%- endif %}
+{%- endmacro %}
 
-<!-- <ul class="nav nav-tabs" id="tab-cadastro">
-  <li><a href="#saibamais" onclick="$('#tab-cadastro a:first').tab('show');">Saiba Mais</a></a></li>
-  <li><a href="#termos-uso" class="second" onclick="$('#tab-cadastro a.second').tab('show');">Termos de Uso</a></li>
-  <li class="active" onclick="$('#tab-cadastro a:last').tab('show');"><a href="#cadastrese">Cadastre-se</a></li>
-</ul> -->
+{% extends "base.html" %}
 
-{%if readmore %}
-  <h1>{{ readmore.title|safe }}</h1>
-  {{ readmore.content|safe }}
-  <button class="btn pull-right" onclick="auth.toggleSignupTab('form');">Ir para o cadastro</button>
-  <br>
-{%elif tos%}
-  <h1>{{ tos.title|safe }}</h1>
-  {{ tos.content|safe }}
-  <br>&nbsp;
-{%else%}
-    <h1>Cadastro</h1>
-    <div id="auth-error" class="msg error alert alert-error hide"></div>
-    <div id="auth-success" class="msg success alert alert-success hide"></div>
-    <form class="form-horizontal" method="post" id="signup" action="{{ url_for('.signup_json') }}">
+{% block css %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {%include 'parts/flashes.html'%}
+  </div>
+  <div class="row novocadastro">
+    <div class="offset1 span10">
+      <form class="form-horizontal" method="post" id="signup" action=".">
+        <fieldset>
+          <legend>Novo cadastro:</legend>
 
       {{ form.csrf }}
       <div id="auth-error" class="msg error alert alert-error hide"></div>
@@ -35,75 +40,73 @@
       {% endif %}
 
         <div class="control-group">
-          {{ form.name.label }}
+          {{ form.name.label(class='control-label') }}
           <div class="controls">
-            {{ form.name }}
+            {{ form.name(class='span6') }}
           </div>
-          <p class="errmsg name-error"></p><br>
+          {{fielderrors(form.name)}}
         </div>
 
         <div class="control-group">
-          {{ form.email.label  }}
+          {{ form.email.label(class='control-label')  }}
           <div class="controls">
-            {{ form.email }}
+            {{ form.email(class='span6') }}
           </div>
-          <p class="errmsg email-error"></p><br>
+          {{fielderrors(form.email)}}
         </div>
 
         <div class="control-group">
-          {{ form.email_confirmation.label }}
+          {{ form.email_confirmation.label(class='control-label') }}
           <div class="controls">
-            {{ form.email_confirmation }}
+            {{ form.email_confirmation(class='span6') }}
           </div>
-          <p class="errmsg email_confirmation-error"></p><br>
+          {{fielderrors(form.email_confirmation)}}
         </div>
 
         {% if not form.social %}
         <div class="control-group">
-          {{ form.password.label }}
+          {{ form.password.label(class='control-label') }}
           <div class="controls">
             {{ form.password }}
           </div>
-          <p class="errmsg password-error"></p><br>
+          {{fielderrors(form.password)}}
         </div>
 
         <div class="control-group">
-          {{ form.password_confirmation.label }}
+          {{ form.password_confirmation.label(class='control-label') }}
           <div class="controls">
             {{ form.password_confirmation }}
           </div>
-          <p class="errmsg password_confirmation-error"></p><br>
+          {{fielderrors(form.password_confirmation)}}
         </div>
         {% endif %}
 
         <div class="control-group">
-          {{ form.state.label }}
+          {{ form.state.label(class='control-label') }}
           <div class="controls">
             {{ form.state }}
           </div>
-          <p class="errmsg state-error"></p><br>
+          {{fielderrors(form.state)}}
         </div>
         <div class="control-group">
-          {{ form.city.label }}
+          {{ form.city.label(class='control-label') }}
           <div class="controls">
             {{ form.city }}
           </div>
-
-          <p class="errmsg city-error"></p><br>
+          {{fielderrors(form.city)}}
         </div>
 
         <div class="control-group">
 
           <div class="controls">
             <label for="accept_tos" class="checkbox maior"><input type="checkbox" value="y" name="accept_tos" id="accept_tos" checked="checked">Você leu e aceitou nossos <a href="javascript:showTos();">Termos de uso</a>?</label>
-            <p class="errmsg accept_tos-error"></p>
           </div>
 
         </div>
 
         <div class="control-group">
           <div class="controls">
-            <label for="receive_email" class="maior checkbox">
+            <label for="receive_email" class="maior checkbox" class='control-label'>
             <input type="checkbox" value="y" name="receive_email" id="receive_email" checked="checked">
             Quero receber atualizações por email.</label>
             <p class="errmsg receive_email-error"></p>
@@ -112,7 +115,7 @@
 
         <div class="control-group">
           <div class="controls">
-            <label for="receive_sms" class="checkbox maior">
+            <label for="receive_sms" class="checkbox maior" class='control-label'>
               <input type="checkbox" value="y" name="receive_sms" id="receive_sms" checked="checked">
               Quero receber atualizações por SMS.
             </label>
@@ -124,128 +127,47 @@
         <h4>Opcional</h4>
 
         <div class="control-group">
-          {{ form.phone.label }}
+          {{ form.phone.label(class='control-label') }}
           <div class="controls">
             {{ form.phone }}
           </div>
-          <p class="errmsg phone-error"></p><br>
+          {{fielderrors(form.phone)}}
         </div>
 
 
         <div class="control-group">
-          {{ form.gender.label }}
+          {{ form.gender.label(class='control-label') }}
           <div class="controls">
             {{ form.gender }}
           </div>
-          <p class="errmsg gender-error"></p><br>
+          {{fielderrors(form.gender)}}
         </div>
 
         <div class="control-group">
 
-          {{ form.age_group.label }}
+          {{ form.age_group.label(class='control-label') }}
           <div class="controls">
             {{ form.age_group }}
           </div>
-
-          <p class="errmsg age_group-error"></p><br>
-
+          {{fielderrors(form.age_group)}}
         </div>
 
         <div class="control-group">
-          {{ form.twitter.label }}
+          {{ form.twitter.label(class='control-label') }}
           <div class="controls">
             {{ form.twitter }}
           </div>
-
-          <p class="errmsg twitter-error"></p><br>
-
+          {{fielderrors(form.twitter)}}
         </div>
 
         <div class="control-group">
+          <a href="{{url_for('.login')}}">Efetuar login</a>
           <input type="submit" class="btn pull-right" value="Cadastrar">
         </div>
-    </form>
-    <br>
-{%endif%}
 
-
-<script type="text/javascript">
-$(function(){
-  //$('#tab-cadastro a:last').tab('show');
-  $('#signup label').addClass('control-label');
-
-  $('.errmsg').hide();
-
-
-
-    // select the overlay element - and "make it an overlay"
-    $("#tos").overlay({
-      // custom top position
-      top: '10%',
-      oneInstance: false,
-      left: '10%',
-      // some mask tweaks suitable for facebox-looking dialogs
-      mask: {
-        // you might also consider a "transparent" color for the mask
-        color: '#fff',
-        // load mask a little faster
-        loadSpeed: 200,
-        // very transparent
-        opacity: 0.5
-      },
-      // disable this for modal dialog-type of overlays
-      close: '.close-tos',
-      closeOnClick: false,
-      closeOnEsc: false,
-    // load it immediately after the construction
-      load: false,
-      onBeforeLoad: function() {
-          $("#tos").find(".contentWrap")
-                   .load(url_for('auth.signup') + '?tos');
-      }
-    });
-
-    $('#signup').ajaxForm({
-        dataType: 'json',
-        beforeSubmit: function () {  
-          $('#auth-error').fadeOut();
-          $('#auth-success').fadeOut();
-          $('.errmsg').fadeOut();
-        },
-        success: function (data) { 
-
-          var errors = data.msg.data;
-          var code = data.code;
-          var csrfToken = data.msg.csrf;
-
-          /* It's everything ok, let's get out */
-          if (data.status === 'ok') {
-            $('#auth-success').html('Obrigado! Agora siga os passos no email que você recebeu para concluir seu cadastro.').fadeIn();
-            $('#signup').fadeOut();
-          } else {
-            //console.log(typeof data.msg.data);
-            if( typeof data.msg.data==="string" ){
-                $('#auth-error').html(data.msg.data).fadeIn('fast');
-            }else{
-              for(campo in data.msg.data){
-                  $('#signup')
-                      .find('.'+campo+'-error')
-                      .html( data.msg.data[campo][0] )
-                      .fadeIn('fast');
-
-              }
-              $('#auth-error').html('Corrija os campos abaixo').fadeIn('fast');
-            }
-            // $('#auth-error').html(data.msg.data);
-            $('#auth-error').fadeIn();
-          }
-
-        }
-    });
-
-});
-
-showTos = function(){
-  $("#tos").overlay().load();
-}
-</script>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,3 +1,11 @@
+{% macro fielderrors(field) -%}
+    {%- if field.errors %}
+      {%- for error in field.errors %}
+        <p class="errmsg name-error">{{error}}</p><br>
+      {%- endfor %}
+    {%- endif %}
+{%- endmacro %}
+
 {% extends "base.html" %}
 
 {% block css %}
@@ -15,7 +23,7 @@
   <div class="row">
     {%include 'parts/flashes.html'%}
   </div>
-  <div class="row efetuarlogin">
+  <div class="row efetuarlogin {%if signup_process%}hide{%endif%}">
     <div class="offset1 span7">
       <div id="auth-error" class="msg error"></div>
       <div id="confirmation-success" class="msg success"></div>
@@ -51,7 +59,7 @@
 
           <input type="submit" class="btn" value="Entrar"><br/><br/>
           <a href="/auth/lost_password/">Esqueci minha senha</a><br>
-          <a href="#novocadastro" onclick="$('.efetuarlogin').slideUp('fast',function(){ $('.novocadastro').slideDown('fast'); });">Quero me cadastrar</a>
+          <a href="{{url_for('.signup')}}">Quero me cadastrar</a>
 
         </fieldset>
       </form>
@@ -65,172 +73,5 @@
       </fieldset>
     </div>
   </div>
-  <div class="row novocadastro hide">
-    <div class="offset1 span10">
-      <form class="form-horizontal" method="post" id="signup" action="{{ url_for('auth.logon') }}">
-        <fieldset>
-          <legend>Novo cadastro:</legend>
-
-      {{ form.csrf }}
-      <div id="auth-error" class="msg error alert alert-error hide"></div>
-      <div id="auth-success" class="msg success alert alert-success hide"></div>
-      <div class="msg error"></div>
-      <div class="msg success"></div>
-      <!-- <div class="signup-form"> -->
-      {% if form.social %}
-      <div class="alert">
-        Você está se autenticando através de uma rede social. Para
-        terminar o processo falta apenas preencher os campos abaixo.
-      </div>
-      {% endif %}
-
-        <div class="control-group">
-          {{ form.name.label(class='control-label') }}
-          <div class="controls">
-            {{ form.name(class='span6') }}
-          </div>
-          <p class="errmsg name-error"></p><br>
-        </div>
-
-        <div class="control-group">
-          {{ form.email.label(class='control-label')  }}
-          <div class="controls">
-            {{ form.email(class='span6') }}
-          </div>
-          <p class="errmsg email-error"></p><br>
-        </div>
-
-        <div class="control-group">
-          {{ form.email_confirmation.label(class='control-label') }}
-          <div class="controls">
-            {{ form.email_confirmation(class='span6') }}
-          </div>
-          <p class="errmsg email_confirmation-error"></p><br>
-        </div>
-
-        {% if not form.social %}
-        <div class="control-group">
-          {{ form.password.label(class='control-label') }}
-          <div class="controls">
-            {{ form.password }}
-          </div>
-          <p class="errmsg password-error"></p><br>
-        </div>
-
-        <div class="control-group">
-          {{ form.password_confirmation.label(class='control-label') }}
-          <div class="controls">
-            {{ form.password_confirmation }}
-          </div>
-          <p class="errmsg password_confirmation-error"></p><br>
-        </div>
-        {% endif %}
-
-        <div class="control-group">
-          {{ form.state.label(class='control-label') }}
-          <div class="controls">
-            {{ form.state }}
-          </div>
-          <p class="errmsg state-error"></p><br>
-        </div>
-        <div class="control-group">
-          {{ form.city.label(class='control-label') }}
-          <div class="controls">
-            {{ form.city }}
-          </div>
-
-          <p class="errmsg city-error"></p><br>
-        </div>
-
-        <div class="control-group">
-
-          <div class="controls">
-            <label for="accept_tos" class="checkbox maior"><input type="checkbox" value="y" name="accept_tos" id="accept_tos" checked="checked">Você leu e aceitou nossos <a href="javascript:showTos();">Termos de uso</a>?</label>
-            <p class="errmsg accept_tos-error"></p>
-          </div>
-
-        </div>
-
-        <div class="control-group">
-          <div class="controls">
-            <label for="receive_email" class="maior checkbox" class='control-label'>
-            <input type="checkbox" value="y" name="receive_email" id="receive_email" checked="checked">
-            Quero receber atualizações por email.</label>
-            <p class="errmsg receive_email-error"></p>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls">
-            <label for="receive_sms" class="checkbox maior" class='control-label'>
-              <input type="checkbox" value="y" name="receive_sms" id="receive_sms" checked="checked">
-              Quero receber atualizações por SMS.
-            </label>
-            <p class="errmsg receive_sms-error"></p>
-          </div>
-        </div>
-
-
-        <h4>Opcional</h4>
-
-        <div class="control-group">
-          {{ form.phone.label(class='control-label') }}
-          <div class="controls">
-            {{ form.phone }}
-          </div>
-          <p class="errmsg phone-error"></p><br>
-        </div>
-
-
-        <div class="control-group">
-          {{ form.gender.label(class='control-label') }}
-          <div class="controls">
-            {{ form.gender }}
-          </div>
-          <p class="errmsg gender-error"></p><br>
-        </div>
-
-        <div class="control-group">
-
-          {{ form.age_group.label(class='control-label') }}
-          <div class="controls">
-            {{ form.age_group }}
-          </div>
-
-          <p class="errmsg age_group-error"></p><br>
-
-        </div>
-
-        <div class="control-group">
-          {{ form.twitter.label(class='control-label') }}
-          <div class="controls">
-            {{ form.twitter }}
-          </div>
-
-          <p class="errmsg twitter-error"></p><br>
-
-        </div>
-
-        <div class="control-group">
-          <a href="#login" onclick="$('.novocadastro').slideUp('fast',function(){ $('.efetuarlogin').slideDown('fast'); });">Efetuar login</a>
-          <input type="submit" class="btn pull-right" value="Cadastrar">
-        </div>
-
-        </fieldset>
-      </form>
-
-
-    </div>
-  </div>
 </div>
-<script type="text/javascript">
-$(function(){
-  //$('#tab-cadastro a:last').tab('show');
-  // $('#signup label').addClass('control-label');
-  var hash = window.location.hash;
-  if(hash && hash == '#novocadastro'){
-    $('.efetuarlogin').slideUp('fast',function(){ $('.novocadastro').slideDown('fast'); });
-  }
-});
-</script>
 {% endblock %}
