@@ -25,7 +25,7 @@ section h2 {
     maring-bottom: 20px;
 }
 
-.thumbnail {
+#home .thumbnail {
     border: 0 none;
     border-radius: 0 0 0 0;
     @include rgba-background(rgba($black,0.3));

@@ -1,15 +1,11 @@
 {% extends "base.html" %}
 
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/resultados.css') }}">
-{% endblock %}
-
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/resultados.js') }}"></script>
+<script src="{{ url_for('static', filename='js/base/resultados.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-<div class="resultados" id="resultados">
+<div class="resultados" id="page-resultados">
   <div class="container">
     <div class="row header">
       <div class="span10">
@@ -113,7 +109,7 @@
       </div>
     </div>
 
-    <div class="row widgets">
+    <div class="row widget">
       <div class="span12">
         <ul class="thumbnails">
         {% if ano == 2012 %}

@@ -87,11 +87,11 @@
     background: #FFF;
 }
 
-.widgets .fotodia h3 {
+.widget .fotodia h3 {
     display: none;
 }
 
-.widgets .fotodia h4 {
+.widget .fotodia h4 {
     @include rgba-background(rgba($green,0.8));
     bottom: 0;
     color: #FFFFFF;
@@ -110,11 +110,11 @@
     white-space: nowrap;
 }
 
-.widgets .fotodia h4 i {
+.widget .fotodia h4 i {
     display: none;
 }
 
-.widgets .video h4 {
+.widget .video h4 {
     display: none;
 }
 
@@ -250,7 +250,7 @@
     margin-left: 140px;
 }
 
-#resultados #slideshow {
+#page-resultados #slideshow {
     height: auto;
     background: #DDD;
     overflow:hidden;
@@ -258,43 +258,43 @@
 }
 
 
-#resultados #slideshow .carousel {
+#page-resultados #slideshow .carousel {
     padding-top:20px;
     height:185px;
 }
 
-#resultados #slideshow li {
+#page-resultados #slideshow li {
     float:left;
     margin-right:30px;
     list-style: none;
 }
 
-#resultados #slideshow img {
+#page-resultados #slideshow img {
     float:left;
     margin-right:30px;
     border:solid 1px #fff;
 }
 
-#resultados #slideshow .title a {
+#page-resultados #slideshow .title a {
     color:#999;
     font-size: 19pt;
 }
 
-#resultados #slideshow .excerpt {
+#page-resultados #slideshow .excerpt {
     font-size:16px;
 }
 
-#resultados #slideshow .excerpt a {
+#page-resultados #slideshow .excerpt a {
     color:#2e3436;
 }
 
-#resultados #slideshow .controls {
+#page-resultados #slideshow .controls {
     float:right;
     position:relative;
     right:20px;
 }
 
-#resultados #slideshow .controls a {
+#page-resultados #slideshow .controls a {
     color:#FFF;
     font-weight:bold;
     font-size:14px;
@@ -303,16 +303,16 @@
     padding:0 6px;
 }
 
-#resultados #slideshow .controls a:hover {
+#page-resultados #slideshow .controls a:hover {
     text-decoration:none;
 }
 
-#resultados #slideshow .controls a.current {
+#page-resultados #slideshow .controls a.current {
     background:#999;
     color:#fff;
 }
 
-#resultados #slideshow .controls li {
+#page-resultados #slideshow .controls li {
     display:block;
     width:20px;
     margin-right:0;
