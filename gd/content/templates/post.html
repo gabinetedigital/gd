@@ -73,7 +73,7 @@
 
 
               <div class="form">
-                <img src="{{ user.avatar_url }}" class="pull-left">
+                <img src="{{ user.email | gravatar(size=150) }}" class="pull-left">
                 <div class="commentbox">
                   <textarea name="content" maxlength="2000" onKeyUp="return countChar(this,2000,'#comf_contador')" placeholder="Deixe seu comentário…"></textarea>
                   <span id="contador">Restam ainda <span id="comf_contador">2000</span> caracteres.</span>
@@ -84,7 +84,7 @@
             {% endif %}
             {% for comment in comments %}
             <div class="comment">
-              <img src="{{ comment.user.avatar_url }}" class="pull-left">
+              <img src="{{ comment.user.email | gravatar(size=150) }}" class="pull-left">
               <div class="comcontent">
                 <h3>{{ comment.author|safe }}</h3>
 

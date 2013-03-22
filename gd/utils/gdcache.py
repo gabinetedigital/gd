@@ -22,3 +22,7 @@ def tocache(name, obj):
 	global cache
 	cache.add(name, obj)
 	return obj
+
+def removecache(name):
+	global cache
+	cache.delete(name)

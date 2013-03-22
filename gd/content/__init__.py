@@ -47,7 +47,7 @@ from gd.audience import audience
 from gd.admin import admin
 from gd.buzz.webapp import buzz
 from gd.utils.gravatar import Gravatar
-from gd.utils.gdcache import cache, fromcache, tocache
+from gd.utils.gdcache import cache, fromcache, tocache, removecache
 from libthumbor import CryptoURL
 
 app = Flask(__name__)
@@ -743,11 +743,8 @@ def new_comment():
         return msg.error(_(u'User not authenticated'))
 
     try:
-        print request.form
         nao_exibir_nome = request.form['nao_exibir_nome']
-        print "NAO EXIBIR O NOME!!!!!!!"
     except:
-        print "NAO EXIBIR O NOME!!!!!!!NÃO"
         nao_exibir_nome = ""
 
     try:
@@ -763,6 +760,7 @@ def new_comment():
             content=request.form['content'],
             nao_exibir_nome=nao_exibir_nome
         )
+        removecache("comentarios%s" % str(post_id))
         return msg.ok(_(u'Thank you. Your comment was successfuly sent'))
     except xmlrpclib.Fault, err:
         return msg.error(_(err.faultString), code='CommentError')
