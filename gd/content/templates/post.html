@@ -75,7 +75,7 @@
               <div class="form">
                 <img src="{{ user.email | gravatar(size=150) }}" class="pull-left">
                 <div class="commentbox">
-                  <textarea name="content" maxlength="2000" onKeyUp="return countChar(this,2000,'#comf_contador')" placeholder="Deixe seu comentário…"></textarea>
+                  <textarea name="content" maxlength="2000" onKeyUp="return countChar(this,2000,'#comf_contador')" placeholder="Deixe seu comentário…">{{live_comment_save}}</textarea>
                   <span id="contador">Restam ainda <span id="comf_contador">2000</span> caracteres.</span>
                   <input class="btn btn-danger pull-right enviar" type="submit" value="Enviar">
                 </div>

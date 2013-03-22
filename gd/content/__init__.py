@@ -26,7 +26,7 @@ import gettext
 import xmlrpclib
 from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
-     redirect, url_for, abort
+     redirect, url_for, abort, make_response
 
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
@@ -666,10 +666,17 @@ def post_slug(slug):
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
-    return render_template(
+
+    live_comment_ = request.cookies.get('live_comment_save')
+    if live_comment_:
+        live_comment_ = live_comment_.replace('<br/>','\n')
+
+    resp = make_response(
+     render_template(
         'post.html',
         post=post,
         tags=tags,
+        live_comment_save=live_comment_,
         sidebar=wordpress.getSidebar,
         # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
@@ -677,6 +684,9 @@ def post_slug(slug):
         comments=cmts,
         show_comment_form=is_authenticated(),
         recent_posts=recent_posts)
+    )
+    resp.set_cookie('live_comment_save', "" )
+    return resp
 
 
 @app.route('/post/<int:pid>/')
@@ -698,11 +708,13 @@ def post(pid):
         twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
+    live_comment_ = request.cookies.get('live_comment_save')
     return render_template(
         'post.html',
         post=p,
         tags=tags,
         sidebar=wordpress.getSidebar,
+        live_comment_save=live_comment_,
         # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
@@ -739,8 +751,16 @@ def new_contribution():
 @app.route('/new_comment/', methods=('POST',))
 def new_comment():
     """Posts new comments to the blog"""
+    print "/new_comment/"
     if not is_authenticated():
-        return msg.error(_(u'User not authenticated'))
+        resp = make_response(dumps({
+            'status': 'error',
+            'msg': _(u'User not authenticated'),
+            'redirectTo': url_for('auth.login')
+        }))
+        if request.form['content']:
+            resp.set_cookie('live_comment_save', request.form['content'].replace('\n','<br/>') )
+        return resp
 
     try:
         nao_exibir_nome = request.form['nao_exibir_nome']

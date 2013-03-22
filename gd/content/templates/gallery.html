@@ -5,18 +5,20 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/jquery.fancybox.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/jquery.fancybox.css') }}">
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='js/jquery.history.js') }}"></script> -->
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
-<script src="{{ url_for('.static', filename='js/jquery.opacityrollover.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/gallery.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/jquery.resizecrop-1.0.3.min.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/jquery/jquery.opacityrollover.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='js/gallery.js') }}"></script> -->
+<!-- <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.resizecrop-1.0.3.min.js') }}"></script> -->
+<script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+<script src="{{ url_for('static', filename='js/vendor/bootstrap-image-gallery.min.js')}}"></script>
 {% endblock %}
 
 {% block id %}

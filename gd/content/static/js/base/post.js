@@ -40,47 +40,50 @@ $(function () {
         'titleShow'     : false
     });
 
+    $('#blog_comment_form').ajaxForm({
+        beforeSubmit: function () {
+            var form = $('#blog_comment_form');
+            var field = form.find('textarea');
 
-});
+            if ($.trim(field.val()) === '') {
+                field.addClass('fielderror');
+                return false;
+            } else {
+                field.removeClass('fielderror');
+            }
 
-$('#blog_comment_form').ajaxForm({
-    beforeSubmit: function () {
-        var form = $('#blog_comment_form');
-        var field = form.find('textarea');
-
-        if ($.trim(field.val()) === '') {
-            field.addClass('fielderror');
-            return false;
-        } else {
-            field.removeClass('fielderror');
-        }
-
-        /* Saving the success callback to be called when the user is
-         * properly logged */
-        var options = this;
-        if (!auth.isAuthenticated()) {
-            auth.showLoginForm({
-                success: function () {
-                    form.ajaxSubmit(options.success);
-                    return true;
+            /* Saving the success callback to be called when the user is
+             * properly logged */
+            var options = this;
+            // if (!auth.isAuthenticated()) {
+            //     auth.showLoginForm({
+            //         success: function () {
+            //             form.ajaxSubmit(options.success);
+            //             return true;
+            //         }
+            //     });
+            //     return false;
+            // }
+            return true;
+        },
+        success: function (data) {
+            var pData = $.parseJSON(data);
+            /* It's everything ok, let's get out */
+            if (pData.status === 'ok') {
+                $('div.error').fadeOut();
+                $('div.success').fadeIn().html(pData.msg);
+                $('#blog_comment_form textarea').val('');
+            } else {
+                if(pData.redirectTo){
+                    window.location.href = pData.redirectTo;
+                }else{
+                    $('div.success').fadeOut();
+                    $('div.error').fadeIn().html(pData.msg);
                 }
-            });
-            return false;
+            }
         }
-        return true;
-    },
+    });
 
-    success: function (data) {
-        var pData = $.parseJSON(data);
-
-        /* It's everything ok, let's get out */
-        if (pData.status === 'ok') {
-            $('div.error').fadeOut();
-            $('div.success').fadeIn().html(pData.msg);
-            $('#blog_comment_form textarea').val('');
-        } else {
-            $('div.success').fadeOut();
-            $('div.error').fadeIn().html(pData.msg);
-        }
-    }
 });
+
+
