@@ -77,9 +77,9 @@ a {
 }
 
 .tweets {
-    height: 86px;
+    height: 71px;
     overflow: hidden;
-    margin-top: 72px;
+    margin-top: 87px;
 }
 
 .tweets ul {
@@ -91,60 +91,49 @@ a {
     margin-right: 14px;
 }
 
-.pessoa1 {
+.pessoa1, .pessoa2, .pessoa3, .pessoa4,
+.pessoa5, .pessoa6, .pessoa7, .pessoa8, {
+    height: 71px;
     display: block;
-    height: 86px;
+}
+
+.pessoa1 {
     width: 44px;
-    background-position: 0 -152px;
+    background-position: 0 -167px;
 }
 
 .pessoa2 {
-    display: block;
-    background-position: -62px -191px;
-    height: 47px;
+    background-position: -62px -167px;
     width: 18px;
 }
 
 .pessoa3 {
-    background-position: -102px -172px;
-    display: block;
-    height: 66px;
+    background-position: -102px -165px;
     width: 66px;
 }
 
 .pessoa4 {
-    background-position: -189px -184px;
-    display: block;
-    height: 54px;
+    background-position: -189px -165px;
     width: 41px;
 }
 
-
 .pessoa5 {
-    display: block;
-    height: 67px;
     width: 41px;
-    background-position: -250px -171px;
+    background-position: -250px -165px;
 }
 
 .pessoa6 {
-    display: block;
-    background-position: -311px -175px;
-    height: 63px;
+    background-position: -311px -165px;
     width: 21px;
 }
 
 .pessoa7 {
-    background-position: -354px -170px;
-    display: block;
-    height: 67px;
+    background-position: -354px -166px;
     width: 23px;
 }
 
 .pessoa8 {
     background-position: -398px -165px;
-    display: block;
-    height: 71px;
     width: 21px;
 }
 

@@ -25,7 +25,7 @@ section h2 {
     maring-bottom: 20px;
 }
 
-#home .thumbnail {
+.widgets .thumbnail, #sobre .thumbnail, #resultados .thumbnail {
     border: 0 none;
     border-radius: 0 0 0 0;
     @include rgba-background(rgba($black,0.3));
@@ -228,7 +228,7 @@ section h2 {
     font-weight: 600;
     left: 0;
     line-height: 24px;
-    margin: 7px;
+    margin: 0 7px 27px;
     overflow: hidden;
     padding: 5px 8px;
     position: absolute;
@@ -362,7 +362,7 @@ section h2 {
 
 .lasttweet {
     text-align: left;
-    background-color: $black;
+    background-color: $black !important;
 }
 
 .lasttweet h4 {

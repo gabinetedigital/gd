@@ -29,13 +29,11 @@
 <script src="{{ url_for('.static', filename='js/statusbar.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/audience.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/timer.js') }}"></script>
-
+<script src="https://connect.facebook.net/pt_BR/all.js#appId={{FACEBOOK_APP_ID}}&amp;xfbml=1"></script>
 {% endblock %}
 
 {%block id%}
-
-<script src="https://connect.facebook.net/pt_BR/all.js#appId={{FACEBOOK_APP_ID}}&amp;xfbml=1"></script>
-
+<div id="audience">
 {%endblock%}
 
 {% block content %}
@@ -383,5 +381,5 @@
 <script>
   setInterval("updateInstagram('{{ tag }}')", 300000);
 </script>
-
+</div>
 {% endblock %}

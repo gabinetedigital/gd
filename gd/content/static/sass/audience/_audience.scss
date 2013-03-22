@@ -1,13 +1,13 @@
-ul, ol {
+#audience ul, ol {
     margin: 0;
     padding: 0;
 }
 
-li {
+#audience li {
     list-style: none;
 }
 
-.content {
+#audience .content {
     color: #FFF;
     padding-top: 20px;
     border-top: 2px solid #DDD;
@@ -15,31 +15,31 @@ li {
 }
 
 
-.info-head {
+#audience .info-head {
     color: $black;
     border-right: 1px solid #CCC;
     border-left: 1px solid #CCC;
     height: 171px;
 }
 
-.info-desc {
+#audience .info-desc {
     padding: 16px;
     font-size: 14pt;
     height: 172px;
 }
 
-.info-btn {
+#audience .info-btn {
     text-align: right;
 }
 
-.share {
+#audience .share {
     display: block;
     /*clear: both;*/
     height: 20px;
     padding: 6px;
 }
 
-.nao-tem-face{
+#audience .nao-tem-face{
     clear: both;
     width: 100%;
     text-align: right;
@@ -48,13 +48,13 @@ li {
 
 
 
-.share p {
+#audience .share p {
     color: $red;
     font-size: 13pt;
     font-style: italic;
 }
 
-.info-aud {
+#audience .info-aud {
     color: $black;
     border-top: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
@@ -65,46 +65,45 @@ li {
 
 }
 
-.aud-date {
+#audience .aud-date {
     border-right: 1px solid #CCC;
     padding-top: 20px;
     height: 150px;
 }
 
-.todas {
+#audience .todas {
     font-size: 14pt;
     margin-left: 10px;
     margin-top: 10px;
     padding: 10px;
 }
 
-.hashtag {
+#audience .hashtag {
     color: $black;
     padding-right: 20px;
 }
 
-.hashtag p.twt {
+#audience .hashtag p.twt {
     font-size: 10pt;
 }
 
-.hashtag p.hash {
+#audience .hashtag p.hash {
     color: #999;
     font-size: 20pt;
 }
 
 
-#date {
+#audience #date {
     width: 80px;
     height: 70px;
     margin-right: 20px;
 }
 
-#date div {
+#audience #date div {
     font-weight: bold;
 }
 
-#date div.day {
-
+#audience #date div.day {
     font-size: 35pt;
     text-align: center;
     border-right: 2px solid #CCC;
@@ -116,7 +115,7 @@ li {
     @include background-image(linear-gradient(white, #DDD));
 }
 
-#date div.month {
+#audience #date div.month {
     padding-top: 2px;
     padding-bottom: 3px;
     font-size: 15pt;
@@ -130,18 +129,18 @@ li {
     @include background-image(linear-gradient(#D72314, #A81704));
 }
 
-div.time {
+#audience div.time {
     padding-top: 6px;
     font-size: 16pt;
     text-align: center;
 }
 
-.stage {
+#audience .stage {
    background-color: #eee;
    max-height: 630px;
 }
 
-.droom {
+#audience .droom {
     color: #FFF;
     background-color: #eee;
     margin-left: -30px;
@@ -150,21 +149,21 @@ div.time {
     overflow-y: auto;
 }
 
-#beingAnswered-anterior {
+#audience #beingAnswered-anterior {
     background-color: #000;
     color: #FFF;
 
 }
 
-#semfacecom textarea{
+#audience #semfacecom textarea{
     width: 95%;
 }
 
-.droom #chat form {
+#audience .droom #chat form {
     margin: 0;
 }
 
-.droom #chat textarea.tiny {
+#audience .droom #chat textarea.tiny {
     border: 0;
     background-color: black;
     color: white;
@@ -172,7 +171,7 @@ div.time {
     height: 21px;
 }
 
-.droom #chat textarea.toon {
+#audience .droom #chat textarea.toon {
     border: 0;
     background-color: black;
     color: white;
@@ -180,50 +179,50 @@ div.time {
     height: 160px;
 }
 
-.droom #chat .current-msg-length {
+#audience .droom #chat .current-msg-length {
     float: right;
 }
 
-.buzzs {
+#audience .buzzs {
     height: 100%;
     max-height: 630px;
     overflow-y: scroll;
 }
 
-#poster {
+#audience #poster {
     width: 140px;
     margin-right: 20px;
 }
 
-.astream {
+#audience .astream {
     background-color: #000;
 }
 
-.stream, .astream, .bstream {
+#audience .stream, .astream, #audience .bstream {
     padding: 10px;
 }
 
-.stream .avatar, .astream .avatar, .bstream .avatar {
+#audience .stream .avatar, #audience .astream .avatar, #audience .bstream .avatar {
     float: left;
     margin-right: 10px;
     display: block;
 }
 
-.stream .author, .astream .author, .bstream .author {
+#audience .stream .author, #audience .astream .author, #audience .bstream .author {
     color: $blue;
     padding-left: 68px;
     padding-bottom: 10px;
     font-size: 10pt;
 }
 
-.stream .answer, .astream .answer, .bstream .answer {
+#audience .stream .answer, #audience .astream .answer, #audience .bstream .answer {
     padding-left: 68px;
     font-size: 13px;
 }
 
 
 
-h2.title {
+#audience h2.title {
     font-size: 17pt;
     color: $blue;
     margin-top: 20px;
@@ -234,44 +233,44 @@ h2.title {
     display: inline;
 }
 
-p.description {
+#audience p.description {
     font-size: 11pt;
     color: $black;
     margin-top: 12px;
     margin-bottom: 9px;
 }
 
-.instagram {
+#audience .instagram {
   margin-top: 20px;
 }
 
-.instagram ul>li {
+#audience .instagram ul>li {
     margin-bottom: 15px;
 }
 
-.instagram .thumbnail {
+#audience .instagram .thumbnail {
     background: #FFF;
     overflow: auto;
 }
 
-.instagram .thumbnail img {
+#audience .instagram .thumbnail img {
     float: left;
     margin-right: 20px;
 }
 
-.instagram .thumbnail p {
+#audience .instagram .thumbnail p {
     color: #000000;
     display: table-cell;
     height: 150px;
     vertical-align: middle;
 }
 
-.modal-header {
+#audience .modal-header {
     border-bottom: none;
     padding: 0;
 }
 
-.modal-header .close {
+#audience .modal-header .close {
     background: url("../img/fancybox.png") repeat scroll transparent;
     cursor: pointer;
     height: 32px;
@@ -282,15 +281,15 @@ p.description {
     opacity: 1.0;
 }
 
-.modal {
+#audience .modal {
     display: none;
 }
 
-.modal-body {
+#audience .modal-body {
     max-height: 600px;
 }
 
-.modal-gallery .modal-title {
+#audience .modal-gallery .modal-title {
     text-align: left;
 }
 
@@ -426,19 +425,19 @@ p.description {
     float: left;
 }
 
-.boverlay {
+#audience .boverlay {
     @include border-radius(30px);
 }
 
-.streaming {
+#audience .streaming {
     background: #eee;
     display: block;
 }
 
-.streaming video.video-js {
+#audience .streaming video.video-js {
     height: 400px;
 }
 
-.stream{
+#audience .stream {
     text-align: center;
 }

@@ -7,7 +7,7 @@ li {
     list-style: none;
 }
 
-.content {
+#govescuta {
     color: #000;
     border-top: 2px solid #DDD;
     background: url(../img/minsqr.png);
@@ -46,7 +46,7 @@ li {
     color: $blue;
 }
 
-.comofunciona {
+#govescuta .comofunciona {
     background: url(../img/comofunciona.png) no-repeat scroll 35px top transparent;
     height: 54px;
     display: block;
@@ -68,7 +68,7 @@ img.thumb {
     font-weight: 600;
     left: 0;
     line-height: 24px;
-    margin: 7px;
+    margin: 0 5px 25px;
     overflow: hidden;
     padding: 5px 8px;
     position: absolute;

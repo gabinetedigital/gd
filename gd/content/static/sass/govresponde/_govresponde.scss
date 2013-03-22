@@ -40,7 +40,7 @@
 }
 
 .container .head .menu li.comofunciona a {
-    background: url("../img/comofunciona.png") no-repeat 35px top;
+    background: url(../img/comofunciona.png) no-repeat scroll 35px top transparent;
     color: #008dc4;
 }
 
@@ -536,6 +536,12 @@ h1.questions {
 }
 
 /* -- como funciona -- */
+
+#govresponde .comofunciona {
+
+     height: 54px;
+     display: block;
+}
 
 h1.cfunciona {
     background: url("../img/comofunciona.png") no-repeat scroll left center transparent;
