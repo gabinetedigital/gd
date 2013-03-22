@@ -25,8 +25,8 @@
   </div>
   <div class="row efetuarlogin {%if signup_process%}hide{%endif%}">
     <div class="offset1 span7">
-      <div id="auth-error" class="msg error"></div>
-      <div id="confirmation-success" class="msg success"></div>
+      <div id="auth-error" class="msg error alert alert-error hide"></div>
+      <div id="confirmation-success" class="msg success alert alert-success hide"></div>
 
       <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
         <fieldset>

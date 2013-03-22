@@ -4,13 +4,11 @@
   <!--[if IE]>
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
   <![endif]-->
-  <link rel="stylesheet" href="{{ url_for('.static', filename='css/lei.css') }}">
-
-  <link rel="stylesheet" href="{{ url_for('.static', filename='css/jquery.fancybox.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/jquery.fancybox.css') }}">
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
 <!-- <script src="{{ url_for('.static', filename='js/post.js') }}"></script> -->
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
@@ -20,7 +18,7 @@
     var HABILITAR_COMENTARIO_MESTRE={{HABILITAR_COMENTARIO_MESTRE}};
     var HABILITAR_COMENTARIO_FILHOS={{HABILITAR_COMENTARIO_FILHOS}};
 </script>
-<script src="{{ url_for('.static', filename='js/lei.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/base/lei.js') }}"></script>
 {% endblock %}
 
 {% block title %}{%if post.title%}{{ post.title }}{%endif%}{% endblock %}
@@ -216,7 +214,7 @@
     {%else%}
 
     <div class="msg">
-      Desculpe, você precisa estar logado para comentar. <a href="#" onclick="auth.showLoginForm();$.fancybox.close()">Entre agora!</a><div class="sorry"><img src="{{ url_for('.static', filename='img/chave.png') }}"></div>
+      Desculpe, você precisa estar logado para comentar. <a href="{{url_for('auth.login')}}">Entre agora!</a><div class="sorry"><img src="{{ url_for('.static', filename='img/chave.png') }}"></div>
     </div>
     {%endif%}
 </div>
