@@ -39,7 +39,8 @@
           {{ profile.name.label }} {{ profile.name }}
           {{ profile.email.label }} {{ profile.email }}
           {{ profile.age_group.label }} {{ profile.age_group }}
-          {{ profile.twitter.label }} {{ profile.twitter }}
+          {{ profile.facebook.label }} {{ profile.facebook(placeholder="Facebook profile id") }}
+          {{ profile.twitter.label }} {{ profile.twitter(placeholder="Twitter id sem o @") }}
           <div class="enviar">
             <br>
             <input type="submit" class="btn btn-primary" value="Atualizar">

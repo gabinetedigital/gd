@@ -1,7 +1,7 @@
 {% macro fielderrors(field) -%}
     {%- if field.errors %}
       {%- for error in field.errors %}
-        <p class="errmsg name-error alert alert-error">{{error}}</p><br>
+        <span class="help-inline">{{error}}</span>
       {%- endfor %}
     {%- endif %}
 {%- endmacro %}
@@ -44,66 +44,66 @@
         {% else %} {#if ret_code == 0#}
 
 
-          <div class="control-group">
+          <div class="control-group {%if form.name.errors%}error{%endif%}">
             {{ form.name.label(class='control-label') }}
             <div class="controls">
               {{ form.name(class='span6') }}
-            </div>
             {{fielderrors(form.name)}}
+            </div>
           </div>
 
-          <div class="control-group">
+          <div class="control-group {%if form.email.errors%}error{%endif%}">
             {{ form.email.label(class='control-label')  }}
             <div class="controls">
               {{ form.email(class='span6') }}
-            </div>
             {{fielderrors(form.email)}}
+            </div>
           </div>
 
-          <div class="control-group">
+          <div class="control-group {%if form.email_confirmation.errors%}error{%endif%}">
             {{ form.email_confirmation.label(class='control-label') }}
             <div class="controls">
               {{ form.email_confirmation(class='span6') }}
-            </div>
             {{fielderrors(form.email_confirmation)}}
+            </div>
           </div>
 
           {% if not form.social %}
-          <div class="control-group">
+          <div class="control-group {%if form.password.errors%}error{%endif%}">
             {{ form.password.label(class='control-label') }}
             <div class="controls">
               {{ form.password }}
-            </div>
             {{fielderrors(form.password)}}
+            </div>
           </div>
 
-          <div class="control-group">
+          <div class="control-group {%if form.password_confirmation.errors%}error{%endif%}">
             {{ form.password_confirmation.label(class='control-label') }}
             <div class="controls">
               {{ form.password_confirmation }}
-            </div>
             {{fielderrors(form.password_confirmation)}}
+            </div>
           </div>
           {% endif %}
 
-          <div class="control-group">
+          <div class="control-group {%if form.state.errors%}error{%endif%}">
             {{ form.state.label(class='control-label') }}
             <div class="controls">
               {{ form.state }}
-            </div>
             {{fielderrors(form.state)}}
+            </div>
           </div>
-          <div class="control-group">
+          <div class="control-group {%if form.city.errors%}error{%endif%}">
             {{ form.city.label(class='control-label') }}
             <div class="controls">
               {{ form.city }}
-            </div>
             {{fielderrors(form.city)}}
+            </div>
           </div>
 
           <div class="control-group">
 
-            <div class="controls">
+            <div class="controls {%if form.accept_tos.errors%}error{%endif%}">
               <label for="accept_tos" class="checkbox maior"><input type="checkbox" value="y" name="accept_tos" id="accept_tos" checked="checked">Você leu e aceitou nossos <a href="javascript:showTos();">Termos de uso</a>?</label>
             </div>
 
@@ -118,7 +118,7 @@
             </div>
           </div>
 
-          <div class="control-group">
+          <div class="control-group {%if form.receive_sms.errors%}error{%endif%}">
             <div class="controls">
               <label for="receive_sms" class="checkbox maior" class='control-label'>
                 <input type="checkbox" value="y" name="receive_sms" id="receive_sms" checked="checked">
@@ -131,38 +131,46 @@
 
           <h4>Opcional</h4>
 
-          <div class="control-group">
+          <div class="control-group {%if form.phone.errors%}error{%endif%}">
             {{ form.phone.label(class='control-label') }}
             <div class="controls">
               {{ form.phone }}
-            </div>
             {{fielderrors(form.phone)}}
+            </div>
           </div>
 
 
-          <div class="control-group">
+          <div class="control-group {%if form.gender.errors%}error{%endif%}">
             {{ form.gender.label(class='control-label') }}
             <div class="controls">
               {{ form.gender }}
-            </div>
             {{fielderrors(form.gender)}}
+            </div>
           </div>
 
-          <div class="control-group">
+          <div class="control-group {%if form.age_group.errors%}error{%endif%}">
 
             {{ form.age_group.label(class='control-label') }}
             <div class="controls">
               {{ form.age_group }}
-            </div>
             {{fielderrors(form.age_group)}}
+            </div>
           </div>
 
-          <div class="control-group">
+          <div class="control-group {%if form.facebook.errors%}error{%endif%}">
+            {{ form.facebook.label(class='control-label') }}
+            <div class="controls">
+              {{ form.facebook(placeholder="Facebook profile id") }}
+            {{fielderrors(form.facebook)}}
+            </div>
+          </div>
+
+          <div class="control-group {%if form.twitter.errors%}error{%endif%}">
             {{ form.twitter.label(class='control-label') }}
             <div class="controls">
-              {{ form.twitter }}
-            </div>
+              {{ form.twitter(placeholder="Twitter id sem o @") }}
             {{fielderrors(form.twitter)}}
+            </div>
           </div>
 
           <div class="control-group">

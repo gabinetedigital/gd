@@ -69,6 +69,10 @@ class BaseDataForm(Form):
         _('Phone'),
     )
 
+    facebook = TextField(
+        _('Facebook'),
+    )
+
     twitter = TextField(
         _('Twitter'),
     )

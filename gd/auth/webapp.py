@@ -198,6 +198,9 @@ def logout_json():
 def signup():
     """Renders the signup form"""
 
+    if authapi.is_authenticated():
+        return redirect(url_for('.profile'))
+
     # default_data=None
     ret_code = -1
     form = social(SignupForm)
@@ -258,7 +261,7 @@ def signup():
 
     return render_template(
         'signup.html', form=form,
-        readmore=rm,tos=tos, menu=menus, 
+        readmore=rm,tos=tos, menu=menus,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         ret_code=ret_code
     )

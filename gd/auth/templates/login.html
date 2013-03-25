@@ -19,9 +19,6 @@ filename='js/login.js') }}"></script> -->
 {% block content %}
 <div class="content" id="auth">
   <div class="container">
-    <div class="row">
-      {%include 'parts/flashes.html'%}
-    </div>
     <div class="row efetuarlogin">
       <div class="offset3 span6">
         <div class="container-fluid">
@@ -48,6 +45,7 @@ filename='js/login.js') }}"></script> -->
                 {%endif%}
               </div>
               <div class="modal-body">
+                {%include 'parts/flashes.html'%}
                 <div class="control-group">
                   <label for="username"
                          class="control-label">Email</label>
