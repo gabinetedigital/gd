@@ -29,6 +29,7 @@ from gd import conf
 from gd.utils import msg
 from gd import auth as authapi
 from gd.auth.fbauth import checkfblogin, facebook as remote_facebook
+from gd.auth.twauth import checktwlogin, twitter as remote_twitter
 from gd.auth.forms import SignupForm, ProfileForm, ChangePasswordForm
 from gd.model import Upload, session as dbsession, User
 from gd.content.wp import wordpress
@@ -52,14 +53,15 @@ def social(form, show=True, default=None):
     # FIXME: Debug and discover why this damn facebook stuff does not
     # work properly.
     facebook = checkfblogin() or {}
+    twitter  = checktwlogin() or {}
     #facebook = {}
     data = default or {}
-    data.update(facebook)
+    data.update(facebook or twitter)
     inst = form(**data) if show else form()
     inst.csrf_enabled = False
 
     # Preparing form meta data
-    inst.social = bool(facebook)
+    inst.social = bool(facebook or twitter)
     if default and 'social' in default:
         inst.social = default['social']
     inst.meta = inst.data.copy()
@@ -73,18 +75,23 @@ def social(form, show=True, default=None):
     if 'password_confirmation' in inst.meta:
         del inst.meta['password_confirmation']
 
-    if facebook:
-        print "REMOVING PASSWORD for FACEBOOK LOGIN"
+    if facebook or twitter:
+        print "REMOVING PASSWORD for FACEBOOK/TWITTER LOGIN"
         # Removing the password field. It's not needed by a social login
         if 'password' in inst: del inst.password
         if 'password_confirmation' in inst: del inst.password_confirmation
 
         # Setting up meta extra fields
-        inst.meta['fbid'] = facebook['id']
+        if facebook:
+            inst.meta['fbid'] = facebook['id']
+        if twitter:
+            inst.meta['twid'] = twitter['id']
+            inst.meta['email'] = twitter['id']
+
         inst.meta['fromsocial'] = True
         inst.meta['password'] = urandom(10)
     else:
-        print "IS NOT FACEBOOK!"
+        print "IS NOT FACEBOOK OR TWITTER!"
 
     # We're not social right now
     return inst
@@ -96,6 +103,10 @@ def login():
     if authapi.is_authenticated():
         return redirect(url_for('.profile'))
     # signup_process = g.signup_process
+
+    if 'twitter_token' in session:
+        del session['twitter_token']
+
     next = request.args.get('next') or request.referrer
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
@@ -187,10 +198,11 @@ def logout_json():
 def signup():
     """Renders the signup form"""
 
-    default_data=None
+    # default_data=None
+    ret_code = -1
     form = social(SignupForm)
     #form = SignupForm()
-    fromsocial = request.cookies.get('connect_type') == 'social_f'
+    fromsocial = request.cookies.get('connect_type') in ('social_f','social_t')
     form.fromsocial = fromsocial
     print "METHOD::::::::::::", request.method
     if request.method == 'POST' and form.validate_on_submit():
@@ -212,22 +224,26 @@ def signup():
             utils.send_welcome_email(user)
         except authapi.UserExists:
             flash( _(u'User already exists'), 'alert-error')
+            ret_code = 1
         except authapi.EmailAddressExists:
             flash(_(u'The email address informed is being used by another person'), 'alert-error')
+            ret_code = 2
         flash(_(u'Your user was registered with successful!'), 'alert-success')
+        ret_code = 0
     else:
         if request.method == 'POST' :
             flash(_(u'Correct the validation errors and resend'),'alert-error')
+            ret_code = 3
 
-    if request.cookies.get('connect_type') == 'social_f':
-        f_data=remote_facebook.get('/me').data
-        default_data = {
-            'gender': f_data['gender'][:1], #'m' e 'f'
-            'name': f_data['name'],
-            'email': f_data['email'],
-            'email_confirmation': f_data['email'],
-            'social': True
-        }
+    # if request.cookies.get('connect_type') == 'social_f':
+    #     f_data=remote_facebook.get('/me').data
+    #     default_data = {
+    #         'gender': f_data['gender'][:1], #'m' e 'f'
+    #         'name': f_data['name'],
+    #         'email': f_data['email'],
+    #         'email_confirmation': f_data['email'],
+    #         'social': True
+    #     }
     #     print  "DEFAULT DATA FORM ::::::::::::::::: ", default_data
     # else:
     #     print "NAO TEM FACEBOOK_DATA !!!!!!"
@@ -242,13 +258,19 @@ def signup():
 
     return render_template(
         'signup.html', form=form,
-        readmore=rm,tos=tos, menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho,
+        readmore=rm,tos=tos, menu=menus, 
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
+        ret_code=ret_code
     )
 
 
 @auth.route('/profile/')
 def profile():
     """Shows the user profile form"""
+
+    if not authapi.is_authenticated():
+        return redirect(url_for('index'))
+
     data = authapi.authenticated_user().metadata()
     profile = social(ProfileForm, default=data)
     passwd = ChangePasswordForm()

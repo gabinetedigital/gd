@@ -17,9 +17,9 @@
 
 """Authentication machinery for facebook"""
 
-from httplib2 import ServerNotFoundError
+# from httplib2 import ServerNotFoundError
 from flask import Blueprint, url_for, session, request, redirect, make_response
-from flaskext.oauth import OAuth, OAuthException
+from flask_oauth import OAuth #, OAuthException
 
 from gd import conf
 from gd import auth

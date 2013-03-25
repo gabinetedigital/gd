@@ -37,6 +37,7 @@ from gd.model import User, ComiteNews, CadastroComite, session as dbsession
 
 from gd.auth.webapp import auth
 from gd.auth.fbauth import fbauth
+from gd.auth.twauth import twauth
 from gd.govpergunta import govpergunta
 from gd.govresponde import govresponde
 from gd.govescuta import govescuta
@@ -54,6 +55,7 @@ app = Flask(__name__)
 
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(fbauth, url_prefix='/auth/fb')
+app.register_blueprint(twauth, url_prefix='/auth/tw')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 app.register_blueprint(govresponde, url_prefix='/govresponde')
 app.register_blueprint(govescuta, url_prefix='/govescuta')
