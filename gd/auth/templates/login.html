@@ -1,10 +1,7 @@
-{% macro fielderrors(field) -%}
-    {%- if field.errors %}
-      {%- for error in field.errors %}
-        <p class="errmsg name-error">{{error}}</p><br>
-      {%- endfor %}
-    {%- endif %}
-{%- endmacro %}
+{% macro fielderrors(field) -%} {%- if field.errors %} {%- for error in
+field.errors %}
+<p class="errmsg name-error">{{error}}</p><br> {%- endfor %} {%- endif
+%} {%- endmacro %}
 
 {% extends "base.html" %}
 
@@ -12,66 +9,78 @@
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/auth.css') }}">
 {% endblock %}
 
-{% block javascript %}
-<!-- <script src="{{ url_for('.static', filename='js/login.js') }}"></script> -->
+{% block javascript %} <!-- <script src="{{ url_for('.static',
+filename='js/login.js') }}"></script> -->
+
 {% endblock %}
 
 {% block bodyclass %}login{% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    {%include 'parts/flashes.html'%}
-  </div>
-  <div class="row efetuarlogin {%if signup_process%}hide{%endif%}">
-    <div class="offset1 span7">
-      <div id="auth-error" class="msg error alert alert-error hide"></div>
-      <div id="confirmation-success" class="msg success alert alert-success hide"></div>
-
-      <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
-        <fieldset>
-          <legend>Efetuar login no site:</legend>
-          {%if next%}
-          <input type="hidden" name="next" value="{{next}}">
-          {%endif%}
-          <div class="control-group">
-            <label for="username" class='control-label'>Email</label>
-            <div class="controls">
-              <input class='span4' id="username" type="text" name="username">
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label for="password" class='control-label'>Senha</label>
-            <div class="controls">
-              <input id="password" class='span4' type="password" name="password">
-            </div>
-          </div>
-
-<!--           <div class="control-group">
-            <div class="controls">
-              <label for="lembrarme" class="checkbox" class='control-label'>
-                <input type="checkbox" value="y" name="lembrarme" id="lembrarme" checked="checked">
-                Permanecer logado
-              </label>
-            </div>
-          </div> -->
-
-          <input type="submit" class="btn" value="Entrar"><br/><br/>
-          <a href="/auth/lost_password/">Esqueci minha senha</a><br>
-          <a href="{{url_for('.signup')}}">Quero me cadastrar</a>
-
-        </fieldset>
-      </form>
+<div class="content" id="auth">
+  <div class="container">
+    <div class="row">
+      {%include 'parts/flashes.html'%}
     </div>
-    <div class="span1"><div class="linha-vertical">&nbsp;</div></div>
-    <div class="span3">
-      <fieldset>
-        <legend>ou entrar através de:</legend>
-        <a href="/auth/fb"><img src='{{ url_for('static', filename='img/facebook.gif') }}' alt="Facebook Login" title="Facebook Login"/></a>
-        <a href="/auth/tw"><img src='{{ url_for('static', filename='img/sign-in-with-twitter-gray.png') }}' alt="Twitter Login" title="Twitter Login"/></a>
-      </fieldset>
+    <div class="row efetuarlogin">
+      <div class="offset3 span6">
+        <div class="container-fluid">
+        <div id="auth-error" class="msg error alert alert-error
+                                    hide"></div>
+        <div id="confirmation-success" class="msg success alert
+                                              alert-success hide"></div>
+        <div class="auth-stage">
+          <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
+            <fieldset>
+              <div class="stage-header">
+                <legend>Entrar
+                  <span class="pull-right">
+                    <a class="btn btn-mini"
+                       href="/auth/tw"><i class="icon-twitter"></i> Entrar como
+                       o Twitter</a>
+                    <a class="btn btn-mini"
+                       href="/auth/fb"><i class="icon-facebook"></i> Entrar
+                       como o Facebook</a>
+                  </span>
+                </legend>
+                {%if next%}
+                <input type="hidden" name="next" value="{{next}}">
+                {%endif%}
+              </div>
+              <div class="modal-body">
+                <div class="control-group">
+                  <label for="username"
+                         class="control-label">Email</label>
+                  <div class="controls">
+                    <input id="username" type="text" name="username" placeholder="usuário">
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label for="password"
+                         class="control-label">Senha</label>
+                  <div class="controls">
+                    <input id="password" type="password" name="password" placeholder="senha">
+                    <span class="help-block"><a href="/auth/lost_password/">Esqueci minha senha</a></span>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn btn-large btn-success">Entrar</button>
+                  </div>
+                </div>
+              </div>
+              <div class="stage-footer">
+                <a href="{{url_for('.signup')}}" class="btn
+                   btn-info">Quero me cadastrar</a>
+
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
     </div>
+      </div>
   </div>
 </div>
 {% endblock %}

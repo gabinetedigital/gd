@@ -611,11 +611,11 @@ h1.cfunciona {
     margin-bottom: 30px;
 }
 
-.controls {
+#slideshow .controls {
     float: right;
 }
 
-.controls li {
+#slideshow .controls li {
     display: block;
     float: left;
 
@@ -626,14 +626,14 @@ h1.cfunciona {
 
 }
 
-.controls a {
+#slideshow .controls a {
     background: url("../img/estep.png") no-repeat scroll center left transparent;
     height: 22px;
     width: 22px;
     display: block;
 }
 
-.controls a.current {
+#slideshow .controls a.current {
     background: url("../img/step.png") no-repeat scroll center left transparent;
 }
 
