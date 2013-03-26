@@ -20,16 +20,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, request, render_template, redirect, \
-    url_for, abort, current_app
+from flask import Blueprint, request, render_template, current_app
 
-from gd.model import Audience, Term, get_or_404, AudiencePosts
-from gd.utils import dumps
+from gd.model import AudiencePosts #get_or_404, Audience, Term,
+# from gd.utils import dumps
 from gd import conf
-
-from json import dumps
+# from json import dumps
 
 from gd.content.wp import wordpress
+from gd.utils.gdcache import fromcache, tocache #, removecache
 
 # Instagram API
 from instagram.client import InstagramAPI
@@ -43,19 +42,28 @@ govescuta = Blueprint(
 @govescuta.route('/')
 def index(page=0):
     sortby = request.values.get('sortby') or 'date'
-    pagination, posts = wordpress.wpgove.getAudiencias(
+    pagination, posts = fromcache('govescuta-posts-%s' % sortby) or \
+                        tocache('govescuta-posts-%s' %sortby,
+                                    wordpress.wpgove.getAudiencias(
                                             page=page,
                                             sortby=sortby,
-                                            totalporpage='10')
+                                            totalporpage='10'))
     print "POSTS====================="
     print posts
-    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
+    how_to = fromcache('howtouse') or tocache('howtouse', wordpress.getPageByPath('how-to-use-governo-escuta'))
+
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+    except:
+        twitter_hash_cabecalho = ""
 
     return render_template(
         'govescuta.html',
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
-        sidebar=wordpress.getSidebar,
+        menu=menus,
+        # sidebar=wordpress.getSidebar,
         pagination=pagination,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         audiences=posts,
         sortby=sortby,
         how_to=getattr(how_to, 'content', ''),)
@@ -63,9 +71,15 @@ def index(page=0):
 @govescuta.route('/<int:aid>')
 def govescuta_details(aid):
     """Renders an audience with its public template"""
-    pagination, inst = wordpress.wpgove.getAudiencias(postID=aid)
-    how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-    menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+    pagination, inst = fromcache('audiencia-escuta-%s' %str(aid)) or \
+                       tocache('audiencia-escuta-%s' %str(aid),wordpress.wpgove.getAudiencias(postID=aid))
+    how_to = fromcache('how-to-use-governo-escuta') or tocache('how-to-use-governo-escuta', wordpress.getPageByPath('how-to-use-governo-escuta'))
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+    except:
+        twitter_hash_cabecalho = ""
+
     category = None
     tag = None
     for cat in inst:
@@ -76,8 +90,9 @@ def govescuta_details(aid):
             tag = ""
 
     if category:
-        pagination, posts = wordpress.getPostsByCategory(
-            cat=category)
+        pagination, posts = fromcache('audiencia-category-%s' % category) or \
+                            tocache('audiencia-category-%s' % category,wordpress.getPostsByCategory(
+                                       cat=category))
     else:
         pagination, posts = None, []
 
@@ -112,6 +127,7 @@ def govescuta_details(aid):
         buzzesSelec = buzzesSelec,
         menu=menus,
         tag=tag,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
         govescuta=govescuta,
         photos=photos,
         how_to=getattr(how_to, 'content', ''),

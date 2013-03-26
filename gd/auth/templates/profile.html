@@ -63,23 +63,23 @@
       </small>
     </div>
 
+    {% if not profile.social %}
     <div class="span3">
 
       <h3>Trocar Senha</h3>
-      {% if not profile.social %}
       <form
       class="auth" method="post" id="password_form"
       action="{{ url_for('.profile_passwd_json') }}">
-      {# passwd.csrf(id='password_csrf') #}
-      {{ passwd.current_password.label }} {{ passwd.current_password }}
-      {{ passwd.password.label }} {{ passwd.password }}
-      {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
-      <div class="enviar"><br>
-        <button class="btn btn-primary">Alterar senha</button>
-      </div>
-    </form>
-    {% endif %}
-  </div>
+        {# passwd.csrf(id='password_csrf') #}
+        {{ passwd.current_password.label }} {{ passwd.current_password }}
+        {{ passwd.password.label }} {{ passwd.password }}
+        {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
+        <div class="enviar"><br>
+          <button class="btn btn-primary">Alterar senha</button>
+        </div>
+      </form>
+    </div>
+  {% endif %}
 
 </div> <!-- .panes -->
 </div><!-- content -->

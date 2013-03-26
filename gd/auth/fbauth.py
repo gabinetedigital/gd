@@ -75,7 +75,7 @@ def facebook_authorized(resp):
         print "FACE LOGADO!"
     except auth.UserNotFound:
         print "NAO LOGADO, CADASTRANDO..."
-        resp = make_response( redirect('%s?signup' % url_for('index')) )
+        resp = make_response( redirect(url_for('auth.signup')) )
         resp.set_cookie('connect_type', 'social_f')
         return resp
 

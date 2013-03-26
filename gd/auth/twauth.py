@@ -105,7 +105,7 @@ def twitter_authorized(resp):
 def get_twitter_oauth_token(token=None):
     """Function responsible for getting the twitter token"""
     print "::GET TWITTER TOKEN::", token, session.get('twitter_token')
-    return session.get('twitter_token') or None
+    return token or session.get('twitter_token') or None
 
 
 def checktwlogin():
