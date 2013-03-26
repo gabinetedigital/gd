@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flaskext.wtf import validators, ValidationError
-from flaskext.wtf import Form, TextField, SelectField
+from flask.ext.wtf import validators #, ValidationError
+from flask.ext.wtf import Form, TextField, SelectField
 from gd.content.wp import wordpress
 
 

@@ -22,8 +22,8 @@ from gd.utils import phpass
 from gd.auth import choices, authenticated_user
 from gd.model import Upload
 
-from flaskext.wtf import validators, ValidationError
-from flaskext.wtf import Form, TextField, PasswordField, SelectField, \
+from flask.ext.wtf import validators, ValidationError
+from flask.ext.wtf import Form, TextField, PasswordField, SelectField, \
     BooleanField, FileField, file_allowed
 
 

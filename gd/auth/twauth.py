@@ -49,11 +49,11 @@ def login():
             '.twitter_authorized', next=next_url))
 
 
-# @twauth.errorhandler(OAuthException)
-# def handle_oauth_exception(error):
-#     print "ERROR NO LOGIN DO TWITTER!", error
-#     flash(str(error), 'alert-error')
-#     return redirect(url_for('auth.login'))
+@twauth.errorhandler(OAuthException)
+def handle_oauth_exception(error):
+    print "ERROR NO LOGIN DO TWITTER!", error
+    flash(str(error), 'alert-error')
+    return redirect(url_for('auth.login'))
 
 
 @twauth.route('/data')
@@ -104,8 +104,8 @@ def twitter_authorized(resp):
 @twitter.tokengetter
 def get_twitter_oauth_token(token=None):
     """Function responsible for getting the twitter token"""
-    print "::GET TWITTER TOKEN::", token, session.get('twitter_token')
-    return token or session.get('twitter_token') or None
+    print "::GET TWITTER TOKEN::", token, session.get('oauth_token')
+    return session.get('oauth_token')
 
 
 def checktwlogin():
