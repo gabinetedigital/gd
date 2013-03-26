@@ -85,9 +85,10 @@ $("#readmorevideos").click(function(){
         success: function(resp){
             if(!resp){ 
                 $("#readmorevideos").attr("disabled", "disabled");
+                $("#readmorevideos").html("Não há mais vídeos!");
                 return; 
             }
-            $(".thumbnails").append(resp)
+            $(".thumbnails").append(resp);
             //alert(resp);
             video_page = video_page + 1;
             window.setTimeout(function(){

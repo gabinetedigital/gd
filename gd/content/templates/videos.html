@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}"> -->
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/video.js') }}"></script>
+<script src="{{ url_for('static', filename='js/base/video.js') }}"></script>
 {% endblock %}
 
 {% block id %}
