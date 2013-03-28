@@ -26,6 +26,8 @@
       {{ form.csrf }}
       <div id="auth-error" class="msg error alert alert-error hide"></div>
       <div id="auth-success" class="msg success alert alert-success hide"></div>
+      <input type="hidden" name="gender" value="">
+      <input type="hidden" name="age_group" value="">
       <!-- <div class="signup-form"> -->
       {%include 'parts/flashes.html'%}
       {% if form.social and ret_code != 0 %}
@@ -60,14 +62,6 @@
             </div>
           </div>
 
-          <div class="control-group {%if form.email_confirmation.errors%}error{%endif%}">
-            {{ form.email_confirmation.label(class='control-label') }}
-            <div class="controls">
-              {{ form.email_confirmation(class='span6') }}
-            {{fielderrors(form.email_confirmation)}}
-            </div>
-          </div>
-
           {% if not form.social %}
           <div class="control-group {%if form.password.errors%}error{%endif%}">
             {{ form.password.label(class='control-label') }}
@@ -86,21 +80,6 @@
           </div>
           {% endif %}
 
-          <div class="control-group {%if form.state.errors%}error{%endif%}">
-            {{ form.state.label(class='control-label') }}
-            <div class="controls">
-              {{ form.state }}
-            {{fielderrors(form.state)}}
-            </div>
-          </div>
-          <div class="control-group {%if form.city.errors%}error{%endif%}">
-            {{ form.city.label(class='control-label') }}
-            <div class="controls">
-              {{ form.city }}
-            {{fielderrors(form.city)}}
-            </div>
-          </div>
-
           <div class="control-group">
 
             <div class="controls {%if form.accept_tos.errors%}error{%endif%}">
@@ -115,61 +94,6 @@
               <input type="checkbox" value="y" name="receive_email" id="receive_email" checked="checked">
               Quero receber atualizações por email.</label>
               <p class="errmsg receive_email-error"></p>
-            </div>
-          </div>
-
-          <div class="control-group {%if form.receive_sms.errors%}error{%endif%}">
-            <div class="controls">
-              <label for="receive_sms" class="checkbox maior" class='control-label'>
-                <input type="checkbox" value="y" name="receive_sms" id="receive_sms" checked="checked">
-                Quero receber atualizações por SMS.
-              </label>
-              <p class="errmsg receive_sms-error"></p>
-            </div>
-          </div>
-
-
-          <h4>Opcional</h4>
-
-          <div class="control-group {%if form.phone.errors%}error{%endif%}">
-            {{ form.phone.label(class='control-label') }}
-            <div class="controls">
-              {{ form.phone }}
-            {{fielderrors(form.phone)}}
-            </div>
-          </div>
-
-
-          <div class="control-group {%if form.gender.errors%}error{%endif%}">
-            {{ form.gender.label(class='control-label') }}
-            <div class="controls">
-              {{ form.gender }}
-            {{fielderrors(form.gender)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.age_group.errors%}error{%endif%}">
-
-            {{ form.age_group.label(class='control-label') }}
-            <div class="controls">
-              {{ form.age_group }}
-            {{fielderrors(form.age_group)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.facebook.errors%}error{%endif%}">
-            {{ form.facebook.label(class='control-label') }}
-            <div class="controls">
-              {{ form.facebook(placeholder="Facebook profile id") }}
-            {{fielderrors(form.facebook)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.twitter.errors%}error{%endif%}">
-            {{ form.twitter.label(class='control-label') }}
-            <div class="controls">
-              {{ form.twitter(placeholder="Twitter id sem o @") }}
-            {{fielderrors(form.twitter)}}
             </div>
           </div>
 

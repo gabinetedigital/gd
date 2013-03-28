@@ -26,7 +26,7 @@ import gettext
 import xmlrpclib
 from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
-     redirect, url_for, abort, make_response
+     redirect, url_for, abort, make_response, flash
 
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
@@ -36,6 +36,7 @@ from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail
 from gd.model import User, ComiteNews, CadastroComite, session as dbsession
 
 from gd.auth.webapp import auth
+from gd import auth as authapi
 from gd.auth.fbauth import fbauth
 from gd.auth.twauth import twauth
 from gd.govpergunta import govpergunta
@@ -853,6 +854,19 @@ def confirm_signup(key):
         user = User.query.filter_by(user_activation_key=key).one()
         user.user_activation_key = ''
         dbsession.commit()
+
+        #Efetua o login do camarada e manda para preencher o resto dos dados
+        username = user.username
+        session['byconfirm'] = username
+        # if username:
+        #     try:
+        #         authapi.login(username, None, bypass_pwverify=True)
+        #     except authapi.UserNotFound:
+        #         flash(_(u'Wrong user or password'), 'alert-error')
+        #     except authapi.UserAndPasswordMissmatch:
+        #         flash(_(u'Wrong user or password'), 'alert-error')
+
     except NoResultFound:
         return redirect(url_for('.index'))
-    return redirect('%s?concluido' % url_for('.index'))
+
+    return redirect( url_for('auth.signup_continuation') )

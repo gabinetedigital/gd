@@ -32,7 +32,7 @@ class BaseDataForm(Form):
 
     name = TextField(
         _('Name'),
-        [validators.Length(min=5)],
+        # [validators.Length(min=5)],
     )
 
     email = TextField(
@@ -43,14 +43,14 @@ class BaseDataForm(Form):
 
     state = SelectField(
         _('State'),
-        [validators.Required()],
+        # [validators.Required()],
         choices=choices.STATES,
         default='RS',
     )
 
     city = SelectField(
         _('City'),
-        [validators.Required()],
+        # [validators.Required()],
         choices=choices.CITIES,
         default=u'Porto Alegre',
     )
@@ -85,22 +85,22 @@ class BaseDataForm(Form):
 
     receive_sms = BooleanField(
         _('I want to receive updates by sms.'),
-        default=True,
+        default=False,
     )
 
-    def validate_receive_sms(self, field):
-        print "VALIDANDO RECEBIMENTO DE SMS com ou sem telefone!!!!", field.data, self.phone.data
-        """Validate if cel-phone number is present"""
-        if ( (field.data in ['Y','y'] or field.data == True) and not self.phone.data):
-            raise ValidationError(
-                _(u'Cel phone number is required'))
+    # def validate_receive_sms(self, field):
+    #     print "VALIDANDO RECEBIMENTO DE SMS com ou sem telefone!!!!", field.data, self.phone.data
+    #     """Validate if cel-phone number is present"""
+    #     if ( (field.data in ['Y','y'] or field.data == True) and not self.phone.data):
+    #         raise ValidationError(
+    #             _(u'Cel phone number is required'))
 
 
-    def validate_email_confirmation(self, field):
-        """Compound validation between email and its confirmation"""
-        if field.data != self.email.data:
-            raise ValidationError(
-                _(u'Email does not match its confirmation'))
+    # def validate_email_confirmation(self, field):
+    #     """Compound validation between email and its confirmation"""
+    #     if field.data != self.email.data:
+    #         raise ValidationError(
+    #             _(u'Email does not match its confirmation'))
 
 
     def validate_phone(self, field):
@@ -137,11 +137,11 @@ class BasePasswordForm(Form):
 class SignupForm(BaseDataForm, BasePasswordForm):
     """Wtform that builds the signup form"""
 
-    email_confirmation = TextField(
-        _('Email confirmation'),
-        [validators.Email(message=_(u'That\'s not a valid email address.')),
-        ]
-    )
+    # email_confirmation = TextField(
+    #     _('Email confirmation'),
+    #     [validators.Email(message=_(u'That\'s not a valid email address.')),
+    #     ]
+    # )
 
     accept_tos = BooleanField(
         _('Have you read and accepted our '
@@ -158,22 +158,22 @@ class SignupForm(BaseDataForm, BasePasswordForm):
 
     receive_sms = BooleanField(
         _('I want to receive updates by sms.'),
-        default=True,
+        default=False,
     )
 
-    def validate_receive_sms(self, field):
-        print "VALIDANDO RECEBIMENTO DE SMS com ou sem telefone!!!!", field.data, self.phone.data
-        """Validate if cel-phone number is present"""
-        if ( (field.data in ['Y','y'] or field.data == True) and not self.phone.data):
-            raise ValidationError(
-                _(u'Cel phone number is required'))
+    # def validate_receive_sms(self, field):
+    #     print "VALIDANDO RECEBIMENTO DE SMS com ou sem telefone!!!!", field.data, self.phone.data
+    #     """Validate if cel-phone number is present"""
+    #     if ( (field.data in ['Y','y'] or field.data == True) and not self.phone.data):
+    #         raise ValidationError(
+    #             _(u'Cel phone number is required'))
 
 
-    def validate_email_confirmation(self, field):
-        """Compound validation between email and its confirmation"""
-        if field.data != self.email.data:
-            raise ValidationError(
-                _(u'Email does not match its confirmation'))
+    # def validate_email_confirmation(self, field):
+    #     """Compound validation between email and its confirmation"""
+    #     if field.data != self.email.data:
+    #         raise ValidationError(
+    #             _(u'Email does not match its confirmation'))
 
 
 class ProfileForm(BaseDataForm):

@@ -28,8 +28,8 @@ from gd import utils
 from gd import conf
 from gd.utils import msg
 from gd import auth as authapi
-from gd.auth.fbauth import checkfblogin, facebook as remote_facebook
-from gd.auth.twauth import checktwlogin, twitter as remote_twitter
+from gd.auth.fbauth import checkfblogin #, facebook as remote_facebook
+from gd.auth.twauth import checktwlogin #, twitter as remote_twitter
 from gd.auth.forms import SignupForm, ProfileForm, ChangePasswordForm
 from gd.model import Upload, session as dbsession, User
 from gd.content.wp import wordpress
@@ -76,7 +76,6 @@ def social(form, show=True, default=None):
         del inst.meta['password_confirmation']
 
     if facebook or twitter:
-        print "REMOVING PASSWORD for FACEBOOK/TWITTER LOGIN"
         # Removing the password field. It's not needed by a social login
         if 'password' in inst: del inst.password
         if 'password_confirmation' in inst: del inst.password_confirmation
@@ -90,8 +89,8 @@ def social(form, show=True, default=None):
 
         inst.meta['fromsocial'] = True
         inst.meta['password'] = urandom(10)
-    else:
-        print "IS NOT FACEBOOK OR TWITTER!"
+    # else:
+    #     print "IS NOT FACEBOOK OR TWITTER!"
 
     # We're not social right now
     return inst
@@ -113,11 +112,16 @@ def login():
         twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
     except KeyError:
         twitter_hash_cabecalho = ""
-    return render_template('login.html', next=next,
+
+    resp = make_response( 
+     render_template('login.html', next=next,
         # signup_process=signup_process,
         menu=menus,
         twitter_hash_cabecalho=twitter_hash_cabecalho
+     )
     )
+    resp.set_cookie('connect_type', '')
+    return resp
 
 
 @auth.route('/lost_password/')
@@ -194,6 +198,73 @@ def logout_json():
     # return msg.ok(_(u'User loged out'))
 
 
+@auth.route('/signup/continuation/', methods=('GET','POST',))
+def signup_continuation():
+    '''Show the second part of registration'''
+    print "/signup/continuation/ ==========================="
+    if authapi.is_authenticated() and not 'byconfirm' in session:
+        print "esta logado, indo pro profile ==========================="
+        return redirect(url_for('.profile'))
+    elif 'byconfirm' in session:
+        print "byconfirm in session =========================== ", session['byconfirm']
+        user = User.query.filter_by(username=session['byconfirm']).one()
+        del session['byconfirm']
+    elif request.method == 'POST':
+        print "vindo do post ===========================", request.form['email']
+        user = User.query.filter_by(username=request.form['email']).one()
+    if user:
+        print "tem user ============================", user
+        data = user.metadata()
+        #form = social(ProfileForm, default=data)
+        form = social(SignupForm, default=data)
+    else:
+        print "NAO tem user ============================"
+        form = social(SignupForm)
+
+    if 'password_confirmation' in form: 
+        #Remove not needed field
+        del form.password_confirmation
+    if request.method == 'POST' and form.validate_on_submit():
+        # user = authapi.authenticated_user()
+        print "form validado ============================"
+
+        meta = form.meta
+        dget = meta.pop
+
+        password = dget('password')
+        try:
+            authapi.login(user.username, password)
+        except authapi.UserNotFound:
+            flash(_(u'Wrong user or password'), 'alert-error')
+        except authapi.UserAndPasswordMissmatch:
+            flash(_(u'Wrong password'), 'alert-error')
+        else:
+            user = authapi.authenticated_user()
+            # First, the specific ones
+            # user.name = mget('name')
+            # user.email = mget('email')
+
+            # And then, the meta ones, stored in `UserMeta'
+            for key, val in form.meta.items():
+                user.set_meta(key, val)
+
+            flash(_(u'Your registration is complete'), 'alert-success')
+    else:
+        print "ERRO NO FORM VALIDATION", form.errors
+
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
+    return render_template(
+        'signup_second.html', form=form,
+        menu=menus,
+        twitter_hash_cabecalho=twitter_hash_cabecalho
+    )
+
+
 @auth.route('/signup/', methods=('GET','POST',))
 def signup():
     """Renders the signup form"""
@@ -207,21 +278,22 @@ def signup():
     #form = SignupForm()
     fromsocial = request.cookies.get('connect_type') in ('social_f','social_t')
     form.fromsocial = fromsocial
-    print "METHOD::::::::::::", request.method
     if request.method == 'POST' and form.validate_on_submit():
-        print "VALIDATE ON SUBMIT"
         try:
             meta = form.meta
             dget = meta.pop
             if fromsocial:
+                print "\nsenha fromsocial"
                 password = ""
             else:
                 password = dget('password')
+                print "\nsenha", password
 
             # Finally, it's time to create the user
+            email = dget('email')
             user = authapi.create_user(
-                dget('name'), dget('email'), password,
-                dget('email_confirmation'), form.meta,
+                dget('name'), email, password,
+                email, form.meta,
                 dget('receive_sms'), dget('receive_email') )
 
             utils.send_welcome_email(user)
@@ -235,6 +307,12 @@ def signup():
         ret_code = 0
     else:
         if request.method == 'POST' :
+            print form.errors
+            # for errorMessages, fieldName in enumerate(form.errors):
+            #     print errorMessages, fieldName
+            #     for err in errorMessages:
+            #         # do something with your errorMessages for fieldName
+            #         flash( "%s - %s" % (fieldName,err),'alert-error')
             flash(_(u'Correct the validation errors and resend'),'alert-error')
             ret_code = 3
 
@@ -309,8 +387,14 @@ def profile_json():
     user = authapi.authenticated_user()
 
     # First, the specific ones
+    email = mget('email')
+    redologin = False
+    if user.username != email:
+        flash(_(u'You changed your email, please relogin.'))
+        redologin = True
+        user.username = email
     user.name = mget('name')
-    user.email = mget('email')
+    user.email = email
 
     # Saving the thumbnail
     form.meta.pop('avatar')
@@ -330,7 +414,11 @@ def profile_json():
     #     'csrf': form.csrf.data,
     # })
     flash(_(u'Profile update successful'), 'alert-success')
-    return redirect(url_for('.profile'))
+    if redologin:
+        authapi.logout()
+        return redirect(url_for('auth.login'))
+    else:
+        return redirect(url_for('.profile'))
 
 
 @auth.route('/profile_passwd_json', methods=('POST',))

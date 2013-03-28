@@ -187,6 +187,7 @@ class PasswordHash:
     
     def check_password(self, pw, stored_hash):
         # This part is different with the original PHP
+        print "pw=",pw,"stored_hash=",stored_hash
         if stored_hash.startswith('$2a$'):
             # bcrypt
             if _bcrypt_hashpw is None:
@@ -198,5 +199,6 @@ class PasswordHash:
         else:
             # portable hash
             hx = self.crypt_private(pw, stored_hash)
+            print "newpw=", hx
         return hx == stored_hash
     

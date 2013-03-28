@@ -292,8 +292,10 @@ class User(Entity):
     @before_insert
     def hash_password(self):
         """Converts the password field into a phpass hashed string"""
+        print "\n\nGRAVANDO SENHA NOVA 1:",self.password
         hasher = phpass.PasswordHash(8, False)
         self.password = hasher.hash_password(self.password)
+        print "GRAVANDO SENHA NOVA 2:",self.password,"\n\n"
 
     def set_password(self, passwd):
         """Updates the user's password

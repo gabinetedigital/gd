@@ -76,7 +76,7 @@ def authenticated_user():
         raise NobodyHome()
 
 
-def login(username, password, fromsocial=False):
+def login(username, password, fromsocial=False, bypass_pwverify=False):
     """Logs a user in the current session"""
     # Testing if the user exists
     try:
@@ -84,10 +84,10 @@ def login(username, password, fromsocial=False):
         user = User.query.filter_by(username=username).one()
     except NoResultFound:
         raise UserNotFound()
-    return login_user_instance(user, password, fromsocial)
+    return login_user_instance(user, password, fromsocial, bypass_pwverify)
 
 
-def login_user_instance(user, password, fromsocial=False):
+def login_user_instance(user, password, fromsocial=False, bypass_pwverify=False):
     """Logs an user instance in, instead of receiving it's username as a
     string"""
 
@@ -101,7 +101,7 @@ def login_user_instance(user, password, fromsocial=False):
 
     # If user is not logging in from a social network, let's verify
     # his/her local password information.
-    if not (user.get_meta('fromsocial') and 'oauth_token' in session) and not fromsocial:
+    if not (user.get_meta('fromsocial') and 'oauth_token' in session) and not fromsocial and not bypass_pwverify:
         hasher = phpass.PasswordHash(8, True)
         if not hasher.check_password(password, user.password):
             raise UserAndPasswordMissmatch()
@@ -113,6 +113,15 @@ def login_user_instance(user, password, fromsocial=False):
     session['username'] = user.username
     session['password'] = password #we need this for RPC
     return user.public_dict()
+
+def compare_pwd(user_password, password):
+
+    hasher = phpass.PasswordHash(8, True)
+    if not hasher.check_password(password, user_password):
+        # raise UserAndPasswordMissmatch()
+        return False
+
+    return True
 
 
 def logout():
