@@ -1,7 +1,7 @@
 {% extends "govresponde.html" %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/govresponde.js') }}"></script>
+<script src="{{ url_for('static', filename='js/govresponde/govresponde.js') }}"></script>
 {% endblock %}
 
 {% block lcolumn %}
@@ -12,27 +12,27 @@
   <ul class="carousel">
     <li>
       <div id="step1" class="slide">
-        <img src="{{ url_for('.static', filename='imgs/cf01.png') }}" />
+        <img src="{{ url_for('static', filename='img/govresponde/cf01.png') }}" />
       </div>
     </li>
     <li>
       <div id="step2" class="slide">
-        <img src="{{ url_for('.static', filename='imgs/cf02.png') }}" />
+        <img src="{{ url_for('static', filename='img/govresponde/cf02.png') }}" />
       </div>
     </li>
     <li>
       <div id="step3" class="slide">
-        <img src="{{ url_for('.static', filename='imgs/cf03.png') }}" />
+        <img src="{{ url_for('static', filename='img/govresponde/cf03.png') }}" />
       </div>
     </li>
     <li>
       <div id="step4" class="slide">
-        <img src="{{ url_for('.static', filename='imgs/cf04.png') }}" />
+        <img src="{{ url_for('static', filename='img/govresponde/cf04.png') }}" />
       </div>
     </li>
     <li>
       <div id="step5" class="slide">
-        <img src="{{ url_for('.static', filename='imgs/cf05.png') }}" />
+        <img src="{{ url_for('static', filename='img/govresponde/cf05.png') }}" />
       </div>
     </li>
   </ul>
