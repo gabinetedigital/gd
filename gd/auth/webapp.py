@@ -156,16 +156,20 @@ def logon():
         gonext = False
     formcad = social(SignupForm)
 
-    print "REQUEST", request.values
     next = request.values.get('next',default="")
     if next is not None and gonext:
         return redirect(next)
     else:
+        menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+        try:
+            twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        except KeyError:
+            twitter_hash_cabecalho = ""
         # if request.referrer:
         #     return redirect(request.referrer)
         # else:
         #     return render_template('login.html', form=formcad, next=next)
-        return render_template('login.html', form=formcad, next=next)
+        return render_template('login.html', form=formcad, next=next, menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
 
 
 @auth.route('/logout/')
