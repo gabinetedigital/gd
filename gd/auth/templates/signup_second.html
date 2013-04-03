@@ -1,160 +1,156 @@
 {% macro fielderrors(field) -%}
-    {%- if field.errors %}
-      {%- for error in field.errors %}
-        <span class="help-inline">{{error}}</span>
-      {%- endfor %}
-    {%- endif %}
+{%- if field.errors %}
+{%- for error in field.errors %}
+<span class="help-inline">{{error}}</span>
+{%- endfor %}
+{%- endif %}
 {%- endmacro %}
 
 {% extends "base.html" %}
-
-{% block css %}
-{% endblock %}
 
 {% block javascript %}
 {% endblock %}
 
 
 {% block content %}
-<div class="container">
-  <div class="row novocadastro">
-    <div class="offset1 span10">
-      <form class="form-horizontal" method="post" id="signup" action=".">
-        <fieldset>
-          <legend>Continuação do cadastro:</legend>
+<div class="content" id="auth">
+  <div class="container">
+    <div class="row novocadastro">
+      <div class="offset1 span10">
+        <div class="auth-stage">
+          <form class="form-horizontal" method="post" id="signup" action=".">
+            <fieldset>
+              <div class="stage-header">
+                <legend>Continuação do cadastro:</legend>
+              </div>
+              <div class="modal-body">
+                {{ form.csrf }}
+                <div id="auth-error" class="msg error alert alert-error hide"></div>
+                <div id="auth-success" class="msg success alert alert-success hide"></div>
+                <!-- <div class="signup-form"> -->
+                {%include 'parts/flashes.html'%}
+                {% if form.social and ret_code != 0 %}
+                <div class="alert">
+                  Você está se autenticando através de uma rede social. Para
+                  terminar o processo falta apenas preencher os campos abaixo.
+                </div>
+                {% endif %}
 
-      {{ form.csrf }}
-      <div id="auth-error" class="msg error alert alert-error hide"></div>
-      <div id="auth-success" class="msg success alert alert-success hide"></div>
-      <!-- <div class="signup-form"> -->
-      {%include 'parts/flashes.html'%}
-      {% if form.social and ret_code != 0 %}
-      <div class="alert">
-        Você está se autenticando através de uma rede social. Para
-        terminar o processo falta apenas preencher os campos abaixo.
+                <div class="alert alert-info">
+                  Obrigado por se registrar!
+                  Agora conclua seu cadastro nos informando mais alguns dados,
+                  que também são muito importantes para nós.
+                </div>
+                <div class="row">
+                  <div class="span4">
+                    <div class="control-group {%if form.state.errors%}error{%endif%}">
+                      {{ form.name.label(class='control-label') }}
+                      <div class="controls">
+                        {{ form.name(readonly='readonly') }}
+                        {{fielderrors(form.name)}}
+                      </div>
+                    </div>
+                    <div class="control-group {%if form.password.errors%}error{%endif%}">
+                      <label class='control-label' for='password'>Senha</label>
+                      <div class="controls">
+                        {{ form.password(placeholder='Informe sua senha cadastrada') }}
+                        {{fielderrors(form.password)}}
+                      </div>
+                    </div>
+                    {{ form.email(type='hidden') }}
+                    {{ form.accept_tos(type='hidden') }}
+                    <div class="control-group {%if form.state.errors%}error{%endif%}">
+                      {{ form.state.label(class='control-label') }}
+                      <div class="controls">
+                        {{ form.state }}
+                        {{fielderrors(form.state)}}
+                      </div>
+                    </div>
+                    <div class="control-group {%if form.city.errors%}error{%endif%}">
+                      {{ form.city.label(class='control-label') }}
+                      <div class="controls">
+                        {{ form.city }}
+                        {{fielderrors(form.city)}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="span4">
+                    <div class="control-group {%if form.phone.errors%}error{%endif%}">
+                      {{ form.phone.label(class='control-label') }}
+                      <div class="controls">
+                        {{ form.phone(title="Utilize o formato (xx) xxxx-xxxx",placeholder="(xx) xxxx-xxxx") }}
+                        {{fielderrors(form.phone)}}
+                      </div>
+                    </div>
+
+
+                    <div class="control-group {%if form.gender.errors%}error{%endif%}">
+                      {{ form.gender.label(class='control-label') }}
+                      <div class="controls">
+                        {{ form.gender }}
+                        {{fielderrors(form.gender)}}
+                      </div>
+                    </div>
+
+                    <div class="control-group {%if form.age_group.errors%}error{%endif%}">
+
+                      {{ form.age_group.label(class='control-label') }}
+                      <div class="controls">
+                        {{ form.age_group }}
+                        {{fielderrors(form.age_group)}}
+                      </div>
+                    </div>
+
+                    <div class="control-group {%if form.facebook.errors%}error{%endif%}">
+                      {{ form.facebook.label(class='control-label') }}
+                      <div class="controls">
+                        {{ form.facebook(placeholder="Link para seu facebook") }}
+                        {{fielderrors(form.facebook)}}
+                      </div>
+                    </div>
+
+                    <div class="control-group {%if form.twitter.errors%}error{%endif%}">
+                      {{ form.twitter.label(class='control-label') }}
+                      <div class="controls">
+                        {{ form.twitter(placeholder="Twitter id sem o @") }}
+                        {{fielderrors(form.twitter)}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span8">
+                        <label for="receive_email" class="checkbox" class='control-label'>
+                          <input type="checkbox" value="y" name="receive_email" id="receive_email" checked="checked">
+                          Quero receber atualizações por email.</label>
+                          <p class="errmsg receive_email-error"></p>
+
+                    <div {%if form.receive_sms.errors%}error{%endif%}">
+                        <label for="receive_sms" title="É necessário preencher o telefone também" class="checkbox" class='control-label'>
+                          <input type="checkbox" value="y" name="receive_sms" id="receive_sms" checked="checked">
+                          Quero receber atualizações por SMS.
+                        </label>
+                        <p class="errmsg receive_sms-error"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="stage-footer">
+                <butotn type="submit" class="btn btn-success">Cadastrar</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
       </div>
-      {% endif %}
-
-
-          <div class="alert">
-            Obrigado por se registrar! <br/>
-            Agora conclua seu cadastro nos informando mais alguns dados, que também são muito importantes para nós.
-          </div>
-
-          <div class="control-group {%if form.state.errors%}error{%endif%}">
-            {{ form.name.label(class='control-label') }}
-            <div class="controls">
-              {{ form.name(readonly='readonly',class='span6') }}
-            {{fielderrors(form.name)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.password.errors%}error{%endif%}">
-            <label class='control-label' for='password'>Senha</label>
-            <div class="controls">
-              {{ form.password(placeholder='Informe sua senha cadastrada') }}
-              {{fielderrors(form.password)}}
-            </div>
-          </div>
-
-          {{ form.email(type='hidden',class='span6') }}
-          {{ form.accept_tos(type='hidden') }}
-
-          <hr>
-
-          <div class="control-group {%if form.state.errors%}error{%endif%}">
-            {{ form.state.label(class='control-label') }}
-            <div class="controls">
-              {{ form.state }}
-            {{fielderrors(form.state)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.city.errors%}error{%endif%}">
-            {{ form.city.label(class='control-label') }}
-            <div class="controls">
-              {{ form.city }}
-            {{fielderrors(form.city)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.phone.errors%}error{%endif%}">
-            {{ form.phone.label(class='control-label') }}
-            <div class="controls">
-              {{ form.phone(title="Utilize o formato (xx) xxxx-xxxx",placeholder="(xx) xxxx-xxxx") }}
-            {{fielderrors(form.phone)}}
-            </div>
-          </div>
-
-
-          <div class="control-group {%if form.gender.errors%}error{%endif%}">
-            {{ form.gender.label(class='control-label') }}
-            <div class="controls">
-              {{ form.gender }}
-            {{fielderrors(form.gender)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.age_group.errors%}error{%endif%}">
-
-            {{ form.age_group.label(class='control-label') }}
-            <div class="controls">
-              {{ form.age_group }}
-            {{fielderrors(form.age_group)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.facebook.errors%}error{%endif%}">
-            {{ form.facebook.label(class='control-label') }}
-            <div class="controls">
-              {{ form.facebook(placeholder="Link para seu facebook") }}
-            {{fielderrors(form.facebook)}}
-            </div>
-          </div>
-
-          <div class="control-group {%if form.twitter.errors%}error{%endif%}">
-            {{ form.twitter.label(class='control-label') }}
-            <div class="controls">
-              {{ form.twitter(placeholder="Twitter id sem o @") }}
-            {{fielderrors(form.twitter)}}
-            </div>
-          </div>
-
-          <div class="control-group">
-            <div class="controls">
-              <label for="receive_email" class="maior checkbox" class='control-label'>
-              <input type="checkbox" value="y" name="receive_email" id="receive_email" checked="checked">
-              Quero receber atualizações por email.</label>
-              <p class="errmsg receive_email-error"></p>
-            </div>
-          </div>
-
-          <div class="control-group {%if form.receive_sms.errors%}error{%endif%}">
-            <div class="controls">
-              <label for="receive_sms" title="É necessário preencher o telefone também" class="checkbox maior" class='control-label'>
-                <input type="checkbox" value="y" name="receive_sms" id="receive_sms" checked="checked">
-                Quero receber atualizações por SMS.
-              </label>
-              <p class="errmsg receive_sms-error"></p>
-            </div>
-          </div>
-
-
-          <div class="control-group">
-            <input type="submit" class="btn pull-right" value="Cadastrar">
-          </div>
-
-        </fieldset>
-      </form>
     </div>
   </div>
 </div>
 <script>
 $(function () {
-  options = {
-    delay: { show: 500, hide: 100 }
-  };
-  $('input, label').tooltip(options);
+    options = {
+        delay: { show: 500, hide: 100 }
+    };
+    $('input, label').tooltip(options);
 });
 </script>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% macro fielderrors(field) -%}
     {%- if field.errors %}
       {%- for error in field.errors %}
-        <span class="help-inline">{{error}}</span>
+<span class="help-inline">{{error}}</span>
       {%- endfor %}
     {%- endif %}
 {%- endmacro %}
@@ -16,96 +16,101 @@
 
 
 {% block content %}
-<div class="container">
-  <div class="row novocadastro">
-    <div class="offset1 span10">
-      <form class="form-horizontal" method="post" id="signup" action=".">
-        <fieldset>
-          <legend>Novo cadastro:</legend>
-
+<div class="content" id="auth">
+  <div class="container">
+    <div class="row novocadastro">
+      <div class="offset3 span6">
+        <div class="auth-stage">
+          <form class="form-horizontal" method="post" id="signup" action=".">
+            <fieldset>
+              <div class="stage-header">
+                <legend>Novo cadastro</legend>
       {{ form.csrf }}
-      <div id="auth-error" class="msg error alert alert-error hide"></div>
-      <div id="auth-success" class="msg success alert alert-success hide"></div>
-      <input type="hidden" name="gender" value="">
-      <input type="hidden" name="age_group" value="">
-      <!-- <div class="signup-form"> -->
+                <div id="auth-error" class="msg error alert alert-error hide"></div>
+                <div id="auth-success" class="msg success alert alert-success hide"></div>
+                <input type="hidden" name="gender" value="">
+                <input type="hidden" name="age_group" value="">
+                <!-- <div class="signup-form"> -->
       {%include 'parts/flashes.html'%}
       {% if form.social and ret_code != 0 %}
-      <div class="alert">
+                <div class="alert">
         Você está se autenticando através de uma rede social. Para
         terminar o processo falta apenas preencher os campos abaixo.
-      </div>
+                </div>
       {% endif %}
-
+              </div>
         {% if ret_code == 0 %}
 
-          <div class="alert">
+              <div class="alert">
             Obrigado! Agora siga os passos no email que você recebeu para concluir seu cadastro.
-          </div>
+              </div>
 
         {% else %} {#if ret_code == 0#}
 
-
-          <div class="control-group {%if form.name.errors%}error{%endif%}">
+              <div class="modal-body">
+                <div class="control-group {%if form.name.errors%}error{%endif%}">
             {{ form.name.label(class='control-label') }}
-            <div class="controls">
-              {{ form.name(class='span6') }}
+                  <div class="controls">
+              {{ form.name }}
             {{fielderrors(form.name)}}
-            </div>
-          </div>
+                  </div>
+                </div>
 
-          <div class="control-group {%if form.email.errors%}error{%endif%}">
+                <div class="control-group {%if form.email.errors%}error{%endif%}">
             {{ form.email.label(class='control-label')  }}
-            <div class="controls">
-              {{ form.email(class='span6') }}
+                  <div class="controls">
+              {{ form.email }}
             {{fielderrors(form.email)}}
-            </div>
-          </div>
+                  </div>
+                </div>
 
           {% if not form.social %}
-          <div class="control-group {%if form.password.errors%}error{%endif%}">
+                <div class="control-group {%if form.password.errors%}error{%endif%}">
             {{ form.password.label(class='control-label') }}
-            <div class="controls">
+                  <div class="controls">
               {{ form.password }}
             {{fielderrors(form.password)}}
-            </div>
-          </div>
+                  </div>
+                </div>
 
-          <div class="control-group {%if form.password_confirmation.errors%}error{%endif%}">
+                <div class="control-group {%if form.password_confirmation.errors%}error{%endif%}">
             {{ form.password_confirmation.label(class='control-label') }}
-            <div class="controls">
+                  <div class="controls">
               {{ form.password_confirmation }}
             {{fielderrors(form.password_confirmation)}}
-            </div>
-          </div>
+                  </div>
+                </div>
           {% endif %}
 
-          <div class="control-group">
+                <div class="control-group">
 
-            <div class="controls {%if form.accept_tos.errors%}error{%endif%}">
-              <label for="accept_tos" class="checkbox maior"><input type="checkbox" value="y" name="accept_tos" id="accept_tos" checked="checked">Você leu e aceitou nossos <a href="javascript:showTos();">Termos de uso</a>?</label>
-            </div>
+                  <div class="controls {%if form.accept_tos.errors%}error{%endif%}">
+                    <label for="accept_tos" class="checkbox"><input type="checkbox" value="y" name="accept_tos" id="accept_tos" checked="checked">Você leu e aceitou nossos <a href="javascript:showTos();">Termos de uso</a>?</label>
+                  </div>
 
-          </div>
+                </div>
 
-          <div class="control-group">
-            <div class="controls">
-              <label for="receive_email" class="maior checkbox" class='control-label'>
-              <input type="checkbox" value="y" name="receive_email" id="receive_email" checked="checked">
+                <div class="control-group">
+                  <div class="controls">
+                    <label for="receive_email" class="checkbox" class='control-label'>
+                      <input type="checkbox" value="y" name="receive_email" id="receive_email" checked="checked">
               Quero receber atualizações por email.</label>
-              <p class="errmsg receive_email-error"></p>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <a href="{{url_for('.login')}}">Efetuar login</a>
-            <input type="submit" class="btn pull-right" value="Cadastrar">
-          </div>
-
+                      <p class="errmsg receive_email-error"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="stage-footer">
+                <div class="control-group">
+                  <button href="{{url_for('.login')}}" class="btn btn-info pull-left">Efetuar login</button>
+                  <button type="submit" class="btn btn-success pull-right">Cadastrar</button>
+                </div>
+              </div>
         {% endif %} {#if ret_code == 0#}
 
-        </fieldset>
-      </form>
+            </fieldset>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

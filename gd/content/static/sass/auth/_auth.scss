@@ -21,6 +21,12 @@
     padding: 20px 20px 0;
 }
 
+
+.auth-stage .modal-body {
+    max-height: none;
+    overflow-y: visible;
+}
+
 .auth-stage .stage-footer {
     background-color: #F5F5F5;
     border-radius: 0 0 6px 6px;
