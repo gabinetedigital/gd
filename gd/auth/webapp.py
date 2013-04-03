@@ -107,6 +107,8 @@ def login():
         del session['twitter_token']
 
     next = request.args.get('next') or request.referrer
+    print 'NEXT=', request.args.get('next')
+    print 'NEXT=', next
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
         twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
@@ -154,14 +156,16 @@ def logon():
         gonext = False
     formcad = social(SignupForm)
 
+    print "REQUEST", request.values
     next = request.values.get('next',default="")
     if next is not None and gonext:
         return redirect(next)
     else:
-        if request.referrer:
-            return redirect(request.referrer)
-        else:
-            return render_template('login.html', form=formcad)
+        # if request.referrer:
+        #     return redirect(request.referrer)
+        # else:
+        #     return render_template('login.html', form=formcad, next=next)
+        return render_template('login.html', form=formcad, next=next)
 
 
 @auth.route('/logout/')
