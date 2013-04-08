@@ -54,16 +54,16 @@
         </div>
 
       </form>
-      <div class="span3">
+      <div class="span2">
         <strong>Sua imagem</strong><br><br>
         <img src="{{ user.email | gravatar(size=150) }}" class="img-polaroid">
         <br><small><br>
-        Esta imagem é obtida do site <a href="gravatar.com">gravatar.com</a>. Para alterá-la, vá até o site, ou se você não tem uma imagem, crie uma conta e defina a imagem para seu email.
+        Esta imagem é obtida do site <a href="http://www.gravatar.com">gravatar.com</a>. Para alterá-la, vá até o site, ou se você não tem uma imagem, crie uma conta e defina a imagem para seu email.
       </small>
     </div>
 
     {% if not profile.social %}
-    <div class="span3">
+    <div class="span3 well well-small">
 
       <h3>Trocar Senha</h3>
       <form

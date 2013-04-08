@@ -25,27 +25,46 @@
             <fieldset>
               <div class="stage-header">
                 <legend>Novo cadastro</legend>
-      {{ form.csrf }}
+                {{ form.csrf }}
                 <div id="auth-error" class="msg error alert alert-error hide"></div>
                 <div id="auth-success" class="msg success alert alert-success hide"></div>
                 <input type="hidden" name="gender" value="">
                 <input type="hidden" name="age_group" value="">
                 <!-- <div class="signup-form"> -->
-      {%include 'parts/flashes.html'%}
-      {% if form.social and ret_code != 0 %}
+                {%include 'parts/flashes.html'%}
+                {% if form.social and ret_code != 0 %}
                 <div class="alert">
-        Você está se autenticando através de uma rede social. Para
-        terminar o processo falta apenas preencher os campos abaixo.
+                  Você está se autenticando através de uma rede social. Para
+                  terminar o processo falta apenas preencher os campos abaixo.
                 </div>
-      {% endif %}
+                {% endif %}
+              {% if ret_code != 0 %}
+              </div> <!-- fim .stage-header -->
+              {% endif %}
+        {% if ret_code == 4 %}
+          </form>
+          <div class="modal-body">
+          {#Aqui o usuário fica ciente que precisa de confirmação para concluir o cadastro#}
+          <p>Se você não recebeu seu email de confirmação de cadastro, verifique na sua caixa de spam, 
+            ou solicite o reenvio do email</p>
+          <form class="form-horizontal" method="post" id="resendconfirmationform" action="/auth/resendconfirmation/">
+              <div class="control-group {%if form.name.errors%}error{%endif%}">
+                <label for="email" class="control-label">Seu Email:</label>
+                <div class="controls">
+                  {{ form.email }}
+                </div>
               </div>
-        {% if ret_code == 0 %}
+              <input type="submit" class="btn btn-success" value="Reenviar confirmação de cadastro para meu email"/>
+          </form>
+          </div>
+        {% elif ret_code == 0 %}
 
               <div class="alert">
             Obrigado! Agora siga os passos no email que você recebeu para concluir seu cadastro.
               </div>
-
-        {% else %} {#if ret_code == 0#}
+              </div> <!-- fim .stage-header -->
+        {% else %}
+           {#if ret_code == 0#}
 
               <div class="modal-body">
                 <div class="control-group {%if form.name.errors%}error{%endif%}">
@@ -101,7 +120,7 @@
               </div>
               <div class="stage-footer">
                 <div class="control-group">
-                  <button href="{{url_for('.login')}}" class="btn btn-info pull-left">Efetuar login</button>
+                  <a href="{{url_for('.login')}}" class="btn btn-info pull-left">Efetuar login</a>
                   <button type="submit" class="btn btn-success pull-right">Cadastrar</button>
                 </div>
               </div>

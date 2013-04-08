@@ -57,6 +57,10 @@ class UserExists(AuthError):
     """Exception raised when the user already exists in the database"""
 
 
+class UserExistsUnconfirmed(AuthError):
+    """Exception raised when the user already exists, but is unconfirmed, in the database"""
+
+
 class EmailAddressExists(AuthError):
     """Exception raised when an email address already exists in the
     database"""
@@ -167,8 +171,10 @@ class checkroles(object):
 def create_user(name, username, password, email, meta=None, receive_sms=False, receive_email=False):
     """Create a new user in the database"""
     # There will be one and only one user with a given username
-    if User.query.filter_by(username=username).count():
+    if User.query.filter_by(username=username, user_activation_key="").count():
         raise UserExists()
+    if User.query.filter_by(username=username).count():
+        raise UserExistsUnconfirmed()
     if User.query.filter_by(email=email).count():
         raise EmailAddressExists()
 

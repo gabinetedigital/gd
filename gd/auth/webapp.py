@@ -129,7 +129,12 @@ def login():
 @auth.route('/lost_password/')
 def lost_password():
     """Renders the lost password form"""
-    return render_template('lost_password.html')
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+    except KeyError:
+        twitter_hash_cabecalho = ""
+    return render_template('lost_password.html', menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
 
 
 @auth.route('/logon', methods=('POST',))
@@ -210,6 +215,7 @@ def logout_json():
 def signup_continuation():
     '''Show the second part of registration'''
     print "/signup/continuation/ ==========================="
+    user = None
     if authapi.is_authenticated() and not 'byconfirm' in session:
         print "esta logado, indo pro profile ==========================="
         return redirect(url_for('.profile'))
@@ -227,6 +233,7 @@ def signup_continuation():
         form = social(SignupForm, default=data)
     else:
         print "NAO tem user ============================"
+        return redirect(url_for('auth.login'))
         form = social(SignupForm)
 
     if 'password_confirmation' in form: 
@@ -273,6 +280,19 @@ def signup_continuation():
     )
 
 
+@auth.route('/resendconfirmation/', methods=('POST',))
+def resendconfirmation():
+    if authapi.is_authenticated():
+        return redirect(url_for('.profile'))
+    email = request.form['email']
+    user = User.query.filter_by(email=email).one()
+    if user:
+        utils.send_welcome_email(user)
+        flash(_(u"The confirmation email was sent"))
+    else:
+        flash(_(u"User not found"))
+    return redirect(url_for('auth.login'))
+
 @auth.route('/signup/', methods=('GET','POST',))
 def signup():
     """Renders the signup form"""
@@ -305,14 +325,18 @@ def signup():
                 dget('receive_sms'), dget('receive_email') )
 
             utils.send_welcome_email(user)
+
+            flash(_(u'Your user was registered with successful!'), 'alert-success')
+            ret_code = 0
         except authapi.UserExists:
             flash( _(u'User already exists'), 'alert-error')
             ret_code = 1
+        except authapi.UserExistsUnconfirmed:
+            flash( _(u'User already exists, but need confirmation'), 'alert-error')
+            ret_code = 4
         except authapi.EmailAddressExists:
             flash(_(u'The email address informed is being used by another person'), 'alert-error')
             ret_code = 2
-        flash(_(u'Your user was registered with successful!'), 'alert-success')
-        ret_code = 0
     else:
         if request.method == 'POST' :
             print form.errors
