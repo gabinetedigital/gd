@@ -243,6 +243,23 @@ def cleanup(response):
     return response
 
 @app.context_processor
+def inject_social_image():
+    def social_image(user):
+        if user.get_meta('facebookuser'):
+            return "http://graph.facebook.com/%s/picture" % user.get_meta('facebook') or ""
+        if user.get_meta('twitteruser'):
+            return "https://api.twitter.com/1/users/profile_image?screen_name=%s&size=bigger" % user.get_meta('twitter')
+        return None
+    def social_image_from(user):
+        if user.get_meta('facebookuser'):
+            return "http://facebook.com"
+        elif user.get_meta('twitteruser'):
+            return "http://twitter.com"
+        else:
+            return "http://gravatar.com"
+    return dict(social_image=social_image, social_image_from=social_image_from)
+
+@app.context_processor
 def inject_thumborurl():
     def thumborurl(image, size):
         '''
@@ -857,6 +874,7 @@ def confirm_signup(key):
 
         #Efetua o login do camarada e manda para preencher o resto dos dados
         username = user.username
+        print " ==== CONFIRMADO USUARIO:", username, "===="
         session['byconfirm'] = username
         # if username:
         #     try:

@@ -30,7 +30,7 @@ twauth = Blueprint('twauth', __name__)
 oauth = OAuth()
 
 twitter = oauth.remote_app('twitter',
-    base_url='https://api.twitter.com/1/',
+    base_url='https://api.twitter.com/1.1/',
     request_token_url='https://api.twitter.com/oauth/request_token',
     access_token_url='https://api.twitter.com/oauth/access_token',
     authorize_url='https://api.twitter.com/oauth/authorize',
@@ -58,7 +58,11 @@ def handle_oauth_exception(error):
 
 @twauth.route('/data')
 def data():
-    return str(twitter.get('users/show.json',screen_name=session['tmp_twitter_id']).data)
+    print "\n========================== /data TWITTER DATA ==============================="
+    d = str(twitter.get('users/show.json',screen_name=session['tmp_twitter_id']).data)
+    print d
+    print "========================== /data TWITTER DATA ===============================\n"
+    return d
 
 
 @twauth.route('/authorized')
@@ -104,8 +108,8 @@ def twitter_authorized(resp):
 @twitter.tokengetter
 def get_twitter_oauth_token(token=None):
     """Function responsible for getting the twitter token"""
-    print "::GET TWITTER TOKEN::", token, session.get('oauth_token')
-    return session.get('oauth_token')
+    print "::GET TWITTER TOKEN::", token, session.get('twitter_token')
+    return session.get('twitter_token')
 
 
 def checktwlogin():
@@ -119,6 +123,7 @@ def checktwlogin():
                 }
             )
             # req = {'id':session['tmp_twitter_id']}
+            print "REQ.DATA:", req.data
         else:
             return {}
     except Exception as inst:
@@ -136,8 +141,9 @@ def checktwlogin():
     # print "REQ.DATA:", dir(req.data)
     print "REQ.DATA:", req.data
     # user = req.data
-    return {
-        'id': req.data['screen_name'],
-        'twitter': req.data['screen_name'],
-        'name': req.data['name'],
-    }
+    # return {
+    #     'id': req.data['screen_name'],
+    #     'twitter': req.data['screen_name'],
+    #     'name': req.data['name'],
+    # }
+    return req.data

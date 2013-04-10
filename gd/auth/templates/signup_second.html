@@ -15,6 +15,9 @@
       <div class="offset1 span10">
         <div class="auth-stage">
           <form class="form-horizontal" method="post" id="signup" action=".">
+              {%if username%}
+              <input type="hidden" name="username" id="username" value="{{username}}">
+              {%endif%}
               <fieldset>
               <div class="stage-header">
                 <legend>Continuação do cadastro:</legend>
@@ -26,12 +29,6 @@
                 <div id="auth-success" class="msg success alert alert-success hide"></div>
                 <!-- <div class="signup-form"> -->
                 {%include 'parts/flashes.html'%}
-                {% if form.social and ret_code != 0 %}
-                <div class="alert">
-                  Você está se autenticando através de uma rede social. Para
-                  terminar o processo falta apenas preencher os campos abaixo.
-                </div>
-                {% endif %}
 
                 <div class="alert alert-info">
                   Obrigado por se registrar!
@@ -92,7 +89,7 @@
                       <div class="control-group {%if form.facebook.errors%}error{%endif%}">
                         {{ form.facebook.label(class='control-label') }}
                         <div class="controls">
-                          {{ form.facebook(placeholder="Link para seu facebook") }}
+                          {{ form.facebook(placeholder="Userid do seu facebook") }}
                           {{fielderrors(form.facebook)}}
                         </div>
                       </div>
@@ -105,6 +102,7 @@
                         </div>
                       </div>
 
+                      {% if not form.social %}
                       <div class="control-group {%if form.password.errors%}error{%endif%}">
                         <label class='control-label' for='password'>Senha</label>
                         <div class="controls">
@@ -112,6 +110,7 @@
                           {{fielderrors(form.password)}}
                         </div>
                       </div>
+                      {% endif %}
                   </div>
                 </div>
                 <div class="row">

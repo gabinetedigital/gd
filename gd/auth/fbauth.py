@@ -94,6 +94,8 @@ def checkfblogin():
     try:
         if request.cookies.get('connect_type') == 'social_f':
             req = facebook.get('/me')
+            print "\n\nFACEBOOK DATA FROM USER /me =================================="
+            print req.data
         else:
             return {}
     except :
@@ -116,6 +118,6 @@ def checkfblogin():
         'email_confirmation': user['email'],
         'gender': gender,
         'facebook': user['link'],
-        'city': city,
-        'state': states.get(state),
+        # 'city': city,
+        # 'state': states.get(state),
     }

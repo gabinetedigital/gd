@@ -45,7 +45,7 @@
               {%if user%}
               <img src="{{ user.email | gravatar(size=16) }}" class="img-polaroid">
               <div class="btn-group">
-                <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> {{user.name|truncate(20)}}</a>
+                <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> {{user.name or user.nickname|truncate(20)}}</a>
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="/auth/profile/"><i class="icon-pencil"></i> Editar perfil</a></li>

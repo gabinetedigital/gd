@@ -101,11 +101,11 @@ def login_user_instance(user, password, fromsocial=False, bypass_pwverify=False)
     if user.user_activation_key.strip():
         raise UserNotFound()
 
-    print '================> USER DEBUG:',user.get_meta('fromsocial'), 'oauth_token' in session
+    print '================> USER DEBUG:',user.get_meta('fromsocial'), 'oauth_token' in session, 'twitter_token' in session
 
     # If user is not logging in from a social network, let's verify
     # his/her local password information.
-    if not (user.get_meta('fromsocial') and 'oauth_token' in session) and not fromsocial and not bypass_pwverify:
+    if not (user.get_meta('fromsocial') and ('oauth_token' in session or 'twitter_token' in session)) and not fromsocial and not bypass_pwverify:
         hasher = phpass.PasswordHash(8, True)
         if not hasher.check_password(password, user.password):
             raise UserAndPasswordMissmatch()
@@ -134,6 +134,8 @@ def logout():
         session.pop('username')
     if 'oauth_token' in session:
         session.pop('oauth_token')
+    if 'twitter_token' in session:
+        session.pop('twitter_token')
 
 
 class checkroles(object):

@@ -55,11 +55,9 @@
 
       </form>
       <div class="span2">
-        <strong>Sua imagem</strong><br><br>
-        <img src="{{ user.email | gravatar(size=150) }}" class="img-polaroid">
-        <br><small><br>
-        Esta imagem é obtida do site <a href="http://www.gravatar.com">gravatar.com</a>. Para alterá-la, vá até o site, ou se você não tem uma imagem, crie uma conta e defina a imagem para seu email.
-      </small>
+        <strong>Sua imagem</strong> (de {{social_image_from(user)}})<br><br>
+        <img src="{{ social_image(user) or user.email | gravatar(size=150) }}" class="img-polaroid">
+        <br>
     </div>
 
     {% if not profile.social %}
