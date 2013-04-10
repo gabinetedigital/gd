@@ -11,74 +11,78 @@
 {% block bodyclass %}profile{% endblock %}
 
 {% block content %}
-<div class="content auth">
-  {# profile.csrf #}
+<div class="content" id="auth">
   <div class="container">
+    <div class="auth-stage">
+      <div class="modal-header">
+        <h3>Editar Perfil</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row-fluid">
+          {%include 'parts/flashes.html'%}
+        </div>
+        <div class="row-fluid">
 
-    <div class="row header">
-      <div class="span4">
-        <h2>Editar perfil</h2>
+          <div class="msg error  alert alert-error hide"></div>
+          <div class="msg success alert alert-success hide"></div>
+
+          <form
+            class="form-horizontal" method="post" id="profile_form"
+               action="{{ url_for('.profile_json') }}">
+            {# profile.csrf #}
+            <!-- <img src="{{ user.avatar_url }}" alt="{{ user.name }}"> -->
+            <!-- {{ profile.avatar.label }} {{ profile.avatar(value='') }} -->
+            <div class="span3">
+              {{ profile.name.label }} {{ profile.name }}
+              {{ profile.email.label }} {{ profile.email }}
+              {{ profile.age_group.label }} {{ profile.age_group }}
+              {{ profile.facebook.label }} {{ profile.facebook(placeholder="Facebook profile id") }}
+              {{ profile.twitter.label }} {{ profile.twitter(placeholder="Twitter id sem o @") }}
+            </div>
+
+            <div class="span3">
+              {{ profile.city.label }} {{ profile.city }}
+              {{ profile.state.label }} {{ profile.state }}
+              {{ profile.phone.label }} {{ profile.phone }}
+              {{ profile.gender.label }} {{ profile.gender }}
+              <div class="enviar">
+                <br>
+                <input type="submit" class="btn btn-primary" value="Atualizar">
+              </div>
+            </div>
+
+            <div class="span3">
+              <strong>Sua imagem</strong> (de {{social_image_from(user)}})<br><br>
+              <img src="{{ social_image(user) or user.email | gravatar(size=150) }}" class="img-polaroid">
+              <br>
+            </div>
+
+          </form>
+
+          <div class="span3 well well-small">
+            <h3>Trocar Senha</h3>
+            {% if not profile.social %}
+            <form
+              class="auth" method="post" id="password_form"
+                 action="{{ url_for('.profile_passwd_json') }}">
+              {# passwd.csrf(id='password_csrf') #}
+              {{ passwd.current_password.label }} {{ passwd.current_password }}
+              {{ passwd.password.label }} {{ passwd.password }}
+              {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
+              <div class="enviar"><br>
+                <button class="btn btn-primary">Alterar senha</button>
+              </div>
+            </form>
+            {% else %}
+            <p>
+              Você esta logado via redes sociais, não é possive trocar sua senha aqui.
+            </p>
+            {% endif %}
+          </div>
+
+        </div>
       </div>
     </div>
-    <div class="row">
-      {%include 'parts/flashes.html'%}
-    </div>
-    <div class="row">
-      <div class="msg error  alert alert-error hide"></div>
-      <div class="msg success alert alert-success hide"></div>
-      <div class="senha">
-
-        <form
-        class="form-horizontal" method="post" id="profile_form"
-        action="{{ url_for('.profile_json') }}">
-
-        <!-- <img src="{{ user.avatar_url }}" alt="{{ user.name }}"> -->
-        <!-- {{ profile.avatar.label }} {{ profile.avatar(value='') }} -->
-        <div class="span3">
-          {{ profile.name.label }} {{ profile.name }}
-          {{ profile.email.label }} {{ profile.email }}
-          {{ profile.age_group.label }} {{ profile.age_group }}
-          {{ profile.facebook.label }} {{ profile.facebook(placeholder="Facebook profile id") }}
-          {{ profile.twitter.label }} {{ profile.twitter(placeholder="Twitter id sem o @") }}
-          <div class="enviar">
-            <br>
-            <input type="submit" class="btn btn-primary" value="Atualizar">
-          </div>
-        </div>
-
-        <div class="span3">
-          {{ profile.city.label }} {{ profile.city }}
-          {{ profile.state.label }} {{ profile.state }}
-          {{ profile.phone.label }} {{ profile.phone }}
-          {{ profile.gender.label }} {{ profile.gender }}
-        </div>
-
-      </form>
-      <div class="span2">
-        <strong>Sua imagem</strong> (de {{social_image_from(user)}})<br><br>
-        <img src="{{ social_image(user) or user.email | gravatar(size=150) }}" class="img-polaroid">
-        <br>
-    </div>
-
-    {% if not profile.social %}
-    <div class="span3 well well-small">
-
-      <h3>Trocar Senha</h3>
-      <form
-      class="auth" method="post" id="password_form"
-      action="{{ url_for('.profile_passwd_json') }}">
-        {# passwd.csrf(id='password_csrf') #}
-        {{ passwd.current_password.label }} {{ passwd.current_password }}
-        {{ passwd.password.label }} {{ passwd.password }}
-        {{ passwd.password_confirmation.label }} {{ passwd.password_confirmation }}
-        <div class="enviar"><br>
-          <button class="btn btn-primary">Alterar senha</button>
-        </div>
-      </form>
-    </div>
-  {% endif %}
-
-</div> <!-- .panes -->
-</div><!-- content -->
-</div> <!-- #pedit -->
+  </div>
+</div>
 {% endblock %}
