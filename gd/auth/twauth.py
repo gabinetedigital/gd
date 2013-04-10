@@ -85,9 +85,6 @@ def twitter_authorized(resp):
         resp['oauth_token_secret']
     )
 
-    # Let's log the user in if he/she has already signed up.
-    # userdata = twitter.get('/me')
-
     username = resp['screen_name']
     print "LOGANDO VIA TWITTER:", username
     try:

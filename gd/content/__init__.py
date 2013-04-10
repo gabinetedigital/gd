@@ -26,7 +26,7 @@ import gettext
 import xmlrpclib
 from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
-     redirect, url_for, abort, make_response, flash
+     redirect, url_for, abort, make_response #, flash
 
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
@@ -36,7 +36,7 @@ from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail
 from gd.model import User, ComiteNews, CadastroComite, session as dbsession
 
 from gd.auth.webapp import auth
-from gd import auth as authapi
+# from gd import auth as authapi
 from gd.auth.fbauth import fbauth
 from gd.auth.twauth import twauth
 from gd.govpergunta import govpergunta
@@ -245,13 +245,13 @@ def cleanup(response):
 @app.context_processor
 def inject_social_image():
     def social_image(user):
-        if user.get_meta('facebookuser'):
+        if user.get_meta('facebookuser') or user.get_meta('facebook'):
             return "http://graph.facebook.com/%s/picture" % user.get_meta('facebook') or ""
         if user.get_meta('twitteruser'):
             return "https://api.twitter.com/1/users/profile_image?screen_name=%s&size=bigger" % user.get_meta('twitter')
         return None
     def social_image_from(user):
-        if user.get_meta('facebookuser'):
+        if user.get_meta('facebookuser') or user.get_meta('facebook'):
             return "http://facebook.com"
         elif user.get_meta('twitteruser'):
             return "http://twitter.com"

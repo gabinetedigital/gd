@@ -62,8 +62,10 @@ def social(form, show=True, default=None):
 
     # Preparing form meta data
     inst.social = bool(facebook or twitter)
+    print "SOCIAL1:", inst.social
     if default and 'social' in default:
         inst.social = default['social']
+        print "SOCIAL2:", inst.social
     inst.meta = inst.data.copy()
 
     # Cleaning unwanted metafields (they are not important after
@@ -75,7 +77,7 @@ def social(form, show=True, default=None):
     if 'password_confirmation' in inst.meta:
         del inst.meta['password_confirmation']
 
-    if facebook or twitter:
+    if inst.social:
         # Removing the password field. It's not needed by a social login
         if 'password' in inst: del inst.password
         if 'password_confirmation' in inst: del inst.password_confirmation
@@ -246,7 +248,9 @@ def signup_continuation():
     if user:
         print "tem user ============================", user
         data = user.metadata()
-        #form = social(ProfileForm, default=data)
+        data['social'] = ('facebookuser' in data and data['facebookuser']) or \
+                         ('twitteruser' in data and data['twitteruser'])
+        print "DATA DEFAULT", data
         form = social(SignupForm, default=data)
     else:
         print "NAO tem user ============================"
@@ -264,8 +268,12 @@ def signup_continuation():
         dget = meta.pop
 
         password = dget('password')
+        fromsocial = form.social or \
+                     ('facebookuser' in data and data['facebookuser']) or \
+                     ('twitteruser' in data and data['twitteruser'])
         try:
-            authapi.login(user.username, password, form.social)
+            print "FROMSOCIAL", fromsocial
+            authapi.login(user.username, password, fromsocial)
         except authapi.UserNotFound:
             flash(_(u'Wrong user or password'), 'alert-error')
         except authapi.UserAndPasswordMissmatch:
@@ -346,6 +354,9 @@ def signup():
             username = email
             if request.cookies.get('connect_type') == 'social_t':
                 username = session['tmp_twitter_id']
+            # if request.cookies.get('connect_type') == 'social_f':
+            #     username = dget('fbid')
+            #     print "FACEBOOK ID =", username
 
             user = authapi.create_user(
                 dget('name'), username, password,
@@ -409,6 +420,8 @@ def profile():
         return redirect(url_for('index'))
 
     data = authapi.authenticated_user().metadata()
+    print "DATA FOR PROFILE", data
+
     profile = social(ProfileForm, default=data)
     passwd = ChangePasswordForm()
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )

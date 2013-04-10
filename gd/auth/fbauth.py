@@ -107,17 +107,23 @@ def checkfblogin():
     # The following data will be used to fill a part of the signup form
     # in the first user's login.
     user = req.data
+
+    print "\n\n ======================================= FACEBOOK DATA ==================================="
+    print user
+    print " ======================================= FACEBOOK DATA ===================================\n\n"
+
     location = user['location']['name'].split(', ', 1) + ['']
     states = dict((x[1], x[0]) for x in auth.choices.FULL_STATES)
     city, state = city, state = location[:2]
     gender = user.get('gender') and user['gender'][0] or None
+    link = user['link']
     return {
         'id': user['id'],
         'name': user['name'],
         'email': user['email'],
         'email_confirmation': user['email'],
         'gender': gender,
-        'facebook': user['link'],
+        'facebook': link[link.rindex('/')+1:],
         # 'city': city,
         # 'state': states.get(state),
     }
