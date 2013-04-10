@@ -1,6 +1,6 @@
 #audience ul, ol {
     margin: 0;
-    padding: 0;
+   padding: 0;
 }
 
 #audience li {
@@ -34,7 +34,7 @@
 
 #audience .share {
     display: block;
-    /*clear: both;*/
+    clear: both;
     height: 20px;
     padding: 6px;
 }
@@ -141,8 +141,8 @@
 }
 
 #audience .droom {
-    color: #FFF;
-    background-color: #eee;
+    color: #000;
+    background-color: #eeeeee;
     margin-left: -30px;
     height: 100%;
     max-height: 630px;
@@ -195,10 +195,11 @@
 }
 
 #audience .astream {
-    background-color: #000;
+    background-color: #999;
+    color: #fff;
 }
 
-#audience .stream, .astream, #audience .bstream {
+#audience .stream, #audience .astream, #audience .bstream {
     padding: 10px;
 }
 
