@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GabineteDigital 0.1\n"
-"POT-Creation-Date: 2012-08-17 14:55+BRT\n"
-"PO-Revision-Date: 2012-08-17 14:56-0300\n"
+"POT-Creation-Date: 2013-04-11 11:35+BRT\n"
+"PO-Revision-Date: 2013-04-11 11:44-0300\n"
 "Last-Translator: Sérgio Berlotto Jr <sergio-berlotto@gg.rs.gov.br>\n"
 "Language-Team: LANGUAGE <pt-br@li.org>\n"
 "Language: \n"
@@ -15,22 +15,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: ../gd/admin/__init__.py:54
+#: ../gd/admin/__init__.py:62
 msgid "Login"
 msgstr "Entrar"
 
-#: ../gd/admin/__init__.py:74
-#: ../gd/admin/__init__.py:116
-#: ../gd/admin/__init__.py:153
-#: ../gd/admin/__init__.py:185
+#: ../gd/admin/__init__.py:100
+#: ../gd/admin/__init__.py:125
 msgid "Audience"
 msgstr "Audiência"
 
-#: ../gd/auth/__init__.py:131
+#: ../gd/auth/__init__.py:157
 msgid "No user authenticated."
 msgstr "Nenhum usuário autenticado"
 
-#: ../gd/auth/__init__.py:141
+#: ../gd/auth/__init__.py:167
 msgid "The currently logged user don't have suficient privileges to access this resource"
 msgstr "O usuário autenticado atualmente não tem privilégios suficientes para acessar este recurso"
 
@@ -46,71 +44,75 @@ msgstr "Masculino"
 msgid "Female"
 msgstr "Feminino"
 
-#: ../gd/auth/choices.py:34
+#: ../gd/auth/choices.py:29
+msgid "Other"
+msgstr "Outro"
+
+#: ../gd/auth/choices.py:35
 msgid "80 years old or more"
 msgstr "80 anos ou mais"
 
-#: ../gd/auth/choices.py:35
+#: ../gd/auth/choices.py:36
 msgid "75 to 79"
 msgstr "75 a 79"
 
-#: ../gd/auth/choices.py:36
+#: ../gd/auth/choices.py:37
 msgid "70 to 74"
 msgstr "70 a 74"
 
-#: ../gd/auth/choices.py:37
+#: ../gd/auth/choices.py:38
 msgid "65 to 69"
 msgstr "65 a 69"
 
-#: ../gd/auth/choices.py:38
+#: ../gd/auth/choices.py:39
 msgid "60 to 64"
 msgstr "60 a 64"
 
-#: ../gd/auth/choices.py:39
+#: ../gd/auth/choices.py:40
 msgid "55 to 59"
 msgstr "55 a 59"
 
-#: ../gd/auth/choices.py:40
+#: ../gd/auth/choices.py:41
 msgid "50 to 54"
 msgstr "50 a 54"
 
-#: ../gd/auth/choices.py:41
+#: ../gd/auth/choices.py:42
 msgid "45 to 49"
 msgstr "45 a 49"
 
-#: ../gd/auth/choices.py:42
+#: ../gd/auth/choices.py:43
 msgid "40 to 44"
 msgstr "40 a 44"
 
-#: ../gd/auth/choices.py:43
+#: ../gd/auth/choices.py:44
 msgid "35 to 39"
 msgstr "35 a 39"
 
-#: ../gd/auth/choices.py:44
+#: ../gd/auth/choices.py:45
 msgid "30 to 34"
 msgstr "30 a 34"
 
-#: ../gd/auth/choices.py:45
+#: ../gd/auth/choices.py:46
 msgid "25 to 29"
 msgstr "25 a 29"
 
-#: ../gd/auth/choices.py:46
+#: ../gd/auth/choices.py:47
 msgid "20 to 24"
 msgstr "20 a 24"
 
-#: ../gd/auth/choices.py:47
+#: ../gd/auth/choices.py:48
 msgid "15 to 19"
 msgstr "15 a 19"
 
-#: ../gd/auth/choices.py:48
+#: ../gd/auth/choices.py:49
 msgid "10 to 14"
 msgstr "10 a 14"
 
-#: ../gd/auth/choices.py:49
+#: ../gd/auth/choices.py:50
 msgid "5 to 9"
 msgstr "5 a 9"
 
-#: ../gd/auth/choices.py:50
+#: ../gd/auth/choices.py:51
 msgid "0 to 4"
 msgstr "0 a 4"
 
@@ -123,7 +125,6 @@ msgid "Email"
 msgstr "Email"
 
 #: ../gd/auth/forms.py:40
-#: ../gd/auth/forms.py:110
 msgid "That's not a valid email address."
 msgstr "Este não é um endereço de email válido"
 
@@ -148,115 +149,134 @@ msgid "Phone"
 msgstr "Telefone"
 
 #: ../gd/auth/forms.py:73
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ../gd/auth/forms.py:77
 msgid "Twitter"
 msgstr "Twitter"
 
-#: ../gd/auth/forms.py:80
-msgid "This field is required."
-msgstr "Campo obrigatório."
-
-#: ../gd/auth/forms.py:80
-msgid "This field is required"
-msgstr "Campo obrigatório"
-
-#: ../gd/auth/forms.py:87
-msgid "Password"
-msgstr "Senha"
-
-#: ../gd/auth/forms.py:93
-msgid "Password confirmation"
-msgstr "Confirmação da senha"
-
-#: ../gd/auth/forms.py:102
-msgid "Password does not match its confirmation"
-msgstr "A senha não bate com sua confirmação"
-
-#: ../gd/auth/forms.py:109
-msgid "Email confirmation"
-msgstr "Confirmação de email"
-
-#: ../gd/auth/forms.py:115
-msgid "Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab('tos')\">Terms of use</a>?"
-msgstr "Você leu e aceitou nossos <a href=\"javascript:auth.toggleSignupTab('tos')\">Termos de uso</a>?"
-
-#: ../gd/auth/forms.py:123
+#: ../gd/auth/forms.py:82
+#: ../gd/auth/forms.py:155
 msgid "I want to receive updates by email."
 msgstr "Quero receber atualizações por email."
 
-#: ../gd/auth/forms.py:128
+#: ../gd/auth/forms.py:87
+#: ../gd/auth/forms.py:160
 msgid "I want to receive updates by sms."
 msgstr "Quero receber atualizações por SMS."
 
-#: ../gd/auth/forms.py:137
-msgid "Cel phone number is required"
-msgstr "O número de telefone celular é obrigatório."
+#: ../gd/auth/forms.py:110
+msgid "This field is required."
+msgstr "Campo obrigatório."
 
-#: ../gd/auth/forms.py:144
-msgid "Email does not match its confirmation"
-msgstr "O endereço de email não bate com a sua confirmação"
+#: ../gd/auth/forms.py:119
+msgid "New Password"
+msgstr "Nova Senha"
 
-#: ../gd/auth/forms.py:151
+#: ../gd/auth/forms.py:125
+msgid "Password confirmation"
+msgstr "Confirmação da senha"
+
+#: ../gd/auth/forms.py:134
+msgid "Password does not match its confirmation"
+msgstr "A senha não bate com sua confirmação"
+
+#: ../gd/auth/forms.py:147
+msgid "Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab('tos')\">Terms of use</a>?"
+msgstr "Você leu e aceitou nossos <a href=\"javascript:auth.toggleSignupTab('tos')\">Termos de uso</a>?"
+
+#: ../gd/auth/forms.py:183
 msgid "User avatar"
 msgstr "Avatar"
 
-#: ../gd/auth/forms.py:155
+#: ../gd/auth/forms.py:187
 msgid "Only images are allowed in this field!"
 msgstr "Só imagens são aceitas neste campo!"
 
-#: ../gd/auth/forms.py:164
+#: ../gd/auth/forms.py:196
 msgid "Your current password"
 msgstr "Sua senha atual"
 
-#: ../gd/auth/forms.py:175
+#: ../gd/auth/forms.py:207
 msgid "The current password is wrong"
 msgstr "A senha atual está incorreta"
 
-#: ../gd/auth/webapp.py:100
-msgid "User does not exist"
-msgstr "Usuário não existe"
+#: ../gd/auth/webapp.py:157
+#: ../gd/auth/webapp.py:160
+#: ../gd/auth/webapp.py:278
+msgid "Wrong user or password"
+msgstr "Usuário ou senha incorreto"
 
-#: ../gd/auth/webapp.py:102
-msgid "Wrong password"
-msgstr "Senha incorreta"
-
-#: ../gd/auth/webapp.py:105
+#: ../gd/auth/webapp.py:166
 msgid "Username or password missing"
 msgstr "Usuário ou senha faltando"
 
-#: ../gd/auth/webapp.py:112
+#: ../gd/auth/webapp.py:214
 msgid "User loged out"
 msgstr "O Usuário saiu"
 
-#: ../gd/auth/webapp.py:147
+#: ../gd/auth/webapp.py:280
+msgid "Wrong password"
+msgstr "Senha incorreta"
+
+#: ../gd/auth/webapp.py:291
+msgid "Your registration is complete"
+msgstr "Seu registro está completo"
+
+#: ../gd/auth/webapp.py:318
+msgid "The confirmation email was sent"
+msgstr "O email de confirmação foi enviado"
+
+#: ../gd/auth/webapp.py:320
+msgid "User not found"
+msgstr "Usuário não encontrado"
+
+#: ../gd/auth/webapp.py:377
+msgid "Your user was registered with successful!"
+msgstr "Seu usuário foi registrado com sucesso!"
+
+#: ../gd/auth/webapp.py:380
 msgid "User already exists"
 msgstr "O usuário já existe"
 
-#: ../gd/auth/webapp.py:151
+#: ../gd/auth/webapp.py:383
+msgid "User already exists, but need confirmation"
+msgstr "O usuário já existe, mas aguarda confirmação"
+
+#: ../gd/auth/webapp.py:386
 msgid "The email address informed is being used by another person"
 msgstr "O endereço de email informado já está sendo usuado por outra pessoa"
 
-#: ../gd/auth/webapp.py:182
-#: ../gd/auth/webapp.py:230
+#: ../gd/auth/webapp.py:396
+msgid "Correct the validation errors and resend"
+msgstr "Corrija os erros e reenvie"
+
+#: ../gd/auth/webapp.py:449
 msgid "Invalid csrf token"
 msgstr "Token csrf token inválido"
 
-#: ../gd/auth/webapp.py:209
-msgid "User profile updated successfuly"
+#: ../gd/auth/webapp.py:465
+msgid "You changed your email, please relogin."
+msgstr "Você alterou seu email, por favor refaça o login."
+
+#: ../gd/auth/webapp.py:488
+msgid "Profile update successful"
 msgstr "Perfil de usuário atualizado com sucesso"
 
-#: ../gd/auth/webapp.py:223
+#: ../gd/auth/webapp.py:508
 msgid "Password updated successful"
 msgstr "Senha atualizada com sucesso"
 
-#: ../gd/auth/webapp.py:250
+#: ../gd/auth/webapp.py:539
 msgid "E-mail not found in the database"
 msgstr "Email não encontrado em nossa base de dados"
 
-#: ../gd/auth/webapp.py:253
+#: ../gd/auth/webapp.py:541
 msgid "There was an error sending the e-mail"
 msgstr "Houve um erro ao enviar o email"
 
-#: ../gd/auth/webapp.py:254
+#: ../gd/auth/webapp.py:543
 msgid "Password sent to the email"
 msgstr "Senha enviada para o email"
 
@@ -264,21 +284,28 @@ msgstr "Senha enviada para o email"
 msgid "Notice posted successfuly. Please wait a few while your message is approved."
 msgstr "Contribuição postada com sucesso. Por favor aguarde até que sua mensagem seja aprovada."
 
-#: ../gd/content/__init__.py:300
-#: ../gd/content/__init__.py:319
-#: ../gd/govpergunta/__init__.py:128
-msgid "User not authenticated"
-msgstr "Nenhum usuário autenticado"
-
-#: ../gd/content/__init__.py:311
+#: ../gd/content/__init__.py:596
+#: ../gd/content/__init__.py:624
+#: ../gd/content/__init__.py:767
 msgid "Thank you. Your contribution was successfuly sent."
 msgstr "Obrigado. Sua contribuição foi enviada com sucesso."
 
-#: ../gd/content/__init__.py:327
+#: ../gd/content/__init__.py:598
+#: ../gd/content/__init__.py:626
+msgid "Method not allowed"
+msgstr "Método não permitido"
+
+#: ../gd/content/__init__.py:756
+#: ../gd/content/__init__.py:778
+#: ../gd/govpergunta/__init__.py:186
+msgid "User not authenticated"
+msgstr "Nenhum usuário autenticado"
+
+#: ../gd/content/__init__.py:804
 msgid "Thank you. Your comment was successfuly sent"
 msgstr "Obrigado. Seu comentário foi enviado com sucesso"
 
-#: ../gd/govpergunta/__init__.py:142
+#: ../gd/govpergunta/__init__.py:200
 msgid "Contribution received successful"
 msgstr "A contribuição foi recebida com sucesso"
 
@@ -321,3 +348,17 @@ msgstr "Sua contribuição está muito curta! Ela precisa ter pelo menos 50 cara
 msgid "Your contribution is too long! It needs to have at most 600 chars"
 msgstr "Sua contribuição é longa de mais! Ela precisa ter no máximo 600 caracteres"
 
+msgid "This field is required"
+msgstr "Campo obrigatório"
+
+msgid "Email confirmation"
+msgstr "Confirmação de email"
+
+msgid "Cel phone number is required"
+msgstr "O número de telefone celular é obrigatório."
+
+msgid "Email does not match its confirmation"
+msgstr "O endereço de email não bate com a sua confirmação"
+
+msgid "User does not exist"
+msgstr "Usuário não existe"

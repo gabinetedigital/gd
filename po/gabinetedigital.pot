@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-17 14:55+BRT\n"
+"POT-Creation-Date: 2013-04-11 11:35+BRT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,20 +15,19 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ../gd/admin/__init__.py:54
+#: ../gd/admin/__init__.py:62
 msgid "Login"
 msgstr ""
 
-#: ../gd/admin/__init__.py:74 ../gd/admin/__init__.py:116
-#: ../gd/admin/__init__.py:153 ../gd/admin/__init__.py:185
+#: ../gd/admin/__init__.py:100 ../gd/admin/__init__.py:125
 msgid "Audience"
 msgstr ""
 
-#: ../gd/auth/__init__.py:131
+#: ../gd/auth/__init__.py:157
 msgid "No user authenticated."
 msgstr ""
 
-#: ../gd/auth/__init__.py:141
+#: ../gd/auth/__init__.py:167
 msgid "The currently logged user don't have suficient privileges to access this resource"
 msgstr ""
 
@@ -44,71 +43,75 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
-#: ../gd/auth/choices.py:34
-msgid "80 years old or more"
+#: ../gd/auth/choices.py:29
+msgid "Other"
 msgstr ""
 
 #: ../gd/auth/choices.py:35
-msgid "75 to 79"
+msgid "80 years old or more"
 msgstr ""
 
 #: ../gd/auth/choices.py:36
-msgid "70 to 74"
+msgid "75 to 79"
 msgstr ""
 
 #: ../gd/auth/choices.py:37
-msgid "65 to 69"
+msgid "70 to 74"
 msgstr ""
 
 #: ../gd/auth/choices.py:38
-msgid "60 to 64"
+msgid "65 to 69"
 msgstr ""
 
 #: ../gd/auth/choices.py:39
-msgid "55 to 59"
+msgid "60 to 64"
 msgstr ""
 
 #: ../gd/auth/choices.py:40
-msgid "50 to 54"
+msgid "55 to 59"
 msgstr ""
 
 #: ../gd/auth/choices.py:41
-msgid "45 to 49"
+msgid "50 to 54"
 msgstr ""
 
 #: ../gd/auth/choices.py:42
-msgid "40 to 44"
+msgid "45 to 49"
 msgstr ""
 
 #: ../gd/auth/choices.py:43
-msgid "35 to 39"
+msgid "40 to 44"
 msgstr ""
 
 #: ../gd/auth/choices.py:44
-msgid "30 to 34"
+msgid "35 to 39"
 msgstr ""
 
 #: ../gd/auth/choices.py:45
-msgid "25 to 29"
+msgid "30 to 34"
 msgstr ""
 
 #: ../gd/auth/choices.py:46
-msgid "20 to 24"
+msgid "25 to 29"
 msgstr ""
 
 #: ../gd/auth/choices.py:47
-msgid "15 to 19"
+msgid "20 to 24"
 msgstr ""
 
 #: ../gd/auth/choices.py:48
-msgid "10 to 14"
+msgid "15 to 19"
 msgstr ""
 
 #: ../gd/auth/choices.py:49
-msgid "5 to 9"
+msgid "10 to 14"
 msgstr ""
 
 #: ../gd/auth/choices.py:50
+msgid "5 to 9"
+msgstr ""
+
+#: ../gd/auth/choices.py:51
 msgid "0 to 4"
 msgstr ""
 
@@ -120,7 +123,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: ../gd/auth/forms.py:40 ../gd/auth/forms.py:110
+#: ../gd/auth/forms.py:40
 msgid "That's not a valid email address."
 msgstr ""
 
@@ -145,110 +148,130 @@ msgid "Phone"
 msgstr ""
 
 #: ../gd/auth/forms.py:73
+msgid "Facebook"
+msgstr ""
+
+#: ../gd/auth/forms.py:77
 msgid "Twitter"
 msgstr ""
 
-#: ../gd/auth/forms.py:80
-msgid "This field is required."
-msgstr ""
-
-#: ../gd/auth/forms.py:87
-msgid "Password"
-msgstr ""
-
-#: ../gd/auth/forms.py:93
-msgid "Password confirmation"
-msgstr ""
-
-#: ../gd/auth/forms.py:102
-msgid "Password does not match its confirmation"
-msgstr ""
-
-#: ../gd/auth/forms.py:109
-msgid "Email confirmation"
-msgstr ""
-
-#: ../gd/auth/forms.py:115
-msgid "Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab('tos')\">Terms of use</a>?"
-msgstr ""
-
-#: ../gd/auth/forms.py:123
+#: ../gd/auth/forms.py:82 ../gd/auth/forms.py:155
 msgid "I want to receive updates by email."
 msgstr ""
 
-#: ../gd/auth/forms.py:128
+#: ../gd/auth/forms.py:87 ../gd/auth/forms.py:160
 msgid "I want to receive updates by sms."
 msgstr ""
 
-#: ../gd/auth/forms.py:137
-msgid "Cel phone number is required"
+#: ../gd/auth/forms.py:110
+msgid "This field is required."
 msgstr ""
 
-#: ../gd/auth/forms.py:144
-msgid "Email does not match its confirmation"
+#: ../gd/auth/forms.py:119
+msgid "New Password"
 msgstr ""
 
-#: ../gd/auth/forms.py:151
+#: ../gd/auth/forms.py:125
+msgid "Password confirmation"
+msgstr ""
+
+#: ../gd/auth/forms.py:134
+msgid "Password does not match its confirmation"
+msgstr ""
+
+#: ../gd/auth/forms.py:147
+msgid "Have you read and accepted our <a href=\"javascript:auth.toggleSignupTab('tos')\">Terms of use</a>?"
+msgstr ""
+
+#: ../gd/auth/forms.py:183
 msgid "User avatar"
 msgstr ""
 
-#: ../gd/auth/forms.py:155
+#: ../gd/auth/forms.py:187
 msgid "Only images are allowed in this field!"
 msgstr ""
 
-#: ../gd/auth/forms.py:164
+#: ../gd/auth/forms.py:196
 msgid "Your current password"
 msgstr ""
 
-#: ../gd/auth/forms.py:175
+#: ../gd/auth/forms.py:207
 msgid "The current password is wrong"
 msgstr ""
 
-#: ../gd/auth/webapp.py:100
-msgid "User does not exist"
+#: ../gd/auth/webapp.py:157 ../gd/auth/webapp.py:160 ../gd/auth/webapp.py:278
+msgid "Wrong user or password"
 msgstr ""
 
-#: ../gd/auth/webapp.py:102
-msgid "Wrong password"
-msgstr ""
-
-#: ../gd/auth/webapp.py:105
+#: ../gd/auth/webapp.py:166
 msgid "Username or password missing"
 msgstr ""
 
-#: ../gd/auth/webapp.py:112
+#: ../gd/auth/webapp.py:214
 msgid "User loged out"
 msgstr ""
 
-#: ../gd/auth/webapp.py:147
+#: ../gd/auth/webapp.py:280
+msgid "Wrong password"
+msgstr ""
+
+#: ../gd/auth/webapp.py:291
+msgid "Your registration is complete"
+msgstr ""
+
+#: ../gd/auth/webapp.py:318
+msgid "The confirmation email was sent"
+msgstr ""
+
+#: ../gd/auth/webapp.py:320
+msgid "User not found"
+msgstr ""
+
+#: ../gd/auth/webapp.py:377
+msgid "Your user was registered with successful!"
+msgstr ""
+
+#: ../gd/auth/webapp.py:380
 msgid "User already exists"
 msgstr ""
 
-#: ../gd/auth/webapp.py:151
+#: ../gd/auth/webapp.py:383
+msgid "User already exists, but need confirmation"
+msgstr ""
+
+#: ../gd/auth/webapp.py:386
 msgid "The email address informed is being used by another person"
 msgstr ""
 
-#: ../gd/auth/webapp.py:182 ../gd/auth/webapp.py:230
+#: ../gd/auth/webapp.py:396
+msgid "Correct the validation errors and resend"
+msgstr ""
+
+#: ../gd/auth/webapp.py:449
 msgid "Invalid csrf token"
 msgstr ""
 
-#: ../gd/auth/webapp.py:209
-msgid "User profile updated successfuly"
+#: ../gd/auth/webapp.py:465
+msgid "You changed your email, please relogin."
 msgstr ""
 
-#: ../gd/auth/webapp.py:223
+#: ../gd/auth/webapp.py:488
+msgid "Profile update successful"
+msgstr ""
+
+#: ../gd/auth/webapp.py:508
 msgid "Password updated successful"
 msgstr ""
 
-#: ../gd/auth/webapp.py:250
+#: ../gd/auth/webapp.py:539
 msgid "E-mail not found in the database"
 msgstr ""
 
-#: ../gd/auth/webapp.py:253
+#: ../gd/auth/webapp.py:541
 msgid "There was an error sending the e-mail"
 msgstr ""
 
-#: ../gd/auth/webapp.py:254
+#: ../gd/auth/webapp.py:543
 msgid "Password sent to the email"
 msgstr ""
 
@@ -256,20 +279,25 @@ msgstr ""
 msgid "Notice posted successfuly. Please wait a few while your message is approved."
 msgstr ""
 
-#: ../gd/content/__init__.py:300 ../gd/content/__init__.py:319
-#: ../gd/govpergunta/__init__.py:128
-msgid "User not authenticated"
-msgstr ""
-
-#: ../gd/content/__init__.py:311
+#: ../gd/content/__init__.py:596 ../gd/content/__init__.py:624
+#: ../gd/content/__init__.py:767
 msgid "Thank you. Your contribution was successfuly sent."
 msgstr ""
 
-#: ../gd/content/__init__.py:327
+#: ../gd/content/__init__.py:598 ../gd/content/__init__.py:626
+msgid "Method not allowed"
+msgstr ""
+
+#: ../gd/content/__init__.py:756 ../gd/content/__init__.py:778
+#: ../gd/govpergunta/__init__.py:186
+msgid "User not authenticated"
+msgstr ""
+
+#: ../gd/content/__init__.py:804
 msgid "Thank you. Your comment was successfuly sent"
 msgstr ""
 
-#: ../gd/govpergunta/__init__.py:142
+#: ../gd/govpergunta/__init__.py:200
 msgid "Contribution received successful"
 msgstr ""
 
@@ -305,3 +333,5 @@ msgstr ""
 msgid "Your contribution is too long! It needs to have at most 600 chars"
 msgstr ""
 
+msgid "This field is required."
+msgstr ""
