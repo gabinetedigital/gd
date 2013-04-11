@@ -64,8 +64,14 @@
     display: block;
 }
 
-.meta .tag {
-    margin-left: 20px;
+.tag {
+    margin-top: 20px;
+    clear: both;
+}
+
+.shares{
+    clear: both;
+    margin-top: 13px;
 }
 
 .post .meta ul li {
