@@ -461,7 +461,8 @@ def profile_json():
     # First, the specific ones
     email = mget('email')
     redologin = False
-    if user.username != email and not (user.get_meta('twitteruser') or user.get_meta('facebookuser')):
+    if user.username == user.email and user.username != email \
+       and not (user.get_meta('twitteruser') or user.get_meta('facebookuser')):
         flash(_(u'You changed your email, please relogin.'))
         redologin = True
         user.username = email
