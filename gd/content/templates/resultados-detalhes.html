@@ -50,7 +50,7 @@
           </div>
           <div class="span12">
             <div class="avatar">
-              <img src="{{ user.email | gravatar }}" class="img-polaroid">
+              <img src="{{ social_image(user) or user.email | gravatar }}" class="img-polaroid">
             </div>
 
             <form
@@ -58,8 +58,8 @@
                action="{{ url_for('new_comment') }}">
 
               <!-- the comment error msg -->
-              <div class="msg error"></div>
-              <div class="msg success"></div>
+            <div class="msg error alert alert-error hide"></div>
+            <div class="msg success alert alert-success hide"></div>
 
 
               <input type="hidden" name="post_id" value="{{ postid }}">
@@ -87,7 +87,7 @@
             <div class="row">
             <div class="span12">
               <div class="avatar">
-                <img src="{{ comment.user.email | gravatar (size=100) }}" class="img-polaroid">
+                <img src="{{ social_image(comment.user) or comment.user.email | gravatar (size=100) }}" class="img-polaroid">
               </div>
               <div class="content">
                 <h4>{{ comment.author|safe }}</h4>

@@ -22,17 +22,15 @@
 
 
 from json import loads
-from flask import Blueprint, request, render_template, redirect, url_for, current_app
-from flask.ext.cache import Cache
-from flask import session as fsession
+from flask import Blueprint, render_template, redirect, current_app
+from gd.utils.gdcache import cache, fromcache, tocache, removecache
 
 from gd import auth
-from gd.content.wp import wordpress, gallery
+from gd.content.wp import wordpress #, gallery
 from gd.utils import msg, format_csrf_error, dumps
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
-from gd.govpergunta.pairwise import Pairwise, InvalidTokenError, \
-    PAIRWISE_VERSION
+# from gd.govpergunta.pairwise import Pairwise
 
 THEMES = {'cuidado': u'Cuidado Integral',
           'familia': u'Saúde da Família',
@@ -44,8 +42,6 @@ govpergunta = Blueprint(
     'govpergunta', __name__,
     template_folder='templates',
     static_folder='static')
-
-cache = Cache()
 
 # @govpergunta.route('/contribuir')
 # def index():
@@ -115,17 +111,21 @@ def index():
 
 @govpergunta.route('/resultados/')
 @govpergunta.route('/resultados/<int:ano>/')
-@cache.memoize()
+# @cache.memoize()
 def resultados(ano=2012):
     """Renders a wordpress page special"""
-    slideshow = wordpress.getRecentPosts(
+    cn = 'results-{0}'.format(ano)
+    slideshow = fromcache(cn) or tocache(cn,wordpress.getRecentPosts(
         category_name='destaque-govpergunta-%s' % str(ano),
         post_status='publish',
         numberposts=4,
-        thumbsizes=['slideshow'])
+        thumbsizes=['slideshow']))
 
     categoria = 'resultados-gov-pergunta-%s' % str(ano)
-    retorno = wordpress.wpgovp.getContribuicoes(principal='S',category=categoria)
+    retorno = fromcache("contribs-{0}".format(ano)) or \
+              tocache("contribs-{0}".format(ano) ,wordpress.wpgovp.getContribuicoes(principal='S',category=categoria))
+
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
         twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
@@ -137,7 +137,7 @@ def resultados(ano=2012):
             questions = q
     return render_template(
         'resultados.html',
-        menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        menu=menus,
         questions=questions,
         sidebar=wordpress.getSidebar,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
@@ -148,13 +148,17 @@ def resultados(ano=2012):
 
 
 @govpergunta.route('/resultados-detalhe/<int:postid>/')
-@cache.memoize()
+# @cache.memoize()
 def resultado_detalhe(postid):
     """Renders a contribution detail"""
-    principal = wordpress.wpgovp.getContribuicoes(principal='S',postID=postid)
+    principal = fromcache("res-detalhe-{0}".format(postid)) or \
+                tocache("res-detalhe-{0}".format(postid),wordpress.wpgovp.getContribuicoes(principal='S',postID=postid))
     # print "PRINCIPAL +++++++++++++++++++++", principal[1][0]
-    retorno = wordpress.wpgovp.getContribuicoes(principal='N',postID=postid)
+    retorno = fromcache("contribs-detalhe-{0}".format(postid)) or \
+              tocache("contribs-detalhe-{0}".format(postid),wordpress.wpgovp.getContribuicoes(principal='N',postID=postid))
     # print "RETORNO +++++++++++++++++++++", retorno
+    comts = fromcache("com-res-detalhe-{0}".format(postid)) or \
+            tocache("com-res-detalhe-{0}".format(postid),wordpress.getComments(status='approve',post_id=postid))
     qtd = retorno[0]
     detalhes = retorno[1]
     return render_template(
@@ -162,15 +166,15 @@ def resultado_detalhe(postid):
         agregadas=detalhes,
         qtd_agregadas=qtd,
         principal=principal[1][0],
-        comments=wordpress.getComments(status='approve',post_id=postid),
+        comments=comts,
         postid=postid
     )
 
 
 @govpergunta.route('/results/<path:path>')
-@cache.memoize()
+# @cache.memoize()
 def results_page(path):
-    page = wordpress.getPageByPath(path)
+    page = fromcache("page-{0}".format(path)) or tocache("page-{0}".format(path),wordpress.getPageByPath(path))
     return render_template('results_page.html', page=page)
 
 
@@ -220,16 +224,17 @@ def _format_contrib(contrib):
 
 
 @govpergunta.route('/contribs/all.json')
-@cache.cached()
+# @cache.cached()
 def contribs_all():
     """Lists all contributions in the JSON format"""
-    return dumps([
-            _format_contrib(i)
-                for i in Contrib.query.filter_by(status=True)])
+    r = fromcache("contribs_all_") or  tocache("contribs_all_",dumps([
+                                        _format_contrib(i)
+                                            for i in Contrib.query.filter_by(status=True)]))
+    return r
 
 
 @govpergunta.route('/contribs/user.json')
-@cache.cached()
+# @cache.cached()
 def contribs_user():
     """Lists all contributions in the JSON format"""
     try:
