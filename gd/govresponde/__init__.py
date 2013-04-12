@@ -285,12 +285,20 @@ def questions():
         question = _format_contrib(i)
         questions.append(question)
 
+    try:
+        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+    except KeyError:
+        twitter_hash_cabecalho = ""
+
     ctx.update({
+        'menu':wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
+        'twitter_hash_cabecalho':twitter_hash_cabecalho,
         'questions': questions,
         'pagination': pagination,
         'sortby': sortby,
         'statusedicao': statusedicao
     })
+
     return render_template('govresponde_questions.html', **ctx)
 
 
