@@ -420,7 +420,7 @@ def category(cid, page=0):
 
 def tag(slug, page=0):
     """List posts of a given tag"""
-    pagination, posts = fromcache("pag_posts_tag") or tocache("pag_posts_tag", wordpress.getPostsByTag(tag=slug, page=page) )
+    pagination, posts = fromcache("pag_posts_tag_%s_%s" % (slug,page)) or tocache("pag_posts_tag_%s_%s" % (slug,page), wordpress.getPostsByTag(tag=slug, page=page) )
     #Retorna a ultima foto inserida neste album.
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
