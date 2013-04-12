@@ -4,10 +4,6 @@
 Galeria de Fotos
 {% endblock %}
 
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/gallery.css') }}">
-{% endblock %}
-
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/jquery.galleriffic.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/jquery.history.js') }}"></script>
@@ -19,7 +15,7 @@ Galeria de Fotos
 {% endblock %}
 
 {% block content %}
-<div class="gallery">
+<div class="gallery" id="gallery">
   <div class="container">
     <div class="row">
       <div class="container">

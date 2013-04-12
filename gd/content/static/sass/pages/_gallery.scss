@@ -11,7 +11,7 @@
     color: #FFF;
 }
 
-.thumbnail img {
+#gallery .thumbnail img {
   width: 100%;
 }
 
@@ -126,11 +126,12 @@
     text-align: center;
 }
 
-.videos p.desc {
+#gallery .videos p.desc {
     padding: 30px 0px;
     font-size: 11pt;
     margin-top: 20px;
     font-style: italic;
+    color: #FFF:
 }
 
 .videos h3 {
