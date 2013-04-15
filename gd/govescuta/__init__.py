@@ -48,8 +48,6 @@ def index(page=0):
                                             page=page,
                                             sortby=sortby,
                                             totalporpage='10'))
-    print "POSTS====================="
-    print posts
     how_to = fromcache('howtouse') or tocache('howtouse', wordpress.getPageByPath('how-to-use-governo-escuta'))
 
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
