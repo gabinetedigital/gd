@@ -19,8 +19,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from flask import Blueprint, render_template, current_app
-from flask.ext.cache import Cache
-from gd.auth import is_authenticated
+from gd.utils.gdcache import fromcache, tocache #, cache, removecache
+#from gd.auth import is_authenticated
 from gd.content.wp import wordpress
 
 videos = Blueprint(
@@ -28,39 +28,41 @@ videos = Blueprint(
     template_folder='templates',
     static_folder='static')
 
-cache = Cache()
-
 @videos.route('/')
-@cache.cached(unless=is_authenticated)
 def listing():
-    videos = wordpress.wpgd.getVideos(
-        where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO'])
+    videos_json = {}
+    allvideos = fromcache("all_videos_root") or tocache("all_videos_root",wordpress.wpgd.getVideos(
+        where='status=true', orderby='title'))
+    for v in allvideos:
+        videos_json[v['title']] = v['id']
+
+    videos = fromcache("videos_root") or tocache("videos_root",wordpress.wpgd.getVideos(
+        where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO']))
     try:
         twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
     except KeyError:
         twitter_hash_cabecalho = ""
 
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template('videos.html', videos=videos
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'))
+        ,menu=menus, titulos=videos_json)
 
 
 @videos.route('/nextpage/<int:pagina>/')
-@cache.memoize(unless=is_authenticated)
 def nextpage(pagina):
-    print 'PAGINA:', current_app.config['VIDEO_PAGINACAO']
-    print "OFFSET:", pagina * current_app.config['VIDEO_PAGINACAO']
-    videos = wordpress.wpgd.getVideos(
+    offset = pagina * current_app.config['VIDEO_PAGINACAO']
+    print "OFFSET:", offset
+    videos = fromcache("videos_%s" % str(offset)) or tocache("videos_%s" % str(offset), wordpress.wpgd.getVideos(
         where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO'], 
-        offset=pagina * current_app.config['VIDEO_PAGINACAO'])
+        offset=pagina * current_app.config['VIDEO_PAGINACAO']))
     return render_template('videos_pagina.html', videos=videos)
 
 
 @videos.route('/<int:vid>/')
-@cache.memoize(unless=is_authenticated)
 def details(vid):
-    video = wordpress.wpgd.getVideo(vid)
-    sources = wordpress.wpgd.getVideoSources(vid)
+    video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+    sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
 
     base_url = current_app.config['BASE_URL']
     base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
@@ -76,17 +78,17 @@ def details(vid):
     except KeyError:
         twitter_hash_cabecalho = ""
 
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template('video.html', video=video, sources=video_sources
-        ,menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+        ,menu=menus
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
         ,base_url=base_url)
 
 
 @videos.route('/embed/<int:vid>/')
-@cache.memoize(unless=is_authenticated)
 def embed(vid):
-    video = wordpress.wpgd.getVideo(vid)
-    sources = wordpress.wpgd.getVideoSources(vid)
+    video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+    sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
     video_sources = {}
     for s in sources:
         if(s['format'].find(';') > 0):
