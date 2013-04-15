@@ -367,7 +367,7 @@ def news(page=0):
     """List posts in chronological order"""
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 
-    pagination, posts = fromcache('pag_posts') or tocache("pag_posts", wordpress.getPosts(page=page, thumbsizes=['newsbox', 'widenewsbox']))
+    pagination, posts = fromcache('pag_posts_%s' % page) or tocache("pag_posts_%s" % page, wordpress.getPosts(page=page, thumbsizes=['newsbox', 'widenewsbox']))
 
     #Retorna a ultima foto inserida neste album.
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
