@@ -27,6 +27,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from gd.model import Audience, get_or_404, AudiencePosts #Term,
 from gd.utils import dumps
 from gd.content.wp import wordpress
+from gd.utils.gdcache import fromcache, tocache
 
 
 audience = Blueprint(
@@ -39,16 +40,16 @@ audience = Blueprint(
 def index():
     """Returns the last published audience page"""
     try:
-        current_app.logger.debug( "================================================ AUDIENCE" )
-        current_app.logger.debug( request.args )
-        current_app.logger.debug( 'facebook' in request.args )
+        # current_app.logger.debug( "================================================ AUDIENCE" )
+        # current_app.logger.debug( request.args )
+        # current_app.logger.debug( 'facebook' in request.args )
 
-        pagination, inst = wordpress.wpgove.getAudiencias(ativa='s',perpage=1)
-        how_to = wordpress.getPageByPath('how-to-use-governo-escuta')
-        menus = wordpress.exapi.getMenuItens(menu_slug='menu-principal')
+        pagination, inst = fromcache("audiencia_ativa") or tocache("audiencia_ativa", wordpress.wpgove.getAudiencias(ativa='s',perpage=1))
+        how_to = fromcache("how_to_audience") or tocache("how_to_audience", wordpress.getPageByPath('how-to-use-governo-escuta'))
+        menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 
         if pagination == '0':
-            pagination, inst = wordpress.wpgove.getAudiencias(perpage=1)
+            pagination, inst = fromcache("audiencias") or tocache("audiencias", wordpress.wpgove.getAudiencias(perpage=1))
             for postid in inst:
                 aid = postid['ID']
 
@@ -125,9 +126,9 @@ def buzz_stream(aid):
             'selected': [notice.to_dict() for notice in selected],
             'published': published and published.id != last_published_id \
             and published.to_dict() or None}
-    print "=================================================================================="
-    print dumps(buzz)
-    print "=================================================================================="
+    # print "=================================================================================="
+    # print dumps(buzz)
+    # print "=================================================================================="
     return dumps(buzz)
 
 @audience.route('/<int:aid>/public_buzz')
