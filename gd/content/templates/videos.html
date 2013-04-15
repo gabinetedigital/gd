@@ -18,8 +18,39 @@
   <div class="container">
     <div class="row">
       <div class="container">
-        <div class="videos">
-          <h2>Vídeos</h2>
+        <div class="row">
+
+          <div class="span3">
+            <h2>Vídeos</h2>
+          </div>
+          <div class="span3 pull-right">
+            <div class="controls gbusca pull-right">
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-picture"></i></span>
+                <input class="span3 searcher" id="inputIcon" type="text" placeholder="procurar vídeo...">
+                <script type="text/javascript">
+                  $(document).ready(function() {
+                    $('.searcher').typeahead({
+                      source: [{%for t in titulos%}'{{t}}',{%endfor%}],
+                      items: 8,
+                      minLength: 2,
+                      updater: function(item){
+                        //Slugs é um dicionáraio que contém como chave o Título do vídeo, e como valor o id,
+                        //para poder recdirecionar diretamente para a galeria.
+                        ids = { {%for t in titulos%}
+                                 '{{t}}':'{{titulos[t]}}',
+                                {%endfor%} }
+                        document.location = "/videos/" + ids[item]
+                      }
+                    });
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="videos row">
           <ul class="thumbnails">
             {% for video in videos %}
             <li class="span4">
