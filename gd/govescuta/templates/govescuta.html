@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('audience.static', filename='js/jQueryRotate.2.1.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/govescuta.js') }}"></script>
-<script src="{{ url_for('audience.static', filename='js/timer.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/jquery/jQueryRotate.2.1.js') }}"></script>
+<script src="{{ url_for('static', filename='js/govescuta/govescuta.js') }}"></script>
+<script src="{{ url_for('static', filename='js/audience/timer.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -73,14 +73,14 @@
     <li class="step-1">
       <div class="wrapper">
         <img
-           src="{{ url_for('audience.static', filename='img/couple.png') }}"
+           src="{{ url_for('static', filename='img/couple.png') }}"
            class="step-1-couple" alt="pessoas">
         <div>
           <img
-             src="{{ url_for('audience.static', filename='img/mail_trail.png') }}"
+             src="{{ url_for('static', filename='img/mail_trail.png') }}"
              class="step-1-mail-trail" alt="rastro contribuições">
           <img
-             src="{{ url_for('audience.static', filename='img/mail.png') }}"
+             src="{{ url_for('static', filename='img/mail.png') }}"
              class="step-1-mail" alt="contribuição">
         </div>
       </div>
@@ -90,24 +90,24 @@
       <div class="wrapper">
         <div class="gears">
           <img
-             src="{{ url_for('audience.static', filename='img/step_2_big_gear.png') }}"
+             src="{{ url_for('static', filename='img/step_2_big_gear.png') }}"
              class="step-2-big-gear" alt="engrenagem grande">
           <img
-             src="{{ url_for('audience.static', filename='img/step_2_small_gear.png') }}"
+             src="{{ url_for('static', filename='img/step_2_small_gear.png') }}"
              class="step-2-small-gear" alt="engrenagem pequena">
         </div>
         <img
-           src="{{ url_for('audience.static', filename='img/networked_cpus.png') }}" alt="servidores">
+           src="{{ url_for('static', filename='img/networked_cpus.png') }}" alt="servidores">
       </div>
       <p>Nossa equipe processa e modera as contribuições</p>
     </li>
     <li class="step-3">
       <div class="wrapper">
         <img
-           src="{{ url_for('audience.static', filename='img/mustache_gentleman.png') }}"
+           src="{{ url_for('static', filename='img/mustache_gentleman.png') }}"
            class="mustache-gentleman" alt="governador">
         <img
-           src="{{ url_for('audience.static', filename='img/empty_dialog.png') }}"
+           src="{{ url_for('static', filename='img/empty_dialog.png') }}"
            class="mustache-gentleman-dialog" alt="dialogo">
       </div>
       <p>O Governador comenta as contribuições selecionadas</p>
