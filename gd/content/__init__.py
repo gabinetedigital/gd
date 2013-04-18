@@ -35,10 +35,6 @@ from gd.content.wp import wordpress
 from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail
 from gd.model import User, ComiteNews, CadastroComite, session as dbsession
 
-from gd.auth.webapp import auth
-# from gd import auth as authapi
-from gd.auth.fbauth import fbauth
-from gd.auth.twauth import twauth
 from gd.govpergunta import govpergunta
 from gd.govresponde import govresponde
 from gd.govescuta import govescuta
@@ -46,13 +42,31 @@ from gd.content.videos import videos
 from gd.content.balanco import balanco
 from gd.content.gallery import gallery
 from gd.audience import audience
-from gd.admin import admin
 from gd.buzz.webapp import buzz
 from gd.utils.gravatar import Gravatar
 from gd.utils.gdcache import cache, fromcache, tocache, removecache
 from libthumbor import CryptoURL
 
 app = Flask(__name__)
+
+# try:
+from gd.content.config_objects import WordpressConfiguration
+wpconfig = WordpressConfiguration()
+# app.config.from_object(wpconfig)
+# The conf module needs to be updated for compatibility with others
+print wpconfig.__dict__
+conf.__dict__.update(wpconfig.__dict__)
+app.config.from_object(conf)
+# except:
+#     print "Ocorreu um ERRO ao configurar via wordpress!!"
+
+# ===> imports that depends the conf module <===
+from gd.auth.webapp import auth
+from gd.auth.fbauth import fbauth
+from gd.auth.twauth import twauth
+from gd.admin import admin
+# ===> imports that depends the conf module <===
+
 
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(fbauth, url_prefix='/auth/fb')
@@ -73,14 +87,6 @@ gravatar = Gravatar(app,default='mm')
 app.secret_key = conf.SECRET_KEY
 
 # Loading the config variables from our `gd.conf' module
-app.config.from_object(conf)
-
-# try:
-from gd.content.config_objects import WordpressConfiguration
-wpconfig = WordpressConfiguration()
-app.config.from_object(wpconfig)
-# except:
-#     print "Ocorreu um ERRO ao configurar via wordpress!!"
 
 # Gettext setup
 app.jinja_env = app.jinja_env.overlay(extensions=['jinja2.ext.i18n'])
