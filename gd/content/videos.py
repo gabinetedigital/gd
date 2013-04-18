@@ -36,6 +36,7 @@ def listing():
     for v in allvideos:
         videos_json[v['title']] = v['id']
 
+    print "Buscando", current_app.config['VIDEO_PAGINACAO'], "vídeos por página!"
     videos = fromcache("videos_root") or tocache("videos_root",wordpress.wpgd.getVideos(
         where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO']))
     try:
