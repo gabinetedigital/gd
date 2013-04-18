@@ -75,6 +75,13 @@ app.secret_key = conf.SECRET_KEY
 # Loading the config variables from our `gd.conf' module
 app.config.from_object(conf)
 
+# try:
+from gd.content.config_objects import WordpressConfiguration
+wpconfig = WordpressConfiguration()
+app.config.from_object(wpconfig)
+# except:
+#     print "Ocorreu um ERRO ao configurar via wordpress!!"
+
 # Gettext setup
 app.jinja_env = app.jinja_env.overlay(extensions=['jinja2.ext.i18n'])
 app.jinja_env.install_gettext_callables(

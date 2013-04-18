@@ -68,8 +68,9 @@ def index(slug=None):
     galerias_destacadas = []
     try:
         if current_app.config['GALERIAS_DESTACADAS_ID']:
-            galerias_destacadas = [ gal for gal in galleries if int(gal['gid']) in current_app.config['GALERIAS_DESTACADAS_ID'] ]
-            galleries = [ gal for gal in galleries if int(gal['gid']) not in current_app.config['GALERIAS_DESTACADAS_ID'] ]
+            ids = [ int(id) for id in current_app.config['GALERIAS_DESTACADAS_ID'].split(',') ]
+            galerias_destacadas = [ gal for gal in galleries if int(gal['gid']) in ids ]
+            galleries = [ gal for gal in galleries if int(gal['gid']) not in ids ]
             #ordenada = <- Gerar a lista da galeria destacada ordenada pelo que está configurada.
     except KeyError:
         pass
