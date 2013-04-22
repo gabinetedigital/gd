@@ -175,11 +175,12 @@ def _format_postsearch(posts):
             txtdata.append(str(p.the_date.day)+' '+p.the_date.strftime("%B").capitalize().decode('utf8')+' de '+str(p.the_date.year))
             excerpt.append(p.excerpt)
             textobotao.append('Continue lendo')
+            print "CONFIGURANDO POST:",p.id, p.slug
             if p.thumbs:
                 if p.has_category('wide'):
-                    aux_img = "<img src='"+str(p.thumbs['widenewsbox']['url'])+"' alt='"+unicode(p.title)+"' width='"+ str(p.thumbs['widenewsbox']['width']) +"' height='"+ str(p.thumbs['widenewsbox']['height']) +"' class='wide'>"
+                    aux_img = "<img src='"+p.thumbs['widenewsbox']['url']+"' alt='"+unicode(p.title)+"' width='"+ str(p.thumbs['widenewsbox']['width']) +"' height='"+ str(p.thumbs['widenewsbox']['height']) +"' class='wide'>"
                 elif p.thumbs:
-                    aux_img = "<img src='"+str(p.thumbs['newsbox']['url'])+"'     alt='"+unicode(p.title)+"' width='"+ str(p.thumbs['newsbox']['width']) +"'     height='"+ str(p.thumbs['newsbox']['height']) +"'>"
+                    aux_img = "<img src='"+p.thumbs['newsbox']['url']+"'     alt='"+unicode(p.title)+"' width='"+ str(p.thumbs['newsbox']['width']) +"'     height='"+ str(p.thumbs['newsbox']['height']) +"'>"
             thumbs.append(aux_img or '')
 
 
