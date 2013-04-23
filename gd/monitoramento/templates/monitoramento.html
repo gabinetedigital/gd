@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block css %}
+<!-- <link rel="stylesheet" href="{{ url_for('.static', filename='css/govresponde.css') }}"> -->
+{% endblock %}
+
+{% block javascript %}
+{# This blockception happens to make it possible to custom javascript
+# in the child templates, like govresponde_enviar #}
+{% block js %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+Site de monitoramento
+{% endblock %}

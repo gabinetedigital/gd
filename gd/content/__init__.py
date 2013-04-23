@@ -46,6 +46,7 @@ from gd.buzz.webapp import buzz
 from gd.utils.gravatar import Gravatar
 from gd.utils.gdcache import cache, fromcache, tocache, removecache
 from libthumbor import CryptoURL
+from gd.monitoramento import monitoramento
 
 app = Flask(__name__)
 
@@ -80,6 +81,7 @@ app.register_blueprint(balanco, url_prefix='/balanco')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
+app.register_blueprint(monitoramento, url_prefix='/monitore')
 
 gravatar = Gravatar(app,default='mm')
 
