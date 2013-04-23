@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 
-{% block css %}
-<!-- <link rel="stylesheet" href="{{ url_for('.static', filename='css/govresponde.css') }}"> -->
-{% endblock %}
-
 {% block javascript %}
 {# This blockception happens to make it possible to custom javascript
 # in the child templates, like govresponde_enviar #}
@@ -16,10 +12,11 @@
     <div class="row">
       <div class="span6">
         <div class="painel">
+
           <div class="row">
             <div class="span5">
-              <h4>Acompanhe o andamento das obras do Governo do Estado
-                do Rio Grande do Sul</h4>
+              <h2>Acompanhe o andamento das obras do Governo do Estado
+                do Rio Grande do Sul</h2>
             </div>
             <div class="span1">
               <div class="icons">
@@ -28,6 +25,24 @@
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="span6">
+              <h3>Últimas atulizações</h3>
+              <div class="last">
+                <ul>
+                  {% for i in range(1,4) %}
+                  <li>
+                    <img src="{{ url_for('.static', filename='update.jpg') }}">
+                    {{ lipsum(1,min=1,max=10) }} <i class="icon-user"></i>
+
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
