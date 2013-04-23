@@ -22,8 +22,9 @@ from flask import Blueprint, request, render_template, redirect, \
     url_for, abort, current_app
 
 # from gd.utils import msg, format_csrf_error
-# from gd.content import wordpress
+from gd.content import wordpress
 from gd.utils.gdcache import cache, fromcache, tocache, removecache
+from gd import conf
 
 monitoramento = Blueprint(
     'monitoramento', __name__,
@@ -34,5 +35,13 @@ locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
 @monitoramento.route('/')
 def index():
+	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+	try:
+		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+	except KeyError:
+		twitter_hash_cabecalho = ""
 
-	return render_template('monitoramento.html')
+	return render_template('monitoramento.html',
+		menu=menus,
+		twitter_hash_cabecalho=twitter_hash_cabecalho,
+	)
