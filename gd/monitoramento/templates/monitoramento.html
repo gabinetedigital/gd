@@ -4,6 +4,10 @@
 {# This blockception happens to make it possible to custom javascript
 # in the child templates, like govresponde_enviar #}
 {% block js %}{% endblock %}
+<script>
+$('.carousel').carousel()
+</script>
+
 {% endblock %}
 
 {% block content %}
@@ -15,8 +19,8 @@
 
           <div class="row">
             <div class="span5">
-              <h2>Acompanhe o andamento das obras do Governo do Estado
-                do Rio Grande do Sul</h2>
+              <h3>Acompanhe o andamento das obras do Governo do Estado
+                do Rio Grande do Sul</h3>
             </div>
             <div class="span1">
               <div class="icons">
@@ -24,18 +28,44 @@
                 <i class="icon-search"></i>
               </div>
             </div>
+            <div class="span6">
+              <div class="starter">
+                <button class="btn btn-success">Começe aqui</button>
+                <button class="btn btn-info">Como funciona</button>
+              </div>
+            </div>
           </div>
 
-          <div class="row">
+          <div class="row update">
             <div class="span6">
-              <h3>Últimas atulizações</h3>
+              <div id="myCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                  {% for i in range(1,4) %}
+                  <div class="item">
+                    <img src="{{ url_for('.static', filename=i|string+'.jpg' ) }}">
+                    <div class="carousel-caption">
+                      <h4>Obras da OSPA avançam</h4>
+                      {{ lipsum(1,min=1,max=10) }}
+                    </div>
+                  </div>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="row agenda">
+            <div class="span6">
+              <h3>Programe-se</h3>
               <div class="last">
                 <ul>
                   {% for i in range(1,4) %}
-                  <li>
-                    <img src="{{ url_for('.static', filename='update.jpg') }}">
-                    {{ lipsum(1,min=1,max=10) }} <i class="icon-user"></i>
-
+                  <li class="{{ loop.cycle('dark', 'light') }}">
+                    <div class="data">
+                      23<br>ABR
+                    </div>
+                    {{ lipsum(1,min=1,max=10) }}
+                    <i class="icon-user"></i>
                   </li>
                   {% endfor %}
                 </ul>

@@ -1,0 +1,75 @@
+#monitoramento {
+    border-top: 2px solid #DDD;
+    background: url(../img/monitoramento/mapa.png) no-repeat;
+    padding-top: 50px;
+}
+
+#monitoramento .painel {
+    background: white;
+    @include box-shadow(rgba(0,0,0,0.40) 0px 0px 3px 0px);
+}
+
+#monitoramento .painel h2, #monitoramento .painel h3 {
+    font-weight: 300;
+    padding-left: 10px;
+}
+
+#monitoramento .painel ul, #monitoramento .painel ol {
+    margin: 0;
+    padding: 0;
+}
+
+#monitoramento .starter {
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+#monitoramento .update h3 {
+    color: $blue;
+}
+
+#monitoramento .agenda h3 {
+    color: $red;
+}
+
+#monitoramento .icons {
+    padding: 10px;
+    text-align: right;
+}
+
+
+#monitoramento .last {
+    overflow: auto;
+    margin-bottom: 20px;
+}
+
+#monitoramento li.dark {
+    background: #eee;
+}
+
+#monitoramento li.light {
+    background: #fff;
+}
+
+#monitoramento li {
+    list-style: none;
+    overflow: auto;
+    padding: 10px;
+}
+
+#monitoramento li img, #monitoramento li .data {
+    float: left;
+    margin-right: 20px;
+    height: 70px;
+    width: 70px;
+    background: $red;
+    color: white;
+    font-size: 20pt;
+    text-align: center;
+    font-weight: 300;
+    line-height: 25pt;
+}
+
+#monitoramento .last li > i {
+    float: right;
+}
