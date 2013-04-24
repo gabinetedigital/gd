@@ -2,6 +2,11 @@
     border-top: 2px solid #DDD;
     background: url(../img/monitoramento/mapa.png) no-repeat;
     padding-top: 50px;
+    max-height: 800px;
+}
+
+#monitoramento #lista-obras {
+    display: none;
 }
 
 #monitoramento .painel {
@@ -43,6 +48,18 @@
     margin-bottom: 20px;
 }
 
+#monitoramento .last h4 {
+    margin: 0;
+    color: $blue;
+    font-weight: 400;
+}
+
+#monitoramento p.local {
+    font-size: 9pt;
+    color: #999;
+    font-weight: bold;
+}
+
 #monitoramento li.dark {
     background: #eee;
 }
@@ -70,6 +87,6 @@
     line-height: 25pt;
 }
 
-#monitoramento .last li > i {
+#monitoramento .last li > i, #monitoramento .last button  {
     float: right;
 }

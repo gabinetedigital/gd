@@ -1,13 +1,7 @@
 {% extends "base.html" %}
 
 {% block javascript %}
-{# This blockception happens to make it possible to custom javascript
-# in the child templates, like govresponde_enviar #}
-{% block js %}{% endblock %}
-<script>
-$('.carousel').carousel()
-</script>
-
+<script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -75,6 +69,31 @@ $('.carousel').carousel()
 
         </div>
       </div>
+
+      <div class="span6" id="lista-obras">
+        <div class="painel">
+          <div class="row">
+              <div class="span6">
+                <h3>Obras</h3>
+              </div>
+          </div>
+
+          <div class="last">
+            <ul>
+              {% for i in range(1,5) %}
+              <li class="{{ loop.cycle('dark', 'light') }}">
+                <h4>Sala sinfônica da OSPA</h4>
+                <p class="local">Porto Alegre</p>
+                {{ lipsum(1,min=10,max=30) }}
+                <button class="btn btn-small btn-success">fiscalize
+                </button>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
