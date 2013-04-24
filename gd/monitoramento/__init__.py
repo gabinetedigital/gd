@@ -45,3 +45,16 @@ def index():
 		menu=menus,
 		twitter_hash_cabecalho=twitter_hash_cabecalho,
 	)
+
+@monitoramento.route('/obra/<slug>/')
+def obra(slug):
+	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+	try:
+		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+	except KeyError:
+		twitter_hash_cabecalho = ""
+
+	return render_template('obra.html',
+		menu=menus,
+		twitter_hash_cabecalho=twitter_hash_cabecalho
+	)
