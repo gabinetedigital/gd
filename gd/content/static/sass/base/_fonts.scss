@@ -34,6 +34,14 @@
 
 @include font-face('Open Sans',
   font-files(
+      '/static/fonts/OpenSans-Semibold-webfont.woff', woff,
+      '/static/fonts/OpenSans-Semibold-webfont.ttf', ttf,
+      '/static/fonts/OpenSans-Semibold-webfont.svg', svg),
+      '/static/fonts/OpenSans-Semibold-webfont.eot',
+      600, normal);
+
+@include font-face('Open Sans',
+  font-files(
       '/static/fonts/OpenSans-Bold-webfont.woff', woff,
       '/static/fonts/OpenSans-Bold-webfont.ttf', ttf,
       '/static/fonts/OpenSans-Bold-webfont.svg', svg),
@@ -55,5 +63,3 @@
       '/static/fonts/roadgeek_2005_series_e-webfont.svg', svg),
       '/static/fonts/roadgeek_2005_series_e-webfont.eot',
       normal, normal);
-
-
