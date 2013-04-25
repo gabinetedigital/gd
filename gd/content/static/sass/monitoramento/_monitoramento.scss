@@ -1,8 +1,15 @@
 #monitoramento {
     border-top: 2px solid #DDD;
-    background: url(../img/monitoramento/mapa.png) no-repeat;
     padding-top: 50px;
     max-height: 800px;
+}
+
+#monitoramento.capa {
+    background: url(../img/monitoramento/mapa.png) no-repeat;
+}
+
+#monitoramento.obra {
+    background: url(../img/minsqr.png);
 }
 
 #monitoramento #lista-obras {
@@ -14,9 +21,11 @@
     @include box-shadow(rgba(0,0,0,0.40) 0px 0px 3px 0px);
 }
 
-#monitoramento .painel h2, #monitoramento .painel h3 {
-    font-weight: 300;
-    padding-left: 10px;
+#monitoramento .painel h2,
+#monitoramento .painel h3 {
+  font-weight: 300;
+  padding-left: 10px;
+  margin: 0;
 }
 
 #monitoramento .painel ul, #monitoramento .painel ol {
@@ -70,6 +79,9 @@
 
 #monitoramento li {
     list-style: none;
+}
+
+#monitoramento .last li {
     overflow: auto;
     padding: 10px;
 }
@@ -89,4 +101,70 @@
 
 #monitoramento .last li > i, #monitoramento .last button  {
     float: right;
+}
+
+
+/* Páginad da Obra */
+
+#monitoramento.obra .header {
+    overflow: auto;
+}
+
+#monitoramento.obra .header > a {
+    float: left;
+    padding: 10px;
+}
+
+#monitoramento.obra .follows  {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+#monitoramento.obra .follows li {
+    float: right;
+    border-right: 1px solid #ccc;
+    height: 30px;
+    padding: 5px;
+}
+
+#monitoramento.obra .seguidores {
+    font-size: 12pt;
+    line-height: 12pt;
+}
+
+#monitoramento.obra .seguidores small {
+    display: block;
+    clear: both;
+    font-size: 8pt;
+}
+
+#monitoramento.obra p.desc {
+    padding: 0 10px;
+}
+
+#monitoramento.obra img.mapa {
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
+}
+
+#monitoramento.obra .data {
+    text-align: center;
+}
+
+#monitoramento.obra .info {
+    text-align: center;
+}
+
+#monitoramento.obra .info strong {
+    clear: both;
+    display: block;
+}
+
+#monitoramento .valor, #monitoramento .previsao {
+    display: inline-block;
+    text-align: left;
+    margin: 0 40px;
 }

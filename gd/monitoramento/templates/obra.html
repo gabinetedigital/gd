@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="monitoramento" class="obra">
+  <div class="container">
+    <div class="row">
+      <div class="span5">
+        <div class="painel">
+
+          <div class="row">
+            <div class="span5">
+              <div class="header">
+                <a href="#" id="tema" data-toggle="tooltip" title="Tema: Cultura">
+                  <img src="{{ url_for('.static', filename='icon.png' ) }}">
+                </a>
+                <h3>Sala sinfônica OSPA</h3>
+                <p class="local">Porto Alegre</p>
+              </div>
+
+              <ul class="follows">
+                <li>
+                  <button class="btn btn-info">Seguir obra</button>
+                </li>
+                <li>
+                  <div class="seguidores">
+                    10 <small>seguidores</small>
+                  </div>
+                </li>
+
+              </ul>
+
+              <p class="desc">
+                Patrimônio Histórico e Cultural do Rio Grande do Sul, a
+                Orquestra Sinfônica de Porto Alegre carece, desde sua
+                fundação, de uma sede própria para <a href="#">Coninue lendo</a>
+              </p>
+              <img src="{{ url_for('.static', filename='mapa.png' ) }}" class="mapa">
+
+            </div>
+          </div>
+
+          <div class="info">
+            <div class="row">
+
+              <div class="span5">
+                <h5>Empresas responsáveis: Porto belo <small><a href="#">(ver todas)</a></small></h5>
+              </div>
+
+              <div class="span5">
+                <div class="previsao">
+                  <strong>Previsão de conclusão:</strong>
+                  31/10/14
+                </div>
+                <div class="valor">
+                  <strong>Valor Global:</strong>
+                  R$ 46 milhões
+                </div>
+              </div>
+
+              <div class="span5">
+                <strong>Andamento</strong>
+                <progress value="20" max="100"></progress> 20 %
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="span7">
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
