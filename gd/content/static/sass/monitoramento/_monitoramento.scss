@@ -1,7 +1,6 @@
 #monitoramento {
     border-top: 2px solid #DDD;
     padding-top: 50px;
-    max-height: 800px;
 }
 
 #monitoramento.capa {
@@ -151,7 +150,7 @@
 }
 
 #monitoramento.obra .data {
-    text-align: center;
+    text-align: right;
 }
 
 #monitoramento.obra .info {
@@ -167,4 +166,21 @@
     display: inline-block;
     text-align: left;
     margin: 0 40px;
+}
+
+#monitoramento.obra .status {
+    background: #FFF;
+    padding: 10px;
+    margin-bottom: 20px;
+    @include box-shadow(#aaaaaa 0px 0px 3px 0px inset);
+}
+
+#monitoramento.obra .status p {
+    margin-top: 10px;
+}
+
+#monitoramento.obra .status .data {
+    color: #aaa;
+    font-size: 10pt;
+    font-weight: 600;
 }
