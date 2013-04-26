@@ -118,25 +118,32 @@
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 #monitoramento.obra .follows li {
     float: right;
     border-right: 1px solid #ccc;
-    height: 30px;
+    height: 45px;
     padding: 5px;
 }
 
 #monitoramento.obra .seguidores {
     font-size: 12pt;
     line-height: 12pt;
+    margin-top: 7px;
 }
 
 #monitoramento.obra .seguidores small {
     display: block;
     clear: both;
     font-size: 8pt;
+}
+
+#monitoramento.obra .countdown {
+    font-size: 10pt;
+    line-height: 25pt;
+    padding: 5px;
 }
 
 #monitoramento.obra p.desc {
@@ -168,19 +175,36 @@
     margin: 0 40px;
 }
 
-#monitoramento.obra .status {
+#monitoramento.obra .status, #monitoramento.obra .updates {
     background: #FFF;
-    padding: 10px;
     margin-bottom: 20px;
-    @include box-shadow(#aaaaaa 0px 0px 3px 0px inset);
+    @include box-shadow(#aaaaaa 0px 0px 3px 0px);
 }
 
-#monitoramento.obra .status p {
+#monitoramento.obra .status p, #monitoramento.obra .updates p {
     margin-top: 10px;
+    padding: 0 10px;
+    text-align: left;
 }
 
-#monitoramento.obra .status .data {
+#monitoramento.obra .updates .data {
     color: #aaa;
     font-size: 10pt;
     font-weight: 600;
+}
+
+#monitoramento.obra .updates {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#monitoramento.obra .update {
+    border-bottom: 2px solid #DDD;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+#monitoramento.obra .update > img {
+    float: left;
+    margin-right: 20px;
 }
