@@ -109,6 +109,10 @@
     overflow: auto;
 }
 
+#monitoramento.obra .header h3 {
+    font-weight: 600;
+}
+
 #monitoramento.obra .header > a {
     float: left;
     padding: 10px;
@@ -122,7 +126,7 @@
 }
 
 #monitoramento.obra .follows li {
-    float: right;
+    float: left;
     border-right: 1px solid #ccc;
     height: 45px;
     padding: 5px;
@@ -173,6 +177,15 @@
     display: inline-block;
     text-align: left;
     margin: 0 40px;
+}
+
+#monitoramento.obra .fiscalize {
+    margin-bottom: 20px;
+}
+
+#monitoramento.obra .fiscalize small {
+    display: block;
+    clear: both;
 }
 
 #monitoramento.obra .status, #monitoramento.obra .updates {
