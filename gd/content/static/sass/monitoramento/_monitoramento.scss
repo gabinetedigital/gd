@@ -106,11 +106,15 @@
 /* Páginad da Obra */
 
 #monitoramento.obra .header {
-    overflow: auto;
+    background: #ddd;
+    height: 130px;
 }
 
-#monitoramento.obra .header h3 {
+#monitoramento.obra .header h2 {
+    color: black;
+    font-size: 38pt;
     font-weight: 600;
+    padding: 20px;
 }
 
 #monitoramento.obra .header > a {
