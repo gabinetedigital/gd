@@ -23,14 +23,16 @@
 
               <ul class="follows">
                 <li>
-                  <button class="btn btn-info">Seguir obra</button>
+                  <button class="btn btn-large btn-info">Seguir obra</button>
                 </li>
                 <li>
                   <div class="seguidores">
                     10 <small>seguidores</small>
                   </div>
                 </li>
-
+                <li>
+                  <p class="countdown">Falta 30 dias para próxima atualização</p>
+                </li>
               </ul>
 
               <p class="desc">
@@ -78,7 +80,7 @@
 
       <div class="span7">
         <div class="status">
-          <img src="{{ url_for('.static', filename='01.jpg' ) }}" class="img-rounded">
+          <img src="{{ url_for('.static', filename='01.jpg' ) }}">
           <p>No dia 25 de abril de 2013 ocorre a abertura das propostas
             que definirão a empresa responsável pela edificação
             (superestrutura) da obra. A etapa final será executada com
@@ -88,19 +90,27 @@
             <p class="data"><span> 20/04/2013</span> </p>
         </div>
 
-        <div class="status">
-          <img src="{{ url_for('.static', filename='02.jpg' ) }}" class="img-rounded">
-          <p>As fundações do prédio, em blocos de concreto armado, foram
-          entregues pela empresa Epplan Construtora LTDA.</p>
-          <p class="data"><span> 18/04/2013</span> </p>
+        <div class="updates">
+          {% for i in range(1,5) %}
+          <div class="update">
+            <img src="{{ url_for('.static', filename='gov.png' ) }}">
+            <p>As fundações do prédio, em blocos de concreto armado, foram
+              entregues pela empresa Epplan Construtora LTDA.</p>
+            <p class="data"><span> 18/04/2013</span> </p>
+          </div>
+
+          <div class="update">
+            <iframe width="560" height="315"
+                    src="http://www.youtube.com/embed/KtCxy7UwODU"
+                    frameborder="0" allowfullscreen></iframe>
+            <p>Ismael Soler, engenheiro responsável pela obra, fala
+            sobre a evolução do projeto e os próximos passos para
+            entregar a Sala Sinfônica.</p>
+            <p class="data"><span> 18/04/2013</span> </p>
+          </div>
+          {% endfor %}
         </div>
-        <div class="status">
-          <iframe width="560" height="315"
-                  src="http://www.youtube.com/embed/KtCxy7UwODU"
-                  frameborder="0" allowfullscreen></iframe>
-          <p>As fundações do prédio, em blocos de concreto armado, foram
-          entregues pela empresa Epplan Construtora LTDA.</p>
-        </div>
+
       </div>
     </div>
   </div>
