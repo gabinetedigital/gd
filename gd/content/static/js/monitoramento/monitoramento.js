@@ -20,7 +20,7 @@
 $(document).ready(function () {
 
     $('.carousel').carousel();
-    $('#tema').tooltip();
+    $('.toottip').tooltip();
 
     $('.icon-list').click(function(){
         $('#lista-obras').fadeIn();
