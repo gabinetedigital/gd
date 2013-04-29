@@ -23,8 +23,8 @@
 #monitoramento .painel h2,
 #monitoramento .painel h3 {
   font-weight: 300;
-  padding-left: 10px;
   margin: 0;
+  text-align: left;
 }
 
 #monitoramento .painel ul, #monitoramento .painel ol {
@@ -106,15 +106,16 @@
 /* Páginad da Obra */
 
 #monitoramento.obra .header {
-    background: #ddd;
-    height: 130px;
+    background: url(../img/monitoramento/ospa.png) right no-repeat #000;
+    height: 150px;
 }
 
 #monitoramento.obra .header h2 {
-    color: black;
+    color: white;
     font-size: 38pt;
     font-weight: 600;
     padding: 20px;
+    @include single-text-shadow;
 }
 
 #monitoramento.obra .header > a {
@@ -123,17 +124,20 @@
 }
 
 #monitoramento.obra .follows  {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
     overflow: hidden;
+    color: white;
+    @include background-image(linear-gradient(#383838,#222222));
 }
 
 #monitoramento.obra .follows li {
     float: left;
-    border-right: 1px solid #ccc;
+    border-right: 2px solid #222222;
     height: 45px;
-    padding: 5px;
+    padding: 5px 20px;
+}
+
+#monitoramento.obra .follows li:last-child {
+    border: 0 none;
 }
 
 #monitoramento.obra .seguidores {
@@ -154,8 +158,20 @@
     padding: 5px;
 }
 
+#monitoramento.obra .countdown span {
+    color: $red;
+    font-size: large;
+    font-weight: 600;
+    padding: 0 2px;
+}
+
 #monitoramento.obra p.desc {
-    padding: 0 10px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    border-radius: 9px 9px 9px 9px;
+    color: white;
+    display: inline-block;
+    padding: 10px;
+    width: 570px;
 }
 
 #monitoramento.obra img.mapa {
@@ -170,6 +186,7 @@
 
 #monitoramento.obra .info {
     text-align: center;
+    padding-top: 20px;
 }
 
 #monitoramento.obra .info strong {
@@ -183,6 +200,14 @@
     margin: 0 40px;
 }
 
+#monitoramento.obra .code {
+    margin-top: 20px;
+}
+
+#monitoramento.obra .code img {
+    margin-bottom: 10px;
+}
+
 #monitoramento.obra .fiscalize {
     margin-bottom: 20px;
 }
@@ -190,6 +215,7 @@
 #monitoramento.obra .fiscalize small {
     display: block;
     clear: both;
+    margin-bottom: 20px;
 }
 
 #monitoramento.obra .status, #monitoramento.obra .updates {
@@ -201,6 +227,10 @@
 #monitoramento.obra .status p, #monitoramento.obra .updates p {
     margin-top: 10px;
     padding: 0 10px;
+    text-align: left;
+}
+
+#monitoramento.obra .fiscalize {
     text-align: left;
 }
 
