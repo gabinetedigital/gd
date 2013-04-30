@@ -5,6 +5,7 @@
 
 #monitoramento.capa {
     background: url(../img/monitoramento/mapa.png) no-repeat;
+    background-size: cover;
 }
 
 #monitoramento.obra {
@@ -20,10 +21,20 @@
     @include box-shadow(rgba(0,0,0,0.40) 0px 0px 3px 0px);
 }
 
+#monitoramento.capa h1 {
+    background: $black;
+    font-weight: 300;
+    color: $blue;
+    display: inline-block;
+    font-weight: 300;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
 #monitoramento .painel h2,
 #monitoramento .painel h3 {
   font-weight: 300;
-  margin: 0;
+  margin: 10px;
   text-align: left;
 }
 
@@ -32,9 +43,13 @@
     padding: 0;
 }
 
+#monitoramento .lipsum {
+  padding: 20px;
+}
+
 #monitoramento .starter {
     padding-left: 10px;
-    margin-bottom: 20px;
+    text-align: center;
 }
 
 #monitoramento .update h3 {
@@ -47,7 +62,7 @@
 
 #monitoramento .icons {
     padding: 10px;
-    text-align: right;
+
 }
 
 
@@ -166,12 +181,16 @@
 }
 
 #monitoramento.obra p.desc {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
-    border-radius: 9px 9px 9px 9px;
     color: white;
     display: inline-block;
     padding: 10px;
     width: 570px;
+}
+
+#monitoramento.obra .stick p.desc {
+    color: black;
+    text-align: left;
+    width: 300px;
 }
 
 #monitoramento.obra img.mapa {
@@ -189,27 +208,41 @@
     padding-top: 20px;
 }
 
+#monitoramento.obra .info-dados {
+    text-align: left;
+}
+
+#monitoramento.obra .separador {
+  border: 2px solid #ddd;
+  margin: 20px;
+}
+
 #monitoramento.obra .info strong {
     clear: both;
     display: block;
 }
 
-#monitoramento .valor, #monitoramento .previsao {
-    display: inline-block;
+#monitoramento .valor,
+#monitoramento .previsao,
+#monitoramento .andamento {
     text-align: left;
-    margin: 0 40px;
+    margin: 10px 40px;
 }
 
-#monitoramento.obra .code {
-    margin-top: 20px;
+#monitoramento.obra h3 {
+    text-align: center
 }
 
 #monitoramento.obra .code img {
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #monitoramento.obra .fiscalize {
     margin-bottom: 20px;
+}
+
+#monitoramento.obra .fiscalize h2 {
+    margin-top: 10px;
 }
 
 #monitoramento.obra .fiscalize small {
@@ -218,7 +251,7 @@
     margin-bottom: 20px;
 }
 
-#monitoramento.obra .status, #monitoramento.obra .updates {
+#monitoramento.obra .status, #monitoramento.obra .update {
     background: #FFF;
     margin-bottom: 20px;
     @include box-shadow(#aaaaaa 0px 0px 3px 0px);
@@ -234,6 +267,36 @@
     text-align: left;
 }
 
+#monitoramento.obra .comente {
+    padding-left: 20px;
+    margin: 10px 0;
+    display: none;
+}
+
+#monitoramento.obra .comente h3 {
+    margin-bottom: 10px;
+    margin-left: -20px;
+    text-align: left;
+}
+
+
+#monitoramento.obra .info-meta {
+    clear: both;
+    display: block;
+    font-size: 9pt;
+    text-align: right;
+}
+
+#monitoramento.obra .info-meta ul {
+  border-top: 1px solid #ccc;
+}
+
+#monitoramento.obra .info-meta ul li {
+    display: inline-block;
+    padding: 0 10px;
+    border-right: 1px solid #ccc;
+}
+
 #monitoramento.obra .updates .data {
     color: #aaa;
     font-size: 10pt;
@@ -243,12 +306,12 @@
 #monitoramento.obra .updates {
     padding-top: 10px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 #monitoramento.obra .update {
     border-bottom: 2px solid #DDD;
     margin-bottom: 20px;
-    padding: 0 10px;
 }
 
 #monitoramento.obra .update > img {
