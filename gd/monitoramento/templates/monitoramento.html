@@ -8,24 +8,25 @@
 <div id="monitoramento" class="capa">
   <div class="container">
     <div class="row">
+      <div class="span12">
+      <h1>Como vai minha obra ?</h1>
+      </div>
+    </div>
+    <div class="row">
       <div class="span6">
         <div class="painel">
 
           <div class="row">
-            <div class="span5">
-              <h3>Acompanhe o andamento das obras do Governo do Estado
-                do Rio Grande do Sul</h3>
-            </div>
-            <div class="span1">
-              <div class="icons">
-                <i class="icon-list"></i>
-                <i class="icon-search"></i>
-              </div>
-            </div>
             <div class="span6">
+              <p class="lipsum">{{ lipsum(1,html=false,min=34,max=35) }}</p>
               <div class="starter">
-                <button class="btn btn-success">Começe aqui</button>
-                <button class="btn btn-info">Como funciona</button>
+                <button class="btn btn-large btn-success">Começe aqui</button>
+                <button class="btn btn-large btn-info">Como funciona</button>
+
+                <div class="icons">
+                  Encontre sua obra: <input type="text" >
+                  <i class="icon-list"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -34,7 +35,7 @@
             <div class="span6">
               <div id="myCarousel" class="carousel slide">
                 <div class="carousel-inner">
-                  {% for i in range(1,4) %}
+                  {% for i in range(1,3) %}
                   <div class="item">
                     <img src="{{ url_for('.static', filename=i|string+'.jpg' ) }}">
                     <div class="carousel-caption">
@@ -70,6 +71,11 @@
         </div>
       </div>
 
+      <div class="span6">
+        <iframe width="560" height="315"
+                src="http://www.youtube.com/embed/D3U-6e9bZfg"
+                frameborder="0" allowfullscreen></iframe>
+      </div>
       <div class="span6" id="lista-obras">
         <div class="painel">
           <div class="row">

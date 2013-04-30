@@ -26,4 +26,8 @@ $(document).ready(function () {
         $('#lista-obras').fadeIn();
     });
 
+    $('.comentar').click(function(){
+        $('.comente').fadeIn();
+    });
+
 });
