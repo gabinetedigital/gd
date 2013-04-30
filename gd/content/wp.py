@@ -36,7 +36,7 @@ class Namespace(object):
     def __init__(self, name, conf):
         self.name = name
         self.conf = conf
-        self.server = Server(conf['address'])
+        self.server = Server(conf['address'],allow_none=True)
 
     def wrap(self, attr, method):
         """Wrapper that decorates XMLRPC methods that needs the user,
