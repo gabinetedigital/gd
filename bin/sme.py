@@ -23,6 +23,12 @@ import requests
 import json
 from app import conf
 
+class Obra(object):
+
+	def __init__(self, dados):
+		self.__dict__.update(dados)
+
+
 class SMEApi(object):
 
 	def __init__(self):
@@ -36,7 +42,22 @@ class SMEApi(object):
 			'obras' : [{'id':1,'titulo':'Obra da OSPA'}],
 			'total' : 1
 		}
+		if not self.connected:
+			self._connect()
+
 		return json.dumps(dados)
 
 	def put_evidencia(self):
 		pass
+
+
+def process_sme():
+
+	sme = SMEApi()
+	obras = sme.get_obras()
+	for obra in obras:
+		print "Obra"
+		pass
+
+if __name__=='__main__':
+	process_sme()
