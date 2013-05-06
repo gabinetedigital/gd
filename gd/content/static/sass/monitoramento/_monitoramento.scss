@@ -13,7 +13,7 @@
 }
 
 #monitoramento #lista-obras {
-    display: none;
+
 }
 
 #monitoramento .painel {
@@ -43,13 +43,15 @@
     padding: 0;
 }
 
-#monitoramento .lipsum {
+#monitoramento .lead {
   padding: 20px;
+  margin: 0;
 }
 
 #monitoramento .starter {
-    padding-left: 10px;
-    text-align: center;
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 #monitoramento .update h3 {
@@ -60,11 +62,10 @@
     color: $red;
 }
 
-#monitoramento .icons {
+#monitoramento .buscar {
     padding: 10px;
-
+    border-top: 1px solid #ddd;
 }
-
 
 #monitoramento .last {
     overflow: auto;
@@ -113,7 +114,7 @@
     line-height: 25pt;
 }
 
-#monitoramento .last li > i, #monitoramento .last button  {
+#monitoramento .last li > i, #monitoramento .last a  {
     float: right;
 }
 
@@ -317,4 +318,13 @@
 #monitoramento.obra .update > img {
     float: left;
     margin-right: 20px;
+}
+
+#monitoramento .voltar {
+    border: 2px solid #ddd;
+    background: url(../img/monitoramento/obras.png) no-repeat center white;
+    width: 70px;
+    height: 70px;
+    display: none;
+    @include border-radius(5px);
 }
