@@ -30,4 +30,16 @@ $(document).ready(function () {
         $('.comente').fadeIn();
     });
 
+    $('.label-important').click(function(){
+        $('#obras').fadeOut();
+        $('.voltar').fadeIn();
+    });
+
+    $('.voltar').click(function(){
+        $('#obras').fadeIn();
+        $('.voltar').fadeOut();
+    });
+
+
+
 });
