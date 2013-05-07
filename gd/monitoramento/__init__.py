@@ -33,8 +33,29 @@ monitoramento = Blueprint(
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
+def _get_obras():
+	obras = wordpress.monitoramento.getObras()
+	r_obras = []
+	for obra in obras:
+		#Trata o retorno dos custom_fields para facilitar a utilizacao
+		if obra['custom_fields']:
+			custom_fields = {}
+			for cf in obra['custom_fields']:
+				custom_fields[cf['key']] = cf['value']
+			del obra['custom_fields']
+			obra['custom_fields'] = custom_fields
+		r_obras.append(obra)
+
+	return r_obras
+
+
 @monitoramento.route('/')
 def index():
+
+	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras())
+	# print "OBRAS =========================================================================="
+	# print obras
+	# print "OBRAS =========================================================================="
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	try:
 		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
@@ -42,6 +63,7 @@ def index():
 		twitter_hash_cabecalho = ""
 
 	return render_template('monitoramento.html',
+		obras=obras,
 		menu=menus,
 		twitter_hash_cabecalho=twitter_hash_cabecalho,
 	)
