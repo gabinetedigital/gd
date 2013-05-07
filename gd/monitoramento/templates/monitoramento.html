@@ -40,15 +40,15 @@ $('video').mediaelementplayer();
             <h2>Obras</h2>
             <div class="lista-obras">
               <ul>
-                {% for i in range(1,6) %}
+                {% for obra in obras %}
                 <li class="{{ loop.cycle('light', 'dark') }}">
                   <div class="meta-obra">
                   <img src="http://baconmockup.com/160/100">
                   <a href="{{url_for('monitoramento.obra',slug='teatro-da-ospa')}}" class="btn btn-success">fiscalize</a>
                   </div>
-                  <h4>Sala sinfônica da OSPA</h4>
-                  <p class="local">Porto Alegre</p>
-                  {{ lipsum(1,min=10,max=30) }}
+                  <h4>{{obra.title}}</h4>
+                  <p class="local">{{obra.custom_fields.gdobra_municipio}}</p>
+                  <p>{{obra.content|safe}}</p>
                 </li>
                 {% endfor %}
               </ul>
