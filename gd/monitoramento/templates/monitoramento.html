@@ -10,121 +10,71 @@ $('video').mediaelementplayer();
 {% block content %}
 <div id="monitoramento" class="capa">
   <div class="container">
-
     <div class="row">
-      <div class="span12">
-        <h1>Como vai minha obra ?</h1>
+      <div class="span10 offset1 painel">
+        <h1><span>como vai</span> minha <strong>obra</strong> ?</h1>
       </div>
     </div>
-
-    <div class="row">
-      <div class="span6">
-        <div class="painel">
-
+  </div>
+  <div class="slider">
+    <div class="container">
+      <div class="row">
+        <div class="span10 offset1">
           <div class="row">
-            <div class="span6">
-              <p class="lead">
-                Monitore as obras do estado e contribua para uma politica pública mais efetiva!
-              </p>
-
-              <div class="starter">
-                <button class="btn btn-large btn-success">Começe aqui</button>
-                <button class="btn btn-large btn-info">Como funciona</button>
-              </div>
-
-              <video width="100%" height="100%" id="player1" preload="none">
-                <source type="video/youtube" src="http://www.youtube.com/watch?v=D3U-6e9bZfg" />
-              </video>
-
+            <div class="span3">
+              <img src="http://baconmockup.com/260/160">
             </div>
-          </div>
-
-          <div class="row agenda">
-            <div class="span6">
-              <h3>Programe-se</h3>
-              <div class="last">
-                <ul>
-                  {% for i in range(1,4) %}
-                  <li class="{{ loop.cycle('dark', 'light') }}">
-                    <div class="data">
-                      23<br>ABR
-                    </div>
-                    {{ lipsum(1,min=1,max=10) }}
-                    <i class="icon-user"></i>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
+            <div class="span7">
+              <p class="lead">{{ lipsum(1,html=false,min=10,max=30) }}</p>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="span1">
-        <div class="voltar">
-        </div>
-      </div>
-      <div class="span6" id="obras">
-        <div class="painel">
-          <p class="lead">
-            Saiba o que anda acontecendo
-          </p>
-          <div id="myCarousel" class="carousel slide">
-            <div class="carousel-inner">
-              {% for i in range(1,3) %}
-              <div class="item">
-                <img src="{{ url_for('.static', filename=i|string+'.jpg' ) }}">
-                <div class="carousel-caption">
-                  <h4>Obras da OSPA avançam</h4>
-                  {{ lipsum(1,min=1,max=10) }}
-                </div>
-              </div>
-              {% endfor %}
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="span10 offset1 painel">
+        <div class="row">
+          <div class="span6">
+            <h2>Obras</h2>
+            <div class="lista-obras">
+              <ul>
+                {% for i in range(1,6) %}
+                <li class="{{ loop.cycle('light', 'dark') }}">
+                  <div class="meta-obra">
+                  <img src="http://baconmockup.com/160/100">
+                  <a href="{{url_for('monitoramento.obra',slug='teatro-da-ospa')}}" class="btn btn-success">fiscalize</a>
+                  </div>
+                  <h4>Sala sinfônica da OSPA</h4>
+                  <p class="local">Porto Alegre</p>
+                  {{ lipsum(1,min=10,max=30) }}
+                </li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
-          <div>
-            <div class="buscar">
-              <p>Encontre sua obra</p>
-              <div class="input-append">
-                <input class="span2" id="appendedInput" type="text">
-                <span class="add-on"><i class="icon icon-search"></i></span>
-              </div>
-              <div class="filtos">
-                <span class="label label-success">Tema</span>
-                <span class="label label-warning">Cidade</span>
-                <span class="label label-important">Buscar no mapa</span>
-              </div>
+          <div class="span4">
+            <h2>Como funciona?</h2>
+            <div class="instrucoes">
+              <ul>
+                {% for i in range(1,6) %}
+                <li>
+                  <span>{{i}}</span>
+                  {{ lipsum(1,min=10,max=30) }}
+                </li>
+                {% endfor %}
+              </ul>
             </div>
 
 
-            <div class="row">
-              <div class="span6">
-                <ul class="nav nav-tabs">
-                  <li><a href="#lista" data-toggle="tab">Lista de Obras</a></li>
-                  <li><a href="#favoritos" data-toggle="tab">Minhas Obras</a></li>
-                </ul>
-              </div>
-              <div class="span6">
-                <div class="tab-content last">
-                  <div class="tab-pane active" id="lista">
-                    <ul>
-                      {% for i in range(1,5) %}
-                      <li class="{{ loop.cycle('light', 'dark') }}">
-                        <h4>Sala sinfônica da OSPA</h4>
-                        <p class="local">Porto Alegre</p>
-                        {{ lipsum(1,min=10,max=30) }}
-                        <a href="{{url_for('monitoramento.obra',slug='teatro-da-ospa')}}" class="btn btn-small btn-success">fiscalize</a>
-                      </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  <div class="tab-pane" id="favoritos">
-                    <p class="lead">
-                      Você ainda não escolheu sua(s) obra(s)!
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div class="numeros">
+              <ul>
+                <li>100<span>interações</span></li>
+                <li>100<span>interações</span></li>
+                <li>100<span>interações</span></li>
+              </ul>
+
             </div>
 
           </div>
@@ -132,4 +82,5 @@ $('video').mediaelementplayer();
       </div>
     </div>
   </div>
-  {% endblock %}
+</div>
+{% endblock %}

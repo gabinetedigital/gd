@@ -1,34 +1,49 @@
 #monitoramento {
     border-top: 2px solid #DDD;
-    padding-top: 50px;
 }
 
 #monitoramento.capa {
-    background: url(../img/monitoramento/mapa.png) no-repeat;
-    background-size: cover;
+    background: url(../img/monitoramento/mapa.png);
 }
 
 #monitoramento.obra {
     background: url(../img/minsqr.png);
 }
 
-#monitoramento #lista-obras {
-
-}
-
 #monitoramento .painel {
     background: white;
-    @include box-shadow(rgba(0,0,0,0.40) 0px 0px 3px 0px);
+    @include box-shadow(rgba(0,0,0,0.40) 0px 5px 7px 0px);
 }
 
 #monitoramento.capa h1 {
-    background: $black;
     font-weight: 300;
-    color: $blue;
     display: inline-block;
     font-weight: 300;
     margin-bottom: 20px;
     padding: 20px;
+    text-align: center;
+}
+
+#monitoramento.capa h1 > span {
+    font-size: 41pt;
+    margin-bottom: 10px;
+}
+
+#monitoramento.capa h1 > strong {
+    color: $red;
+    font-size: 35pt;
+    font-weight: 500;
+}
+
+#monitoramento.capa .slider {
+    background-color: $lblue;
+    display: block;
+    width: 100%;
+    height: 160px;
+    border-top: 1px solid $blue;
+    border-bottom: 1px solid $blue;
+    color: #fff;
+    float: left;
 }
 
 #monitoramento .painel h2,
@@ -36,52 +51,12 @@
   font-weight: 300;
   margin: 10px;
   text-align: left;
+  color: $red;
 }
 
 #monitoramento .painel ul, #monitoramento .painel ol {
     margin: 0;
     padding: 0;
-}
-
-#monitoramento .lead {
-  padding: 20px;
-  margin: 0;
-}
-
-#monitoramento .starter {
-    text-align: left;
-    margin-left: 20px;
-    margin-bottom: 10px;
-}
-
-#monitoramento .update h3 {
-    color: $blue;
-}
-
-#monitoramento .agenda h3 {
-    color: $red;
-}
-
-#monitoramento .buscar {
-    padding: 10px;
-    border-top: 1px solid #ddd;
-}
-
-#monitoramento .last {
-    overflow: auto;
-    margin-bottom: 20px;
-}
-
-#monitoramento .last h4 {
-    margin: 0;
-    color: $blue;
-    font-weight: 400;
-}
-
-#monitoramento p.local {
-    font-size: 9pt;
-    color: #999;
-    font-weight: bold;
 }
 
 #monitoramento li.dark {
@@ -96,28 +71,83 @@
     list-style: none;
 }
 
-#monitoramento .last li {
+#monitoramento .lista-obras li {
     overflow: auto;
     padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-#monitoramento li img, #monitoramento li .data {
+#monitoramento .lista-obras li > h4  {
+    margin: 0;
+}
+
+#monitoramento .lista-obras .meta-obra {
     float: left;
-    margin-right: 20px;
-    height: 70px;
-    width: 70px;
-    background: $red;
-    color: white;
-    font-size: 20pt;
     text-align: center;
-    font-weight: 300;
-    line-height: 25pt;
+    margin-right: 20px;
 }
 
-#monitoramento .last li > i, #monitoramento .last a  {
-    float: right;
+#monitoramento .lista-obras .meta-obra img {
+    display: block;
+    clear: both;
 }
 
+#monitoramento .lista-obras .meta-obra a {
+    margin-top: 10px;
+    width: 134px;
+}
+
+#monitoramento .lista-obras p {
+    display: table;
+}
+
+
+
+#monitoramento .instrucoes li {
+    border-bottom: 1px dashed #CCCCCC;
+    margin-top: 20px;
+    overflow: auto;
+    padding-bottom: 20px;
+ }
+
+#monitoramento .instrucoes li:last-child {
+    border: none;
+}
+
+#monitoramento .instrucoes span {
+    color: #CCCCCC;
+    display: block;
+    float: left;
+    font-size: 30pt;
+    padding-right: 20px;
+    padding-top: 9px;
+}
+
+#monitoramento .instrucoes p {
+    display: inline-block;
+    margin: 0 0 10px;
+    padding-left: 40px;
+    padding-right: 20px;
+}
+
+#monitoramento .numeros {
+    border-top: 2px solid $yellow;
+    color: $yellow;
+    text-align: center;
+    font-size: 30pt;
+    padding-top: 20px;
+}
+
+#monitoramento .numeros li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#monitoramento .numeros span {
+    display: block;
+    font-size: 10pt;
+    padding-top: 10px;
+}
 
 /* Páginad da Obra */
 
