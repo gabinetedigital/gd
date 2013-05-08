@@ -44,7 +44,7 @@ $('video').mediaelementplayer();
                 <li class="{{ loop.cycle('light', 'dark') }}">
                   <div class="meta-obra">
                   <img src="{{obra.thumbs.thumb.url}}">
-                  <a href="{{url_for('monitoramento.obra',slug='teatro-da-ospa')}}" class="btn btn-success">fiscalize</a>
+                  <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-success">fiscalize</a>
                   </div>
                   <h4>{{obra.title}}</h4>
                   <p class="local">{{obra.custom_fields.gdobra_municipio}}</p>
