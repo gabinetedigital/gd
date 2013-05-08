@@ -23,7 +23,7 @@ from flask import Blueprint, request, render_template, redirect, \
 
 # from gd.utils import msg, format_csrf_error
 from gd.content import wordpress
-from gd.utils.gdcache import cache, fromcache, tocache, removecache
+from gd.utils.gdcache import fromcache, tocache #, cache, removecache
 from gd import conf
 
 monitoramento = Blueprint(
@@ -33,8 +33,16 @@ monitoramento = Blueprint(
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
-def _get_obras():
-	obras = wordpress.monitoramento.getObras()
+def _get_obras(slug=None):
+	if not slug:
+		obras = wordpress.monitoramento.getObras(thumbsizes=['thumbnail', 'medium', 'large'])
+	else:
+		obras = [wordpress.monitoramento.getObra(slug, thumbsizes=['thumbnail', 'medium', 'large'])]
+
+	print "="*40
+	print obras
+	print "="*40
+
 	r_obras = []
 	for obra in obras:
 		#Trata o retorno dos custom_fields para facilitar a utilizacao
@@ -70,6 +78,10 @@ def index():
 
 @monitoramento.route('/obra/<slug>/')
 def obra(slug):
+	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug))
+	if not obra:
+		return abort(404)
+
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	try:
 		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
@@ -78,5 +90,6 @@ def obra(slug):
 
 	return render_template('obra.html',
 		menu=menus,
+		obra=obra[0],
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
