@@ -35,9 +35,9 @@ locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
 def _get_obras(slug=None):
 	if not slug:
-		obras = wordpress.monitoramento.getObras(thumbsizes=['thumbnail', 'medium', 'large'])
+		obras = wordpress.monitoramento.getObras()
 	else:
-		obras = [wordpress.monitoramento.getObra(slug, thumbsizes=['thumbnail', 'medium', 'large'])]
+		obras = [wordpress.monitoramento.getObra(slug)]
 
 	print "="*40
 	print obras

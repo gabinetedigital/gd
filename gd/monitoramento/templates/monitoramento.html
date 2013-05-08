@@ -43,7 +43,7 @@ $('video').mediaelementplayer();
                 {% for obra in obras %}
                 <li class="{{ loop.cycle('light', 'dark') }}">
                   <div class="meta-obra">
-                  <img src="http://baconmockup.com/160/100">
+                  <img src="{{obra.thumbs.thumb.url}}">
                   <a href="{{url_for('monitoramento.obra',slug='teatro-da-ospa')}}" class="btn btn-success">fiscalize</a>
                   </div>
                   <h4>{{obra.title}}</h4>
