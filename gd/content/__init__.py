@@ -211,6 +211,18 @@ def formatarDataeHora(s,formato = '%d/%m/%Y %H:%Mh' ):
     z = z.strftime(formato).decode('utf8')
     return z
 
+def formatarDataObra(s,formato = '%d/%m/%Y' ):
+    z = str(s)
+    try:
+        z = datetime.datetime.strptime(z, "%Y-%m-%d")
+        z = z.strftime(formato).decode('utf8')
+    except ValueError:
+        app.logger.error("Formato de data não suportado %s" % z)
+        return ""
+
+    return z
+
+
 def formatarDataeHoraPostType(s,formato = '%b' ):
     z = str(s)
     try:
@@ -222,6 +234,7 @@ def formatarDataeHoraPostType(s,formato = '%b' ):
 
     return z
 
+app.jinja_env.filters['formatarDataObra'] = formatarDataObra
 app.jinja_env.filters['formatarDataeHora'] = formatarDataeHora
 app.jinja_env.filters['formatarDataeHoraPostType'] = formatarDataeHoraPostType
 

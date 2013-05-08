@@ -47,17 +47,24 @@
             <h5>Empresas responsáveis: Porto belo <small><a href="#">(ver todas)</a></small></h5>
             <div class="info-dados">
               <ul>
+                <li class="tema">
+                  <strong>Tema:</strong>
+                  {%for t in obra.tema%}
+                    {{obra.tema[t].name}}
+                    {%if not loop.last%},{%endif%}
+                  {%endfor%}
+                </li>
                 <li class="previsao">
                   <strong>Previsão de conclusão:</strong>
-                  31/10/14
+                  {{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}
                 </li>
                 <li class="valor">
                   <strong>Valor Global:</strong>
-                  R$ 46 milhões
+                  R$ {{obra.custom_fields.gdobra_valor_global}}
                 </li>
                 <li class="andamento">
                   <strong>Andamento</strong>
-                  <progress value="20" max="100"></progress> 20 %
+                  <progress value="{{obra.custom_fields.gdobra_porc_concluido}}" max="100"></progress> {{obra.custom_fields.gdobra_porc_concluido}} %
                 </li>
               </ul>
             </div>

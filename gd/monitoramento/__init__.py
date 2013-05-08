@@ -78,9 +78,14 @@ def index():
 
 @monitoramento.route('/obra/<slug>/')
 def obra(slug):
-	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug))
+	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
 	if not obra:
 		return abort(404)
+
+	timeline = wordpress.monitoramento.getObraTimeline(obra['id'])
+	print "="*50
+	print timeline
+	print "="*50
 
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	try:
@@ -90,6 +95,7 @@ def obra(slug):
 
 	return render_template('obra.html',
 		menu=menus,
-		obra=obra[0],
+		obra=obra,
+		timeline=timeline,
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
