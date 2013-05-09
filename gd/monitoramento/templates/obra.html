@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{%macro temas()%}
+  {#Macro para listar os temas, pois podem ser marcados mais de um tema#}
+  {%for t in obra.tema%}
+    {{obra.tema[t].name}}
+    {%if not loop.last%},{%endif%}
+  {%endfor%}
+{%endmacro%}
+
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -13,7 +21,7 @@
       <div class="row">
         <div class="span12">
           <div class="header">
-            <a href="#" class="toottip" data-toggle="tooltip" title="Tema: Cultura">
+            <a href="#" class="toottip" data-toggle="tooltip" title="Tema: {{temas()}}">
               <img src="{{ url_for('.static', filename='icon.png' ) }}">
             </a>
             <h2>{{obra.title}}</h2>
@@ -49,10 +57,7 @@
               <ul>
                 <li class="tema">
                   <strong>Tema:</strong>
-                  {%for t in obra.tema%}
-                    {{obra.tema[t].name}}
-                    {%if not loop.last%},{%endif%}
-                  {%endfor%}
+                  {{temas()}}
                 </li>
                 <li class="previsao">
                   <strong>Previsão de conclusão:</strong>
@@ -130,7 +135,7 @@
           <div class="span1">
           </div>
 
-          <div class="status">
+            <div class="status">
               <img src="{{ url_for('.static', filename='01.png' ) }}">
               <p>No dia 25 de abril de 2013 ocorre a abertura das propostas
                 que definirão a empresa responsável pela edificação
@@ -155,61 +160,41 @@
 
             <div class="updates">
 
-              <div class="update">
-                <img src="{{ url_for('.static', filename='gov.png' ) }}">
-                <p>As fundações do prédio, em blocos de concreto armado, foram
-                  entregues pela empresa Epplan Construtora LTDA.</p>
-                <div class="info-meta">
-                  <ul>
-                    <li>
-                      comentários (3)
-                    </li>
-                    <li>
-                      20/04/2013
-                    </li>
-                    <li>
-                      compartilhar
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            {%for update in timeline%}
 
               <div class="update">
-                <iframe width="560" height="315"
-                src="http://www.youtube.com/embed/D3U-6e9bZfg"
-                frameborder="0" allowfullscreen></iframe>
-                <p>Ismael Soler, engenheiro responsável pela obra, fala
-                  sobre a evolução do projeto e os próximos passos para
-                  entregar a Sala Sinfônica.</p>
-                <div class="info-meta">
-                  <ul>
-                    <li>
-                      comentários (3)
-                    </li>
-                    <li>
-                      20/04/2013
-                    </li>
-                    <li>
-                      compartilhar
-                    </li>
-                  </ul>
-                </div>
-
-              </div>
-
-              <div class="update">
+                {#update#}
                 <img src="{{ url_for('.static', filename='user.jpeg' ) }}">
+                <h4>{{update.title}}</h4>
 
-                <h4>Andamento das obras da ospa</h4>
-                <img src="{{ url_for('.static', filename='contribuicao.jpg' ) }}">
+                {%if update.format == 'aside'%}
+                  {{update.content|safe}}
+                {%endif%}
+
+                {%if update.format == 'link'%}
+                  <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
+                {%endif%}
+
+                {%if update.format == 'video'%}
+                  <video width="640" height="360" id="player{{update.id}}" preload="none">
+                      <source type="video/youtube" src="{{update.content|striptags}}" />
+                  </video>
+                  <script type="text/javascript">
+                    $('#player{{update.id}}').mediaelementplayer({});
+                  </script>
+                {%endif%}
+
+                {%if update.format == 'image'%}
+                  <img src="{{ update.thumbs.normal.url }}">
+                {%endif%}
 
                 <div class="info-meta">
                   <ul>
                     <li>
-                      comentários (3)
+                      comentários ({{update.comments.count}})
                     </li>
                     <li>
-                      20/04/2013
+                      {{update.date.date|formatarDataeHora(formato="%d/%m/%Y")}}
                     </li>
                     <li>
                       compartilhar
@@ -218,6 +203,7 @@
                 </div>
               </div>
 
+            {%endfor%}
 
             </div>
 
