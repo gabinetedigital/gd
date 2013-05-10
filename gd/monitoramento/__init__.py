@@ -95,8 +95,6 @@ def index():
 				slide['video'] = video
 
 	print "OBRAS SLIDES ==========================================================================", len(slides)
-	for slide in slides:
-		print '>>>>>>>>>>', slide['title'], slide['slug']
 
 	try:
 		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
