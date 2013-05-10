@@ -20,14 +20,36 @@ $('video').mediaelementplayer();
     <div class="container">
       <div class="row">
         <div class="span10 offset1">
-          <div class="row">
-            <div class="span3">
-              <img src="http://baconmockup.com/260/160">
+
+          <div id="myCarousel" class="carousel slide">
+            <ol class="carousel-indicators">
+              {%for slide in slides%}
+              <li data-target="#myCarousel" data-slide-to="{{loop.index-1}}" {%if loop.index-1 == 0%}class="active"{%endif%}></li>
+              {%endfor%}
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+              {%for slide in slides%}
+              <div class="item {%if loop.index-1 == 0%}active{%endif%}">
+                  {%if slide.thumbs%}
+                    <img src="{{slide.thumbs.slideshow.url}}">
+                  {%else%}
+                    <img src="http://placehold.it/325x180">
+                  {%endif%}
+                  <h2>{{slide.title}}</h2>
+                  <span>{{slide}}</span>
+              </div>
+              {%endfor%}
             </div>
-            <div class="span7">
-              <p class="lead">{{ lipsum(1,html=false,min=10,max=30) }}</p>
-            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
           </div>
+
+          <script type="text/javascript">
+            $('.carousel').carousel()
+          </script>
+
         </div>
       </div>
     </div>

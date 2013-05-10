@@ -63,8 +63,41 @@ def index():
 	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras())
 	# print "OBRAS =========================================================================="
 	# print obras
-	# print "OBRAS =========================================================================="
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+	slides = wordpress.getPagesByParent('capa-obras',thumbsizes=['slideshow','thumbnail']);
+
+	for slide in slides:
+		#Trata o retorno dos custom_fields para facilitar a utilizacao
+		if slide['custom_fields']:
+			custom_fields = {}
+			for cf in slide['custom_fields']:
+				custom_fields[cf['key']] = cf['value']
+			del slide['custom_fields']
+			slide['custom_fields'] = custom_fields
+
+			# pdb.set_trace()
+			print slide
+			if slide['custom_fields'].has_key('gdvideo'):
+				vid = slide['custom_fields']['gdvideo']
+				video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+				sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
+
+				base_url = current_app.config['BASE_URL']
+				base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
+				video_sources = {}
+				for s in sources:
+				    if(s['format'].find(';') > 0):
+				        f = s['format'][0:s['format'].find(';')]
+				    else:
+				        f = s['format']
+				    video_sources[f] = s['url']
+				video['sources'] = video_sources
+				slide['video'] = video
+
+	print "OBRAS SLIDES ==========================================================================", len(slides)
+	for slide in slides:
+		print '>>>>>>>>>>', slide['title'], slide['slug']
+
 	try:
 		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
 	except KeyError:
@@ -72,6 +105,7 @@ def index():
 
 	return render_template('monitoramento.html',
 		obras=obras,
+		slides=slides,
 		menu=menus,
 		twitter_hash_cabecalho=twitter_hash_cabecalho,
 	)
