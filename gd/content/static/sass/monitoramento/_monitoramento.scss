@@ -186,6 +186,14 @@
     border: 0 none;
 }
 
+#monitoramento.obra .follows.follows-fixed {
+    max-width: 1170px;
+    position: fixed;
+    top: 45px;
+    width: 100%;
+    z-index: 9999;
+}
+
 #monitoramento.obra .seguidores {
     font-size: 12pt;
     line-height: 12pt;
@@ -209,6 +217,17 @@
     font-size: large;
     font-weight: 600;
     padding: 0 2px;
+}
+
+#monitoramento.obra .follows h4 {
+    font-weight: 400;
+    float: left;
+    margin-right: 20px;
+}
+
+
+#monitoramento.obra .follows .acesso {
+    margin-top: 9px;
 }
 
 #monitoramento.obra p.desc {
@@ -268,18 +287,54 @@
     margin-top: 10px;
 }
 
-#monitoramento.obra .fiscalize {
+#monitoramento.obra .dashboard {
+    margin: 20px 0;
+    padding-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+
+#monitoramento.obra .dashboard > h3 {
+    font-size: 19pt;
+    text-align: center;
+    color: black;
     margin-bottom: 20px;
 }
 
-#monitoramento.obra .fiscalize h2 {
+#monitoramento.obra .dashboard > table {
+    width: 320px;
+    margin: 0 auto;
+}
+
+#monitoramento.obra .dashboard > table  td {
+    text-align: center;
+    padding-top: 5px;
+}
+
+#monitoramento.obra .dashboard h2 {
     margin-top: 10px;
 }
 
-#monitoramento.obra .fiscalize small {
+#monitoramento.obra .dashboard small {
     display: block;
     clear: both;
     margin-bottom: 20px;
+}
+
+#monitoramento.obra .primeiro {
+    background: none repeat scroll 0 0 black;
+    color: white;
+}
+
+#monitoramento.obra .primeiro > p {
+    padding: 10px 20px 0;
+}
+
+
+#monitoramento.obra .primeiro .info-meta ul {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #DDDDDD;
+    color: black;
 }
 
 #monitoramento.obra .status, #monitoramento.obra .update {
@@ -292,6 +347,10 @@
     margin-top: 10px;
     padding: 0 10px;
     text-align: left;
+}
+
+#monitoramento.obra p.content {
+    padding-top: 10px;
 }
 
 #monitoramento.obra .fiscalize {
@@ -319,12 +378,12 @@
 }
 
 #monitoramento.obra .info-meta ul {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #ddd;
 }
 
 #monitoramento.obra .info-meta ul li {
     display: inline-block;
-    padding: 0 10px;
+    padding: 3px 10px;
     border-right: 1px solid #ccc;
 }
 

@@ -12,6 +12,9 @@
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "21337f2e-2d47-4b1e-b210-c29a8a7e956d", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+<script>
+$('video').mediaelementplayer();
+</script>
 {% endblock %}
 
 {% block content %}
@@ -44,7 +47,21 @@
             <li>
               <p class="countdown">Faltam <span>30</span> dias a para próxima atualização</p>
             </li>
+            <li>
+              <h4>Participe!</h4>
+              <div class="btn-group">
+                <button class="btn btn-large btn-success comentar">Comente</button>
+                <button class="btn btn-large btn-danger">Fotografe</button>
+                <button class="btn btn-large btn-info ">Filme</button>
+              </div>
+            </li>
+            <li>
+              <div class="acesso">
+                <button class="btn btn-small">Acesso informação</button>
+              </div>
+            </li>
           </ul>
+
         </div>
       </div>
 
@@ -97,66 +114,52 @@
         </div>
 
         <div class="span7">
-          <div class="row fiscalize">
-            <div class="span8">
-              <h2>Fiscalize <small>Esse espaço é para você interagir com a obra</small></h2>
-            </div>
-            <div class="span8">
-              <div class="btn-group">
-                <button class="btn btn-large btn-success comentar">Comentar</button>
-                <button class="btn btn-large btn-danger">Enviar foto</button>
-                <button class="btn btn-large btn-info ">Enviar Vídeo</button>
-              </div>
-            </div>
-
-            <div class="span7">
-              <div class="comente">
-                <h3>O que você quer saber sobre essa obra?</h3>
-                <label class="radio">
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                  Qual a capacidade da Sala Sinfônica?
-                </label>
-                <label class="radio">
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                  Haverá estacionamento?
-                </label>
-                <label class="radio">
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                  Serão oferecidos cursos para a comunidade?
-                </label>
-                <h4>Deixe sua pergunta</h4>
-                <textarea class="span7"></textarea>
-                <button class="btn">enviar</button>
-              </div>
-
-            </div>
-
+          <!-- <div class="row fiscalize">
+          <div class="span8">
+          <h2>Fiscalize <small>Esse espaço é para você interagir com a obra</small></h2>
           </div>
-          <div class="span1">
+          <div class="span8">
           </div>
 
-            <div class="status">
-              <img src="{{ url_for('.static', filename='01.png' ) }}">
-              <p>No dia 25 de abril de 2013 ocorre a abertura das propostas
-                que definirão a empresa responsável pela edificação
-                (superestrutura) da obra. A etapa final será executada com
-                recursos do Governo do Estado e do Ministério da Cultura.
-                <a href="http://www.celic.rs.gov.br/uploads/13637896330027951100124CONCORRENCIAConstrucaoTeatroOSPA...SEDAC..pdf">Veja
-                  o edital da licitação</a></p>
-                <div class="info-meta">
-                  <ul>
-                    <li>
-                      comentários (3)
-                    </li>
-                    <li>
-                      20/04/2013
-                    </li>
-                    <li>
-                      compartilhar
-                    </li>
-                  </ul>
-                </div>
-            </div>
+          <div class="span7">
+          <div class="comente">
+          <h3>O que você quer saber sobre essa obra?</h3>
+          <label class="radio">
+          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+          Qual a capacidade da Sala Sinfônica?
+          </label>
+          <label class="radio">
+          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+          Haverá estacionamento?
+          </label>
+          <label class="radio">
+          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+          Serão oferecidos cursos para a comunidade?
+          </label>
+          <h4>Deixe sua pergunta</h4>
+          <textarea class="span7"></textarea>
+          <button class="btn">enviar</button>
+        </div> -->
+
+
+          <div class="dashboard">
+            <h3>Dados gerais</h3>
+            <table>
+              <tr>
+                <td> <img src="{{ url_for('.static',
+                          filename='plateia.png' ) }}"> </td> <td> <img src="{{
+                                                                        url_for('.static', filename='cafe.png' ) }}"> </td> <td>
+                  <img src="{{ url_for('.static', filename='carro.png' )
+                       }}"> </td>
+              </tr>
+              <tr>
+                <td> 1500 lugares</td> <td> Café, bares e restaurante </td> <td> 375 vagas </td>
+              </tr>
+            </table>
+          </div>
+
+
+
 
             <div class="updates">
 
@@ -204,13 +207,12 @@
               </div>
 
             {%endfor%}
-
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-    {% endblock %}
+</div>
+{% endblock %}
