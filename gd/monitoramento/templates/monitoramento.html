@@ -60,12 +60,17 @@ $('video').mediaelementplayer();
         <div class="row">
           <div class="span6">
             <h2>Obras</h2>
+            {%if obras%}
             <div class="lista-obras">
               <ul>
                 {% for obra in obras %}
                 <li class="{{ loop.cycle('light', 'dark') }}">
                   <div class="meta-obra">
+                  {%if obra.thumbs%}
                   <img src="{{obra.thumbs.thumb.url}}">
+                  {%else%}
+                  <img src="http://placehold.it/150x150">
+                  {%endif%}
                   <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-success">fiscalize</a>
                   </div>
                   <h4>{{obra.title}}</h4>
@@ -75,6 +80,7 @@ $('video').mediaelementplayer();
                 {% endfor %}
               </ul>
             </div>
+            {%endif%}
           </div>
           <div class="span4">
             <h2>Como funciona?</h2>
