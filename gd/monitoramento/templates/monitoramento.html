@@ -21,11 +21,6 @@ $('video').mediaelementplayer();
       <div class="row">
         <div class="span10 offset1">
           <div id="myCarousel" class="carousel slide">
-            <!-- <ol class="carousel-indicators">
-            {%for slide in slides%}
-            <li data-target="#myCarousel" data-slide-to="{{loop.index-1}}" {%if loop.index-1 == 0%}class="active"{%endif%}></li>
-            {%endfor%}
-            </ol> -->
             <!-- Carousel items -->
             <div class="carousel-inner">
               {%for slide in slides%}
@@ -33,7 +28,7 @@ $('video').mediaelementplayer();
                 {%if slide.thumbs%}
                 <img src="{{slide.thumbs.slideshow.url}}">
                 {%else%}
-                <img src="http://placehold.it/320x160">
+                <img src="http://placehold.it/320x160&text=Gabinete Digital">
                 {%endif%}
                 <div class="content">
                   <h4>{{slide.title|safe}}</h4>
@@ -42,9 +37,6 @@ $('video').mediaelementplayer();
               </div>
               {%endfor%}
             </div>
-            <!-- Carousel nav -->
-            <!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> -->
           </div>
 
           <script type="text/javascript">

@@ -434,3 +434,9 @@
     display: none;
     @include border-radius(5px);
 }
+
+.form-footer{
+    width:100%;
+    margin-top:15px;
+    text-align: right;
+}
