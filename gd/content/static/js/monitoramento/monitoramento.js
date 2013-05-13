@@ -55,4 +55,14 @@ $(document).ready(function () {
         sticky_participe();
     });
 
+    $(".seguirobra").fancybox();
+    $(".botoesparticipar a").fancybox({
+        openEffect  : 'elastic',
+        closeEffect : 'elastic',
+        beforeShow  : function(){
+            console.log($(this));
+        }
+    });
+
+
 });

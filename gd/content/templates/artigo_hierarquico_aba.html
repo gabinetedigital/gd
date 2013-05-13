@@ -4,11 +4,11 @@
   <!--[if IE]>
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-blog.css') }}">
   <![endif]-->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/jquery.fancybox.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
 <!-- <script src="{{ url_for('.static', filename='js/post.js') }}"></script> -->
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>

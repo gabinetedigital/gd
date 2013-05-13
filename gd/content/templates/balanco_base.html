@@ -8,13 +8,13 @@
 <link rel="stylesheet"
       href="{{ url_for('govpergunta.static', filename='css/results.css') }}">
 <link rel="stylesheet"
-      href="{{ url_for('govpergunta.static', filename='js/fancybox/jquery.fancybox.css') }}">
+      href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/balanco.css') }}">
 {% endblock %}
 
 {% block javascript %}
 <script src="{{ url_for('govpergunta.static', filename='js/govpergunta.js') }}"></script>
-<script src="{{ url_for('govpergunta.static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('static', filename='js/fancybox/jquery.fancybox.js') }}"></script>
 <script src="{{ url_for('govpergunta.static', filename='js/results.js') }}"></script>
 {% endblock %}
 
