@@ -57,6 +57,20 @@ $(document).ready(function () {
 
     $(".seguirobra").fancybox();
     $(".botoesparticipar a").fancybox({
+        afterLoad  : function(current, previous){
+            // console.log(window.location);
+            console.log(current.content);
+            // console.log(current.group[0]);
+            if (!auth.isAuthenticated()){
+                // alert("Você não está logado!");
+                var lnk = "/auth/login?next="+window.location.pathname
+                current.content = "<div class='alert alert-error alert-block'><h3>É necessário efetuar login</h3>Você não está logado! Aguarde que será redirecionado...<br>Mas se não for redirecionado, use <a href='"+lnk+"'>este link</a></div>";
+                window.setTimeout(function(){
+                    window.location.href=lnk;
+                },2000) ;
+                // return false;
+            }
+        },
         beforeShow  : function(){
             $("#part-texto").clearFields();
             $("#part-imagem").clearFields();
