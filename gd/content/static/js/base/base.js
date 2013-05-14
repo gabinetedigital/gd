@@ -188,3 +188,45 @@ jQuery.expr[':'].contains = function(a, i, m) {
   return jQuery(a).text().toUpperCase()
       .indexOf(m[3].toUpperCase()) >= 0;
 };
+
+function _clearFileInput(oldInput){
+    // var oldInput = document.getElementById("fileInput");
+
+    var newInput = document.createElement("input");
+
+    newInput.type = "file";
+    newInput.id = oldInput.id;
+    newInput.name = oldInput.name;
+    newInput.className = oldInput.className;
+    newInput.style.cssText = oldInput.style.cssText;
+    // copy any other relevant attributes
+
+    oldInput.parentNode.replaceChild(newInput, oldInput);
+}
+
+// Method for clear all fields in a form element
+jQuery.fn.clearFields = function(){
+
+    form = $(this);
+
+    if(form.prop('tagName') != "FORM")
+        return;
+
+    form.find(':input').each(function() {
+        switch(this.type) {
+            case 'file':
+                _clearFileInput(this);
+                break;
+            case 'password':
+            case 'select-multiple':
+            case 'select-one':
+            case 'text':
+            case 'textarea':
+                $(this).val('');
+                break;
+            case 'checkbox':
+            case 'radio':
+                this.checked = false;
+        }
+    });
+};
