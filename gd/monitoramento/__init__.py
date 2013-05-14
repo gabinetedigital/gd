@@ -18,10 +18,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-from flask import Blueprint, request, render_template, redirect, \
-    url_for, abort, current_app
+from flask import Blueprint, request, render_template, abort, current_app
 
-# from gd.utils import msg, format_csrf_error
+import sys
+from gd.content.wp import Post
+from gd.utils import dumps
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
 from gd import conf
@@ -131,3 +132,62 @@ def obra(slug):
 		timeline=timeline,
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
+
+@monitoramento.route('/obra/<slug>/contribui', methods=('POST',))
+def contribui(slug):
+
+	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
+	if not obra:
+		return abort(404)
+
+	print request.form
+	r = {'status':'ok'}
+
+	author_id = 4
+	status    = "pending"
+
+	if request.form['tipo'] == 't':
+		#Contribuição em texto
+		print "TEXTO <-------------"
+		new_post_id = wordpress.wp.newPost(
+			post_title    = request.form['titulo'],
+			post_type     = "gdobra",
+			post_parent   = obra['id'],
+			post_author   = author_id, #int
+			post_content  = request.form['conteudo'],
+			post_status   = status,
+			post_format   = "aside",
+		)
+
+	if request.form['tipo'] == 'v':
+		#Contribuição em video
+		print "VIDEO <-------------"
+		new_post_id = wordpress.wp.newPost(
+			post_title    = request.form['titulo'],
+			post_type     = "gdobra",
+			post_parent   = obra['id'],
+			post_author   = author_id, #int
+			post_content  = request.form['link'],
+			post_status   = status,
+			post_format   = "video",
+			# post_thumbnail=0, #int
+		)
+
+	if request.form['tipo'] == 'f':
+		#Contribuição em foto
+		print "FOTO <-------------"
+		new_post_id = wordpress.wp.newPost(
+			post_title    = request.form['titulo'],
+			post_type     = "gdobra",
+			post_parent   = obra['id'],
+			post_author   = author_id, #int
+			post_content  = request.form['conteudo'],
+			post_status   = status,
+			post_format   = "image",
+			# post_thumbnail=0, #int
+		)
+
+	print "--> Novo post", new_post_id, "gravado!"
+
+	return dumps(r)
+

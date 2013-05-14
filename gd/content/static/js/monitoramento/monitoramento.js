@@ -57,11 +57,33 @@ $(document).ready(function () {
 
     $(".seguirobra").fancybox();
     $(".botoesparticipar a").fancybox({
+        beforeShow  : function(){
+            $("#part-texto").clearFields();
+            $("#part-imagem").clearFields();
+            $("#part-video").clearFields();
+        },
         openEffect  : 'elastic',
         closeEffect : 'elastic',
-        beforeShow  : function(){
-            console.log($(this));
-        }
+    });
+
+    var ret = function(data) {
+      var pData = $.parseJSON(data);
+
+      /* It's everything ok, let's get out */
+      if (pData.status === 'ok') {
+          alert('foi legal!');
+      } else {
+          alert('foi excroto!');
+      }
+    };
+    $('#part-texto').ajaxForm({
+        success:ret
+    });
+    $('#part-video').ajaxForm({
+        success:ret
+    });
+    $('#part-imagem').ajaxForm({
+        success:ret
     });
 
 
