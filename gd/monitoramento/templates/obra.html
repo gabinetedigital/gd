@@ -24,57 +24,100 @@ $('video').mediaelementplayer();
 
 {% block content %}
 <div id="monitoramento" class="obra">
-  <div class="container">
-    <div class="painel">
+  <h1>Como vai minha obra</h1>
+  <div class="header">
+    <div class="container">
       <div class="row">
-        <div class="span12">
-          <div class="header">
+        <div class="span8">
+          <div class="head">
             <a href="#" class="toottip" data-toggle="tooltip" title="Tema: {{temas()}}">
               <img src="{{ url_for('.static', filename='icon.png' ) }}">
             </a>
             <h2>{{obra.title}}</h2>
+
             <p class="desc">
               Patrimônio Histórico e Cultural do Rio Grande do Sul, a
               Orquestra Sinfônica de Porto Alegre carece, desde sua
               fundação, de uma sede própria para <a href="#">Continue lendo</a>
             </p>
           </div>
-
-          <ul class="follows">
-            <li>
-              <a class="btn btn-large btn-danger seguirobra" href="#seguirobraform">Seguir obra</a>
-            </li>
-            <li>
-              <div class="seguidores">
-                10 <small>seguidores</small>
-              </div>
-            </li>
-            <li>
-              <p class="countdown">Faltam <span>30</span> dias a para próxima atualização</p>
-            </li>
-            <li>
-              <h4>Participe!</h4>
-              <div class="btn-group botoesparticipar">
-                <a href="#participar-texto" class="btn btn-large btn-success comentar">Comente</a>
-                <a href="#participar-imagem" class="btn btn-large btn-danger">Fotografe</a>
-                <a href="#participar-video" class="btn btn-large btn-info ">Filme</a>
-              </div>
-            </li>
-            <li>
-              <div class="acesso">
-                <button class="btn btn-small">Acesso informação</button>
-              </div>
-            </li>
-          </ul>
-
+        </div>
+        <div class="span4">
+          <div class="mapa">
+            <img src="{{ url_for('.static', filename='mapa.png' ) }}">
+          </div>
         </div>
       </div>
+    </div>
+  </div>
 
+
+  <div class="barra">
+    <div class="container">
       <div class="row">
+        <div class="span12">
+          <ul class="geral">
+            <li class="field">
+              <ul class="dados-obra">
+                <li class="icon">
+                  <span class="circle">
+                    <i class="icon-ticket icon-2x icon-light"></i>
+                  </span>
+                </li>
+                <li class="data"><strong> Tema:</strong></li>
+                <li class="result">{{temas()}}</li>
+              </ul>
+            </li>
+           <li class="field">
+              <ul class="dados-obra">
+                <li class="icon"> <span class="circle"> <i class="icon-calendar icon-2x icon-light"></i> </span> </li>
+                <li class="data"><strong> Previsão de conclusão:</strong></li>
+               <li class="result">{{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}</li>
+              </ul>
+            </li>
+            <li class="field">
+              <ul class="dados-obra">
+                <li class="icon"> <span class="circle"> <i class="icon-money icon-2x icon-light"></i> </span> </li>
+                <li class="data"><strong> Valor Global:</strong></li>
+               <li class="result">R$ {{obra.custom_fields.gdobra_valor_global}}</li>
+              </ul>
+            </li>
+
+            <li class="field">
+              <ul class="dados-obra">
+                <li class="icon"> <span class="circle"> <i class="icon-cogs icon-2x icon-light"></i> </span> </li>
+                <li class="data"><strong> Andamento</strong></li>
+               <li  class="result"><progress value="{{obra.custom_fields.gdobra_porc_concluido}}" max="100"></progress> {{obra.custom_fields.gdobra_porc_concluido}} %</li>
+              </ul>
+            </li>
+            <li class="field">
+              <ul class="dados-obra">
+                <li class="icon">
+                  <span class="circle">
+                    <i class="icon-wrench icon-2x icon-light"></i>
+                  </span>
+                </li>
+                <li class="data"><strong> Empresas responsáveis:</strong></li>
+               <li class="result">Porto belo <small><a href="#">(ver todas)</a></small></stron></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
         <div class="span4">
           <div class="info">
-            <img src="{{ url_for('.static', filename='mapa.png' ) }}">
-            <h5>Empresas responsáveis: Porto belo <small><a href="#">(ver todas)</a></small></h5>
+          <h4>Participe!</h4>
+          <div class="btn-group botoesparticipar">
+            <a href="#participar-texto" class="btn btn-large btn-success comentar">Comente</a>
+            <a href="#participar-imagem" class="btn btn-large btn-danger">Fotografe</a>
+            <a href="#participar-video" class="btn btn-large btn-info ">Filme</a>
+          </div>
+          <p class="countdown">Faltam <span>30</span> dias a para próxima atualização</p>
             <div class="info-dados">
               <ul>
                 <li class="tema">
