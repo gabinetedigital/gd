@@ -46,7 +46,7 @@ $('video').mediaelementplayer();
       </div>
     </div>
 
-    <div class="barra">
+    <div class="barra painel">
       <div class="row">
         <div class="span12">
           <ul class="geral">
@@ -63,14 +63,23 @@ $('video').mediaelementplayer();
             </li>
             <li class="field">
               <ul class="dados-obra">
-                <li class="icon"> <span class="circle"> <i class="icon-calendar icon-2x red"></i> </span> </li>
-                <li class="data"><strong>Previsão de conclusão</strong></li>
+                <li class="icon">
+                  <span class="circle">
+                    <i class="icon-calendar icon-2x red"></i>
+                  </span>
+                </li>
+                <li class="data">
+                  <strong>Previsão de conclusão</strong>
+                </li>
                 <li class="result">{{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}</li>
               </ul>
             </li>
             <li class="field">
               <ul class="dados-obra">
-                <li class="icon"> <span class="circle"> <i class="icon-money icon-2x green"></i> </span> </li>
+                <li class="icon">
+                  <span class="circle"> <i class="icon-money icon-2x green"></i>
+                  </span>
+                </li>
                 <li class="data"><strong>Valor Global</strong></li>
                 <li class="result">R$ {{obra.custom_fields.gdobra_valor_global}}</li>
               </ul>
@@ -78,9 +87,17 @@ $('video').mediaelementplayer();
 
             <li class="field">
               <ul class="dados-obra">
-                <li class="icon"> <span class="circle"> <i class="icon-cogs icon-2x blue"></i> </span> </li>
+                <li class="icon">
+                  <span class="circle"> <i class="icon-cogs icon-2x blue"></i>
+                  </span>
+                </li>
                 <li class="data"><strong>Andamento</strong></li>
-                <li  class="result"><div class="progressbar"><div class="progress"style=" width:{{obra.custom_fields.gdobra_porc_concluido}}%"></div></div> {{obra.custom_fields.gdobra_porc_concluido}} %</li>
+                <li  class="result">
+                  <div class="progressbar">
+                    <div class="progress"style=" width:{{obra.custom_fields.gdobra_porc_concluido}}%">
+                    </div>
+                  </div> {{obra.custom_fields.gdobra_porc_concluido}} %
+                </li>
               </ul>
             </li>
             <li class="field">
@@ -102,58 +119,35 @@ $('video').mediaelementplayer();
       <div class="row">
         <div class="span4">
           <div class="info">
-          <h4>Participe!</h4>
-          <div class="btn-group botoesparticipar">
-            <a href="#participar-texto" class="btn btn-large btn-success comentar">Comente</a>
-            <a href="#participar-imagem" class="btn btn-large btn-danger">Fotografe</a>
-            <a href="#participar-video" class="btn btn-large btn-info ">Filme</a>
-          </div>
-          <p class="countdown">Faltam <span>30</span> dias a para próxima atualização</p>
-            <div class="info-dados">
-              <ul>
-                <li class="tema">
-                  <strong>Tema:</strong>
-                  {{temas()}}
-                </li>
-                <li class="previsao">
-                  <strong>Previsão de conclusão:</strong>
-                  {{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}
-                </li>
-                <li class="valor">
-                  <strong>Valor Global:</strong>
-                  R$ {{obra.custom_fields.gdobra_valor_global}}
-                </li>
-                <li class="andamento">
-                  <strong>Andamento</strong>
-                  <progress value="{{obra.custom_fields.gdobra_porc_concluido}}" max="100"></progress> {{obra.custom_fields.gdobra_porc_concluido}} %
-                </li>
-              </ul>
+            <h4>Participe!</h4>
+            <div class="btn-group botoesparticipar">
+              <a href="#participar-texto" class="btn btn-large btn-success comentar">Comente</a>
+              <a href="#participar-imagem" class="btn btn-large btn-danger">Fotografe</a>
+              <a href="#participar-video" class="btn btn-large btn-info ">Filme</a>
             </div>
+            <p class="countdown">Faltam <span>30</span> dias a para próxima atualização</p>
             <div class="separador"></div>
 
-              <div class="code">
-                <a href="#"><h3>Baixe o código QR e espalhe</h3></a>
-                <a href="#" class="toottip" data-toggle="tooltip" title="Código QR: lipsum">
-                  <img src="{{ url_for('.static', filename='qrcode.jpg' ) }}" class="img-polaroid">
-                </a><br>
-              </div>
-
-              <div class="separador"></div>
-
-              <div class="stick">
-                <h3>Receba informações</h3>
-                <p class="desc">
-                  Escoha a melhor forma de receber as atualizações:</p>
-                <p>Twitter | Facebook | SMS | Email</p>
-                <button class="btn btn-large btn-danger">Seguir obra</button>
-              </div>
-
+            <div class="code">
+              <a href="#"><h3>Baixe o código QR e espalhe</h3></a>
+              <a href="#" class="toottip" data-toggle="tooltip" title="Código QR: lipsum">
+                <img src="{{ url_for('.static', filename='qrcode.jpg' ) }}" class="img-polaroid">
+              </a><br>
             </div>
+
+            <div class="separador"></div>
+
+            <div class="stick">
+              <h3>Receba informações</h3>
+              <p class="desc">
+                Escoha a melhor forma de receber as atualizações:</p>
+              <p>Twitter | Facebook | SMS | Email</p>
+              <button class="btn btn-large btn-danger">Seguir obra</button>
+            </div>
+
           </div>
         </div>
-
         <div class="span8">
-          <div class="info">
             <div class="dashboard">
               <h3>Dados gerais</h3>
               <table>
@@ -192,16 +186,16 @@ $('video').mediaelementplayer();
                 {%endif%}
 
                 {%if update.format == 'video'%}
-                  <video width="640" height="360" id="player{{update.id}}" preload="none">
-                      {% if 'youtube' in update.content %}
-                      <source type="video/youtube" src="{{update.content|striptags}}" />
-                      {%else%}
-                      <source type="video/vimeo" src="{{update.content|striptags}}" />
-                      {%endif%}
-                  </video>
-                  <script type="text/javascript">
-                    $('#player{{update.id}}').mediaelementplayer({});
-                  </script>
+                <video width="640" height="360" id="player{{update.id}}" preload="none">
+                  {% if 'youtube' in update.content %}
+                  <source type="video/youtube" src="{{update.content|striptags}}" />
+                  {%else%}
+                  <source type="video/vimeo" src="{{update.content|striptags}}" />
+                  {%endif%}
+                </video>
+                <script type="text/javascript">
+                $('#player{{update.id}}').mediaelementplayer({});
+                </script>
                 {%endif%}
 
                 {%if update.format == 'image'%}
@@ -225,14 +219,11 @@ $('video').mediaelementplayer();
               </div>
 
               {%endfor%}
-            </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-</div>
 </div>
 
 <div id="seguirobraform" style="display:none; width:450px;">
