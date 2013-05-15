@@ -20,8 +20,7 @@
 import locale
 from flask import Blueprint, request, render_template, abort, current_app
 
-import sys
-from gd.content.wp import Post
+from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd.utils import dumps
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -143,51 +142,56 @@ def contribui(slug):
 	print request.form
 	r = {'status':'ok'}
 
-	author_id = 4
-	status    = "pending"
+	if not is_authenticated():
+		r = {'status':'not_logged'}
 
-	if request.form['tipo'] == 't':
-		#Contribuição em texto
-		print "TEXTO <-------------"
-		new_post_id = wordpress.wp.newPost(
-			post_title    = request.form['titulo'],
-			post_type     = "gdobra",
-			post_parent   = obra['id'],
-			post_author   = author_id, #int
-			post_content  = request.form['conteudo'],
-			post_status   = status,
-			post_format   = "aside",
-		)
+	else:
 
-	if request.form['tipo'] == 'v':
-		#Contribuição em video
-		print "VIDEO <-------------"
-		new_post_id = wordpress.wp.newPost(
-			post_title    = request.form['titulo'],
-			post_type     = "gdobra",
-			post_parent   = obra['id'],
-			post_author   = author_id, #int
-			post_content  = request.form['link'],
-			post_status   = status,
-			post_format   = "video",
-			# post_thumbnail=0, #int
-		)
+		author_id = authenticated_user().id
+		status    = "pending"
 
-	if request.form['tipo'] == 'f':
-		#Contribuição em foto
-		print "FOTO <-------------"
-		new_post_id = wordpress.wp.newPost(
-			post_title    = request.form['titulo'],
-			post_type     = "gdobra",
-			post_parent   = obra['id'],
-			post_author   = author_id, #int
-			post_content  = request.form['conteudo'],
-			post_status   = status,
-			post_format   = "image",
-			# post_thumbnail=0, #int
-		)
+		if request.form['tipo'] == 't':
+			#Contribuição em texto
+			print "TEXTO <-------------"
+			new_post_id = wordpress.wp.newPost(
+				post_title    = request.form['titulo'],
+				post_type     = "gdobra",
+				post_parent   = obra['id'],
+				post_author   = author_id, #int
+				post_content  = request.form['conteudo'],
+				post_status   = status,
+				post_format   = "aside",
+			)
 
-	print "--> Novo post", new_post_id, "gravado!"
+		if request.form['tipo'] == 'v':
+			#Contribuição em video
+			print "VIDEO <-------------"
+			new_post_id = wordpress.wp.newPost(
+				post_title    = request.form['titulo'],
+				post_type     = "gdobra",
+				post_parent   = obra['id'],
+				post_author   = author_id, #int
+				post_content  = request.form['link'],
+				post_status   = status,
+				post_format   = "video",
+				# post_thumbnail=0, #int
+			)
+
+		if request.form['tipo'] == 'f':
+			#Contribuição em foto
+			print "FOTO <-------------"
+			new_post_id = wordpress.wp.newPost(
+				post_title    = request.form['titulo'],
+				post_type     = "gdobra",
+				post_parent   = obra['id'],
+				post_author   = author_id, #int
+				post_content  = request.form['conteudo'],
+				post_status   = status,
+				post_format   = "image",
+				# post_thumbnail=0, #int
+			)
+
+		print "--> Novo post", new_post_id, "gravado!"
 
 	return dumps(r)
 
