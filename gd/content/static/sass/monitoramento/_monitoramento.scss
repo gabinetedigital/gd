@@ -1,5 +1,6 @@
 #monitoramento {
-    border-top: 2px solid #DDD;
+    border-top: 2px solid #ecf0f1;
+    padding-top: 20px;
 }
 
 #monitoramento.capa {
@@ -7,7 +8,7 @@
 }
 
 #monitoramento.obra {
-    background: url(../img/minsqr.png);
+    background: #ecf0f1;
 }
 
 #monitoramento .painel {
@@ -169,15 +170,15 @@
 /* Páginad da Obra */
 
 #monitoramento.obra .header {
-    background: #FFF;
-    border-top: 1px solid #ccc;
+    background: #34495E;
+    @include border-radius(13px 13px 0 0);
     /* @include box-shadow(rgba(0,0,0,0.40) 0px 5px 7px 0px);*/
 }
 
 #monitoramento.obra .head h2 {
-    color: $red;
+    color: white;
     font-size: 38pt;
-    font-weight: 400;
+    font-weight: 200;
     padding: 20px;
 }
 
@@ -186,16 +187,14 @@
     padding: 10px;
 }
 
-#monitoramento.obra .mapa {
-    height: 200px;
-    padding: 10px 0;
+#monitoramento.obra .mapa img {
+    @include border-radius( 0 12px 0 0);
 }
 
 #monitoramento.obra .barra {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background: #fff;
-    padding: 5px 0;
+    background: #2C3E50;
+    color: white;
+    padding: 10px;
 }
 
 #monitoramento.obra .barra .geral,
@@ -204,7 +203,12 @@
     padding: 0;
 }
 
+#monitoramento.obra .barra .geral li.field:first-child {
+   border: none;
+}
+
 #monitoramento.obra .barra .geral li.field {
+    border-left: 3px solid #34495E;
     float: left;
     margin-right: 20px;
 }
@@ -212,38 +216,38 @@
 #monitoramento.obra .barra .geral li.icon {
     float: left;
     margin-right: 10px;
+    margin-left: 5px;
 }
 
 #monitoramento.obra .barra .geral span.circle {
-    background: $blue;
     display: block;
     @include border-radius(100%);
     padding: 10px;
 }
 
-#monitoramento.obra .barra .geral span.circle.green {
-    background: $green;
+#monitoramento.obra .barra .geral .green {
+    color: #2ecc71;
 }
 
-#monitoramento.obra .barra .geral span.circle.azul {
-    background: $blue;
+#monitoramento.obra .barra .geral .blue {
+    color: #3498db;
 }
 
-#monitoramento.obra .barra .geral span.circle.red {
-    background: $red;
+#monitoramento.obra .barra .geral .red {
+    color: #e74c3c;
 }
 
-#monitoramento.obra .barra .geral span.circle.orange {
-    background: $orange;
+#monitoramento.obra .barra .geral .orange {
+    color: #e67e22;
 }
 
-#monitoramento.obra .barra .geral span.circle.yellow {
-    background: $yellow;
+#monitoramento.obra .barra .geral .yellow {
+    color: #f1c40f;
 }
-
 
 #monitoramento.obra .barra .geral .dados-obra li.data {
     display: inline-block;
+    color: #ECF0F1;
 }
 
 #monitoramento.obra .barra .geral .dados-obra li.result {
@@ -251,6 +255,19 @@
     margin-left: 58px;
     text-align: left;
     width: 100%;
+}
+
+#monitoramento.obra .barra .geral .dados-obra div.progressbar {
+    background: white;
+    display: inline-block;
+    height: 10px;
+    width: 125px;
+}
+
+#monitoramento.obra .barra .geral .dados-obra div.progressbar > .progress {
+    background: #3498db;
+    height: 10px;
+    @include border-radius(0);
 }
 
 #monitoramento.obra .follows  {
@@ -314,10 +331,10 @@
     margin-top: 9px;
 }
 
-#monitoramento.obra p.desc {
-    color: black;
+#monitoramento.obra .desc {
+    color: white;
     display: inline-block;
-    padding: 10px;
+    padding: 0 0 0 20px;
 }
 
 #monitoramento.obra .stick p.desc {
@@ -333,8 +350,7 @@
 }
 
 #monitoramento.obra .info {
-    text-align: center;
-    padding-top: 20px;
+    padding: 20px;
 }
 
 #monitoramento.obra .info-dados {
@@ -399,6 +415,13 @@
     clear: both;
     margin-bottom: 20px;
 }
+
+#monitoramento.obra .govresp {
+    margin: 20px 0;
+    padding-bottom: 10px;
+    background: #D1ECA1;
+}
+
 
 #monitoramento.obra .primeiro {
     background: none repeat scroll 0 0 black;
