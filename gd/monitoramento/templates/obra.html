@@ -24,22 +24,18 @@ $('video').mediaelementplayer();
 
 {% block content %}
 <div id="monitoramento" class="obra">
-  <h1>Como vai minha obra</h1>
-  <div class="header">
-    <div class="container">
+  <div class="container">
+    <div class="header painel">
       <div class="row">
         <div class="span8">
           <div class="head">
-            <a href="#" class="toottip" data-toggle="tooltip" title="Tema: {{temas()}}">
-              <img src="{{ url_for('.static', filename='icon.png' ) }}">
-            </a>
+            <!-- <a href="#" class="toottip" data-toggle="tooltip" title="Tema: {{temas()}}"> -->
+            <!-- <img src="{{ url_for('.static', filename='icon.png' ) }}"> -->
+            <!-- </a> -->
             <h2>{{obra.title}}</h2>
-
-            <p class="desc">
-              Patrimônio Histórico e Cultural do Rio Grande do Sul, a
-              Orquestra Sinfônica de Porto Alegre carece, desde sua
-              fundação, de uma sede própria para <a href="#">Continue lendo</a>
-            </p>
+            <div class="desc">
+              {{ obra.content|safe }}
+            </div>
           </div>
         </div>
         <div class="span4">
@@ -49,11 +45,8 @@ $('video').mediaelementplayer();
         </div>
       </div>
     </div>
-  </div>
 
-
-  <div class="barra">
-    <div class="container">
+    <div class="barra">
       <div class="row">
         <div class="span12">
           <ul class="geral">
@@ -61,54 +54,52 @@ $('video').mediaelementplayer();
               <ul class="dados-obra">
                 <li class="icon">
                   <span class="circle">
-                    <i class="icon-ticket icon-2x icon-light"></i>
+                    <i class="icon-ticket icon-2x yellow"></i>
                   </span>
                 </li>
-                <li class="data"><strong> Tema:</strong></li>
+                <li class="data"><strong>Tema</strong></li>
                 <li class="result">{{temas()}}</li>
-              </ul>
-            </li>
-           <li class="field">
-              <ul class="dados-obra">
-                <li class="icon"> <span class="circle"> <i class="icon-calendar icon-2x icon-light"></i> </span> </li>
-                <li class="data"><strong> Previsão de conclusão:</strong></li>
-               <li class="result">{{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}</li>
               </ul>
             </li>
             <li class="field">
               <ul class="dados-obra">
-                <li class="icon"> <span class="circle"> <i class="icon-money icon-2x icon-light"></i> </span> </li>
-                <li class="data"><strong> Valor Global:</strong></li>
-               <li class="result">R$ {{obra.custom_fields.gdobra_valor_global}}</li>
+                <li class="icon"> <span class="circle"> <i class="icon-calendar icon-2x red"></i> </span> </li>
+                <li class="data"><strong>Previsão de conclusão</strong></li>
+                <li class="result">{{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}</li>
+              </ul>
+            </li>
+            <li class="field">
+              <ul class="dados-obra">
+                <li class="icon"> <span class="circle"> <i class="icon-money icon-2x green"></i> </span> </li>
+                <li class="data"><strong>Valor Global</strong></li>
+                <li class="result">R$ {{obra.custom_fields.gdobra_valor_global}}</li>
               </ul>
             </li>
 
             <li class="field">
               <ul class="dados-obra">
-                <li class="icon"> <span class="circle"> <i class="icon-cogs icon-2x icon-light"></i> </span> </li>
-                <li class="data"><strong> Andamento</strong></li>
-               <li  class="result"><progress value="{{obra.custom_fields.gdobra_porc_concluido}}" max="100"></progress> {{obra.custom_fields.gdobra_porc_concluido}} %</li>
+                <li class="icon"> <span class="circle"> <i class="icon-cogs icon-2x blue"></i> </span> </li>
+                <li class="data"><strong>Andamento</strong></li>
+                <li  class="result"><div class="progressbar"><div class="progress"style=" width:{{obra.custom_fields.gdobra_porc_concluido}}%"></div></div> {{obra.custom_fields.gdobra_porc_concluido}} %</li>
               </ul>
             </li>
             <li class="field">
               <ul class="dados-obra">
                 <li class="icon">
                   <span class="circle">
-                    <i class="icon-wrench icon-2x icon-light"></i>
+                    <i class="icon-wrench icon-2x orange"></i>
                   </span>
                 </li>
-                <li class="data"><strong> Empresas responsáveis:</strong></li>
-               <li class="result">Porto belo <small><a href="#">(ver todas)</a></small></stron></li>
+                <li class="data"><strong>Empresas responsáveis</strong></li>
+                <li class="result">Porto belo</li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
+    <div class="painel">
+      <div class="row">
         <div class="span4">
           <div class="info">
           <h4>Participe!</h4>
@@ -138,80 +129,54 @@ $('video').mediaelementplayer();
                 </li>
               </ul>
             </div>
-
             <div class="separador"></div>
 
-            <div class="code">
-              <a href="#"><h3>Baixe o código QR e espalhe</h3></a>
-              <a href="#" class="toottip" data-toggle="tooltip" title="Código QR: lipsum">
-                <img src="{{ url_for('.static', filename='qrcode.jpg' ) }}" class="img-polaroid">
-              </a><br>
+              <div class="code">
+                <a href="#"><h3>Baixe o código QR e espalhe</h3></a>
+                <a href="#" class="toottip" data-toggle="tooltip" title="Código QR: lipsum">
+                  <img src="{{ url_for('.static', filename='qrcode.jpg' ) }}" class="img-polaroid">
+                </a><br>
+              </div>
+
+              <div class="separador"></div>
+
+              <div class="stick">
+                <h3>Receba informações</h3>
+                <p class="desc">
+                  Escoha a melhor forma de receber as atualizações:</p>
+                <p>Twitter | Facebook | SMS | Email</p>
+                <button class="btn btn-large btn-danger">Seguir obra</button>
+              </div>
+
             </div>
-
-            <div class="separador"></div>
-
-            <div class="stick">
-              <h3>Receba informações</h3>
-              <p class="desc">
-                Escoha a melhor forma de receber as atualizações:</p>
-              <p>Twitter | Facebook | SMS | Email</p>
-              <button class="btn btn-large btn-danger">Seguir obra</button>
-            </div>
-
           </div>
         </div>
 
-        <div class="span7">
-          <!-- <div class="row fiscalize">
-          <div class="span8">
-          <h2>Fiscalize <small>Esse espaço é para você interagir com a obra</small></h2>
-          </div>
-          <div class="span8">
-          </div>
+        <div class="span8">
+          <div class="info">
+            <div class="dashboard">
+              <h3>Dados gerais</h3>
+              <table>
+                <tr>
+                  <td> <img src="{{ url_for('.static',
+                            filename='plateia.png' ) }}"> </td> <td> <img src="{{
+                                                                          url_for('.static', filename='cafe.png' ) }}"> </td> <td>
+                    <img src="{{ url_for('.static', filename='carro.png' )
+                         }}"> </td>
+                </tr>
+                <tr>
+                  <td> 1500 lugares</td> <td> Café, bares e restaurante </td> <td> 375 vagas </td>
+                </tr>
+              </table>
+            </div>
 
-          <div class="span7">
-          <div class="comente">
-          <h3>O que você quer saber sobre essa obra?</h3>
-          <label class="radio">
-          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-          Qual a capacidade da Sala Sinfônica?
-          </label>
-          <label class="radio">
-          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-          Haverá estacionamento?
-          </label>
-          <label class="radio">
-          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-          Serão oferecidos cursos para a comunidade?
-          </label>
-          <h4>Deixe sua pergunta</h4>
-          <textarea class="span7"></textarea>
-          <button class="btn">enviar</button>
-        </div> -->
-
-
-          <div class="dashboard">
-            <h3>Dados gerais</h3>
-            <table>
-              <tr>
-                <td> <img src="{{ url_for('.static',
-                          filename='plateia.png' ) }}"> </td> <td> <img src="{{
-                                                                        url_for('.static', filename='cafe.png' ) }}"> </td> <td>
-                  <img src="{{ url_for('.static', filename='carro.png' )
-                       }}"> </td>
-              </tr>
-              <tr>
-                <td> 1500 lugares</td> <td> Café, bares e restaurante </td> <td> 375 vagas </td>
-              </tr>
-            </table>
-          </div>
-
-
+            <div class="govresp">
+            </div>
 
 
             <div class="updates">
 
-            {%for update in timeline%}
+              {%for update in timeline%}
 
               <div class="update">
                 {#update#}
@@ -219,11 +184,11 @@ $('video').mediaelementplayer();
                 <h4>{{update.title}}</h4>
 
                 {%if update.format == 'aside'%}
-                  {{update.content|safe}}
+                {{update.content|safe}}
                 {%endif%}
 
                 {%if update.format == 'link'%}
-                  <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
+                <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
                 {%endif%}
 
                 {%if update.format == 'video'%}
@@ -240,7 +205,7 @@ $('video').mediaelementplayer();
                 {%endif%}
 
                 {%if update.format == 'image'%}
-                  <img src="{{ update.thumbs.normal.url }}">
+                <img src="{{ update.thumbs.normal.url }}">
                 {%endif%}
 
                 <div class="info-meta">
@@ -259,11 +224,12 @@ $('video').mediaelementplayer();
                 </div>
               </div>
 
-            {%endfor%}
+              {%endfor%}
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
