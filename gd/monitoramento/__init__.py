@@ -19,6 +19,10 @@
 
 import locale
 from flask import Blueprint, request, render_template, abort, current_app
+from werkzeug import secure_filename
+
+import os
+import xmlrpclib
 
 from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd.utils import dumps
@@ -32,6 +36,8 @@ monitoramento = Blueprint(
     static_folder='static')
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 def _get_obras(slug=None):
 	if not slug:
@@ -132,6 +138,10 @@ def obra(slug):
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 @monitoramento.route('/obra/<slug>/contribui', methods=('POST',))
 def contribui(slug):
 
@@ -179,19 +189,42 @@ def contribui(slug):
 
 		if request.form['tipo'] == 'f':
 			#Contribuição em foto
-			print "FOTO <-------------"
-			new_post_id = wordpress.wp.newPost(
-				post_title    = request.form['titulo'],
-				post_type     = "gdobra",
-				post_parent   = obra['id'],
-				post_author   = author_id, #int
-				post_content  = request.form['conteudo'],
-				post_status   = status,
-				post_format   = "image",
-				# post_thumbnail=0, #int
-			)
+			#print "FOTO <-------------"
 
-		print "--> Novo post", new_post_id, "gravado!"
+			if request.files:
+				#print "Arquivos", request.files['foto']
+				foto = request.files['foto']
+				if foto and allowed_file(foto.filename):
+					#print "Foto permitida"
+					filename = secure_filename(foto.filename)
+					file_path = os.path.join(current_app.config['UPLOADS_DEFAULT_DEST'], filename)
+					#print "Salvando", file_path
+					foto.save(file_path)
+					file = open(file_path)
+					base64bits = xmlrpclib.Binary(file.read())
+					#print "Enviando foto..."
+					media = wordpress.wp.uploadFile(name=file_path, type=foto.content_type, bits=base64bits, overwrite=False)
+
+					#print "Media uploaded", media['id'], media
+
+					new_post_id = wordpress.wp.newPost(
+						post_title    = request.form['titulo'],
+						post_type     = "gdobra",
+						post_parent   = obra['id'],
+						post_author   = author_id, #int
+						# post_content  = request.form['conteudo'],
+						post_status   = status,
+						post_format   = "image",
+						post_thumbnail= int(media['id']), #int
+					)
+
+					#print "--> Novo post", new_post_id, "gravado!"
+				else:
+					#print "Nao PERMITIDO!"
+					r = {'status':'file_not_allowed'}
+			else:
+				#print "Nao ENCONTRADO!"
+				r = {'status':'file_not_found'}
 
 	return dumps(r)
 
