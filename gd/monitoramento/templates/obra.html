@@ -185,7 +185,11 @@ $('video').mediaelementplayer();
 
                 {%if update.format == 'video'%}
                   <video width="640" height="360" id="player{{update.id}}" preload="none">
+                      {% if 'youtube' in update.content %}
                       <source type="video/youtube" src="{{update.content|striptags}}" />
+                      {%else%}
+                      <source type="video/vimeo" src="{{update.content|striptags}}" />
+                      {%endif%}
                   </video>
                   <script type="text/javascript">
                     $('#player{{update.id}}').mediaelementplayer({});
