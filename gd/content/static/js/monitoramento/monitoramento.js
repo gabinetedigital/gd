@@ -60,19 +60,41 @@ $(document).ready(function () {
             $("#part-texto").clearFields();
             $("#part-imagem").clearFields();
             $("#part-video").clearFields();
+            $(".alert").hide();
         },
         openEffect  : 'elastic',
         closeEffect : 'elastic',
     });
+
+    var showMsg = function(status, otherclass){
+        // alert(status);
+        $(".alert").html(status);
+        if(otherclass){
+            $(".alert").addClass(otherclass);
+        }
+        $(".alert").show();
+
+    };
 
     var ret = function(data) {
       var pData = $.parseJSON(data);
 
       /* It's everything ok, let's get out */
       if (pData.status === 'ok') {
-          alert('foi legal!');
+          showMsg('Obrigado por sua contribuição!','alert-success');
+          window.setTimeout(function(){
+            $.fancybox.close();
+          },1000);
       } else {
-          alert('foi excroto!');
+          if(pData.status === 'not_logged'){
+            showMsg('Usuário não logado.');
+          }
+          if(pData.status === 'file_not_allowed'){
+            showMsg('O arquivo enviado não é permitido. Use apenas arquivos PNG ou JPG.');
+          }
+          if(pData.status === 'file_not_found'){
+            showMsg('Você não anexou a sua foto no envio!');
+          }
       }
     };
     $('#part-texto').ajaxForm({
