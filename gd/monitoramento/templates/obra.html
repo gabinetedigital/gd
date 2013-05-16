@@ -25,7 +25,8 @@ $('video').mediaelementplayer();
 {% block content %}
 <div id="monitoramento" class="obra">
   <div class="container">
-    <div class="header painel">
+    <div class="painel">
+      <div class="header">
       <div class="row">
         <div class="span8">
           <div class="head">
@@ -46,7 +47,7 @@ $('video').mediaelementplayer();
       </div>
     </div>
 
-    <div class="barra painel">
+    <div class="barra">
       <div class="row">
         <div class="span12">
           <ul class="geral">
@@ -115,10 +116,8 @@ $('video').mediaelementplayer();
         </div>
       </div>
     </div>
-    <div class="painel">
       <div class="row">
         <div class="span4">
-          <div class="info">
             <h4>Participe!</h4>
             <div class="btn-group botoesparticipar">
               <a href="#participar-texto" class="btn btn-large btn-success comentar">Comente</a>
@@ -144,29 +143,46 @@ $('video').mediaelementplayer();
               <p>Twitter | Facebook | SMS | Email</p>
               <button class="btn btn-large btn-danger">Seguir obra</button>
             </div>
-
-          </div>
         </div>
         <div class="span8">
-            <div class="dashboard">
-              <h3>Dados gerais</h3>
-              <table>
-                <tr>
-                  <td> <img src="{{ url_for('.static',
-                            filename='plateia.png' ) }}"> </td> <td> <img src="{{
-                                                                          url_for('.static', filename='cafe.png' ) }}"> </td> <td>
-                    <img src="{{ url_for('.static', filename='carro.png' )
-                         }}"> </td>
-                </tr>
-                <tr>
-                  <td> 1500 lugares</td> <td> Café, bares e restaurante </td> <td> 375 vagas </td>
-                </tr>
-              </table>
+
+          <!-- <div class="dashboard">
+          <h3>Dados gerais</h3>
+          <table>
+          <tr>
+          <td> <img src="{{ url_for('.static',
+          filename='plateia.png' ) }}"> </td> <td>
+          <img src="{{ url_for('.static',
+          filename='cafe.png' ) }}"> </td> <td>
+          <img src="{{ url_for('.static', filename='carro.png' )
+          }}"> </td>
+          </tr>
+          <tr>
+          <td> 1500 lugares</td> <td> Café, bares e restaurante </td> <td> 375 vagas </td>
+          </tr>
+          </table>
+          </div> -->
+
+          <div class="govresp">
+            <div class="video">
+              <video width="100%" height="100%" id="player1" preload="none">
+                <source type="video/youtube" src="http://www.youtube.com/watch?v=D3U-6e9bZfg&feature=youtu.be" />
+              </video>
             </div>
 
-            <div class="govresp">
+            <div class="content">
+              <h2>Governo Responde</h2>
+              <p>Criado em maio de 2011, a concepção do projeto foi
+                acompanhada de uma ampla pesquisa que analisou
+                exemplos de democracia digital do Brasil e do exterior
+                e inspirou a criação de um conjunto único de
+                mecanismos para a participação.</p>
             </div>
 
+          </div>
+
+          <div class="comofunciona">
+          </div>
 
             <div class="updates">
 
