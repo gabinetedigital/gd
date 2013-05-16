@@ -166,6 +166,15 @@
 }
 
 /* Páginad da Obra */
+#monitoramento.obra h1 {
+    background: none repeat scroll 0 0 #7F8C8D;
+    color: white;
+    font-size: 18pt;
+    font-weight: 900;
+    padding: 0 16px;
+    text-align: right;
+    text-transform: lowercase;
+}
 
 #monitoramento.obra .header {
     background: #34495E;
@@ -349,6 +358,7 @@
 
 #monitoramento.obra .info {
     padding: 20px;
+    text-align: center;
 }
 
 #monitoramento.obra .info-dados {
@@ -416,6 +426,7 @@
 #monitoramento.obra .govresp {
     background: #2ecc71;
     overflow: hidden;
+
 }
 
 #monitoramento.obra .govresp .content {
@@ -430,6 +441,38 @@
 #monitoramento.obra .govresp .video {
     width: 45%;
     float: right;
+}
+
+
+#monitoramento.obra .comofunciona {
+    background: #16A085;
+    height: 60px;
+    border-top: 4px solid #2C3E50;
+ }
+
+#monitoramento.obra .comofunciona h2 {
+    margin: 0;
+}
+
+#monitoramento.obra .comofunciona .content {
+    color: #FFF;
+    padding: 10px;
+    margin: 0;
+    font-weight: 400;
+    padding: 10px 28px;
+}
+
+#monitoramento.obra .comofunciona .content .more {
+    background: #1ABC9C;
+    border-radius: 6px 6px 6px 6px;
+    float: right;
+    height: 26px;
+    text-align: center;
+    width: 32px;
+    margin-top: 7px;
+    font-size: 20pt;
+    font-weight: bold;
+    line-height: 17pt;
 }
 
 #monitoramento.obra .primeiro {

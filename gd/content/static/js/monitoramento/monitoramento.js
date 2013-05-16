@@ -40,6 +40,20 @@ $(document).ready(function () {
         $('.voltar').fadeOut();
     });
 
+    $('.comofunciona').mouseover(function(){
+        $(".comofunciona > .content > .more").fadeOut();
+        $(".comofunciona").animate({
+            height: "350px",
+        }, 500 );
+    });
+
+    $('.comofunciona').mouseleave(function(){
+        $(".comofunciona").animate({
+            height: "60px",
+        }, 500 );
+        $(".comofunciona > .content > .more").fadeIn();
+    });
+
     $(".seguirobra").fancybox();
     $(".botoesparticipar a").fancybox({
         afterLoad  : function(current, previous){
