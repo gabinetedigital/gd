@@ -426,7 +426,6 @@
 #monitoramento.obra .govresp {
     background: #2ecc71;
     overflow: hidden;
-
 }
 
 #monitoramento.obra .govresp .content {
@@ -434,13 +433,14 @@
     padding: 10px;
     margin: 0;
     font-weight: 400;
-    padding: 10px 28px;
-    width: 55%;
+    padding: 0px 20px;
+    width: 50%;
 }
 
 #monitoramento.obra .govresp .video {
-    width: 45%;
+    width: 50%;
     float: right;
+    padding: 10px;
 }
 
 
