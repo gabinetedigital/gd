@@ -125,29 +125,31 @@ $('video').mediaelementplayer();
         <div class="span4">
           <div class="info">
             <h4>Participe!</h4>
-            <div class="btn-group botoesparticipar">
-              <a href="#participar-texto" class="btn btn-large btn-success comentar">Comente</a>
-              <a href="#participar-imagem" class="btn btn-large btn-danger">Fotografe</a>
-              <a href="#participar-video" class="btn btn-large btn-info ">Filme</a>
-            </div>
-            <p class="countdown">Faltam <span>30</span> dias a para próxima atualização</p>
-            <div class="separador"></div>
+            <div class="info">
+              <div class="btn-group botoesparticipar">
+                <a href="#participar-texto" class="btn btn-large btn-success comentar">Comente</a>
+                <a href="#participar-imagem" class="btn btn-large btn-danger">Fotografe</a>
+                <a href="#participar-video" class="btn btn-large btn-info ">Filme</a>
+              </div>
+              <p class="countdown">Faltam <span>30</span> dias a para próxima atualização</p>
+              <div class="separador"></div>
 
-            <div class="code">
-              <a href="#"><h3>Baixe o código QR e espalhe</h3></a>
-              <a href="#" class="toottip" data-toggle="tooltip" title="Código QR: lipsum">
-                <img src="{{ url_for('.static', filename='qrcode.jpg' ) }}" class="img-polaroid">
-              </a><br>
-            </div>
+              <div class="code">
+                <a href="#"><h3>Baixe o código QR e espalhe</h3></a>
+                <a href="#" class="toottip" data-toggle="tooltip" title="Código QR: lipsum">
+                  <img src="{{ url_for('.static', filename='qrcode.jpg' ) }}" class="img-polaroid">
+                </a><br>
+              </div>
 
-            <div class="separador"></div>
+              <div class="separador"></div>
 
-            <div class="stick">
-              <h3>Receba informações</h3>
-              <p class="desc">
-                Escoha a melhor forma de receber as atualizações:</p>
-              <p>Twitter | Facebook | SMS | Email</p>
-              <button class="btn btn-large btn-danger">Seguir obra</button>
+              <div class="stick">
+                <h3>Receba informações</h3>
+                <p class="desc">
+                  Escoha a melhor forma de receber as atualizações:</p>
+                <p>Twitter | Facebook | SMS | Email</p>
+                <a href="#seguirobraform" class="btn btn-large btn-danger seguirobra">Seguir obra</a>
+              </div>
             </div>
           </div>
         </div>
@@ -257,7 +259,24 @@ $('video').mediaelementplayer();
 
 <div id="seguirobraform" style="display:none; width:450px;">
   <h1>Quer seguir esta obra ?</h1>
-  <p>Legal heim... </p>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#follow-facebook" data-toggle="tab">Facebook</a></li>
+      <li><a href="#follow-twitter" data-toggle="tab">Twitter</a></li>
+      <li><a href="#follow-email" data-toggle="tab">E-Mail</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="follow-facebook">
+        <p>I'm in Section 1.</p>
+      </div>
+      <div class="tab-pane" id="follow-twitter">
+        <p>Howdy, I'm in Section 2.</p>
+      </div>
+      <div class="tab-pane" id="follow-email">
+        <p>Seguir por email.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="participar-texto" style="display:none; width:580px;">
