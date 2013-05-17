@@ -26,6 +26,7 @@ import xmlrpclib
 
 from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd.utils import dumps
+from gd.model import UserFollow, session as dbsession
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
 from gd import conf
@@ -138,9 +139,39 @@ def obra(slug):
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
 
+
+@monitoramento.route('/obra/<obraid>/seguir',methods=('POST',))
+def seguir(obraid):
+
+	if request.form:
+		follow = UserFollow()
+
+		if is_authenticated():
+			follow.user = authenticated_user()
+
+		follow.obra_id = int(obraid)
+
+		if request.form.has_key('faceid'):
+			follow.facebook_id = request.form['faceid']
+
+		if request.form.has_key('twitterid'):
+			follow.twitter_id = request.form['twitterid']
+
+		if request.form.has_key('email'):
+			follow.email = request.form['email']
+
+		dbsession.commit()
+
+		return dumps({'status':'ok'})
+	else:
+		return dumps({'status':'error'})
+
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 
 @monitoramento.route('/obra/<slug>/contribui', methods=('POST',))
 def contribui(slug):
