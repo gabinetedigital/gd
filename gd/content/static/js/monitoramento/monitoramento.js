@@ -54,7 +54,16 @@ $(document).ready(function () {
         $(".comofunciona > .content > .more").fadeIn();
     });
 
-    $(".seguirobra").fancybox();
+    $(".seguirobra").fancybox({
+        afterLoad: function(){
+            $('.main-follow').find("input[type=text]").val("");
+            $('.main-follow').find(".alert").hide();
+        },
+        afterShow: function(){
+            $('.main-follow').find('a[target=#follow-facebook]').trigger('click');
+        }
+    });
+
     $(".botoesparticipar a").fancybox({
         afterLoad  : function(current, previous){
             // console.log(window.location);
@@ -62,11 +71,11 @@ $(document).ready(function () {
             // console.log(current.group[0]);
             if (!auth.isAuthenticated()){
                 // alert("Você não está logado!");
-                var lnk = "/auth/login?next="+window.location.pathname
-                current.content = "<div class='alert alert-error alert-block'><h3>É necessário efetuar login</h3>Você não está logado! Aguarde que será redirecionado...<br>Mas se não for redirecionado, use <a href='"+lnk+"'>este link</a></div>";
-                window.setTimeout(function(){
-                    window.location.href=lnk;
-                },2000) ;
+                var lnk = "/auth/login?next="+window.location.pathname;
+                current.content = "<div class='alert alert-error alert-block'><h4>É necessário efetuar login para participar</h4><br><div style='text-align:center;'><a href='"+lnk+"' class='btn btn-success'>Entrar</a></div></div>";
+                // window.setTimeout(function(){
+                //     window.location.href=lnk;
+                // },2000) ;
                 // return false;
             }
         },
@@ -74,7 +83,7 @@ $(document).ready(function () {
             $("#part-texto").clearFields();
             $("#part-imagem").clearFields();
             $("#part-video").clearFields();
-            $(".alert").hide();
+            $(".alert.message").hide();
         },
         openEffect  : 'elastic',
         closeEffect : 'elastic',
@@ -121,4 +130,28 @@ $(document).ready(function () {
         success:ret
     });
 
+    var retSeguir = function(data){
+        showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
+        window.setTimeout(function(){
+            $.fancybox.close();
+        },3000);
+    }
+
+    $('#seguirobraform .ajaxform').ajaxForm({
+        success:retSeguir,
+        beforeSubmit: function (arr, form, options) {
+            form.find('input[type=submit]').attr('disabled','disabled');
+            form.find('input[type=submit]').removeClass('btn-success');
+        }
+    });
+
+    $('#seguirobraform a').click(function(){
+        // alert('vai abrir ' + this.target );
+        $('.follow').hide();
+        $(this.target).show();
+        $(this.target).find('input[type=submit]').removeAttr('disabled');
+        $(this.target).find('input[type=submit]').addClass('btn-success');
+        $(this.target).find("input[type=text]").focus();
+        return false;
+    });
 });

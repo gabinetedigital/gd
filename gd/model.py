@@ -444,46 +444,19 @@ class CadastroComite(Entity):
     cidade = Field(String(500,convert_unicode=True))
     creation_date = Field(DateTime, default=datetime.now)
 
-class FollowMode(object):
-    """Used for easy access/control to follow modes"""
-
-    _modes = (
-        ('F','Facebook'),
-        ('T','Twitter'),
-        ('E','E-Mail'),
-        ('S','SMS'),
-    )
-
-    def __init__(self, mode):
-        try:
-            self._mymode = [ (id,text) for id,text in self._modes if id == mode or text == mode ][0]
-        except IndexError:
-            raise Exception("Mode '%s' not found" % mode)
-
-    @property
-    def value(self):
-        return self._mymode[0]
-
-    def __str__(self):
-        return self._mymode[1]
-
-    def __eq__(self, op):
-        return op in self._mymode
-
 
 class UserFollow(Entity):
     """Controle dos usuários que seguem as obras do monitoramento"""
-    MODES = (
-        FollowMode("Facebook"),
-        FollowMode("Twitter"),
-        FollowMode("SMS"),
-        FollowMode("E-Mail"),
-    )
-    id = Field(Integer, primary_key=True)
+    using_options(tablename='user_follow')
+
+    # id = Field(Integer, primary_key=True)
     user = ManyToOne('User')
     obra_id = Field(Integer)
-    mode = Field(String(1,convert_unicode=True))
+    mode = Field(String(15,convert_unicode=True))
     datetime = Field(DateTime, default=datetime.now)
+    facebook_id = Field(String(500,convert_unicode=True))
+    twitter_id  = Field(String(500,convert_unicode=True))
+    email       = Field(String(500,convert_unicode=True))
 
 
 @event.listens_for(session, "after_flush")
