@@ -270,7 +270,7 @@
 }
 
 #monitoramento.obra .barra .geral .dados-obra div.progressbar > .progress {
-    background: #34495e;
+    background: #3498db;
     height: 10px;
     @include border-radius(0);
 }
@@ -414,12 +414,12 @@
 }
 
 #monitoramento.obra .govresp {
-    background: #2ecc71;
+    background: #e74c3c;
     overflow: hidden;
 }
 
 #monitoramento.obra .govresp .content {
-    color: #2c3e50;
+    color: white;
     padding: 10px;
     margin: 0;
     font-weight: 400;
