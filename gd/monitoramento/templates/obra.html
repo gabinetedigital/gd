@@ -25,11 +25,6 @@ $('video').mediaelementplayer();
 {% block content %}
 <div id="monitoramento" class="obra">
   <div class="container">
-    <div class="row">
-        <div class="span12">
-            <h1>De olho nas obras</h1>
-        </div>
-    </div>
     <div class="painel">
       <div class="header">
       <div class="row">
@@ -39,7 +34,7 @@ $('video').mediaelementplayer();
             <!-- <img src="{{ url_for('.static', filename='icon.png' ) }}"> -->
             <!-- </a> -->
             <h2>{{obra.title}}</h2>
-            <div class="desc">
+            <div class="content">
               {{ obra.content|safe }}
             </div>
           </div>
@@ -122,39 +117,75 @@ $('video').mediaelementplayer();
       </div>
     </div>
       <div class="row">
-        <div class="span4">
+        <div class="span3">
           <div class="info">
-            <h4>Participe!</h4>
-            <div class="info">
-              <div class="btn-group botoesparticipar">
-                <a href="#participar-texto" class="btn btn-large btn-success comentar">Comente</a>
-                <a href="#participar-imagem" class="btn btn-large btn-danger">Fotografe</a>
-                <a href="#participar-video" class="btn btn-large btn-info ">Filme</a>
-              </div>
-              <p class="countdown">Faltam <span>30</span> dias a para próxima atualização</p>
-              <div class="separador"></div>
-
-              <div class="code">
-                <a href="#"><h3>Baixe o código QR e espalhe</h3></a>
-                <a href="#" class="toottip" data-toggle="tooltip" title="Código QR: lipsum">
-                  <img src="{{ url_for('.static', filename='qrcode.jpg' ) }}" class="img-polaroid">
-                </a><br>
-              </div>
-
-              <div class="separador"></div>
-
-              <div class="stick">
-                <h3>Receba informações</h3>
-                <p class="desc">
-                  Escoha a melhor forma de receber as atualizações:</p>
-                <p>Twitter | Facebook | SMS | Email</p>
-                <a href="#seguirobraform" class="btn btn-large btn-danger seguirobra">Seguir obra</a>
-              </div>
+            <h3>Participe!</h3>
+            <div class="botoesparticipar">
+              <a href="#participar-texto"  class="comentar">
+                <i class="icon-comments icon-2x"></i>
+                <h4>Comente</h4>
+                <p>Deixe seu comentário</p>
+              </a>
+              <a href="#participar-imagem" class="foto">
+                <i class="icon-camera icon-2x"></i>
+                <h4>Fotografe</h4>
+                <p>Envie suas fotos</p>
+              </a>
+              <a href="#participar-video"  class="filme">
+                <i class="icon-facetime-video icon-2x"></i>
+                <h4>Filme</h4>
+                <p>Compartilhe seus vídeos</p>
+              </a>
             </div>
+
+            <div class="separador"></div>
+
+            <div class="follow">
+              <h3>Seguir esta obra</h3>
+              <p class="desc">
+                Escoha a melhor forma de receber as atualizações:</p>
+              <ul class="social">
+                <li><i class="icon-facebook icon-2x face"></i></li>
+                <li><i class="icon-twitter icon-2x twit"></i></li>
+                <li><i class="icon-envelope icon-2x email"></i></li>
+              </ul>
+              <button class="btn btn-large btn-danger">Seguir obra</button>
+            </div>
+
+            <div class="separador"></div>
+
+            <!-- <div class="code">
+            <a href="#"><h3>Baixe o código QR e espalhe</h3></a>
+            <a href="#" class="toottip" data-toggle="tooltip" title="Código QR: lipsum">
+            <img src="{{ url_for('.static', filename='qrcode.jpg' ) }}" class="img-polaroid">
+            </a><br>
+            </div> -->
+
+            <div class="nossodados">
+              <h3>Nossos dados</h3>
+              <p class="desc">
+                Os dados desse site estão disponiveis nos sequintes formatos:
+              </p>
+              <a href="#" class="api">API</a>
+              <a href="#" class="xml">XML</a>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="acesso">
+              <h3>Acesso a informação</h3>
+              <p class="desc">
+                Você será redirecionado para o portal de acesso a informação
+              </p>
+              <a href="" class="btn">Requerer!</a>
+            </div>
+
+
+
           </div>
         </div>
-        <div class="span8">
-
+        <div class="span9">
+          <div class="stage">
           <!-- <div class="dashboard">
           <h3>Dados gerais</h3>
           <table>
@@ -195,6 +226,9 @@ $('video').mediaelementplayer();
               <div class="more">
                 +
               </div>
+              <div class="close">
+                Fechar
+              </div>
               <h2>Como funciona ?</h2>
             </div>
           </div>
@@ -205,7 +239,7 @@ $('video').mediaelementplayer();
 
               <div class="update">
                 {#update#}
-                <img src="{{ url_for('.static', filename='user.jpeg' ) }}">
+                <img src="{{ url_for('.static', filename='user.jpeg' ) }}" class="img-circle">
                 <h4>{{update.title}}</h4>
 
                 {%if update.format == 'aside'%}
@@ -230,26 +264,15 @@ $('video').mediaelementplayer();
                 {%endif%}
 
                 {%if update.format == 'image'%}
-                <img src="{{ update.thumbs.normal.url }}">
+                <img src="{{ update.thumbs.normal.url }}" >
                 {%endif%}
 
-                <div class="info-meta">
-                  <ul>
-                    <li>{{update.author.display_name}}</li>
-                    <li>
-                      comentários ({{update.comments.count}})
-                    </li>
-                    <li>
-                      {{update.date.date|formatarDataeHora(formato="%d/%m/%Y")}}
-                    </li>
-                    <li>
-                      compartilhar
-                    </li>
-                  </ul>
-                </div>
+                {{update.author.display_name}}
+                {{update.date.date|formatarDataeHora(formato="%d/%m/%Y")}}
               </div>
 
               {%endfor%}
+          </div>
           </div>
         </div>
       </div>
