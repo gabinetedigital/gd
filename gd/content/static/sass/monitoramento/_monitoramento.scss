@@ -63,8 +63,6 @@
     padding-top: 20px;
 }
 
-
-
 #monitoramento .painel h2,
 #monitoramento .painel h3 {
   font-weight: 300;
@@ -272,82 +270,47 @@
 }
 
 #monitoramento.obra .barra .geral .dados-obra div.progressbar > .progress {
-    background: #3498db;
+    background: #34495e;
     height: 10px;
     @include border-radius(0);
 }
 
-#monitoramento.obra .follows  {
-    overflow: hidden;
-    color: white;
-    /* @include background-image(linear-gradient(#383838,#222222));*/
-}
-
-#monitoramento.obra .follows li {
-    float: left;
-    border-right: 2px solid #ddd;
-    padding: 5px 0px;
-    color: black;
-}
-
-#monitoramento.obra .follows li:last-child {
-    border: 0 none;
-}
-
-#monitoramento.obra .follows.follows-fixed {
-    max-width: 1170px;
-    position: fixed;
-    top: 45px;
-    width: 100%;
-    z-index: 9999;
-}
-
-#monitoramento.obra .seguidores {
-    font-size: 12pt;
-    line-height: 12pt;
-    margin-top: 7px;
-}
-
-#monitoramento.obra .seguidores small {
-    display: block;
-    clear: both;
-    font-size: 8pt;
-}
-
-#monitoramento.obra .countdown {
-    font-size: 10pt;
-    line-height: 25pt;
-    padding: 5px;
-}
-
-#monitoramento.obra .countdown span {
-    color: $red;
-    font-size: large;
-    font-weight: 600;
-    padding: 0 2px;
-}
-
-#monitoramento.obra .follows h4 {
-    font-weight: 400;
-    float: left;
-    margin-right: 20px;
-}
-
-
-#monitoramento.obra .follows .acesso {
-    margin-top: 9px;
-}
-
-#monitoramento.obra .desc {
+#monitoramento.obra .head .content {
     color: white;
     display: inline-block;
     padding: 0 0 0 20px;
 }
 
-#monitoramento.obra .stick p.desc {
+#monitoramento.obra .follow {
+    text-align: center;
+}
+
+#monitoramento.obra .follow p.desc {
     color: black;
     text-align: left;
     width: 300px;
+}
+
+#monitoramento.obra .follow .social {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+#monitoramento.obra .follow .social li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#monitoramento.obra .follow i.face {
+    color: #34495e;
+}
+
+#monitoramento.obra .follow i.twit {
+    color: #3498db;
+}
+
+#monitoramento.obra .follow i.email {
+    color: #e74c3c;
 }
 
 #monitoramento.obra img.mapa {
@@ -376,7 +339,6 @@
 
 #monitoramento.obra .botoesparticipar a:last-child {
     border: none;
-
 }
 
 #monitoramento.obra .botoesparticipar a:hover {
@@ -412,41 +374,43 @@
     text-align: center;
 }
 
+#monitoramento.obra .code {
+    text-align: center;
+}
+
 #monitoramento.obra .code img {
     margin-top: 10px;
 }
 
-#monitoramento.obra .dashboard {
-    padding-bottom: 10px;
-    background: #c0392b;
-}
-
-
-#monitoramento.obra .dashboard > h3 {
-    font-size: 19pt;
+#monitoramento.obra .nossodados,
+#monitoramento.obra .acesso {
     text-align: center;
-    color: black;
-    margin: 0;
-}
-
-#monitoramento.obra .dashboard > table {
-    width: 320px;
-    margin: 0 auto;
-}
-
-#monitoramento.obra .dashboard > table  td {
-    text-align: center;
-    padding-top: 5px;
-}
-
-#monitoramento.obra .dashboard h2 {
-    margin-top: 10px;
-}
-
-#monitoramento.obra .dashboard small {
-    display: block;
-    clear: both;
+    overflow: hidden;
     margin-bottom: 20px;
+}
+
+#monitoramento.obra .nossodados p.desc {
+    text-align: left;
+}
+
+#monitoramento.obra .api,
+#monitoramento.obra .xml {
+    color: white;
+    font-weight: bold;
+    padding: 0px 4px;
+    font-size: 11pt;
+}
+
+#monitoramento.obra .nossodados a:hover {
+    text-decoration: none;
+}
+
+#monitoramento.obra .api {
+    background: #27ae60;
+}
+
+#monitoramento.obra .xml {
+    background: #e67e22;
 }
 
 #monitoramento.obra .govresp {
@@ -468,7 +432,6 @@
     float: right;
     padding: 10px;
 }
-
 
 #monitoramento.obra .comofunciona {
     background: #16A085;
@@ -497,6 +460,16 @@
     width: 32px;
     margin-top: 7px;
     font-size: 20pt;
+    font-weight: bold;
+    line-height: 17pt;
+}
+
+#monitoramento.obra .comofunciona .content .close {
+    float: right;
+    height: 26px;
+    text-align: center;
+    margin-top: 7px;
+    font-size: 16pt;
     font-weight: bold;
     line-height: 17pt;
 }
