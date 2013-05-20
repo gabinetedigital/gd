@@ -301,14 +301,21 @@
     margin-right: 10px;
 }
 
+#seguirobraform .main-follow a:hover{
+    text-decoration: none;
+}
+
+#seguirobraform .main-follow a i.face ,
 #monitoramento.obra .follow i.face {
     color: #34495e;
 }
 
+#seguirobraform .main-follow a i.twit ,
 #monitoramento.obra .follow i.twit {
     color: #3498db;
 }
 
+#seguirobraform .main-follow a i.email ,
 #monitoramento.obra .follow i.email {
     color: #e74c3c;
 }
