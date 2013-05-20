@@ -431,11 +431,11 @@
     margin: 0;
     font-weight: 400;
     padding: 0px 20px;
-    width: 50%;
+    width: 435px;
 }
 
 #monitoramento.obra .govresp .video {
-    width: 50%;
+    width: 435px;
     float: right;
     padding: 10px;
 }
@@ -578,6 +578,19 @@
     @include border-radius(5px);
 }
 
+#monitoramento .suplementar{
+    height: 0px;
+    background-color: transparent;
+    border: 1px solid #c5c5c5;
+    padding: 10px;
+}
+
+#monitoramento .suplementar h1{
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    color: #333;
+}
+
 .form-footer{
     width:100%;
     margin-top:15px;
@@ -595,3 +608,4 @@
 .follow{
     margin-top: 20px;
 }
+

@@ -64,31 +64,6 @@ $(document).ready(function () {
         }
     });
 
-    $(".botoesparticipar a").fancybox({
-        afterLoad  : function(current, previous){
-            // console.log(window.location);
-            console.log(current.content);
-            // console.log(current.group[0]);
-            if (!auth.isAuthenticated()){
-                // alert("Você não está logado!");
-                var lnk = "/auth/login?next="+window.location.pathname;
-                current.content = "<div class='alert alert-error alert-block'><h4>É necessário efetuar login para participar</h4><br><div style='text-align:center;'><a href='"+lnk+"' class='btn btn-success'>Entrar</a></div></div>";
-                // window.setTimeout(function(){
-                //     window.location.href=lnk;
-                // },2000) ;
-                // return false;
-            }
-        },
-        beforeShow  : function(){
-            $("#part-texto").clearFields();
-            $("#part-imagem").clearFields();
-            $("#part-video").clearFields();
-            $(".alert.message").hide();
-        },
-        openEffect  : 'elastic',
-        closeEffect : 'elastic',
-    });
-
     var showMsg = function(status, otherclass){
         // alert(status);
         $(".alert").html(status);
@@ -120,15 +95,6 @@ $(document).ready(function () {
           }
       }
     };
-    $('#part-texto').ajaxForm({
-        success:ret
-    });
-    $('#part-video').ajaxForm({
-        success:ret
-    });
-    $('#part-imagem').ajaxForm({
-        success:ret
-    });
 
     var retSeguir = function(data){
         showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
@@ -154,4 +120,96 @@ $(document).ready(function () {
         $(this.target).find("input[type=text]").focus();
         return false;
     });
+
+
+    // $(".botoesparticipar a").fancybox({
+    //     afterLoad  : function(current, previous){
+    //         // console.log(window.location);
+    //         console.log(current.content);
+    //         // console.log(current.group[0]);
+    //         if (!auth.isAuthenticated()){
+    //             // alert("Você não está logado!");
+    //             var lnk = "/auth/login?next="+window.location.pathname;
+    //             current.content = "<div class='alert alert-error alert-block'><h4>É necessário efetuar login para participar</h4><br><div style='text-align:center;'><a href='"+lnk+"' class='btn btn-success'>Entrar</a></div></div>";
+    //             // window.setTimeout(function(){
+    //             //     window.location.href=lnk;
+    //             // },2000) ;
+    //             // return false;
+    //         }
+    //     },
+    //     beforeShow  : function(){
+    //         $("#part-texto").clearFields();
+    //         $("#part-imagem").clearFields();
+    //         $("#part-video").clearFields();
+    //         $(".alert.message").hide();
+    //     },
+    //     openEffect  : 'elastic',
+    //     closeEffect : 'elastic',
+    // });
+
+    var abreAbaixo = function(){
+
+        // A div que vai conter os novos conteudos, no topo da timeline
+        var todiv   = $(".suplementar");
+        var fromdiv = $( $(this).attr('href') );
+
+        var toheight = fromdiv.css('height').slice(0,-2);
+        console.log(toheight);
+
+        if($('.suplementar').css('height')=="0px"){
+            todiv.animate({height:toheight},500, function(){
+                todiv.html( fromdiv.html() );
+            });
+        }else{
+            todiv.animate({height:0},500,function(){
+                todiv.html("");
+            });
+        }
+
+    };
+
+    var abreProlado = function(){
+
+        // A div que vai conter os novos conteudos, no topo da timeline
+        var todiv   = $(".suplementar");
+        var fromdiv = $( $(this).attr('href') );
+
+        var toheight = parseInt(fromdiv.css('height').slice(0,-2)) + 80;
+
+        if(!auth.isAuthenticated()){
+            toheight = 180;
+        }
+
+
+        if($('.suplementar').css('height')=="0px"){
+            todiv.show();
+            todiv.animate({height:toheight},500, function(){
+
+            if (!auth.isAuthenticated()){
+                var lnk = "/auth/login?next="+window.location.pathname;
+                todiv.html("<div class='alert alert-error alert-block'><h4>É necessário efetuar login para participar</h4><br><div style='text-align:center;'><a href='"+lnk+"' class='btn btn-success'>Entrar</a></div></div>");
+            }else{
+
+                todiv.html( fromdiv.html() );
+                fromdiv.show();
+
+                //Seta o ajaxForm somente aqui pois o jQuery COPIA o html para dentro do div, e não
+                //o objeto, e perde a configuração se feita antes.
+                $('#part-geral').ajaxForm({
+                    success:ret
+                });
+            }
+
+            });
+        }else{
+            todiv.animate({height:0},500,function(){
+                todiv.html("");
+                todiv.hide();
+            });
+        }
+
+    };
+
+    $(".botoesparticipar a").click(abreProlado);
+
 });
