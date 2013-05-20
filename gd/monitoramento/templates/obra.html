@@ -121,17 +121,17 @@ $('video').mediaelementplayer();
           <div class="info">
             <h3>Participe!</h3>
             <div class="botoesparticipar">
-              <a href="#participar-texto"  class="comentar">
+              <a href="#participar-geral"  class="comentar">
                 <i class="icon-comments icon-2x"></i>
                 <h4>Comente</h4>
                 <p>Deixe seu comentário</p>
               </a>
-              <a href="#participar-imagem" class="foto">
+              <a href="#participar-geral" class="foto">
                 <i class="icon-camera icon-2x"></i>
                 <h4>Fotografe</h4>
                 <p>Envie suas fotos</p>
               </a>
-              <a href="#participar-video"  class="filme">
+              <a href="#participar-geral"  class="filme">
                 <i class="icon-facetime-video icon-2x"></i>
                 <h4>Filme</h4>
                 <p>Compartilhe seus vídeos</p>
@@ -185,6 +185,9 @@ $('video').mediaelementplayer();
           </div>
         </div>
         <div class="span9">
+          <div class="suplementar hide">
+            &nbsp;
+          </div>
           <div class="stage">
           <!-- <div class="dashboard">
           <h3>Dados gerais</h3>
@@ -312,6 +315,30 @@ $('video').mediaelementplayer();
     </div>
   </div>
 </div>
+
+
+<div id="participar-geral" style="display:none; width:580px;">
+  <h1>Enviar contribuição</h1>
+  <p>Envie seu posicionamento sobre esta obra, informe-nos como está andando a obra, sob seu ponto de vista. Sua opinião é muito importante para nós.</p>
+  <div class="alert message hide">Mensagem</div>
+  <form  id="part-geral" class="form ajaxform" method="POST" action="/monitore/obra/{{obra.slug}}/contribui">
+    <input type="hidden" name="tipo" value="t">
+    <label for="titulo">Título:</label>
+    <input class="span8" type="text" placeholder="Título..." name="titulo" id="titulo">
+    <label for="conteudo">Sua contribuição</label>
+    <textarea class="span8" name="conteudo" id="conteudo" placeholder="Digite sua contribuição aqui"></textarea>
+    <label for="link">Link do video</label>
+    <input class="span8" type="text" placeholder="link do seu vídeo..." name="link" id="link">
+    <label for="foto">Sua imagem</label>
+    <input type="file" name="foto" id="foto">
+    <div class="form-footer">
+      <button class="btn" onclick="$.fancybox.close();return false;">Cancelar</button>
+      <input type="submit" class="btn btn-primary" value="Enviar">
+    </div>
+  </form>
+</div>
+
+
 
 <div id="participar-texto" style="display:none; width:580px;">
   <h1>Enviar texto</h1>
