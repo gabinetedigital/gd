@@ -147,7 +147,7 @@ $(document).ready(function () {
 
     $('#seguirobraform a').click(function(){
         // alert('vai abrir ' + this.target );
-        $('.follow').hide();
+        $('.main-follow .follow').hide();
         $(this.target).show();
         $(this.target).find('input[type=submit]').removeAttr('disabled');
         $(this.target).find('input[type=submit]').addClass('btn-success');

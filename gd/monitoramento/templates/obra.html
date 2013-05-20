@@ -149,7 +149,7 @@ $('video').mediaelementplayer();
                 <li><i class="icon-twitter icon-2x twit"></i></li>
                 <li><i class="icon-envelope icon-2x email"></i></li>
               </ul>
-              <button class="btn btn-large btn-danger">Seguir obra</button>
+              <a href="#seguirobraform" class="btn btn-large btn-danger seguirobra">Seguir obra</a>
             </div>
 
             <div class="separador"></div>
@@ -283,9 +283,9 @@ $('video').mediaelementplayer();
 <div id="seguirobraform" style="display:none; width:450px;">
   <h3>Quer seguir esta obra ?</h3>
   <div class="main-follow">
-    <a href="#" target="#follow-facebook"><img src="/static/img/follow/facebook.png"></a>
-    <a href="#" target="#follow-twitter"><img src="/static/img/follow/twitter.png"></a>
-    <a href="#" target="#follow-email"><img src="/static/img/follow/email.png"></a>
+    <a href="#" target="#follow-facebook"><i class="icon-facebook icon-3x face"></i></a>
+    <a href="#" target="#follow-twitter"><i class="icon-twitter icon-3x twit"></i></a>
+    <a href="#" target="#follow-email"><i class="icon-envelope icon-3x email"></i></a>
     <div class="follow follow-facebook" id="follow-facebook">
       <div class="alert message hide">Mensagem</div>
       <form class="form form-inline ajaxform" action="/monitore/obra/{{obra.id}}/seguir" method="POST">
