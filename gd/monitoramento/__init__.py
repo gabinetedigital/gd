@@ -50,9 +50,13 @@ def _get_obras(slug=None):
 	print obras
 	print "="*40
 
+	return adjustCf(obras)
+
+
+def adjustCf(obras):
+	"""#Trata o retorno dos custom_fields para facilitar a utilizacao"""
 	r_obras = []
 	for obra in obras:
-		#Trata o retorno dos custom_fields para facilitar a utilizacao
 		if obra['custom_fields']:
 			custom_fields = {}
 			for cf in obra['custom_fields']:
@@ -122,9 +126,7 @@ def obra(slug):
 		return abort(404)
 
 	timeline = wordpress.monitoramento.getObraTimeline(obra['id'])
-	print "="*50
-	print timeline
-	print "="*50
+	timeline = adjustCf(timeline)
 
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	try:
@@ -191,9 +193,9 @@ def contribui(slug):
 		author_id = authenticated_user().id
 		status    = "pending"
 
-		if request.form['tipo'] == 't':
+		if request.form['link'] :
 			#Contribuição em texto
-			print "TEXTO <-------------"
+			print "TEXTO <------------- COM VIDEO"
 			new_post_id = wordpress.wp.newPost(
 				post_title    = request.form['titulo'],
 				post_type     = "gdobra",
@@ -201,26 +203,24 @@ def contribui(slug):
 				post_author   = author_id, #int
 				post_content  = request.form['conteudo'],
 				post_status   = status,
-				post_format   = "aside",
-			)
-
-		if request.form['tipo'] == 'v':
-			#Contribuição em video
-			print "VIDEO <-------------"
-			new_post_id = wordpress.wp.newPost(
-				post_title    = request.form['titulo'],
-				post_type     = "gdobra",
-				post_parent   = obra['id'],
-				post_author   = author_id, #int
-				post_content  = request.form['link'],
-				post_status   = status,
 				post_format   = "video",
-				# post_thumbnail=0, #int
+				custom_fields = [
+									{ 'key': 'gdobra_video', 'value': request.form['link'] }
+								]
 			)
-
-		if request.form['tipo'] == 'f':
-			#Contribuição em foto
-			#print "FOTO <-------------"
+		else:
+			if request.form['tipo'] == 'v':
+				#Contribuição em video
+				print "VIDEO <-------------"
+				new_post_id = wordpress.wp.newPost(
+					post_title    = request.form['titulo'],
+					post_type     = "gdobra",
+					post_parent   = obra['id'],
+					post_author   = author_id, #int
+					post_content  = request.form['conteudo'],
+					post_status   = status,
+					post_format   = "video" if request.files else "aside"
+				)
 
 			if request.files:
 				#print "Arquivos", request.files['foto']

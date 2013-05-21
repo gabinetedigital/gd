@@ -168,6 +168,14 @@ $(document).ready(function () {
 
     };
 
+    fechaSuplementar = function(){
+        var todiv   = $(".suplementar");
+        todiv.animate({height:0},500,function(){
+            todiv.html("");
+            todiv.hide();
+        });
+    }
+
     var abreProlado = function(){
 
         // A div que vai conter os novos conteudos, no topo da timeline
@@ -191,21 +199,36 @@ $(document).ready(function () {
             }else{
 
                 todiv.html( fromdiv.html() );
-                fromdiv.show();
+                todiv.find($(this).attr('href')).show();
+                // fromdiv.show();
 
                 //Seta o ajaxForm somente aqui pois o jQuery COPIA o html para dentro do div, e não
                 //o objeto, e perde a configuração se feita antes.
                 $('#part-geral').ajaxForm({
                     success:ret
                 });
+
+                $("#link").keyup( function() {
+                    if ($(this).val()!=""){
+                        $('#foto').attr('disabled','disabled');
+                    }else{
+                        $('#foto').removeAttr('disabled');
+                    }
+                });
+
+                $("#foto").change( function() {
+                    if ($(this).val()!=""){
+                        $('#link').attr('disabled','disabled');
+                    }else{
+                        $('#link').removeAttr('disabled');
+                    }
+                });
+
             }
 
             });
         }else{
-            todiv.animate({height:0},500,function(){
-                todiv.html("");
-                todiv.hide();
-            });
+            fechaSuplementar();
         }
 
     };
