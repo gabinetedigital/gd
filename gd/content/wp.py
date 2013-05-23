@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -47,6 +50,7 @@ class Namespace(object):
             # to the XMLRPC server and there they'll be expanded.  Maybe
             # it will change in the future, if I find any function that
             # doesn't fit this strategy
+            print "CALLING XMLRPC", kwargs, args
             ret = method(
                 0, self.conf['user'], self.conf['password'],
                 kwargs, *args)

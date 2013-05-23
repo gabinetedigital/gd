@@ -235,4 +235,19 @@ $(document).ready(function () {
 
     $(".botoesparticipar a").click(abreProlado);
 
+    $('.vote a').on("click",function(){
+        var url = $(this).attr('href');
+        var _clicado_ = $(this)
+        _clicado_.attr('disabled','disabled');
+        $.get(url, function(data){
+            var pData = $.parseJSON(data);
+            // console.log(pData.score);
+            // console.log(pData);
+            _clicado_.parent().find(".score").html(pData.score);
+            _clicado_.removeAttr('disabled');
+        });
+
+       return false;
+    });
+
 });

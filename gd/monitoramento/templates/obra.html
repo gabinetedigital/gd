@@ -241,7 +241,11 @@ $('video').mediaelementplayer();
               {%for update in timeline%}
 
               <div class="update">
-                {#update#}
+                <div class="vote">
+                  <a href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/"><i class="icon-plus"/></i></a>
+                  <span class="score">{{update.custom_fields.gdobra_voto_score or "0"}}</span>
+                  <a href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'-1']|join("")|md5}}/"><i class="icon-minus"></i></a>
+                </div>
                 <img src="{{ url_for('.static', filename='user.jpeg' ) }}" class="img-circle">
                 <h4>{{update.title}}</h4>
 
