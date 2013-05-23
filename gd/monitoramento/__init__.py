@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # -*- coding:utf-8 -*-
 #
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
@@ -23,6 +26,7 @@ from werkzeug import secure_filename
 
 import os
 import xmlrpclib
+from hashlib import md5
 
 from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd.utils import dumps
@@ -118,6 +122,97 @@ def index():
 		menu=menus,
 		twitter_hash_cabecalho=twitter_hash_cabecalho,
 	)
+
+@monitoramento.route('/obra/<obraid>/<slug>/<plus>/')
+def vote(obraid, slug, plus):
+	"""
+	O controle do voto é como segue:
+	 - obraid = É o id do item da timeline (post-filho) que está sendo votado
+	 - slug   = É um md5 criado através do slug do post-filho
+	 - plus   = É um md5 criado através do obraid juntamente com:
+	            ->  1 se for para somar voto
+	            -> -1 se for para dominuir voto
+	"""
+
+	ret = {}
+
+	post = wordpress.getCustomPost(obraid, 'gdobra')
+
+	print "Post", post['id'], post['post_type']
+
+	post_slug = md5(post['slug']).hexdigest()
+	slugok = True if post_slug == slug else False
+	print "SLUG===", slug, type(post_slug), post['slug'], type(post['slug'])
+
+	md5_plus = md5(obraid + '1').hexdigest()
+	md5_down = md5(obraid + '-1').hexdigest()
+	vote_plus = True if md5_plus == plus else False
+	vote_down = True if md5_down == plus else False
+
+	print "PLUS===", plus, md5_plus
+	print "DOWN===", plus, md5_down
+
+	print "Votando", slugok, vote_plus, vote_down
+
+	item      = "gdobra_"
+	itemup    = item+"voto_up"
+	itemdown  = item+"voto_down"
+	itemscore = item+"voto_score"
+
+	if 'custom_fields' in post:
+		cfs = post['custom_fields']
+
+		print "Custom Fields", cfs
+
+		score = [ int(f['value']) for f in cfs if f['key'] == itemscore]
+		votosup = [ int(f['value']) for f in cfs if f['key'] == itemup]
+		votosdown = [ int(f['value']) for f in cfs if f['key'] == itemdown]
+
+		score = score[0] if score else 0
+		votosup = votosup[0] if votosup else 0
+		votosdown = votosdown[0] if votosdown else 0
+
+		if vote_plus:
+			score += 1
+			votosup += 1
+		else:
+			score -= 1
+			votosdown += 1
+
+		ret['score'] = score
+
+		feito = ""
+		newcfs = []
+		for cf in cfs :
+			if cf['key'] == itemscore:
+				cf['value'] = score
+				feito+=",%s" % itemscore
+				newcfs.append(cf)
+			if cf['key'] == itemup:
+				cf['value'] = votosup
+				feito+=",%s" % itemup
+				newcfs.append(cf)
+			if cf['key'] == itemdown:
+				cf['value'] = votosdown
+				feito+=",%s" % itemdown
+				newcfs.append(cf)
+		if itemscore not in feito:
+			newcfs.append({'key':itemscore, 'value':score})
+		if itemup not in feito:
+			newcfs.append({'key':itemup, 'value':votosup})
+		if itemdown not in feito:
+			newcfs.append({'key':itemdown, 'value':votosdown})
+
+		print "Custom Fields OK", newcfs
+
+		# edit_post_id = wordpress.wp.editPost(
+		# 	post_id=post['id'],
+		# 	custom_fields = cfs
+		# )
+		edit_post_id = wordpress.exapi.setPostCustomFields(post['id'], newcfs)
+
+	return dumps(ret)
+
 
 @monitoramento.route('/obra/<slug>/')
 def obra(slug):

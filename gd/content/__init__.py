@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # -*- coding: UTF-8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
@@ -235,6 +238,13 @@ def formatarDataeHoraPostType(s,formato = '%b' ):
 
     return z
 
+def domd5(s=""):
+    from hashlib import md5
+    result = md5(s).hexdigest()
+    # print "DOMD5",s,result
+    return result
+
+app.jinja_env.filters['md5'] = domd5
 app.jinja_env.filters['formatarDataObra'] = formatarDataObra
 app.jinja_env.filters['formatarDataeHora'] = formatarDataeHora
 app.jinja_env.filters['formatarDataeHoraPostType'] = formatarDataeHoraPostType
