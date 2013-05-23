@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-obra.html" %}
 
 {%macro temas()%}
   {#Macro para listar os temas, pois podem ser marcados mais de um tema#}
@@ -237,7 +237,7 @@ $('video').mediaelementplayer();
           </div>
 
             <div class="updates">
-
+              <div class="line"></div>
               {%for update in timeline%}
 
               <div class="update">
@@ -274,8 +274,10 @@ $('video').mediaelementplayer();
                 <img src="{{ update.thumbs.normal.url }}" >
                 {%endif%}
 
-                {{update.author.display_name}}
-                {{update.date.date|formatarDataeHora(formato="%d/%m/%Y")}}
+                <div class="participe">
+                  <p>Isso é importante?</p>
+                </div>
+
               </div>
 
               {%endfor%}
