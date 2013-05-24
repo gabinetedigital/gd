@@ -151,6 +151,31 @@ def index():
 		twitter_hash_cabecalho=twitter_hash_cabecalho,
 	)
 
+
+@monitoramento.route('/obra/<slug>/item/<itemid>/')
+def timelineitem(slug, itemid):
+	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
+	if not obra:
+		return abort(404)
+
+	timeline = wordpress.monitoramento.getObraTimeline(obra['id'], int(itemid) )
+	timeline = adjustCf(timeline)
+	update = timeline[0]
+
+	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+	try:
+		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+	except KeyError:
+		twitter_hash_cabecalho = ""
+
+	return render_template('timeline-item.html',
+		menu=menus,
+		obra=obra,
+		update=update,
+		twitter_hash_cabecalho=twitter_hash_cabecalho
+	)
+
+
 @monitoramento.route('/obra/<obraid>/<slug>/<plus>/')
 def vote(obraid, slug, plus):
 	"""
