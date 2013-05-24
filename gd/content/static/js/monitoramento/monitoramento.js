@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(document).ready(function () {
+$(window).load(function () {
 
     $('.carousel').carousel();
     $('.toottip').tooltip();
@@ -249,5 +249,12 @@ $(document).ready(function () {
 
        return false;
     });
+
+
+    $('.timeline').masonry({
+        itemSelector: '.update',
+        gutterWidth: 60,
+    });
+
 
 });
