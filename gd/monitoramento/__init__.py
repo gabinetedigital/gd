@@ -25,6 +25,7 @@ from flask import Blueprint, request, render_template, abort, current_app
 from werkzeug import secure_filename
 
 import os
+import re
 import xmlrpclib
 from hashlib import md5
 
@@ -81,6 +82,16 @@ def index():
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	slides = wordpress.getPagesByParent('capa-obras',thumbsizes=['slideshow','thumbnail']);
 
+	"""
+		Os slides que aparecem da capa do Monitoramento são Páginas filhas de uma página com slug 'capa-obras'.
+		Com título e conteúdo de texto.
+		- Se tem imagem destacada, mostra-a no thumbnail
+		- Se tem custom_field "gdvideo" busca o video no sistema de videos do GD
+		- Se tem custom_field "youtube" busca o thumbnail do youtube através do VideoID
+		- Se tem custom_field "video" , contendo o endereco de um video qualquer, usa a imagem destacada como thumbnail também.
+	"""
+
+	retslides = []
 	for slide in slides:
 		#Trata o retorno dos custom_fields para facilitar a utilizacao
 		if slide['custom_fields']:
@@ -90,12 +101,12 @@ def index():
 			del slide['custom_fields']
 			slide['custom_fields'] = custom_fields
 
-			# pdb.set_trace()
-			print slide
+			print "SLIDE===", slide
 			if slide['custom_fields'].has_key('gdvideo'):
 				vid = slide['custom_fields']['gdvideo']
 				video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
 				sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
+				print "SOURCES===", sources
 
 				base_url = current_app.config['BASE_URL']
 				base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
@@ -107,7 +118,24 @@ def index():
 				        f = s['format']
 				    video_sources[f] = s['url']
 				video['sources'] = video_sources
-				slide['video'] = video
+				print "SOURCES===", video_sources
+				slide['gdvideo'] = video
+
+			if slide['custom_fields'].has_key('youtube'):
+				video = slide['custom_fields']['youtube']
+				# Espera algo como: https://www.youtube.com/watch?v=IuW_gf7hQTE
+				s = re.search(r'(v=)([A-Za-z0-9_]+)', video)
+				if s:
+					yid =  s.groups()[1]
+				else:
+					yid = False
+
+				if yid:
+					thumb = "http://img.youtube.com/vi/%s/0.jpg" % yid
+					video = {'video': video, 'thumb': thumb}
+					slide['youtube'] = video
+
+		retslides.append(slide)
 
 	print "OBRAS SLIDES ==========================================================================", len(slides)
 
@@ -118,7 +146,7 @@ def index():
 
 	return render_template('monitoramento.html',
 		obras=obras,
-		slides=slides,
+		slides=retslides,
 		menu=menus,
 		twitter_hash_cabecalho=twitter_hash_cabecalho,
 	)
