@@ -176,7 +176,7 @@
 }
 
 #monitoramento.obra .header {
-    background: #16a085;
+    background: #34495e;
     @include border-radius(13px 13px 0 0);
     /* @include box-shadow(rgba(0,0,0,0.40) 0px 5px 7px 0px);*/
 }
@@ -536,33 +536,105 @@
     border-right: 1px solid #ccc;
 }
 
+#monitoramento.obra .updates {
+    background: #2c3e50;
+}
+
+#monitoramento.obra .updates h2 {
+    color: #f1c40f;
+    margin: 0;
+    padding: 20px;
+}
+
+#monitoramento.obra .timeline {
+    margin: 0 auto;
+    width: 800px;
+}
+
 #monitoramento.obra .line {
     border-left: 2px dashed #F1C40F;
     height: 100%;
-    left: 60.9%;
+    left: 49.9%;
     position: absolute;
     width: 1px;
+}
+
+#monitoramento.obra .update {
+    padding: 10px;
+    color: white;
+    text-align: left;
+    width: 350px;
+    margin-bottom: 20px;
+    display: block;
+    @include border-radius(8px);
 }
 
 #monitoramento.obra .update h4 {
     font-weight: 600;
     margin-bottom: 2px;
+    margin-top: 0px;
+}
+
+#monitoramento.obra .update.aside .seta {
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #7F8C8D;
+    border-top: 15px solid transparent;
+    height: 0;
+    margin-left: -25px;
+    margin-top: 15px;
+    width: 0;
+}
+
+#monitoramento.obra .update.image .seta {
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #2ecc71;
+    border-top: 15px solid transparent;
+    height: 0;
+    margin-right: -25px;
+    margin-top: 15px;
+    width: 0;
+}
+
+#monitoramento.obra .update .content {
+    margin-bottom: 20px;
 }
 
 #monitoramento.obra .update.aside {
-    background: #1abc9;
-    border-radius: 8px 8px 8px 8px;
-    color: white;
-    padding: 6px 10px;
-    text-align: left;
-    width: 360px;
+
+    background: #7f8c8d;
 }
 
-#monitoramento.obra .update.aside .content .user {
+#monitoramento.obra .update.video {
+    background: #e74c3c;
+}
+
+#monitoramento.obra .update.image {
+    background: #2ecc71;
+}
+
+#monitoramento.obra .update .user {
     color: #2c3e50;
     margin-bottom: 20px;
 }
 
+#monitoramento.obra .update .participe {
+    border-top: 2px solid #2c3e50;
+    font-weight: bold;
+    margin: 0 -10px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+#monitoramento.obra .update .participe p {
+    margin: 3px 0 0;
+    display: inline-block;
+}
+
+#monitoramento.obra .update .participe a {
+    color: #2c3e50;
+    display: inline-block;
+    margin-left: 6px;
+}
 
 #monitoramento .suplementar{
     height: 0px;
@@ -596,14 +668,11 @@
 }
 
 
-.vote {
+#monitoramento.obra .vote {
     /*border: 1px solid red;*/
-    float: right;
     width: 50px;
 }
-.vote > a {
-    display: block;
-}
+
 .vote .score {
     font-size: 13pt;
     font-weight: bold;

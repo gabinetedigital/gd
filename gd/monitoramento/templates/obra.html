@@ -238,53 +238,59 @@ $('video').mediaelementplayer();
               <h2>Como funciona ?</h2>
             </div>
           </div>
-
-            <div class="updates">
+          <div class="updates">
+            <h2>O que as pessoas estão falando</h2>
+            <div class="timeline">
               <div class="line"></div>
               {%for update in timeline%}
 
-              <div class="update">
-                <div class="vote">
+              <div class="update {{ update.format }}  {{ loop.cycle('left', 'right') }}">
+                <div class="seta {{ loop.cycle('pull-right', 'pull-left') }}"></div>
+                <div class="content">
+                  <h4>{{update.title}}</h4>
+                  <div class="user">
+                    <small>por</small> {{update.author.display_name}} <small>em</small>
+                    {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}
+                  </div>
+
+                  {%if update.format == 'aside'%}
+                  {{update.content|safe}}
+                  {%endif%}
+
+                  {%if update.format == 'link'%}
+                  <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
+                  {%endif%}
+
+                  {%if update.format == 'video'%}
+                  <video width="100%" height="100%" id="player{{update.id}}" preload="none">
+                    {% if 'youtube' in update.custom_fields.gdobra_video %}
+                    <source type="video/youtube" src="{{update.custom_fields.gdobra_video|striptags}}" />
+                    {%else%}
+                    <source type="video/vimeo" src="{{update.custom_fields.gdobra_video|striptags}}" />
+                    {%endif%}
+                  </video>
+                  <script type="text/javascript">
+                  $('#player{{update.id}}').mediaelementplayer({});
+                  </script>
+                  {%endif%}
+
+                  {%if update.format == 'image'%}
+                  <img src="{{ update.thumbs.normal.url }}">
+                  {%endif%}
+                </div>
+                <div class="participe">
+                  <p>Isso é importante?</p> <a href="#"><i class="icon-star-empty"></i></a> <p class="counter">22</p>
+                  <!-- <div class="vote">
                   <a href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/"><i class="icon-plus"/></i></a>
                   <span class="score">{{update.custom_fields.gdobra_voto_score or "0"}}</span>
                   <a href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'-1']|join("")|md5}}/"><i class="icon-minus"></i></a>
-                </div>
-                <img src="{{ url_for('.static', filename='user.jpeg' ) }}" class="img-circle">
-                <h4>{{update.title}}</h4>
-                <a href="/monitore/obra/{{obra.slug}}/item/{{update.id}}/">Ver mais</a>
-
-                {%if update.format == 'aside'%}
-                {{update.content|safe}}
-                {%endif%}
-
-                {%if update.format == 'link'%}
-                <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
-                {%endif%}
-
-                {%if update.format == 'video'%}
-                <video width="640" height="360" id="player{{update.id}}" preload="none">
-                  {% if 'youtube' in update.custom_fields.gdobra_video %}
-                  <source type="video/youtube" src="{{update.custom_fields.gdobra_video|striptags}}" />
-                  {%else%}
-                  <source type="video/vimeo" src="{{update.custom_fields.gdobra_video|striptags}}" />
-                  {%endif%}
-                </video>
-                <script type="text/javascript">
-                $('#player{{update.id}}').mediaelementplayer({});
-                </script>
-                {%endif%}
-
-                {%if update.format == 'image'%}
-                <img src="{{ update.thumbs.normal.url }}" >
-                {%endif%}
-
-                <div class="participe">
-                  <p>Isso é importante?</p>
+                  </div> -->
                 </div>
 
               </div>
 
               {%endfor%}
+            </div>
           </div>
           </div>
         </div>
