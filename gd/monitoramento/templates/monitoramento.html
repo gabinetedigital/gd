@@ -15,6 +15,10 @@ $('video').mediaelementplayer();
         <h1><span>de olho</span> nas <strong>obras</strong> </h1>
       </div>
     </div>
+
+
+
+
   </div>
   <div class="slider">
     <div class="container">
@@ -25,15 +29,44 @@ $('video').mediaelementplayer();
             <div class="carousel-inner">
               {%for slide in slides%}
               <div class="item {%if loop.index-1 == 0%}active{%endif%}">
-                {%if slide.thumbs%}
-                <img src="{{slide.thumbs.slideshow.url}}">
-                {%else%}
-                <img src="http://placehold.it/320x160&text=Gabinete Digital">
-                {%endif%}
-                <div class="content">
-                  <h4>{{slide.title|safe}}</h4>
-                  <span>{{slide.content|safe}}</span>
-                </div>
+
+                    {%if 'gdvideo' in slide%}
+                      {#GDVIDEO#}
+                      <img width="320" height="160" src="{{slide.gdvideo.thumbnail}}">
+
+                      <div class="content">
+                        <h4>{{slide.title|safe}}</h4>
+                        <span>{{slide.content|safe}}</span>
+                      </div>
+
+                    {%elif 'video' in slide%}
+                      {#VIDEO#}
+                      <img width="320" height="160" src="{{slide.thumbs.slideshow.url}}">
+
+                      <div class="content">
+                        <h4>{{slide.title|safe}}</h4>
+                        <span>{{slide.content|safe}}</span>
+                      </div>
+
+                    {%elif 'youtube' in slide%}
+                      {#YOUTUBE VIDEO#}
+                      <img width="320" height="160" src="{{slide.youtube.thumb}}">
+
+                      <div class="content">
+                        <h4>{{slide.title|safe}}</h4>
+                        <span>{{slide.content|safe}}</span>
+                      </div>
+
+                    {%elif slide.thumbs%}
+                      <img src="{{slide.thumbs.slideshow.url}}">
+
+                      <div class="content">
+                        <h4>{{slide.title|safe}}</h4>
+                        <span>{{slide.content|safe}}</span>
+                      </div>
+
+                    {%endif%}
+
               </div>
               {%endfor%}
             </div>
