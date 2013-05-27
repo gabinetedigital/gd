@@ -211,6 +211,7 @@ def vote(obraid, slug, plus):
 	itemup    = item+"voto_up"
 	itemdown  = item+"voto_down"
 	itemscore = item+"voto_score"
+	itemvoted = item+"users_voted"
 
 	if 'custom_fields' in post:
 		cfs = post['custom_fields']
@@ -220,10 +221,12 @@ def vote(obraid, slug, plus):
 		score = [ int(f['value']) for f in cfs if f['key'] == itemscore]
 		votosup = [ int(f['value']) for f in cfs if f['key'] == itemup]
 		votosdown = [ int(f['value']) for f in cfs if f['key'] == itemdown]
+		users_voted = [ int(f['value']) for f in cfs if f['key'] == itemvoted]
 
 		score = score[0] if score else 0
 		votosup = votosup[0] if votosup else 0
 		votosdown = votosdown[0] if votosdown else 0
+		users_voted = users_voted[0] if users_voted else ""
 
 		if vote_plus:
 			score += 1
@@ -257,6 +260,10 @@ def vote(obraid, slug, plus):
 			newcfs.append({'key':itemdown, 'value':votosdown})
 
 		print "Custom Fields OK", newcfs
+
+		#Grava o usuário que votou
+		users_voted = users_voted + authenticated_user().username + ","
+		newcfs.append({'key':itemvoted, 'value':users_voted})
 
 		# edit_post_id = wordpress.wp.editPost(
 		# 	post_id=post['id'],
