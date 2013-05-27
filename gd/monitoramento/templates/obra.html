@@ -41,7 +41,10 @@ $('video').mediaelementplayer();
         </div>
         <div class="span4">
           <div class="mapa">
-            <img src="{{ url_for('.static', filename='mapa.png' ) }}">
+            <!-- <img src="{{ url_for('.static', filename='mapa.png' ) }}"> -->
+            <a target="_blank" href="https://maps.google.com.br/maps?q={{obra.custom_fields.gdobra_coordenadas}}&hl=pt&z=18">
+              <img src="http://maps.googleapis.com/maps/api/staticmap?center={{obra.custom_fields.gdobra_coordenadas}}&zoom=11&size=370x250&sensor=false">
+            </a>
           </div>
         </div>
       </div>
