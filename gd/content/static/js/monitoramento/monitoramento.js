@@ -235,16 +235,16 @@ $(window).load(function () {
 
     $(".botoesparticipar a").click(abreProlado);
 
-    $('.vote a').on("click",function(){
+    $('.participe a.votar').on("click",function(){
         var url = $(this).attr('href');
         var _clicado_ = $(this)
         _clicado_.attr('disabled','disabled');
         $.get(url, function(data){
             var pData = $.parseJSON(data);
-            // console.log(pData.score);
-            // console.log(pData);
-            _clicado_.parent().find(".score").html(pData.score);
-            _clicado_.removeAttr('disabled');
+            _clicado_.parent().find(".counter").html(pData.score);
+            _clicado_.removeAttr('href');
+            _clicado_.find('i').removeClass("icon-star-empty");
+            _clicado_.find('i').addClass("icon-star");
         });
 
        return false;
