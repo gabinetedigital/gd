@@ -552,11 +552,11 @@
 }
 
 #monitoramento.obra .line {
-    border-left: 2px dashed #F1C40F;
+    background: #F1C40F;
     height: 100%;
-    left: 49.9%;
+    left: 49.8%;
     position: absolute;
-    width: 1px;
+    width: 4px;
 }
 
 #monitoramento.obra .update {
@@ -566,6 +566,7 @@
     width: 350px;
     margin-bottom: 20px;
     display: block;
+    float: left;
     @include border-radius(8px);
 }
 
@@ -575,24 +576,51 @@
     margin-top: 0px;
 }
 
-#monitoramento.obra .update.aside .seta {
+#monitoramento.obra .update .seta.direita,
+#monitoramento.obra .update .seta.esquerda {
     border-bottom: 15px solid transparent;
-    border-right: 15px solid #7F8C8D;
     border-top: 15px solid transparent;
     height: 0;
-    margin-left: -25px;
-    margin-top: 15px;
     width: 0;
+    margin-top: 15px;
 }
 
-#monitoramento.obra .update.image .seta {
-    border-bottom: 15px solid transparent;
-    border-left: 15px solid #2ecc71;
-    border-top: 15px solid transparent;
-    height: 0;
+#monitoramento.obra .update .seta.esquerda {
+    float: right;
+}
+
+#monitoramento.obra .update .seta.direita {
+    float: left;
+}
+
+#monitoramento.obra .update.aside .seta.esquerda {
+    border-left: 15px solid #95a5a6;
     margin-right: -25px;
-    margin-top: 15px;
-    width: 0;
+}
+
+#monitoramento.obra .update.aside .seta.direita {
+    border-right: 15px solid #95a5a6;
+    margin-left: -25px;
+}
+
+#monitoramento.obra .update.image .seta.esquerda {
+    border-left: 15px solid #2ecc71;
+    margin-right: -25px;
+}
+
+#monitoramento.obra .update.image .seta.direita {
+    border-right: 15px solid #2ecc71;
+    margin-left: -25px;
+}
+
+#monitoramento.obra .update.video .seta.esquerda {
+    border-left: 15px solid #e74c3c;
+    margin-right: -25px;
+}
+
+#monitoramento.obra .update.video .seta.direita {
+    border-right: 15px solid #e74c3c;
+    margin-left: -25px;
 }
 
 #monitoramento.obra .update .content {
@@ -600,8 +628,7 @@
 }
 
 #monitoramento.obra .update.aside {
-
-    background: #7f8c8d;
+    background: #95a5a6;
 }
 
 #monitoramento.obra .update.video {
@@ -615,6 +642,32 @@
 #monitoramento.obra .update .user {
     color: #2c3e50;
     margin-bottom: 20px;
+}
+
+#monitoramento.obra .update .seta .mark {
+    background: #2C3E50;
+    display: block;
+    height: 15px;
+    margin-top: -18px;
+    padding-top: 21px;
+    width: 4px;
+}
+
+#monitoramento.obra .update .seta.esquerda .mark {
+    margin-left: 13px;
+}
+
+#monitoramento.obra .update .seta.direita .mark {
+    margin-left: -17px;
+}
+
+#monitoramento.obra .update .seta  .dot {
+    background: #F1C40F;
+    width: 9px;
+    height: 9px;
+    margin-top: -8px;
+    display: block;
+    margin-left: -3px;
 }
 
 #monitoramento.obra .update .participe {
