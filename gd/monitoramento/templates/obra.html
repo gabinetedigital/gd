@@ -209,23 +209,6 @@ $('video').mediaelementplayer();
           </table>
           </div> -->
 
-          <div class="govresp">
-            <div class="video">
-              <video width="80%" height="80%" id="player1" preload="none">
-                <source type="video/youtube" src="http://www.youtube.com/watch?v=D3U-6e9bZfg&feature=youtu.be" />
-              </video>
-            </div>
-
-            <div class="content">
-              <h2>Governo Responde</h2>
-              <p>Criado em maio de 2011, a concepção do projeto foi
-                acompanhada de uma ampla pesquisa que analisou
-                exemplos de democracia digital do Brasil e do exterior
-                e inspirou a criação de um conjunto único de
-                mecanismos para a participação.</p>
-            </div>
-
-          </div>
 
           <div class="comofunciona">
             <div class="content">
@@ -238,16 +221,40 @@ $('video').mediaelementplayer();
               <h2>Como funciona ?</h2>
             </div>
           </div>
+
+
           <div class="updates">
-            <h2>O que as pessoas estão falando</h2>
+
+
+            <div class="govresp">
+              <div class="video">
+                <video width="80%" height="80%" id="player1" preload="none">
+                  <source type="video/youtube" src="http://www.youtube.com/watch?v=D3U-6e9bZfg&feature=youtu.be" />
+                </video>
+              </div>
+
+              <div class="content">
+                <h2>Governo Responde</h2>
+                <p>Criado em maio de 2011, a concepção do projeto foi
+                  acompanhada de uma ampla pesquisa que analisou
+                  exemplos de democracia digital do Brasil e do exterior
+                  e inspirou a criação de um conjunto único de
+                  mecanismos para a participação.</p>
+              </div>
+            </div>
+
+            <p>O que as pessoas estão falando...</p>
+
             <div class="timeline">
               <div class="line"></div>
+
               {%for update in timeline%}
 
               <div class="update {{ update.format }}  {{ loop.cycle('left', 'right') }}">
                 <div class="seta">
                   <span class="mark"> <span class="dot"></span> </span>
                 </div>
+
                 <div class="content">
                   <h4>{{update.title}}</h4>
                   <div class="user">
@@ -280,6 +287,7 @@ $('video').mediaelementplayer();
                   <img src="{{ update.thumbs.normal.url }}">
                   {%endif%}
                 </div>
+
                 <div class="participe">
                   <p>Isso é importante?</p>
                   {%if user and not user.username in update.custom_fields.gdobra_users_voted %}
@@ -297,14 +305,14 @@ $('video').mediaelementplayer();
               </div>
 
               {%endfor%}
-            </div>
-          </div>
-          </div>
-        </div>
+            </div> <!-- fim timeline -->
+          </div> <!-- fim updates -->
+        </div> <!-- fim span9 -->
       </div>
     </div>
   </div>
 </div>
+
 
 <div id="seguirobraform" style="display:none; width:450px;">
   <h3>Quer seguir esta obra ?</h3>
