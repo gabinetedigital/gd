@@ -21,7 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-from flask import Blueprint, request, render_template, abort, current_app
+from flask import Blueprint, request, render_template, abort, current_app, Response
 from werkzeug import secure_filename
 
 import os
@@ -407,3 +407,24 @@ def contribui(slug):
 
 	return dumps(r)
 
+
+#=================================================================== API ======
+@monitoramento.route('/api/obras.json',methods=('GET',))
+def api_obras():
+	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras())
+	return Response(dumps(obras),content_type="application/json")
+
+@monitoramento.route('/api/obras/<obraid>.json',methods=('GET',))
+def api_obraid(obraid):
+	# obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
+	obra = wordpress.getCustomPost(obraid, 'gdobra')
+	if not obra:
+		return Response(dumps({'status':'invalid_obraid'}),content_type="application/json")
+
+	# timeline = wordpress.monitoramento.getObraTimeline(obra['id'], int(itemid) )
+	# timeline = adjustCf(timeline)
+	# update = timeline[0]
+
+	return Response(dumps(obra),content_type="application/json")
+
+#=================================================================== API ======
