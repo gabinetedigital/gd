@@ -282,10 +282,12 @@ $('video').mediaelementplayer();
                 </div>
                 <div class="participe">
                   <p>Isso é importante?</p>
-                  {%if not user.username in update.custom_fields.gdobra_users_voted %}
+                  {%if user and not user.username in update.custom_fields.gdobra_users_voted %}
                   <a class="votar" href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/">
                     <i class="icon-star-empty"></i>
                   </a>
+                  {%elif not user%}
+                  <i class="icon-star-empty"></i>
                   {%else%}
                   <i class="icon-star"></i>
                   {%endif%}
