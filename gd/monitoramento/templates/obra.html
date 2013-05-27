@@ -252,7 +252,7 @@ $('video').mediaelementplayer();
                   <h4>{{update.title}}</h4>
                   <div class="user">
                     <small>por</small> {{update.author.display_name}} <small>em</small>
-                    {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}
+                    <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</a>
                   </div>
 
                   {%if update.format == 'aside'%}
