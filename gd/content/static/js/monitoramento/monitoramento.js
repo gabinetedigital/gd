@@ -256,5 +256,15 @@ $(window).load(function () {
         gutterWidth: 60,
     });
 
+    $(".timeline>.update").each(function(){
+
+        var posLeft = $(this).css("left");
+
+        if(posLeft == "0px") {
+            $(this).find('.seta').addClass('esquerda');
+        } else {
+            $(this).find('.seta').addClass('direita');
+        }
+    });
 
 });

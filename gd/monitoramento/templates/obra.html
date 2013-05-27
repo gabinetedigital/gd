@@ -245,7 +245,9 @@ $('video').mediaelementplayer();
               {%for update in timeline%}
 
               <div class="update {{ update.format }}  {{ loop.cycle('left', 'right') }}">
-                <div class="seta {{ loop.cycle('pull-right', 'pull-left') }}"></div>
+                <div class="seta">
+                  <span class="mark"> <span class="dot"></span> </span>
+                </div>
                 <div class="content">
                   <h4>{{update.title}}</h4>
                   <div class="user">
