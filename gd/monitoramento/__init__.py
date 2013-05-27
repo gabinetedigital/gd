@@ -45,6 +45,17 @@ locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
+def _get_stats(obraid=None):
+	"""
+	Método que retorna os dados estatísticos sobre a quantidade de obras e votos...
+	"""
+	return {
+             'total_filhos_'+str(obraid) : wordpress.monitoramento.getObraStatsFilhos(obraid) if obraid else 0,
+             'total_filhos_geral':wordpress.monitoramento.getObraStatsFilhos(),
+             'total_votos_geral': wordpress.monitoramento.getObraStatsVotos()
+	       }
+
+
 def _get_obras(slug=None):
 	if not slug:
 		obras = wordpress.monitoramento.getObras()
@@ -147,6 +158,7 @@ def index():
 	return render_template('monitoramento.html',
 		obras=obras,
 		slides=retslides,
+		stats=_get_stats(),
 		menu=menus,
 		twitter_hash_cabecalho=twitter_hash_cabecalho,
 	)
