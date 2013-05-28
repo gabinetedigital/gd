@@ -192,23 +192,8 @@ $('video').mediaelementplayer();
             &nbsp;
           </div>
           <div class="stage">
-          <!-- <div class="dashboard">
-          <h3>Dados gerais</h3>
-          <table>
-          <tr>
-          <td> <img src="{{ url_for('.static',
-          filename='plateia.png' ) }}"> </td> <td>
-          <img src="{{ url_for('.static',
-          filename='cafe.png' ) }}"> </td> <td>
-          <img src="{{ url_for('.static', filename='carro.png' )
-          }}"> </td>
-          </tr>
-          <tr>
-          <td> 1500 lugares</td> <td> Café, bares e restaurante </td> <td> 375 vagas </td>
-          </tr>
-          </table>
-          </div> -->
 
+    {% block subcontent %}
 
           <div class="comofunciona">
             <div class="content">
@@ -226,32 +211,53 @@ $('video').mediaelementplayer();
           <div class="updates">
 
 
+            {%for update in timeline[0:1]%}
             <div class="govresp">
+
+              {%if 'gdobra_video' in update.custom_fields%}
               <div class="video">
                 <video width="80%" height="80%" id="player1" preload="none">
-                  <source type="video/youtube" src="http://www.youtube.com/watch?v=D3U-6e9bZfg&feature=youtu.be" />
+                  <source type="video/youtube" src="{{update.custom_fields['video']}}" />
                 </video>
               </div>
+              {%endif%}
 
               <div class="content">
                 <h2>Governo Responde</h2>
-                <p>Criado em maio de 2011, a concepção do projeto foi
-                  acompanhada de uma ampla pesquisa que analisou
-                  exemplos de democracia digital do Brasil e do exterior
-                  e inspirou a criação de um conjunto único de
-                  mecanismos para a participação.</p>
-
-                <div class="data"> 27 Mai 2013</div>
+                {{update.content|safe}}
               </div>
+
             </div>
+            {%endfor%}
 
             <p>O que as pessoas estão falando...</p>
 
             <div class="timeline">
               <div class="line"></div>
 
-              {%for update in timeline%}
+              {%for update in timeline[1:]%}
 
+              {%if update.format == 'status'%} {#===================================================#}
+            </div>
+            <div class="govresp">
+
+              {%if 'gdobra_video' in update.custom_fields%}
+              <div class="video">
+                <video width="80%" height="80%" id="player1" preload="none">
+                  <source type="video/youtube" src="{{update.custom_fields['video']}}" />
+                </video>
+              </div>
+              {%endif%}
+
+              <div class="content">
+                <h2>Governo Responde</h2>
+                {{update.content|safe}}
+              </div>
+
+            </div>
+            <div class="timeline">
+              <div class="line"></div>
+              {%else%} {#===========================================================================#}
               <div class="update {{ update.format }}  {{ loop.cycle('left', 'right') }}">
                 <div class="seta">
                   <span class="mark"> <span class="dot"></span> </span>
@@ -305,10 +311,14 @@ $('video').mediaelementplayer();
                 </div>
 
               </div>
+              {%endif%}
 
               {%endfor%}
             </div> <!-- fim timeline -->
           </div> <!-- fim updates -->
+
+    {%endblock%}
+
         </div> <!-- fim span9 -->
       </div>
     </div>
