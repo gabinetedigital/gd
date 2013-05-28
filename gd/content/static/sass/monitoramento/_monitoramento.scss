@@ -452,6 +452,13 @@
     color: #2c3e50;
 }
 
+
+#monitoramento.obra .govresp .content .data {
+    font-size: 15pt;
+    font-weight: 200;
+    margin-top: 30px;
+}
+
 #monitoramento.obra .govresp .video {
     width: 435px;
     float: right;
@@ -561,7 +568,7 @@
 #monitoramento.obra .updates h2 {
     color: #f1c40f;
     margin: 0;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 #monitoramento.obra .timeline {
@@ -575,10 +582,6 @@
     left: 49.8%;
     position: absolute;
     width: 4px;
-}
-
-#monitoramento.obra .update:first-child {
-
 }
 
 #monitoramento.obra .update {
@@ -598,6 +601,7 @@
     margin-bottom: 2px;
     margin-top: 0px;
 }
+
 
 #monitoramento.obra .update .seta.direita,
 #monitoramento.obra .update .seta.esquerda {
@@ -661,7 +665,7 @@
 #monitoramento.obra .update.image {
     background: #2ecc71;
 }
-
+#monitoramento.obra .update .user a,
 #monitoramento.obra .update .user {
     color: #2c3e50;
     margin-bottom: 20px;
