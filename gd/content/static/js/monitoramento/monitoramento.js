@@ -263,6 +263,7 @@ $(window).load(function () {
         if(posLeft == "0px") {
             $(this).find('.seta').addClass('esquerda');
         } else {
+            $(this).addClass('direita');
             $(this).find('.seta').addClass('direita');
         }
     });
