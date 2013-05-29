@@ -1,11 +1,11 @@
 {% extends "obra.html" %}
 
 {%macro temas()%}
-  {#Macro para listar os temas, pois podem ser marcados mais de um tema#}
-  {%for t in obra.tema%}
-    {{obra.tema[t].name}}
-    {%if not loop.last%},{%endif%}
-  {%endfor%}
+{#Macro para listar os temas, pois podem ser marcados mais de um tema#}
+{%for t in obra.tema%}
+{{obra.tema[t].name}}
+{%if not loop.last%},{%endif%}
+{%endfor%}
 {%endmacro%}
 
 {%block css%}
@@ -23,46 +23,61 @@ $('video').mediaelementplayer();
 {% endblock %}
 
 {% block subcontent %}
+<div class="unico">
+  <div class="updates">
+    <div class="timeline">
+      <div class="voltar">
+        <i class="icon-arrow-left icon-large"></i> Voltar
+      </div>
+      <div class="update {{ update.format }}">
+        <div class="content">
+          <h4>{{update.title}}</h4>
+          <div class="user">
+            <small>por</small> {{update.author.display_name}} <small>em</small>
+            <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</a>
+          </div>
 
-              <div class="update">
-                <div class="vote">
-                  <a href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/"><i class="icon-plus"/></i></a>
-                  <span class="score">{{update.custom_fields.gdobra_voto_score or "0"}}</span>
-                  <a href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'-1']|join("")|md5}}/"><i class="icon-minus"></i></a>
-                </div>
-                <img src="{{ url_for('.static', filename='user.jpeg' ) }}" class="img-circle">
-                <h4>{{update.title}}</h4>
-                <a href="/monitore/obra/{{obra.slug}}/">Voltar</a>
+          {%if update.format == 'aside'%}
+          {{update.content|safe}}
+          {%endif%}
 
-                {%if update.format == 'aside'%}
-                {{update.content|safe}}
-                {%endif%}
+          {%if update.format == 'link'%}
+          <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
+          {%endif%}
 
-                {%if update.format == 'link'%}
-                <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
-                {%endif%}
+          {%if update.format == 'video'%}
+          <video width="100%" height="100%" id="player{{update.id}}" preload="none">
+            {% if 'youtube' in update.custom_fields.gdobra_video %}
+            <source type="video/youtube" src="{{update.custom_fields.gdobra_video|striptags}}" />
+            {%else%}
+            <source type="video/vimeo" src="{{update.custom_fields.gdobra_video|striptags}}" />
+            {%endif%}
+          </video>
+          <script type="text/javascript">
+          $('#player{{update.id}}').mediaelementplayer({});
+          </script>
+          {%endif%}
 
-                {%if update.format == 'video'%}
-                <video width="640" height="360" id="player{{update.id}}" preload="none">
-                  {% if 'youtube' in update.custom_fields.gdobra_video %}
-                  <source type="video/youtube" src="{{update.custom_fields.gdobra_video|striptags}}" />
-                  {%else%}
-                  <source type="video/vimeo" src="{{update.custom_fields.gdobra_video|striptags}}" />
-                  {%endif%}
-                </video>
-                <script type="text/javascript">
-                $('#player{{update.id}}').mediaelementplayer({});
-                </script>
-                {%endif%}
+          {%if update.format == 'image'%}
+          <img src="{{ update.thumbs.normal.url }}">
+          {%endif%}
+        </div>
 
-                {%if update.format == 'image'%}
-                <img src="{{ update.thumbs.normal.url }}" >
-                {%endif%}
-
-                <div class="participe">
-                  <p>Isso é importante?</p>
-                </div>
-
-              </div>
-
+        <div class="participe">
+          <p>Isso é importante?</p>
+          {%if user and not user.username in update.custom_fields.gdobra_users_voted %}
+          <a class="votar" href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/">
+            <i class="icon-star-empty"></i>
+          </a>
+          {%elif not user%}
+          <i class="icon-star-empty"></i>
+          {%else%}
+          <i class="icon-star"></i>
+          {%endif%}
+          <p class="counter">{{update.custom_fields.gdobra_voto_score or "0"}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
