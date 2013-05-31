@@ -342,7 +342,6 @@
     padding: 1px 10px;
     color: white;
     height: 70px;
-
 }
 
 #monitoramento.obra .botoesparticipar a:last-child {
@@ -559,6 +558,10 @@
     border-right: 1px solid #ccc;
 }
 
+#monitoramento.obra .stage {
+    background: #2c3e50;
+}
+
 #monitoramento.obra .updates {
     background: #2c3e50;
     padding-top: 20px;
@@ -725,23 +728,56 @@
     margin-left: 6px;
 }
 
-#monitoramento .suplementar{
-    height: 0px;
-    background-color: transparent;
-    border: 1px solid #c5c5c5;
-    padding: 10px;
+#monitoramento .suplementar {
+    color: white;
+    border-top: 4px solid #27ae60;
 }
 
-#monitoramento .suplementar h1{
-    background-color: transparent;
-    border-bottom: 1px solid black;
-    color: #333;
+#monitoramento .suplementar h2 {
+    font-weight: 400;
+    color: #27ae60;
+    text-align: left;
+    margin: 10px 20px;
+}
+
+#monitoramento .suplementar p {
+  padding: 10px 20px;
+}
+
+#monitoramento .suplementar .space {
+  padding: 10px 20px;
+}
+
+#monitoramento .suplementar .btn-group {
+  display: block;
+  clear: both;
+  margin: 20px 0;
+}
+
+#monitoramento .suplementar .foto,
+#monitoramento .suplementar .video {
+  margin-bottom: 10px;
+}
+
+#monitoramento .suplementar .semCadastro,
+#monitoramento .suplementar .comCadastro {
+  background: #34495e;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+#monitoramento .suplementar .resposta {
+  margin-bottom: 20px;
+}
+
+#monitoramento .suplementar big {
+  font-weight: 400;
+  font-size: 20pt;
 }
 
 .form-footer{
     width:100%;
     margin-top:15px;
-    text-align: right;
 }
 
 .main-follow{
