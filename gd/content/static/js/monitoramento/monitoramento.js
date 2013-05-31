@@ -148,21 +148,53 @@ $(window).load(function () {
     });
 
 
-    $('.timeline').masonry({
-        itemSelector: '.update',
-        gutterWidth: 60,
-    });
+    var updateall = function(){
 
-    $(".timeline>.update").each(function(){
+        $('.timeline').masonry({
+            itemSelector: '.update',
+            gutterWidth: 60,
+        });
 
-        var posLeft = $(this).css("left");
+        $(".timeline>.update").each(function(){
 
-        if(posLeft == "0px") {
-            $(this).find('.seta').addClass('esquerda');
-        } else {
-            $(this).addClass('direita');
-            $(this).find('.seta').addClass('direita');
-        }
+            var posLeft = $(this).css("left");
+
+            if(posLeft == "0px") {
+                $(this).find('.seta').addClass('esquerda');
+            } else {
+                $(this).addClass('direita');
+                $(this).find('.seta').addClass('direita');
+            }
+        });
+    };
+
+    updateall();
+
+    $('.govresp.remote').click(function(){
+        // console.log( $(this).attr('data-id') );
+        var _did = $(this).attr('data-id');
+        var _oid = $(this).attr('data-oid');
+        var url = "/monitore/obra/part/"+_oid+"/"+_did
+
+        $.get(url, function(data){
+            $('.timeline').masonry('destroy');
+            $('.updates').append(data);
+            $('.updates').trigger('create');
+            updateall();
+            $('video').mediaelementplayer();
+        });
+
+        // $("#timeline"+_did).load(url, function(){
+        //     // $("#timeline"+_did).trigger('create');
+        //     $('.timeline').masonry('destroy');
+        //     // console.log("FOI!");
+        //     // console.log("#timeline"+_did);
+        //     $("#timeline"+_did).trigger('create');
+        //     updateall();
+        // });
+
+        $(this).remove();
+
     });
 
 });

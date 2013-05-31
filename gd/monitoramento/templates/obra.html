@@ -305,26 +305,11 @@ $('video').mediaelementplayer();
           <div class="updates">
 
 
-            {%for update in timeline[0:1]%}
-            <div class="govresp">
+            {%include 'part_govresp.html'%}
 
-              {%if 'gdobra_video' in update.custom_fields%}
-              <div class="video">
-                <video width="80%" height="80%" id="player1" preload="none">
-                  <source type="video/youtube" src="{{update.custom_fields['video']}}" />
-                </video>
-              </div>
-              {%endif%}
-
-              <div class="content">
-                <h2>Governo Responde</h2>
-                {{update.content|safe}}
-              </div>
-
-            </div>
-            {%endfor%}
 
             <p>O que as pessoas estão falando...</p>
+            {%set mostra_items = True%}
 
             <div class="timeline">
               <div class="line"></div>
@@ -332,27 +317,19 @@ $('video').mediaelementplayer();
               {%for update in timeline[1:]%}
 
               {%if update.format == 'status'%} {#===================================================#}
+              {%set mostra_items = False%}
             </div>
-            <div class="govresp">
-
-              {%if 'gdobra_video' in update.custom_fields%}
-              <div class="video">
-                <video width="80%" height="80%" id="player1" preload="none">
-                  <source type="video/youtube" src="{{update.custom_fields['video']}}" />
-                </video>
-              </div>
-              {%endif%}
+            <div class="govresp remote" data-oid="{{obra.slug}}" data-id="{{update.id}}">
 
               <div class="content">
                 <h2>Governo Responde</h2>
-                {{update.content|safe}}
               </div>
 
             </div>
-            <div class="timeline">
-              <div class="line"></div>
-              {%else%} {#===========================================================================#}
+            <div class="timeline" id="timeline{{update.id}}">
+              {%elif mostra_items %} {#===========================================================================#}
               <div class="update {{ update.format }}">
+
                 <div class="seta">
                   <span class="mark"> <span class="dot"></span> </span>
                 </div>
@@ -405,7 +382,7 @@ $('video').mediaelementplayer();
                 </div>
 
               </div>
-              {%endif%}
+              {%endif%} {#==========================================================================#}
 
               {%endfor%}
             </div> <!-- fim timeline -->

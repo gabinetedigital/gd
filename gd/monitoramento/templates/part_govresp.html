@@ -1,0 +1,18 @@
+            {%for update in timeline[0:1]%}
+            <div class="govresp">
+
+              {%if 'gdobra_video' in update.custom_fields%}
+              <div class="video">
+                <video width="80%" height="80%" id="player1" preload="none">
+                  <source type="video/youtube" src="{{update.custom_fields['video']}}" />
+                </video>
+              </div>
+              {%endif%}
+
+              <div class="content">
+                <h2>Governo Responde</h2>
+                {{update.content|safe}}
+              </div>
+
+            </div>
+            {%endfor%}
