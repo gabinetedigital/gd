@@ -62,9 +62,9 @@ def _get_obras(slug=None):
 	else:
 		obras = [wordpress.monitoramento.getObra(slug)]
 
-	print "="*40
-	print obras
-	print "="*40
+	# print "="*40
+	# print obras
+	# print "="*40
 
 	return adjustCf(obras)
 
@@ -170,7 +170,8 @@ def timelineitem(slug, itemid):
 	if not obra:
 		return abort(404)
 
-	timeline = wordpress.monitoramento.getObraTimeline(obra['id'], int(itemid) )
+	cacheid = "obratl%s-%s"%(obra['id'],itemid)
+	timeline = fromcache(cacheid) or tocache(cacheid, wordpress.monitoramento.getObraTimeline(obra['id'], int(itemid) ))
 	timeline = adjustCf(timeline)
 	update = timeline[0]
 
@@ -292,7 +293,8 @@ def obra(slug):
 	if not obra:
 		return abort(404)
 
-	timeline = wordpress.monitoramento.getObraTimeline(obra['id'])
+	cacheid = "obratl-%s"%slug
+	timeline = fromcache(cacheid) or tocache(cacheid,wordpress.monitoramento.getObraTimeline(obra['id']))
 	timeline = adjustCf(timeline)
 
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
@@ -307,6 +309,32 @@ def obra(slug):
 		timeline=timeline,
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
+
+
+@monitoramento.route('/obra/part/<obra_slug>/<int:statusid>')
+def timelineplus(obra_slug, statusid):
+	cacheid = "obratl-%s"%obra_slug
+	obra = fromcache("obra-" + obra_slug) or tocache("obra-" + obra_slug, _get_obras(obra_slug)[0])
+	timeline = fromcache(cacheid) or tocache(cacheid,wordpress.monitoramento.getObraTimeline(obra['id']))
+	timeline = adjustCf(timeline)
+	# import pdb
+
+	updates = []
+	# pdb.set_trace()
+	inrange = False
+	for resp in timeline:
+		print statusid, resp['id'], resp['format']
+		if int(resp['id']) == statusid and resp['format'] == 'status':
+			inrange = True
+		elif resp['format'] == 'status' and inrange:
+			inrange = False
+			# break
+		if inrange:
+			print "Added!"
+			updates.append(resp)
+
+	return render_template('timeline_part.html', timeline=updates, obra=obra)
+	# return "Mais um item... %s " % statusid
 
 
 @monitoramento.route('/obra/<obraid>/seguir',methods=('POST',))
