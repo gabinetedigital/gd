@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# -*- coding:utf-8 -*-
 #
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
@@ -21,8 +19,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-from flask import Blueprint, request, render_template, abort, current_app, Response
+from flask import Blueprint, request, render_template, abort, current_app, Response, url_for
 from werkzeug import secure_filename
+from jinja2.utils import Markup
 
 import os
 import re
@@ -30,7 +29,7 @@ import xmlrpclib
 from hashlib import md5
 
 from gd.auth import is_authenticated, authenticated_user #, NobodyHome
-from gd.utils import dumps
+from gd.utils import dumps, sendmail
 from gd.model import UserFollow, session as dbsession
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -56,11 +55,13 @@ def _get_stats(obraid=None):
 	       }
 
 
-def _get_obras(slug=None):
-	if not slug:
-		obras = wordpress.monitoramento.getObras()
-	else:
+def _get_obras(slug=None, obraid=None):
+	if slug:
 		obras = [wordpress.monitoramento.getObra(slug)]
+	elif obraid:
+		obras = [wordpress.monitoramento.getObraById(obraid)]
+	else:
+		obras = wordpress.monitoramento.getObras()
 
 	# print "="*40
 	# print obras
@@ -112,12 +113,12 @@ def index():
 			del slide['custom_fields']
 			slide['custom_fields'] = custom_fields
 
-			print "SLIDE===", slide
+			# print "SLIDE===", slide
 			if slide['custom_fields'].has_key('gdvideo'):
 				vid = slide['custom_fields']['gdvideo']
 				video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
 				sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
-				print "SOURCES===", sources
+				# print "SOURCES===", sources
 
 				base_url = current_app.config['BASE_URL']
 				base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
@@ -129,7 +130,7 @@ def index():
 				        f = s['format']
 				    video_sources[f] = s['url']
 				video['sources'] = video_sources
-				print "SOURCES===", video_sources
+				# print "SOURCES===", video_sources
 				slide['gdvideo'] = video
 
 			if slide['custom_fields'].has_key('youtube'):
@@ -148,7 +149,7 @@ def index():
 
 		retslides.append(slide)
 
-	print "OBRAS SLIDES ==========================================================================", len(slides)
+	# print "OBRAS SLIDES ==========================================================================", len(slides)
 
 	try:
 		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
@@ -204,21 +205,21 @@ def vote(obraid, slug, plus):
 
 	post = wordpress.getCustomPost(obraid, 'gdobra')
 
-	print "Post", post['id'], post['post_type']
+	# print "Post", post['id'], post['post_type']
 
 	post_slug = md5(post['slug']).hexdigest()
 	slugok = True if post_slug == slug else False
-	print "SLUG===", slug, type(post_slug), post['slug'], type(post['slug'])
+	# print "SLUG===", slug, type(post_slug), post['slug'], type(post['slug'])
 
 	md5_plus = md5(obraid + '1').hexdigest()
 	md5_down = md5(obraid + '-1').hexdigest()
 	vote_plus = True if md5_plus == plus else False
 	vote_down = True if md5_down == plus else False
 
-	print "PLUS===", plus, md5_plus
-	print "DOWN===", plus, md5_down
+	# print "PLUS===", plus, md5_plus
+	# print "DOWN===", plus, md5_down
 
-	print "Votando", slugok, vote_plus, vote_down
+	# print "Votando", slugok, vote_plus, vote_down
 
 	item      = "gdobra_"
 	itemup    = item+"voto_up"
@@ -229,7 +230,7 @@ def vote(obraid, slug, plus):
 	if 'custom_fields' in post:
 		cfs = post['custom_fields']
 
-		print "Custom Fields", cfs
+		# print "Custom Fields", cfs
 
 		score = [ int(f['value']) for f in cfs if f['key'] == itemscore]
 		votosup = [ int(f['value']) for f in cfs if f['key'] == itemup]
@@ -272,7 +273,7 @@ def vote(obraid, slug, plus):
 		if itemdown not in feito:
 			newcfs.append({'key':itemdown, 'value':votosdown})
 
-		print "Custom Fields OK", newcfs
+		# print "Custom Fields OK", newcfs
 
 		#Grava o usuário que votou
 		users_voted = users_voted + authenticated_user().username + ","
@@ -323,28 +324,38 @@ def timelineplus(obra_slug, statusid):
 	# pdb.set_trace()
 	inrange = False
 	for resp in timeline:
-		print statusid, resp['id'], resp['format']
+		# print statusid, resp['id'], resp['format']
 		if int(resp['id']) == statusid and resp['format'] == 'status':
 			inrange = True
 		elif resp['format'] == 'status' and inrange:
 			inrange = False
 			# break
 		if inrange:
-			print "Added!"
+			# print "Added!"
 			updates.append(resp)
 
 	return render_template('timeline_part.html', timeline=updates, obra=obra)
 	# return "Mais um item... %s " % statusid
 
 
-@monitoramento.route('/obra/<obraid>/seguir',methods=('POST',))
+@monitoramento.route('/obra/seguir/<obraid>', methods=('POST',))
 def seguir(obraid):
+
+	emailto = ""
+	obra = fromcache("obra-" + obraid) or tocache("obra-" + obraid, _get_obras(obraid=obraid)[0])
+
+	if not obra:
+		print "Não achou a obra!"
+		return abort(404)
+
+	slug = obra['slug']
 
 	if request.form:
 		follow = UserFollow()
 
 		if is_authenticated():
 			follow.user = authenticated_user()
+			emailto = follow.user.email
 
 		follow.obra_id = int(obraid)
 
@@ -356,8 +367,26 @@ def seguir(obraid):
 
 		if request.form.has_key('email'):
 			follow.email = request.form['email']
+			emailto = follow.email
 
 		dbsession.commit()
+
+		if emailto:
+			base_url = current_app.config['BASE_URL']
+			base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
+			data = {
+				'titulo': obra['title'],
+				'link'  : base_url + url_for('.obra',slug=slug),
+				'descricao' : Markup(obra['content']).striptags(),
+				'monitore_url': base_url + url_for('.index'),
+				'siteurl': base_url,
+			}
+	        sendmail(
+	            current_app.config['SEGUIROBRA_SUBJECT'] % data,
+	            emailto,
+	            current_app.config['SEGUIROBRA_MSG'] % data
+	        )
+
 
 		return dumps({'status':'ok'})
 	else:
@@ -377,7 +406,7 @@ def contribui(slug):
 	if not obra:
 		return abort(404)
 
-	print request.form
+	# print request.form
 	r = {'status':'ok'}
 
 	if not is_authenticated():
@@ -390,7 +419,7 @@ def contribui(slug):
 
 		if request.form['link'] :
 			#Contribuição em texto
-			print "TEXTO <------------- COM VIDEO"
+			# print "TEXTO <------------- COM VIDEO"
 			new_post_id = wordpress.wp.newPost(
 				post_title    = request.form['titulo'],
 				post_type     = "gdobra",
@@ -406,7 +435,7 @@ def contribui(slug):
 		else:
 			if request.form['tipo'] == 'v':
 				#Contribuição em video
-				print "VIDEO <-------------"
+				# print "VIDEO <-------------"
 				new_post_id = wordpress.wp.newPost(
 					post_title    = request.form['titulo'],
 					post_type     = "gdobra",
@@ -418,7 +447,7 @@ def contribui(slug):
 				)
 
 			if request.files:
-				#print "Arquivos", request.files['foto']
+				# print "Arquivos", request.files['foto']
 				foto = request.files['foto']
 				if foto and allowed_file(foto.filename):
 					#print "Foto permitida"

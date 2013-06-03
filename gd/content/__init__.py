@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# -*- coding: UTF-8 -*-
 # Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>

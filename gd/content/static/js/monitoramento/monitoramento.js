@@ -46,7 +46,7 @@ $(window).load(function () {
             $('.main-follow').find(".alert").hide();
         },
         afterShow: function(){
-            $('.main-follow').find('a[target=#follow-facebook]').trigger('click');
+            $('.main-follow').find('a[target=#follow-email]').trigger('click');
         }
     });
 
