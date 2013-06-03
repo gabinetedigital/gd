@@ -9,21 +9,30 @@ $('video').mediaelementplayer();
 
 {% block content %}
 <div id="monitoramento" class="capa">
+
   <div class="container">
-    <div class="row">
-      <div class="span10 offset1 painel">
-        <h1><span>de olho</span> nas <strong>obras</strong> </h1>
+    <div class="painel">
+      <div class="row">
+        <div class="span8">
+          <h1><img src="{{ url_for('.static', filename='blueprint.png' ) }}"></h1>
+        </div>
+        <div class="span4">
+          <div class="numeros">
+            <ul>
+              <li>{{obras|length}}<span>obras</span></li>
+              <li>{{stats.total_filhos_geral}}<span>interações</span></li>
+              <li>{{stats.total_votos_geral}}<span>votos</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-
-
-
-
   </div>
+
   <div class="slider">
     <div class="container">
       <div class="row">
-        <div class="span10 offset1">
+        <div class="span12">
           <div id="myCarousel" class="carousel slide">
             <!-- Carousel items -->
             <div class="carousel-inner">
@@ -32,7 +41,7 @@ $('video').mediaelementplayer();
 
                     {%if 'gdvideo' in slide%}
                       {#GDVIDEO#}
-                      <img width="320" height="160" src="{{slide.gdvideo.thumbnail}}">
+                      <img width="360" height="200" src="{{slide.gdvideo.thumbnail}}">
 
                       <div class="content">
                         <h4>{{slide.title|safe}}</h4>
@@ -80,11 +89,12 @@ $('video').mediaelementplayer();
       </div>
     </div>
   </div>
+
   <div class="container">
     <div class="row">
-      <div class="span10 offset1 painel">
+      <div class="span12 painel meio">
         <div class="row">
-          <div class="span6">
+          <div class="span8">
             <h2>Obras</h2>
             {%if obras%}
             <div class="lista-obras">
@@ -122,14 +132,6 @@ $('video').mediaelementplayer();
             </div>
 
 
-            <div class="numeros">
-              <ul>
-                <li>{{obras|length}}<span>obras</span></li>
-                <li>{{stats.total_filhos_geral}}<span>interações</span></li>
-                <li>{{stats.total_votos_geral}}<span>votos</span></li>
-              </ul>
-
-            </div>
 
           </div>
         </div>
