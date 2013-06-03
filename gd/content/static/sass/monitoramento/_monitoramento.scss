@@ -559,7 +559,7 @@
 }
 
 #monitoramento.obra .stage {
-    background: #2c3e50;
+    background: #34495e;
 }
 
 #monitoramento.obra .updates {
@@ -742,17 +742,34 @@
 }
 
 #monitoramento .suplementar p {
-  padding: 10px 20px;
+    padding: 10px 20px;
+}
+
+#monitoramento .suplementar label {
+    color: #27ae60;
+    font-size: 14pt;
+}
+
+#monitoramento .suplementar .space textarea {
+    font-size: 13pt;
+    height: 190px;
+    width: 100%;
+}
+
+#part-geral > input {
+    width: 100%;
+    font-size: 13pt;
+    margin-bottom: 20px;
 }
 
 #monitoramento .suplementar .space {
-  padding: 10px 20px;
+    padding: 10px 20px;
 }
 
 #monitoramento .suplementar .btn-group {
-  display: block;
-  clear: both;
-  margin: 20px 0;
+    display: block;
+    clear: both;
+    margin: 20px 0;
 }
 
 #monitoramento .suplementar .foto,
@@ -762,7 +779,7 @@
 
 #monitoramento .suplementar .semCadastro,
 #monitoramento .suplementar .comCadastro {
-  background: #34495e;
+  background: #2c3e50;
   padding: 20px;
   margin-bottom: 10px;
 }
@@ -779,6 +796,7 @@
 .form-footer{
     width:100%;
     margin-top:15px;
+    text-align: right;
 }
 
 .main-follow{

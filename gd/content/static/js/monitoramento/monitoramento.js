@@ -109,7 +109,7 @@ $(window).load(function () {
 
 
     $('.botoesparticipar a').click( function() {
-        $('.suplementar').show();
+        $('.suplementar').fadeIn();
         $('.updates').hide();
     });
 
