@@ -604,6 +604,16 @@
     width: 4px;
 }
 
+#monitoramento.obra .voltar {
+   margin-bottom: 20px;
+   color: white;
+   font-size: 12pt;
+}
+
+#monitoramento.obra .voltar i {
+  margin-right: 10px;
+}
+
 #monitoramento.obra .update {
     padding: 10px;
     color: white;
@@ -764,6 +774,10 @@
     display: inline-block;
     margin-left: 6px;
     text-decoration: none;
+}
+
+#monitoramento.obra .update .participe .like {
+    display: inline-block;
 }
 
 #monitoramento .suplementar {

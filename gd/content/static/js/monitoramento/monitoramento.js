@@ -30,16 +30,6 @@ $(window).load(function () {
         $('.comente').fadeIn();
     });
 
-    $('.label-important').click(function(){
-        $('#obras').fadeOut();
-        $('.voltar').fadeIn();
-    });
-
-    $('.voltar').click(function(){
-        $('#obras').fadeIn();
-        $('.voltar').fadeOut();
-    });
-
     $(".seguirobra").fancybox({
         afterLoad: function(){
             $('.main-follow').find("input[type=text]").val("");
@@ -130,6 +120,7 @@ $(window).load(function () {
         $('.newPassword').fadeIn();
         return false
     });
+
 
 
     $('.participe a.votar').on("click",function(){
@@ -230,5 +221,7 @@ $(window).load(function () {
         $(this).remove();
 
     });
+
+    $('.unico .updates .timeline').masonry('destroy');
 
 });
