@@ -30,9 +30,6 @@ $('video').mediaelementplayer();
       <div class="row">
         <div class="span8">
           <div class="head">
-            <!-- <a href="#" class="toottip" data-toggle="tooltip" title="Tema: {{temas()}}"> -->
-            <!-- <img src="{{ url_for('.static', filename='icon.png' ) }}"> -->
-            <!-- </a> -->
             <h2>{{obra.title}}</h2>
             <div class="content">
               {{ obra.content|safe }}
@@ -292,13 +289,11 @@ $('video').mediaelementplayer();
               {%if update.format == 'status'%} {#===================================================#}
               {%set mostra_items = False%}
             </div>
+
             <div class="govresp remote" data-oid="{{obra.slug}}" data-id="{{update.id}}">
-
-              <div class="content">
-                <h2>Governo Responde</h2>
-              </div>
-
+              <h2>Governo Responde - {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</h2>
             </div>
+
             <div class="timeline" id="timeline{{update.id}}">
               {%elif mostra_items %} {#===========================================================================#}
               <div class="update {{ update.format }}">
