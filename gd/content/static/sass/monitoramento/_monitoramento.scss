@@ -281,6 +281,23 @@
     @include border-radius(0);
 }
 
+#monitoramento.obra .barra a .more {
+    color: white;
+}
+
+#monitoramento.obra .barra .more {
+    background: #1ABC9C;
+    border-radius: 6px 6px 6px 6px;
+    float: right;
+    height: 26px;
+    text-align: center;
+    width: 32px;
+    margin: 10px 0 10px 15px;
+    font-size: 20pt;
+    font-weight: bold;
+    line-height: 17pt;
+}
+
 #monitoramento.obra .head .content {
     color: white;
     display: inline-block;
@@ -490,18 +507,7 @@
     padding: 10px 28px;
 }
 
-#monitoramento.obra .comofunciona .content .more {
-    background: #1ABC9C;
-    border-radius: 6px 6px 6px 6px;
-    float: right;
-    height: 26px;
-    text-align: center;
-    width: 32px;
-    margin-top: 7px;
-    font-size: 20pt;
-    font-weight: bold;
-    line-height: 17pt;
-}
+
 
 #monitoramento.obra .comofunciona .content .close {
     float: right;
