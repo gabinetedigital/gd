@@ -452,15 +452,19 @@
     width: 435px;
 }
 
-#monitoramento.obra .govresp .content h2 {
+#monitoramento.obra .updates .govresp h2 {
     color: #2c3e50;
 }
 
+#monitoramento.obra .updates .govresp.remote > h2 {
+    margin-left: 10px;
+}
 
 #monitoramento.obra .govresp .content .data {
     font-size: 15pt;
     font-weight: 200;
-    margin-top: 30px;
+    margin-bottom: 18px;
+    margin-top: -5px;
 }
 
 #monitoramento.obra .govresp .video {
@@ -569,7 +573,7 @@
 
 #monitoramento.obra .updates {
     background: #2c3e50;
-    padding-top: 20px;
+    padding: 10px;
     padding-bottom: 100px;
     overflow: hidden;
 }
@@ -577,12 +581,13 @@
 #monitoramento.obra .updates h2 {
     color: #f1c40f;
     margin: 0;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 #monitoramento.obra .timeline {
     margin: 0 auto;
     width: 800px;
+    padding-bottom: 20px;
 }
 
 #monitoramento.obra .line {
@@ -668,6 +673,16 @@
     margin-left: -25px;
 }
 
+#monitoramento.obra .update.link .seta.esquerda {
+    border-left: 15px solid #f39c12;
+    margin-right: -25px;
+}
+
+#monitoramento.obra .update.link .seta.direita {
+    border-right: 15px solid #f39c12;
+    margin-left: -25px;
+}
+
 #monitoramento.obra .update .content {
     margin-bottom: 20px;
 }
@@ -683,6 +698,16 @@
 #monitoramento.obra .update.image {
     background: #2ecc71;
 }
+
+#monitoramento.obra .update.link {
+    background: #f39c12;
+}
+
+#monitoramento.obra .update.link a {
+    color: white;
+    text-decoration: underline;
+}
+
 #monitoramento.obra .update .user a,
 #monitoramento.obra .update .user {
     color: #2c3e50;
@@ -732,6 +757,7 @@
     color: #2c3e50;
     display: inline-block;
     margin-left: 6px;
+    text-decoration: none;
 }
 
 #monitoramento .suplementar {

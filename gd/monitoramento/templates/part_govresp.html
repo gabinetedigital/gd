@@ -11,7 +11,12 @@
 
               <div class="content">
                 <h2>Governo Responde</h2>
+                <div class="data">
+                  {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}
+                </div>
+
                 {{update.content|safe}}
+
               </div>
 
             </div>
