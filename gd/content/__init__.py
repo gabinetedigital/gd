@@ -214,7 +214,7 @@ def formatarDataeHora(s,formato = '%d/%m/%Y %H:%Mh' ):
 
 def formatarDataObra(s,formato = '%d/%m/%Y' ):
     z = str(s)
-    print "FORMATANDO DATA OBRA:", z
+    # print "FORMATANDO DATA OBRA:", z
     try:
         z = datetime.datetime.strptime(z, "%Y-%m-%d")
         z = z.strftime(formato).decode('utf8')
