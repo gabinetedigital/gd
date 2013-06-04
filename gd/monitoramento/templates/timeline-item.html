@@ -26,9 +26,10 @@ $('video').mediaelementplayer();
 <div class="unico">
   <div class="updates">
     <div class="timeline">
-      <div class="voltar">
-        <i class="icon-arrow-left icon-large"></i> Voltar
+      <a href="{{ url_for('monitoramento.obra', slug=obra.slug) }}"><div class="voltar">
+        <i class="icon-arrow-left icon-large"></i> Voltar para linha do tempo
       </div>
+      </a>
       <div class="update {{ update.format }}">
         <div class="content">
           <h4>{{update.title}}</h4>
