@@ -148,6 +148,38 @@ $(window).load(function () {
     });
 
 
+    var showNeedLogin = function(obj, msg){
+        // var botaoentrar = $('#menu .entrar a');
+        // console.log( obj );
+        var cont = "Você precisa efetuar o login para votar!";
+        if (msg != "" && msg != null) {
+            cont = msg;
+        }
+        var options = {
+            'content'      : cont,
+            'title'     : "É necessário efetuar login",
+            'animation' : true,
+            'placement' : "right",
+            'trigger'   : "manual"
+        }
+        obj.popover(options);
+        obj.popover('show');
+
+        window.setTimeout(function(){
+            obj.popover('hide');
+        },2000);
+    };
+
+
+    var installNeedLoginTrigger = function(){
+        $('.participe a.need').on("click",function(){
+
+            showNeedLogin($(this));
+
+            return false;
+        });
+    };
+
     var updateall = function(){
 
         $('.timeline').masonry({
@@ -166,6 +198,8 @@ $(window).load(function () {
                 $(this).find('.seta').addClass('direita');
             }
         });
+
+        installNeedLoginTrigger();
     };
 
     updateall();

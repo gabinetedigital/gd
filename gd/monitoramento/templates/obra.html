@@ -347,11 +347,12 @@ $('video').mediaelementplayer();
                     <i class="icon-star-empty"></i>
                   </a>
                   {%elif not user%}
-                  <i class="icon-star-empty"></i>
+                  <a class="need" href="#"><i class="icon-star-empty"></i></a>
                   {%else%}
                   <i class="icon-star"></i>
                   {%endif%}
                   <p class="counter">{{update.custom_fields.gdobra_voto_score or "0"}}</p>
+                  <span class="need hide">Você precisa se <a href="{{url_for('auth.login')}}">logar</a></span>
                 </div>
 
               </div>
