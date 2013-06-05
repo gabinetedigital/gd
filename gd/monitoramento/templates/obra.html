@@ -194,7 +194,6 @@ $('video').mediaelementplayer();
                      <div class="space">
                        <div class="alert message hide">Mensagem</div>
                        <form  id="part-geral" class="form ajaxform" method="POST" action="/monitore/obra/{{obra.slug}}/contribui">
-                         <input type="hidden" name="tipo" value="t">
                          <label for="titulo">Título:</label>
                          <input type="text" placeholder="Título..." name="titulo" id="titulo">
                          <label for="conteudo">Sua contribuição</label>
@@ -212,6 +211,13 @@ $('video').mediaelementplayer();
                          <input type="file" name="foto" id="foto">
                          </div>
 
+                        {%if user%}
+                          <p class="lead">
+                           Enviando contribuição como {{user.name}}
+                         </p>
+
+                        {%else%}
+
                          <input type="text" placeholder="email" name="email" id="email">
 
                          <p class="lead">
@@ -222,8 +228,8 @@ $('video').mediaelementplayer();
                            <div class="resposta"><big>Sim</big>, eu tenho uma senha</div>
 
                            <div class="input-append">
-                             <input class="span2" id="appendedInputButton" type="password" placeholder="senha">
-                             <button class="btn btn-success" type="button">Entrar</button>
+                             <input class="span2" id="senha" type="password" placeholder="senha" name="senha">
+                             <button class="btn btn-success" type="submit">Entrar</button>
                            </div>
                          </div>
 
@@ -234,12 +240,14 @@ $('video').mediaelementplayer();
                              <input type="text" placeholder="Telefone" name="telefone" id="telefone"> (opcional)
                            </div>
                            <div class="hide newPassword">
-                             <input type="password" placeholder="Senha" name="password" id="newPassword"> (opcional)
+                             <input type="password" placeholder="Senha" name="newPassword" id="newPassword"> (opcional)
                            </div>
                          </div>
 
+                         {%endif%}
+
                          <div class="form-footer">
-                           <button class="btn" onclick="fechaSuplementar();return false;">Cancelar</button>
+                           <a class="btn fechar">Cancelar</a>
                            <button type="submit" class="btn btn-success">Enviar</button>
                          </div>
 
