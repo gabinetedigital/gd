@@ -92,10 +92,13 @@ $(window).load(function () {
     });
 
 
-    $('.botoesparticipar a').click( function() {
+    $('.botoesparticipar a').toggle( function() {
         $('.suplementar').fadeIn();
         $('.updates').hide();
         $('#part-geral').clearFields();
+    }, function() {
+        $('.suplementar').hide();
+        $('.updates').fadeIn();
     });
 
     $('.inVideo').click( function() {
@@ -121,6 +124,7 @@ $(window).load(function () {
         $('.suplementar').hide();
         $('.updates').fadeIn();
     });
+
 
 
 
