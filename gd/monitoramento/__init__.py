@@ -28,8 +28,9 @@ import re
 import xmlrpclib
 from hashlib import md5
 
-from gd.auth import is_authenticated, authenticated_user #, NobodyHome
-from gd.utils import dumps, sendmail
+# from gd.auth import is_authenticated, authenticated_user #, NobodyHome
+from gd import auth as authapi
+from gd.utils import dumps, sendmail, send_welcome_email
 from gd.model import UserFollow, session as dbsession
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -276,7 +277,7 @@ def vote(obraid, slug, plus):
 		# print "Custom Fields OK", newcfs
 
 		#Grava o usuário que votou
-		users_voted = users_voted + authenticated_user().username + ","
+		users_voted = users_voted + authapi.authenticated_user().username + ","
 		newcfs.append({'key':itemvoted, 'value':users_voted})
 
 		# edit_post_id = wordpress.wp.editPost(
@@ -353,8 +354,8 @@ def seguir(obraid):
 	if request.form:
 		follow = UserFollow()
 
-		if is_authenticated():
-			follow.user = authenticated_user()
+		if authapi.is_authenticated():
+			follow.user = authapi.authenticated_user()
 			emailto = follow.user.email
 
 		follow.obra_id = int(obraid)
@@ -406,24 +407,83 @@ def contribui(slug):
 	if not obra:
 		return abort(404)
 
-	# print request.form
-	r = {'status':'ok'}
+	r = {'status':'ok', 'message':'Sua contibuição foi aceita com sucesso'}
+	user_recent = False
+	if not authapi.is_authenticated():
+		# r = {'status':'not_logged'}
+		"""
+		Se não está autenticado, tenta achar o usuário pelo email, e
+		acessar com a senha inserida no formulario.
+		Se não, cadastra o camarada, com o nome e email informados, gerando
+		uma senha para ele e enviando o email de boas vindas.
+		"""
+		email = request.form['email']
 
-	if not is_authenticated():
-		r = {'status':'not_logged'}
+		if request.form['senha']:
+			#Informou a senha do cadastro já existente
+			# username = email
+			# senha = request.form['senha']
+			#Efetua o login
+			print "Usuario e senha informado... logando!"
+			username = request.values.get('email')
+			senha = request.values.get('senha')
+			print "tentando logar com", username, senha
+			try:
+				user = authapi.login(username, senha)
+			except authapi.UserNotFound:
+				r = {'status':'nok', 'message':_(u'Wrong user or password')}
+				return dumps(r)
+			except authapi.UserAndPasswordMissmatch:
+				r = {'status':'nok', 'message':_(u'Wrong user or password')}
+				return dumps(r)
+		elif request.form['nome']:
+			print "Nome informado... cadastrando..."
+			#Informou a senha para cadastro
+			nome = request.form['nome']
+			telefone = request.form['telefone'] if 'telefone' in request.form else ""
+			novasenha = request.form['newPassword'] if 'newPassword' in request.form else ""
 
+			if not novasenha:
+				novasenha = "gabinetedigital"
+
+			# print nome, '-', email, '-', novasenha
+
+			try:
+				user = authapi.create_user(nome, email, unicode(novasenha), email)
+				r = {'status':'ok', 'message':'Sua contibuição foi aceita com sucesso. Verifique seu email para confirmar o cadastro.'}
+				user_recent = True
+				send_welcome_email(user)
+			except authapi.UserExistsUnconfirmed, e:
+				r = {'status':'nok', 'message':u'Seu usuário precisa ser confirmado, veja seu email!'}
+				return dumps(r)
+
+			if telefone:
+				user.set_meta('phone', telefone)
+				dbsession.commit()
 	else:
+		print "JAH ESTAVA LOGADO!"
+		user = authapi.authenticated_user()
 
-		author_id = authenticated_user().id
+
+	if authapi.is_authenticated() or user_recent:
+
+		print ">>>>>>>>>>>> SALVANDO CONTRIBUIÇÃO ..."
+		print user
+
+		author_id = user.id
 		status    = "pending"
+
+		ultimo_status = wordpress.monitoramento.getUltimaRespostaGovObra(obra['id'])
+		print "Achou o ultimo status publico da obra:"
+		print ultimo_status
 
 		if request.form['link'] :
 			#Contribuição em texto
-			# print "TEXTO <------------- COM VIDEO"
+			print "COM VIDEO -------------"
 			new_post_id = wordpress.wp.newPost(
 				post_title    = request.form['titulo'],
 				post_type     = "gdobra",
-				post_parent   = obra['id'],
+				post_parent   = ultimo_status['id'],
 				post_author   = author_id, #int
 				post_content  = request.form['conteudo'],
 				post_status   = status,
@@ -433,53 +493,46 @@ def contribui(slug):
 								]
 			)
 		else:
-			if request.form['tipo'] == 'v':
-				#Contribuição em video
-				# print "VIDEO <-------------"
+
+			if request.files:
+				#Contribuição imagem
+
+				foto = request.files['foto']
+				if foto and allowed_file(foto.filename):
+					filename = secure_filename(foto.filename)
+					file_path = os.path.join(current_app.config['UPLOADS_DEFAULT_DEST'], filename)
+					foto.save(file_path)
+					file = open(file_path)
+					base64bits = xmlrpclib.Binary(file.read())
+					media = wordpress.wp.uploadFile(name=file_path, type=foto.content_type, bits=base64bits, overwrite=False)
+
+					new_post_id = wordpress.wp.newPost(
+						post_title    = request.form['titulo'],
+						post_type     = "gdobra",
+						post_parent   = ultimo_status['id'],
+						post_author   = author_id, #int
+						post_content  = request.form['conteudo'],
+						post_status   = status,
+						post_format   = "image",
+						post_thumbnail= int(media['id']), #int
+					)
+
+				else:
+					r = {'status':'ok', 'message':'O arquivo enviado não é permitido. Use apenas arquivos PNG ou JPG.'}
+
+			else:
+				#Contribuição somente texto
+				print "TEXTO <-------------"
 				new_post_id = wordpress.wp.newPost(
 					post_title    = request.form['titulo'],
 					post_type     = "gdobra",
-					post_parent   = obra['id'],
+					post_parent   = ultimo_status['id'],
 					post_author   = author_id, #int
 					post_content  = request.form['conteudo'],
 					post_status   = status,
 					post_format   = "video" if request.files else "aside"
 				)
 
-			if request.files:
-				# print "Arquivos", request.files['foto']
-				foto = request.files['foto']
-				if foto and allowed_file(foto.filename):
-					#print "Foto permitida"
-					filename = secure_filename(foto.filename)
-					file_path = os.path.join(current_app.config['UPLOADS_DEFAULT_DEST'], filename)
-					#print "Salvando", file_path
-					foto.save(file_path)
-					file = open(file_path)
-					base64bits = xmlrpclib.Binary(file.read())
-					#print "Enviando foto..."
-					media = wordpress.wp.uploadFile(name=file_path, type=foto.content_type, bits=base64bits, overwrite=False)
-
-					#print "Media uploaded", media['id'], media
-
-					new_post_id = wordpress.wp.newPost(
-						post_title    = request.form['titulo'],
-						post_type     = "gdobra",
-						post_parent   = obra['id'],
-						post_author   = author_id, #int
-						# post_content  = request.form['conteudo'],
-						post_status   = status,
-						post_format   = "image",
-						post_thumbnail= int(media['id']), #int
-					)
-
-					#print "--> Novo post", new_post_id, "gravado!"
-				else:
-					#print "Nao PERMITIDO!"
-					r = {'status':'file_not_allowed'}
-			else:
-				#print "Nao ENCONTRADO!"
-				r = {'status':'file_not_found'}
 
 	return dumps(r)
 
