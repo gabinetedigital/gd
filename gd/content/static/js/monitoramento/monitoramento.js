@@ -20,6 +20,15 @@
 $(window).load(function () {
 
     $('.carousel').carousel();
+
+    // $('#myCarousel .item').click(function(){
+    //     console.log("Clicado");
+    // });
+    $('#myCarousel .item a').fancybox({
+        minWidth: 500,
+        minHeight: 300
+    });
+
     $('.toottip').tooltip();
 
     $('.icon-list').click(function(){

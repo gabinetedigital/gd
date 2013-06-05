@@ -148,6 +148,9 @@ def index():
 					video = {'video': video, 'thumb': thumb}
 					slide['youtube'] = video
 
+			if slide['custom_fields'].has_key('video'):
+				slide['video'] = slide['custom_fields']['video']
+
 		retslides.append(slide)
 
 	# print "OBRAS SLIDES ==========================================================================", len(slides)
