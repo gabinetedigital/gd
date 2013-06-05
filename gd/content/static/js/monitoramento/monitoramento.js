@@ -132,8 +132,8 @@ $(window).load(function () {
             var pData = $.parseJSON(data);
             _clicado_.parent().find(".counter").html(pData.score);
             _clicado_.removeAttr('href');
-            _clicado_.find('i').removeClass("icon-star-empty");
-            _clicado_.find('i').addClass("icon-star");
+            _clicado_.find('i').removeClass("icon-thumbs-down");
+            _clicado_.find('i').addClass("icon-thumbs-up");
         });
 
        return false;

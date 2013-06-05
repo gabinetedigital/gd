@@ -1,0 +1,11 @@
+   <p>Isso é importante?</p>
+   {%if user and not user.username in update.custom_fields.gdobra_users_voted %}
+   <a class="votar" href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/">
+     <i class="icon-thumbs-down icon-large"></i>
+   </a>
+   {%elif not user%}
+   <a class="need" href="#"><i class="icon-thumbs-down icon-large"></i></a>
+   {%else%}
+   <a class="votar"><i class="icon-thumbs-up icon-large"></i></a>
+   {%endif%}
+   <p class="counter">{{update.custom_fields.gdobra_voto_score or "0"}}</p>
