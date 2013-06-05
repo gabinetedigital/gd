@@ -359,28 +359,16 @@
 }
 
 #monitoramento.obra .botoesparticipar a {
-    border-bottom: 2px solid #d35400;
     display: block;
     padding: 1px 10px;
     color: white;
     height: 70px;
 }
 
-#monitoramento.obra .botoesparticipar a:last-child {
-    border: none;
-}
-
 #monitoramento.obra .botoesparticipar a:hover {
     text-decoration: none;
     background: #d35400;
-}
-
-#monitoramento.obra .botoesparticipar a:first-child:hover {
-    @include border-radius(10px 10px 0 0);
-}
-
-#monitoramento.obra .botoesparticipar a:last-child:hover {
-    @include border-radius(0 0 10px 10px);
+    @include border-radius(10px);
 }
 
 #monitoramento.obra .botoesparticipar a > i {
@@ -451,6 +439,7 @@
     font-weight: 600;
     margin-left: 36px;
     margin-top: 15px;
+    position: absolute;
 }
 
 #monitoramento.obra .govresp {
@@ -593,7 +582,8 @@
 #monitoramento.obra .timeline {
     margin: 0 auto;
     width: 800px;
-    padding-bottom: 20px;
+    padding-bottom: 80px;
+    overflow: hidden;
 }
 
 #monitoramento.obra .line {
