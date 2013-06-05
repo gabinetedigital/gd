@@ -320,9 +320,7 @@ $('video').mediaelementplayer();
                     <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</a>
                   </div>
 
-                  {%if update.format == 'aside'%}
                   {{update.content|safe}}
-                  {%endif%}
 
                   {%if update.format == 'link'%}
                   <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
@@ -347,18 +345,7 @@ $('video').mediaelementplayer();
                 </div>
 
                 <div class="participe">
-                  <p>Isso é importante?</p>
-                  {%if user and not user.username in update.custom_fields.gdobra_users_voted %}
-                  <a class="votar" href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/">
-                    <i class="icon-thumbs-down icon-large"></i>
-                  </a>
-                  {%elif not user%}
-                  <a class="need" href="#"><i class="icon-thumbs-down icon-large"></i></a>
-                  {%else%}
-                  <i class="icon-thumbs-up"></i>
-                  {%endif%}
-                  <p class="counter">{{update.custom_fields.gdobra_voto_score or "0"}}</p>
-                  <span class="need hide">Você precisa se <a href="{{url_for('auth.login')}}">logar</a></span>
+                  {%include 'timeline-importante.html'%}
                 </div>
 
               </div>
