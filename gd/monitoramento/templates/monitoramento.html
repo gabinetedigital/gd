@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
+{%block css%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
+{%endblock%}
+
 {% block javascript %}
+<script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script>
 $('video').mediaelementplayer();
@@ -80,10 +85,6 @@ $('video').mediaelementplayer();
               {%endfor%}
             </div>
           </div>
-
-          <script type="text/javascript">
-            $('.carousel').carousel()
-          </script>
 
         </div>
       </div>

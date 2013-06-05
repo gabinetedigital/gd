@@ -299,6 +299,11 @@ def obra(slug):
 	timeline = fromcache(cacheid) or tocache(cacheid,wordpress.monitoramento.getObraTimeline(obra['id']))
 	timeline = adjustCf(timeline)
 
+	cacheid = "page-more-"+slug
+	more = fromcache(cacheid) or tocache(cacheid,wordpress.getPageByPath('more-'+slug))
+	if more:
+		more = more.content
+
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	try:
 		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
@@ -308,6 +313,7 @@ def obra(slug):
 	return render_template('obra.html',
 		menu=menus,
 		obra=obra,
+		more=more,
 		timeline=timeline,
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)

@@ -872,3 +872,21 @@
     font-size: 13pt;
     font-weight: bold;
 }
+
+.more-content.fechado {
+    color: #FFFFFF;
+    height: 0;
+    overflow: hidden;
+    padding: 0 30px;
+}
+
+.more-content.aberto {
+    color: #FFFFFF;
+    height: auto;
+    overflow: hidden;
+    padding: 10px 30px;
+}
+
+.acessso {
+    text-align: center;
+}

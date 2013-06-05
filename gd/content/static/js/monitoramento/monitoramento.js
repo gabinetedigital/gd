@@ -125,7 +125,12 @@ $(window).load(function () {
         $('.updates').fadeIn();
     });
 
-
+    $('.participe a.need i.icon-thumbs-down').tooltip({
+        title: 'Clique e vote! Necessita login.'
+    });
+    $('.participe a.votar i.icon-thumbs-down').tooltip({
+        title: 'Clique e vote!'
+    });
 
 
     $('.participe a.votar').on("click",function(){
@@ -228,5 +233,17 @@ $(window).load(function () {
     });
 
     $('.unico .updates .timeline').masonry('destroy');
+
+    $(".more").click(function(){
+        var o = $('.more-content');
+        if(o.hasClass('fechado')){
+            o.switchClass("fechado","aberto", 600);
+            $(this).html('-');
+        }else{
+            o.switchClass("aberto","fechado", 600);
+            $(this).html('+');
+        }
+
+    });
 
 });

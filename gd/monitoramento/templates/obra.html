@@ -112,11 +112,13 @@ $('video').mediaelementplayer();
                 <li class="result">Porto belo</li>
               </ul>
             </li>
+            {%if more%}
             <li class="field">
-              <a href=""><div class="more">
+              <div class="more">
                 +
-              </div></a>
+              </div>
             </li>
+            {%endif%}
           </ul>
         </div>
       </div>
@@ -172,7 +174,7 @@ $('video').mediaelementplayer();
               <p class="desc">
                 Você será redirecionado para o portal de acesso a informação
               </p>
-              <a href="" class="btn">Requerer!</a>
+              <a href="http://www.acessoinformacao.rs.gov.br/" class="btn btn-warning">Requerer!</a>
             </div>
 
 
@@ -181,6 +183,11 @@ $('video').mediaelementplayer();
         </div>
         <div class="span9">
           <div class="stage">
+            {%if more%}
+            <div class="more-content fechado">
+              {{more|safe}}
+            </div>
+            {%endif%}
             <div class="suplementar hide">
               <div id="participar-geral">
                 <div class="row">
