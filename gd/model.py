@@ -92,10 +92,10 @@ class Term(Entity):
 class AudiencePosts(Entity):
     """Mapper for the wp_usermeta entity, the same used by wordpress"""
     using_options(tablename='wp_posts')
-    
+
     id = Field(Integer, primary_key=True, colname='ID')
     audience = OneToMany('AudiencePostsMeta')
-    
+
     def __str__(self):
         return '<%s "%s">' % (
             self.__class__.__name__, self.id)
@@ -267,7 +267,7 @@ class User(Entity):
     password = Field(Unicode(256), colname='user_pass')
     email = Field(Unicode(64), colname='user_email')
     user_activation_key = Field(Unicode(60))
-    
+
     receive_sms   = Field(Boolean)
     receive_email = Field(Boolean)
 
@@ -346,6 +346,8 @@ class User(Entity):
             display_name=self.display_name,
             avatar_url=self.avatar_url,
             creation_date=self.creation_date,
+            facebook=self.get_meta('facebook'),
+            twitter=self.get_meta('twitter')
         )
 
     def public_json(self):

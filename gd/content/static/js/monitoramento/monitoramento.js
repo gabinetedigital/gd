@@ -41,7 +41,7 @@ $(window).load(function () {
 
     $(".seguirobra").fancybox({
         afterLoad: function(){
-            $('.main-follow').find("input[type=text]").val("");
+            // $('.main-follow').find("input[type=text]").val("");
             $('.main-follow').find(".alert").hide();
         },
         afterShow: function(){

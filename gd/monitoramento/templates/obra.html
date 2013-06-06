@@ -2,10 +2,12 @@
 
 {%macro temas()%}
   {#Macro para listar os temas, pois podem ser marcados mais de um tema#}
-  {%for t in obra.tema%}
-    {{obra.tema[t].name}}
-    {%if not loop.last%},{%endif%}
-  {%endfor%}
+  {%if obra.tema%}
+    {%for t in obra.tema%}
+      {{obra.tema[t].name}}
+      {%if not loop.last%},{%endif%}
+    {%endfor%}
+  {%endif%}
 {%endmacro%}
 
 {%block css%}
@@ -347,7 +349,13 @@ $('video').mediaelementplayer();
                   {%endif%}
 
                   {%if update.format == 'image'%}
-                  <img src="{{ update.thumbs.normal.url }}">
+                    {%if update.thumbs.normal%}
+                      <img src="{{ update.thumbs.normal.url }}">
+                    {%elif update.thumbs.slideshow%}
+                      <img src="{{ update.thumbs.slideshow.url }}">
+                    {%elif update.thumbs.thumb%}
+                      <img src="{{ update.thumbs.thumb.url }}">
+                    {%endif%}
                   {%endif%}
                 </div>
 
@@ -381,7 +389,7 @@ $('video').mediaelementplayer();
       <div class="alert message hide">Mensagem</div>
       <form class="form form-inline ajaxform" action="/monitore/obra/seguir/{{obra.id}}" method="POST">
         <label for="faceid">Seu e-mail:</label>
-        <input type="text" name="email" id="email">
+        <input type="text" name="email" id="email" {%if user%}value="{{user.email}}"{%endif%}>
         <input type="submit" class="btn btn-success" value="Seguir">
       </form>
     </div>
@@ -389,7 +397,7 @@ $('video').mediaelementplayer();
       <div class="alert message hide">Mensagem</div>
       <form class="form form-inline ajaxform" action="/monitore/obra/seguir/{{obra.id}}" method="POST">
         <label for="faceid">Facebook ID:</label>
-        <input type="text" name="faceid" id="faceid">
+        <input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook')}}"{%endif%}>
         <input type="submit" class="btn btn-success" value="Seguir">
       </form>
     </div>
@@ -397,7 +405,7 @@ $('video').mediaelementplayer();
       <div class="alert message hide">Mensagem</div>
       <form class="form form-inline ajaxform" action="/monitore/obra/seguir/{{obra.id}}" method="POST">
         <label for="faceid">Twitter ID:</label>
-        <input type="text" name="twitterid" id="twitterid">
+        <input type="text" name="twitterid" id="twitterid" {%if user%}value="{{user.get_meta('twitter')}}"{%endif%}>
         <input type="submit" class="btn btn-success" value="Seguir">
       </form>
     </div>
