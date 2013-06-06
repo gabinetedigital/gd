@@ -140,9 +140,9 @@ $('video').mediaelementplayer();
             <div class="separador"></div>
 
             <div class="follow">
-              <h3>Seguir esta obra</h3>
+              <h3>Siga esta obra</h3>
               <p class="desc">
-                Escoha a melhor forma de receber as atualizações:</p>
+                Receba informações periódicas sobre o andamento desta obra</p>
               <ul class="social">
                 <li><i class="icon-facebook icon-2x face"></i></li>
                 <li><i class="icon-twitter icon-2x twit"></i></li>
@@ -163,18 +163,19 @@ $('video').mediaelementplayer();
             <div class="nossodados">
               <h3>Nossos dados</h3>
               <p class="desc">
-                Os dados desse site estão disponiveis nos sequintes formatos:
+                As informações das obras são dados abertos. Acesse a API !
               </p>
-              <a href="#" class="api">API</a>
-              <a href="#" class="xml">XML</a>
+              <a href="#" class="api">JSON</a>
+              <!-- <a href="#" class="xml">XML</a> -->
             </div>
 
             <div class="separador"></div>
 
             <div class="acessso">
-              <h3>Acesso a informação</h3>
+              <h3>Acesso à informação</h3>
               <p class="desc">
-                Você será redirecionado para o portal de acesso a informação
+                Se você quiser obter informações específicas e de maneira personalizada, utilize a Lei de Acesso à Informação.
+                O governo dará uma resposta em no máximo 30 dias
               </p>
               <a href="http://www.acessoinformacao.rs.gov.br/" class="btn btn-warning">Requerer!</a>
             </div>
@@ -190,6 +191,30 @@ $('video').mediaelementplayer();
               {{more|safe}}
             </div>
             {%endif%}
+            <div class="api-content hide" >
+              <div class="row">
+                <div class="span9">
+                  <h2>Acesso aos dados via API</h2>
+
+                  <p>Todos os dados referentes as obras mostradas neste site estão disponíveis através da nossa api.</p>
+                  <p>Você pode acessá-los conforme seguem as indicações abaixo:</p>
+
+                  <h3>Retorno JSON</h3>
+                  <blockquote>
+                  <dl>
+                    <dt>Lista de todas as obras</dt>
+                    <dd><code>/monitore/api/obras.json</code></dd>
+                    <dt>Dados de uma obra especifica</dt>
+                    <dd><code>/monitore/api/obras/[obraid].json</code></dd>
+                  </dl>
+                  </blockquote>
+
+                  <p>Logo, mais dados serão disponibilizados, assim que os end-points foram sendo desenvolvidos.</p>
+
+                  <div class="close">Voltar</div>
+                </div>
+              </div>
+            </div>
             <div class="suplementar hide">
               <div id="participar-geral">
                 <div class="row">
@@ -365,7 +390,8 @@ $('video').mediaelementplayer();
 
               </div>
               {%endif%} {#==========================================================================#}
-
+              {%else%}
+              <p>Seja o primeiro a fiscalizar essa obra!</p>
               {%endfor%}
             </div> <!-- fim timeline -->
           </div> <!-- fim updates -->

@@ -890,3 +890,44 @@
 .acessso {
     text-align: center;
 }
+
+#monitoramento .api-content {
+    color: white;
+    border-top: 4px solid #27ae60;
+}
+
+#monitoramento .api-content h2,
+#monitoramento .api-content h3 {
+    color: #27ae60;
+    text-align: left;
+    margin: 10px 20px;
+}
+
+#monitoramento .api-content h2 {
+    font-weight: 400;
+}
+
+#monitoramento .api-content h3 {
+    font-weight: 200;
+}
+
+#monitoramento .api-content p,
+#monitoramento .api-content dl{
+    padding: 10px 20px;
+}
+
+#monitoramento .api-content blockquote{
+    margin-left: 20px;
+}
+
+#monitoramento .api-content .close {
+    float: right;
+    font-size: 16pt;
+    font-weight: bold;
+    height: 26px;
+    line-height: 17pt;
+    text-align: center;
+    margin-right: 28px;
+    margin-bottom: 28px;
+
+}

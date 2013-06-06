@@ -104,11 +104,28 @@ $(window).load(function () {
     $('.botoesparticipar a').toggle( function() {
         $('.suplementar').fadeIn();
         $('.updates').hide();
+        $('.api-content').hide();
         $('#part-geral').clearFields();
     }, function() {
         $('.suplementar').hide();
         $('.updates').fadeIn();
+        $('.api-content').hide();
     });
+
+    $('a.api').toggle( function() {
+        $('.api-content').fadeIn();
+        $('.updates').hide();
+        $('.suplementar').hide();
+    }, function() {
+        $('.api-content').hide();
+        $('.updates').fadeIn();
+        $('.suplementar').hide();
+    });
+
+    $('.api-content .close').click(function(){
+        $('a.api').trigger('click');
+    });
+
 
     $('.inVideo').click( function() {
         $('.space .video').show();
@@ -133,6 +150,8 @@ $(window).load(function () {
         $('.suplementar').hide();
         $('.updates').fadeIn();
     });
+
+
 
     $('.participe a.votar').on("click",function(){
         var url = $(this).attr('href');
