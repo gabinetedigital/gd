@@ -126,74 +126,76 @@ $('video').mediaelementplayer();
   </div>
 
   <div class="container">
-    <div class="row">
-      <div class="span12 painel meio">
-        <div class="row">
-          <div class="span8">
-            <h2>Obras</h2>
-            {%if obras%}
-            <div class="lista-obras">
-              <ul>
-                {% for obra in obras %}
-                <li class="{{ loop.cycle('light', 'dark') }}">
-                  <div class="meta-obra">
-                  {%if obra.thumbs%}
-                  <img src="{{obra.thumbs.thumb.url}}">
-                  {%else%}
-                  <img src="http://placehold.it/150x150">
-                  {%endif%}
-                  <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-success">fiscalize</a>
-                  </div>
-                  <h4>{{obra.title}}</h4>
-                  <p class="local">{{obra.custom_fields.gdobra_municipio}}</p>
-                  <p>{{obra.content|safe}}</p>
-                </li>
-                {% endfor %}
-              </ul>
+    <div class="painel">
+      <div class="row">
+        <div class="span12 meio">
+          <div class="row">
+            <div class="span8">
+              <h2>Obras</h2>
+              {%if obras%}
+              <div class="lista-obras">
+                <ul>
+                  {% for obra in obras %}
+                  <li class="{{ loop.cycle('light', 'dark') }}">
+                    <div class="meta-obra">
+                      {%if obra.thumbs%}
+                      <img src="{{obra.thumbs.thumb.url}}">
+                      {%else%}
+                      <img src="http://placehold.it/150x150">
+                      {%endif%}
+                      <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-success">fiscalize</a>
+                    </div>
+                    <h4>{{obra.title}}</h4>
+                    <p class="local">{{obra.custom_fields.gdobra_municipio}}</p>
+                    <p>{{obra.content|safe}}</p>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {%endif%}
             </div>
-            {%endif%}
-          </div>
-          <div class="span4">
-            <h2>Como funciona?</h2>
-            <div class="instrucoes">
-              <ul>
-                <li>
-                  <span>1</span>
-                  <p><b>ESCOLHA</b> ao lado uma obra do Governo Estadual para acompanhar</p>
-                </li>
+            <div class="span4">
+              <h2>Como funciona?</h2>
+              <div class="instrucoes">
+                <ul>
+                  <li>
+                    <span>1</span>
+                    <p><b>ESCOLHA</b> ao lado uma obra do Governo Estadual para acompanhar</p>
+                  </li>
 
-                <li>
-                  <span>2</span>
-                  <p><b>INFORME-SE</b> sobre o andamento, veja imagens e conheça o cronograma de entrega de cada obra</p>
-                </li>
+                  <li>
+                    <span>2</span>
+                    <p><b>INFORME-SE</b> sobre o andamento, veja imagens e conheça o cronograma de entrega de cada obra</p>
+                  </li>
 
-                <li>
-                  <span>3</span>
-                  <p><b>SIGA</b> as obras de seu interesse e receba atualizações a cada nova etapa</p>
-                </li>
+                  <li>
+                    <span>3</span>
+                    <p><b>SIGA</b> as obras de seu interesse e receba atualizações a cada nova etapa</p>
+                  </li>
 
-                <li>
-                  <span>4</span>
-                  <p><b>FISCALIZE!</b> Envie fotos e vídeos das obras, comentários, dúvidas ou críticas.</p>
-                </li>
+                  <li>
+                    <span>4</span>
+                    <p><b>FISCALIZE!</b> Envie fotos e vídeos das obras, comentários, dúvidas ou críticas.</p>
+                  </li>
 
-                <li>
-                  <span>5</span>
-                  <p><b>COMPARTILHE</b> as obras que você fiscaliza e chame seus amigos para ficar de olho</p>
-                </li>
+                  <li>
+                    <span>5</span>
+                    <p><b>COMPARTILHE</b> as obras que você fiscaliza e chame seus amigos para ficar de olho</p>
+                  </li>
 
-                <li>
-                  <span>6</span>
-                  <p><b>GOVERNO RESPONDE:</b> a cada 30 dias, o Governador se
-                  manifesta, em vídeo, sobre as obras mais acessadas e
-                  fiscalizadas</p>
-                </li>
+                  <li>
+                    <span>6</span>
+                    <p><b>GOVERNO RESPONDE:</b> a cada 30 dias, o Governador se
+                      manifesta, em vídeo, sobre as obras mais acessadas e
+                      fiscalizadas</p>
+                  </li>
 
-              </ul>
+                </ul>
+              </div>
+
+
+
             </div>
-
-
-
           </div>
         </div>
       </div>
@@ -202,8 +204,8 @@ $('video').mediaelementplayer();
 </div>
 
 <script type="text/javascript">
-  $(window).load(function () {
+$(window).load(function () {
     $('video').mediaelementplayer();
-  });
+});
 </script>
 {% endblock %}
