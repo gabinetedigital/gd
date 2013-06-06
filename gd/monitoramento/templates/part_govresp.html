@@ -10,13 +10,14 @@
               {%endif%}
 
               <div class="content">
+              <div class="cal">
+                <div class="dia">{{update.date.date|formatarDataeHora(formato="%d")}}</div>
+                <div class="mes">{{update.date.date|formatarDataeHora(formato="%b")}}</div>
+              </div>
                 <h2>Governo Responde</h2>
-                <div class="data">
-                  {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}
-                </div>
-
+                <div class="text">
                 {{update.content|safe}}
-
+                </div>
               </div>
 
             </div>

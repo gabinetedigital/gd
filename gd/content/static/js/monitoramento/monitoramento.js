@@ -100,16 +100,17 @@ $(window).load(function () {
         return false;
     });
 
-
     $('.botoesparticipar a').toggle( function() {
         $('.suplementar').fadeIn();
         $('.updates').hide();
         $('.api-content').hide();
+        $('.comofunciona').hide();
         $('#part-geral').clearFields();
     }, function() {
         $('.suplementar').hide();
         $('.updates').fadeIn();
         $('.api-content').hide();
+        $('.comofunciona').fadeIn();
     });
 
     $('a.api').toggle( function() {

@@ -451,11 +451,35 @@
 }
 
 #monitoramento.obra .govresp .content {
-    padding: 10px;
     margin: 0;
     font-weight: 400;
-    padding: 0px 20px;
     width: 435px;
+}
+
+#monitoramento.obra .govresp .content .text {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#monitoramento.obra .govresp .cal {
+    background: url(../img/monitoramento/calendar.png) no-repeat;
+    float: left;
+    height: 67px;
+    margin: 10px;
+    width: 50px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #2C3E50;
+}
+
+#monitoramento.obra .govresp .cal .dia {
+    font-size: 20pt;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+#monitoramento.obra .govresp .cal .mes {
+    margin-top: 2px;
 }
 
 #monitoramento.obra .updates .govresp h2 {
@@ -751,7 +775,8 @@
     font-weight: bold;
     margin: 0 -10px;
     padding-left: 10px;
-    padding-top: 5px;
+    padding-top: 10px;
+    font-size: 15pt;
 }
 
 #monitoramento.obra .update .participe p {
@@ -782,7 +807,7 @@
     margin: 10px 20px;
 }
 
-#monitoramento .suplementar p {
+#monitoramento .suplementar .help {
     padding: 10px 20px;
 }
 
