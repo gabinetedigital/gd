@@ -134,14 +134,6 @@ $(window).load(function () {
         $('.updates').fadeIn();
     });
 
-    $('.participe a.need i.icon-thumbs-down').tooltip({
-        title: 'Clique e vote! Necessita login.'
-    });
-    $('.participe a.votar i.icon-thumbs-down').tooltip({
-        title: 'Clique e vote!'
-    });
-
-
     $('.participe a.votar').on("click",function(){
         var url = $(this).attr('href');
         var _clicado_ = $(this)
@@ -161,7 +153,7 @@ $(window).load(function () {
     var showNeedLogin = function(obj, msg){
         // var botaoentrar = $('#menu .entrar a');
         // console.log( obj );
-        var cont = "Você precisa efetuar o login para votar!";
+        var cont = "Você precisa <a href='/auth/login/'>efetuar o login</a> para votar!";
         if (msg != "" && msg != null) {
             cont = msg;
         }
@@ -177,7 +169,7 @@ $(window).load(function () {
 
         window.setTimeout(function(){
             obj.popover('hide');
-        },2000);
+        },10000);
     };
 
 
