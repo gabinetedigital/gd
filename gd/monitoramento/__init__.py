@@ -160,10 +160,16 @@ def index():
 	except KeyError:
 		twitter_hash_cabecalho = ""
 
+	try:
+		valor_investimentos = conf.VALOR_INVESTIMENTOS
+	except KeyError:
+		valor_investimentos = ""
+
 	return render_template('monitoramento.html',
 		obras=obras,
 		slides=retslides,
 		stats=_get_stats(),
+		milhoes=valor_investimentos,
 		menu=menus,
 		twitter_hash_cabecalho=twitter_hash_cabecalho,
 	)
