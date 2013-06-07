@@ -419,6 +419,8 @@ $('video').mediaelementplayer();
                       <img src="{{ update.thumbs.slideshow.url }}">
                     {%elif update.thumbs.thumb%}
                       <img src="{{ update.thumbs.thumb.url }}">
+                    {%elif update.custom_fields.gdobra_imagem%}
+                      <img src="{{ update.custom_fields.gdobra_imagem }}">
                     {%endif%}
                   {%endif%}
                 </div>
