@@ -822,7 +822,7 @@
 }
 
 #monitoramento .suplementar label {
-    color: #27ae60;
+    color: #2ecc71;
     font-size: 14pt;
 }
 
@@ -832,10 +832,45 @@
     width: 100%;
 }
 
-#part-geral > input {
+#monitoramento .suplementar #part-geral > input {
     width: 100%;
     font-size: 13pt;
     margin-bottom: 20px;
+}
+
+#monitoramento .suplementar .anexos {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#monitoramento .suplementar .anexos a {
+    color: white;
+    display: inline-block;
+    width: 140px;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+#monitoramento .suplementar .anexos .help-block {
+    color: white;
+    font-style: italic;
+}
+
+#monitoramento .suplementar .anexos a:hover {
+    text-decoration: none;
+}
+
+#monitoramento .suplementar .anexos a > i {
+    color: #2ecc71;
+    background:#2C3E50;
+    padding: 10px;
+    float: left;
+    @include border-radius(100%);
+}
+
+#monitoramento .suplementar .anexos a > p {
+    margin-left: 50px;
+    text-align: left;
 }
 
 #monitoramento .suplementar .space {
@@ -850,7 +885,8 @@
 
 #monitoramento .suplementar .foto,
 #monitoramento .suplementar .video {
-  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: left;
 }
 
 #monitoramento .suplementar .semCadastro,
