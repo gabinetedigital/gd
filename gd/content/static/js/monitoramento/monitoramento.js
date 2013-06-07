@@ -105,6 +105,21 @@ $(window).load(function () {
         return false;
     });
 
+    $('.botoesparticipar a').mouseenter( function() {
+        $(this).find('.funcao').hide("slide", { direction: "left" }, 500);
+        $(this).find('.help-text').show("slide", { direction: "right" }, 500);
+    }).mouseleave( function() {
+        $(this).find('.funcao').show("slide", { direction: "left" }, 500);
+        $(this).find('.help-text').hide("slide", { direction: "right" }, 500);
+    });
+
+    $("button").click(function () {
+        $(this).parent().slideUp("slow", function () {
+            $("#msg").text($("button", this).text() + " has completed.");
+        });
+    });
+
+
     $('.botoesparticipar a').toggle( function() {
         $('.suplementar').fadeIn();
         $('.updates').hide();
