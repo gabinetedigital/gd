@@ -39,7 +39,7 @@
         {%endif%}
 
         {%if update.format == 'image'%}
-        <img src="{{ update.thumbs.normal.url }}">
+          {%include 'item-image-part.html'%}
         {%endif%}
       </div>
 

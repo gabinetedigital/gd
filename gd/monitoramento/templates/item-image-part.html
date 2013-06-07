@@ -1,0 +1,9 @@
+                    {%if update.thumbs.normal%}
+                      <img src="{{ thumborurl(update.thumbs.normal.url, (300,200) ) }}">
+                    {%elif update.thumbs.slideshow%}
+                      <img src="{{ thumborurl(update.thumbs.slideshow.url, (300,200) ) }}">
+                    {%elif update.thumbs.thumb%}
+                      <img src="{{ thumborurl(update.thumbs.thumb.url, (300,200) ) }}">
+                    {%elif update.custom_fields.gdobra_imagem%}
+                      <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (300,200) ) }}">
+                    {%endif%}
