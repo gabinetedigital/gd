@@ -117,7 +117,9 @@ $('video').mediaelementplayer();
                   </span>
                 </li>
                 <li class="data"><strong>Empresas responsáveis</strong></li>
-                <li class="result">Porto belo</li>
+                <li class="result empcontratadas" title="Todas as empresas contratadas" data-content="{%for e in obra.custom_fields.gdobra_empresa_contratada%}{{e}}<br/>{%endfor%}">
+                  {{obra.custom_fields.gdobra_empresa_contratada[0]}}
+                </li>
               </ul>
             </li>
             {%if more%}
@@ -473,6 +475,5 @@ $('video').mediaelementplayer();
     </div>
   </div>
 </div>
-
 
 {% endblock %}
