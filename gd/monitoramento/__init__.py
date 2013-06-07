@@ -78,7 +78,13 @@ def adjustCf(obras):
 		if obra['custom_fields']:
 			custom_fields = {}
 			for cf in obra['custom_fields']:
-				custom_fields[cf['key']] = cf['value']
+				valor = cf['value']
+				#=== tratamento especial para alguns custom fields
+				if cf['key'] == 'gdobra_empresa_contratada':
+					#Deixa somente os nomes das empresas contratadas
+					valor = [ x[1:-1] for x in re.findall('"[\wáéíóúàèìòùüëãõ ]*"',valor) ]
+
+				custom_fields[cf['key']] = valor
 			del obra['custom_fields']
 			obra['custom_fields'] = custom_fields
 		r_obras.append(obra)

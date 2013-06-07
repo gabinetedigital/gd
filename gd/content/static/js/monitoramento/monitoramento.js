@@ -267,4 +267,10 @@ $(window).load(function () {
 
     });
 
+    $('.empcontratadas').popover({
+        'placement': 'left',
+        'trigger'  : 'hover'
+    });
+
+
 });
