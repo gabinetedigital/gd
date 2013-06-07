@@ -182,8 +182,6 @@
 
 #monitoramento.obra .header {
     background: #34495e;
-    @include border-radius(13px 13px 0 0);
-    /* @include box-shadow(rgba(0,0,0,0.40) 0px 5px 7px 0px);*/
 }
 
 #monitoramento.obra .head h2 {
@@ -650,7 +648,6 @@
     float: left;
     margin-top: 50px;
     margin-bottom: -20px;
-    @include border-radius(8px);
 }
 
 #monitoramento.obra .update.direita {
