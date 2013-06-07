@@ -64,7 +64,12 @@ $(window).load(function () {
 
         /* It's everything ok, let's get out */
         if (pData.status === 'ok') {
-          showMsg('Obrigado por sua contribuição!','alert-success');
+          showMsg('Obrigado por sua contribuição! ','alert-success');
+          if(pData.refresh){
+            window.setTimeout(function(){
+                window.location.reload();
+            },1000);
+          }
           $('#part-geral').clearFields();
         } else {
           showMsg(pData.message);
