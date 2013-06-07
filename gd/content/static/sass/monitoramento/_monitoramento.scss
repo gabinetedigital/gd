@@ -352,28 +352,43 @@
 }
 
 #monitoramento.obra .botoesparticipar {
-    background: #e67e22;
-    @include border-radius(10px);
+    background: #e74c3c;
 }
 
 #monitoramento.obra .botoesparticipar a {
     display: block;
-    padding: 1px 10px;
+    padding: 0 10px;
     color: white;
     height: 70px;
+    border-bottom: 2px solid #c0392b;
+    text-decoration: none;
 }
 
-#monitoramento.obra .botoesparticipar a:hover {
-    text-decoration: none;
-    background: #d35400;
-    @include border-radius(10px);
+#monitoramento.obra .botoesparticipar a:last-child {
+    border: none;
+}
+
+#monitoramento.obra .botoesparticipar .funcao {
+    font-weight: 200;
+    font-size: 32px;
+    line-height: 65px;
+    position: absolute;
+}
+
+#monitoramento.obra .botoesparticipar div.help-text {
+     margin-left: 50px;
+     margin-top: 20px;
+     position: absolute;
+     display: none;
 }
 
 #monitoramento.obra .botoesparticipar a > i {
     float: left;
     line-height: 65px;
     margin-right: 20px;
+    color: #34495e;
 }
+
 
 #monitoramento.obra .separador {
   border: 2px solid #ddd;
