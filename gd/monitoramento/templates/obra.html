@@ -247,7 +247,7 @@ $('video').mediaelementplayer();
                 </div>
               </div>
             </div>
-            <div class="suplementar hide">
+            <div class="suplementar ">
               <div id="participar-geral">
                 <div class="row">
                   <div class="span9">
@@ -264,17 +264,29 @@ $('video').mediaelementplayer();
                          <input type="text" placeholder="Título..." name="titulo" id="titulo">
                          <label for="conteudo">Sua contribuição</label>
                          <textarea name="conteudo" id="conteudo" placeholder="Digite sua contribuição aqui"></textarea>
-                         <div class="btn-group">
-                           <a href="#" class="btn inVideo"><i class="icon-facetime-video"></i> Inservir Vídeo</a>
-                           <a href="#" class="btn inFoto"><i class="icon-camera"></i> Inserir Foto</a>
-                         </div>
-                         <div class="video hide">
-                           <label for="link">Link do video</label>
-                           <input type="text" placeholder="link do seu vídeo..." name="link" id="link">
-                         </div>
-                         <div class="foto hide">
-                         <label for="foto">Sua imagem</label>
-                         <input type="file" name="foto" id="foto">
+
+                         <div class="anexos">
+                           <a href="#" class="inFoto">
+                             <i class="icon-camera icon-large"></i>
+                             <p>Envie uma imagem</p>
+
+
+                             <a href="#" class="inVideo">
+                               <i class="icon-facetime-video icon-large"></i>
+                               <p>Envie um vídeo</p>
+                             </a>
+
+
+                             <div class="video hide">
+                               <label for="link">Link do video</label>
+                               <span class="help-block">Insira aqui o link do seu vídeo no youtube.</span>
+                               <input type="text" placeholder="link do seu vídeo..." name="link" id="link">
+
+                             </div>
+                             <div class="foto hide">
+                               <label for="foto">Sua imagem</label>
+                               <input type="file" name="foto" id="foto">
+                             </div>
                          </div>
 
                         {%if user%}
@@ -283,8 +295,8 @@ $('video').mediaelementplayer();
                          </p>
 
                         {%else%}
-
-                         <input type="text" placeholder="email" name="email" id="email">
+                         <label for="email">Email</label>
+                         <input type="text" placeholder="Digite aqui seu email..." name="email" id="email">
 
                          <p class="lead">
                            Você possui cadastro no Gabinete Digital ?
