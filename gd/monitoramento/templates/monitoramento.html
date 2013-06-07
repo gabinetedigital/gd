@@ -146,7 +146,7 @@ $('video').mediaelementplayer();
                       <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-success">fiscalize</a>
                     </div>
                     <h4>{{obra.title}}</h4>
-                    <p class="local">{{obra.custom_fields.gdobra_municipio}}</p>
+                    <p class="local">{%for m in obra.custom_fields.gdobra_municipio%}{{m}},{%endfor%}</p>
                     <p>{{obra.content|safe}}</p>
                   </li>
                   {% endfor %}
