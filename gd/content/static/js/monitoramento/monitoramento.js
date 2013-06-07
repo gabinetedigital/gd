@@ -236,25 +236,19 @@ $(window).load(function () {
         var _did = $(this).attr('data-id');
         var _oid = $(this).attr('data-oid');
         var url = "/monitore/obra/part/"+_oid+"/"+_did
+        var _resp_ = $(this);
 
         $.get(url, function(data){
-            $('.timeline').masonry('destroy');
-            $('.updates').append(data);
-            $('.updates').trigger('create');
-            updateall();
-            $('video').mediaelementplayer();
+            _resp_.fadeOut('slow', function(){
+                $('.timeline').masonry('destroy');
+                _resp_.next().append(data);
+                // $('.updates').trigger('create');
+                $('video').mediaelementplayer();
+                updateall();
+            });
         });
 
-        // $("#timeline"+_did).load(url, function(){
-        //     // $("#timeline"+_did).trigger('create');
-        //     $('.timeline').masonry('destroy');
-        //     // console.log("FOI!");
-        //     // console.log("#timeline"+_did);
-        //     $("#timeline"+_did).trigger('create');
-        //     updateall();
-        // });
-
-        $(this).remove();
+        // $(this).remove();
 
     });
 
