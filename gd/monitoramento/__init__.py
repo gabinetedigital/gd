@@ -451,6 +451,7 @@ def contribui(slug):
 			print "tentando logar com", username, senha
 			try:
 				user = authapi.login(username, senha)
+				r = {'status':'ok', 'message':'Sua contibuição foi aceita com sucesso', 'refresh': True}
 			except authapi.UserNotFound:
 				r = {'status':'nok', 'message':_(u'Wrong user or password')}
 				return dumps(r)
@@ -491,7 +492,7 @@ def contribui(slug):
 		print ">>>>>>>>>>>> SALVANDO CONTRIBUIÇÃO ..."
 		print user
 
-		author_id = user.id
+		author_id = user['id']
 		status    = "pending"
 
 		ultimo_status = wordpress.monitoramento.getUltimaRespostaGovObra(obra['id'])
