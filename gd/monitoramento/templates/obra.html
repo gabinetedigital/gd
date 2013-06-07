@@ -109,10 +109,12 @@ $('video').mediaelementplayer();
                     <i class="icon-wrench icon-2x orange"></i>
                   </span>
                 </li>
+                {%if 'gdobra_empresa_contratada' in obra.custom_fields %}
                 <li class="data"><strong>Empresas responsáveis</strong></li>
                 <li class="result empcontratadas" title="Todas as empresas contratadas" data-content="{%for e in obra.custom_fields.gdobra_empresa_contratada%}{{e}}<br/>{%endfor%}">
                   {{obra.custom_fields.gdobra_empresa_contratada[0]}}
                 </li>
+                {%endif%}
               </ul>
             </li>
             <li class="field">
