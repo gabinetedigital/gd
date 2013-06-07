@@ -199,13 +199,12 @@
 }
 
 #monitoramento.obra .mapa img {
-    @include border-radius( 0 12px 0 0);
 }
 
 #monitoramento.obra .barra {
     background: #2c3e50;
     color: white;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 #monitoramento.obra .barra .geral,
@@ -221,13 +220,12 @@
 #monitoramento.obra .barra .geral li.field {
     border-left: 3px solid #34495E;
     float: left;
-    margin-right: 20px;
+    margin-right: 15px;
 }
 
 #monitoramento.obra .barra .geral li.icon {
     float: left;
-    margin-right: 10px;
-    margin-left: 5px;
+    margin: 0 5px;
 }
 
 #monitoramento.obra .barra .geral span.circle {
@@ -272,7 +270,7 @@
     background: white;
     display: inline-block;
     height: 10px;
-    width: 125px;
+    width: 100px;
 }
 
 #monitoramento.obra .barra .geral .dados-obra div.progressbar > .progress {
