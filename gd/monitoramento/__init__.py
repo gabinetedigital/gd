@@ -80,6 +80,26 @@ def adjustCf(obras):
 			for cf in obra['custom_fields']:
 				valor = cf['value']
 				#=== tratamento especial para alguns custom fields
+				if cf['key'] == 'gdvideo':
+					vid = valor
+					video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+					sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
+					# print "SOURCES===", sources
+
+					base_url = current_app.config['BASE_URL']
+					base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
+					video_sources = {}
+					for s in sources:
+					    if(s['format'].find(';') > 0):
+					        f = s['format'][0:s['format'].find(';')]
+					    else:
+					        f = s['format']
+					    video_sources[f] = s['url']
+					video['sources'] = video_sources
+					# print "SOURCES===", video_sources
+					valor = video
+
+
 				if cf['key'] in ( 'gdobra_empresa_contratada', 'gdobra_municipio' ):
 					#Deixa somente os nomes das empresas contratadas
 					valor = [ x[1:-1] for x in re.findall('"[\wáéíóúàèìòùüëãõ ]*"',valor) ]
