@@ -9,9 +9,19 @@
 {% extends "base.html" %}
 
 {% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
 {% endblock %}
 
 {% block javascript %}
+<script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
+<script type="text/javascript">
+  $(window).load(function () {
+        $('a.showtos').fancybox({
+            maxWidth: 800,
+            maxHeight: 600
+        });
+  });
+</script>
 {% endblock %}
 
 
@@ -45,7 +55,7 @@
           </form>
           <div class="modal-body">
           {#Aqui o usuário fica ciente que precisa de confirmação para concluir o cadastro#}
-          <p>Se você não recebeu seu email de confirmação de cadastro, verifique na sua caixa de spam, 
+          <p>Se você não recebeu seu email de confirmação de cadastro, verifique na sua caixa de spam,
             ou solicite o reenvio do email</p>
           <form class="form-horizontal" method="post" id="resendconfirmationform" action="/auth/resendconfirmation/">
               <div class="control-group {%if form.name.errors%}error{%endif%}">
@@ -104,7 +114,7 @@
                 <div class="control-group">
 
                   <div class="controls {%if form.accept_tos.errors%}error{%endif%}">
-                    <label for="accept_tos" class="checkbox"><input type="checkbox" value="y" name="accept_tos" id="accept_tos" checked="checked">Você leu e aceitou nossos <a href="javascript:showTos();">Termos de uso</a>?</label>
+                    <label for="accept_tos" class="checkbox"><input type="checkbox" value="y" name="accept_tos" id="accept_tos" checked="checked">Você leu e aceitou nossos <a href="#tos" class="showtos">Termos de uso</a>?</label>
                   </div>
 
                 </div>
@@ -133,4 +143,10 @@
     </div>
   </div>
 </div>
+
+<div id="tos" class="tos hide">
+  <h1>{{tos.title}}</h1>
+  {{tos.content|safe}}
+</div>
+
 {% endblock %}
