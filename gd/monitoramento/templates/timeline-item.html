@@ -58,6 +58,7 @@ $('video').mediaelementplayer();
           {%endif%}
 
           {%if update.format == 'image'%}
+              {%set thumb_size = (780,520)%}
               {%include 'item-image-part.html'%}
           {%endif%}
         </div>
