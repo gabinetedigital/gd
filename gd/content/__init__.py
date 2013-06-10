@@ -25,6 +25,7 @@ implemented blueprints in various modules to this app.
 import datetime
 import gettext
 import xmlrpclib
+import locale
 from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
      redirect, url_for, abort, make_response #, flash
@@ -242,10 +243,18 @@ def domd5(s=""):
     # print "DOMD5",s,result
     return result
 
+def formatCurrency(s):
+    try:
+        float_s = float(s)
+        return locale.currency( float_s , grouping=True )
+    except:
+        return "0.00"
+
 app.jinja_env.filters['md5'] = domd5
 app.jinja_env.filters['formatarDataObra'] = formatarDataObra
 app.jinja_env.filters['formatarDataeHora'] = formatarDataeHora
 app.jinja_env.filters['formatarDataeHoraPostType'] = formatarDataeHoraPostType
+app.jinja_env.filters['formatCurrency'] = formatCurrency
 
 @app.context_processor
 def extend_context():
