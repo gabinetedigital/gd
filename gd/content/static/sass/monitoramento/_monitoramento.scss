@@ -152,7 +152,7 @@
 #monitoramento .numeros {
     color: #2c3e50;
     text-align: center;
-    font-size: 40pt;
+    font-size: 26pt;
     padding-top: 70px;
     font-weight: 200;
 }
@@ -351,6 +351,9 @@
 
 #monitoramento.obra .botoesparticipar {
     background: #e74c3c;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-top: 20px;
 }
 
 #monitoramento.obra .botoesparticipar a {
@@ -360,6 +363,7 @@
     height: 70px;
     border-bottom: 2px solid #c0392b;
     text-decoration: none;
+    overflow: hidden;
 }
 
 #monitoramento.obra .botoesparticipar a:last-child {
@@ -370,14 +374,13 @@
     font-weight: 200;
     font-size: 32px;
     line-height: 65px;
-    position: absolute;
+    position: relative;
 }
 
 #monitoramento.obra .botoesparticipar div.help-text {
-     margin-left: 50px;
-     margin-top: 20px;
-     position: absolute;
-     display: none;
+     margin-left: 240px;
+     margin-top: -50px;
+     white-space: nowrap
 }
 
 #monitoramento.obra .botoesparticipar a > i {
