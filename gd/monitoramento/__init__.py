@@ -524,7 +524,7 @@ def contribui(slug):
 		print ">>>>>>>>>>>> SALVANDO CONTRIBUIÇÃO ..."
 		print user
 
-		author_id = user['id']
+		author_id = user.id
 		status    = "pending"
 
 		ultimo_status = wordpress.monitoramento.getUltimaRespostaGovObra(obra['id'])
