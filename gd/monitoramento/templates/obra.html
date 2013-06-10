@@ -20,7 +20,14 @@
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "21337f2e-2d47-4b1e-b210-c29a8a7e956d", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 <script>
-$('video').mediaelementplayer();
+$(window).load(function () {
+  $('video').mediaelementplayer();
+
+  $('a.showtos').fancybox({
+      maxWidth: 800,
+      maxHeight: 600
+  });
+});
 </script>
 {% endblock %}
 
@@ -323,6 +330,11 @@ $('video').mediaelementplayer();
 
                          {%endif%}
 
+                         <label for="accept_tos" class="checkbox">
+                           <input type="checkbox" name="accept_tos" id="accept_Tos">
+                           Aceito os <a href="#tos" class="showtos">Termos de uso</a>.
+                         </label>
+
                          <div class="form-footer">
                            <a class="btn fechar">Cancelar</a>
                            <button type="submit" class="btn btn-success">Enviar</button>
@@ -332,42 +344,9 @@ $('video').mediaelementplayer();
                      </div>
                    </div>
                    <div class="span5">
-                     <h2>Como funciona?</h2>
+                     <h2>{{howto.title}}</h2>
                      <div class="instrucoes">
-                       <ul>
-                         <li>
-                           <span>1</span>
-                           <p><b>ESCOLHA</b> ao lado uma obra do Governo Estadual para acompanhar</p>
-                         </li>
-
-                         <li>
-                           <span>2</span>
-                           <p><b>INFORME-SE</b> sobre o andamento, veja imagens e conheça o cronograma de entrega de cada obra</p>
-                         </li>
-
-                         <li>
-                           <span>3</span>
-                           <p><b>SIGA</b> as obras de seu interesse e receba atualizações a cada nova etapa</p>
-                         </li>
-
-                         <li>
-                           <span>4</span>
-                           <p><b>FISCALIZE!</b> Envie fotos e vídeos das obras, comentários, dúvidas ou críticas.</p>
-                         </li>
-
-                         <li>
-                           <span>5</span>
-                           <p><b>COMPARTILHE</b> as obras que você fiscaliza e chame seus amigos para ficar de olho</p>
-                         </li>
-
-                         <li>
-                           <span>6</span>
-                           <p><b>GOVERNO RESPONDE:</b> a cada 30 dias, o Governador se
-                             manifesta, em vídeo, sobre as obras mais acessadas e
-                             fiscalizadas</p>
-                         </li>
-
-                       </ul>
+                        {{howto.content|safe}}
                      </div>
                    </div>
                    </div>
@@ -505,4 +484,8 @@ $('video').mediaelementplayer();
   </div>
 </div>
 
+<div id="tos" class="tos hide">
+  <h1>{{tos.title}}</h1>
+  {{tos.content|safe}}
+</div>
 {% endblock %}
