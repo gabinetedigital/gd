@@ -90,7 +90,7 @@ $(window).load(function () {
                   </span>
                 </li>
                 <li class="data"><strong>Valor Global</strong></li>
-                <li class="result">R$ {{obra.custom_fields.gdobra_valor_global}}</li>
+                <li class="result">{{obra.custom_fields.gdobra_valor_global|formatCurrency}}</li>
               </ul>
             </li>
 
