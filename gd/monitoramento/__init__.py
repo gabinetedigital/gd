@@ -197,6 +197,8 @@ def timelineitem(slug, itemid):
 	update = timeline[0]
 
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
+	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
 	try:
 		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
 	except KeyError:
@@ -205,6 +207,8 @@ def timelineitem(slug, itemid):
 	return render_template('timeline-item.html',
 		menu=menus,
 		obra=obra,
+		howto=howto,
+		tos=tos,
 		update=update,
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
