@@ -291,7 +291,7 @@
 
 #monitoramento.obra .barra .more {
     background: #1ABC9C;
-    border-radius: 6px 6px 6px 6px;
+    @include border-radius(6px);
     float: right;
     height: 26px;
     text-align: center;
@@ -531,33 +531,43 @@
     padding: 10px;
 }
 
-#monitoramento.obra .comofunciona {
+#monitoramento.obra .comofunciona,
+#monitoramento.obra .comofunciona.fechado {
     background: #16A085;
     height: 60px;
+    overflow: hidden;
+    text-align: center;
  }
 
 #monitoramento.obra .comofunciona h2 {
     margin: 0;
+    color: #FFF;
+    padding: 10px 20px;
+    margin: 0;
+    font-weight: 200;
+}
+
+#monitoramento.obra .comofunciona .cmore {
+    color: white;
+    font-size: 20pt;
+    margin-top: -40px;
+    margin-right: 20px;
+    float: right;
+    background: #1abc9c;
+    width: 32px;
+    height: 26px;
+    font-weight: bold;
+    line-height: 17pt;
+    display: block;
+    @include border-radius(6px);
+}
+
+#monitoramento.obra .comofunciona.aberto {
+    height: 600px;
 }
 
 #monitoramento.obra .comofunciona .content {
-    color: #FFF;
-    padding: 10px;
-    margin: 0;
-    font-weight: 400;
-    padding: 10px 28px;
-}
-
-
-
-#monitoramento.obra .comofunciona .content .close {
-    float: right;
-    height: 26px;
-    text-align: center;
-    margin-top: 7px;
-    font-size: 16pt;
-    font-weight: bold;
-    line-height: 17pt;
+  padding: 10px 20px;
 }
 
 #monitoramento.obra .primeiro {

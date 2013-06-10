@@ -134,6 +134,16 @@ $(window).load(function () {
 
     });
 
+    $(".cmore").click(function(){
+        if($('.comofunciona').hasClass('fechado')){
+            $('.comofunciona').switchClass("fechado","aberto", 600);
+            $(this).html('-');
+        }else{
+            $('.comofunciona').switchClass("aberto","fechado", 600);
+            $(this).html('+');
+        }
+    });
+
     $('.botoesparticipar a').toggle( function() {
         $('.suplementar').fadeIn();
         $('.updates').hide();
