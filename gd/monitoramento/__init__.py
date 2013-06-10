@@ -329,9 +329,13 @@ def obra(slug):
 	except KeyError:
 		twitter_hash_cabecalho = ""
 
+	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
+	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
 	return render_template('obra.html',
 		menu=menus,
 		obra=obra,
+		tos=tos,
+		howto=howto,
 		more=more,
 		timeline=timeline,
 		twitter_hash_cabecalho=twitter_hash_cabecalho

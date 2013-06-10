@@ -77,6 +77,20 @@ $(window).load(function () {
     };
 
     $('#part-geral').ajaxForm({
+        beforeSubmit: function(){
+            // console.log($('#accept_Tos').is(':checked'));
+            if( $('#conteudo').val() == "" || $('#titulo').val() == "" ){
+                alert('Você precisa preencher o Título e a Sua Contribuição!')
+                $('#titulo').focus();
+                return false;
+            }
+
+            if(!$('#accept_Tos').is(':checked')){
+                alert('Você precisa aceitar os termos de uso!')
+                return false;
+            }
+
+        },
         success:ret
     });
 
@@ -119,13 +133,6 @@ $(window).load(function () {
         $(this).find('.help-text').stop().animate({ opacity: 0, marginLeft: "380px" }, 'slow');
 
     });
-
-    $("button").click(function () {
-        $(this).parent().slideUp("slow", function () {
-            $("#msg").text($("button", this).text() + " has completed.");
-        });
-    });
-
 
     $('.botoesparticipar a').toggle( function() {
         $('.suplementar').fadeIn();
