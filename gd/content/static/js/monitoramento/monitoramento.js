@@ -161,10 +161,12 @@ $(window).load(function () {
         $('.api-content').fadeIn();
         $('.updates').hide();
         $('.suplementar').hide();
+        $('.comofunciona').hide();
     }, function() {
         $('.api-content').hide();
         $('.updates').fadeIn();
         $('.suplementar').hide();
+        $('.comofunciona').fadeIn();
     });
 
     $('.api-content .close').click(function(){
@@ -292,9 +294,10 @@ $(window).load(function () {
     });
 
     $('.unico .updates .timeline').masonry('destroy');
+
     var altura = $('.info').height();
     $('.unico .updates').css( "height", altura );
-
+    $('.api-content').css("height", altura);
 
     $(".more").click(function(){
         var o = $('.more-content');

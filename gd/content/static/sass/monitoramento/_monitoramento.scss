@@ -11,6 +11,10 @@
     padding-top: 20px;
 }
 
+#monitoramento .container {
+    overflow: hidden;
+}
+
 #monitoramento.capa {
     background: url(../img/monitoramento/mapa.png);
 }
@@ -977,6 +981,7 @@
 
 .acessso {
     text-align: center;
+    padding-bottom: 20px;
 }
 
 #monitoramento .api-content {
