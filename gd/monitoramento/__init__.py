@@ -515,6 +515,8 @@ def contribui(slug):
 			if telefone:
 				user.set_meta('phone', telefone)
 				dbsession.commit()
+		else:
+			r = {'status':'nok', 'message':u'É necessário informar uma senha ou dados para cadastro.'}
 	else:
 		print "JAH ESTAVA LOGADO!"
 		user = authapi.authenticated_user()
