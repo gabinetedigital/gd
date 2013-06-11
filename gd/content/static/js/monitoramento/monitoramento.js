@@ -210,10 +210,9 @@ $(window).load(function () {
         _clicado_.attr('disabled','disabled');
         $.get(url, function(data){
             var pData = $.parseJSON(data);
-            _clicado_.parent().find(".counter").html(pData.score);
+            _clicado_.parent().parent().find(".counter").html(pData.score);
             _clicado_.removeAttr('href');
-            _clicado_.find('i').removeClass("icon-thumbs-down");
-            _clicado_.find('i').addClass("icon-thumbs-up");
+            _clicado_.find('div.curtir').addClass("voted");
         });
 
        return false;
