@@ -26,6 +26,7 @@ from jinja2.utils import Markup
 import os
 import re
 import xmlrpclib
+import traceback
 from hashlib import md5
 
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
@@ -524,7 +525,7 @@ def contribui(slug):
 		print ">>>>>>>>>>>> SALVANDO CONTRIBUIÇÃO ..."
 		print user
 
-		author_id = user.id
+		author_id = user.id if hasattr(user,'id') else user['id']
 		status    = "pending"
 
 		ultimo_status = wordpress.monitoramento.getUltimaRespostaGovObra(obra['id'])
@@ -550,29 +551,52 @@ def contribui(slug):
 
 			if request.files:
 				#Contribuição imagem
-
 				foto = request.files['foto']
+				print "COM ARQUIVO %s -------------" % foto.filename
+
 				if foto and allowed_file(foto.filename):
+
 					filename = secure_filename(foto.filename)
+					print "FOTO OK -------------"
+
 					file_path = os.path.join(current_app.config['UPLOADS_DEFAULT_DEST'], filename)
 					foto.save(file_path)
 					file = open(file_path)
 					base64bits = xmlrpclib.Binary(file.read())
-					media = wordpress.wp.uploadFile(name=file_path, type=foto.content_type, bits=base64bits, overwrite=False)
+					try:
+						media = wordpress.wp.uploadFile(name=file_path, type=foto.content_type, bits=base64bits, overwrite=False)
 
-					new_post_id = wordpress.wp.newPost(
-						post_title    = request.form['titulo'],
-						post_type     = "gdobra",
-						post_parent   = ultimo_status['id'],
-						post_author   = author_id, #int
-						post_content  = request.form['conteudo'],
-						post_status   = status,
-						post_format   = "image",
-						post_thumbnail= int(media['id']), #int
-					)
+
+						print "FOTO UPLOAD OK -------------"
+
+						new_post_id = wordpress.wp.newPost(
+							post_title    = request.form['titulo'],
+							post_type     = "gdobra",
+							post_parent   = ultimo_status['id'],
+							post_author   = author_id, #int
+							post_content  = request.form['conteudo'],
+							post_status   = status,
+							post_format   = "image",
+							post_thumbnail= int(media['id']), #int
+						)
+
+						print "CONTRIB SALVA OK -------------"
+
+
+					except xmlrpclib.ProtocolError, e:
+						print "ERRO", e.errmsg
+						if 'Too Large' in e.errmsg:
+							r = {'status':'nok', 'message':'Esta imagem é muito grande para ser enviada.'}
+						else:
+							traceback.print_exc()
+							r = {'status':'nok', 'message':'Ocorreu um erro ao processar a imagem.'}
+					except :
+						traceback.print_exc()
+						r = {'status':'nok', 'message':'Ocorreu um erro ao processar sua contribuição.'}
 
 				else:
-					r = {'status':'ok', 'message':'O arquivo enviado não é permitido. Use apenas arquivos PNG ou JPG.'}
+					print "FOTO NAO PERMITIDA -------------"
+					r = {'status':'nok', 'message':'O arquivo enviado não é permitido. Use apenas arquivos PNG ou JPG.'}
 
 			else:
 				#Contribuição somente texto
