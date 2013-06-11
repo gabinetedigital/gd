@@ -377,11 +377,18 @@ $(window).load(function () {
             {%include 'part_govresp.html'%}
 
 
-            <p>O que as pessoas estão falando...</p>
+              {%if timeline[1:]%}
+              <p>O que as pessoas estão falando...</p>
+              {%else%}
+              <p>Seja o primeiro a fiscalizar essa obra!</p>
+              {%endif%}
             {%set mostra_items = True%}
 
             <div class="timeline">
+
+              {%if timeline[1:]%}
               <div class="line"></div>
+              {%endif%}
 
               {%for update in timeline[1:]%}
 
@@ -442,8 +449,6 @@ $(window).load(function () {
 
               </div>
               {%endif%} {#==========================================================================#}
-              {%else%}
-              <p>Seja o primeiro a fiscalizar essa obra!</p>
               {%endfor%}
             </div> <!-- fim timeline -->
           </div> <!-- fim updates -->
