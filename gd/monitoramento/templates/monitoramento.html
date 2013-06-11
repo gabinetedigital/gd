@@ -18,18 +18,17 @@ $('video').mediaelementplayer();
   <div class="container">
     <div class="painel">
       <div class="row">
-        <div class="span8">
+        <div class="span6">
           <h1><img src="{{ url_for('.static', filename='blueprint.png' ) }}"></h1>
         </div>
-        <div class="span4">
+        <div class="span2">
           <div class="numeros">
-            <ul>
-              <li>{{obras|length}}<span>obras de que você pode fiscalizar</span></li>
-              <li>{{milhoes}}<span>milhões em investimentos em todo o Estado</span></li>
-<!--               <li>{{stats.total_filhos_geral}}<span>interações</span></li>
-              <li>{{stats.total_votos_geral}}<span>votos</span></li>
- -->
-            </ul>
+            {{obras|length}}<span>obras de que você pode fiscalizar</span>
+          </div>
+        </div>
+        <div class="span4">
+          <div class="selo">
+            <img src="{{ url_for('.static', filename='investimento.png' ) }}">
           </div>
         </div>
       </div>
