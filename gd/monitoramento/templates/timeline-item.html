@@ -15,8 +15,6 @@
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "21337f2e-2d47-4b1e-b210-c29a8a7e956d", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 <script>
 $('video').mediaelementplayer();
 </script>
@@ -35,7 +33,7 @@ $('video').mediaelementplayer();
           <h4>{{update.title}}</h4>
           <div class="user">
             <small>por</small> {{update.author.display_name}} <small>em</small>
-            <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</a>
+            {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}
           </div>
 
           {{update.content|safe}}

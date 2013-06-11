@@ -1,4 +1,5 @@
                 {%if not thumb_size %}
+                  <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">
                     {%if update.thumbs.normal%}
                       <img src="{{ thumborurl(update.thumbs.normal.url, (300,200) ) }}">
                     {%elif update.thumbs.slideshow%}
@@ -8,6 +9,7 @@
                     {%elif update.custom_fields.gdobra_imagem%}
                       <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (300,200) ) }}">
                     {%endif%}
+                  </a>
                 {%else%}
                     {%if update.thumbs.normal%}
                       <img src="{{ thumborurl(update.thumbs.normal.url, thumb_size ) }}">
