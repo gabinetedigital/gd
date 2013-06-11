@@ -3,12 +3,12 @@
   <li>
     {%if user and not user.username in update.custom_fields.gdobra_users_voted %}
     <a class="votar" href="/monitore/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/">
-      <div class="curtir voted"></div>
+      <div class="curtir"></div>
     </a>
     {%elif not user%}
     <a class="need" href="#"><div class="curtir"></div></a>
     {%else%}
-    <a class="votar"><div class="curtir"></div></a>
+    <a class="votar"><div class="curtir voted"></div></a>
     {%endif%}
   </li>
   <li>
