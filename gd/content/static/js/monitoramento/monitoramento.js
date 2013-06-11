@@ -300,7 +300,9 @@ $(window).load(function () {
     $('.unico .updates .timeline').masonry('destroy');
 
     var altura = $('.info').height();
-    $('.api-content').css("height", altura);
+    $('.updates').css("min-height", altura);
+    $('.suplementar').css("min-height", altura);
+    $('.api-content').css("min-height", altura);
 
     $(".more").click(function(){
         var o = $('.more-content');
