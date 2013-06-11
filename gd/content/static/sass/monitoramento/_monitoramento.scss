@@ -201,7 +201,7 @@
 
 #monitoramento.obra .head h2 {
     color: white;
-    font-size: 38pt;
+    font-size: 36pt;
     font-weight: 200;
     padding: 20px;
 }
@@ -210,6 +210,8 @@
     float: left;
     padding: 10px;
 }
+
+
 
 #monitoramento.obra .mapa img {
 }
@@ -387,7 +389,7 @@
 
 #monitoramento.obra .botoesparticipar .funcao {
     font-weight: 200;
-    font-size: 32px;
+    font-size: 30px;
     line-height: 65px;
     position: relative;
 }
@@ -401,7 +403,7 @@
 #monitoramento.obra .botoesparticipar a > i {
     float: left;
     line-height: 65px;
-    margin-right: 20px;
+    margin-right: 10px;
     color: #34495e;
 }
 
@@ -494,6 +496,10 @@
 #monitoramento.obra .govresp .content .text {
     margin-top: 20px;
     padding: 10px;
+}
+
+#monitoramento.obra .govresp .content .text p {
+    display: table-row;
 }
 
 #monitoramento.obra .govresp .cal {
@@ -701,6 +707,10 @@
     margin-top: 0px;
 }
 
+#monitoramento.obra .update h4 a {
+   color: #2C3E50;
+}
+
 #monitoramento.obra .update .seta.direita,
 #monitoramento.obra .update .seta.esquerda {
     border-bottom: 15px solid transparent;
@@ -758,6 +768,16 @@
     margin-left: -25px;
 }
 
+#monitoramento.obra .update.status .seta.esquerda {
+    border-left: 15px solid #F1C40F;
+    margin-right: -25px;
+}
+
+#monitoramento.obra .update.status .seta.direita {
+    border-right: 15px solid #F1C40F;
+    margin-left: -25px;
+}
+
 #monitoramento.obra .update .content {
     margin-bottom: 20px;
 }
@@ -777,6 +797,11 @@
 #monitoramento.obra .update.link {
     background: #f39c12;
 }
+
+#monitoramento.obra .update.status {
+    background: #F1C40F;
+}
+
 
 #monitoramento.obra .update.link a {
     color: white;
@@ -1038,4 +1063,10 @@
     margin-right: 28px;
     margin-bottom: 28px;
 
+}
+
+@media (max-width: 767px) {
+  #monitoramento .container {
+      overflow: visible;
+  }
 }
