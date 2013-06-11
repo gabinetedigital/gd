@@ -50,7 +50,7 @@ $(window).load(function () {
             <a target="_blank" href="{{obra.custom_fields['gdobra_link_maps']}}">
               <img src="{{obra.custom_fields['gdobra_link_maps_estatico']}}">
             </a>
-            {%elif 'gdobra_coordenadas' in obra.custom_fields%}
+            {%elif 'gdobra_coordenadas' in obra.custom_fields and obra.custom_fields.gdobra_coordenadas %}
             {%set lls = obra.custom_fields.gdobra_coordenadas%}
             <a target="_blank" href="https://maps.google.com.br/maps?{%for ll in lls%}{%if loop.index > 1%}&{%endif%}q={{ll}}{%endfor%}&hl=pt&z=18">
               <img src="http://maps.googleapis.com/maps/api/staticmap?center={{lls[0]}}{%for ll in lls%}&markers={{ll}}{%endfor%}&zoom=11&size=370x250&sensor=false">
