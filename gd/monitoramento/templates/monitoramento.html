@@ -23,7 +23,7 @@ $('video').mediaelementplayer();
         </div>
         <div class="span2">
           <div class="numeros">
-            {{obras|length}}<span>obras de que você pode fiscalizar</span>
+            {{obras|length}}<span>obras que você pode fiscalizar</span>
           </div>
         </div>
         <div class="span4">
@@ -145,7 +145,7 @@ $('video').mediaelementplayer();
                       <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-success">fiscalize</a>
                     </div>
                     <h4>{{obra.title}}</h4>
-                    <p class="local">{%for m in obra.custom_fields.gdobra_municipio%}{{m}}, {%endfor%}</p>
+                    <p class="local">{%for m in obra.custom_fields.gdobra_municipio%}{{m}}{%if not loop.last%},{%endif%} {%endfor%}</p>
                     <p>{{obra.content|safe}}</p>
                   </li>
                   {% endfor %}
