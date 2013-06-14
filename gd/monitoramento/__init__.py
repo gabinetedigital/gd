@@ -436,18 +436,18 @@ def seguir(obraid):
 		if emailto:
 			base_url = current_app.config['BASE_URL']
 			base_url = base_url if base_url[-1:] != '/' else base_url[:-1] #corta a barra final
-			data = {
+			_dados_email = {
 				'titulo': obra['title'],
 				'link'  : base_url + url_for('.obra',slug=slug),
 				'descricao' : Markup(obra['content']).striptags(),
 				'monitore_url': base_url + url_for('.index'),
 				'siteurl': base_url,
 			}
-	        sendmail(
-	            current_app.config['SEGUIROBRA_SUBJECT'] % data,
-	            emailto,
-	            current_app.config['SEGUIROBRA_MSG'] % data
-	        )
+			sendmail(
+			    current_app.config['SEGUIROBRA_SUBJECT'] % _dados_email,
+			    emailto,
+			    current_app.config['SEGUIROBRA_MSG'] % _dados_email
+			)
 
 
 		return dumps({'status':'ok'})
