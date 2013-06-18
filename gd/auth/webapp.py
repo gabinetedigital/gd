@@ -117,7 +117,7 @@ def login():
     print 'NEXT=', next
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        twitter_hash_cabecalho = utils.twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -137,7 +137,7 @@ def lost_password():
     """Renders the lost password form"""
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        twitter_hash_cabecalho = utils.twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
     return render_template('lost_password.html', menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
@@ -173,7 +173,7 @@ def logon():
     else:
         menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
         try:
-            twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+            twitter_hash_cabecalho = utils.twitts()
         except KeyError:
             twitter_hash_cabecalho = ""
         # if request.referrer:
@@ -192,7 +192,7 @@ def logout():
     next = request.values.get('next')
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        twitter_hash_cabecalho = utils.twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -295,7 +295,7 @@ def signup_continuation():
 
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        twitter_hash_cabecalho = utils.twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -400,7 +400,7 @@ def signup():
     rm = fromcache('moresigin') or tocache('moresigin',wordpress.getPageByPath('signup-read-more'))
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        twitter_hash_cabecalho = utils.twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -426,7 +426,7 @@ def profile():
     passwd = ChangePasswordForm()
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        twitter_hash_cabecalho = utils.twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
     return render_template(

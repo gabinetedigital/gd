@@ -20,6 +20,7 @@
 
 from flask import Blueprint, render_template, current_app
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
+from gd.utils import twitts
 #from gd.auth import is_authenticated
 from gd.content.wp import wordpress
 
@@ -40,7 +41,7 @@ def listing():
     videos = fromcache("videos_root") or tocache("videos_root",wordpress.wpgd.getVideos(
         where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO']))
     try:
-        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -75,7 +76,7 @@ def details(vid):
             f = s['format']
         video_sources[f] = s['url']
     try:
-        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 

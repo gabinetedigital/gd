@@ -151,25 +151,28 @@ $(function(){
         document.location = $(this).attr('data-link');
     });
 
+    $('div.tweets li').popover();
+
 });
 
-$(document).ready(function(){
-    if(TWITTER_HASH_TAG_CABECALHO){
-        $.getJSON("http://search.twitter.com/search.json?rpp=25&callback=?&q=" + TWITTER_HASH_TAG_CABECALHO,function(data){
-            for(var i=0; i < 25 && i < data.results.length; i++){
-                option = {
-                    title: '@'+data.results[i].from_user_name,
-                    content: data.results[i].text,
-                    trigger: 'hover',
-                    placement: 'left'
-                };
-                var number = 1 + Math.floor(Math.random() * 8);
-                $('.tweets ul').prepend("<li class='pessoa"+number+"' id='"+i+"'> </li>");
-                $('.tweets li').popover(option);
-            }
-        });
-    }
-});
+// $(document).ready(function(){
+//     if(TWITTER_HASH_TAG_CABECALHO){
+//         // $.getJSON("http://search.twitter.com/search.json?rpp=25&callback=?&q=" + TWITTER_HASH_TAG_CABECALHO,function(data){
+//         $.getJSON("https://api.twitter.com/1.1/search/tweets.json?result_type=mixed&count=4&q=" + TWITTER_HASH_TAG_CABECALHO,function(data){
+//             for(var i=0; i < 25 && i < data.results.length; i++){
+//                 option = {
+//                     title: '@'+data.results[i].from_user_name,
+//                     content: data.results[i].text,
+//                     trigger: 'hover',
+//                     placement: 'left'
+//                 };
+//                 var number = 1 + Math.floor(Math.random() * 8);
+//                 $('.tweets ul').prepend("<li class='pessoa"+number+"' id='"+i+"'> </li>");
+//                 $('.tweets li').popover(option);
+//             }
+//         });
+//     }
+// });
 
 // Metodo para exibir o contador de carcteres restantes para os comentarios
 // Uso: <textarea maxlength="500" onKeyUp="countChar(this,500,'#contador')"></textarea>

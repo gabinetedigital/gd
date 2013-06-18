@@ -27,7 +27,7 @@ from gd.utils.gdcache import cache, fromcache, tocache, removecache
 
 from gd import auth
 from gd.content.wp import wordpress #, gallery
-from gd.utils import msg, format_csrf_error, dumps
+from gd.utils import msg, format_csrf_error, dumps, twitts
 from gd.govpergunta.forms import ContribForm
 from gd.model import Contrib, session
 # from gd.govpergunta.pairwise import Pairwise
@@ -127,7 +127,7 @@ def resultados(ano=2012):
 
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 

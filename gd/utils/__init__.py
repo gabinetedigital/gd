@@ -31,6 +31,8 @@ from StringIO import StringIO
 from PIL import Image, ImageOps
 from gettext import gettext
 from flask import url_for
+from twython import Twython
+from gd.utils.gdcache import fromcache, tocache
 
 from gd import conf
 
@@ -41,6 +43,23 @@ def _default_handler(value):
     """
     if isinstance(value, (date, datetime)):
         return datetime.isoformat(value)
+
+
+def twitts():
+    result = fromcache("twetts_cabecalho")
+    if not result:
+        t = Twython(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET, conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
+        result = t.search(q=conf.TWITTER_HASH_CABECALHO, result_type='mixed', count=25)
+        tws = [status for status in result['statuses']]
+        result = []
+        for status in tws:
+            status['classe'] = 'pessoa' + str(random.choice(range(1,10)))
+            result.append(status)
+
+        tocache("twetts_cabecalho", result)
+    # print result
+    # print len(result)
+    return result
 
 
 def dumps(obj):
