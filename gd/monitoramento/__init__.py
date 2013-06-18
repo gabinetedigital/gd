@@ -31,7 +31,7 @@ from hashlib import md5
 
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd import auth as authapi
-from gd.utils import dumps, sendmail, send_welcome_email
+from gd.utils import dumps, sendmail, send_welcome_email, twitts
 from gd.model import UserFollow, session as dbsession
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -193,10 +193,10 @@ def index():
 
 	# print "OBRAS SLIDES ==========================================================================", len(slides)
 
-	try:
-		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
-	except KeyError:
-		twitter_hash_cabecalho = ""
+	# try:
+	# 	twitter_hash_cabecalho = twitts()
+	# except KeyError:
+	# 	twitter_hash_cabecalho = ""
 
 	try:
 		valor_investimentos = conf.VALOR_INVESTIMENTOS
@@ -209,7 +209,7 @@ def index():
 		stats=_get_stats(),
 		milhoes=valor_investimentos,
 		menu=menus,
-		twitter_hash_cabecalho=twitter_hash_cabecalho,
+		twitter_hash_cabecalho=twitts(),
 	)
 
 
@@ -228,7 +228,7 @@ def timelineitem(slug, itemid):
 	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
 	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
 	try:
-		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+		twitter_hash_cabecalho = twitts()
 	except KeyError:
 		twitter_hash_cabecalho = ""
 
@@ -357,7 +357,7 @@ def obra(slug):
 
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	try:
-		twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+		twitter_hash_cabecalho = twitts()
 	except KeyError:
 		twitter_hash_cabecalho = ""
 

@@ -27,7 +27,7 @@ from dateutil import parser as dateparser
 from math import ceil
 
 from gd import auth
-from gd.utils import msg, format_csrf_error
+from gd.utils import msg, format_csrf_error, twitts
 from gd.content import wordpress
 from gd.govresponde import forms
 
@@ -139,7 +139,7 @@ def index():
     base_date = contribs[0]['answered_at'].strftime('%d/%m/%Y')
 
     try:
-        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -286,7 +286,7 @@ def questions():
         questions.append(question)
 
     try:
-        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 

@@ -35,8 +35,30 @@
               <div class="content">
 
               {%else%}
-              {#NO VIDEO#}
-              <div class="content-full">
+
+                {%if update.thumbs.slideshow%}
+                  <div class="video">
+                    <img src="{{ thumborurl(update.thumbs.slideshow.url, (350,233) ) }}">
+                  </div>
+                {%elif update.thumbs.normal%}
+                  <div class="video">
+                    <img src="{{ thumborurl(update.thumbs.normal.url, (350,233) ) }}">
+                  </div>
+                {%elif update.thumbs.thumb%}
+                  <div class="video">
+                    <img src="{{ thumborurl(update.thumbs.thumb.url, (350,233) ) }}">
+                  </div>
+                {%elif update.custom_fields.gdobra_imagem%}
+                  <div class="video">
+                    <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (350,233) ) }}">
+                  </div>
+
+                {%else%}
+
+                  {#NO VIDEO AND NO IMAGE#}
+                  <div class="content-full">
+
+                {%endif%}
 
               {%endif%}
 

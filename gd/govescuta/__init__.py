@@ -23,7 +23,7 @@
 from flask import Blueprint, request, render_template, current_app
 
 from gd.model import AudiencePosts #get_or_404, Audience, Term,
-# from gd.utils import dumps
+from gd.utils import twitts
 from gd import conf
 # from json import dumps
 
@@ -52,7 +52,7 @@ def index(page=0):
 
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        twitter_hash_cabecalho = twitts()
     except:
         twitter_hash_cabecalho = ""
 
@@ -74,7 +74,7 @@ def govescuta_details(aid):
     how_to = fromcache('how-to-use-governo-escuta') or tocache('how-to-use-governo-escuta', wordpress.getPageByPath('how-to-use-governo-escuta'))
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = conf.TWITTER_HASH_CABECALHO
+        twitter_hash_cabecalho = twitts()
     except:
         twitter_hash_cabecalho = ""
 

@@ -34,7 +34,7 @@ from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
 # from gd.content.tweet import get_mayor_last_tweet
-from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail
+from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail, twitts
 from gd.model import User, ComiteNews, CadastroComite, session as dbsession
 
 from gd.govpergunta import govpergunta
@@ -102,24 +102,28 @@ cache.init_app(app)
 @app.errorhandler(403)
 def error403(e):
     return render_template('403.html',
+        menu = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') ),
         sidebar=wordpress.getSidebar,
     ), 403
 
 @app.errorhandler(404)
 def error404(e):
     return render_template('404.html',
+        menu = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') ),
         sidebar=wordpress.getSidebar,
     ), 404
 
 @app.errorhandler(500)
 def error500(e):
     return render_template('500.html',
+        menu = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') ),
         sidebar=wordpress.getSidebar,
     ), 500
 
 @app.errorhandler(502)
 def error502(e):
     return render_template('502.html',
+        menu = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') ),
         sidebar=wordpress.getSidebar,
     ), 502
 
@@ -358,7 +362,7 @@ def index():
         vote_altura = ""
 
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -396,7 +400,7 @@ def get_part(part):
 def gallery():
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
     return render_template(
@@ -420,7 +424,7 @@ def news(page=0):
 
     psearch = _format_postsearch(posts)
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -447,7 +451,7 @@ def category(cid, page=0):
 
     psearch = _format_postsearch(posts)
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -474,7 +478,7 @@ def tag(slug, page=0):
 
     psearch = _format_postsearch(posts)
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -497,7 +501,7 @@ def conselho():
     page = fromcache("page-%s" %path) or tocache("page-%s" %path,  wordpress.getPageByPath(path) )
     cmts = fromcache("cmts-page-%s" %path) or tocache("cmts-page-%s" %path, wordpress.getComments(status='approve',post_id=page.data['id'], number=1000))
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
@@ -579,7 +583,7 @@ def artigo_hierarquico(slug):
            TEMPLATE = "artigo_hierarquico_aba.html"
 
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -608,7 +612,7 @@ def artigo_hierarquico(slug):
 def comite_transito():
     """Renders a wordpress page special"""
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
@@ -681,7 +685,7 @@ def pages(path):
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
     return render_template(
@@ -730,7 +734,7 @@ def post_slug(slug):
     cmts = fromcache("comentarios_post_slug-%s"%slug) or tocache("comentarios_post_slug-%s"%slug, wordpress.getComments(status='approve',post_id=pid))
     tags = fromcache("tags") or tocache("tags", wordpress.getTagCloud())
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -772,7 +776,7 @@ def post(pid):
     cmts = fromcache("comentarios%s" % str(pid)) or tocache("comentarios%s" % str(pid),  wordpress.getComments(status='approve',post_id=pid))
     tags = fromcache("tags") or tocache("tags", wordpress.getTagCloud())
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
     live_comment_ = request.cookies.get('live_comment_save')
@@ -866,7 +870,7 @@ def search(page=0):
 
     psearch = _format_postsearch(posts)
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -900,7 +904,7 @@ def archive(m, page=0):
 
     psearch = _format_postsearch(posts)
     try:
-        twitter_hash_cabecalho = app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
     return render_template(

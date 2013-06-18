@@ -80,7 +80,11 @@
           </div>
           <div class="span8 offset1">
             <div class="tweets">
-              <ul></ul>
+              <ul>
+                {%for status in twitter_hash_cabecalho%}
+                <li class='{{status.classe}}' id='{{status.id}}' data-title="@{{status.user.screen_name}}" data-content="{{status.text}}" data-trigger="hover" data-placement="left"> </li>
+                {%endfor%}
+              </ul>
             </div>
           </div>
         </section>

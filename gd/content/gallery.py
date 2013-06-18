@@ -20,6 +20,7 @@
 
 from flask import Blueprint, render_template, abort, request, jsonify, send_from_directory, current_app, redirect, url_for
 from gd.content.wp import wordpress, gallery as api
+from gd.utils import twitts
 import math
 import urllib2
 
@@ -36,7 +37,7 @@ def galerias(slug=None):
     current = wordpress.wpgd.getGallery(slug or galleries[0]['slug'])
     titulos = [ (g['slug'],g['title']) for g in galleries ]
     try:
-        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
@@ -76,7 +77,7 @@ def index(slug=None):
         pass
 
     try:
-        twitter_hash_cabecalho = current_app.config['TWITTER_HASH_CABECALHO']
+        twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
