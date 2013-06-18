@@ -77,9 +77,11 @@
               </div>
             </div>
             <div class="share">
+              {%if not facebook%}
               <p>Compartilhe</p>
               <span class='st_facebook_hcount'></span>
               <span class='st_twitter_hcount'></span>
+              {%endif%}
             </div>
           </div>
         </div>
@@ -274,6 +276,7 @@
 
 </div>
 
+{%if not facebook%}
 <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -283,6 +286,7 @@
     {{audience.aud_wp_govescuta_detalhes_govesc|safe}}
   </div>
 </div>
+{%endif%}
 
 <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
   <div class="modal-header">
@@ -293,6 +297,7 @@
     <p class="modal-title"></p>
   </div>
 </div>
+
 
 {%if audience.aud_wp_govescuta_ativa == 'n'%}
 <script type="text/javascript">
