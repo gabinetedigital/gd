@@ -1,10 +1,10 @@
 {% extends 'admin/base.html' %}
 
 {% block js %}
-<script src="{{ url_for('static', filename='js/template.js') }}"></script>
-<script src="{{ url_for('buzz.static', filename='js/socket.io.js') }}"></script>
-<script src="{{ url_for('buzz.static', filename='js/buzz.js') }}"></script>
-<script src="{{ url_for('static', filename='js/urls.js') }}"></script>
+<script src="{{ url_for('static', filename='js/buzz/template.js') }}"></script>
+<script src="{{ url_for('static', filename='js/buzz/socket.io.js') }}"></script>
+<script src="{{ url_for('static', filename='js/buzz/buzz.js') }}"></script>
+<script src="{{ url_for('static', filename='js/buzz/urls.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/moderate.js') }}"></script>
 {% endblock %}
 

@@ -23,7 +23,7 @@ from urllib import urlopen
 from urllib2 import HTTPError
 from time import sleep
 from json import loads, load
-from tweetstream import FilterStream, ConnectionError
+from tweetstream import FilterStream, ConnectionError, AuthenticationError
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
 import threading
@@ -32,7 +32,7 @@ from gd.model import session, Buzz, User, BuzzType, get_or_create, conf, \
      AudiencePostsMeta
 
 USER_API_URL = 'http://api.twitter.com/1/users/show.json?screen_name=%s'
-face_comments_json = "https://graph.facebook.com/comments/?ids=%s"
+face_comments_json = "https://graph.facebook.com/comments/?limit=3000&ids=%s"
 
 class Twitter(object):
     """A twitter stream client that saves tweets from some given
@@ -140,7 +140,8 @@ class Twitter(object):
                         type_=type_)
                     buzz.audience_id = self.audience.post_ID
                     session.commit()
-
+        except AuthenticationError, e:
+            print "Twitter crawler Authentication error, aborting!"
         except (ConnectionError, HTTPError), exc:
             # Something got screwed, let's try some seconds late.
             # FIXME: We really should limit the number of tries here and
@@ -154,11 +155,12 @@ def face(audience):
     while True:
         print "======================================================== Buscando os comentarios do face"
         try:
-            face_comment_url = conf.FACEBOOK_COMMENT_URL
+            face_comment_url = conf.FACEBOOK_COMMENT_URL + "?id=%s" % str(audience.post_ID)
         except:
             face_comment_url = ""
         if face_comment_url:
             URL_JSON =face_comments_json % face_comment_url
+            print URL_JSON
             result = load( urlopen(URL_JSON) )
             if result :
                 print result
