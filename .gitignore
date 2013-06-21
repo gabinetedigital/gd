@@ -5,3 +5,4 @@ po/*/LC_MESSAGES/gabinetedigital.mo
 *.css
 .sass-cache/
 gdenv
+*rgbapng*

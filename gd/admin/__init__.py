@@ -164,7 +164,7 @@ def accept_buzz(bid):
     buzz.status = u'approved'
 
     if(objurlConta > 1):
-        avatar = buzz.owner_avatar or "/static/imgs/avatar.png"
+        avatar = buzz.owner_avatar or "/static/img/avatar.png"
         query = json.dumps({"type": "moderated", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": buzz.content.encode('utf8'), "authortype": str(buzz.type_) }, ensure_ascii=False )
         url = objurl+"/buzz/pub?id="+str(buzz.audience_id)
         f = urllib.urlopen(url, query)
@@ -205,7 +205,7 @@ def publish_buzz(bid):
     buzz.date_published = datetime.now()
 
     if(objurlConta > 1):
-        avatar = buzz.owner_avatar or "/static/imgs/avatar.png"
+        avatar = buzz.owner_avatar or "/static/img/avatar.png"
         query = json.dumps({"type": "published", "id": str(bid), "author": str(buzz.owner_nick), "avatar": str(avatar), "content": str(buzz.content), "authortype": str(buzz.type_) }, ensure_ascii=False )
         url = objurl+"/buzz/pub?id="+str(buzz.audience_id)
         f = urllib.urlopen(url, query)

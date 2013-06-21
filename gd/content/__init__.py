@@ -57,7 +57,7 @@ from gd.content.config_objects import WordpressConfiguration
 wpconfig = WordpressConfiguration()
 # app.config.from_object(wpconfig)
 # The conf module needs to be updated for compatibility with others
-print wpconfig.__dict__
+# print wpconfig.__dict__
 conf.__dict__.update(wpconfig.__dict__)
 app.config.from_object(conf)
 # except:

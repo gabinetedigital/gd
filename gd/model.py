@@ -360,7 +360,7 @@ class User(Entity):
         """Returns the avatar image of this user or the default one"""
         fname = self.get_meta('avatar')
         return fname and Upload.imageset.url(fname) or \
-            url_for('static', filename='imgs/avatar.png')
+            url_for('static', filename='img/avatar.png')
 
     @property
     def display_name(self):
