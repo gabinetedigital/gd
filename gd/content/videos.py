@@ -34,6 +34,7 @@ def listing():
     videos_json = {}
     allvideos = fromcache("all_videos_root") or tocache("all_videos_root",wordpress.wpgd.getVideos(
         where='status=true', orderby='title'))
+
     for v in allvideos:
         videos_json[v['title']] = v['id']
 
@@ -53,11 +54,12 @@ def listing():
 
 @videos.route('/nextpage/<int:pagina>/')
 def nextpage(pagina):
-    offset = pagina * current_app.config['VIDEO_PAGINACAO']
+    paginacao = int(current_app.config['VIDEO_PAGINACAO'])
+    offset = pagina * paginacao
     print "OFFSET:", offset
     videos = fromcache("videos_%s" % str(offset)) or tocache("videos_%s" % str(offset), wordpress.wpgd.getVideos(
-        where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO'], 
-        offset=pagina * current_app.config['VIDEO_PAGINACAO']))
+        where='status=true', orderby='date DESC', limit=paginacao, 
+        offset=offset))
     return render_template('videos_pagina.html', videos=videos)
 
 
