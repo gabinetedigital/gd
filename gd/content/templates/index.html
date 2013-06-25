@@ -54,28 +54,21 @@
       <section>
 
         <div class="page-header">
-          <h2>Segurança no Transito: O que é prioridade?</h2>
+          <h2>{{ pagevot.title|safe }}</h2>
+        </div>
+        <div class="row">
+          <div class="span12">
+            {{ pagevot.content|safe }}
+          </div>
         </div>
         <div class="row">
 
           <div class="span4">
             <ul class="thumbnails">
               <li class="span2">
-                <div class="thumbnail prioridade gov">
-                  <div class="pri"></div>
-                  <h3>Quais são as prioridades do Trânsito?</h3>
-                </div>
-              </li>
-              <li class="span2">
                 <div class="thumbnail porque gov">
                   <div class="pq"></div>
-                  <h3>Por que trânsito?</h3>
-                </div>
-              </li>
-              <li class="span2">
-                <div class="thumbnail processo gov">
-                  <div class="pro"></div>
-                  <h3>Entenda o Processo</h3>
+                  <h3>O que é?</h3>
                 </div>
               </li>
               <li class="span2">
@@ -88,17 +81,9 @@
           </div>
 
           <div class="span8">
-            <div id="pri" class="pwhat">
-              <h3>{{ page_pri.title|safe }}</h3>
-              {{ page_pri.content|safe }}
-            </div>
             <div id="pq" class="pwhat">
               <h3>{{ page_pq.title|safe }}</h3>
               {{ page_pq.content|safe }}
-            </div>
-            <div id="pro" class="pwhat">
-              <h3>{{ page_pro.title|safe }}</h3>
-              {{ page_pro.content|safe }}
             </div>
             <div id="como" class="pwhat">
               <h3>{{ page_como.title|safe }}</h3>
