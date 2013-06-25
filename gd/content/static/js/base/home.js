@@ -19,18 +19,6 @@
 
 $(document).ready(function () {
 
-    $('#pq').show();
-    $('#como').hide();
-
-    $('.porque').click(function(){
-        $('#como').hide();
-        $('#pq').show();
-    });
-
-    $('.comofunciona').click(function(){
-        $('#pq').hide();
-        $('#como').show();
-    });
 
     $('.go1').click(function(){
         $('.step1').fadeIn();

@@ -61,30 +61,15 @@
             {{ pagevot.content|safe }}
           </div>
         </div>
+
         <div class="row">
-
-          <div class="span4">
-            <ul class="thumbnails">
-              <li class="span2">
-                <div class="thumbnail porque gov">
-                  <div class="pq"></div>
-                  <h3>O que é?</h3>
-                </div>
-              </li>
-              <li class="span2">
-                <div class="thumbnail comofunciona gov">
-                  <div class="como"></div>
-                  <h3>Como funciona?</h3>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="span8">
+          <div class="span6">
             <div id="pq" class="pwhat">
               <h3>{{ page_pq.title|safe }}</h3>
               {{ page_pq.content|safe }}
             </div>
+          </div>
+          <div class="span6">
             <div id="como" class="pwhat">
               <h3>{{ page_como.title|safe }}</h3>
               {{ page_como.content|safe }}
