@@ -366,9 +366,10 @@ def index():
     except KeyError:
         twitter_hash_cabecalho = ""
 
-    pagepri = fromcache('pagepri')      or tocache('pagepri', wordpress.getPageByPath('prioridades'))
+    # pagepri = fromcache('pagepri')      or tocache('pagepri', wordpress.getPageByPath('prioridades'))
     pagepq = fromcache('pagepq')        or tocache('pagepq', wordpress.getPageByPath('por-que'))
-    pageproc = fromcache('pageproc')    or tocache('pageproc', wordpress.getPageByPath('processo'))
+    # pageproc = fromcache('pageproc')    or tocache('pageproc', wordpress.getPageByPath('processo'))
+    pagevot = fromcache('pagevot')    or tocache('pagevot', wordpress.getPageByPath('votacao'))
     pagehow = fromcache('pagehow')      or tocache('pagehow', wordpress.getPageByPath('como-funciona'))
     pageseg = fromcache('pageseg')      or tocache('pageseg', wordpress.getPageByPath('seguranca-2'))
     pagesobre = fromcache('pagesobre')  or tocache('pagesobre', wordpress.getPageByPath('sobre'))
@@ -377,9 +378,10 @@ def index():
         'index.html', wp=wordpress,
         sidebar=wordpress.getSidebar,
         page_about=pagesobre,
-        page_pri=pagepri,
+        # page_pri=pagepri,
         page_pq=pagepq,
-        page_pro=pageproc,
+        pagevot=pagevot,
+        # page_pro=pageproc,
         page_como=pagehow,
         page_seg=pageseg,
         menu=menus,

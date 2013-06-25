@@ -19,36 +19,17 @@
 
 $(document).ready(function () {
 
-    $('#pq').hide();
-    $('#pro').hide();
+    $('#pq').show();
     $('#como').hide();
 
-    $('.prioridade').click(function(){
-        $('#pq').hide();
-        $('#pro').hide();
-        $('#como').hide();
-        $('#pri').fadeIn();
-    });
-
     $('.porque').click(function(){
-        $('#pri').hide();
-        $('#pro').hide();
         $('#como').hide();
-        $('#pq').fadeIn();
-    });
-
-    $('.processo').click(function(){
-        $('#pq').hide();
-        $('#pri').hide();
-        $('#como').hide();
-        $('#pro').fadeIn();
+        $('#pq').show();
     });
 
     $('.comofunciona').click(function(){
         $('#pq').hide();
-        $('#pro').hide();
-        $('#pri').hide();
-        $('#como').fadeIn();
+        $('#como').show();
     });
 
     $('.go1').click(function(){
