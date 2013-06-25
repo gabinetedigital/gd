@@ -156,11 +156,9 @@ section h2 {
 }
 
 #govpergunta {
-    background: url(../img/seguranca.jpg) no-repeat center center fixed;
+    background: url(../img/mani.jpg);
     @include background-size(cover);
 }
-
-/* Widgets */
 
 .fotodia h4 {
     @include rgba-background(rgba($green,0.8));
