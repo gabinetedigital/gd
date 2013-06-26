@@ -282,12 +282,12 @@ def vote(obraid, slug, plus):
 	if 'custom_fields' in post:
 		cfs = post['custom_fields']
 
-		# print "Custom Fields", cfs
+		# print "Custom Fields", [ f['value'] for f in cfs if f['key'] == itemvoted]
 
 		score = [ int(f['value']) for f in cfs if f['key'] == itemscore]
 		votosup = [ int(f['value']) for f in cfs if f['key'] == itemup]
 		votosdown = [ int(f['value']) for f in cfs if f['key'] == itemdown]
-		users_voted = [ int(f['value']) for f in cfs if f['key'] == itemvoted]
+		users_voted = [ f['value'] for f in cfs if f['key'] == itemvoted]
 
 		score = score[0] if score else 0
 		votosup = votosup[0] if votosup else 0
