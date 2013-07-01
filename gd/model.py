@@ -460,6 +460,12 @@ class UserFollow(Entity):
     twitter_id  = Field(String(500,convert_unicode=True))
     email       = Field(String(500,convert_unicode=True))
 
+class VotosReforma(Entity):
+    """Dados da votacao sobre a reforma politica"""
+    using_options(tablename='votos_reforma')
+    opcao1 = Field(Integer)
+    opcao2 = Field(Integer)
+
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(lsession, flush_context):

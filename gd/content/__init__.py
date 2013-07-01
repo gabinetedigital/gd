@@ -28,14 +28,14 @@ import xmlrpclib
 import locale
 from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
-     redirect, url_for, abort, make_response #, flash
+     redirect, url_for, abort, make_response , jsonify
 
 from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
 # from gd.content.tweet import get_mayor_last_tweet
 from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail, twitts
-from gd.model import User, ComiteNews, CadastroComite, session as dbsession
+from gd.model import User, ComiteNews, CadastroComite, VotosReforma, session as dbsession
 
 from gd.govpergunta import govpergunta
 from gd.govresponde import govresponde
@@ -385,6 +385,7 @@ def index():
         page_como=pagehow,
         page_seg=pageseg,
         menu=menus,
+        reforma_voted=request.cookies.get('reforma_voted') or False,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         VOTACAO_URL=vote_url,
         VOTACAO_ROOT=vote_root,
@@ -941,3 +942,23 @@ def confirm_signup(key):
         return redirect(url_for('.index'))
 
     return redirect( url_for('auth.signup_continuation') )
+
+
+@app.route('/opcaoRefPolitica', methods=('POST',))
+def opcaoRefPolitica():
+    if request.form:
+        reg = VotosReforma()
+        if request.form['hdnquestao1'] == '1':
+            reg.opcao1 = 1
+        elif request.form['hdnquestao1'] == '2':
+            reg.opcao2 = 1
+        dbsession.add(reg)
+        dbsession.commit()
+        r = {'status':'ok'}
+    else:
+        r = {'status':'ok','msg':'Data not sent'}
+
+    resp = make_response( jsonify(r), 200)
+    resp.set_cookie('reforma_voted', request.form['hdnquestao1'])
+    return resp
+
