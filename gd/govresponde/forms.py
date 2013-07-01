@@ -19,6 +19,11 @@ from flask.ext.wtf import validators #, ValidationError
 from flask.ext.wtf import Form, TextField, SelectField
 from gd.content.wp import wordpress
 
+try:
+    from flaskext.babel import gettext as _
+except ImportError:
+    _ = lambda(s): s
+
 
 class QuestionForm(Form):
     """Form that receives questions from users to the "Answer" tool"""

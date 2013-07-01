@@ -19,6 +19,11 @@
 from flask.ext.wtf import validators #, ValidationError
 from flask.ext.wtf import Form, TextField, SelectField
 
+try:
+    from flaskext.babel import gettext as _
+except ImportError:
+    _ = lambda(s): s
+
 
 THEMES = (
     (u'cuidado',)*2,

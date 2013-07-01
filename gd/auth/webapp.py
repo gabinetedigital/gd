@@ -35,6 +35,10 @@ from gd.model import Upload, session as dbsession, User
 from gd.content.wp import wordpress
 from gd.utils.gdcache import fromcache, tocache
 
+try:
+    from flaskext.babel import gettext as _
+except ImportError:
+    _ = lambda(s): s
 
 auth = Blueprint(
     'auth', __name__,

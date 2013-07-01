@@ -21,6 +21,10 @@
 class to avoid messing up that module, things were done here in a
 separated place.
 """
+try:
+    from flaskext.babel import gettext as _
+except ImportError:
+    _ = lambda(s): s
 
 GENDER = (
     (u'', _(u'--')),

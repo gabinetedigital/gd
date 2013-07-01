@@ -22,10 +22,15 @@ from gd.utils import phpass
 from gd.auth import choices, authenticated_user
 from gd.model import Upload
 
+    
 from flask.ext.wtf import validators, ValidationError
 from flask.ext.wtf import Form, TextField, PasswordField, SelectField, \
     BooleanField, FileField, file_allowed
 
+try:
+    from flaskext.babel import gettext as _
+except ImportError:
+    _ = lambda(s): s
 
 class BaseDataForm(Form):
     """Form that holds fields used by more forms bellow"""
