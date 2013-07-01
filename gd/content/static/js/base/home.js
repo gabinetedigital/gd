@@ -19,7 +19,6 @@
 
 $(document).ready(function () {
 
-
     $('.go1').click(function(){
         $('.step1').fadeIn();
         $('.step2').hide();
@@ -111,4 +110,39 @@ $(document).ready(function () {
         $('.equipe-grupo-'+$(this).attr('data-index')).addClass('active');
     });
 
+    $('.botaovotacapa').hover(function(){
+        $(this).find('button').removeClass('btn-primary');
+        $(this).find('button').addClass('btn-success');
+    },function(){
+        $(this).find('button').removeClass('btn-success');
+        $(this).find('button').addClass('btn-primary');
+    })
+
+    $('#frmquestao1').find('button').click(function(){
+        // console.log('Gravando...' + $(this).attr('data-value') );
+        $('#frmquestao1').find('input[name=hdnquestao1]').val( $(this).attr('data-value') );
+    })
+
+    $('#frmquestao1').ajaxForm({
+        success: function(pData){
+            console.log(pData);
+            if(pData.status == 'ok'){
+                $('#frmquestao1').find('button').addClass('disabled').attr('disabled','disabled');
+                $('.questao2').fadeIn(function(){
+                     $('html, body').animate({
+                         scrollTop: $("#titquestao2").offset().top - 50
+                     }, 600);
+                });
+            }else{
+                alert(pData.msg);
+            }
+        }
+    });    
+
 });
+
+var donextstep = function(op){
+    $('#frmquestao1').find('button').addClass('disabled').attr('disabled','disabled');
+    $('#botao'+op).removeClass('btn-primary').addClass('btn-success');
+    $('.questao2').show();
+};

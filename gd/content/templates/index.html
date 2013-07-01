@@ -52,36 +52,44 @@
   <div class="row" id="govpergunta">
     <div class="container">
       <section>
-
-        <div class="page-header">
-          <h2>{{ pagevot.title|safe }}</h2>
+        <div class="row">
+          <img class="span12 banner" src="{{url_for('static', filename="img/banner-reforma.png")}}">
         </div>
+
         <div class="row">
           <div class="span12">
-            <div class="content">
-            {{ pagevot.content|safe }}
+            <div class="well">
+            {{pagevot.content|safe}}
             </div>
           </div>
         </div>
 
-        <div class="row">
-          <div class="span6">
-            <div id="pq" class="pwhat">
-              <h3>{{ page_pq.title|safe }}</h3>
-              {{ page_pq.content|safe }}
+        <div class="page-header questao1">
+          <h2>1. Como deve ser feita a reforma política no Brasil?</h2>
+        </div>
+        <div class="row questao1">
+          <div class="span12">
+            <div class="well" style="background-color: #f2f2f2; margin: 0 auto 10px; height: 300px;">
+
+              <form id="frmquestao1" class="form-horizontal" method="POST" action="/opcaoRefPolitica">
+                <input type="hidden" name="hdnquestao1">
+                  <h3 class="center">Clique em uma das opções abaixo</h3>
+                  <div class="botaovotacapa">
+                    <button id="botao1" class="btn btn-large btn-primary btn-block" data-value="1">Pelo congresso com deputados e senadores eleitos nas últimas eleições</button>
+                  </div>
+                  <div class="botaovotacapa">
+                    <button id="botao2" class="btn btn-large btn-primary btn-block" data-value="2">Através de uma câmara constituinte com representantes eleitos exclusivamente para esse fim</button>
+                  </div>
+              </form>
             </div>
           </div>
-          <div class="span6">
-            <div id="como" class="pwhat">
-              <h3>{{ page_como.title|safe }}</h3>
-              {{ page_como.content|safe }}
-            </div>
-          </div>
-
-
         </div>
 
-        <div class="row">
+        <div id="titquestao2" class="page-header questao2 {%if not reforma_voted%}hide{%endif%}">
+          <h2 style="line-height: 1.8em;">2. Na sua opinião, quais devem ser as prioridades da reforma política?</h2>
+        </div>
+
+        <div class="row questao2 {%if not reforma_voted%}hide{%endif%}">
           <div class="span12">
             <div class="pergunta">
               {%if VOTACAO_ALTURA%}
@@ -96,6 +104,14 @@
       </section>
     </div>
   </div>
+
+  {%if reforma_voted%}
+  <script>
+  $(document).ready(function () {
+    donextstep({{reforma_voted}});
+  });
+  </script>
+  {%endif%}
 
 {%endif%}
 
