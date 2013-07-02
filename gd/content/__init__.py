@@ -26,6 +26,7 @@ import datetime
 import gettext
 import xmlrpclib
 import locale
+import traceback
 from sqlalchemy.orm.exc import NoResultFound
 from flask import Flask, request, render_template, session, \
      redirect, url_for, abort, make_response , jsonify
@@ -946,19 +947,23 @@ def confirm_signup(key):
 
 @app.route('/opcaoRefPolitica', methods=('POST',))
 def opcaoRefPolitica():
-    if request.form:
-        reg = VotosReforma()
-        if request.form['hdnquestao1'] == '1':
-            reg.opcao1 = 1
-        elif request.form['hdnquestao1'] == '2':
-            reg.opcao2 = 1
-        dbsession.add(reg)
-        dbsession.commit()
-        r = {'status':'ok'}
-    else:
-        r = {'status':'ok','msg':'Data not sent'}
+    try:
+        if request.form:
+            reg = VotosReforma()
+            if request.form['hdnquestao1'] == '1':
+                reg.opcao1 = 1
+            elif request.form['hdnquestao1'] == '2':
+                reg.opcao2 = 1
+            dbsession.add(reg)
+            dbsession.commit()
+            r = {'status':'ok'}
+        else:
+            r = {'status':'ok','msg':'Data not sent'}
+    except:
+        traceback.print_exc()
+        r = {'status':'nok','msg':'Ocorreu um erro ao processar'}
 
-    resp = make_response( jsonify(r), 200)
+    resp = jsonify(r)
     resp.set_cookie('reforma_voted', request.form['hdnquestao1'])
     return resp
 
