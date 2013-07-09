@@ -550,12 +550,6 @@ section h2.reforma{
 }
 
 
-.botaovotacapa{
-    max-width: 500px; 
-    margin: 30px; 
-    float: left;
-}
-
 .botaovotacapa button{
     height: 200px;
     font-size: 18pt;
@@ -563,6 +557,28 @@ section h2.reforma{
     line-height: 1.3em;
 }
 
+
+.botaovotacapa.esquerda {
+    margin-left: 6%;
+}
+
 .center{
     text-align: center;
+}
+
+.centerbutton {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.well {
+  background-color: #F2F2F2;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .botaovotacapa.esquerda {
+      margin-left: 0;
+      margin-bottom: 20px;
+  }
 }
