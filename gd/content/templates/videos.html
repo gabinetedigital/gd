@@ -50,6 +50,13 @@
           </div>
 
         </div>
+        <div class="row well">
+            <ul>
+              {%for cat in categories%}
+              <li>{{cat.name}} ({{cat.term_id}})</li>
+              {%endfor%}
+            </ul>
+        </div>
         <div class="videos row">
           <ul class="thumbnails">
             {% for video in videos %}
@@ -62,7 +69,7 @@
                 </a>
                 <div class="meta">
                   <a href="/videos/{{video.id}}/">
-                    <strong>{{ video.title }}</strong>
+                    <strong>{{ video.title }} {%if video.category_title%}({{video.category_title}}){%endif%}</strong>
                   </a>
                 </div>
                 <!-- <p>{{ video.description|truncate(length=80) }}</p> -->
