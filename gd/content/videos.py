@@ -35,6 +35,8 @@ def listing():
     allvideos = fromcache("all_videos_root") or tocache("all_videos_root",wordpress.wpgd.getVideos(
         where='status=true', orderby='title'))
 
+    categories = fromcache("all_videos_categories") or tocache("all_videos_categories",wordpress.wpgd.getVideosCategories())
+
     for v in allvideos:
         videos_json[v['title']] = v['id']
 
@@ -49,7 +51,7 @@ def listing():
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template('videos.html', videos=videos
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
-        ,menu=menus, titulos=videos_json)
+        ,menu=menus, titulos=videos_json, categories=categories)
 
 
 @videos.route('/nextpage/<int:pagina>/')

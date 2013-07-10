@@ -8,7 +8,7 @@
     </a>
     <div class="meta">
       <a href="/videos/{{video.id}}/">
-        <strong>{{ video.title }}</strong>
+        <strong>{{ video.title }} {%if video.category_title%}({{video.category_title}}){%endif%}</strong>
       </a>
     </div>
     <!-- <p>{{ video.description|truncate(length=80) }}</p> -->
