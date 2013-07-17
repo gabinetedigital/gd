@@ -52,8 +52,9 @@
         </div>
         <div class="row well">
             <ul>
+              <li><a href="/videos">Todos os vídeos</a></li>
               {%for cat in categories%}
-              <li>{{cat.name}} ({{cat.term_id}})</li>
+              <li><a href="/videos/canal/{{cat.term_id}}">{{cat.name}} ({{cat.term_id}})</a></li>
               {%endfor%}
             </ul>
         </div>
