@@ -53,6 +53,21 @@ def listing():
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
         ,menu=menus, titulos=videos_json, categories=categories)
 
+@videos.route('/canal/<categoria_id>')
+def canal(categoria_id):
+    categories = fromcache("all_videos_categories") or tocache("all_videos_categories",wordpress.wpgd.getVideosCategories())
+
+    videos = fromcache("videos_canal_%s" % str(categoria_id)) or tocache("videos_canal_%s" % str(categoria_id), 
+             wordpress.wpgd.getVideosByCategory(category=categoria_id, orderby='date DESC'))
+
+    videos_json = {}
+    allvideos = fromcache("all_videos_root") or tocache("all_videos_root",wordpress.wpgd.getVideos(
+        where='status=true', orderby='title'))
+    for v in allvideos:
+        videos_json[v['title']] = v['id']
+
+    return render_template('videos.html', videos=videos, titulos=videos_json, categories=categories)
+
 
 @videos.route('/nextpage/<int:pagina>/')
 def nextpage(pagina):
