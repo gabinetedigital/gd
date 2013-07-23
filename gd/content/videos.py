@@ -19,7 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from flask import Blueprint, render_template, current_app
-from gd.utils.gdcache import fromcache, tocache #, cache, removecache
+from gd.utils.gdcache import fromcache, tocache, removecache
 from gd.utils import twitts
 #from gd.auth import is_authenticated
 from gd.content.wp import wordpress
@@ -82,7 +82,20 @@ def nextpage(pagina):
 
 @videos.route('/<int:vid>/')
 def details(vid):
-    video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+    video = fromcache("video_%s" % str(vid)) 
+    print "Video do cache!"
+
+    if not video:
+        print "Video do wordpress..."
+        video = tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+    
+    video['views'] = int(video['views']) + 1
+    print "Delete video cache!"
+    removecache("video_%s" % str(vid))
+    print "Set video to cache!"
+    tocache("video_%s" % str(vid), video)
+    wordpress.wpgd.setVideoViews(video['views'], vid);
+
     sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
 
     base_url = current_app.config['BASE_URL']
