@@ -18,8 +18,34 @@
   <div class="container">
     <div class="row">
       <div class="container">
-        <div class="row">
+        
+        {%if hvideos%}
+        <div class="row hvideos">
+          <h2>Vídeos em destaque</h2>
+          <div class="well">
 
+            <div id="highlight-videos" class="carousel slide">
+              <!-- Carousel items -->
+              <div class="carousel-inner">
+                {%for video in hvideos%}
+                <div class="{%if loop.first%}active{%endif%} item">
+                  
+                  <a href="/videos/{{video.id}}/">
+                    <img src="{{video.thumbnail}}" alt="Video">
+                    <h3>{{video.title}}</h3>
+                    <p>{{video.description}}</p>
+                  </a>
+
+                </div>
+                {%endfor%}
+              </div>
+            </div>
+
+          </div>
+        </div>
+        {%endif%}
+
+        <div class="row">
           <div class="span3">
             <h2>Vídeos</h2>
           </div>

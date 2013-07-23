@@ -31,6 +31,12 @@ videos = Blueprint(
 
 @videos.route('/')
 def listing():
+
+    hvideos = wordpress.wpgd.getHighlightedVideos()
+    print "VIDEOS:"
+    print hvideos
+    # hvideos = fromcache("h_videos_root") or tocache("h_videos_root",wordpress.wpgd.getHighlightedVideos())
+
     videos_json = {}
     allvideos = fromcache("all_videos_root") or tocache("all_videos_root",wordpress.wpgd.getVideos(
         where='status=true', orderby='title'))
@@ -51,7 +57,7 @@ def listing():
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template('videos.html', videos=videos
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
-        ,menu=menus, titulos=videos_json, categories=categories)
+        ,menu=menus, titulos=videos_json, categories=categories, hvideos=hvideos)
 
 @videos.route('/canal/<categoria_id>')
 def canal(categoria_id):
@@ -90,9 +96,9 @@ def details(vid):
         video = tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
     
     video['views'] = int(video['views']) + 1
-    print "Delete video cache!"
+    # print "Delete video cache!"
     removecache("video_%s" % str(vid))
-    print "Set video to cache!"
+    # print "Set video to cache!"
     tocache("video_%s" % str(vid), video)
     wordpress.wpgd.setVideoViews(video['views'], vid);
 
