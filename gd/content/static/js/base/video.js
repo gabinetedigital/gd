@@ -97,3 +97,8 @@ $("#readmorevideos").click(function(){
         }
     });
 });
+
+$(document).ready(function() {
+    //Dos videos em destaque
+    $('.carousel').carousel();
+});
