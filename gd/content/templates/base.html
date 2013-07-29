@@ -143,6 +143,8 @@
         </div>
       </div>
     </footer>
+  
+    <div id="content-loading" class="loadingbase loadingmodal"><!-- Place at bottom of page --></div>
 
     <script>
       var SIO_BASE = "{{ host }}";
@@ -157,6 +159,7 @@
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.tools.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base/urls.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/base/loader.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
@@ -198,6 +201,5 @@
       })();
 
     </script>
-
   </body>
 </html>
