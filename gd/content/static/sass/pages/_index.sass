@@ -1,0 +1,491 @@
+section h2
+  font-size: 50px
+  color: $blue
+  margin-bottom: 30px
+  margin-top: 20px
+  font-weight: 300
+  background-color: #333
+  padding: 10px 20px
+  width: 100%
+  line-height: 1.1em
+  height: 1.2em
+  display: inline
+  +single-text-shadow
+
+section h2.reforma
+  color: #fff
+  background-color: #FF8C00
+
+.page-header
+  border: 0
+
+.block
+  +rgba-background(rgba($black, 0.698))
+  color: #FFFFFF
+  font-size: 14px
+  padding: 10px 20px
+  maring-bottom: 20px
+
+.widgets .thumbnail, #sobre .thumbnail, #resultados .thumbnail
+  border: 0 none
+  border-radius: 0 0 0 0
+  +rgba-background(rgba($black, 0.3))
+  display: block
+  padding: 7px
+  text-align: left
+  color: #FFF
+  +border-radius(0)
+  +box-shadow(0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.8) inset)
+
+/* Inicio
+
+.widgets
+  background: url(../img/bg.png)
+
+/* Sobre
+
+#sobre
+  background: url(../img/gd.jpg) no-repeat center center fixed
+  +background-size(cover)
+  padding-bottom: 60px
+
+#sobre h3
+  color: #FFFFFF
+  font-size: 40px
+  font-weight: 300
+  font-style: italic
+  +single-text-shadow
+
+#sobre .clipping a
+  color: $orange
+
+#sobre .clipping #pagination
+  clear: both
+  float: right
+
+#sobre blockquote
+  color: #FFF
+  border: 0
+  padding: 10px
+  +single-text-shadow
+  +rgba-background(rgba(black, 0.8))
+
+#sobre blockquote p
+  font-weight: 400
+
+#sobre a
+  color: white
+  font-weight: bold
+
+#sobre .btn-sobre
+  text-align: right
+
+#sobre .nav-tabs
+  border-bottom: 1px solid #333
+
+#sobre .nav-tabs > li, #sobre .nav-pills > li
+  float: right
+
+#sobre .nav-tabs > li a:hover
+  background-color: #333
+  border-color: #333 #333 transparent
+  border-image: none
+  border-style: solid
+  border-width: 1px
+  color: $blue
+  cursor: default
+  +border-radius(0)
+
+#sobre .nav-tabs > .active > a, .nav-tabs > .active > a:hover
+  background-color: #333
+  border-color: #333 #333 transparent
+  border-image: none
+  border-style: solid
+  border-width: 1px
+  color: $blue
+  cursor: default
+  +border-radius(0)
+
+#sobre .subgrupo
+  margin-bottom: 20px
+  margin-top: 47px
+
+#sobre .equipe .thumbnail
+  background-color: $black
+  padding-left: 10px
+
+#sobre .equipe .thumbnail h4
+  font-size: 10pt
+
+#sobre .equipe .thumbnail h5
+  color: $blue
+  font-size: 9pt
+
+#sobre .equipe .thumbnail img
+  width: 50px
+  height: 50px
+  float: left
+  margin-top: 10px
+  margin-right: 6px
+
+#participe
+  /* background: url(../img/participe2.jpg) no-repeat center center fixed;
+  /* @include background-size(cover);
+  background: url(../img/bg.png)
+
+#govpergunta
+  background: url(../img/mani.jpg)
+  +background-size(cover)
+
+.fotodia h4
+  +rgba-background(rgba($green, 0.8))
+  bottom: 0
+  color: #FFFFFF
+  font-size: 12pt
+  line-height: 24px
+  margin: 7px
+  font-weight: 600
+  overflow: hidden
+  padding: 5px 8px
+  position: absolute
+  right: 0
+  height: 24px
+  top: 10%
+  text-align: left
+  text-overflow: ellipsis
+  white-space: nowrap
+
+.fotodia h4 i
+  margin-right: 8px
+  margin-top: 4px
+
+.fotodia h3
+  +rgba-background(rgba($green, 0.75))
+  bottom: 0
+  color: #FFFFFF
+  font-size: 14px
+  font-weight: 600
+  left: 0
+  line-height: 24px
+  margin: 7px
+  overflow: hidden
+  padding: 5px 8px
+  position: absolute
+  right: 0
+  text-align: left
+  text-overflow: ellipsis
+  display: none
+
+.news1 h3
+  font-size: 12pt
+  line-height: 24px
+  text-align: left
+  font-weight: 600
+  left: 0
+  line-height: 24px
+  overflow: hidden
+  padding: 0px 20px
+  position: absolute
+  text-align: left
+  text-overflow: ellipsis
+  +single-text-shadow
+  /* @include rgba-background(rgba($black,0.75));
+
+.news1 h4
+  +rgba-background(rgba($black, 0.75))
+  bottom: 0
+  color: #FFFFFF
+  font-size: 14px
+  font-weight: 600
+  left: 0
+  line-height: 24px
+  margin: 0 7px 27px
+  overflow: hidden
+  padding: 5px 8px
+  position: absolute
+  right: 0
+  text-align: left
+  text-overflow: ellipsis
+
+.publicacoes h4
+  +rgba-background(rgba($black, 0.75))
+  bottom: 0
+  color: #FFFFFF
+  font-size: 14px
+  font-weight: 600
+  left: 0
+  line-height: 24px
+  margin: 7px
+  overflow: hidden
+  padding: 5px 8px
+  position: absolute
+  right: 0
+  text-align: left
+  text-overflow: ellipsis
+
+.ultimas
+  text-align: left
+  background-color: $black
+
+.ultimas h3
+  color: #FFFFFF
+  font-size: 12pt
+  line-height: 31px
+  margin: 10px
+  padding: 0
+
+.ultimas h4
+  text-align: right
+  font-size: 10pt
+  margin-right: 30px
+
+.ultimas ul li
+  background-color: $green
+  padding: 14px 20px
+  margin: 20px 25px 20px 0px
+  display: block
+  position: relative
+  list-style-type: none
+
+.ultimas ul li a
+  color: #FFF
+
+.ultimas ul li a
+  color: #FFF
+
+.rss
+  text-align: left
+  background-color: $black
+
+.rss h3
+  color: #FFFFFF
+  font-size: 12pt
+  line-height: 31px
+  margin: 10px
+  padding: 0
+
+.rss ul li
+  background-color: $orange
+  padding: 14px 20px
+  color: #FFF
+  margin: 20px 25px 20px 0px
+  display: block
+  position: relative
+
+.rss ul li:before
+  content: ''
+  position: absolute
+  top: 0
+  right: 0
+  border-top: 10px solid $black
+  border-left: 10px solid $orange
+  width: 0
+
+.rss ul li:after
+  content: ''
+  position: absolute
+  bottom: 0
+  left: 0
+  border-bottom: 10px solid $black
+  border-right: 10px solid $orange
+  width: 0
+
+#home .video
+  background: #000
+  overflow: auto
+  display: block
+
+.video h4
+  margin: 0
+
+.video h4 a
+  color: $yellow
+  font-size: 12pt
+  line-height: 24px
+  text-align: left
+  +rgba-background(rgba($black, 0.75))
+  font-weight: 600
+  left: 0
+  top: 5%
+  line-height: 24px
+  overflow: hidden
+  padding: 5px 8px
+  position: absolute
+  text-align: left
+  text-overflow: ellipsis
+  z-index: 1020
+
+.lasttweet
+  text-align: left
+  background-color: $black !important
+
+.lasttweet h4
+  text-align: right
+
+.lasttweet h4 a
+  color: white
+
+.lasttweet .box
+  background-color: $blue
+  padding: 14px
+  color: #FFF
+  position: relative
+  margin-bottom: 10px
+
+.lasttweet .box:after
+  content: ''
+  position: absolute
+  bottom: 0
+  left: 0
+  border-bottom: 10px solid $black
+  border-right: 10px solid $blue
+  width: 0
+
+.banner img, .news1 img, .fotodia img
+  width: 100%
+
+#govpergunta .pwhat
+  color: #FFF
+  padding: 20px
+
+#govpergunta .pergunta
+  background: $black
+  color: #FFF
+  margin-top: 20px
+  /*height: 595px;
+
+#govpergunta .pergunta .choice
+  padding: 20px
+
+#govpergunta .pergunta .btn
+  text-align: left
+
+#govpergunta .pergunta h1
+  padding: 10px
+
+#govpergunta .thumbnail
+  +box-shadow(0 0 0 rgba(255, 255, 255, 0), 0 0 0 0 rgba(0, 0, 0, 0) inset)
+
+#govpergunta .gov
+  cursor: pointer
+  height: 130px
+
+#govpergunta .gov h3
+  font-size: 16pt
+  font-weight: 400
+  text-align: right
+  line-height: 28px
+  margin-top: 0
+  padding: 10px 16px 0 96px
+  color: #FFF
+
+.pri, .pro, .como, .pq
+  width: 50px
+  height: 50px
+  display: block
+  float: left
+  margin-top: 75px
+  margin-left: 9px
+
+#govpergunta .prioridade, #govpergunta #pri
+  +background-image(linear-gradient(#00aacc, #0089af))
+
+#govpergunta .pri
+  background-position: -41px -328px
+
+#govpergunta .porque, #govpergunta #pq
+  +background-image(linear-gradient(#e04251, #d12d33))
+
+#govpergunta .pq
+  background-position: -174px -325px
+
+#govpergunta .processo, #govpergunta #pro
+  +background-image(linear-gradient(#ff9338, #ff7f1e))
+  overflow: auto
+
+#govpergunta .pro
+  background-position: -243px -327px
+
+#govpergunta #pro .steps li
+  list-style: none outside none
+  text-align: center
+  float: left
+
+#govpergunta #pro .steps
+  margin-top: 10px
+
+#govpergunta #pro .steps li a
+  color: #FFF
+  text-align: center
+  border: 3px solid #FFFFFF
+  display: inline-block
+  font-size: 14pt
+  height: 20px
+  margin-left: 10px
+  padding: 5px
+  width: 20px
+  font-weight: bold
+  +border-radius(30px)
+
+#govpergunta #pro .steps li a:hover, #govpergunta #pro .steps li a.active
+  color: $black
+  text-decoration: none
+  text-align: center
+  border: 3px solid $black
+  display: inline-block
+  font-size: 14pt
+  height: 20px
+  margin-left: 10px
+  padding: 5px
+  width: 20px
+  font-weight: bold
+  +border-radius(30px)
+
+.step2, .step3, .step4
+  display: none
+
+#govpergunta .comofunciona, #govpergunta #como
+  +background-image(linear-gradient(#00b59b, #00a087))
+
+#govpergunta .como
+  background-position: -110px -327px
+
+#govpergunta .content
+  color: white
+
+.textos
+  margin-top: 20px
+
+#resultados
+  background: url(../img/resultados.jpg) no-repeat center center fixed
+  +background-size(cover)
+  padding-bottom: 60px
+
+.fixie
+  margin: 1px 0 1px
+  padding-bottom: 1px
+
+.botaovotacapa button
+  height: 200px
+  font-size: 18pt
+  padding: 0 15px
+  line-height: 1.3em
+
+.botaovotacapa.esquerda
+  margin-left: 6%
+
+.center
+  text-align: center
+
+.centerbutton
+  margin: 0 auto
+  text-align: center
+
+.well
+  background-color: #F2F2F2
+  overflow: hidden
+
+@media (max-width: 767px)
+  .botaovotacapa.esquerda
+    margin-left: 0
+    margin-bottom: 20px
