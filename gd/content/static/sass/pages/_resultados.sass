@@ -1,0 +1,261 @@
+.resultados
+  padding-top: 20px
+  border-top: 2px solid #DDD
+  background: url(../img/minsqr.png)
+
+.resultados .header h1
+  background: url("../img/logo_gp.png") no-repeat scroll 0 12px transparent
+  color: $blue
+  display: block
+  font-weight: 400
+  height: 80px
+  margin-bottom: 10px
+  padding-bottom: 20px
+  padding-left: 250px
+  font-size: 18pt
+
+.resultados h2
+  line-height: 30px
+
+.resultados p.desc
+  font-size: 13pt
+  margin-bottom: 20px
+  color: #898e8c
+
+.resultados .buttons
+  font-size: 20pt
+  color: #FFF
+  margin-bottom: 20px
+  overflow: auto
+
+.cell
+  line-height: 30px
+  font-size: 30pt
+  padding-top: 20px
+
+.priorizadas, .propostas, .pessoas, .votos
+  display: block
+  height: 100px
+  text-align: center
+  cursor: pointer
+  +border-radius(0px 26px 26px 26px)
+  +box-shadow(0 1px 0 rgba(255, 255, 255, 1), 0 1px 7px 0 rgba(0, 0, 0, 0.3) inset)
+
+.priorizadas:hover, .propostas:hover, .pessoas:hover, .votos:hover
+  +box-shadow(0 1px 0 rgba(255, 255, 255, 1), 0 1px 7px 0 rgba(255, 255, 255, 0.8) inset)
+
+.resultados small
+  display: block
+  clear: both
+  font-size: 11pt
+
+.priorizadas
+  +background-with-css2-fallback(linear-gradient($lblue, $blue), $blue)
+
+.propostas
+  +background-with-css2-fallback(linear-gradient($lgreen, $green), $green)
+
+.pessoas
+  +background-with-css2-fallback(linear-gradient($lred, $red), $red)
+
+.votos
+  +background-with-css2-fallback(linear-gradient($lorange, $orange), $orange)
+
+.dados
+  display: none
+  font-size: 12pt
+  color: $black
+
+.dados .board
+  border: 1px solid #CCC
+  padding: 20px
+  margin-top: 20px
+  background: #FFF
+
+.widget .fotodia h3
+  display: none
+
+.widget .fotodia h4
+  +rgba-background(rgba($green, 0.8))
+  bottom: 0
+  color: #FFFFFF
+  font-size: 12pt
+  line-height: 24px
+  margin: 5px
+  font-weight: 600
+  overflow: hidden
+  padding: 5px 8px
+  position: absolute
+  right: 0
+  height: 24px
+  top: 10%
+  text-align: left
+  text-overflow: ellipsis
+  white-space: nowrap
+
+.widget .fotodia h4 i
+  display: none
+
+.widget .video h4
+  display: none
+
+.lista .blah
+  display: block
+
+.lista h2
+  border-bottom: 1px solid #CCCCCC
+  font-size: 25pt
+  font-weight: normal
+  margin-bottom: 24px
+  margin-top: 10px
+  padding-bottom: 16px
+
+.lista .thumbnail
+  border: 1px solid #CCC
+  padding: 0 10px
+  overflow: auto
+  +border-radius(0)
+  +background-with-css2-fallback(linear-gradient(white, #dddddd), white)
+
+.lista .thumbnail h3
+  font-size: 15pt
+
+.lista .thumbnail p
+  font-size: 10pt
+  padding-top: 10px
+  border-top: 1px solid #CCC
+
+.lista .thumbnail img
+  margin-top: 10px
+  margin-right: 10px
+
+.lista .thumbnail button
+  margin-bottom: 10px
+
+.score
+  color: $blue
+  font-size: 13pt
+  text-align: center
+  width: 79px
+  height: 45px
+  margin-top: 5px
+
+.score .ptn
+  font-size: 18pt
+  font-weight: bold
+  color: black
+  clear: both
+  display: block
+  margin-top: 4px
+
+.mais .span12
+  border-top: 1px solid #CCC
+  padding-top: 15px
+
+.mais h1
+  font-size: 22pt
+
+.mais img
+  background: #CCC
+  padding: 4px
+  text-align: center
+
+.mais p
+  font-size: 11pt
+
+.agregadas
+  margin-top: 20px
+  display: none
+
+.agregadas .thumbnail p
+  font-size: 9pt
+
+.resposta h2
+  color: $blue
+
+.resp
+  padding: 20px
+  background: #d7e3f4
+  border: 1px solid #DDD
+  margin-bottom: 20px
+
+.comments .avatar
+  /* margin: 0 auto;
+  /* background: #CCC;
+  text-align: center
+  /* @include border-radius(20px);
+
+.avatar img
+  float: left
+
+.comments textarea
+  height: 100px
+  margin-left: 28px
+  width: 87%
+
+.comments button
+  margin-bottom: 30px
+
+.comments
+  margin-bottom: 20px
+
+.comentario
+  margin-bottom: 20px
+
+.comentario .content
+  margin-left: 140px
+
+#page-resultados #slideshow
+  height: auto
+  background: #DDD
+  overflow: hidden
+  margin-bottom: 20px
+
+#page-resultados #slideshow .carousel
+  padding-top: 20px
+  height: 185px
+
+#page-resultados #slideshow li
+  float: left
+  margin-right: 30px
+  list-style: none
+
+#page-resultados #slideshow img
+  float: left
+  margin-right: 30px
+  border: solid 1px #fff
+
+#page-resultados #slideshow .title a
+  color: #999
+  font-size: 19pt
+
+#page-resultados #slideshow .excerpt
+  font-size: 16px
+
+#page-resultados #slideshow .excerpt a
+  color: #2e3436
+
+#page-resultados #slideshow .controls
+  float: right
+  position: relative
+  right: 20px
+
+#page-resultados #slideshow .controls a
+  color: #FFF
+  font-weight: bold
+  font-size: 14px
+  display: block
+  float: left
+  padding: 0 6px
+
+#page-resultados #slideshow .controls a:hover
+  text-decoration: none
+
+#page-resultados #slideshow .controls a.current
+  background: #999
+  color: #fff
+
+#page-resultados #slideshow .controls li
+  display: block
+  width: 20px
+  margin-right: 0
