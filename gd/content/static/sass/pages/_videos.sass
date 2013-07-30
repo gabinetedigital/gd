@@ -5,7 +5,7 @@
 
 .seta
   position: relative
-  top: 150px
+  top: 140px
   background-color: #34495e
   color: #fff
   padding: 10px 20px
@@ -13,3 +13,29 @@
 .seta:hover
   text-decoration: none
   color: #fff
+
+#highlight-videos a,
+#highlight-videos a:hover,
+#highlight-videos a:active,
+#highlight-videos a:visited
+  text-decoration: none
+  color: #fff
+
+#highlight-videos .capitions
+  position: absolute
+  top: 50%
+  bottom: 0
+  padding: 40px 80px 0
+  +single-text-shadow
+  +background-image(linear-gradient(center top, transparent, rgba(0,0,0,0.8)))
+
+#highlight-videos .capitions h3
+  text-transform: uppercase
+
+#highlight-videos .capitions h3 > i
+  padding: 10px 20px
+  margin-right: 30px
+  background-color: #34495e
+
+#highlight-videos .capitions p
+  padding-left: 90px

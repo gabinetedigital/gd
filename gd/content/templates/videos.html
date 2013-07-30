@@ -27,18 +27,22 @@
   <div class="container">
     {%if hvideos%}
     <div class="row hvideos hidden-phone">
-      <div id="highlight-videos" class="carousel slide">
-        <!-- Carousel items -->
-        <div class="carousel-inner">
-          {%for video in hvideos%}
-          <div class="{%if loop.first%}active{%endif%} item">
-            <a href="/videos/{{video.id}}/">
-              <img src="{{video.thumbnail}}" alt="Video">
-              <h3>{{video.title}}</h3>
-              <p>{{video.description}}</p>
-            </a>
+      <div class="span12">
+        <div id="highlight-videos" class="carousel slide">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            {%for video in hvideos%}
+            <div class="{%if loop.first%}active{%endif%} item">
+              <a href="/videos/{{video.id}}/">
+                <img src="{{ thumborurl(video.thumbnail, (1200,350) ) }}" alt="{{video.title}}">
+                <div class="capitions">
+                  <h3><i class="icon-play"></i>{{video.title}}</h3>
+                  <p>{{video.subtitle}}</p>
+                </div>
+              </a>
+            </div>
+            {%endfor%}
           </div>
-          {%endfor%}
         </div>
       </div>
     </div>
