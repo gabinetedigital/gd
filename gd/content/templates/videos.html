@@ -50,52 +50,64 @@
 
     <div class="row">
       <div class="span3">
-    <ul>
-      <li><a href="/videos">Todos os vídeos</a></li>
-      {%for cat in categories%}
-      <li><a href="/videos/canal/{{cat.term_id}}">{{cat.name}} ({{cat.term_id}})</a></li>
-      {%endfor%}
-    </ul>
-  </div>
-
-  <div class="span9">
-    <div class="row">
-      <div class="span6">
-        titulo
+        <div class="video-filter">
+          <div class="filter">
+            <a href=""><i class="icon-time icon-2x azul"></i><p>Recentes</p></a>
+          </div>
+          <div class="filter">
+            <a href=""><i class="icon-star icon-2x amarelo"></i><p>Populares</p></a>
+          </div>
+          <div class="filter">
+            <a href=""><i class="icon-th-large icon-2x vermelho"></i><p>Canais</p></a>
+            <ul class="canais">
+                <li><a href="/videos">Todos os vídeos</a></li>
+                {%for cat in categories%}
+                <li><a href="/videos/canal/{{cat.term_id}}">{{cat.name}}</a></li>
+                {%endfor%}
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="span3 pull-right">
-        <div class="controls gbusca pull-right">
-          <div class="input-prepend">
-            <span class="add-on"><i class="icon-picture"></i></span>
-            <input class="span3 searcher" id="inputIcon" type="text" placeholder="procurar vídeo...">
+
+      <div class="span9">
+        <div class="row">
+          <div class="span6">
+            titulo
+          </div>
+          <div class="span3 pull-right">
+            <div class="controls gbusca pull-right">
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-picture"></i></span>
+                <input class="span3 searcher" id="inputIcon" type="text" placeholder="procurar vídeo...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span9">
+            <ul class="thumbnails">
+              {% for video in videos %}
+              <li class="span3">
+                <div class="thumbnail video">
+                  <a href="/videos/{{video.id}}/">
+                    <img class="thumb"
+                         src="{{ video.thumbnail }}" alt="{{ video.title }}"
+                         width="100">
+                  </a>
+                  <div class="meta">
+                    <a href="/videos/{{video.id}}/">
+                      <strong>{{ video.title }} {%if video.category_title%}({{video.category_title}}){%endif%}</strong>
+                    </a>
+                  </div>
+                  <!-- <p>{{ video.description|truncate(length=80) }}</p> -->
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-    <div class="span9">
-      <ul class="thumbnails">
-        {% for video in videos %}
-        <li class="span3">
-          <div class="thumbnail video">
-            <a href="/videos/{{video.id}}/">
-              <img class="thumb"
-                   src="{{ video.thumbnail }}" alt="{{ video.title }}"
-                   width="100">
-            </a>
-            <div class="meta">
-              <a href="/videos/{{video.id}}/">
-                <strong>{{ video.title }} {%if video.category_title%}({{video.category_title}}){%endif%}</strong>
-              </a>
-            </div>
-            <!-- <p>{{ video.description|truncate(length=80) }}</p> -->
-          </div>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
   </div>
 </div>
-  </div>
 {% endblock %}
