@@ -50,47 +50,33 @@
 
     <div class="row">
       <div class="span3">
-        <h2>Vídeos</h2>
+    <ul>
+      <li><a href="/videos">Todos os vídeos</a></li>
+      {%for cat in categories%}
+      <li><a href="/videos/canal/{{cat.term_id}}">{{cat.name}} ({{cat.term_id}})</a></li>
+      {%endfor%}
+    </ul>
+  </div>
+
+  <div class="span9">
+    <div class="row">
+      <div class="span6">
+        titulo
       </div>
       <div class="span3 pull-right">
         <div class="controls gbusca pull-right">
           <div class="input-prepend">
             <span class="add-on"><i class="icon-picture"></i></span>
             <input class="span3 searcher" id="inputIcon" type="text" placeholder="procurar vídeo...">
-            <script type="text/javascript">
-            $(document).ready(function() {
-                $('.searcher').typeahead({
-                    source: [{%for t in titulos%}'{{t}}',{%endfor%}],
-                                          items: 8,
-                                          minLength: 2,
-                                          updater: function(item){
-                        //Slugs é um dicionáraio que contém como chave o Título do vídeo, e como valor o id,
-                        //para poder recdirecionar diretamente para a galeria.
-                        ids = { {%for t in titulos%}
-                            '{{t}}':'{{titulos[t]}}',
-                            {%endfor%} }
-                            document.location = "/videos/" + ids[item]
-                    }
-                });
-            });
-            </script>
           </div>
         </div>
       </div>
-
     </div>
-    <div class="row well">
-      <ul>
-        <li><a href="/videos">Todos os vídeos</a></li>
-        {%for cat in categories%}
-        <li><a href="/videos/canal/{{cat.term_id}}">{{cat.name}} ({{cat.term_id}})</a></li>
-        {%endfor%}
-      </ul>
-    </div>
-    <div class="videos row">
+    <div class="row">
+    <div class="span9">
       <ul class="thumbnails">
         {% for video in videos %}
-        <li class="span4">
+        <li class="span3">
           <div class="thumbnail video">
             <a href="/videos/{{video.id}}/">
               <img class="thumb"
@@ -107,10 +93,9 @@
         </li>
         {% endfor %}
       </ul>
-      <button id="readmorevideos" class="btn btn-inverse offset2 span7">
-        Carregar mais vídeos...
-      </button><br/>
     </div>
   </div>
+  </div>
 </div>
+  </div>
 {% endblock %}
