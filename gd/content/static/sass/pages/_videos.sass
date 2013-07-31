@@ -14,6 +14,9 @@
   text-decoration: none
   color: #fff
 
+#highlight-videos.carousel
+  margin-bottom: 0
+
 #highlight-videos a,
 #highlight-videos a:hover,
 #highlight-videos a:active,
@@ -25,8 +28,11 @@
   position: absolute
   top: 50%
   bottom: 0
+  left: 0
+  right: 0
   padding: 40px 80px 0
   +single-text-shadow
+
   +background-image(linear-gradient(center top, transparent, rgba(0,0,0,0.8)))
 
 #highlight-videos .capitions h3
@@ -37,5 +43,55 @@
   margin-right: 30px
   background-color: #34495e
 
-#highlight-videos .capitions p
+#highlight-videos .capitions pbac
   padding-left: 90px
+
+//--------------------------//
+
+.video-filter
+  background-color: #34495e
+
+.video-filter a,
+.video-filter a:hover,
+.video-filter a:active,
+.video-filter a:visited
+  color: #FFF
+  text-decoration: none
+
+.video-filter .filter
+  border-bottom: 2px solid #2c3e50
+  overflow: hidden
+
+.video-filter .filter:last-child
+  border: none
+
+.video-filter .filter > a
+  padding: 10px 20px
+  display: block
+
+.video-filter i
+  margin-right: 10px
+
+.video-filter i.azul
+  color: #3498db
+
+.video-filter i.amarelo
+  color: #f1c40f
+
+.video-filter i.vermelho
+  color: #e74c3c
+
+.video-filter p
+  color: white
+  font-weight: 200
+  font-size: 17pt
+  display: inline
+
+.video-filter .canais
+  margin-left: 60px
+
+.video-filter .canais li
+  list-style:  none
+
+.video-filter .canais li a
+  font-size: 10pt
