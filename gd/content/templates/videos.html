@@ -52,6 +52,9 @@
       <div class="span3">
         <div class="video-filter">
           <div class="filter">
+            <a href=""><p>Vídeos: </p></a>
+          </div>
+          <div class="filter">
             <a href=""><i class="icon-time icon-2x azul"></i><p>Recentes</p></a>
           </div>
           <div class="filter">
@@ -80,7 +83,8 @@
             <div class="controls gbusca">
               Encontre o vídeo que deseja
               <div class="input-append">
-                <input class="searcher" id="inputIcon" type="text" placeholder="Ex: Interiorização ...">
+                <input class="searcher" id="inputIcon" type="text"
+                placeholder="Ex: Interiorização ...">
                 <button class="btn" type="button">
                   <i class="icon-search icons-2x"></i>
               </button>
@@ -95,16 +99,17 @@
               <li class="span3">
                 <div class="thumbnail video">
                   <a href="/videos/{{video.id}}/">
-                    <img class="thumb"
-                         src="{{ video.thumbnail }}" alt="{{ video.title }}"
-                         width="100">
+                    <img src="{{ thumborurl(video.thumbnail, (270,152) )
+                    }}" class="thumb" alt="{{video.title}}">
                   </a>
                   <div class="meta">
                     <a href="/videos/{{video.id}}/">
-                      <strong>{{ video.title }} {%if video.category_title%}({{video.category_title}}){%endif%}</strong>
+                      <strong>{{video.date | strftime() }}</strong>
+                      <p>{{ video.title }} {%if
+                      video.category_title%} ({{video.category_title}})
+                      {%endif%} </p>
                     </a>
                   </div>
-                  <!-- <p>{{ video.description|truncate(length=80) }}</p> -->
                 </div>
               </li>
               {% endfor %}
