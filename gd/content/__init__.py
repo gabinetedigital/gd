@@ -261,6 +261,14 @@ app.jinja_env.filters['formatarDataeHora'] = formatarDataeHora
 app.jinja_env.filters['formatarDataeHoraPostType'] = formatarDataeHoraPostType
 app.jinja_env.filters['formatCurrency'] = formatCurrency
 
+@app.template_filter('strftime')
+def _jinja2_filter_datetime(date, formato_origem="%Y-%m-%d %H:%M:%S", formato="%d.%m.%Y"):
+    if not type(date) is str:
+        date = str(date)
+    asdate = datetime.datetime.strptime(date, formato_origem)
+    return asdate.strftime(formato)
+
+
 @app.context_processor
 def extend_context():
     """This function is a context processor. It injects variables such
@@ -966,4 +974,3 @@ def opcaoRefPolitica():
     resp = jsonify(r)
     resp.set_cookie('reforma_voted', request.form['hdnquestao1'])
     return resp
-
