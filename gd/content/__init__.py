@@ -50,6 +50,7 @@ from gd.utils.gravatar import Gravatar
 from gd.utils.gdcache import cache, fromcache, tocache, removecache
 from libthumbor import CryptoURL
 from gd.monitoramento import monitoramento
+from gd.seminario import seminario
 
 app = Flask(__name__)
 
@@ -85,6 +86,7 @@ app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(monitoramento, url_prefix='/monitore')
+app.register_blueprint(seminario, url_prefix='/seminario')
 
 gravatar = Gravatar(app,default='mm')
 
