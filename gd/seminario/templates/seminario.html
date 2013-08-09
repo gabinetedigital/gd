@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
@@ -20,5 +20,27 @@
     <![endif]-->
   </head>
   <body>
+    <div id="home">
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <div class="title">
+              <p class="line1">Seminário:</p>
+              <p class="line2">Crise da</p>
+              <p class="line3">Representação</p>
+              <p class="line4">e Renovação</p>
+              <p class="line5">da Democracia</p>
+            </div>
+          </div>
+          <div class="span6">
+            <div class="date">
+              <p class="day">5 e 6</p>
+              <p class="month">Setembro</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('.static', filename='js/seminario.js') }}"></script>
   </body>
 </html>
