@@ -278,6 +278,7 @@ def _slugify(string):
     slug = slugify(string)
     return slug
 
+
 @app.context_processor
 def extend_context():
     """This function is a context processor. It injects variables such
