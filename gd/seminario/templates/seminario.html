@@ -14,21 +14,22 @@
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
     <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
     <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
     <div id="menu">
       <ul>
-        <li><a href="" title="inicio"><i class="icon-home"></i></a></li>
-        <li><a href="" title="palestrantes"><i class="icon-group"></i></a></li>
-        <li><a href="" title="programação"><i class="icon-calendar"></i></a></li>
-        <li><a href="" title="local"><i class="icon-map-marker"></i></a></li>
-        <li><a href="" title="inscrição""><i class="icon-ticket"></i></a></li>
-        <li><a href="" title="cobertura"><i class="icon-edit"></i></a></li>
+        <li><a href="#inicio" title="inicio"><i class="icon-home"></i></a></li>
+        <li><a href="#palestrantes" title="palestrantes"><i class="icon-group"></i></a></li>
+        <li><a href="#programacao" title="programação"><i class="icon-calendar"></i></a></li>
+        <li><a href="#local" title="local"><i class="icon-map-marker"></i></a></li>
+        <li><a href="#inscricao" title="inscrição""><i class="icon-ticket"></i></a></li>
+        <li><a href="#cobertura" title="cobertura"><i class="icon-edit"></i></a></li>
       </ul>
     </div>
-    <div id="home">
+
+    <div id="inicio" class="section">
       <div class="container">
         <div class="row">
           <div class="span6">
@@ -49,6 +50,72 @@
         </div>
       </div>
     </div>
+
+    <div id="palestrantes" class="section">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <h2>Palestrantes</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <ul class="thumbnails">
+              <li class="span3">
+                <a class="thumbnail">
+                  <p>Tarso Genro</p>
+                  <img src="{{ url_for('.static', filename='img/tarso.png' ) }}">
+                </a>
+              </li>
+              <li class="span3">
+                <a class="thumbnail">
+                  <p>Dalmo Dallari</p>
+                  <img src="{{ url_for('.static', filename='img/dallari.png' ) }}">
+                </a>
+              </li>
+              <li class="span3">
+                <a class="thumbnail">
+                  <p>Fernando Abrúcio</p>
+                  <img src="{{ url_for('.static', filename='img/abrucio.png' ) }}">
+                </a>
+              </li>
+              <li class="span3">
+                <a class="thumbnail">
+                  <p>Celi Pinto</p>
+                  <img src="{{ url_for('.static', filename='img/celia.png' ) }}">
+                </a>
+              </li>
+              <li class="span3">
+                <a class="thumbnail">
+                  <p>Tarso Genro</p>
+                  <img src="{{ url_for('.static', filename='img/tarso.png' ) }}">
+                </a>
+              </li>
+              <li class="span3">
+                <a class="thumbnail">
+                  <p>Dalmo Dallari</p>
+                  <img src="{{ url_for('.static', filename='img/dallari.png' ) }}">
+                </a>
+              </li>
+              <li class="span3">
+                <a class="thumbnail">
+                  <p>Fernando Abrúcio</p>
+                  <img src="{{ url_for('.static', filename='img/abrucio.png' ) }}">
+                </a>
+              </li>
+              <li class="span3">
+                <a class="thumbnail">
+                  <p>Celi Pinto</p>
+                  <img src="{{ url_for('.static', filename='img/celia.png' ) }}">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('.static', filename='js/seminario.js') }}"></script>
   </body>
