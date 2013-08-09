@@ -1,6 +1,9 @@
+@import compass/css3
+
 $blue: #2c3e50
 $background: #c0392b
 $dark: #ab3326
+$title: #f39c12
 
 body
   font-family: Museo, sans
@@ -16,6 +19,8 @@ body
   font-size: 15pt
   display: inline-block
   margin-bottom: 10px
+  +border-radius(0)
+
 
 .tooltip.top .tooltip-arrow
   border-top-color: $dark
@@ -28,11 +33,10 @@ body
 
 #menu
   margin-right: 7%
-  margin-top: 5%
   position: fixed
   right: 0
-
-
+  top: 10%
+  z-index: 9999
 
   ul>li
     list-style: none
@@ -50,9 +54,17 @@ body
     height: 50px
     text-decoration: none
 
-#home
+.section
+  margin: 100px 0
+
+  h2
+    color: $title
+    font-weight: 300
+    font-size: 50pt
+    margin: 70px 0
+
+#inicio
   background: url(../img/bg01.png) no-repeat bottom right
-  height: 600px
   padding-top: 10%
 
 .title p
@@ -91,3 +103,24 @@ body
   color: white
   font-size: 40pt
   margin-top: 35px
+
+
+/* -------------------------- */
+
+
+#palestrantes
+
+  .thumbnail
+    border: 0
+    padding: 0
+    position: relative
+
+    p
+      background: $title
+      color: black
+      font-weight: 500
+      position: absolute
+      right: 0
+      bottom: 0
+      padding: 5px 10px
+      font-size: 13pt
