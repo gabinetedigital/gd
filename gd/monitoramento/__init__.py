@@ -27,11 +27,13 @@ import os
 import re
 import xmlrpclib
 import traceback
+import random
+import string
 from hashlib import md5
 
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd import auth as authapi
-from gd.utils import dumps, sendmail, send_welcome_email, twitts
+from gd.utils import dumps, sendmail, send_welcome_email, send_password, twitts
 from gd.model import UserFollow, session as dbsession
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -506,7 +508,8 @@ def contribui(slug):
 			novasenha = request.form['newPassword'] if 'newPassword' in request.form else ""
 
 			if not novasenha:
-				novasenha = "gabinetedigital"
+				# novasenha = "gabinetedigital"
+				novasenha = ''.join(random.choice(string.printable) for x in range(8))
 
 			# print nome, '-', email, '-', novasenha
 
@@ -515,6 +518,7 @@ def contribui(slug):
 				r = {'status':'ok', 'message':'Sua contibuição foi aceita com sucesso. Verifique seu email para confirmar o cadastro.'}
 				user_recent = True
 				send_welcome_email(user)
+				send_password(user.email, novasenha)
 			except authapi.UserExistsUnconfirmed, e:
 				r = {'status':'nok', 'message':u'Seu usuário precisa ser confirmado, veja seu email!'}
 				return dumps(r)
