@@ -45,11 +45,13 @@ def _default_handler(value):
         return datetime.isoformat(value)
 
 
-def twitts():
+def twitts(hashtag=None, count=25):
     result = fromcache("twetts_cabecalho")
     if not result:
         t = Twython(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET, conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
-        result = t.search(q=conf.TWITTER_HASH_CABECALHO, result_type='mixed', count=25)
+        if not hashtag:
+            hashtag = conf.TWITTER_HASH_CABECALHO
+        result = t.search(q=hashtag, result_type='mixed', count=count)
         tws = [status for status in result['statuses']]
         result = []
         for status in tws:

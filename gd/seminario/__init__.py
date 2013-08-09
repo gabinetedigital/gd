@@ -35,6 +35,7 @@ from gd.utils import dumps, sendmail, send_welcome_email, twitts
 from gd.model import UserFollow, session as dbsession
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
+from gd.utils import twitts
 from gd import conf
 
 seminario = Blueprint(
@@ -45,4 +46,11 @@ seminario = Blueprint(
 
 @seminario.route('/')
 def index():
-    return render_template('seminario.html')
+    twitter_tag = conf.SEMINARIO_TWITTER_TAG
+    cid = conf.SEMINARIO_CATEGORIA_ID
+    pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
+    twites = fromcache("seminario_twitts") or tocache("seminario_twitts", twitts(hashtag=twitter_tag, count=5) )
+    print posts
+    print twites
+
+    return render_template('seminario.html', posts=posts, twitts=twites)
