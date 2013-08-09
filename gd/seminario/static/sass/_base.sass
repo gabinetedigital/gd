@@ -1,10 +1,54 @@
 $blue: #2c3e50
 $background: #c0392b
+$dark: #ab3326
 
 body
   font-family: Museo, sans
   font-weight: 300
   background-color: $background
+
+.tooltip-inner
+  color: white
+  background-color: $dark
+  text-align: center
+  padding: 5px 10px
+  font-weight: 500
+  font-size: 15pt
+  display: inline-block
+  margin-bottom: 10px
+
+.tooltip.top .tooltip-arrow
+  border-top-color: $dark
+  border-left-color: $background
+  border-right-color: $background
+  border-width: 6px 6px 0
+  bottom: 0
+  margin-bottom: 10px
+
+
+#menu
+  margin-right: 7%
+  margin-top: 5%
+  position: fixed
+  right: 0
+
+
+
+  ul>li
+    list-style: none
+    display: inline-block
+    color: white
+    background-color: $dark
+    text-align: center
+    font-size: 20pt
+    line-height: 38pt
+
+  ul>li>a, ul>li>a:hover
+    color: white
+    display: block
+    width: 50px
+    height: 50px
+    text-decoration: none
 
 #home
   background: url(../img/bg01.png) no-repeat bottom right

@@ -7,9 +7,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
@@ -20,6 +18,16 @@
     <![endif]-->
   </head>
   <body>
+    <div id="menu">
+      <ul>
+        <li><a href="" title="inicio"><i class="icon-home"></i></a></li>
+        <li><a href="" title="palestrantes"><i class="icon-group"></i></a></li>
+        <li><a href="" title="programação"><i class="icon-calendar"></i></a></li>
+        <li><a href="" title="local"><i class="icon-map-marker"></i></a></li>
+        <li><a href="" title="inscrição""><i class="icon-ticket"></i></a></li>
+        <li><a href="" title="cobertura"><i class="icon-edit"></i></a></li>
+      </ul>
+    </div>
     <div id="home">
       <div class="container">
         <div class="row">
@@ -41,6 +49,7 @@
         </div>
       </div>
     </div>
+    <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('.static', filename='js/seminario.js') }}"></script>
   </body>
 </html>
