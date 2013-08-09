@@ -20,12 +20,12 @@
   <body>
     <div id="menu">
       <ul>
-        <li><a href="#inicio" title="inicio"><i class="icon-home"></i></a></li>
-        <li><a href="#palestrantes" title="palestrantes"><i class="icon-group"></i></a></li>
-        <li><a href="#programacao" title="programação"><i class="icon-calendar"></i></a></li>
-        <li><a href="#local" title="local"><i class="icon-map-marker"></i></a></li>
-        <li><a href="#inscricao" title="inscrição""><i class="icon-ticket"></i></a></li>
-        <li><a href="#cobertura" title="cobertura"><i class="icon-edit"></i></a></li>
+        <li><a href="" title="inicio"><i class="icon-home"></i></a></li>
+        <li><a href="" title="palestrantes"><i class="icon-group"></i></a></li>
+        <li><a href="" title="programação"><i class="icon-calendar"></i></a></li>
+        <li><a href="" title="local"><i class="icon-map-marker"></i></a></li>
+        <li><a href="" title="inscrição"><i class="icon-ticket"></i></a></li>
+        <li><a href="" title="cobertura"><i class="icon-edit"></i></a></li>
       </ul>
     </div>
 
@@ -47,6 +47,23 @@
               <p class="month">Setembro</p>
             </div>
           </div>
+        </div>
+        <div class="row">
+          <h2>Twitts</h2>
+          <ul>
+            {%for status in twitts%}
+            <li class='{{status.classe}}' id='{{status.id}}'>
+              <a href="http://twitter.com/{{status.user.screen_name}}" target="_new">@{{status.user.screen_name}}</a>
+              <p>{{status.text}} (<a href="http://twitter.com/{{status.user.screen_name}}/status/{{status.id}}" target="_new">ver</a>)</p>
+            </li>
+            {%endfor%}
+          </ul>
+  
+          <h2>Postagens</h2>
+          {%for post in posts%}
+            <h4>{{post.title}}</h4>
+            <p>{{post.content|safe}}</p>
+          {%endfor%}
         </div>
       </div>
     </div>
