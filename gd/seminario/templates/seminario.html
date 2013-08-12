@@ -62,9 +62,11 @@
           <h2>Postagens</h2>
           {%for post in posts%}
             <h4>{{post.title}}</h4>
-            <p>{{post.content|safe}}</p>
+            <p>{{post.excerpt|safe}}</p>
           {%endfor%}
+
         </div>
+
       </div>
     </div>
 
@@ -129,6 +131,18 @@
             </ul>
           </div>
         </div>
+
+
+        <div class="row">
+          {%for foto in photos%}
+            <div class="foto">
+              <h4>{{foto.title}}</h4>
+              <a href="https://secure.flickr.com/photos/{{foto.owner}}/{{foto.id}}/" target="_new"><img src="{{foto.Thumbnail}}"></a>
+            </div>
+          {%endfor%}
+        </div>
+
+
       </div>
     </div>
 
