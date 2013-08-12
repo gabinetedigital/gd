@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br" {%block htmldef%}{%endblock%}>
+  <head {% block head %}{% endblock %}>
+    <title>
+      Seminário: Crise da Representação e Renovação da Democracia
+    </title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="menu">
+      <ul>
+        <li><a href="" title="inicio"><i class="icon-home"></i></a></li>
+        <li><a href="" title="palestrantes"><i class="icon-group"></i></a></li>
+        <li><a href="" title="programação"><i class="icon-calendar"></i></a></li>
+        <li><a href="" title="local"><i class="icon-map-marker"></i></a></li>
+        <li><a href="" title="inscrição"><i class="icon-ticket"></i></a></li>
+        <li><a href="" title="cobertura"><i class="icon-edit"></i></a></li>
+      </ul>
+    </div>
+
+    <div id="inicio" class="section">
+      <div class="container">
+
+        <div class="row">
+          <div class="span12">
+            <h2>Twitts</h2>
+            <ul>
+              {%for status in twitts%}
+              <li class='{{status.classe}}' id='{{status.id}}'>
+                <a href="http://twitter.com/{{status.user.screen_name}}" target="_new">@{{status.user.screen_name}}</a>
+                <p>{{status.text}} (<a href="http://twitter.com/{{status.user.screen_name}}/status/{{status.id}}" target="_new">ver</a>)</p>
+              </li>
+              {%endfor%}
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <h2>Postagens</h2>
+            {%for post in posts%}
+              <h4>{{post.title}}</h4>
+              <p>{{post.excerpt|safe}}</p>
+            {%endfor%}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span12">
+            <h2>Fotos do Flickr</h2>
+            {%for foto in photos%}
+            <div class="foto">
+              <h4>{{foto.title}}</h4>
+              <a href="https://secure.flickr.com/photos/{{foto.owner}}/{{foto.id}}/" target="_new"><img src="{{foto.Thumbnail}}"></a>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('.static', filename='js/seminario.js') }}"></script>
+  </body>
+</html>

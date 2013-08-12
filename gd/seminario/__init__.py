@@ -80,6 +80,11 @@ def get_flickr_photos():
 
 @seminario.route('/')
 def index():
+    return render_template('seminario.html')
+
+
+@seminario.route('/cobertura/')
+def cobertura():
     twitter_tag = conf.SEMINARIO_TWITTER_TAG
     cid = conf.SEMINARIO_CATEGORIA_ID
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
@@ -88,4 +93,4 @@ def index():
     # print posts
     # print twites
 
-    return render_template('seminario.html', posts=posts, twitts=twites, photos=photos)
+    return render_template('cobertura.html', posts=posts, twitts=twites, photos=photos)
