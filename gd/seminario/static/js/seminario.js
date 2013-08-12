@@ -13,4 +13,11 @@ $(window).load(function() {
             window.location.hash = target;
         });
     });
+
+    $('.event').toggle(function() {
+        $(this).find('li.meta').slideDown('slow');
+    },function(){
+        $(this).find('li.meta').slideUp();
+    });
+
 });
