@@ -48,24 +48,6 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <h2>Twitts</h2>
-          <ul>
-            {%for status in twitts%}
-            <li class='{{status.classe}}' id='{{status.id}}'>
-              <a href="http://twitter.com/{{status.user.screen_name}}" target="_new">@{{status.user.screen_name}}</a>
-              <p>{{status.text}} (<a href="http://twitter.com/{{status.user.screen_name}}/status/{{status.id}}" target="_new">ver</a>)</p>
-            </li>
-            {%endfor%}
-          </ul>
-  
-          <h2>Postagens</h2>
-          {%for post in posts%}
-            <h4>{{post.title}}</h4>
-            <p>{{post.excerpt|safe}}</p>
-          {%endfor%}
-
-        </div>
 
       </div>
     </div>
@@ -131,18 +113,6 @@
             </ul>
           </div>
         </div>
-
-
-        <div class="row">
-          {%for foto in photos%}
-            <div class="foto">
-              <h4>{{foto.title}}</h4>
-              <a href="https://secure.flickr.com/photos/{{foto.owner}}/{{foto.id}}/" target="_new"><img src="{{foto.Thumbnail}}"></a>
-            </div>
-          {%endfor%}
-        </div>
-
-
       </div>
     </div>
 
