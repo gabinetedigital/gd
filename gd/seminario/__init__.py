@@ -38,14 +38,54 @@ from gd.utils.gdcache import fromcache, tocache #, cache, removecache
 from gd.utils import twitts
 from gd import conf
 
+from instagram.client import InstagramAPI
+import flickrapi
+
 seminario = Blueprint(
     'seminario', __name__,
     template_folder='templates',
     static_folder='static')
 
 
+
+def get_instagram_photos():
+
+    # É necessário configurar os campos INSTAGRAM_TOKEN e INSTAGRAM_USER
+    # no conf.py
+
+    try:
+        access_token = conf.INSTAGRAM_TOKEN
+    except KeyError:
+        access_token = ""
+
+    try:
+        user_id = conf.INSTAGRAM_USER
+    except KeyError:
+        user_id = ""
+
+    search_tag = conf.SEMINARIO_INSTAGRAM_TAG
+
+    api = InstagramAPI(access_token=access_token)
+    # recent_media, next = api.user_recent_media(user_id=user_id, count=-1)
+    recent_media, next = api.tag_recent_media(tag_name=search_tag, count=20)
+    print recent_media
+    photos = []
+    for media in recent_media:
+        # if hasattr(media, 'tags'):
+            # if tag in [ t.name for t in media.tags ]:
+        print media, dir(media)
+        content = { 'link': media.link,
+                    'url': media.images['standard_resolution'].url,
+                    'thumb': media.images['thumbnail'].url,
+                    'caption': media.caption.text if media.caption else "",
+                    'tags': media.tags }
+        photos.append(content)
+
+    return photos
+
+
+
 def get_flickr_photos():
-    import flickrapi
 
     api_key = conf.FLICKR_APP_KEY
     api_secret = conf.FLICKR_APP_SECRET
@@ -90,7 +130,8 @@ def cobertura():
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
     twites = fromcache("seminario_twitts") or tocache("seminario_twitts", twitts(hashtag=twitter_tag, count=5) )
     photos = get_flickr_photos()
+    instaphotos = get_instagram_photos()
     # print posts
     # print twites
 
-    return render_template('cobertura.html', posts=posts, twitts=twites, photos=photos)
+    return render_template('cobertura.html', posts=posts, twitts=twites, photos=photos, instaphotos=instaphotos)

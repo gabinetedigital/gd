@@ -67,6 +67,19 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="span12">
+            <h2>Fotos do Instagram</h2>
+            {%for foto in instaphotos%}
+            <div class="foto">
+              <h4>{{foto.caption}}</h4>
+              <a href="{{foto.link}}" target="_new"><img src="{{foto.thumb}}"></a>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+
+
       </div>
     </div>
 
