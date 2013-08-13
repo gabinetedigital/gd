@@ -19,7 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-from flask import Blueprint, request, render_template, abort, current_app, Response, url_for
+from flask import Blueprint, request, render_template, abort, current_app, Response, url_for, jsonify
 from werkzeug import secure_filename
 from jinja2.utils import Markup
 
@@ -135,3 +135,7 @@ def cobertura():
     # print twites
 
     return render_template('cobertura.html', posts=posts, twitts=twites, photos=photos, instaphotos=instaphotos)
+
+@seminario.route('/newlink/', methods=['POST'])
+def newlink():
+    return jsonify({'status':0, 'msg':'Obrigado pela sua contribuição!'})
