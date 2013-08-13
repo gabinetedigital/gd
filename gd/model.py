@@ -467,6 +467,17 @@ class VotosReforma(Entity):
     opcao2 = Field(Integer)
 
 
+class LinkColaborativo(Entity):
+    """Links enviados pelos jornalistas no Seminário da Crise"""
+    using_options(tablename='link_colaborativo')
+    nome     = Field(String(100))
+    email    = Field(String(500))
+    link     = Field(String(700))
+    site     = Field(String(100))
+    clicks   = Field(Integer)
+    datetime = Field(DateTime, default=datetime.now)
+
+
 @event.listens_for(session, "after_flush")
 def _set_user_meta(lsession, flush_context):
     """Sets all meta information needed by wordpress, such as

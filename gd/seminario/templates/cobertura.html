@@ -41,6 +41,23 @@
 
         <div class="row">
           <div class="span12">
+            <h2>Links colaborativos</h2>
+            <ul>
+              {%for link in links%}
+              <li>
+                <p>Por: {{link.nome}} ({{link.datetime|strftime(formato='%H:%M:%S')}})
+                  <h3>
+                    <a data-id="{{link.id}}" class="link-col" target="_new" rel="nofollow" href="{{link.link}}">{{link.site}}</a>
+                  </h3>
+                </p>
+              </li>
+              {%endfor%}
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span12">
             
             <a href="#modallink" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 
@@ -103,14 +120,14 @@
         <div id="msgerror" class="hide alert alert-error"></div>
         <form id="novolink" method="post" action="{{url_for('.newlink')}}">
           <fieldset>
-            <label for"nome" >Seu nome</label>
-            <input id"nome" name="nome" type="text" placeholder="Seu nome completo..." class="span5">
-            <label for"email" >E-Mail</label>
-            <input id"email" name="email" type="text" placeholder="fulano@seusite.com" class="span4">
             <label for"link" >Link da matéria/fotos/video</label>
-            <input id"link" name="link" type="text" placeholder="http://seusite.com/materia" class="span5">
+            <input id="link" name="link" type="text" placeholder="http://seusite.com/materia" class="span5">
+            <label for"nome" >Seu nome</label>
+            <input id="nome" name="nome" type="text" placeholder="Seu nome completo..." value="{{nome}}" class="span5">
+            <label for"email" >E-Mail</label>
+            <input id="email" name="email" type="text" placeholder="fulano@seusite.com" value="{{email}}" class="span4">
             <label for"nomedosite" >Nome do site</label>
-            <input id"nomedosite" name="nomedosite" type="text" placeholder="Meu Site" class="span4">
+            <input id="nomedosite" name="nomedosite" type="text" placeholder="Meu Site" class="span4">
           </fieldset>
         </form>
 

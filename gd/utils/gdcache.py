@@ -10,6 +10,7 @@ print variable
 """
 from flask.ext.cache import Cache
 cache = Cache()
+cache.CACHE_DEFAULT_TIMEOUT = 600 #10 minutos
 
 def fromcache(name):
 	o = cache.get(name)
