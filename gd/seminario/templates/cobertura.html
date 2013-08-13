@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
     <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,6 +35,15 @@
 
         <div class="row">
           <div class="span12">
+            <div id="msg" class="hide alert alert-success"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span12">
+            
+            <a href="#modallink" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+
             <h2>Twitts</h2>
             <ul>
               {%for status in twitts%}
@@ -84,7 +94,34 @@
     </div>
 
 
+    <div id="modallink" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Increva seu link</h3>
+      </div>
+      <div class="modal-body">
+        <div id="msgerror" class="hide alert alert-error"></div>
+        <form id="novolink" method="post" action="{{url_for('.newlink')}}">
+          <fieldset>
+            <label for"nome" >Seu nome</label>
+            <input id"nome" name="nome" type="text" placeholder="Seu nome completo..." class="span5">
+            <label for"email" >E-Mail</label>
+            <input id"email" name="email" type="text" placeholder="fulano@seusite.com" class="span4">
+            <label for"link" >Link da matéria/fotos/video</label>
+            <input id"link" name="link" type="text" placeholder="http://seusite.com/materia" class="span5">
+            <label for"nomedosite" >Nome do site</label>
+            <input id"nomedosite" name="nomedosite" type="text" placeholder="Meu Site" class="span4">
+          </fieldset>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <a id="cancel" href="#" class="btn">Cancelar</a>
+        <a id="enviar" href="#" class="btn btn-primary">Enviar</a>
+      </div>
+    </div>
+
     <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('.static', filename='js/seminario.js') }}"></script>
+    <script src="{{ url_for('.static', filename='js/cobertura.js') }}"></script>
   </body>
 </html>
