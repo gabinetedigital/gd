@@ -189,11 +189,10 @@ body
 #local
 
   .local
-    height: 350px
-    width: 570px
     display: block
     position: relative
     margin-bottom: 20px
+    overflow: hidden
 
     h3
       background: $background
@@ -205,13 +204,10 @@ body
       padding: 5px 10px
       font-size: 3em
 
-  .piratini
-    background: url(../img/piratini.jpg) no-repeat
-    +background-size(cover)
-
-  .ccmq
-    background: url(../img/ccmq.jpg) no-repeat
-    +background-size(cover)
+    img
+      width: 100%
+      height: 100%
+      max-height: 350px
 
   h4
     color: $title
