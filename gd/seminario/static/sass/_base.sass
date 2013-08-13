@@ -1,10 +1,3 @@
-@import compass/css3
-
-$blue: #2c3e50
-$background: #c0392b
-$dark: #ab3326
-$title: #f39c12
-
 body
   font-family: Museo, sans
   font-weight: 300
@@ -16,7 +9,7 @@ body
   text-align: center
   padding: 5px 10px
   font-weight: 500
-  font-size: 2em
+  font-size: 200%
   display: inline-block
   margin-bottom: 10px
   +border-radius(0)
@@ -44,7 +37,7 @@ body
     color: white
     background-color: $dark
     text-align: center
-    font-size: 20pt
+    font-size: 160%
     line-height: 38pt
 
   ul>li>a, ul>li>a:hover
@@ -60,167 +53,5 @@ body
   h2
     color: $title
     font-weight: 300
-    font-size: 5em
+    font-size: 500%
     margin: 70px 0
-
-#inicio
-  background: url(../img/bg01.png) no-repeat bottom right
-  padding-top: 10%
-
-.title p
-  color: white
-  line-height: 50pt
-  margin: 0
-
-  &.line1
-    font-size: 25pt
-    font-weight: 500
-    color: $blue
-    padding-left: 190px
-
-  &.line2
-    font-size: 54pt
-    padding-left: 90px
-
-  &.line3
-    font-size: 50pt
-
-  &.line4
-    font-size: 35pt
-    padding-left: 100px
-
-  &.line5
-    font-size: 40pt
-    padding-left: 70px
-
-
-.date .day
-  color: $blue
-  font-size: 50pt
-  padding-top: 90px
-
-.date .month
-  color: white
-  font-size: 40pt
-  margin-top: 35px
-
-
-/* -------------------------- */
-
-
-#palestrantes
-
-  .thumbnail
-    border: 0
-    padding: 0
-    position: relative
-
-    p
-      background: $title
-      color: black
-      font-weight: 500
-      position: absolute
-      right: 0
-      bottom: 0
-      padding: 5px 10px
-      font-size: 1.2em
-
-/* -------------------------- */
-
-#programacao
-
-  .programacao
-    background-color: $dark
-    padding: 30px
-
-    h3
-      color: white
-      font-size: 3.3em
-      font-weight: 300
-      margin-bottom: 40px
-
-    ul
-      margin: 0
-
-    li
-      list-style: none
-      font-weight: 500
-
-    li>a, li>a:hover
-      color: $title
-
-    ul.events>li
-      margin-bottom: 30px
-
-    li.title
-      color: $title
-      font-size: 1.5em
-
-    li.local
-      color: white
-      font-size: 1.2em
-      margin-top: 10px
-
-    li.meta
-      display: none
-
-      p.desc
-        color: white
-        font-size: 1em
-        text-align: justify
-        margin-top: 20px
-
-      .presents
-        color: white
-
-      .presents>h4
-        color: $title
-        font-weight: 300
-
-      .presents > ul
-        margin-left: 20px
-        margin-bottom: 10px
-
-      .presents .hangout
-        color: $title
-
-/* -------------------------- */
-
-#local
-
-  .local
-    display: block
-    position: relative
-    margin-bottom: 20px
-    overflow: hidden
-
-    h3
-      background: $background
-      color: white
-      font-weight: 300
-      position: absolute
-      left: 0
-      top: 30px
-      padding: 5px 10px
-      font-size: 3em
-
-    img
-      width: 100%
-      height: 100%
-      max-height: 350px
-
-  h4
-    color: $title
-    font-weight: 300
-    font-size: 2em
-
-    small
-      clear: both
-      display: block
-      margin-top: 5px
-      color: $title
-      font-size: 0.6em
-
-  p
-    color: white
-    font-size: 1.2em
