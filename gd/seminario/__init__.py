@@ -19,7 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-from flask import Blueprint, request, render_template, abort, current_app, Response, url_for, jsonify
+from flask import Blueprint, request, render_template, abort, current_app, Response, url_for, jsonify, make_response
 from werkzeug import secure_filename
 from jinja2.utils import Markup
 
@@ -32,7 +32,8 @@ from hashlib import md5
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd import auth as authapi
 from gd.utils import dumps, sendmail, send_welcome_email, twitts
-from gd.model import UserFollow, session as dbsession
+from gd.model import LinkColaborativo, session as dbsession
+from sqlalchemy.exc import IntegrityError
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
 from gd.utils import twitts
@@ -125,17 +126,73 @@ def index():
 
 @seminario.route('/cobertura/')
 def cobertura():
+    nome = request.cookies.get('cobertura_nome')
+    email = request.cookies.get('cobertura_email')
     twitter_tag = conf.SEMINARIO_TWITTER_TAG
     cid = conf.SEMINARIO_CATEGORIA_ID
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
     twites = fromcache("seminario_twitts") or tocache("seminario_twitts", twitts(hashtag=twitter_tag, count=5) )
-    photos = get_flickr_photos()
-    instaphotos = get_instagram_photos()
+    photos = fromcache('seminario_flickr') or tocache('seminario_flickr',get_flickr_photos())
+    instaphotos = fromcache('seminario_insta') or tocache('seminario_insta', get_instagram_photos())
+    links = LinkColaborativo.query.order_by(LinkColaborativo.id.desc())
     # print posts
     # print twites
 
-    return render_template('cobertura.html', posts=posts, twitts=twites, photos=photos, instaphotos=instaphotos)
+    return render_template('cobertura.html', posts=posts, twitts=twites, photos=photos, 
+        instaphotos=instaphotos, nome=nome, email=email, links=links)
+
+
+@seminario.route('/av',methods=['POST'])
+def av():
+    """Metodo que conta os clicks em cada link colaborativo"""
+    id = request.form['i']
+    link = LinkColaborativo.get(id)
+    link.clicks = link.clicks + 1
+    dbsession.add(link)
+    dbsession.commit()
+    return ""
+
+@seminario.route('/getitle/', methods=['POST','GET'])
+def getitle():
+    import urllib2
+    import re
+    site = request.args['site'] or request.form['site']
+   
+    s = urllib2.urlopen(site)
+    html = s.read()
+    titleRE = re.compile("<title>(.+?)</title>")
+
+    print html
+    print titleRE.search(html)
+
+    title = titleRE.search(html.replace('\n','')).group(1).strip()
+    
+    print title
+
+    return jsonify({'title':title})
 
 @seminario.route('/newlink/', methods=['POST'])
 def newlink():
-    return jsonify({'status':0, 'msg':'Obrigado pela sua contribuição!'})
+    try:
+        link = LinkColaborativo()
+        link.nome = request.form['nome']
+        link.email= request.form['email']
+        link.link= request.form['link']
+        link.site= request.form['nomedosite']
+        link.clicks = 0
+
+        dbsession.add(link)
+        dbsession.commit()
+
+        r = jsonify({'status':0, 'msg':'Obrigado pela sua contribuição!'})
+        r.set_cookie('cobertura_nome', request.form['nome'])
+        r.set_cookie('cobertura_email', request.form['email'])
+        return r
+
+    except IntegrityError as i:
+        print "TENTOU SALVAR UM LINK QUE JÁ EXISTE"
+        return jsonify({'status':1, 'msg':'Este link já foi divulgado em nosso site'})
+    except Exception as e:
+        print "ERRO AO SALVAR NOVO LINK COLABORATIVO"
+        print e
+        return jsonify({'status':-1, 'msg':'Ocorreu um erro ao processar o seu envio. Tente novamente ou avise os administradores.'})

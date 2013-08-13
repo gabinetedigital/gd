@@ -3,6 +3,17 @@ $(window).load(function() {
         $('#modallink').modal('hide')
     });
 
+    $( "#link" ).change(function() {
+        $.get('/seminario/getitle/',{'site':$(this).val()})
+        .success( function(d){
+            $('#nomedosite').val(d.title);
+        });
+        // alert( "Handler for .change() called." + $(this).val() );
+    });
+
+    $('a.link-col').click(function(){
+        $.post('/seminario/av',{'i':$(this).attr('data-id')});
+    });
 
     $("#novolink").ajaxForm({
         beforeSubmit: function () {
