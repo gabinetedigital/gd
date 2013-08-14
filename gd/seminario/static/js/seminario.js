@@ -1,5 +1,7 @@
 $(window).load(function() {
-    $('.section').css({'height':(($(window).height()))+'px'});
+    $('#ascensor').ascensor({
+        overflow: 'hidden'
+    });
 
     $("#menu li a").tooltip();
 
