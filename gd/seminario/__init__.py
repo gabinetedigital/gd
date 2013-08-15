@@ -66,23 +66,28 @@ def get_instagram_photos():
 
     search_tag = conf.SEMINARIO_INSTAGRAM_TAG
 
-    api = InstagramAPI(access_token=access_token)
-    # recent_media, next = api.user_recent_media(user_id=user_id, count=-1)
-    recent_media, next = api.tag_recent_media(tag_name=search_tag, count=20)
-    # print recent_media
-
     photos = []
-    for media in recent_media:
-        # if hasattr(media, 'tags'):
-            # if tag in [ t.name for t in media.tags ]:
-        print media, dir(media)
-        content = { 'link': media.link,
-                    'url': media.images['standard_resolution'].url,
-                    'thumb': media.images['low_resolution'].url,
-                    'caption': media.caption.text if media.caption else "",
-                    'tags': media.tags,
-                    'datetime': media.created_time }
-        photos.append(content)
+
+    try:
+        api = InstagramAPI(access_token=access_token)
+        # recent_media, next = api.user_recent_media(user_id=user_id, count=-1)
+        recent_media, next = api.tag_recent_media(tag_name=search_tag, count=20)
+        # print recent_media
+
+        for media in recent_media:
+            # if hasattr(media, 'tags'):
+                # if tag in [ t.name for t in media.tags ]:
+            print media, dir(media)
+            content = { 'link': media.link,
+                        'url': media.images['standard_resolution'].url,
+                        'thumb': media.images['low_resolution'].url,
+                        'caption': media.caption.text if media.caption else "",
+                        'tags': media.tags,
+                        'datetime': media.created_time }
+            photos.append(content)
+    except Exception as e:
+        print "ERRO AO BUSCAR AS FOTOS DO INSTAGRAM"
+        print e
 
     return photos
 
