@@ -35,7 +35,8 @@ from twython import Twython
 from gd.utils.gdcache import fromcache, tocache
 
 from gd import conf
-
+from datetime import datetime, timedelta
+from email.utils import parsedate_tz
 
 def _default_handler(value):
     """Handles usually unserializable objects, currently datetime and
@@ -45,8 +46,22 @@ def _default_handler(value):
         return datetime.isoformat(value)
 
 
+def convert_todatetime(s=None):
+
+    # s = 'Tue Mar 29 08:11:25 +0000 2011'
+    if not s:
+        return None
+
+    time_tuple = parsedate_tz(s.strip())
+    dt = datetime(*time_tuple[:6])
+    # return dt - timedelta(seconds=time_tuple[-1])
+    return dt
+
+
 def twitts(hashtag=None, count=25):
-    result = fromcache("twetts_cabecalho")
+    result = None
+    if not hashtag:
+        result = fromcache("twetts_cabecalho")
     if not result:
         t = Twython(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET, conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
         if not hashtag:
@@ -55,7 +70,9 @@ def twitts(hashtag=None, count=25):
         tws = [status for status in result['statuses']]
         result = []
         for status in tws:
+            print status
             status['classe'] = 'pessoa' + str(random.choice(range(1,10)))
+            status['created_at'] = convert_todatetime(status['created_at'])
             result.append(status)
 
         tocache("twetts_cabecalho", result)

@@ -27,7 +27,7 @@
             <a href="http://twitter.com/{{status.user.screen_name}}" target="_new">@{{status.user.screen_name}}</a>
             <p>{{status.text}} (<a
               href="http://twitter.com/{{status.user.screen_name}}/status/{{status.id}}"
-                                  target="_new">ver</a>)</p>
+                                  target="_new">{{status.created_at|strftime(formato='%d/%m/%Y %H:%M:%S')}}</a>)</p>
           </li>
           {%endfor%}
 
@@ -44,7 +44,7 @@
           <!-- Instagram -->
           {%for foto in instaphotos%}
           <li class="foto">
-            <h4>{{foto.caption}}</h4>
+            <h4>{{foto.caption}} ({{foto.datetime|strftime(formato='%d/%m/%Y %H:%M:%S')}})</h4>
             <a href="{{foto.link}}" target="_new"><img src="{{foto.thumb}}"></a>
           </li>
           {%endfor%}
@@ -79,6 +79,8 @@
           <input id="email" name="email" type="text" placeholder="fulano@seusite.com" value="{{email}}" class="span4">
           <label for"nomedosite" >Nome do site</label>
           <input id="nomedosite" name="nomedosite" type="text" placeholder="Meu Site" class="span4">
+          <label for"linkimagem" >Link para imagem representativa</label>
+          <input id="linkimagem" name="linkimagem" type="text" placeholder="http://meusite.com/imagem.png" class="span5">
         </fieldset>
       </form>
 
