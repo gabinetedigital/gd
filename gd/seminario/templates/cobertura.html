@@ -10,50 +10,61 @@
     </div>
     <div class="row">
       <div class="span12">
-        <ul>
+        <ul class="stream thumbnails">
           {%for link in links%}
-          <li>
-            <p>Por: {{link.nome}} ({{link.datetime|strftime(formato='%H:%M:%S')}})
-              <h3>
-                <a data-id="{{link.id}}" class="link-col" target="_new" rel="nofollow" href="{{link.link}}">{{link.site}}</a>
-              </h3>
-            </p>
+          <li class="link span3">
+            <div  class="thumbnail">
+                <h3>
+                  <a data-id="{{link.id}}" class="link-col" target="_new" rel="nofollow" href="{{link.link}}">
+                  {{link.site}}
+                </a>
+                </h3>
+                <p>Por: {{link.nome}} ({{link.datetime|strftime(formato='%H:%M:%S')}})
+              </p>
+            </div>
           </li>
           {%endfor%}
 
           <!-- Tweets -->
           {%for status in twitts%}
-          <li class='{{status.classe}}' id='{{status.id}}'>
-            <a href="http://twitter.com/{{status.user.screen_name}}" target="_new">@{{status.user.screen_name}}</a>
-            <p>{{status.text}} (<a
-              href="http://twitter.com/{{status.user.screen_name}}/status/{{status.id}}"
-                                  target="_new">{{status.created_at|strftime(formato='%d/%m/%Y %H:%M:%S')}}</a>)</p>
+          <li class='tweet span3 {{status.classe}}' id='{{status.id}}' >
+            <div class="thumbnail">
+              <a href="http://twitter.com/{{status.user.screen_name}}" target="_new">@{{status.user.screen_name}}</a>
+              <p>{{status.text}} (<a
+                href="http://twitter.com/{{status.user.screen_name}}/status/{{status.id}}"
+                                    target="_new">ver</a>)</p>
+            </div>
           </li>
           {%endfor%}
 
           <!-- Flickr -->
           {%for foto in photos%}
-          <li class="foto">
-            <h4>{{foto.title}}</h4>
-            <a href="https://secure.flickr.com/photos/{{foto.owner}}/{{foto.id}}/" target="_new">
-              <img src="{{foto.Thumbnail}}">
-            </a>
+          <li class="span3 foto">
+            <div class="thumbnail">
+              <h4>{{foto.title}}</h4>
+              <a href="https://secure.flickr.com/photos/{{foto.owner}}/{{foto.id}}/" target="_new">
+                <img src="{{foto.Thumbnail}}">
+              </a>
+            </div>
           </li>
           {%endfor%}
 
           <!-- Instagram -->
           {%for foto in instaphotos%}
-          <li class="foto">
-            <h4>{{foto.caption}} ({{foto.datetime|strftime(formato='%d/%m/%Y %H:%M:%S')}})</h4>
-            <a href="{{foto.link}}" target="_new"><img src="{{foto.thumb}}"></a>
+          <li class="span3 instagram">
+            <div class="thumbnail">
+              <a href="{{foto.link}}" target="_new"><img src="{{foto.thumb}}"></a>
+            </div>
           </li>
           {%endfor%}
 
           <!-- Postagens -->
           {%for post in posts%}
-          <li>
-            <h4>{{post.title}}</h4>
-            <p>{{post.excerpt|safe}}</p>
+          <li class="span3 post">
+            <div class="thumb">
+              <h4>{{post.title}}</h4>
+              <p>{{post.excerpt|safe}}</p>
+            </div>
           </li>
           {%endfor%}
         </ul>
@@ -94,4 +105,5 @@
 
 {% block javascript %}
   <script src="{{ url_for('.static', filename='js/cobertura.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
 {% endblock %}

@@ -1,4 +1,16 @@
 $(window).load(function() {
+
+    var $container = $('.thumbnails');
+    $container.imagesLoaded( function(){
+        $container.masonry({
+            itemSelector : '.thumbnails>li',
+            columnWidth: function( containerWidth ) {
+                //console.log(containerWidth / 12);
+                return containerWidth / 12;
+            }
+        });
+    });
+
     $('#cancel').click(function(){
         $('#modallink').modal('hide')
     });

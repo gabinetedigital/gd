@@ -69,7 +69,7 @@ def get_instagram_photos():
     # recent_media, next = api.user_recent_media(user_id=user_id, count=-1)
     recent_media, next = api.tag_recent_media(tag_name=search_tag, count=20)
     # print recent_media
-   
+
     photos = []
     for media in recent_media:
         # if hasattr(media, 'tags'):
@@ -77,7 +77,7 @@ def get_instagram_photos():
         print media, dir(media)
         content = { 'link': media.link,
                     'url': media.images['standard_resolution'].url,
-                    'thumb': media.images['thumbnail'].url,
+                    'thumb': media.images['low_resolution'].url,
                     'caption': media.caption.text if media.caption else "",
                     'tags': media.tags,
                     'datetime': media.created_time }
@@ -93,10 +93,10 @@ def get_flickr_photos():
     api_secret = conf.FLICKR_APP_SECRET
 
     flickr = flickrapi.FlickrAPI(api_key, api_secret, cache=False)
-    
     photos = flickr.photos_search(tags=conf.SEMINARIO_FLICKR_TAG, per_page='20')
+
     print "PROCURANDO POR", conf.SEMINARIO_FLICKR_TAG, "NO FLICKR"
-    
+
     retorno = []
     # print "FLICKR \/"
     # print photos
@@ -140,7 +140,7 @@ def cobertura():
     # print posts
     print "TWITTER:=======", twites[0], type(twites), type(twites[0]), twites[0]['created_at'], type(twites[0]['created_at'])
 
-    return render_template('cobertura.html', posts=posts, twitts=twites, 
+    return render_template('cobertura.html', posts=posts, twitts=twites,
         instaphotos=instaphotos, nome=nome, email=email, links=links)
 
 
@@ -201,7 +201,7 @@ def getitle():
     import urllib2
     import re
     site = request.args['site'] or request.form['site']
-   
+
     s = urllib2.urlopen(site)
     html = s.read()
     titleRE = re.compile("<title>(.+?)</title>")
@@ -210,8 +210,6 @@ def getitle():
     # print titleRE.search(html)
 
     title = titleRE.search(html.replace('\n','')).group(1).strip()
-    
-    # print title
 
     return jsonify({'title':title})
 
