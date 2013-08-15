@@ -22,9 +22,33 @@
               <img src="{{i.image}}" alt="{{i.site}}">
               {% endif %}
               <a data-id="{{i.id}}" class="link-col" target="_new" rel="nofollow" href="{{i.link}}">
+
+                {% if i.tipo == 'normal' %}
+
+                {% if i.image %}
+                  <img src="{{i.image}}" alt="{{i.site}}">
+                {% endif %}
+
                 <h3>
                   {{i.site}}
                 </h3>
+
+                {% elif i.tipo == 'flickr'%}
+                <h3>
+                  {{i.site}}
+                </h3>
+                {% if i.image %}>
+                  <img src="{{i.image}}" alt="{{i.site}}">
+                {% else %}
+                  <div class="album">
+                    <i class="icon-camera"></i>
+                  </div>
+                  {% endif %}
+                {% endif %}
+
+
+                  Autor: {{i.nome}}
+
               </a>
               {%if i.tipo == 'youtube'%}
                 <video width="100%" height="100%" id="player{{i.id}}" preload="none">
@@ -38,12 +62,12 @@
             </div>
           </li>
 
+
           <!-- Twitter -->
           {% elif i.objeto == 'twitter' %}
           <li class="tweet span3">
-              <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
             <div  class="thumbnail">
-              <a href="http://twitter.com/{{i.user.screen_name}}" target="_new">
+              <a href="http://twitter.com/{{i.user.screen_name}}" target="_new" class="arroba">
                 @{{i.user.screen_name}}
               </a>
               <p>{{i.text}}</p>
@@ -54,7 +78,6 @@
 
           {% elif i.objeto == 'instagram' %}
           <li class="instagram span3">
-              <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
             <div  class="thumbnail">
               <a href="{{i.link}}" target="_new">
                 <img src="{{i.thumb}}">
@@ -64,7 +87,6 @@
 
           {% elif i.objeto == 'post' %}
           <li class="post span3">
-              <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
             <div  class="thumbnail">
               <a href="{{ url_for('post_slug',slug = i.slug)}}">
                 <h3>{{i.title}}</h3>
@@ -112,8 +134,8 @@
       <a id="enviar" href="#" class="btn btn-primary">Enviar</a>
     </div>
   </div>
-
   <div id="divjanela" style="position: fixed; left: 0px; top: 0px; height: 50px; width: 50px; border: 0px solid #fff;">&nbsp;</div>
+</div>
 {% endblock %}
 
 {% block javascript %}
