@@ -181,7 +181,7 @@ def cobertura():
         totallist.append(post)
 
     # print posts
-    totallist = sorted(totallist,key=lambda i: i['datetime'] if type(i) is dict else i.datetime)
+    totallist = sorted(totallist,key=lambda i: i['datetime'] if type(i) is dict else i.datetime, reverse=True)
 
     return render_template('cobertura.html', posts=posts, twitts=twites,
         instaphotos=instaphotos, nome=nome, email=email, links=links, totallist=totallist)
