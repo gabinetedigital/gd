@@ -7,7 +7,6 @@
     position: relative
     +box-shadow(none)
 
-
   .tweet > .thumbnail,
   .post > .thumbnail
     color: white
@@ -27,8 +26,14 @@
       font-size: 1.3em
       font-weight: 500
       line-height: 1.3em
-      margin: 0 0 15px 0
+      margin: 0
 
+    .album
+      text-align: center
+      color: $dark
+      font-size: 5em
+      line-height: 3em
+      height: 200px
 
   .post
     background: $dark
@@ -49,6 +54,12 @@
 
   .tweet
     background: $blue
+
+    a.arroba
+      font-weight: 500
+      font-size: 1.2em
+      margin-bottom: 10px
+      display: block
 
     .icon-twitter.twit
       bottom: 10px
