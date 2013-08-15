@@ -139,7 +139,14 @@ def cobertura():
     twitter_tag = conf.SEMINARIO_TWITTER_TAG
     cid = conf.SEMINARIO_CATEGORIA_ID
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
-    twites = fromcache("seminario_twitts") or tocache("seminario_twitts", twitts(hashtag=twitter_tag, count=5) )
+    
+    twites = []
+    try:
+        twites = fromcache("seminario_twitts") or tocache("seminario_twitts", twitts(hashtag=twitter_tag, count=5) )
+    except Exception as e:
+        print "ERRO AO BUSCAR OS TWITTS"
+        print e
+
     # photos = fromcache('seminario_flickr') or tocache('seminario_flickr',get_flickr_photos())
     instaphotos = fromcache('seminario_insta') or tocache('seminario_insta', get_instagram_photos())
     links = LinkColaborativo.query.order_by(LinkColaborativo.id.desc())
