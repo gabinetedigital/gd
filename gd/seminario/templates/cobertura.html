@@ -16,7 +16,8 @@
           {% if i.objeto == 'link' %}
           <li class="link span3">
             <div  class="thumbnail">
-              {% if i.image %}
+              <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
+              {% if i.image %}>
               <img src="{{i.image}}" alt="{{i.site}}>
               {% endif %}
               <a data-id="{{i.id}}" class="link-col" target="_new" rel="nofollow" href="{{i.link}}">
@@ -31,6 +32,7 @@
           <!-- Twitter -->
           {% elif i.objeto == 'twitter' %}
           <li class="tweet span3">
+              <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
             <div  class="thumbnail">
               <a href="http://twitter.com/{{i.user.screen_name}}" target="_new">
                 @{{i.user.screen_name}}
@@ -43,6 +45,7 @@
 
           {% elif i.objeto == 'instagram' %}
           <li class="instagram span3">
+              <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
             <div  class="thumbnail">
               <a href="{{i.link}}" target="_new">
                 <img src="{{i.thumb}}">
@@ -51,11 +54,13 @@
           </li>
 
           {% elif i.objeto == 'post' %}
-          <li class="instagram span3">
+          <li class="post span3">
+              <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
             <div  class="thumbnail">
-              <a href="#">
+              <a href="{{ url_for('post_slug',slug = i.slug)}}">
                 <h3>{{i.title}}</h3>
-
+              </a>
+              <p>{{i.excerpt | safe}}</p>
             </div>
           </li>
           {% endif %}
