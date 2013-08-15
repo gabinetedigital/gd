@@ -25,6 +25,7 @@ from jinja2.utils import Markup
 
 import os
 import re
+import pdb
 import xmlrpclib
 import traceback
 from hashlib import md5
@@ -137,11 +138,41 @@ def cobertura():
     # photos = fromcache('seminario_flickr') or tocache('seminario_flickr',get_flickr_photos())
     instaphotos = fromcache('seminario_insta') or tocache('seminario_insta', get_instagram_photos())
     links = LinkColaborativo.query.order_by(LinkColaborativo.id.desc())
+
+    y = re.compile("http[s]*:.*youtube.com/watch.*")
+    f = re.compile("http[s]*:.*flickr.com/.*")
+
+    # pdb.set_trace()
+    totallist = []
+    for link in links:
+        link.objeto = "link"
+        if y.match(link.link):
+            link.tipo = 'youtube'
+        elif f.match(link.link):
+            link.tipo = 'flickr'
+        else:
+            link.tipo = 'normal'
+        totallist.append(link)
+    # pdb.set_trace()
+    for photo in instaphotos:
+        photo['objeto'] = "instagram"
+        totallist.append(photo)
+    # pdb.set_trace()
+    for tw in twites:
+        tw['objeto'] = "twitter"
+        tw['datetime'] = tw['created_at']
+        totallist.append(tw)
+    # pdb.set_trace()
+    for post in posts:
+        post.objeto = "post"
+        post.datetime = post.the_date
+        totallist.append(post)
+
     # print posts
-    print "TWITTER:=======", twites[0], type(twites), type(twites[0]), twites[0]['created_at'], type(twites[0]['created_at'])
+    totallist = sorted(totallist,key=lambda i: i['datetime'] if type(i) is dict else i.datetime)
 
     return render_template('cobertura.html', posts=posts, twitts=twites,
-        instaphotos=instaphotos, nome=nome, email=email, links=links)
+        instaphotos=instaphotos, nome=nome, email=email, links=links, totallist=totallist)
 
 
 @seminario.route('/av',methods=['POST'])
