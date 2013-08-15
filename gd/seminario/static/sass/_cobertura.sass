@@ -7,25 +7,53 @@
     position: relative
     +box-shadow(none)
 
-  .link > .thumbnail,
-  .tweet > .thumbnail
+
+  .tweet > .thumbnail,
+  .post > .thumbnail
     color: white
     padding: 5px 10px
 
+  .link > .thumbnail
+    color: black
+    padding: 5px 10px
+
   .link
+    background: $title
+
+    a
+      color: $dark
+
+    h3
+      font-size: 1.3em
+      font-weight: 500
+      line-height: 1.3em
+      margin: 0 0 15px 0
+
+
+  .post
     background: $dark
 
     a
       color: $title
-      font-size: 0.8em
-      font-weight: 500
 
     h3
-      margin: 0
-      line-height: 1.1em
+      font-size: 1.3em
+      font-weight: 500
+      line-height: 1.3em
+      margin: 0 0 15px 0
+
+    p
+      text-align: justify
+      font-size: 1.1em
+
 
   .tweet
     background: $blue
+
+    .icon-twitter.twit
+      bottom: 10px
+      position: absolute
+      right: 10px
 
   .instagram
     img
