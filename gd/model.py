@@ -475,8 +475,19 @@ class LinkColaborativo(Entity):
     link     = Field(String(700))
     site     = Field(String(100))
     clicks   = Field(Integer)
+    imagem   = Field(String(700))
     datetime = Field(DateTime, default=datetime.now)
 
+
+class InscricaoSeminario(Entity):
+    using_options(tablename='inscricao_seminario')
+    nome     = Field(String(100))
+    email    = Field(String(500))
+    telefone = Field(String(30))
+    twitter  = Field(String(100))
+    facebook = Field(String(100))
+    site     = Field(String(500))
+    datetime = Field(DateTime, default=datetime.now)
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(lsession, flush_context):

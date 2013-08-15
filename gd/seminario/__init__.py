@@ -32,7 +32,7 @@ from hashlib import md5
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd import auth as authapi
 from gd.utils import dumps, sendmail, send_welcome_email, twitts
-from gd.model import LinkColaborativo, session as dbsession
+from gd.model import LinkColaborativo, InscricaoSeminario, session as dbsession
 from sqlalchemy.exc import IntegrityError
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -69,7 +69,8 @@ def get_instagram_photos():
     api = InstagramAPI(access_token=access_token)
     # recent_media, next = api.user_recent_media(user_id=user_id, count=-1)
     recent_media, next = api.tag_recent_media(tag_name=search_tag, count=20)
-    print recent_media
+    # print recent_media
+   
     photos = []
     for media in recent_media:
         # if hasattr(media, 'tags'):
@@ -79,7 +80,8 @@ def get_instagram_photos():
                     'url': media.images['standard_resolution'].url,
                     'thumb': media.images['thumbnail'].url,
                     'caption': media.caption.text if media.caption else "",
-                    'tags': media.tags }
+                    'tags': media.tags,
+                    'datetime': media.created_time }
         photos.append(content)
 
     return photos
@@ -93,13 +95,14 @@ def get_flickr_photos():
 
     flickr = flickrapi.FlickrAPI(api_key, api_secret, cache=False)
     
-    photos = flickr.photos_search(tags=conf.SEMINARIO_FLICKR_TAG, per_page='10')
+    photos = flickr.photos_search(tags=conf.SEMINARIO_FLICKR_TAG, per_page='20')
     print "PROCURANDO POR", conf.SEMINARIO_FLICKR_TAG, "NO FLICKR"
     
     retorno = []
     # print "FLICKR \/"
     # print photos
     # print photos[0]
+
     for photo in photos[0]:
         obj = {}
         # print "  ", photo.get('id'), photo.keys()
@@ -132,13 +135,13 @@ def cobertura():
     cid = conf.SEMINARIO_CATEGORIA_ID
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
     twites = fromcache("seminario_twitts") or tocache("seminario_twitts", twitts(hashtag=twitter_tag, count=5) )
-    photos = fromcache('seminario_flickr') or tocache('seminario_flickr',get_flickr_photos())
+    # photos = fromcache('seminario_flickr') or tocache('seminario_flickr',get_flickr_photos())
     instaphotos = fromcache('seminario_insta') or tocache('seminario_insta', get_instagram_photos())
     links = LinkColaborativo.query.order_by(LinkColaborativo.id.desc())
     # print posts
-    # print twites
+    print "TWITTER:=======", twites[0], type(twites), type(twites[0]), twites[0]['created_at'], type(twites[0]['created_at'])
 
-    return render_template('cobertura.html', posts=posts, twitts=twites, photos=photos, 
+    return render_template('cobertura.html', posts=posts, twitts=twites, 
         instaphotos=instaphotos, nome=nome, email=email, links=links)
 
 
@@ -152,6 +155,39 @@ def av():
     dbsession.commit()
     return ""
 
+
+@seminario.route('/inscrever', methods=['POST'])
+def inscrever():
+
+    resp = {'status':0, 'msg':'Obrigado pela sua inscrição'}
+    try:
+
+        if not request.form['nome'] or not request.form['email']:
+            resp['status'] = 2
+            resp['msg'] = 'É necessário preencher o Nome e o Email'
+        else:
+            insc = InscricaoSeminario()
+            insc.nome = request.form['nome']
+            insc.email = request.form['email']
+            insc.telefone = request.form['telefone']
+            insc.twitter = request.form['twitter']
+            insc.facebook = request.form['facebook']
+            insc.site = request.form['site']
+
+            dbsession.add(insc)
+            dbsession.commit()
+    except IntegrityError as i:
+        resp['msg'] = "Este email informado já está cadastrado em nossa base de dados."
+        resp['status'] = 1
+        dbsession.rollback()
+    except Exception as e:
+        print e
+        resp['msg'] = "Ocorreu algum problema ao efetuar sua insrição. Tente novamente logo mais ou fale com os organizadores."
+        resp['status'] = -1
+        dbsession.rollback()
+
+    return jsonify(resp)
+
 @seminario.route('/getitle/', methods=['POST','GET'])
 def getitle():
     import urllib2
@@ -162,12 +198,12 @@ def getitle():
     html = s.read()
     titleRE = re.compile("<title>(.+?)</title>")
 
-    print html
-    print titleRE.search(html)
+    # print html
+    # print titleRE.search(html)
 
     title = titleRE.search(html.replace('\n','')).group(1).strip()
     
-    print title
+    # print title
 
     return jsonify({'title':title})
 
@@ -179,6 +215,7 @@ def newlink():
         link.email= request.form['email']
         link.link= request.form['link']
         link.site= request.form['nomedosite']
+        link.imagem= request.form['linkimagem']
         link.clicks = 0
 
         dbsession.add(link)

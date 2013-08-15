@@ -225,7 +225,11 @@
         </div>
       </div>
       <div class="row-fluid">
-        <form>
+          <div class="span12">
+            <div id="msg" class="hide alert alert-success"></div>
+            <div id="msgerror" class="hide alert alert-error"></div>
+          </div>
+        <form id="frminscricao" method="post" action="{{url_for('.inscrever')}}">
           <div class="controls controls-row">
             <div class="span6">
               <label>Nome *</label>
@@ -235,8 +239,8 @@
             </div>
           </div>
           <div class="controls controls-row">
-            <input class="span6" type="text" placeholder="Digite seu nome completo">
-            <input class="span6" type="text" placeholder="Digite seu email">
+            <input name="nome" class="span6" type="text" placeholder="Digite seu nome completo">
+            <input name="email" class="span6" type="text" placeholder="Digite seu email">
           </div>
           <div class="controls controls-row">
             <div class="span6">
@@ -247,8 +251,8 @@
             </div>
           </div>
           <div class="controls controls-row">
-            <input class="span6" type="text" placeholder="(XX)ZZZZ-YYYY">
-            <input class="span6" type="text" placeholder="@você">
+            <input name="telefone" class="span6" type="text" placeholder="(XX)ZZZZ-YYYY">
+            <input name="twitter" class="span6" type="text" placeholder="@você">
           </div>
           <div class="controls controls-row">
             <div class="span6">
@@ -259,10 +263,10 @@
             </div>
           </div>
           <div class="controls controls-row">
-            <input class="span6" type="text" placeholder="facebook.com/">
-            <input class="span6" type="text" placeholder="http://...">
+            <input name="facebook" class="span6" type="text" placeholder="facebook.com/">
+            <input name="site" class="span6" type="text" placeholder="http://...">
           </div>
-          <button>Participar!</button>
+          <button type="submit">Participar!</button>
           <span>* Campos obrigatórios</span>
         </form>
       </div>
@@ -272,6 +276,6 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/ascensor.js') }}"></script>
+<script src="{{ url_for('.static', filename='js/ascensors.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/seminario.js') }}"></script>
 {% endblock %}
