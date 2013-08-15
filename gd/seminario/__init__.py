@@ -36,7 +36,6 @@ from gd.model import LinkColaborativo, InscricaoSeminario, session as dbsession
 from sqlalchemy.exc import IntegrityError
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
-from gd.utils import twitts
 from gd import conf
 
 from instagram.client import InstagramAPI
@@ -176,6 +175,15 @@ def inscrever():
 
             dbsession.add(insc)
             dbsession.commit()
+
+            try:
+                sendmail(conf.SEMINARIO_SUBJECT % {'nome':request.form['nome']}
+                    , request.form['email'], conf.SEMINARIO_MSG)
+            except Exception as e:
+                print e
+                print "Erro ao enviar email para", request.form['email']
+                pass
+
     except IntegrityError as i:
         resp['msg'] = "Este email informado já está cadastrado em nossa base de dados."
         resp['status'] = 1
