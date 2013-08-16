@@ -40,7 +40,8 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 Session = scoped_session(sessionmaker(autoflush=True)) 
-elixir.session = Session
+# elixir.scoped_session = Session
+scoped_session = Session
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
@@ -491,6 +492,8 @@ class InscricaoSeminario(Entity):
     twitter  = Field(String(100))
     facebook = Field(String(100))
     site     = Field(String(500))
+    colaborativa = Field(Boolean)
+    colaborativa_modo = Field(String(200))
     datetime = Field(DateTime, default=datetime.now)
 
 

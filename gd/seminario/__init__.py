@@ -34,7 +34,7 @@ from hashlib import md5
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd import auth as authapi
 from gd.utils import dumps, sendmail, send_welcome_email, twitts
-from gd.model import LinkColaborativo, InscricaoSeminario, HistoricoSeminario, session as dbsession
+from gd.model import LinkColaborativo, InscricaoSeminario, HistoricoSeminario, session as dbsession, scoped_session as scoped_dbsesion
 from sqlalchemy.exc import IntegrityError
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -201,7 +201,7 @@ def cobertura():
     for photo in instaphotos:
         photo['objeto'] = "instagram"
         #             item_id, objeto, url, user_id, datetime
-        t = Historico(photo['link'], "instagram", photo['link'], "", photo['datetime'], "", dbsession)
+        t = Historico(photo['link'], "instagram", photo['link'], "", photo['datetime'], "", scoped_dbsesion)
         t.setDaemon(True)
         t.start()
         totallist.append(photo)
@@ -210,7 +210,7 @@ def cobertura():
         tw['objeto'] = "twitter"
         tw['datetime'] = tw['created_at']
         l = "http://twitter.com/%s/status/%s" % (tw['user']['screen_name'], tw['id'])
-        t = Historico(tw['id'], "twitter", l, tw['user']['screen_name'], tw['datetime'], tw['text'], dbsession)
+        t = Historico(tw['id'], "twitter", l, tw['user']['screen_name'], tw['datetime'], tw['text'], scoped_dbsesion)
         t.setDaemon(True)
         t.start()
         totallist.append(tw)
@@ -255,8 +255,24 @@ def inscrever():
             insc.twitter = request.form['twitter']
             insc.facebook = request.form['facebook']
             insc.site = request.form['site']
+            if 'colaborativa' in request.form:
+                insc.colaborativa = True
+                modo = []
+                if 'foto' in request.form:
+                    modo.append("foto")
+                if 'video' in request.form:
+                    modo.append("video")
+                if 'texto' in request.form:
+                    modo.append("texto")
+                insc.colaborativa_modo = ",".join(modo)
 
-            dbsession.add(insc)
+            print "adding..."
+            try:
+                dbsession.add(insc)
+            except Exception as d:
+                print d
+                pass
+            print "commititng..."
             dbsession.commit()
 
             try:
