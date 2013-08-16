@@ -26,6 +26,7 @@ from jinja2.utils import Markup
 import os
 import re
 import pdb
+import threading
 import xmlrpclib
 import traceback
 from hashlib import md5
@@ -33,7 +34,7 @@ from hashlib import md5
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd import auth as authapi
 from gd.utils import dumps, sendmail, send_welcome_email, twitts
-from gd.model import LinkColaborativo, InscricaoSeminario, session as dbsession
+from gd.model import LinkColaborativo, InscricaoSeminario, HistoricoSeminario, session as dbsession
 from sqlalchemy.exc import IntegrityError
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -132,6 +133,37 @@ def index():
     return render_template('seminario.html')
 
 
+class Historico(threading.Thread):
+    def __init__(self, item_id, objeto, url, user_id, datetime, texto, db):
+        threading.Thread.__init__(self)
+        self.item_id = item_id
+        self.objeto = objeto
+        self.url = url
+        self.user_id = user_id
+        self.datetime = datetime
+        self.texto = texto
+        self.db = db
+
+    def run(self):
+        try:
+            h = HistoricoSeminario()
+            h.item_id = self.item_id
+            h.objeto = self.objeto
+            h.url = self.url
+            h.user_id = self.user_id
+            h.datetime = self.datetime
+            h.texto = self.texto
+            self.db.add(h)
+            self.db.commit()
+        except IntegrityError as i:
+            # print "-> Item já existe no historico do seminario"
+            pass
+        except Exception as e:
+            # print "ERRO AO SALVAR HISTORICO"
+            # print e
+            pass
+
+
 @seminario.route('/cobertura/')
 def cobertura():
     nome = request.cookies.get('cobertura_nome')
@@ -168,11 +200,19 @@ def cobertura():
     # pdb.set_trace()
     for photo in instaphotos:
         photo['objeto'] = "instagram"
+        #             item_id, objeto, url, user_id, datetime
+        t = Historico(photo['link'], "instagram", photo['link'], "", photo['datetime'], "", dbsession)
+        t.setDaemon(True)
+        t.start()
         totallist.append(photo)
     # pdb.set_trace()
     for tw in twites:
         tw['objeto'] = "twitter"
         tw['datetime'] = tw['created_at']
+        l = "http://twitter.com/%s/status/%s" % (tw['user']['screen_name'], tw['id'])
+        t = Historico(tw['id'], "twitter", l, tw['user']['screen_name'], tw['datetime'], tw['text'], dbsession)
+        t.setDaemon(True)
+        t.start()
         totallist.append(tw)
     # pdb.set_trace()
     for post in posts:

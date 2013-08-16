@@ -29,6 +29,7 @@ from datetime import datetime
 from elixir import Entity, Field, Unicode, UnicodeText, DateTime, Boolean, \
     Integer, Enum, ManyToOne, OneToMany, ManyToMany, String, Text, using_options, \
     setup_all, metadata, session
+import elixir
 from elixir.events import after_insert, before_insert
 from flask import url_for, abort
 from flaskext.uploads import UploadConfiguration, UploadSet, IMAGES
@@ -36,7 +37,10 @@ from gd import conf
 from gd.utils import phpass, dumps
 from sqlalchemy import not_, desc, event
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm import scoped_session, sessionmaker
 
+Session = scoped_session(sessionmaker(autoflush=True)) 
+elixir.session = Session
 
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
@@ -488,6 +492,17 @@ class InscricaoSeminario(Entity):
     facebook = Field(String(100))
     site     = Field(String(500))
     datetime = Field(DateTime, default=datetime.now)
+
+
+class HistoricoSeminario(Entity):
+    using_options(tablename='historico_seminario')
+    item_id  = Field(String(500))
+    objeto   = Field(String(100))
+    url      = Field(String(700))
+    user_id  = Field(String(500))
+    texto    = Field(String(500))
+    datetime = Field(DateTime, default=datetime.now)
+
 
 @event.listens_for(session, "after_flush")
 def _set_user_meta(lsession, flush_context):
