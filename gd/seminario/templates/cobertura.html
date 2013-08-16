@@ -10,22 +10,31 @@
     </div>
     <div class="row">
       <div class="span12">
+        <a class="btn" hraf="#" id="cancel" >Janela</a>
         <ul class="stream thumbnails">
           {%for i in totallist %}
 
           {% if i.objeto == 'link' %}
-          <li class="link span3">
+          <li class="link {%if i.tipo != 'youtube'%}span3{%else%}span6{%endif%} link{{i.id}}">
             <div  class="thumbnail">
               <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
               {% if i.image %}>
-              <img src="{{i.image}}" alt="{{i.site}}>
+              <img src="{{i.image}}" alt="{{i.site}}">
               {% endif %}
               <a data-id="{{i.id}}" class="link-col" target="_new" rel="nofollow" href="{{i.link}}">
                 <h3>
                   {{i.site}}
                 </h3>
               </a>
+              {%if i.tipo == 'youtube'%}
+                <video width="100%" height="100%" id="player{{i.id}}" preload="none">
+                    <source type="video/youtube" src="{{i.link}}" />
+                </video>
+              {%endif%}
               <p>Por: {{i.nome}}</p>
+              {%if user%}
+              <button  class="removelink" data-title="{{i.site}}" data-id="{{i.id}}"><i class="icon-remove" ></i></button>
+              {%endif%}
             </div>
           </li>
 
@@ -69,6 +78,7 @@
 
           {%endfor%}
         </ul>
+
       </div>
     </div>
   </div>
@@ -98,13 +108,34 @@
 
     </div>
     <div class="modal-footer">
-      <a id="cancel" href="#" class="btn">Cancelar</a>
+      <a id="cancelmodal" href="#" class="btn">Cancelar</a>
       <a id="enviar" href="#" class="btn btn-primary">Enviar</a>
     </div>
   </div>
+
+  <div id="divjanela" style="position: fixed; left: 0px; top: 0px; height: 50px; width: 50px; border: 0px solid #fff;">&nbsp;</div>
 {% endblock %}
 
 {% block javascript %}
   <script src="{{ url_for('.static', filename='js/cobertura.js') }}"></script>
   <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
+
+  {%if user%}
+  <script type="text/javascript">
+  $(window).load(function() {
+    $('.removelink').click(function(){
+        var idd = $(this).attr('data-id');
+        var title = $(this).attr('data-title');
+        if( confirm('Confirma a exclusão do item\n'+idd+' - '+title)){
+            $.post('/seminario/i/d/',{'idd':parseInt(idd)})
+            .success( function(d){
+                if (d.status == 0){
+                    $('.link'+idd).remove();
+                }
+            });
+        }
+    });
+  });
+  </script>
+  {%endif%}
 {% endblock %}

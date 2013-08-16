@@ -295,6 +295,20 @@ def inscrever():
 
     return jsonify(resp)
 
+
+@seminario.route('/i/d/', methods=['POST'])
+def id():
+    resp = {'status':0}
+    # try:
+    id_link = int(request.form['idd'])
+    link = LinkColaborativo.get(id_link)
+    dbsession.delete(link)
+    dbsession.commit()
+    # except:
+    #     resp['status'] = -1
+
+    return jsonify(resp)
+
 @seminario.route('/getitle/', methods=['POST','GET'])
 def getitle():
     import urllib2

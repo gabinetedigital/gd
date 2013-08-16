@@ -11,9 +11,15 @@ $(window).load(function() {
         });
     });
 
-    $('#cancel').click(function(){
+    $("#divjanela").click(function(){
+        $('#modallink').modal('show')
+    });
+
+    $('#cancelmodal').click(function(){
         $('#modallink').modal('hide')
     });
+
+    $('video').mediaelementplayer({});
 
     $( "#link" ).change(function() {
         $.get('/seminario/getitle/',{'site':$(this).val()})
@@ -34,7 +40,7 @@ $(window).load(function() {
         },
 
         success: function (pData) {
-            console.log(pData);
+            // console.log(pData);
             // var pData = $.parseJSON(data);
             if (pData.status !== 0) {
                 $('#msgerror')
@@ -57,7 +63,7 @@ $(window).load(function() {
 
     $('#enviar').click(function(){
 
-        console.log("Enviando link");
+        // console.log("Enviando link");
 
         $("#novolink").submit();
 
