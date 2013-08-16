@@ -48,4 +48,12 @@ $(window).load(function() {
         }
     });
 
+    $('#colaborativa').click (function (){
+        if ($(this).is (':checked')) {
+            $('.modo_cobertura').fadeIn()
+        }else{
+            $('.modo_cobertura').fadeOut()
+        }
+    });
+
 });
