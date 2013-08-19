@@ -53,7 +53,7 @@
     <div class="container">
       <div class="row">
         <div class="span12">
-          <h2>Palestrantes</h2>
+          <h2>Debatedores</h2>
         </div>
       </div>
       <div class="row">
@@ -63,7 +63,7 @@
             <li class="span3">
               <a class="thumbnail">
                 <p>{{palestrante.nome}}</p>
-                <img src="{{palestrante.imagem}}">
+                <img src="{{thumborurl(palestrante.imagem, (270,180))}}">
                 <div class="minibio">
                   <h4>{{palestrante.nome}}</h4>
                   <img src="{{palestrante.imagem}}">
@@ -104,7 +104,7 @@
                     <p class="desc">
                       {{evento.descricao}}
                     </p>
-                    
+
                     {%if evento.convidados%}
                     <div class="presents">
                       <h4>Convidados:</h4>
@@ -114,15 +114,16 @@
                         {%endfor%}
                       </ul>
                       <span class="hangout">* Participação por hangout</span>
+
+                      {%if evento.moderador%}
+                      <h4>Moderador:</h4>
+                      <ul>
+                        <li>{{evento.moderador}}</li>
+                      </ul>(none)
+                      {%endif%}
+
                     </div>
                     {%endif%}
-
-                    {%if evento.moderador%}
-                    <div class="moderator">
-                      <h4>Moderador:</h4><span>{{evento.moderador}}</span>
-                    </div>
-                    {%endif%}
-
                   </li>
                 </ul>
               </li>
@@ -148,7 +149,7 @@
                     <p class="desc">
                       {{evento.descricao}}
                     </p>
-                    
+
                     {%if evento.convidados%}
                     <div class="presents">
                       <h4>Convidados:</h4>
