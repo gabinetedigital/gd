@@ -37,15 +37,15 @@
 
   {%if aovivo%}
   <div class="streaming">
-      <div class="container">
-          <div class="row">
-              <div class="span8">
-                <div class="video">
-                  {{aovivo|safe}}
-                </div>
-              </div>
+    <div class="container">
+      <div class="row">
+        <div class="span8">
+          <div class="video">
+            {{aovivo|safe}}
           </div>
+        </div>
       </div>
+    </div>
   </div>
   {%endif%}
 
@@ -63,6 +63,15 @@
               <a class="thumbnail">
                 <p>Tarso Genro</p>
                 <img src="{{ url_for('.static', filename='img/tarso.png' ) }}">
+                <div class="minibio">
+                  <h4>Tarso Genro</h4>
+                  <img src="{{ url_for('.static', filename='img/tarso.png' ) }}">
+                  <p>You tá the brinqueichon uite me, cara? You ar a
+                  véri mutchi caspa man. Do you nou the number one xampu
+                  contra caspa in the uordi. Luqui aqui
+                  Capitachion. Rimouve uarandredi porcenti ofi the caspa
+                  ande idrateiti ior hair.</p>
+                </div>
               </a>
             </li>
             <li class="span3">
@@ -203,7 +212,16 @@
         <div class="span6">
           <div class="day">
             <h3>Dia 6</h3>
-
+            <ul>
+              <li>
+                <ul class="event">
+                  <li class="title">
+                    9h - Credenciamento
+                  </li>
+                  <li class="place">Local: Teatro Bruno Kiefer - Casa de Cultura Mário Quintana</li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
