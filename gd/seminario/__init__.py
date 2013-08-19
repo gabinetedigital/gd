@@ -187,8 +187,8 @@ def cobertura():
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
     
     # pdb.set_trace()
-    user = authapi.authenticated_user()
     if authapi.is_authenticated() and user and user.email in conf.SEMINARIO_MODERADORES.split(','):
+        user = authapi.authenticated_user()
         ismoderador = True
     else:
         ismoderador = False
