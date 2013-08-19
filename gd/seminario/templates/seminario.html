@@ -35,16 +35,19 @@
     </div>
   </div>
 
+  {%if aovivo%}
   <div class="streaming">
       <div class="container">
           <div class="row">
               <div class="span8">
                 <div class="video">
+                  {{aovivo|safe}}
                 </div>
               </div>
           </div>
       </div>
   </div>
+  {%endif%}
 
   <div class="palestrantes section">
     <div class="container">
