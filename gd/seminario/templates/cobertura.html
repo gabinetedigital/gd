@@ -17,45 +17,35 @@
           {% if i.objeto == 'link' %}
           <li class="link {%if i.tipo != 'youtube'%}span3{%else%}span6{%endif%} link{{i.id}}">
             <div  class="thumbnail">
-              <p>{{ i.datetime | strftime(formato='%d/%m/%Y - %H:%M:%S')}}</p>
-              {% if i.image %}>
-              <img src="{{i.image}}" alt="{{i.site}}">
-              {% endif %}
               <a data-id="{{i.id}}" class="link-col" target="_new" rel="nofollow" href="{{i.link}}">
-
-                {% if i.tipo == 'normal' %}
-
-                {% if i.image %}
-                  <img src="{{i.image}}" alt="{{i.site}}">
-                {% endif %}
-
                 <h3>
                   {{i.site}}
                 </h3>
 
-                {% elif i.tipo == 'flickr'%}
-                <h3>
-                  {{i.site}}
-                </h3>
-                {% if i.image %}>
-                  <img src="{{i.image}}" alt="{{i.site}}">
-                {% else %}
-                  <div class="album">
-                    <i class="icon-camera"></i>
-                  </div>
+                {% if i.tipo == 'flickr'%}
+                  {% if i.imagem %}
+                    <img src="{{i.imagem}}" alt="{{i.site}}">
+                  {% else %}
+                    <div class="album">
+                      <i class="icon-camera"></i>
+                    </div>
                   {% endif %}
-                {% endif %}
 
+                {% elif i.tipo == 'youtube'%}
+                 <video width="100%" height="100%" id="player{{i.id}}" preload="none">
+                    <source type="video/youtube" src="{{i.link}}" />
+                 </video>
+                 {% else %}
 
-                  Autor: {{i.nome}}
+                 {% if i.imagem %}
+                 <img src="{{i.imagem}}" alt="{{i.site}}">
+                 {% endif %}
+
+              {%endif%}
+
+                Por: {{i.nome}}
 
               </a>
-              {%if i.tipo == 'youtube'%}
-                <video width="100%" height="100%" id="player{{i.id}}" preload="none">
-                    <source type="video/youtube" src="{{i.link}}" />
-                </video>
-              {%endif%}
-              <p>Por: {{i.nome}}</p>
               {%if user and ismoderador %}
               <button  class="removelink" data-title="{{i.site}}" data-id="{{i.id}}"><i class="icon-remove" ></i></button>
               {%endif%}
