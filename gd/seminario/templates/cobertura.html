@@ -32,7 +32,7 @@
                 </video>
               {%endif%}
               <p>Por: {{i.nome}}</p>
-              {%if user%}
+              {%if user and ismoderador %}
               <button  class="removelink" data-title="{{i.site}}" data-id="{{i.id}}"><i class="icon-remove" ></i></button>
               {%endif%}
             </div>
@@ -120,9 +120,10 @@
   <script src="{{ url_for('.static', filename='js/cobertura.js') }}"></script>
   <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
 
-  {%if user%}
+  {%if user and ismoderador%}
   <script type="text/javascript">
   $(window).load(function() {
+    console.log("{{user.id}}","{{user.email}}");
     $('.removelink').click(function(){
         var idd = $(this).attr('data-id');
         var title = $(this).attr('data-title');

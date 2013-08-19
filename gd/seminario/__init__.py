@@ -172,6 +172,13 @@ def cobertura():
     cid = conf.SEMINARIO_CATEGORIA_ID
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
     
+    # pdb.set_trace()
+    user = authapi.authenticated_user()
+    if authapi.is_authenticated() and user and user.email in conf.SEMINARIO_MODERADORES.split(','):
+        ismoderador = True
+    else:
+        ismoderador = False
+
     twites = []
     try:
         twites = fromcache("seminario_twitts") or tocache("seminario_twitts", twitts(hashtag=twitter_tag, count=5) )
@@ -224,7 +231,8 @@ def cobertura():
     totallist = sorted(totallist,key=lambda i: i['datetime'] if type(i) is dict else i.datetime, reverse=True)
 
     return render_template('cobertura.html', posts=posts, twitts=twites,
-        instaphotos=instaphotos, nome=nome, email=email, links=links, totallist=totallist)
+        instaphotos=instaphotos, nome=nome, email=email, links=links, totallist=totallist,
+        ismoderador=ismoderador)
 
 
 @seminario.route('/av',methods=['POST'])
