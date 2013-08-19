@@ -59,63 +59,19 @@
       <div class="row">
         <div class="span12">
           <ul class="thumbnails">
+            {%for palestrante in data.palestrantes%}
             <li class="span3">
               <a class="thumbnail">
-                <p>Tarso Genro</p>
-                <img src="{{ url_for('.static', filename='img/tarso.png' ) }}">
+                <p>{{palestrante.nome}}</p>
+                <img src="{{palestrante.imagem}}">
                 <div class="minibio">
-                  <h4>Tarso Genro</h4>
-                  <img src="{{ url_for('.static', filename='img/tarso.png' ) }}">
-                  <p>You tá the brinqueichon uite me, cara? You ar a
-                  véri mutchi caspa man. Do you nou the number one xampu
-                  contra caspa in the uordi. Luqui aqui
-                  Capitachion. Rimouve uarandredi porcenti ofi the caspa
-                  ande idrateiti ior hair.</p>
+                  <h4>{{palestrante.nome}}</h4>
+                  <img src="{{palestrante.imagem}}">
+                  {{palestrante.minibio|safe}}
                 </div>
               </a>
             </li>
-            <li class="span3">
-              <a class="thumbnail">
-                <p>Dalmo Dallari</p>
-                <img src="{{ url_for('.static', filename='img/dallari.png' ) }}">
-              </a>
-            </li>
-            <li class="span3">
-              <a class="thumbnail">
-                <p>Fernando Abrúcio</p>
-                <img src="{{ url_for('.static', filename='img/abrucio.png' ) }}">
-              </a>
-            </li>
-            <li class="span3">
-              <a class="thumbnail">
-                <p>Celi Pinto</p>
-                <img src="{{ url_for('.static', filename='img/celia.png' ) }}">
-              </a>
-            </li>
-            <li class="span3">
-              <a class="thumbnail">
-                <p>Tarso Genro</p>
-                <img src="{{ url_for('.static', filename='img/tarso.png' ) }}">
-              </a>
-            </li>
-            <li class="span3">
-              <a class="thumbnail">
-                <p>Dalmo Dallari</p>
-                <img src="{{ url_for('.static', filename='img/dallari.png' ) }}">
-              </a>
-            </li>
-            <li class="span3">
-              <a class="thumbnail">
-                <p>Fernando Abrúcio</p>
-                <img src="{{ url_for('.static', filename='img/abrucio.png' ) }}">
-              </a>
-            </li>
-            <li class="span3">
-              <a class="thumbnail">
-                <p>Celi Pinto</p>
-                <img src="{{ url_for('.static', filename='img/celia.png' ) }}">
-              </a>
-            </li>
+            {%endfor%}
           </ul>
         </div>
       </div>
@@ -135,92 +91,88 @@
           <div class="day">
             <h3>Dia 5</h3>
             <ul class="events">
+
+              {%for evento in data.agenda.dia5 %}
               <li>
                 <ul class="event">
-                  <li class="title">17h30min - Entrega
-                    dos resultados da consulta pública sobre reforma
-                    política à bancada gaúcha
+                  <li class="title">{{evento.hora}} - {{evento.nome}}
                   </li>
-                  <li class="place">Local: Palácio Piratini</li>
+                  {%if evento.local%}
+                  <li class="place">Local: {{evento.local}}</li>
+                  {%endif%}
                   <li class="meta">
                     <p class="desc">
-                      Durante 16 dias, a consulta pública sobre
-                      reforma política realizada pelo Gabinete Digital
-                      contou com mais de 2,8 mil propostas cadastradas
-                      (das quais 242 foram filtradas e
-                      disponibilizadas para votação) e 180 mil votos
-                      da população. Dividida em duas perguntas, propôs
-                      o questionamento sobre a forma como deve ser
-                      encaminhada a reforma política no país e colheu
-                      propostas que foram hierarquizadas pelos
-                      participantes com base num sistema de votação
-                      por pares. O ranking com as dez sugestões
-                      priorizadas pela população foi divulgado em
-                      julho, e o relatório com a sistematização dos
-                      resultados será oficialmente entregue pelo
-                      governador aos deputados federais e senadores
-                      gaúchos nesta cerimônia, com o objetivo de
-                      contribuir para o debate no Congresso Nacional.
+                      {{evento.descricao}}
                     </p>
+                    
+                    {%if evento.convidados%}
                     <div class="presents">
                       <h4>Convidados:</h4>
                       <ul>
-                        <li>Tarso Genro</li>
-                        <li>José Geremias</li>
-                        <li>John Coltrane <span class="hangout">*</span></li>
-                        <li>Charles Mingus</li>
+                        {%for convidado in evento.convidados %}
+                        <li>{{convidado}}</li>
+                        {%endfor%}
                       </ul>
                       <span class="hangout">* Participação por hangout</span>
                     </div>
+                    {%endif%}
+
+                    {%if evento.moderador%}
+                    <div class="moderator">
+                      <h4>Moderador:</h4><span>{{evento.moderador}}</span>
+                    </div>
+                    {%endif%}
 
                   </li>
                 </ul>
               </li>
-              <li>
-                <ul class="event">
-                  <li class="title">
-                    18h - Abertura - Representação política no século
-                    XXI: crise e alternativas
-                  </li>
-                  <li class="place">Local: Palácio Piratini</li>
-                  <li class="meta">
-                    <p class="desc">
-                      Durante 16 dias, a consulta pública sobre
-                      reforma política realizada pelo Gabinete Digital
-                      contou com mais de 2,8 mil propostas cadastradas
-                      (das quais 242 foram filtradas e
-                      disponibilizadas para votação) e 180 mil votos
-                      da população. Dividida em duas perguntas, propôs
-                      o questionamento sobre a forma como deve ser
-                      encaminhada a reforma política no país e colheu
-                      propostas que foram hierarquizadas pelos
-                      participantes com base num sistema de votação
-                      por pares. O ranking com as dez sugestões
-                      priorizadas pela população foi divulgado em
-                      julho, e o relatório com a sistematização dos
-                      resultados será oficialmente entregue pelo
-                      governador aos deputados federais e senadores
-                      gaúchos nesta cerimônia, com o objetivo de
-                      contribuir para o debate no Congresso Nacional.
-                    </p>
-                  </li>
-                </ul>
-              </li>
+              {%endfor%}
+
             </ul>
           </div>
         </div>
         <div class="span6">
           <div class="day">
             <h3>Dia 6</h3>
-            <ul>
+            <ul class="events">
+
+              {%for evento in data.agenda.dia6 %}
               <li>
                 <ul class="event">
-                  <li class="title">
-                    9h - Credenciamento
+                  <li class="title">{{evento.hora}} - {{evento.nome}}
                   </li>
-                  <li class="place">Local: Teatro Bruno Kiefer - Casa de Cultura Mário Quintana</li>
+                  {%if evento.local%}
+                  <li class="place">Local: {{evento.local}}</li>
+                  {%endif%}
+                  <li class="meta">
+                    <p class="desc">
+                      {{evento.descricao}}
+                    </p>
+                    
+                    {%if evento.convidados%}
+                    <div class="presents">
+                      <h4>Convidados:</h4>
+                      <ul>
+                        {%for convidado in evento.convidados %}
+                        <li>{{convidado}}</li>
+                        {%endfor%}
+                      </ul>
+                      <span class="hangout">* Participação por hangout</span>
+                    </div>
+                    {%endif%}
+
+                    {%if evento.moderador%}
+                    <div class="moderator">
+                      <h4>Moderador:</h4><span>{{evento.moderador}}</span>
+                    </div>
+                    {%endif%}
+
+                  </li>
                 </ul>
               </li>
+              {%endfor%}
+
+
             </ul>
           </div>
         </div>
