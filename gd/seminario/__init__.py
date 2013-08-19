@@ -19,13 +19,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-from flask import Blueprint, request, render_template, abort, current_app, Response, url_for, jsonify, make_response
+from flask import Blueprint, request, render_template, abort, current_app, Response, url_for, jsonify, make_response, json
 from werkzeug import secure_filename
 from jinja2.utils import Markup
 
 import os
 import re
 import pdb
+import urllib2
 import threading
 import xmlrpclib
 import traceback
@@ -128,9 +129,22 @@ def get_flickr_photos():
     # print "FLICKR /\\"
     return retorno
 
+
+def _read_online_json():
+    jsonurl = urllib2.urlopen(conf.SEMINARIO_JSON_URL)
+    jsonstr = jsonurl.read()
+
+    if jsonstr:
+        jsonobj = json.loads(jsonstr)
+        return jsonobj
+    else:
+        return ""
+
+
 @seminario.route('/')
 def index():
-    return render_template('seminario.html')
+    aovivo = conf.SEMINARIO_AOVIVO
+    return render_template('seminario.html', aovivo=aovivo, data=_read_online_json())
 
 
 class Historico(threading.Thread):
