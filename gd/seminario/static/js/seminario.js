@@ -56,4 +56,12 @@ $(window).load(function() {
         }
     });
 
+    $(".thumbnail").click(function(e){
+        var bio = $(this).find(".minibio");
+        $.fancybox.open(bio, {
+            'maxWidth': 600
+        });
+        console.log("blah!");
+    });
+
 });
