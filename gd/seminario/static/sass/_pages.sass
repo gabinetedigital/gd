@@ -1,5 +1,5 @@
 #inicio
-  background: url(../img/bg01.png) no-repeat bottom right
+  background: url(../img/nodes.png) no-repeat right top
   padding-top: 10%
 
 .title p
@@ -50,11 +50,13 @@
     background: black
 
 #palestrantes
+  background: url(../img/nodes.png) no-repeat right bottom
 
   .thumbnail
     border: 0
     padding: 0
     position: relative
+    +box-shadow(none)
 
     p
       background: $title
@@ -84,6 +86,7 @@
 /* -------------------------- */
 
 #programacao
+  background: url(../img/nodes.png) no-repeat right top
 
   .day
     background-color: $dark
@@ -150,6 +153,7 @@
 /* -------------------------- */
 
 #local
+  background: url(../img/nodes.png) no-repeat right center
 
   .place
     display: block
@@ -191,6 +195,7 @@
 /* -------------------------- */
 
 #inscricao
+  background: url(../img/nodes.png) no-repeat right bottom
 
   p
     color: white
@@ -203,7 +208,7 @@
     margin-top: 30px
     margin-bottom: 10px
 
-  input
+  input[type='text']
     font-size: 1.4em
     background-color: $dark
     border: 0
@@ -224,8 +229,19 @@
 
   span
     color: $title
-
-
     float: right
     font-size: 1.5em
     margin-top: 66px
+
+  .modo_cobertura label
+    display: inline-block
+    margin-right: 20px
+
+/* -------------------------- */
+
+#footer
+  .logos
+    background: url(../img/footer.png) no-repeat
+    display: block
+    height: 144px
+    margin: 50px 0
