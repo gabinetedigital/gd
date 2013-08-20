@@ -2,292 +2,287 @@
 {% block content %}
 <div id="menu">
   <ul>
-    <li><a href="" title="inicio"><i class="icon-home"></i></a></li>
-    <li><a href="" title="palestrantes"><i class="icon-group"></i></a></li>
-    <li><a href="" title="programação"><i class="icon-calendar"></i></a></li>
-    <li><a href="" title="local"><i class="icon-map-marker"></i></a></li>
-    <li><a href="" title="inscrição"><i class="icon-ticket"></i></a></li>
-    <li><a href="" title="cobertura"><i class="icon-edit"></i></a></li>
+    <li><a href="#inicio" title="inicio"><i class="icon-home"></i></a></li>
+    <li><a href="#palestrantes" title="palestrantes"><i class="icon-group"></i></a></li>
+    <li><a href="#programacao" title="programação"><i class="icon-calendar"></i></a></li>
+    <li><a href="#local" title="local"><i class="icon-map-marker"></i></a></li>
+    <li><a href="#inscricao" title="inscrição"><i class="icon-ticket"></i></a></li>
+    <li><a href="#cobertura" title="cobertura"><i class="icon-edit"></i></a></li>
     <li><a href="#modallink" data-toggle="modal"><i class="icon-link"></i></a></li>
   </ul>
 </div>
 
-<div id='ascensor'>
-  <div class="inicio section">
-    <div class="container">
-      <div class="row">
-        <div class="span6">
-          <div class="title">
-            <p class="line1">Seminário:</p>
-            <p class="line2">Crise da</p>
-            <p class="line3">Representação</p>
-            <p class="line4">e Renovação</p>
-            <p class="line5">da Democracia</p>
-          </div>
+<div id="inicio" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span6">
+        <div class="title">
+          <p class="line1">Seminário:</p>
+          <p class="line2">Crise da</p>
+          <p class="line3">Representação</p>
+          <p class="line4">e Renovação</p>
+          <p class="line5">da Democracia</p>
         </div>
-        <div class="span6">
-          <div class="date">
-            <p class="day">5 e 6</p>
-            <p class="month">Setembro</p>
-          </div>
+      </div>
+      <div class="span6">
+        <div class="date">
+          <p class="day">5 e 6</p>
+          <p class="month">Setembro</p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  {%if aovivo%}
-  <div class="streaming">
-    <div class="container">
-      <div class="row">
-        <div class="span8">
-          <div class="video">
-            {{aovivo|safe}}
-          </div>
+{%if aovivo%}
+<div class="streaming">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <div class="video">
+          {{aovivo|safe}}
         </div>
       </div>
     </div>
   </div>
-  {%endif%}
+</div>
+{%endif%}
 
-  <div class="palestrantes section">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <h2>Debatedores</h2>
-        </div>
+<div id="palestrantes" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h2>Debatedores</h2>
       </div>
-      <div class="row">
-        <div class="span12">
-          <ul class="thumbnails">
-            {%for palestrante in data.palestrantes%}
-            <li class="span3">
-              <a class="thumbnail">
-                <p>{{palestrante.nome}}</p>
-                <img src="{{thumborurl(palestrante.imagem, (270,180))}}">
-                <div class="minibio">
-                  <h4>{{palestrante.nome}}</h4>
-                  <img src="{{palestrante.imagem}}">
-                  {{palestrante.minibio|safe}}
-                </div>
-              </a>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <ul class="thumbnails">
+          {%for palestrante in data.palestrantes%}
+          <li class="span3">
+            <a class="thumbnail">
+              <p>{{palestrante.nome}}</p>
+              <img src="{{thumborurl(palestrante.imagem, (270,180))}}">
+              <div class="minibio">
+                <h4>{{palestrante.nome}}</h4>
+                <img src="{{palestrante.imagem}}">
+                {{palestrante.minibio|safe}}
+              </div>
+            </a>
+          </li>
+          {%endfor%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="programacao" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h2>Programação</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <div class="day">
+          <h3>Dia 5</h3>
+          <ul class="events">
+            {%for evento in data.agenda.dia5 %}
+            <li>
+              <ul class="event">
+                <li class="title">{{evento.hora}} - {{evento.nome}}</li>
+                {%if evento.local%}
+                <li class="place">Local: {{evento.local}} {%if evento.descricao %} <span>+</span> {%endif%} </li>
+                {%endif%}
+                <li class="meta">
+                  <p class="desc">
+                    {{evento.descricao}}
+                  </p>
+
+                  {%if evento.convidados%}
+                  <div class="presents">
+                    <h4>Convidados:</h4>
+                    <ul>
+                      {%for convidado in evento.convidados %}
+                      <li>{{convidado}}</li>
+                      {%endfor%}
+                    </ul>
+                    <span class="hangout">* Participação por hangout</span>
+                    {%if evento.moderador%}
+                    <h4>Moderador:</h4>
+                    <ul>
+                      <li>{{evento.moderador}}</li>
+                    </ul>
+                    {%endif%}
+
+                  </div>
+                  {%endif%}
+                </li>
+              </ul>
             </li>
             {%endfor%}
           </ul>
         </div>
       </div>
-    </div>
-  </div>
+      <div class="span6">
+        <div class="day">
+          <h3>Dia 6</h3>
+          <ul class="events">
 
+            {%for evento in data.agenda.dia6 %}
+            <li>
+              <ul class="event">
+                <li class="title">{{evento.hora}} - {{evento.nome}}
+                </li>
+                {%if evento.local%}
+                <li class="place">Local: {{evento.local}} {%if evento.descricao %} <span>+</span> {%endif%} </li>
+                {%endif%}
+                <li class="meta">
+                  <p class="desc">
+                    {{evento.descricao}}
+                  </p>
 
-  <div class="section programacao">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <h2>Programação</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span6">
-          <div class="day">
-            <h3>Dia 5</h3>
-            <ul class="events">
-
-              {%for evento in data.agenda.dia5 %}
-              <li>
-                <ul class="event">
-                  <li class="title">{{evento.hora}} - {{evento.nome}}</li>
-                  {%if evento.local%}
-                  <li class="place">Local: {{evento.local}} {%if evento.descricao %} <span>+</span> {%endif%} </li>
+                  {%if evento.convidados%}
+                  <div class="presents">
+                    <h4>Convidados:</h4>
+                    <ul>
+                      {%for convidado in evento.convidados %}
+                      <li>{{convidado}}</li>
+                      {%endfor%}
+                    </ul>
+                    <span class="hangout">* Participação por hangout</span>
+                  </div>
                   {%endif%}
-                  <li class="meta">
-                    <p class="desc">
-                      {{evento.descricao}}
-                    </p>
 
-                    {%if evento.convidados%}
-                    <div class="presents">
-                      <h4>Convidados:</h4>
-                      <ul>
-                        {%for convidado in evento.convidados %}
-                        <li>{{convidado}}</li>
-                        {%endfor%}
-                      </ul>
-                      <span class="hangout">* Participação por hangout</span>
-
-                      {%if evento.moderador%}
-                      <h4>Moderador:</h4>
-                      <ul>
-                        <li>{{evento.moderador}}</li>
-                      </ul>
-                      {%endif%}
-
-                    </div>
-                    {%endif%}
-                  </li>
-                </ul>
-              </li>
-              {%endfor%}
-
-            </ul>
-          </div>
-        </div>
-        <div class="span6">
-          <div class="day">
-            <h3>Dia 6</h3>
-            <ul class="events">
-
-              {%for evento in data.agenda.dia6 %}
-              <li>
-                <ul class="event">
-                  <li class="title">{{evento.hora}} - {{evento.nome}}
-                  </li>
-                  {%if evento.local%}
-                  <li class="place">Local: {{evento.local}} {%if evento.descricao %} <span>+</span> {%endif%} </li>
+                  {%if evento.moderador%}
+                  <div class="moderator">
+                    <h4>Moderador:</h4><span>{{evento.moderador}}</span>
+                  </div>
                   {%endif%}
-                  <li class="meta">
-                    <p class="desc">
-                      {{evento.descricao}}
-                    </p>
 
-                    {%if evento.convidados%}
-                    <div class="presents">
-                      <h4>Convidados:</h4>
-                      <ul>
-                        {%for convidado in evento.convidados %}
-                        <li>{{convidado}}</li>
-                        {%endfor%}
-                      </ul>
-                      <span class="hangout">* Participação por hangout</span>
-                    </div>
-                    {%endif%}
-
-                    {%if evento.moderador%}
-                    <div class="moderator">
-                      <h4>Moderador:</h4><span>{{evento.moderador}}</span>
-                    </div>
-                    {%endif%}
-
-                  </li>
-                </ul>
-              </li>
-              {%endfor%}
+                </li>
+              </ul>
+            </li>
+            {%endfor%}
 
 
-            </ul>
-          </div>
+          </ul>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="local section">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <h2>Local</h2>
-        </div>
+<div id="local" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h2>Local</h2>
       </div>
-      <div class="row">
-        <div class="span6">
-          <div class="place">
-            <h3>Dia 5</h3>
-            <img src="{{ url_for('.static', filename='img/piratini.jpg' ) }}">
-          </div>
-          <h4>Palácio Piratini</h4>
-          <p>Praça Marechal Deodoro, s/n</p>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <div class="place">
+          <h3>Dia 5</h3>
+          <img src="{{ url_for('.static', filename='img/piratini.jpg' ) }}">
         </div>
-        <div class="span6">
-          <div class="place">
-            <h3>Dia 6</h3>
-            <img src="{{ url_for('.static', filename='img/ccmq.jpg' ) }}">
-          </div>
-          <h4>Teatro Bruno Kiefer <small>(Casa de Cultura Mario Quintana)</small></h4>
-          <p>Rua dos Andradas, 736 - 6º andar</p>
+        <h4>Palácio Piratini</h4>
+        <p>Praça Marechal Deodoro, s/n</p>
+      </div>
+      <div class="span6">
+        <div class="place">
+          <h3>Dia 6</h3>
+          <img src="{{ url_for('.static', filename='img/ccmq.jpg' ) }}">
         </div>
+        <h4>Teatro Bruno Kiefer <small>(Casa de Cultura Mario Quintana)</small></h4>
+        <p>Rua dos Andradas, 736 - 6º andar</p>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="inscricao section">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <h2>Inscrição</h2>
+<div id="inscricao" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h2>Inscrição</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <p>Faça sua inscrição para as atividades do dia 6! Você receberá um certificado de participação após os debates.</p>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div id="msg" class="hide alert alert-success"></div>
+        <div id="msgerror" class="hide alert alert-error"></div>
+      </div>
+      <form id="frminscricao" method="post" action="{{url_for('.inscrever')}}">
+        <div class="controls controls-row">
+          <div class="span6">
+            <label>Nome *</label>
+          </div>
+          <div class="span6">
+            <label>Email *</label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="span12">
-          <p>Faça sua inscrição para as atividades do dia 6! Você receberá um certificado de participação após os debates.</p>
+        <div class="controls controls-row">
+          <input name="nome" class="span6" type="text" placeholder="Digite seu nome completo">
+          <input name="email" class="span6" type="text" placeholder="Digite seu email">
         </div>
-      </div>
-      <div class="row-fluid">
-          <div class="span12">
-            <div id="msg" class="hide alert alert-success"></div>
-            <div id="msgerror" class="hide alert alert-error"></div>
+        <div class="controls controls-row">
+          <div class="span6">
+            <label>Telefone</label>
           </div>
-        <form id="frminscricao" method="post" action="{{url_for('.inscrever')}}">
-          <div class="controls controls-row">
-            <div class="span6">
-              <label>Nome *</label>
-            </div>
-            <div class="span6">
-              <label>Email *</label>
-            </div>
+          <div class="span6">
+            <label>Twitter</label>
           </div>
-          <div class="controls controls-row">
-            <input name="nome" class="span6" type="text" placeholder="Digite seu nome completo">
-            <input name="email" class="span6" type="text" placeholder="Digite seu email">
+        </div>
+        <div class="controls controls-row">
+          <input name="telefone" class="span6" type="text" placeholder="(XX)ZZZZ-YYYY">
+          <input name="twitter" class="span6" type="text" placeholder="@você">
+        </div>
+        <div class="controls controls-row">
+          <div class="span6">
+            <label>Facebook</label>
           </div>
-          <div class="controls controls-row">
-            <div class="span6">
-              <label>Telefone</label>
-            </div>
-            <div class="span6">
-              <label>Twitter</label>
-            </div>
+          <div class="span6">
+            <label>Site/blog</label>
           </div>
-          <div class="controls controls-row">
-            <input name="telefone" class="span6" type="text" placeholder="(XX)ZZZZ-YYYY">
-            <input name="twitter" class="span6" type="text" placeholder="@você">
+        </div>
+        <div class="controls controls-row">
+          <input name="facebook" class="span6" type="text" placeholder="facebook.com/">
+          <input name="site" class="span6" type="text" placeholder="http://...">
+        </div>
+        <div class="controls controls-row">
+          <div class="span6">
+            <label for="colaborativa" class="checkbox">
+              <input type="checkbox" name="colaborativa" id="colaborativa"> Participar da cobertura colaborativa</label>
           </div>
-          <div class="controls controls-row">
-            <div class="span6">
-              <label>Facebook</label>
-            </div>
-            <div class="span6">
-              <label>Site/blog</label>
-            </div>
+          <div class="span6 hide modo_cobertura">
+            <label>Vou fazer a cobertura com:</label>
           </div>
-          <div class="controls controls-row">
-            <input name="facebook" class="span6" type="text" placeholder="facebook.com/">
-            <input name="site" class="span6" type="text" placeholder="http://...">
+        </div>
+        <div class="controls controls-row">
+          <div class="span6 offset6 hide modo_cobertura">
+            <label class="checkbox" for="foto">
+              <input type="checkbox" name="foto" id="foto"> Foto
+            </label>
+            <label class="checkbox" for="video">
+              <input type="checkbox" name="video" id="video"> Vídeo
+            </label>
+            <label class="checkbox" for="texto">
+              <input type="checkbox" name="texto" id="texto"> Texto
+            </label>
           </div>
-          <div class="controls controls-row">
-            <div class="span6">
-              <label for="colaborativa" class="checkbox">
-                <input type="checkbox" name="colaborativa" id="colaborativa"> Participar da cobertura colaborativa</label>
-            </div>
-            <div class="span6 hide modo_cobertura">
-              <label>Vou fazer a cobertura com:</label>
-            </div>
-          </div>
-          <div class="controls controls-row">
-            <div class="span6 offset6 hide modo_cobertura">
-              <label class="checkbox" for="foto">
-                <input type="checkbox" name="foto" id="foto"> Foto
-              </label>
-              <label class="checkbox" for="video">
-                <input type="checkbox" name="video" id="video"> Vídeo
-              </label>
-              <label class="checkbox" for="texto">
-                <input type="checkbox" name="texto" id="texto"> Texto
-              </label>
-            </div>
-          </div>
-          <button type="submit">Participar!</button>
-          <span>* Campos obrigatórios</span>
-        </form>
-      </div>
+        </div>
+        <button type="submit">Participar!</button>
+        <span>* Campos obrigatórios</span>
+      </form>
     </div>
   </div>
 </div>
