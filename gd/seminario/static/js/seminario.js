@@ -16,10 +16,13 @@ $(window).load(function() {
         });
     });
 
-    $('.event').toggle(function() {
-        $(this).find('li.meta').slideDown('slow');
-    },function(){
-        $(this).find('li.meta').slideUp();
+    $('.event').click(function() {
+        $('li.place span').text('+');
+        $('li.meta').slideUp();
+        if( $(this).find('li.meta').is (':hidden')) {
+            $(this).find('li.meta').slideDown('slow');
+            $(this).find('li.place span').text('-');
+        }
     });
 
     $("#frminscricao").ajaxForm({

@@ -95,10 +95,9 @@
               {%for evento in data.agenda.dia5 %}
               <li>
                 <ul class="event">
-                  <li class="title">{{evento.hora}} - {{evento.nome}}
-                  </li>
+                  <li class="title">{{evento.hora}} - {{evento.nome}}</li>
                   {%if evento.local%}
-                  <li class="place">Local: {{evento.local}}</li>
+                  <li class="place">Local: {{evento.local}} {%if evento.descricao %} <span>+</span> {%endif%} </li>
                   {%endif%}
                   <li class="meta">
                     <p class="desc">
@@ -119,7 +118,7 @@
                       <h4>Moderador:</h4>
                       <ul>
                         <li>{{evento.moderador}}</li>
-                      </ul>(none)
+                      </ul>
                       {%endif%}
 
                     </div>
@@ -143,7 +142,7 @@
                   <li class="title">{{evento.hora}} - {{evento.nome}}
                   </li>
                   {%if evento.local%}
-                  <li class="place">Local: {{evento.local}}</li>
+                  <li class="place">Local: {{evento.local}} {%if evento.descricao %} <span>+</span> {%endif%} </li>
                   {%endif%}
                   <li class="meta">
                     <p class="desc">
