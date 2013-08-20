@@ -7,8 +7,6 @@
     <li><a href="#programacao" title="programação"><i class="icon-calendar"></i></a></li>
     <li><a href="#local" title="local"><i class="icon-map-marker"></i></a></li>
     <li><a href="#inscricao" title="inscrição"><i class="icon-ticket"></i></a></li>
-    <li><a href="#cobertura" title="cobertura"><i class="icon-edit"></i></a></li>
-    <li><a href="#modallink" data-toggle="modal"><i class="icon-link"></i></a></li>
   </ul>
 </div>
 
@@ -28,6 +26,9 @@
         <div class="date">
           <p class="day">5 e 6</p>
           <p class="month">Setembro</p>
+          {% if data.linkaovivo %}
+          <p class="siga"><a href="/seminario/cobertura">Acompanhe ao vivo a Cobertura Colaborativa</a></p>
+          {%endif%}
         </div>
       </div>
     </div>
