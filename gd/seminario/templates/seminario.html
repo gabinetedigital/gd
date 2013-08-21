@@ -66,8 +66,8 @@
               <img src="{{thumborurl("https://raw.github.com/gabinetedigital/seminariodata/master/speakers/"+palestrante.nome|slugify+".png", (270,180))}}">
               <div class="minibio">
                 <h4>{{palestrante.nome}}</h4>
-                <img src="{{palestrante.imagem}}">
-                {{palestrante.minibio|safe}}
+              <img src="{{thumborurl("https://raw.github.com/gabinetedigital/seminariodata/master/speakers/"+palestrante.nome|slugify+".png", (270,180))}}">
+              <p>{{palestrante.minibio|safe}}</p>
               </div>
             </a>
           </li>
