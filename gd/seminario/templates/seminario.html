@@ -63,7 +63,7 @@
           <li class="span3">
             <a class="thumbnail">
               <p>{{palestrante.nome}}</p>
-              <img src="{{thumborurl(palestrante.imagem, (270,180))}}">
+              <img src="{{thumborurl("https://raw.github.com/gabinetedigital/seminariodata/master/speakers/"+palestrante.nome|slugify+".png", (270,180))}}">
               <div class="minibio">
                 <h4>{{palestrante.nome}}</h4>
                 <img src="{{palestrante.imagem}}">
