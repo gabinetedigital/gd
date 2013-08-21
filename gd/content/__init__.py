@@ -35,7 +35,7 @@ from gd import conf
 from gd.auth import is_authenticated, authenticated_user, NobodyHome
 from gd.content.wp import wordpress
 # from gd.content.tweet import get_mayor_last_tweet
-from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail, twitts
+from gd.utils import dumps, msg, categoria_contribuicao_text, sendmail, twitts, slugify
 from gd.model import User, ComiteNews, CadastroComite, VotosReforma, session as dbsession
 
 from gd.govpergunta import govpergunta
@@ -270,6 +270,13 @@ def _jinja2_filter_datetime(date, formato_origem="%Y-%m-%d %H:%M:%S", formato="%
     asdate = datetime.datetime.strptime(date, formato_origem)
     return asdate.strftime(formato)
 
+
+@app.template_filter('slugify')
+def _slugify(string):
+    if not string:
+        return ""
+    slug = slugify(string)
+    return slug
 
 @app.context_processor
 def extend_context():
