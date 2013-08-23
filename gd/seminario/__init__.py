@@ -51,6 +51,7 @@ seminario = Blueprint(
 
 
 def ismod():
+    ismoderador = False
     if authapi.is_authenticated():
         user = authapi.authenticated_user()
         if user.email in conf.SEMINARIO_MODERADORES.split(','):
