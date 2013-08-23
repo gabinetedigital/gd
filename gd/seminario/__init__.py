@@ -19,7 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-from flask import Blueprint, request, render_template, abort, current_app, Response, url_for, jsonify, make_response, json
+from flask import Blueprint, request, render_template, abort, current_app, Response, url_for, jsonify, make_response, json, redirect
 from werkzeug import secure_filename
 from jinja2.utils import Markup
 
@@ -49,6 +49,15 @@ seminario = Blueprint(
     template_folder='templates',
     static_folder='static')
 
+
+def ismod():
+    if authapi.is_authenticated():
+        user = authapi.authenticated_user()
+        if user.email in conf.SEMINARIO_MODERADORES.split(','):
+            ismoderador = True
+    else:
+        ismoderador = False
+    return ismoderador
 
 
 def get_instagram_photos():
@@ -144,7 +153,15 @@ def _read_online_json():
 @seminario.route('/')
 def index():
     aovivo = conf.SEMINARIO_AOVIVO
-    return render_template('seminario.html', aovivo=aovivo, data=_read_online_json())
+    return render_template('seminario.html', aovivo=aovivo, data=_read_online_json(), ismoderador=ismod())
+
+
+@seminario.route('/listinsc')
+def listinsc():
+    if not ismod():
+        return redirect(url_for(".index"))
+    inscritos = InscricaoSeminario.query.order_by(InscricaoSeminario.datetime)
+    return render_template('inscricoes.html',inscritos=inscritos)
 
 
 class Historico(threading.Thread):
@@ -185,14 +202,6 @@ def cobertura():
     twitter_tag = conf.SEMINARIO_TWITTER_TAG
     cid = conf.SEMINARIO_CATEGORIA_ID
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
-    
-    # pdb.set_trace()
-    if authapi.is_authenticated():
-        user = authapi.authenticated_user()
-        if user.email in conf.SEMINARIO_MODERADORES.split(','):
-            ismoderador = True
-    else:
-        ismoderador = False
 
     twites = []
     try:
@@ -247,7 +256,7 @@ def cobertura():
 
     return render_template('cobertura.html', posts=posts, twitts=twites,
         instaphotos=instaphotos, nome=nome, email=email, links=links, totallist=totallist,
-        ismoderador=ismoderador)
+        ismoderador=ismod())
 
 
 @seminario.route('/av',methods=['POST'])
