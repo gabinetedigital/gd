@@ -180,8 +180,8 @@ class Historico(threading.Thread):
 
 @seminario.route('/cobertura/')
 def cobertura():
-    nome = request.cookies.get('cobertura_nome')
-    email = request.cookies.get('cobertura_email')
+    nome = request.cookies.get('cobertura_nome') or ""
+    email = request.cookies.get('cobertura_email') or ""
     twitter_tag = conf.SEMINARIO_TWITTER_TAG
     cid = conf.SEMINARIO_CATEGORIA_ID
     pagination, posts = fromcache("seminario_posts") or tocache("seminario_posts", wordpress.getPostsByCategory(cat=cid))
