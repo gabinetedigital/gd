@@ -1,6 +1,5 @@
 #inicio
   background: url(../img/nodes.png) no-repeat right top
-  padding-top: 10%
 
 .title p
   color: white
@@ -28,6 +27,18 @@
     font-size: 40pt
     padding-left: 70px
 
+@media (max-width: 480px )
+  .title
+    h1
+      color: white
+      font-weight: 300
+      text-align: center
+      padding-top: 20px
+
+      small
+        color: $blue
+        display: block
+        margin-bottom: 10px
 
 .date .day
   color: $blue
@@ -67,6 +78,7 @@
     border: 0
     padding: 0
     position: relative
+    cursor: pointer
     +box-shadow(none)
 
     p
@@ -98,6 +110,11 @@
 
 #programacao
   background: url(../img/nodes.png) no-repeat right top
+
+
+  @media (max-width: 480px )
+    .day
+      margin-bottom: 20px
 
   .day
     background-color: $dark
@@ -187,6 +204,12 @@
       height: 100%
       max-height: 350px
 
+  @media (max-width: 480px )
+    .place
+      h3
+        font-size: 1.6em
+        top: 10px
+
   h4
     color: $title
     font-weight: 300
@@ -253,3 +276,9 @@
 #footer
   .logo
     text-align: center
+
+@media (max-width: 480px )
+
+  #footer
+    .logo
+      margin-bottom: 30px

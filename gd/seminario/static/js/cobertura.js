@@ -15,6 +15,10 @@ $(window).load(function() {
         $('#modallink').modal('show')
     });
 
+    $(".abreform").click(function(){
+        $('#modallink').modal('show')
+    });
+
     $('#cancelmodal').click(function(){
         $('#modallink').modal('hide')
     });
