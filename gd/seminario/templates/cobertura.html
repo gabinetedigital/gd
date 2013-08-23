@@ -34,7 +34,9 @@
           {% if i.objeto == 'link' %}
           <li class="link {%if i.tipo != 'youtube'%}span3{%else%}span6{%endif%} link{{i.id}}">
             <div  class="thumbnail">
+              {%if not i.tipo == 'youtube'%}
               <a data-id="{{i.id}}" class="link-col" target="_new" rel="nofollow" href="{{i.link}}">
+              {%endif%}
                 <h3>
                   {{i.site}}
                 </h3>
@@ -62,7 +64,9 @@
 
                 Por: {{i.nome}}
 
+              {%if not i.tipo == 'youtube'%}
               </a>
+              {%endif%}
               {%if user and ismoderador %}
               <button  class="removelink" data-title="{{i.site}}" data-id="{{i.id}}"><i class="icon-remove" ></i></button>
               {%endif%}
