@@ -1,0 +1,47 @@
+{% extends "base_seminario.html" %}
+
+{% block content %}
+<div id="cobertura" class="section">
+  <div class="container">
+
+    <div class="row">
+      <div class="span12">
+        <h2>Lista de inscritos</h2>
+        <table class="table table-hover table-bordered inscritos">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Twitter</th>
+            <th>Facebook</th>
+            <th>Site</th>
+            <th>Colaborativa</th>
+            <th>Data Insc.</th>
+          </tr>
+          </thead>
+          <tbody>
+          {%for inscrito in inscritos%}
+          <tr>
+            <td>{{inscrito.id}}</td>
+            <td>{{inscrito.nome}}</td>
+            <td>{{inscrito.email}}</td>
+            <td>{{inscrito.telefone}}</td>
+            <td>{{inscrito.twitter}}</td>
+            <td>{{inscrito.facebook}}</td>
+            <td>{{inscrito.site}}</td>
+            <td>{%if inscrito.colaborativa%}Sim ({{inscrito.colaborativa_modo}}){%else%}Não{%endif%}</td>
+            <td>{{inscrito.datetime|strftime(formato='%d/%m/%Y %H:%M')}}</td>
+          </tr>
+          {%endfor%}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
