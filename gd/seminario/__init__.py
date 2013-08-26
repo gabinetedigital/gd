@@ -357,7 +357,20 @@ def getitle():
 
     title = titleRE.search(html.replace('\n','')).group(1).strip()
 
-    return jsonify({'title':title})
+    # pdb.set_trace()
+    try:
+        return jsonify({'title':title})
+    except:
+        try:
+            print "iso-8859-1 ....."
+            utitle = title.decode('iso-8859-1')
+            title = utitle
+        except:
+            print "title error: return nothing!"
+            # title = ""
+        return jsonify({'title':title})
+
+    
 
 @seminario.route('/newlink/', methods=['POST'])
 def newlink():
