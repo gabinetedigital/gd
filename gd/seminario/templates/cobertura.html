@@ -150,8 +150,9 @@
 {% endblock %}
 
 {% block javascript %}
-  <script src="{{ url_for('.static', filename='js/cobertura.js') }}"></script>
   <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/cobertura.js') }}"></script>
+
 
   {%if user and ismoderador%}
   <script type="text/javascript">
