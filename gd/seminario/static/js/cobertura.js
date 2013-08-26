@@ -1,15 +1,18 @@
 $(window).load(function() {
 
-    var $container = $('.thumbnails');
-    $container.imagesLoaded( function(){
-        $container.masonry({
-            itemSelector : '.thumbnails>li',
-            columnWidth: function( containerWidth ) {
-                //console.log(containerWidth / 12);
-                return containerWidth / 12;
-            }
+    window.setTimeout(function() {
+        var $container = $('.thumbnails');
+        $container.imagesLoaded( function(){
+            $container.masonry({
+                itemSelector : '.thumbnails>li',
+                columnWidth: function( containerWidth ) {
+                    //console.log(containerWidth / 12);
+                    return containerWidth / 12;
+                }
+            });
+            $('.thumbnails').masonry('reload');
         });
-    });
+    }, 1500);
 
     $("#divjanela").click(function(){
         $('#modallink').modal('show')
@@ -72,4 +75,6 @@ $(window).load(function() {
         $("#novolink").submit();
 
     });
+
+
 });
