@@ -43,10 +43,13 @@
 <div class="streaming">
   <div class="container">
     <div class="row">
-      <div class="span8 offset2">
+      <div class="span8">
         <div class="video">
           {{aovivo|safe}}
         </div>
+      </div>
+      <div class="span4">
+        <fb:comments href="{{FACEBOOK_COMMENT_URL}}" width="420" num_posts="5"></fb:comments>
       </div>
     </div>
   </div>
@@ -320,4 +323,11 @@
 
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/seminario.js') }}"></script>
+<script src="https://connect.facebook.net/pt_BR/all.js#appId={{FACEBOOK_APP_ID}}&amp;xfbml=1"></script>
+{% endblock %}
+
+{% block css %}
+<meta property="fb:app_id" content="{{FACEBOOK_APP_ID}}"/>
+<meta property="fb:admins" content="{{FACEBOOK_COMMENT_MODERATORS}}"/>
+<meta property="og:description" content="Seminário da Crise da Representação e Renovação da Democracia"/>
 {% endblock %}
