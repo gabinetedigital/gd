@@ -154,7 +154,22 @@ def _read_online_json():
 @seminario.route('/')
 def index():
     aovivo = conf.SEMINARIO_AOVIVO
-    return render_template('seminario.html', aovivo=aovivo, data=_read_online_json(), ismoderador=ismod())
+    try:
+        facebook_comment_url = current_app.config['FACEBOOK_COMMENT_URL']
+    except:
+        facebook_comment_url = ""
+    try:
+        facebook_app_id = conf.FACEBOOK_APP_ID
+    except:
+        facebook_app_id = ""
+
+    try:
+        facebook_comment_moderators = conf.FACEBOOK_COMMENT_MODERATORS
+    except:
+        facebook_comment_moderators = ""
+    return render_template('seminario.html', aovivo=aovivo, data=_read_online_json(), ismoderador=ismod(),
+        FACEBOOK_COMMENT_MODERATORS=facebook_comment_moderators,FACEBOOK_APP_ID=facebook_app_id,
+        FACEBOOK_COMMENT_URL=facebook_comment_url )
 
 
 @seminario.route('/listinsc')
