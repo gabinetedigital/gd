@@ -212,7 +212,7 @@
   </div>
 </div>
 
-{%if insc_colab%}
+{%if insc_colab and data.mostra_formulario%}
 <div class="section">
   <div class="container">
     <div class="row">
@@ -224,7 +224,7 @@
 </div>
 {%endif%}
 
-
+{%if data.mostra_formulario%}
 <div id="inscricao" class="section {%if insc_colab%}hide{%endif%}">
   <div class="container">
     <div class="row">
@@ -319,6 +319,7 @@
     </div>
   </div>
 </div>
+{%endif%}
 
 <div id="footer" class="section">
   <div class="container">
