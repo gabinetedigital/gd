@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
+    {% block css %}{% endblock %}
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
     <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
