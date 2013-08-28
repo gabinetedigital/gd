@@ -167,9 +167,18 @@ def index():
         facebook_comment_moderators = conf.FACEBOOK_COMMENT_MODERATORS
     except:
         facebook_comment_moderators = ""
+
+    #validacao de qtos inscritos tem
+    total = InscricaoSeminario.query.count()
+    colaborativos = InscricaoSeminario.query.filter(InscricaoSeminario.colaborativa==True).count()
+    participantes = total - colaborativos
+
     return render_template('seminario.html', aovivo=aovivo, data=_read_online_json(), ismoderador=ismod(),
         FACEBOOK_COMMENT_MODERATORS=facebook_comment_moderators,FACEBOOK_APP_ID=facebook_app_id,
-        FACEBOOK_COMMENT_URL=facebook_comment_url )
+        FACEBOOK_COMMENT_URL=facebook_comment_url, 
+        insc_colab=participantes>=250 
+        # insc_colab=True
+        )
 
 
 @seminario.route('/listinsc')

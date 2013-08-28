@@ -212,7 +212,20 @@
   </div>
 </div>
 
-<div id="inscricao" class="section">
+{%if insc_colab%}
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span4 offset4">
+        <a id="abrir_form_participa" href="#" class="btn btn-large">Participar da cobertura colaborativa</a>
+      </div>
+    </div>
+  </div>
+</div>
+{%endif%}
+
+
+<div id="inscricao" class="section {%if insc_colab%}hide{%endif%}">
   <div class="container">
     <div class="row">
       <div class="span12">
@@ -244,8 +257,8 @@
           </div>
         </div>
         <div class="controls controls-row">
-          <input name="nome" class="span6" type="text" placeholder="Digite seu nome completo">
-          <input name="email" class="span6" type="text" placeholder="Digite seu email">
+          <input name="nome" id="nome" class="span6" type="text" placeholder="Digite seu nome completo">
+          <input name="email" id="email" class="span6" type="text" placeholder="Digite seu email">
         </div>
         <div class="controls controls-row">
           <div class="span6">
@@ -274,14 +287,20 @@
         <div class="controls controls-row">
           <div class="span6">
             <label for="colaborativa" class="checkbox">
-              <input type="checkbox" name="colaborativa" id="colaborativa"> Participar da cobertura colaborativa</label>
+              {%if insc_colab%}
+                <input type="checkbox" checked="checked" disabled="disabled"> Participar da cobertura colaborativa
+                <input type="hidden" name="colaborativa" value="1">
+              {%else%}
+                <input type="checkbox" name="colaborativa" id="colaborativa"> Participar da cobertura colaborativa
+              {%endif%}
+            </label>
           </div>
-          <div class="span6 hide modo_cobertura">
+          <div class="span6 {%if not insc_colab%}hide{%endif%} modo_cobertura">
             <label>Vou fazer a cobertura com:</label>
           </div>
         </div>
         <div class="controls controls-row">
-          <div class="span6 offset6 hide modo_cobertura">
+          <div class="span6 offset6 {%if not insc_colab%}hide{%endif%} modo_cobertura">
             <label class="checkbox" for="foto">
               <input type="checkbox" name="foto" id="foto"> Foto
             </label>

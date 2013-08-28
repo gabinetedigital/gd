@@ -29,6 +29,18 @@ $(window).load(function() {
         beforeSubmit: function () {
             $('#msg').fadeOut();
             $('#msgerror').fadeOut();
+            if( jQuery.trim($('#nome').val()).length == 0 || jQuery.trim($('#email').val()).length == 0){
+                alert('É necessário preencher o nome e email');
+                return false;
+            }
+            if( $('#colaborativa').is(':checked') || $('input[name=colaborativa]').val() == "1" ){
+                if( !$('#foto').is(':checked') &&
+                    !$('#video').is(':checked') &&
+                    !$('#texto').is(':checked') ){
+                    alert("Escolha um dos tipos de participação colaborativa");
+                    return false;
+                }
+            }
         },
 
         success: function (pData) {
@@ -64,7 +76,20 @@ $(window).load(function() {
         $.fancybox.open(bio, {
             'maxWidth': 600
         });
-        console.log("blah!");
+        // console.log("blah!");
+    });
+
+    $('#abrir_form_participa').click(function(){
+        // console.log("abrindo formulario...");
+        $('#inscricao').slideDown(function(){
+
+            $('html, body').stop().animate({
+                'scrollTop': $('#inscricao').offset().top
+            }, 500, 'swing');
+
+        });
+
+        return false;
     });
 
 });
