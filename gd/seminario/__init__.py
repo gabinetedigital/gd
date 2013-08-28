@@ -177,7 +177,19 @@ def listinsc():
     if not ismod():
         return redirect(url_for(".index"))
     inscritos = InscricaoSeminario.query.order_by(InscricaoSeminario.datetime)
-    return render_template('inscricoes.html',inscritos=inscritos)
+    total = inscritos.count()
+    participacao = InscricaoSeminario.query.filter(InscricaoSeminario.colaborativa==True).count()
+    numeros = {
+        'total':total,
+        'participacao':total - participacao,
+        'colaboracao':{
+            'total':participacao,
+            'video':InscricaoSeminario.query.filter(InscricaoSeminario.colaborativa_modo.like("%video%")).count(),
+            'texto':InscricaoSeminario.query.filter(InscricaoSeminario.colaborativa_modo.like("%texto%")).count(),
+            'foto':InscricaoSeminario.query.filter(InscricaoSeminario.colaborativa_modo.like("%foto%")).count()
+        }
+    }
+    return render_template('inscricoes.html',inscritos=inscritos, totais=numeros)
 
 
 class Historico(threading.Thread):
