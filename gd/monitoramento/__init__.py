@@ -22,6 +22,7 @@ import locale
 from flask import Blueprint, request, render_template, abort, current_app, Response, url_for
 from werkzeug import secure_filename
 from jinja2.utils import Markup
+from twython import Twython
 
 import os
 import re
@@ -29,6 +30,7 @@ import xmlrpclib
 import traceback
 import random
 import string
+import pdb
 from hashlib import md5
 
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
@@ -624,6 +626,85 @@ def contribui(slug):
 
 
 	return dumps(r)
+
+#=================================================================== ENVIO DE AVISOS DE ATUALIZAÇÕES
+
+@monitoramento.route('/sendnews')
+def sendnews():
+	"""Método que faz o envio dos avisos para as pessoas que seguem as obras"""
+	import datetime as d
+
+	if "obra" in request.args:
+		obraid = request.args['obra']
+		obra = fromcache("obra-" + obraid) or tocache("obra-" + obraid, _get_obras(obraid=obraid)[0])
+	elif "slug" in request.args:
+		slug = request.args['slug']
+		obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
+		obraid = obra['id']
+	else:
+		print "DE-OLHO-NAS-OBRAS::", "Não foi passado o ID nem o SLUG da obra para os avisos!"
+		return abort(404)
+
+	obra_link = url_for('.obra',slug=obra['slug'])
+
+	print "DE-OLHO-NAS-OBRAS::", "buscando usuarios"
+	usuarios = UserFollow.query.filter(UserFollow.obra_id==int(obraid))
+
+	ct = usuarios.count()
+	if ct <= 0:
+		print "DE-OLHO-NAS-OBRAS::", "Não existe nenhum usuário seguindo esta obra. (204)"
+		return "Não existe nenhum usuário seguindo esta obra"
+
+	print "DE-OLHO-NAS-OBRAS::", "Enviando aviso de atualizações para", ct,"usuários."
+
+	print "DE-OLHO-NAS-OBRAS::", "twitter connect"
+	t = Twython(current_app.config['TWITTER_CONSUMER_KEY'], current_app.config['TWITTER_CONSUMER_SECRET'], 
+		current_app.config['TWITTER_ACCESS_TOKEN'], current_app.config['TWITTER_ACCESS_TOKEN_SECRET'])
+
+	msg_titulo = current_app.config['OBRA_ATUALIZACAO_SUBJECT']
+	msg = current_app.config['OBRA_ATUALIZACAO_MSG']
+	msg_twitter = current_app.config['OBRA_ATUALIZACAO_TWITTER']
+	
+	for u in usuarios:
+		print u.user, u.obra_id, u.mode, u.facebook_id, u.twitter_id, u.email
+		print "USER:", u.user.email
+		
+		if u.facebook_id:
+			print "Via facebook..."
+			fre = re.compile("(?P<link>(?:http(|s):\/\/)?(?:www.)?(facebook|fb).com\/?)*(?P<nome>[\w\.\-]*)")
+
+			if fre.match(u.facebook_id):
+				fid = fre.search(u.facebook_id).group('nome')
+			else:
+				fid = u.facebook_id
+
+			femail = "%s@facebook.com" % fid
+			sendmail("Nova atualização de obra"
+                    , femail
+                    , "Mensagem de aviso %s " % obra_link)
+		elif u.twitter_id:
+			print "Via twitter..."
+			tre = re.compile("(?P<link>(?:http(|s):\/\/)?(?:www.)?(facebook|fb).com\/?)*(?P<nome>[\w\.\-]*)")
+			if tre.match(u.twitter_id):
+				tid = fre.search(u.twitter_id).group('nome')
+			else:
+				tid = u.twitter_id
+			try:
+				friend = t.createFriendship(screen_name=tid)
+				#send direct message
+				dm = t.sendDirectMessage(
+					screen_name=tid, 
+					text="Tem atualização na obra X! Veja: %s" % obra_link)
+			except Exception as e:
+				print "Ocorreu um erro enviando DM para twitter..."
+				print e
+
+		elif u.email:
+			#sendmail
+			print "Enviando emails...."
+	
+	
+	return "Ok-" + d.datetime.now().strftime("%d%m%Y-%H%M%S") + "\n"
 
 
 #=================================================================== API ======

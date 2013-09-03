@@ -182,18 +182,21 @@ def generate_random_password():
 
 def sendmail(subject, to_addr, message):
     """Sends an email message"""
-    msg = MIMEText(message, _charset='utf-8')
+    try:
+        msg = MIMEText(message, _charset='utf-8')
 
-    # Setting message headers
-    msg['Subject'] = subject
-    msg['To'] = to_addr
-    msg['From'] = conf.FROM_ADDR
+        # Setting message headers
+        msg['Subject'] = subject
+        msg['To'] = to_addr
+        msg['From'] = conf.FROM_ADDR
 
-    # Finally, sending the mail
-    smtp = smtplib.SMTP(conf.SMTP)
-    smtp.sendmail(conf.FROM_ADDR, to_addr, msg.as_string())
-    smtp.quit()
-
+        # Finally, sending the mail
+        smtp = smtplib.SMTP(conf.SMTP)
+        smtp.sendmail(conf.FROM_ADDR, to_addr, msg.as_string())
+        smtp.quit()
+    except Exception as e:
+        print "Ocorreu um erro enviando email para %s" % to_addr
+        print e
     return True
 
 
