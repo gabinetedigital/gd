@@ -175,9 +175,9 @@ def index():
 
     return render_template('seminario.html', aovivo=aovivo, data=_read_online_json(), ismoderador=ismod(),
         FACEBOOK_COMMENT_MODERATORS=facebook_comment_moderators,FACEBOOK_APP_ID=facebook_app_id,
-        FACEBOOK_COMMENT_URL=facebook_comment_url, 
-        insc_colab=participantes>=250 
-        # insc_colab=True
+        FACEBOOK_COMMENT_URL=facebook_comment_url,
+        # insc_colab=participantes>=250
+        insc_colab=True
         )
 
 
@@ -406,7 +406,7 @@ def getitle():
             # title = ""
         return jsonify({'title':title})
 
-    
+
 
 @seminario.route('/newlink/', methods=['POST'])
 def newlink():
