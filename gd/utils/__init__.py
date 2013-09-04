@@ -31,7 +31,9 @@ from StringIO import StringIO
 from PIL import Image, ImageOps
 from gettext import gettext
 from flask import url_for
-from twython import Twython
+# from twython import Twython
+import tweepy
+import pdb
 from gd.utils.gdcache import fromcache, tocache
 
 from gd import conf
@@ -52,7 +54,7 @@ def slugify(value):
     """
     Normalizes string, converts to lowercase, removes non-alpha characters,
     and converts spaces to hyphens.
-    
+
     From Django's "django/template/defaultfilters.py".
     """
     import unicodedata
@@ -80,16 +82,20 @@ def twitts(hashtag=None, count=25):
     if not hashtag:
         result = fromcache("twetts_cabecalho")
     if not result:
-        t = Twython(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET, conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
+        # t = Twython(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET, conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
+        auth = tweepy.OAuthHandler(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET)
+        auth.set_access_token(conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
+        t = tweepy.API(auth)
         if not hashtag:
             hashtag = conf.TWITTER_HASH_CABECALHO
-        result = t.search(q=hashtag, result_type='mixed', count=count)
-        tws = [status for status in result['statuses']]
+        result = t.search(hashtag, result_type='mixed', count=count)
+        pdb.set_trace()
+        # tws = [status for status in result['statuses']]
         result = []
-        for status in tws:
+        for status in result:
             print status
             status['classe'] = 'pessoa' + str(random.choice(range(1,10)))
-            status['created_at'] = convert_todatetime(status['created_at'])
+            status['created_at'] = convert_todatetime(status.created_at)
             result.append(status)
 
         tocache("twetts_cabecalho", result)
