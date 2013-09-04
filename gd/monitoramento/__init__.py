@@ -658,17 +658,17 @@ def sendnews():
 	print "DE-OLHO-NAS-OBRAS::", "Enviando aviso de atualizações para", ct,"usuários."
 
 	print "DE-OLHO-NAS-OBRAS::", "twitter connect"
-	t = Twython(current_app.config['TWITTER_CONSUMER_KEY'], current_app.config['TWITTER_CONSUMER_SECRET'], 
+	t = Twython(current_app.config['TWITTER_CONSUMER_KEY'], current_app.config['TWITTER_CONSUMER_SECRET'],
 		current_app.config['TWITTER_ACCESS_TOKEN'], current_app.config['TWITTER_ACCESS_TOKEN_SECRET'])
 
 	msg_titulo = current_app.config['OBRA_ATUALIZACAO_SUBJECT']
 	msg = current_app.config['OBRA_ATUALIZACAO_MSG']
 	msg_twitter = current_app.config['OBRA_ATUALIZACAO_TWITTER']
-	
+
 	for u in usuarios:
 		print u.user, u.obra_id, u.mode, u.facebook_id, u.twitter_id, u.email
 		print "USER:", u.user.email
-		
+
 		if u.facebook_id:
 			print "Via facebook..."
 			fre = re.compile("(?P<link>(?:http(|s):\/\/)?(?:www.)?(facebook|fb).com\/?)*(?P<nome>[\w\.\-]*)")
@@ -679,9 +679,7 @@ def sendnews():
 				fid = u.facebook_id
 
 			femail = "%s@facebook.com" % fid
-			sendmail("Nova atualização de obra"
-                    , femail
-                    , "Mensagem de aviso %s " % obra_link)
+			sendmail(msg_titulo, femail, msg)
 		elif u.twitter_id:
 			print "Via twitter..."
 			tre = re.compile("(?P<link>(?:http(|s):\/\/)?(?:www.)?(facebook|fb).com\/?)*(?P<nome>[\w\.\-]*)")
@@ -693,7 +691,7 @@ def sendnews():
 				friend = t.createFriendship(screen_name=tid)
 				#send direct message
 				dm = t.sendDirectMessage(
-					screen_name=tid, 
+					screen_name=tid,
 					text="Tem atualização na obra X! Veja: %s" % obra_link)
 			except Exception as e:
 				print "Ocorreu um erro enviando DM para twitter..."
@@ -702,8 +700,9 @@ def sendnews():
 		elif u.email:
 			#sendmail
 			print "Enviando emails...."
-	
-	
+			sendmail(msg_titulo, u.email, msg)
+
+
 	return "Ok-" + d.datetime.now().strftime("%d%m%Y-%H%M%S") + "\n"
 
 
