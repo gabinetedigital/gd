@@ -22,8 +22,9 @@ import locale
 from flask import Blueprint, request, render_template, abort, current_app, Response, url_for
 from werkzeug import secure_filename
 from jinja2.utils import Markup
-from twython import Twython
+# from twython import Twython
 
+import datetime as d
 import os
 import re
 import xmlrpclib
@@ -35,7 +36,7 @@ from hashlib import md5
 
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd import auth as authapi
-from gd.utils import dumps, sendmail, send_welcome_email, send_password, twitts
+from gd.utils import dumps, sendmail, send_welcome_email, send_password, twitts, get_twitter_connection
 from gd.model import UserFollow, session as dbsession
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -632,7 +633,6 @@ def contribui(slug):
 @monitoramento.route('/sendnews')
 def sendnews():
 	"""Método que faz o envio dos avisos para as pessoas que seguem as obras"""
-	import datetime as d
 
 	if "obra" in request.args:
 		obraid = request.args['obra']
@@ -658,19 +658,21 @@ def sendnews():
 	print "DE-OLHO-NAS-OBRAS::", "Enviando aviso de atualizações para", ct,"usuários."
 
 	print "DE-OLHO-NAS-OBRAS::", "twitter connect"
-	t = Twython(current_app.config['TWITTER_CONSUMER_KEY'], current_app.config['TWITTER_CONSUMER_SECRET'],
-		current_app.config['TWITTER_ACCESS_TOKEN'], current_app.config['TWITTER_ACCESS_TOKEN_SECRET'])
+	# t = Twython(current_app.config['TWITTER_CONSUMER_KEY'], current_app.config['TWITTER_CONSUMER_SECRET'],
+	# 	current_app.config['TWITTER_ACCESS_TOKEN'], current_app.config['TWITTER_ACCESS_TOKEN_SECRET'])
+
+	t = get_twitter_connection()
 
 	msg_titulo = current_app.config['OBRA_ATUALIZACAO_SUBJECT']
 	msg = current_app.config['OBRA_ATUALIZACAO_MSG']
 	msg_twitter = current_app.config['OBRA_ATUALIZACAO_TWITTER']
 
 	for u in usuarios:
-		print u.user, u.obra_id, u.mode, u.facebook_id, u.twitter_id, u.email
-		print "USER:", u.user.email
+		print "DE-OLHO-NAS-OBRAS::", u.obra_id, u.mode, u.facebook_id, u.twitter_id, u.email
+		# print "USER:", u.user.email
 
 		if u.facebook_id:
-			print "Via facebook..."
+			print "DE-OLHO-NAS-OBRAS::", "Via facebook..."
 			fre = re.compile("(?P<link>(?:http(|s):\/\/)?(?:www.)?(facebook|fb).com\/?)*(?P<nome>[\w\.\-]*)")
 
 			if fre.match(u.facebook_id):
@@ -678,20 +680,24 @@ def sendnews():
 			else:
 				fid = u.facebook_id
 
+			print "DE-OLHO-NAS-OBRAS::", fid
 			femail = "%s@facebook.com" % fid
 			sendmail(msg_titulo, femail, msg)
+
 		elif u.twitter_id:
-			print "Via twitter..."
+			print "DE-OLHO-NAS-OBRAS::", "Via twitter..."
 			tre = re.compile("(?P<link>(?:http(|s):\/\/)?(?:www.)?(facebook|fb).com\/?)*(?P<nome>[\w\.\-]*)")
 			if tre.match(u.twitter_id):
 				tid = fre.search(u.twitter_id).group('nome')
 			else:
 				tid = u.twitter_id
+
+			print "DE-OLHO-NAS-OBRAS::", tid
 			try:
-				friend = t.createFriendship(screen_name=tid)
 				#send direct message
-				dm = t.sendDirectMessage(
-					screen_name=tid,
+				t.create_friendship(screen_name=tid)
+				dm = t.send_direct_message(
+					user=tid,
 					text="Tem atualização na obra X! Veja: %s" % obra_link)
 			except Exception as e:
 				print "Ocorreu um erro enviando DM para twitter..."
@@ -699,10 +705,10 @@ def sendnews():
 
 		elif u.email:
 			#sendmail
-			print "Enviando emails...."
+			print "DE-OLHO-NAS-OBRAS::", "Por email", u.email
 			sendmail(msg_titulo, u.email, msg)
 
-
+	print "DE-OLHO-NAS-OBRAS::", "Concluido!"
 	return "Ok-" + d.datetime.now().strftime("%d%m%Y-%H%M%S") + "\n"
 
 

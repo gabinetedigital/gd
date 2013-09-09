@@ -76,20 +76,22 @@ def convert_todatetime(s=None):
     # return dt - timedelta(seconds=time_tuple[-1])
     return dt
 
+def get_twitter_connection():
+    auth = tweepy.OAuthHandler(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET)
+    auth.set_access_token(conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
+    return tweepy.API(auth)
+
 
 def twitts(hashtag=None, count=25):
     result = None
     if not hashtag:
         result = fromcache("twetts_cabecalho")
     if not result:
-        # t = Twython(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET, conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
-        auth = tweepy.OAuthHandler(conf.TWITTER_CONSUMER_KEY, conf.TWITTER_CONSUMER_SECRET)
-        auth.set_access_token(conf.TWITTER_ACCESS_TOKEN, conf.TWITTER_ACCESS_TOKEN_SECRET)
-        t = tweepy.API(auth)
+        t = get_twitter_connection()
         if not hashtag:
             hashtag = conf.TWITTER_HASH_CABECALHO
         result = t.search(hashtag, result_type='mixed', count=count)
-        pdb.set_trace()
+        # pdb.set_trace()
         # tws = [status for status in result['statuses']]
         result = []
         for status in result:
