@@ -652,7 +652,7 @@ def sendnews():
 
 	ct = usuarios.count()
 	if ct <= 0:
-		print "DE-OLHO-NAS-OBRAS::", "Não existe nenhum usuário seguindo esta obra. (204)"
+		print "DE-OLHO-NAS-OBRAS::", "Não existe nenhum usuário seguindo esta obra."
 		return "Não existe nenhum usuário seguindo esta obra"
 
 	print "DE-OLHO-NAS-OBRAS::", "Enviando aviso de atualizações para", ct,"usuários."
