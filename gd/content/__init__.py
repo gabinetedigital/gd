@@ -632,20 +632,7 @@ def artigo_hierarquico(slug):
 
 @app.route('/comite-transito/')
 def comite_transito():
-    """Renders a wordpress page special"""
-    try:
-        twitter_hash_cabecalho = twitts()
-    except KeyError:
-        twitter_hash_cabecalho = ""
-    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-    return render_template(
-        'comite-transito.html',
-        menu=menus,
-        twitter_hash_cabecalho=twitter_hash_cabecalho,
-        wp=wordpress,
-        sidebar=wordpress.getSidebar,
-    )
-
+    return redirect(url_for("index"))
 
 @app.route('/enviar-noticia/', methods=['POST',])
 def salvar_noticia_comite():
