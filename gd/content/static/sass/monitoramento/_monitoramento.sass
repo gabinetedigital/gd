@@ -15,8 +15,10 @@
 
     .widget
       padding: 10px
+      border-bottom: 1px solid #2c3e50
 
     .busca
+
       p
         color: #3498db
         font-size: 1.2em
@@ -48,6 +50,43 @@
         border-bottom: 1px solid #3498db
         margin-left: -5px
         padding-bottom: 4px
+
+    .login
+      p
+        color: #f1c40f
+        font-size: 1.2em
+
+        i
+          color: #f39c12
+
+      input
+        border-top: 0
+        border-left: 0
+        border-right: 0
+        border-bottom: 1px solid #f1c40f
+        background: #34495e
+        color: white
+        font-size: 1em
+        margin-top: 7px
+        width: 235px
+        +box-shadow(none)
+        +border-radius(0)
+
+      button
+        border: 0
+        font-weight: 600
+        padding: 5px 10px
+        margin-top: 10px
+        display: inline-block
+
+        &.login-submit
+          background: #f1c40f
+          color: white
+
+        &.login-forget
+          background: #2c3e50
+          color: white
+          font-size: 0.8em
 
 #monitoramento .container
   overflow: hidden
