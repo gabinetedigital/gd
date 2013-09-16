@@ -5,14 +5,49 @@
     bottom: 0
     position: absolute
 
-  .logo
-    background: url(../img/monitoramento/logo.png) white no-repeat
-    display: block
-    height: 153px
+  .aside
+    background: #34495e
 
-#monitoramento
-  border-top: 2px solid #bdc3c7
-  padding-top: 20px
+    .logo
+      background: url(../img/monitoramento/logo.png) white no-repeat
+      display: block
+      height: 153px
+
+    .widget
+      padding: 10px
+
+    .busca
+      p
+        color: #3498db
+        font-size: 1.2em
+
+    .input-busca
+      display: inline-block
+      vertical-align: middle
+
+      input
+        border-top: 0
+        border-left: 0
+        border-right: 0
+        border-bottom: 1px solid #3498db
+        background: #34495e
+        color: white
+        font-size: 1em
+        margin-top: 7px
+        width: 210px
+        +box-shadow(none)
+        +border-radius(0)
+
+      .add-on
+        background: none
+        color: #3498db
+        font-size: 1.3em
+        border-top: 0
+        border-left: 0
+        border-right: 0
+        border-bottom: 1px solid #3498db
+        margin-left: -5px
+        padding-bottom: 4px
 
 #monitoramento .container
   overflow: hidden
