@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-obra.html" %}
 
 {%block css%}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
@@ -14,188 +14,16 @@ $('video').mediaelementplayer();
 
 {% block content %}
 <div id="monitoramento" class="capa">
-
   <div class="container">
-    <div class="painel">
+    <div class="app">
       <div class="row">
-        <div class="span6">
-          <h1><img src="{{ url_for('.static', filename='blueprint.png' ) }}"></h1>
-        </div>
-        <div class="span2">
-          <div class="numeros">
-            {{obras|length}}<span>obras que você pode fiscalizar</span>
+        <div class="span3">
+          <a href="/monitore">
+          <div class="logo">
           </div>
+          </a>
         </div>
-        <div class="span4">
-          <div class="selo">
-            <img src="{{ url_for('.static', filename='investimento.png' ) }}">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slider">
-    <div class="container">
-      <div class="row">
-        <div class="span12">
-          <div id="myCarousel" class="carousel slide">
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-              {%for slide in slides%}
-              <div class="item {%if loop.index-1 == 0%}active{%endif%}">
-
-                    {%if 'gdvideo' in slide%}
-                      {#GDVIDEO#}
-                      <a href="#video{{ slide.gdvideo.id }}"><img width="360" height="200" src="{{slide.gdvideo.thumbnail}}"></a>
-
-                      <div class="content">
-                        <h4>{{slide.title|safe}}</h4>
-                        <span>{{slide.content|safe}}</span>
-                      </div>
-
-                      <div class="video hide" width="300" height="500" id="video{{ slide.gdvideo.id }}">
-                        <video class="video-obras" width="{{ slide.gdvideo.video_width }}" height="{{ slide.gdvideo.video_height }}"  poster="{{slide.gdvideo.thumbnail}}"
-                        controls="controls" preload="none">
-                          <!-- MP4 source must come first for iOS -->
-                          <source type="video/mp4" src="{{slide.gdvideo.sources['video/mp4']}}" />
-                          <!-- WebM for Firefox 4 and Opera -->
-                          <source type="video/webm" src="{{slide.gdvideo.sources['video/webm']}}" />
-                          <!-- OGG for Firefox 3 -->
-                          <!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
-                          <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
-
-                          <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">
-                            <param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" />
-                            <param name="flashvars" value="controls=true&amp;file={{slide.gdvideo.sources['video/mp4']}}" />
-                            <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
-                            <img src="{{slide.gdvideo.thumbnail}}" width="{{ slide.gdvideo.video_width }}" height="{{ slide.gdvideo.video_height }}" alt="Here we are"
-                              title="No video playback capabilities" />
-                          </object>
-                        </video>
-                      </div>
-
-                    {%elif 'video' in slide%}
-                      {#VIDEO#}
-                      <a href="#video{{ slide.id }}"><img width="320" height="160" src="{{slide.thumbs.slideshow.url}}"></a>
-
-                      <div class="content">
-                        <h4>{{slide.title|safe}}</h4>
-                        <span>{{slide.content|safe}}</span>
-                      </div>
-
-                      <div class="video hide" width="300" height="500" id="video{{ slide.id }}">
-                        <video width="640" height="360" id="player{{ slide.id }}" preload="none">
-                            <source src="{{slide.video}}" />
-                        </video>
-                      </div>
-
-                    {%elif 'youtube' in slide%}
-                      {#YOUTUBE VIDEO#}
-                      <a href="#video{{ slide.id }}"><img width="320" height="160" src="{{slide.youtube.thumb}}"></a>
-
-                      <div class="content">
-                        <h4>{{slide.title|safe}}</h4>
-                        <span>{{slide.content|safe}}</span>
-                      </div>
-
-                      <div class="video hide" width="300" height="500" id="video{{ slide.id }}">
-                        <video width="640" height="360" id="player{{ slide.id }}" preload="none">
-                            <source type="video/youtube" src="{{slide.youtube.video}}" />
-                        </video>
-                      </div>
-                    {%elif slide.thumbs%}
-                      <img src="{{slide.thumbs.slideshow.url}}">
-
-                      <div class="content">
-                        <h4>{{slide.title|safe}}</h4>
-                        <span>{{slide.content|safe}}</span>
-                      </div>
-
-                    {%endif%}
-
-              </div>
-              {%endfor%}
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="painel">
-      <div class="row">
-        <div class="span12 meio">
-          <div class="row">
-            <div class="span8">
-              <h2>Fiscalize essas obras</h2>
-              {%if obras%}
-              <div class="lista-obras">
-                <ul>
-                  {% for obra in obras %}
-                  <li class="{{ loop.cycle('light', 'dark') }}">
-                    <div class="meta-obra">
-                      {%if obra.thumbs%}
-                      <img src="{{obra.thumbs.thumb.url}}">
-                      {%else%}
-                      <img src="http://placehold.it/150x150">
-                      {%endif%}
-                      <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-success">fiscalize</a>
-                    </div>
-                    <h4>{{obra.title}}</h4>
-                    <p class="local">{%for m in obra.custom_fields.gdobra_municipio%}{{m}}{%if not loop.last%},{%endif%} {%endfor%}</p>
-                    <p>{{obra.content|safe}}</p>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              {%endif%}
-            </div>
-            <div class="span4">
-              <h2>Como funciona?</h2>
-              <div class="instrucoes">
-                <ul>
-                  <li>
-                    <span>1</span>
-                    <p><b>ESCOLHA</b> ao lado uma obra do Governo Estadual para acompanhar</p>
-                  </li>
-
-                  <li>
-                    <span>2</span>
-                    <p><b>INFORME-SE</b> sobre o andamento, veja imagens e conheça o cronograma de entrega de cada obra</p>
-                  </li>
-
-                  <li>
-                    <span>3</span>
-                    <p><b>SIGA</b> as obras de seu interesse e receba atualizações a cada nova etapa</p>
-                  </li>
-
-                  <li>
-                    <span>4</span>
-                    <p><b>FISCALIZE!</b> Envie fotos e vídeos das obras, comentários, dúvidas ou críticas.</p>
-                  </li>
-
-                  <li>
-                    <span>5</span>
-                    <p><b>COMPARTILHE</b> as obras que você fiscaliza e chame seus amigos para ficar de olho</p>
-                  </li>
-
-                  <li>
-                    <span>6</span>
-                    <p><b>GOVERNO RESPONDE:</b> a cada 30 dias, o Governador se
-                      manifesta, em vídeo, sobre as obras mais acessadas e
-                      fiscalizadas</p>
-                  </li>
-
-                </ul>
-              </div>
-
-
-
-            </div>
-          </div>
+        <div class="span9">
         </div>
       </div>
     </div>
