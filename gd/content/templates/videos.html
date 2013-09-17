@@ -82,6 +82,23 @@
               <div class="input-append">
                 <input class="searcher" id="inputIcon" type="text"
                 placeholder="Ex: Interiorização ...">
+                <script type="text/javascript">
+                  $(document).ready(function() {
+                    $('.searcher').typeahead({
+                      source: [{%for t in titulos%}'{{t}}',{%endfor%}],
+                      items: 8,
+                      minLength: 2,
+                      updater: function(item){
+                        //Slugs é um dicionáraio que contém como chave o Título do vídeo, e como valor o id,
+                        //para poder recdirecionar diretamente para a galeria.
+                        ids = { {%for t in titulos%}
+                                 '{{t}}':'{{titulos[t]}}',
+                                {%endfor%} }
+                        document.location = "/videos/" + ids[item]
+                      }
+                    });
+                  });
+                </script>
                 <button class="btn" type="button">
                   <i class="icon-search icons-2x"></i>
               </button>
