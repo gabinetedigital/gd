@@ -52,10 +52,10 @@
       <div class="span3">
         <div class="video-filter">
           <div class="filter">
-            <a href=""><i class="icon-time icon-2x azul"></i><p>Recentes</p></a>
+            <a href="/videos/recentes"><i class="icon-time icon-2x azul"></i><p>Recentes</p></a>
           </div>
           <div class="filter">
-            <a href=""><i class="icon-star icon-2x amarelo"></i><p>Populares</p></a>
+            <a href="/videos/populares"><i class="icon-star icon-2x amarelo"></i><p>Populares</p></a>
           </div>
           <div class="filter">
             <a href=""><i class="icon-th-large icon-2x vermelho"></i><p>Canais</p></a>
@@ -73,7 +73,7 @@
         <div class="row subheader">
           <div class="span6">
             <div class="cat">
-              <i class="icon-star"></i><p>Populares</p>
+              <i class="icon-star"></i><p>{{canal}}</p>
             </div>
           </div>
           <div class="span3 pull-right">
@@ -118,7 +118,7 @@
                   </a>
                   <div class="meta">
                     <a href="/videos/{{video.id}}/">
-                      <strong>{{video.date | strftime() }}</strong>
+                      <strong>{{video.date | strftime() }} | {{video.views}} visualizações.</strong>
                       <p>{{ video.title }} {%if
                       video.category_title%} ({{video.category_title}})
                       {%endif%} </p>
@@ -126,6 +126,8 @@
                   </div>
                 </div>
               </li>
+              {% else %}
+              <li>Infelizmente não temos vídeos para apresentar nesta categoria...</li>
               {% endfor %}
             </ul>
           </div>
