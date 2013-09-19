@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from flask import Blueprint, render_template, current_app
+from flask import Blueprint, render_template, current_app, request, redirect
 from gd.utils.gdcache import fromcache, tocache, removecache
 from gd.utils import twitts
 #from gd.auth import is_authenticated
@@ -30,16 +30,36 @@ videos = Blueprint(
     static_folder='static')
 
 @videos.route('/')
+def redir_videos_recentes():
+    return redirect("/videos/recentes")
+
+
+@videos.route('/recentes')
+@videos.route('/populares')
 def listing():
 
-    hvideos = wordpress.wpgd.getHighlightedVideos()
-    print "VIDEOS:"
-    print hvideos
-    # hvideos = fromcache("h_videos_root") or tocache("h_videos_root",wordpress.wpgd.getHighlightedVideos())
+    # hvideos = wordpress.wpgd.getHighlightedVideos()
+    hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
+        wordpress.wpgd.getHighlightedVideos() )
+
+    print "========================================================"
+    # print dir(request)
+    # print request.url
+    print request.url_rule
+    print "========================================================"
+
+    if 'populares' in str(request.url_rule):
+        order = "views" #recents
+        nome_canal = "Populares"
+    else :
+        order = "date"
+        nome_canal = "Recentes"
+
+    order_by = "%s desc" % order
 
     videos_json = {}
-    allvideos = fromcache("all_videos_root") or tocache("all_videos_root",wordpress.wpgd.getVideos(
-        where='status=true', orderby='title'))
+    allvideos = fromcache("all_videos_root_") or tocache("all_videos_root_" ,wordpress.wpgd.getVideos(
+        where='status=true', orderby="date DESC" ))
 
     categories = fromcache("all_videos_categories") or tocache("all_videos_categories",wordpress.wpgd.getVideosCategories())
 
@@ -47,8 +67,9 @@ def listing():
         videos_json[v['title']] = v['id']
 
     print "Buscando", current_app.config['VIDEO_PAGINACAO'], "vídeos por página!"
-    videos = fromcache("videos_root") or tocache("videos_root",wordpress.wpgd.getVideos(
-        where='status=true', orderby='date DESC', limit=current_app.config['VIDEO_PAGINACAO']))
+    videos = fromcache("videos_root_%s" % order) or tocache("videos_root_%s" % order,
+        wordpress.wpgd.getVideos(where='status=true', orderby=order_by, limit=current_app.config['VIDEO_PAGINACAO']) )
+
     try:
         twitter_hash_cabecalho = twitts()
     except KeyError:
@@ -57,13 +78,21 @@ def listing():
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template('videos.html', videos=videos
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
-        ,menu=menus, titulos=videos_json, categories=categories, hvideos=hvideos)
+        ,menu=menus, titulos=videos_json, categories=categories, hvideos=hvideos
+        ,canal=nome_canal)
 
-@videos.route('/canal/<categoria_id>')
+@videos.route('/canal/<int:categoria_id>')
 def canal(categoria_id):
     categories = fromcache("all_videos_categories") or tocache("all_videos_categories",wordpress.wpgd.getVideosCategories())
 
-    videos = fromcache("videos_canal_%s" % str(categoria_id)) or tocache("videos_canal_%s" % str(categoria_id), 
+    print categories
+    nome_canal = ""
+    for cat in categories:
+        if int(cat['term_id']) == categoria_id:
+            nome_canal = cat['name']
+            break
+
+    videos = fromcache("videos_canal_%s" % str(categoria_id)) or tocache("videos_canal_%s" % str(categoria_id),
              wordpress.wpgd.getVideosByCategory(category=categoria_id, orderby='date DESC'))
 
     videos_json = {}
@@ -72,7 +101,11 @@ def canal(categoria_id):
     for v in allvideos:
         videos_json[v['title']] = v['id']
 
-    return render_template('videos.html', videos=videos, titulos=videos_json, categories=categories)
+    hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
+        wordpress.wpgd.getHighlightedVideos() )
+
+    return render_template('videos.html', videos=videos, titulos=videos_json,
+        categories=categories, hvideos=hvideos, canal=nome_canal)
 
 
 @videos.route('/nextpage/<int:pagina>/')
@@ -81,20 +114,20 @@ def nextpage(pagina):
     offset = pagina * paginacao
     print "OFFSET:", offset
     videos = fromcache("videos_%s" % str(offset)) or tocache("videos_%s" % str(offset), wordpress.wpgd.getVideos(
-        where='status=true', orderby='date DESC', limit=paginacao, 
+        where='status=true', orderby='date DESC', limit=paginacao,
         offset=offset))
     return render_template('videos_pagina.html', videos=videos)
 
 
 @videos.route('/<int:vid>/')
 def details(vid):
-    video = fromcache("video_%s" % str(vid)) 
+    video = fromcache("video_%s" % str(vid))
     print "Video do cache!"
 
     if not video:
         print "Video do wordpress..."
         video = tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
-    
+
     video['views'] = int(video['views']) + 1
     # print "Delete video cache!"
     removecache("video_%s" % str(vid))
