@@ -210,8 +210,6 @@ def index():
 		slides=retslides,
 		stats=_get_stats(),
 		milhoes=valor_investimentos,
-		menu=menus,
-		twitter_hash_cabecalho=twitts(),
 	)
 
 
