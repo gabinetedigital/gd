@@ -3,6 +3,7 @@
   position: absolute
   width: 100%
   height: 100%
+  overflow: auto
 
   .full-height
     height: 100%
@@ -135,7 +136,7 @@
     background: #2c3e50
     height: 250px
     display: block
-    margin-top: 30px
+    margin: 30px 0
 
     .controls
       position: relative
@@ -245,29 +246,45 @@
 #monitoramento li
   list-style: none
 
-#monitoramento .lista-obras li
-  overflow: auto
-  padding: 10px
-  border-bottom: 1px solid #ddd
+#monitoramento .lista-obras .span3 > a:hover
+  text-decoration: none
 
-#monitoramento .lista-obras li > h4
+#monitoramento .lista-obras .obra
+  height: 180px
+  margin-bottom: 10px
+
+#monitoramento .lista-obras .obra > h4
+  margin-top: -60px
+  background: #2ECC71
+  color: #FFFFFF
+  display: block
+  font-size: 1em
+  font-weight: 600
+  margin-top: -60px
+  padding: 3px 10px
+  position: relative
+
+#monitoramento .lista-obras .meta-obra ul
   margin: 0
 
-#monitoramento .lista-obras .meta-obra
-  float: left
-  text-align: center
-  margin-right: 20px
+#monitoramento .lista-obras .meta-obra li
+  display: inline-block
+  color: #7f8c8d
+  margin-right: 15px
+  font-size: 0.9em
 
-#monitoramento .lista-obras .meta-obra img
-  display: block
-  clear: both
+#monitoramento .lista-obras .meta-obra li i
+  font-size: 1.2em
+  margin-right: 5px
 
-#monitoramento .lista-obras .meta-obra a
-  margin-top: 10px
-  width: 134px
+#monitoramento .lista-obras .meta-obra li.seguidores i
+  color: #f1c40f
 
-#monitoramento .lista-obras p
-  display: table
+#monitoramento .lista-obras .meta-obra li.local i
+  color: #3498db
+
+#monitoramento .lista-obras .meta-obra li.comentario i
+  color: #e74c3c
 
 #monitoramento .instrucoes li
   border-bottom: 1px dashed #CCCCCC

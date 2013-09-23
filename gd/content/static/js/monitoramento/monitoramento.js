@@ -30,7 +30,7 @@ $(window).load(function () {
     });
 
     $('.toottip').tooltip();
-
+    $('.cidades').tooltip('toggle');
     $('.icon-list').click(function(){
         $('#lista-obras').fadeIn();
     });
