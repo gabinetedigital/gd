@@ -1,17 +1,18 @@
 {% for video in videos %}
-<li class="span4">
+<li class="span3">
   <div class="thumbnail video">
     <a href="/videos/{{video.id}}/">
-      <img class="thumb"
-           src="{{ video.thumbnail }}" alt="{{ video.title }}"
-           width="100%">
+      <img src="{{ thumborurl(video.thumbnail, (270,152) )
+      }}" class="thumb" alt="{{video.title}}">
     </a>
     <div class="meta">
       <a href="/videos/{{video.id}}/">
-        <strong>{{ video.title }} {%if video.category_title%}({{video.category_title}}){%endif%}</strong>
+        <strong>{{video.date | strftime() }} | {{video.views}} visualizações.</strong>
+        <p>{{ video.title }} {%if
+        video.category_title%} ({{video.category_title}})
+        {%endif%} </p>
       </a>
     </div>
-    <!-- <p>{{ video.description|truncate(length=80) }}</p> -->
   </div>
 </li>
 {% endfor %}
