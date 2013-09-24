@@ -17,22 +17,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$window.load((function() {
+$(window).load(function() {
     //Dos videos em destaque
     $('.carousel').carousel();
 
-    $('.searcher').typeahead({
-        source: [{%for t in titulos%}'{{t}}',{%endfor%}],
-        items: 8,
-        minLength: 2,
-        updater: function(item){
-            //Slugs é um dicionáraio que contém como chave o Título do vídeo, e como valor o id,
-            //para poder recdirecionar diretamente para a galeria.
-            ids = { {%for t in titulos%}
-                    '{{t}}':'{{titulos[t]}}',
-                    {%endfor%} }
-            document.location = "/videos/" + ids[item]
-        }
+    var video_page = 1;
+    $(".thumbnails").append("")
+    $("#readmorevideos").click(function(){
+        $.ajax({
+            url:"/videos/nextpage/" + video_page + "/",
+            success: function(resp){
+                if(!resp){
+                    $("#readmorevideos").attr("disabled", "disabled");
+                    $("#readmorevideos").html("Não há mais vídeos!");
+                    return;
+                }
+                $(".thumbnails").append(resp);
+                //alert(resp);
+                video_page = video_page + 1;
+                window.setTimeout(function(){
+                    $('.thumbnails').masonry('reload');
+                },1000);
+            }
+        });
     });
 
 });
