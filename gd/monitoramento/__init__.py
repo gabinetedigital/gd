@@ -352,6 +352,7 @@ def obra(slug):
 	cacheid = "obratl-%s"%slug
 	timeline = fromcache(cacheid) or tocache(cacheid,wordpress.monitoramento.getObraTimeline(obra['id']))
 	timeline = adjustCf(timeline)
+	statuses = [ s for s in timeline if s['format'] == 'status' ]
 
 	cacheid = "page-more-"+slug
 	more = fromcache(cacheid) or tocache(cacheid,wordpress.getPageByPath('more-'+slug))
@@ -373,6 +374,7 @@ def obra(slug):
 		howto=howto,
 		more=more,
 		timeline=timeline,
+		statuses=statuses,
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
 
