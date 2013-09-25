@@ -376,39 +376,26 @@ $(window).load(function () {
 
           <div class="updates">
 
+        {%for update in timeline%}
+
+          {%if update.format == 'status'%} {#===================================================#}
+
+            {%if loop.index > 1%}
+            </div> <!-- fim timeline -->
+            {%endif%}
 
             {%include 'part_govresp.html'%}
 
-
-              {%if timeline[1:]%}
+            {%if timeline%}
               <p>O que as pessoas estão falando...</p>
-              {%else%}
+            {%else%}
               <p>Seja o primeiro a fiscalizar essa obra!</p>
-              {%endif%}
-            {%set mostra_items = True%}
-
-            <div class="timeline">
-
-              {%if timeline[1:]%}
-              <div class="line"></div>
-              {%endif%}
-
-              {%for update in timeline[1:]%}
-
-              {%if update.format == 'status'%} {#===================================================#}
-              {%set mostra_items = False%}
-            </div>
-
-            <div class="govresp remote" data-oid="{{obra.slug}}" data-id="{{update.id}}">
-              <div class="cal">
-                <div class="dia">{{update.date.date|formatarDataeHora(formato="%d")}}</div>
-                <div class="mes">{{update.date.date|formatarDataeHora(formato="%b")}}</div>
-              </div>
-              <h2>Governo Responde</h2>
-            </div>
+            {%endif%}
 
             <div class="timeline" id="timeline{{update.id}}">
-              {%elif mostra_items %} {#===========================================================================#}
+            <div class="line"></div>
+
+          {%else%} {#===========================================================================#}
               <div class="update {{ update.format }}">
 
                 <div class="seta">
@@ -422,10 +409,12 @@ $(window).load(function () {
                     <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</a>
                   </div>
 
+                  {%if update.format not in ('link')%}
                   {{update.content|safe}}
+                  {%endif%}
 
                   {%if update.format == 'link'%}
-                  <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
+                  <a class="linkcontent" href="{{update.content|striptags}}">{{update.content|striptags}}</a>
                   {%endif%}
 
                   {%if update.format == 'video'%}
@@ -451,8 +440,9 @@ $(window).load(function () {
                 </div>
 
               </div>
-              {%endif%} {#==========================================================================#}
-              {%endfor%}
+          {%endif%} {#==========================================================================#}
+        {%endfor%}
+
             </div> <!-- fim timeline -->
           </div> <!-- fim updates -->
 
