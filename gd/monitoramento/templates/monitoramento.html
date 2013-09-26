@@ -13,7 +13,7 @@ $('video').mediaelementplayer();
 {% endblock %}
 
 {% block content %}
-<div id="monitoramento" class="capa">
+<div class="capa">
   <div class="container">
     <div class="app">
       <div class="row">
@@ -23,7 +23,7 @@ $('video').mediaelementplayer();
             </div>
           </a>
 
-          <div class="busca widget">
+          <div class="busca widget hidden-phone">
             <p>procure por uma obra</p>
             <div class="input-busca">
               <input type="text" placeholder="Ex: Hospital, Passo fundo ou Saúde">
@@ -31,7 +31,7 @@ $('video').mediaelementplayer();
             </div>
           </div>
 
-          <div class="login widget">
+          <div class="login widget hidden-phone">
             <p><i class="icon-key"></i> login</p>
             <input type="text" class="user" placeholder="username">
             <input type="password" class="pass" placeholder="password">
@@ -43,6 +43,9 @@ $('video').mediaelementplayer();
           <div class="buttons widget">
             <a href="#comofunciona" class="comofunciona">
               <p><i class="icon-cog"></i>como funciona ?</p>
+            </a>
+            <a href="#" class="listagem visible-phone">
+              <p><i class="icon-list-ul"></i>lista das obras</p>
             </a>
             <a href="/" class="voltar-gd">
               <p><i class="icon-arrow-left"></i>gabinete digital</p>
@@ -73,7 +76,7 @@ $('video').mediaelementplayer();
           <div class="lista-obras">
             <ul class="thumbnails">
               {% for obra in obras %}
-              <li class="span3">
+              <li class="span3 {{ loop.cycle('light', 'dark') }}">
                 <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
                   <div class="thumbnail">
                     <div class="obra">
@@ -88,8 +91,7 @@ $('video').mediaelementplayer();
                       <ul>
                         <li class="seguidores"><i class="icon-star"></i>12</li>
                         <li class="local"> <i class="icon-map-marker"></i> <div class="cidades hide">{%for m in obra.custom_fields.gdobra_municipio%} {{m}} {%if not loop.last%},{%endif%} {%endfor%}</div><span class="cidade">cidade</span></li>
-                        <li class="comentario"><i class="icon-comments"></i>5</li>
-                        <li><!-- <p>{{obra.content|safe}}</p> --></li>
+                        <li class="comentarios"><i class="icon-comments"></i>5</li>
                       </ul>
                     </div>
                   </div>

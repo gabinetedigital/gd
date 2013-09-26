@@ -19,6 +19,11 @@
 
 $(window).load(function () {
 
+    $('.listagem').click(function(){
+        $('.buttons.widget').animate({ right: "100%" });
+        $('.lista-obras').animate({ left: "0" });
+    });
+
     $('.carousel').carousel();
 
     // $('#myCarousel .item').click(function(){

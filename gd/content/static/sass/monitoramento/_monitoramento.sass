@@ -1,8 +1,10 @@
 #monitoramento
   background: #ecf0f1
   margin: 0
-  @media (max-width: 480px)
+  @media (max-width: 767px)
     padding: 0
+    background: #34495e
+    overflow-x: hidden
 
 
   input, textarea, .uneditable-input
@@ -29,7 +31,7 @@
         height: 120px
       @media (min-width: 768px) and (max-width: 979px)
         height: 95px
-      @media (max-width: 480px)
+      @media (max-width: 767px)
         min-height: 160px
 
       +background-size(cover)
@@ -113,6 +115,9 @@
           font-size: 0.8em
 
     .buttons
+      @media (max-width: 767px)
+        position: relative
+
       i
         display: inline-block
         font-size: 2em
@@ -211,35 +216,45 @@
     overflow: hidden
 
   .lista-obras
-    @media (max-width: 480px)
-      display: none
+    @media (max-width: 767px)
       background: #ECF0F1
-      padding-top: 10px
+      left: 100%
+      top: 160px
+      position: absolute
+      width: 100%
 
     li
+      @media (max-width: 767px)
+        overflow: hidden
+        margin: 0
+
       &.dark
-        background: #eee
+        background: #dde2e4
 
       &.light
-        background: #fff
+        background: #ecf0f1
 
     .span3 > a:hover
       text-decoration: none
+
+    .thumbnail
+      @media (max-width: 767px)
+        padding: 10px 0
 
     .obra
       width: 100%
       position: relative
       margin-bottom: 10px
-      @media (max-width: 480px)
+      @media (max-width: 767px)
         padding: 0 10px
 
       > img
-        @media (max-width: 480px)
+        @media (max-width: 767px)
           width: 50px
           height: 50px
           display: inline-block
 
-      .obra > h4
+      > h4
         background: #2ECC71
         color: #FFFFFF
         font-size: 1em
@@ -248,7 +263,8 @@
         position: absolute
         bottom: 0
         left: 0
-        @media (max-width: 480px)
+
+        @media (max-width: 767px)
           margin: 0 5px
           background: none
           left: inherit
@@ -256,31 +272,31 @@
           display: inline-block
           color: #2c3e50
 
-      .meta-obra
-        @media (max-width: 480px)
-          float: right
+    .meta-obra
+      @media (max-width: 767px)
+        float: right
 
-        ul
-          margin: 0
+      ul
+        margin: 0
 
-        li
-          display: inline-block
-          color: #7f8c8d
-          margin-right: 10px
-          font-size: 0.9em
+      li
+        display: inline-block
+        color: #7f8c8d
+        margin-right: 10px
+        font-size: 0.9em
 
-          i
-            font-size: 1.2em
-            margin-right: 5px
+        i
+          font-size: 1.2em
+          margin-right: 5px
 
-          &.seguidores i
-            color: #f1c40f
+        &.seguidores i
+          color: #f1c40f
 
-          &.local i
-            color: #3498db
+        &.local i
+          color: #3498db
 
-          &.comentario i
-            color: #e74c3c
+        &.comentarios i
+          color: #e74c3c
 
 #monitoramento.obra
   background: #ecf0f1
