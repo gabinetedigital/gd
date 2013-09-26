@@ -34,6 +34,8 @@ from flask import url_for
 # from twython import Twython
 import tweepy
 import pdb
+import sys
+import traceback
 from gd.utils.gdcache import fromcache, tocache
 
 from gd import conf
@@ -188,7 +190,7 @@ def generate_random_password():
         string.ascii_uppercase + string.digits) for x in range(8))
 
 
-def sendmail(subject, to_addr, message):
+def sendmail(subject="", to_addr="", message=""):
     """Sends an email message"""
     try:
         msg = MIMEText(message, _charset='utf-8')
@@ -198,13 +200,17 @@ def sendmail(subject, to_addr, message):
         msg['To'] = to_addr
         msg['From'] = conf.FROM_ADDR
 
+        print "SENDING MAIL:", subject, to_addr, conf.FROM_ADDR
+
         # Finally, sending the mail
         smtp = smtplib.SMTP(conf.SMTP)
         smtp.sendmail(conf.FROM_ADDR, to_addr, msg.as_string())
         smtp.quit()
     except Exception as e:
         print "Ocorreu um erro enviando email para %s" % to_addr
-        print e
+        print '-'*60
+        traceback.print_exc(file=sys.stdout)
+        print '-'*60
     return True
 
 

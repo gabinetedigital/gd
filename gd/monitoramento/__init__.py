@@ -647,7 +647,14 @@ def sendnews():
 		print "DE-OLHO-NAS-OBRAS::", "Não foi passado o ID nem o SLUG da obra para os avisos!"
 		return abort(404)
 
-	obra_link = url_for('.obra',slug=obra['slug'])
+	base_url = current_app.config['BASE_URL']
+	obra_link = base_url + url_for('.obra',slug=obra['slug'])
+	obra_titulo = obra['title']
+
+	_dados_obra = {
+		'titulo': obra_titulo,
+		'link': obra_link
+	}
 
 	print "DE-OLHO-NAS-OBRAS::", "buscando usuarios"
 	usuarios = UserFollow.query.filter(UserFollow.obra_id==int(obraid))
@@ -666,7 +673,7 @@ def sendnews():
 	t = get_twitter_connection()
 
 	msg_titulo = current_app.config['OBRA_ATUALIZACAO_SUBJECT']
-	msg = current_app.config['OBRA_ATUALIZACAO_MSG']
+	msg = current_app.config['OBRA_ATUALIZACAO_MSG'] % _dados_obra
 	msg_twitter = current_app.config['OBRA_ATUALIZACAO_TWITTER']
 
 	for u in usuarios:
@@ -700,7 +707,7 @@ def sendnews():
 				t.create_friendship(screen_name=tid)
 				dm = t.send_direct_message(
 					user=tid,
-					text="Tem atualização na obra X! Veja: %s" % obra_link)
+					text="Tem atualização na obra %s! Veja: %s" % (obra_titulo, obra_link) )
 			except Exception as e:
 				print "Ocorreu um erro enviando DM para twitter..."
 				print e
