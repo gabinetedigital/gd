@@ -22,6 +22,13 @@ $(window).load(function () {
     $('.listagem').click(function(){
         $('.buttons.widget').animate({ right: "100%" });
         $('.lista-obras').show().animate({ left: "0" });
+        $('.topbar').slideDown();
+    });
+
+    $('.voltar-obra').click(function(){
+        $('.topbar').slideUp();
+        $('.buttons.widget').animate({ right: "0" });
+        $('.lista-obras').animate({ left: "100%" }).hide();
     });
 
     $('.carousel').carousel();
