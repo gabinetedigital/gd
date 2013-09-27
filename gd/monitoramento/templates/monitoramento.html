@@ -74,6 +74,9 @@ $('video').mediaelementplayer();
 
           {%if obras%}
           <div class="lista-obras">
+            <a href="#" class="listagem visible-phone">
+              <p><i class="icon-list-ul"></i>lista das obras</p>
+            </a>
             <ul class="thumbnails">
               {% for obra in obras %}
               <li class="span3 {{ loop.cycle('light', 'dark') }}">
