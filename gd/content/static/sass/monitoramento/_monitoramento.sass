@@ -1,5 +1,3 @@
-
-
 #monitoramento
   background: #ecf0f1
   margin: 0
@@ -8,6 +6,31 @@
     background: #34495e
     overflow-x: hidden
 
+  .topbar
+    display: none
+    @media (max-width: 767px)
+      left: 0
+      margin-bottom: 0
+      position: fixed
+      right: 0
+      z-index: 1030
+      background: #34495e
+      height: 45px
+      line-height: 40px
+      padding: 0 10px
+
+    .voltar-obra
+      @media (max-width: 767px)
+        font-size: 1.3em
+        color: white
+
+      a
+        color: white
+        text-decoration: none
+
+      i
+        @media (max-width: 767px)
+          margin-right: 10px
 
   input, textarea, .uneditable-input
     width: inhert
@@ -227,16 +250,16 @@
       display: none
 
     a.listagem
-      font-size: 2.2em
       font-weight: 200
-      color: #3498db
       margin: 10px
+      font-size: 1.8em
+      color: #3498db
 
       &:hover
         text-decoration: none
 
       i
-        margin-right: 20px
+        margin-right: 10px
 
     li
       @media (max-width: 767px)
