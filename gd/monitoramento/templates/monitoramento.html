@@ -25,6 +25,7 @@ $('video').mediaelementplayer();
         <div class="span3 col aside">
           <a href="/monitore">
             <div class="logo">
+              <img src="{{ url_for('.static', filename='logo.png')}}">
             </div>
           </a>
 
@@ -58,57 +59,100 @@ $('video').mediaelementplayer();
           </div>
         </div>
         <div class="span9 col">
-          <div class="slideshow visible-desktop">
-            <div class="controls">
-              <a href="" class="seta-left"><i class="icon-chevron-left"></i></a>
-              <a href="" class="seta-right"><i class="icon-chevron-right"></i></a>
+          <div id="instrucoes">
+            <div class="close hidden-phone">
+              fechar
             </div>
-            <div class="content">
-              <img src="{{ url_for('.static', filename='logo.png')}}">
-              <div class="text">
-                <p>
-                  Em vídeo, o governador Tarso Genro convoca todo cidadão
-                  a ser um fiscal e contribuir para</p>
-
-                <p>o desenvolvimento do Estado do Rio Grande do Sul. Participe,
-                  compartilhe, fiscalize!
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {%if obras%}
-          <div class="lista-obras">
-            <a href="#" class="listagem visible-phone">
-              <p><i class="icon-list-ul"></i>lista das obras</p>
-            </a>
-            <ul class="thumbnails">
-              {% for obra in obras %}
-              <li class="span3 {{ loop.cycle('light', 'dark') }}">
-                <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
-                  <div class="thumbnail">
-                    <div class="obra">
-                      {%if obra.thumbs%}
-                      <img src="{{obra.thumbs.thumb.url}}">
-                      {%else%}
-                      <img src="http://placehold.it/270x180">
-                      {%endif%}
-                      <h4>{{obra.title}}</h4>
-                    </div>
-                    <div class="meta-obra">
-                      <ul>
-                        <li class="seguidores"><i class="icon-star"></i>12</li>
-                        <li class="local"> <i class="icon-map-marker"></i> <div class="cidades hide">{%for m in obra.custom_fields.gdobra_municipio%} {{m}} {%if not loop.last%},{%endif%} {%endfor%}</div><span class="cidade">cidade</span></li>
-                        <li class="comentarios"><i class="icon-comments"></i>5</li>
-                      </ul>
-                    </div>
-                  </div>
-                </a>
+            <h2><i class="icon-cog"></i> como funciona?</h2>
+            <ul>
+              <li>
+                <p><b>1.ESCOLHA</b> ao lado uma obra do Governo
+                  Estadual para acompanhar</p>
               </li>
-              {% endfor %}
+
+              <li>
+                <p><b>2.INFORME-SE</b> sobre o
+                andamento, veja imagens e conheça o cronograma de
+                entrega de cada obra</p>
+              </li>
+
+              <li>
+                <p><b>3.SIGA</b> as obras de seu
+                interesse e receba atualizações a cada nova etapa</p>
+              </li>
+
+              <li>
+                <p><b>4.FISCALIZE!</b> Envie fotos e
+                  vídeos das obras, comentários, dúvidas ou
+                  críticas.</p>
+              </li>
+
+              <li>
+                <p><b>5.COMPARTILHE</b> as obras que
+                  você fiscaliza e chame seus amigos para ficar de
+                  olho</p>
+              </li>
+
+              <li>
+                <p><b>6.GOVERNO RESPONDE:</b> a cada
+                  30 dias, o Governador se manifesta, em vídeo, sobre as
+                  obras mais acessadas e fiscalizadas</p>
+              </li>
             </ul>
           </div>
-          {%endif%}
+          <div id="index">
+            <div class="slideshow visible-desktop">
+              <div class="controls">
+                <a href="" class="seta-left"><i class="icon-chevron-left"></i></a>
+                <a href="" class="seta-right"><i class="icon-chevron-right"></i></a>
+              </div>
+              <div class="content">
+                <img src="{{ url_for('.static', filename='slide01.png')}}">
+                <div class="text">
+                  <p>
+                    Em vídeo, o governador Tarso Genro convoca todo cidadão
+                    a ser um fiscal e contribuir para</p>
+
+                  <p>o desenvolvimento do Estado do Rio Grande do Sul. Participe,
+                    compartilhe, fiscalize!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {%if obras%}
+            <div class="lista-obras">
+              <a href="#" class="listagem visible-phone">
+                <p><i class="icon-list-ul"></i>lista das obras</p>
+              </a>
+              <ul class="thumbnails">
+                {% for obra in obras %}
+                <li class="span3 {{ loop.cycle('light', 'dark') }}">
+                  <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
+                    <div class="thumbnail">
+                      <div class="obra">
+                        {%if obra.thumbs%}
+                        <img src="{{obra.thumbs.thumb.url}}">
+                        {%else%}
+                        <img src="http://placehold.it/270x180">
+                        {%endif%}
+                        <h4>{{obra.title}}</h4>
+                      </div>
+                      <div class="meta-obra">
+                        <ul>
+                          <li class="seguidores"><i class="icon-star"></i>12</li>
+                          <li class="local"> <i class="icon-map-marker"></i> <div class="cidades hide">{%for m in obra.custom_fields.gdobra_municipio%} {{m}} {%if not loop.last%},{%endif%} {%endfor%}</div><span class="cidade">cidade</span></li>
+                          <li class="comentarios"><i class="icon-comments"></i>5</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {%endif%}
+          </div>
         </div>
       </div>
     </div>

@@ -28,7 +28,36 @@ $(window).load(function () {
     $('.voltar-obra').click(function(){
         $('.topbar').slideUp();
         $('.buttons.widget').animate({ right: "0" });
-        $('.lista-obras').animate({ left: "100%" }).hide();
+        $('.lista-obras').animate({ left: "100%" }).fadeOut();
+        $('.topbar').slideUp();
+        $('.buttons.widget').animate({ right: "0" });
+        $('#instrucoes').animate({ left: "100%" }).fadeOut();
+    });
+
+    $('.comofunciona').click(function(){
+        if ($('body').width() > 767) {
+            if( $('#instrucoes').is(':visible')) {
+                $('#instrucoes').slideUp();
+            } else {
+                $('#instrucoes').slideDown();
+            }
+        }
+
+        if ($('body').width() < 767) {
+            if( $('#instrucoes').is(':visible')) {
+                $('.topbar').slideUp();
+                $('.buttons.widget').animate({ right: "0" });
+                $('#instrucoes').animate({ left: "100%" }).hide();
+            } else {
+                $('.buttons.widget').animate({ right: "100%" });
+                $('#instrucoes').show().animate({ left: "0" });
+                $('.topbar').slideDown();
+            }
+        }
+    });
+
+    $('#instrucoes > .close').click(function(){
+        $('#instrucoes').slideUp();
     });
 
     $('.carousel').carousel();
