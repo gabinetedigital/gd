@@ -38,6 +38,7 @@
   .col
     margin-bottom: -99999px
     padding-bottom: 99999px
+    overflow-x: hidden
 
   .app
     background: #ecf0f1
@@ -47,19 +48,9 @@
     background: #34495e
 
     .logo
-      background:
-        image: image-url("../img/monitoramento/logo.png")
-        repeat: no-repeat
-        color: white
-      height: 153px
-      @media (max-width: 1200px)
-        height: 120px
-      @media (min-width: 768px) and (max-width: 979px)
-        height: 95px
-      @media (max-width: 767px)
-        min-height: 160px
-
-      +background-size(cover)
+      background: white
+      width: 100%
+      height: 100%
 
     .widget
       padding: 10px
@@ -99,7 +90,7 @@
         border-right: 0
         border-bottom: 1px solid #3498db
         margin-left: -5px
-        padding-bottom: 4px
+        padding-bottom: 5px
         width: 11%
 
     .login
@@ -194,6 +185,51 @@
           background-color: #c0392b
         p
           background-color: #e74c3c
+
+  #instrucoes
+    background-color: #2ecc7f
+    padding: 30px 35px
+    height: 460px
+    display: none
+    @media (max-width: 767px)
+      left: 100%
+      top: 160px
+      position: absolute
+      height: 100%
+      padding: 10px 20px
+
+    h2
+      color: white
+      font-weight: 200
+      font-size: 3em
+      @media (min-width: 768px) and (max-width: 979px)
+        font-size: 2em
+      @media (max-width: 767px)
+        font-size: 2em
+      margin-bottom: 30px
+
+
+    ul
+      margin: 0
+      @media (max-width: 767px)
+        width: 90%
+
+    li
+      color: white
+      font-size: 1.3em
+      @media (min-width: 768px) and (max-width: 979px)
+        font-size: 1em
+      @media (max-width: 767px)
+        font-size: 1em
+      margin-bottom: 20px
+
+      b
+        display: block
+        clear: both
+
+  #index
+    @media (min-width: 768px) and (max-width: 979px)
+      margin-top: 30px
 
   .slideshow
     background: #2c3e50
@@ -398,44 +434,6 @@
 #monitoramento li
   list-style: none
 
-#monitoramento .instrucoes li
-  border-bottom: 1px dashed #CCCCCC
-  margin-top: 20px
-  overflow: auto
-  padding-bottom: 20px
-
-#monitoramento .instrucoes li:last-child
-  border: none
-
-#monitoramento .instrucoes span
-  color: #CCCCCC
-  display: block
-  float: left
-  font-size: 30pt
-  padding-right: 20px
-  padding-top: 9px
-
-#monitoramento .instrucoes p
-  margin: 0 0 10px
-  padding-left: 40px
-  padding-right: 20px
-
-#monitoramento .numeros
-  color: #2c3e50
-  text-align: center
-  font-size: 26pt
-  padding-top: 70px
-  font-weight: 200
-
-#monitoramento .numeros li
-  display: inline-block
-  margin-right: 20px
-
-#monitoramento .numeros span
-  display: block
-  font-size: 10pt
-  padding-top: 15px
-  font-weight: 600
 
 /* Páginad da Obra
 #monitoramento.obra h1
