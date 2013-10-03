@@ -19,6 +19,19 @@
 
 $(window).load(function () {
 
+    if ($('body').width() > 767) {
+        if(!$.cookie('primeiraVez') ){
+            $('body').chardinJs('start');
+        }
+        $.cookie('primeiraVez', true, { expires: 365 });
+    }
+
+    $('.help').click(function(){
+        $('body').chardinJs('toggle');
+    });
+
+
+
     $('.listagem').click(function(){
         $('.buttons.widget').animate({ right: "100%" });
         $('.lista-obras').show().animate({ left: "0" });
