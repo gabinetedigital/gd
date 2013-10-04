@@ -12,6 +12,37 @@
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script>
 $('video').mediaelementplayer();
+
+obras_list = Array()
+obras_list_id = {}
+{%for obra in obras%}
+obras_list[obras_list.length] = '{{obra.title}}';
+obras_list_id['{{obra.title}}'] = '{{obra.slug}}';
+{%endfor%}
+
+$('.typeahead').typeahead({
+  source: obras_list,
+  items: 8,
+  minLength: 2,
+  sorter: function (items) {
+      return items.sort();
+  },
+  highlighter: function (item) {
+      var regex = new RegExp( '(' + this.query + ')', 'gi' );
+      return item.replace( regex, "<strong>$1</strong>" );
+  },
+  matcher: function (item) {
+      if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) != -1) {
+          return true;
+      }
+  },
+  updater: function(item){
+    //obras_list_id é um dicionáraio que contém como chave o Título da obra, e como valor o id,
+    //para poder recdirecionar diretamente para a pagina correta.
+    document.location = "/monitore/obra/" + obras_list_id[item]
+  }
+});
+
 </script>
 {% endblock %}
 
@@ -35,7 +66,7 @@ $('video').mediaelementplayer();
           <div class="busca widget hidden-phone" data-intro="Procure obras por nome, local ou tema" data-position="top">
             <p>procure por uma obra</p>
             <div class="input-busca">
-              <input type="text" placeholder="Ex: Hospital, Passo fundo ou Saúde">
+              <input class="typeahead" type="text" placeholder="Ex: Hospital, Passo fundo ou Saúde" autocomplete="off">
               <button class="add-on" type="button"><i class="icon-search"></i></button>
             </div>
           </div>
