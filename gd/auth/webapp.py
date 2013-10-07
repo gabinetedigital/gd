@@ -190,6 +190,7 @@ def logout():
         return redirect(url_for('index'))
     authapi.logout()
     next = request.values.get('next')
+    app = request.values.get('app')
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
         twitter_hash_cabecalho = utils.twitts()
@@ -202,6 +203,7 @@ def logout():
     else:
         return render_template('logout.html',
             menu=menus,
+            app=app,
             twitter_hash_cabecalho=twitter_hash_cabecalho,
             voltar=request.referrer or "/"
             )

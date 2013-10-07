@@ -18,9 +18,15 @@
 
       <h2>Você foi desconectado</h2>
       <h3>Obrigado por acessar o Gabinete Digital!</h3>
+      {%if not app%}
       <p class="lead">Agora, mesmo deslogado, você poderá continuar navegando no site, acesse a nossa capa para agora e veja todas as informações<br>&nbsp;</p>
+      {%else%}
+      <p class="lead">Agora, mesmo deslogado, você poderá continuar navegando no site e acessando todas as informações disponíveis<br>&nbsp;</p>
+      {%endif%}
       <a href="{{voltar}}" class="btn btn-info">Voltar</a>
+      {%if not app%}
       <a href="{{url_for('auth.login')}}?next=/" class="btn btn-success">Efetuar o login novamente</a>
+      {%endif%}
 
     </div>
   </div>
