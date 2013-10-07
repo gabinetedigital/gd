@@ -18,5 +18,13 @@
  */
 
 $(document).ready(function() {
+	jQuery.fn.showLoadingModal = function() {
+	    // $("#content-loading").addClass("newloading");
+	    $("#content-loading").show();
+	};
 
+	jQuery.fn.hideLoadingModal = function() {
+	    // $("#content-loading").removeClass("newloading");
+	    $("#content-loading").hide();
+	};
 });
