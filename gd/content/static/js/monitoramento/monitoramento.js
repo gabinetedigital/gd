@@ -73,7 +73,9 @@ $(window).load(function () {
         $('#instrucoes').slideUp();
     });
 
-    $('.carousel').carousel();
+    $('.carousel').carousel({
+        interval: 10000
+    });
 
     // $('#myCarousel .item').click(function(){
     //     console.log("Clicado");
