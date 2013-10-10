@@ -7,11 +7,7 @@
 
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
-<script src="{{ url_for('static', filename='js/vendor/chardinjs.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/vendor/jquery/jquery.cookie.js') }}"></script>
-<script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script>
-$('video').mediaelementplayer();
 
 obras_list = Array()
 obras_list_id = {}
@@ -158,24 +154,87 @@ $('.typeahead').typeahead({
             </ul>
           </div>
           <div id="index">
-            <div class="slideshow visible-desktop">
-              <div class="controls">
-                <a href="" class="seta-left"><i class="icon-chevron-left"></i></a>
-                <a href="" class="seta-right"><i class="icon-chevron-right"></i></a>
-              </div>
-              <div class="content">
-                <img src="{{ url_for('.static', filename='slide01.png')}}">
-                <div class="text">
-                  <p>
-                    Em vídeo, o governador Tarso Genro convoca todo cidadão
-                    a ser um fiscal e contribuir para</p>
+            <div id="myCarousel" class="slideshow visible-desktop carousel slide">
+            <div class="content carousel-inner">
 
-                  <p>o desenvolvimento do Estado do Rio Grande do Sul. Participe,
-                    compartilhe, fiscalize!
-                  </p>
-                </div>
+              {%for slide in slides%}
+              <div id="myCarouselItem{{loop.index}}" class="item {%if loop.index-1 == 0%}active{%endif%}">
+
+                    {%if 'gdvideo' in slide%}
+                      {#GDVIDEO#}
+                      <a href="#video{{ slide.gdvideo.id }}"><img width="360" height="200" src="{{slide.gdvideo.thumbnail}}"></a>
+
+                      <div class="text">
+                        <h4>{{slide.title|safe}}</h4>
+                        <span>{{slide.content|safe}}</span>
+                      </div>
+
+                      <div class="video hide" height="100%" id="video{{ slide.gdvideo.id }}">
+                        <video class="video-obras" height="100%" poster="{{slide.gdvideo.thumbnail}}" controls="controls" preload="none">
+                          <!-- MP4 source must come first for iOS -->
+                          <source type="video/mp4" src="{{slide.gdvideo.sources['video/mp4']}}" />
+                          <!-- WebM for Firefox 4 and Opera -->
+                          <source type="video/webm" src="{{slide.gdvideo.sources['video/webm']}}" />
+                          <!-- OGG for Firefox 3 -->
+                          <!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
+                          <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
+
+                          <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">
+                            <param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" />
+                            <param name="flashvars" value="controls=true&amp;file={{slide.gdvideo.sources['video/mp4']}}" />
+                            <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
+                            <img src="{{slide.gdvideo.thumbnail}}" width="{{ slide.gdvideo.video_width }}" height="{{ slide.gdvideo.video_height }}" alt="Here we are"
+                              title="No video playback capabilities" />
+                          </object>
+                        </video>
+                      </div>
+
+                    {%elif 'video' in slide%}
+                      {#VIDEO#}
+                      <a href="#video{{ slide.id }}"><img width="320" height="160" src="{{slide.thumbs.slideshow.url}}"></a>
+
+                      <div class="text">
+                        <h4>{{slide.title|safe}}</h4>
+                        <span>{{slide.content|safe}}</span>
+                      </div>
+
+                      <div class="video hide" width="300" height="500" id="video{{ slide.id }}">
+                        <video width="640" height="360" id="player{{ slide.id }}" preload="none">
+                            <source src="{{slide.video}}" />
+                        </video>
+                      </div>
+
+                    {%elif 'youtube' in slide%}
+                      {#YOUTUBE VIDEO#}
+                      <a href="#video{{ slide.id }}"><img width="320" height="160" src="{{slide.youtube.thumb}}"></a>
+
+                      <div class="text">
+                        <h4>{{slide.title|safe}}</h4>
+                        <span>{{slide.content|safe}}</span>
+                      </div>
+
+                      <div class="video hide" height="100%" id="video{{ slide.id }}">
+                        <video height="100%" id="player{{ slide.id }}" preload="none">
+                            <source type="video/youtube" src="{{slide.youtube.video}}" />
+                        </video>
+                      </div>
+                    {%elif slide.thumbs%}
+                      <img src="{{slide.thumbs.slideshow.url}}">
+
+                      <div class="text">
+                        <h4>{{slide.title|safe}}</h4>
+                        <span>{{slide.content|safe}}</span>
+                      </div>
+
+                    {%endif%}
+
+              </div>
+              {%endfor%}
+
               </div>
             </div>
+
+
 
             {%if obras%}
             <div class="lista-obras">
@@ -197,15 +256,14 @@ $('.typeahead').typeahead({
                       </div>
                       <div class="meta-obra">
                         <ul>
-
                           <li class="seguidores" {% if loop.index == 3 %}data-intro="Seguidores" data-position="top" {% endif %}>
-                            <i class="icon-star"></i>12
+                            <i class="icon-star"></i>{{obra.total_follows}}
                           </li>
                           <li class="local" {% if loop.index == 3 %}data-intro="Local da obra" data-position="bottom" {% endif %}>
-                            <i class="icon-map-marker"></i> <div class="cidades hide">{%for m in obra.custom_fields.gdobra_municipio%} {{m}} {%if not loop.last%},{%endif%} {%endfor%}</div><span class="cidade">cidade</span>
+                            <i class="icon-map-marker"></i> <div class="cidades">{%if obra.custom_fields.gdobra_municipio%} {{obra.custom_fields.gdobra_municipio[0]}} {%endif%}</div>
                           </li>
                           <li class="comentarios" {% if loop.index == 3 %}data-intro="Comentários" data-position="top" {% endif %}>
-                            <i class="icon-comments"></i>5
+                            <i class="icon-comments"></i>{{obra.total_contributions}}
                           </li>
                         </ul>
                       </div>
