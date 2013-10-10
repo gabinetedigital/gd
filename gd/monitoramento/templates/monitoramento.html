@@ -248,7 +248,7 @@ $('.typeahead').typeahead({
                     <div class="thumbnail">
                       <div class="obra">
                         {%if obra.thumbs%}
-                        <img src="{{obra.thumbs.thumb.url}}">
+                        <img src="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
                         {%else%}
                         <img src="http://placehold.it/270x180">
                         {%endif%}
