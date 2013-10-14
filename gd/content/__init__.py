@@ -85,7 +85,7 @@ app.register_blueprint(balanco, url_prefix='/balanco')
 app.register_blueprint(audience, url_prefix='/audience')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
-app.register_blueprint(monitoramento, url_prefix='/monitore')
+app.register_blueprint(monitoramento, url_prefix='/deolho')
 app.register_blueprint(seminario, url_prefix='/seminario')
 
 gravatar = Gravatar(app,default='mm')
@@ -967,3 +967,8 @@ def opcaoRefPolitica():
     resp = make_response( jsonify(r), 200)
     resp.set_cookie('reforma_voted', request.form['hdnquestao1'])
     return resp
+
+
+@app.route('/monitore/')
+def redir_deolho():
+    return redirect( url_for('monitoramento.index') )
