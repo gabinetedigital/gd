@@ -74,17 +74,23 @@ $('.typeahead').typeahead({
               <input type="text" name="username" id="username" class="user" placeholder="username">
               <input type="password" id="password" name="password" class="pass" placeholder="password">
 
-              <button type="submit" class="login-submit">entrar</button>
-              <a href="{{url_for("auth.lost_password")}}" class="login-forget">esqueci a senha</a>
-              <a href="{{url_for("auth.signup")}}" class="login-cadastrar">quero me cadastrar</a>
+              <a onclick="document.getElementById('login').submit();" class="button
+              login-submit">entrar</a>
 
-              <input type="hidden" name="next" value="{{next or url_for("monitoramento.index")}}">
+              <a href="{{url_for("auth.lost_password")}}" class="button
+              login-forget">esqueci a senha</a>
+
+              <a href="{{url_for("auth.signup")}}" class="button
+              login-cadastrar">cadastre-se</a>
+
+              <input type="hidden" name="next" value="{{next or
+              url_for("monitoramento.index")}}">
 
             </form>
             {%else%}
             <ul>
               <li class="login-obras">
-                <img src="{{ social_image(user) or user.email | gravatar(size=16) }}">
+                <img src="{{ social_image(user) or user.email | gravatar(size=48) }}">
                 <a class="login-name" href="/auth/profile/">{{user.name|truncate(20)}}</a>
               </li>
               <li class="login-action"><a href="/auth/logout/?app=monitoramento"><i class="icon-ban-circle"></i> Logout</a></li>
@@ -259,8 +265,8 @@ $('.typeahead').typeahead({
                           <li class="seguidores" {% if loop.index == 3 %}data-intro="Seguidores" data-position="top" {% endif %}>
                             <i class="icon-star"></i>{{obra.total_follows}}
                           </li>
-                          <li class="local" {% if loop.index == 3 %}data-intro="Local da obra" data-position="bottom" {% endif %}>
-                            <i class="icon-map-marker"></i> <div class="cidades">{%if obra.custom_fields.gdobra_municipio%} {{obra.custom_fields.gdobra_municipio[0]}} {%endif%}</div>
+                          <li class="local">
+                            <i class="icon-map-marker"></i> <span class="cidade">{%if obra.custom_fields.gdobra_municipio%} {{obra.custom_fields.gdobra_municipio[0]}} {%endif%}</span>
                           </li>
                           <li class="comentarios" {% if loop.index == 3 %}data-intro="Comentários" data-position="top" {% endif %}>
                             <i class="icon-comments"></i>{{obra.total_contributions}}
