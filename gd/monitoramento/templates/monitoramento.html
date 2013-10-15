@@ -88,12 +88,12 @@ $('.typeahead').typeahead({
 
             </form>
             {%else%}
-            <ul>
-              <li class="login-obras">
+            <ul class="user-panel">
+              <li class="avatar">
                 <img src="{{ social_image(user) or user.email | gravatar(size=48) }}">
-                <a class="login-name" href="/auth/profile/">{{user.name|truncate(20)}}</a>
               </li>
-              <li class="login-action"><a href="/auth/logout/?app=monitoramento"><i class="icon-ban-circle"></i> Logout</a></li>
+              <li>Olá, <a class="user" href="/auth/profile/">{{user.name|truncate(20)}}</a></li>
+              <li class="logout"><a class="button logout" href="/auth/logout/?app=monitoramento"><i class="icon-signout"></i> sair</a></li>
             </ul>
 
 
