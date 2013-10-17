@@ -265,7 +265,7 @@ $('.typeahead').typeahead({
                           <li class="seguidores" {% if loop.index == 3 %}data-intro="Seguidores" data-position="top" {% endif %}>
                             <i class="icon-star"></i>{{obra.total_follows}}
                           </li>
-                          <li class="local">
+                          <li class="local"  {% if loop.index == 3 %}data-intro="Local da obra" data-position="bottom" {% endif %}>
                             <i class="icon-map-marker"></i> <span class="cidade">{%if obra.custom_fields.gdobra_municipio%} {{obra.custom_fields.gdobra_municipio[0]}} {%endif%}</span>
                           </li>
                           <li class="comentarios" {% if loop.index == 3 %}data-intro="Comentários" data-position="top" {% endif %}>
