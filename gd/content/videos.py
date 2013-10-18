@@ -52,11 +52,11 @@ def listing():
     if 'populares' in str(request.url_rule):
         order = "views" #recents
         nome_canal = "Populares"
-        canalclass="icon-populares"
+        canalclass="icon-star"
     else :
         order = "date"
         nome_canal = "Recentes"
-        canalclass="icon-recentes"
+        canalclass="icon-time"
 
     order_by = "%s desc" % order
 
@@ -108,7 +108,7 @@ def canal(categoria_id):
         wordpress.wpgd.getHighlightedVideos() )
 
     return render_template('videos.html', videos=videos, titulos=videos_json,
-        categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="icon-canal")
+        categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="icon-th-large")
 
 
 @videos.route('/nextpage/<int:pagina>/')
