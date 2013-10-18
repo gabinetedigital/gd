@@ -10,103 +10,128 @@
     color: #fff
     padding: 10px 20px
 
-  .seta:hover
-    text-decoration: none
-    color: #fff
+    &:hover
+      text-decoration: none
+      color: #fff
 
-#highlight-videos.carousel
-  margin-bottom: 0
+#highlight-videos
+  .carousel
+    margin-bottom: 0
 
-#highlight-videos a,
-#highlight-videos a:hover,
-#highlight-videos a:active,
-#highlight-videos a:visited
-  text-decoration: none
-  color: #fff
+  a
+    &:hover,
+    &:active,
+    &:visited
+      text-decoration: none
+      color: #fff
 
-#highlight-videos .capitions
-  position: absolute
-  top: 50%
-  bottom: 0
-  left: 0
-  right: 0
-  padding: 40px 80px 0
-  +single-text-shadow
+  .capitions
+    position: absolute
+    top: 50%
+    bottom: 0
+    left: 0
+    right: 0
+    padding: 40px 80px 0
+    +single-text-shadow
+    +background-image(linear-gradient(center top, transparent, rgba(0,0,0,0.8)))
 
-  +background-image(linear-gradient(center top, transparent, rgba(0,0,0,0.8)))
+    h3
+      text-transform: uppercase
 
-#highlight-videos .capitions h3
-  text-transform: uppercase
+      &> i
+        padding: 10px 20px
+        margin-right: 30px
+        background-color: #34495e
 
-#highlight-videos .capitions h3 > i
-  padding: 10px 20px
-  margin-right: 30px
-  background-color: #34495e
-
-#highlight-videos .capitions p
-  padding-left: 90px
+    p
+      padding-left: 90px
 
 //--------------------------//
 
 .video-filter
   background-color: #34495e
 
-.video-filter a,
-.video-filter a:hover,
-.video-filter a:active,
-.video-filter a:visited
-  color: #FFF
-  text-decoration: none
+  .filter
+    border-bottom: 2px solid #2c3e50
+    overflow: hidden
 
-.video-filter .filter
-  border-bottom: 2px solid #2c3e50
-  overflow: hidden
+    &:hover
+      background-color: #2c3e50
 
-.video-filter .filter:last-child
-  border: none
+    &:last-child
+      border: none
 
-.video-filter .filter > a
-  padding: 10px 20px
-  display: block
+    &> a
+      color: #FFF
+      padding: 10px 20px
+      display: block
+      text-decoration: none
 
-.video-filter i
-  margin-right: 10px
 
-.video-filter i.azul
-  color: #3498db
+    i
+      margin-right: 10px
 
-.video-filter i.amarelo
-  color: #f1c40f
+      &.azul
+        color: #3498db
 
-.video-filter i.vermelho
-  color: #e74c3c
+      &.amarelo
+        color: #f1c40f
 
-.video-filter p
-  color: white
-  font-weight: 200
-  font-size: 17pt
-  display: inline
+      &.vermelho
+        color: #e74c3c
 
-.video-filter .canais
-  margin-left: 60px
+    p
+      color: white
+      font-weight: 200
+      font-size: 17pt
+      display: inline
 
-.video-filter .canais li
-  list-style:  none
+    .canais
+      margin-left: 60px
 
-.video-filter .canais li a
-  font-size: 10pt
+      li
+        list-style:  none
+
+        a
+          color: #FFF
+
+          &:hover,
+          &:active,
+          &:visited,
+          &:focus
+            font-size: 10pt
+            color: #FFF
+            text-decoration: none
+
 
 //--------------------------//
 
-.subheader .cat
-  color: #e74c3c
-  font-weight: 200
-  font-size: 40pt
-  margin: 20px 0
+.subheader
+  .cat
+    color: #e74c3c
+    font-weight: 200
+    font-size: 3.6em
+    margin: 20px 0
 
-.subheader .cat > p
-  display: inline
-  margin-left: 20px
+    i
+      &.icon-star
+        color: #f1c40f
+        &+p
+          color: #f1c40f
+
+      &.icon-th-large,
+        color: #e74c3c
+        &+p
+          color: #e74c3c
+
+      &.icon-time
+        color: #3498db
+        &+p
+          color: #3498db
+
+    &> p
+      display: inline
+      margin-left: 20px
 
 
 input.searcher
@@ -119,16 +144,16 @@ input.searcher
 .gbusca
   margin-top: 10px
 
-.gbusca .btn
-  background: #34495E
-  border: none
-  color: #3498DB
-  font-size: 15pt
-  padding: 9px 13px
-  +text-shadow(none)
+  .btn
+    background: #34495E
+    border: none
+    color: #3498DB
+    font-size: 15pt
+    padding: 9px 13px
+    +text-shadow(none)
 
-.gbusca .btn:last-child
-  +border-radius(0)
+    &:last-child
+      +border-radius(0)
 
 //--------------------------//
 
@@ -139,7 +164,8 @@ input.searcher
   line-height: 20px
   padding: 0
 
-.thumbnail .meta a,
-.thumbnail .meta a:hover
-  color: #34495E
-  text-decoration: none
+  .meta
+    a
+      &:hover
+        color: #34495E
+        text-decoration: none
