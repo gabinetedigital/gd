@@ -35,7 +35,7 @@ $('.typeahead').typeahead({
   updater: function(item){
     //obras_list_id é um dicionáraio que contém como chave o Título da obra, e como valor o id,
     //para poder recdirecionar diretamente para a pagina correta.
-    document.location = "/monitore/obra/" + obras_list_id[item]
+    document.location = "/deolho/obra/" + obras_list_id[item]
   }
 });
 
@@ -53,7 +53,7 @@ $('.typeahead').typeahead({
     <div class="app">
       <div class="row">
         <div class="span3 col aside">
-          <a href="/monitore">
+          <a href="/deolho">
             <div class="logo">
               <img src="{{ url_for('.static', filename='logo.png')}}">
             </div>

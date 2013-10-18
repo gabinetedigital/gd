@@ -187,7 +187,7 @@ $(window).load(function () {
             <div class="nossodados">
               <h3>Outras obras</h3>
               <p>Voltar para lista de obras</p>
-              <a href="/monitore" class="btn btn-info">Voltar</a>
+              <a href="/deolho" class="btn btn-info">Voltar</a>
             </div>
 
             <div class="separador"></div>
@@ -249,9 +249,9 @@ $(window).load(function () {
                   <blockquote>
                   <dl>
                     <dt>Lista de todas as obras</dt>
-                    <dd><code>/monitore/api/obras.json</code></dd>
+                    <dd><code>/deolho/api/obras.json</code></dd>
                     <dt>Dados de uma obra especifica</dt>
-                    <dd><code>/monitore/api/obras/[obraid].json</code></dd>
+                    <dd><code>/deolho/api/obras/[obraid].json</code></dd>
                   </dl>
                   </blockquote>
                   <p>Conforme os end-points forem sendo desenvolvidos,
@@ -272,7 +272,7 @@ $(window).load(function () {
                    <div class="span4">
                      <div class="space">
                        <div class="alert message hide">Mensagem</div>
-                       <form  id="part-geral" class="form ajaxform" method="POST" action="/monitore/obra/{{obra.slug}}/contribui">
+                       <form  id="part-geral" class="form ajaxform" method="POST" action="/deolho/obra/{{obra.slug}}/contribui">
                          <label for="titulo">Título:</label>
                          <input type="text" placeholder="Título..." name="titulo" id="titulo">
                          <label for="conteudo">Sua contribuição</label>
@@ -463,7 +463,7 @@ $(window).load(function () {
     <a href="#" target="#follow-twitter"><i class="icon-twitter icon-3x twit"></i></a>
     <div class="follow follow-email hide" id="follow-email">
       <div class="alert message hide">Mensagem</div>
-      <form class="form form-inline ajaxform" action="/monitore/obra/seguir/{{obra.id}}" method="POST">
+      <form class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
         <label for="faceid">Seu e-mail:</label>
         <input type="text" name="email" id="email" {%if user%}value="{{user.email}}"{%endif%}>
         <input type="submit" class="btn btn-success" value="Seguir">
@@ -471,7 +471,7 @@ $(window).load(function () {
     </div>
     <div class="follow follow-facebook" id="follow-facebook">
       <div class="alert message hide">Mensagem</div>
-      <form class="form form-inline ajaxform" action="/monitore/obra/seguir/{{obra.id}}" method="POST">
+      <form class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
         <label for="faceid">Facebook ID:</label>
         <input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook')}}"{%endif%}>
         <input type="submit" class="btn btn-success" value="Seguir">
@@ -479,7 +479,7 @@ $(window).load(function () {
     </div>
     <div class="follow follow-twitter hide" id="follow-twitter">
       <div class="alert message hide">Mensagem</div>
-      <form class="form form-inline ajaxform" action="/monitore/obra/seguir/{{obra.id}}" method="POST">
+      <form class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
         <label for="faceid">Twitter ID:</label>
         <input type="text" name="twitterid" id="twitterid" {%if user%}value="{{user.get_meta('twitter')}}"{%endif%}>
         <input type="submit" class="btn btn-success" value="Seguir">
