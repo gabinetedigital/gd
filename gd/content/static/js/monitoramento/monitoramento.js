@@ -349,7 +349,7 @@ $(window).load(function () {
         // console.log( $(this).attr('data-id') );
         var _did = $(this).attr('data-id');
         var _oid = $(this).attr('data-oid');
-        var url = "/monitore/obra/part/"+_oid+"/"+_did
+        var url = "/deolho/obra/part/"+_oid+"/"+_did
         var _resp_ = $(this);
 
         $.get(url, function(data){
