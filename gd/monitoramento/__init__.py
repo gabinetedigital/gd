@@ -108,7 +108,7 @@ def adjustCf(obras):
 
 				if cf['key'] in ( 'gdobra_municipio' ):
 					#Deixa somente os nomes das empresas contratadas
-					valor = [ x[1:-1] for x in re.findall('"[\wáéíóúàèìòùüëãõ ]*"',valor) ]
+					valor = [ x[1:-1] for x in re.findall('\".+?\"',valor) ]
 
 				if cf['key'] in ( 'gdobra_empresa_contratada' ):
 					#Deixa somente os nomes das empresas contratadas
