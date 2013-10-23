@@ -8,12 +8,8 @@
 <script src="{{ url_for('static', filename='js/base/video.js') }}"></script>
 {% endblock %}
 
-{% block id %}
-<div id="videos"></div>
-{% endblock %}
-
 {% block content %}
-<div class="video-home">
+<div id="video-home">
 
   <div class="hidden-phone">
     <a href="#highlight-videos" data-slide="prev" class="seta pull-left">
@@ -28,7 +24,7 @@
     {%if hvideos%}
     <div class="row hvideos hidden-phone">
       <div class="span12">
-        <div id="highlight-videos" class="carousel slide">
+        <div id="highlighted-videos" class="carousel slide">
           <!-- Carousel items -->
           <div class="carousel-inner">
             {%for video in hvideos%}
@@ -60,50 +56,52 @@
           <div class="filter">
             <a href=""><i class="icon-th-large icon-2x vermelho"></i><p>Canais</p></a>
             <ul class="canais">
-                <li><a href="/videos">Todos os vídeos</a></li>
-                {%for cat in categories%}
-                <li><a href="/videos/canal/{{cat.term_id}}">{{cat.name}}</a></li>
-                {%endfor%}
+              <li><a href="/videos">Todos os vídeos</a></li>
+              {%for cat in categories%}
+              <li><a href="/videos/canal/{{cat.term_id}}">{{cat.name}}</a></li>
+              {%endfor%}
             </ul>
           </div>
         </div>
       </div>
 
       <div class="span9">
-        <div class="row subheader">
-          <div class="span6">
-            <div class="cat">
-              <i class="{{canalclass}}"></i><p>{{canal}}</p>
+        <div class="row">
+          <div class="subheader">
+            <div class="span6">
+              <div class="cat">
+                <i class="{{canalclass}}"></i><p>{{canal}}</p>
+              </div>
             </div>
-          </div>
-          <div class="span3 pull-right">
-            <div class="controls gbusca">
-              Encontre o vídeo que deseja
-              <div class="input-append">
-                <input class="searcher" id="inputIcon" type="text"
-                placeholder="Ex: Interiorização ...">
+            <div class="span3 pull-right">
+              <div class="controls gbusca">
+                Encontre o vídeo que deseja
+                <div class="input-append">
+                  <input class="searcher" id="inputIcon" type="text"
+                         placeholder="Ex: Interiorização ...">
 
-                <script type="text/javascript">
+                  <script type="text/javascript">
                   $(document).ready(function() {
-                    $('.searcher').typeahead({
-                      source: [{%for t in titulos%}'{{t}}',{%endfor%}],
-                      items: 8,
-                      minLength: 2,
-                      updater: function(item){
-                        //Slugs é um dicionáraio que contém como chave o Título do vídeo, e como valor o id,
-                        //para poder recdirecionar diretamente para a galeria.
-                        ids = { {%for t in titulos%}
-                                 '{{t}}':'{{titulos[t]}}',
-                                {%endfor%} }
-                        document.location = "/videos/" + ids[item]
-                      }
-                    });
+                      $('.searcher').typeahead({
+                          source: [{%for t in titulos%}'{{t}}',{%endfor%}],
+                                                items: 8,
+                                                minLength: 2,
+                                                updater: function(item){
+                              //Slugs é um dicionáraio que contém como chave o Título do vídeo, e como valor o id,
+                              //para poder recdirecionar diretamente para a galeria.
+                              ids = { {%for t in titulos%}
+                                  '{{t}}':'{{titulos[t]}}',
+                                  {%endfor%} }
+                                  document.location = "/videos/" + ids[item]
+                          }
+                      });
                   });
-                </script>
+                  </script>
 
-                <button class="btn" type="button">
-                  <i class="icon-search icons-2x"></i>
-              </button>
+                  <button class="btn" type="button">
+                    <i class="icon-search icons-2x"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -116,14 +114,14 @@
                 <div class="thumbnail video">
                   <a href="/videos/{{video.id}}/">
                     <img src="{{ thumborurl(video.thumbnail, (270,152) )
-                    }}" class="thumb" alt="{{video.title}}">
+                         }}" class="thumb" alt="{{video.title}}">
                   </a>
                   <div class="meta">
                     <a href="/videos/{{video.id}}/">
                       <strong>{{video.date | strftime() }} | {{video.views}} visualizações.</strong>
                       <p>{{ video.title }} {%if
-                      video.category_title%} ({{video.category_title}})
-                      {%endif%} </p>
+                        video.category_title%} ({{video.category_title}})
+                        {%endif%} </p>
                     </a>
                   </div>
                 </div>
