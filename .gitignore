@@ -2,6 +2,8 @@
 gd/conf.py
 po/*/LC_MESSAGES/gabinetedigital.mo
 *.pyc
+*.log
+*.out
 *.css
 .sass-cache/
 gdenv
