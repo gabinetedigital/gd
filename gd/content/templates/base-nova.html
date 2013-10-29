@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br" {%block htmldef%}{%endblock%}>
+  <head {% block head %}{% endblock %}>
+    <title>
+      Gabinete Digital - {% block title %}Democracia em Rede{% endblock %}
+    </title>
+
+    {% block video %}{% endblock %}
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
+
+
+    {% block css %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+  <body data-spy="scroll" data-target="#menu" class="nova">
+
+    {% block id %}
+    {% endblock %}
+
+    <div class="container">
+      <div id="menu" class="subnav subnav-fixed navbar-invert pull-right">
+        <a class="brand pull-left" href="#home">Gabinete Digital</a>
+        <a class="btn btn-navbar pull-right hidden-desktop" data-toggle="collapse" data-target=".nav-collapse">
+          menu
+        </a>
+        <div class="nav-collapse">
+          <form class="navbar-search form-search pull-right tools" action='/search/'>
+            <div class="input-append">
+              <input type="text" class="input-small busca search-query"  id="s" name="s">
+              <button type="submit" class="btn"><i class="icon-search"></i></button>
+            </div>
+            <div class="entrar">
+              {%if user%}
+              <a href="/auth/profile/"><img src="{{ social_image(user) or user.email | gravatar(size=16) }}"></a>
+              <div class="btn-group">
+                <a class="btn btn-primary" href="/auth/profile/">{{user.name|truncate(20)}}</a>
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/auth/profile/"><i class="icon-pencil"></i> Editar perfil</a></li>
+                  <li><a href="/auth/logout/"><i class="icon-ban-circle"></i> Logout</a></li>
+                   <!-- <li class="divider"></li> -->
+                  <!-- <li><a href="#"><i class="i"></i> Make admin</a></li> -->
+<!--                   <li>
+                    <div class="avatar avatarmenu">
+                      <img src="{{ user.email | gravatar }}" class="img-polaroid">
+                    </div>
+                  </li>
+ -->                </ul>
+              </div>
+              {%else%}
+              <a class="btn btn-success" href="/auth/login/">Entrar</a>
+              {%endif%}
+            </div>
+          </form>
+
+          <ul class="nav nav-pills">
+            {{ menu | safe }}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% block content %}{% endblock %}
+
+    <footer>
+      <div class="container">
+        <div class="row">
+
+          <div class="span4">
+            <div class="bloco">
+              <ul>
+                <li><a href="http://twitter.com/gabinetedigital"><i class="ftweet"></i>@gabinetedigital</a></li>
+                <li><a href="http://facebook.com/gabinetedigital"><i class="ffb"></i>gabinetedigital</a></li>
+                <li><a href="http://gabinetedigital.rs.gov.br/feed"><i class="frss"></i>feed de notícias</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="span4">
+            <div class="bloco">
+              <p class="">Todo o conteúdo do site está disponível sobre a licença
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.pt_BR">
+                  Creative Commons Attribution 3.0</a> não adaptada.</p>
+
+              <p class="">O código deste site é livre, licenciado sob a
+                <a target="_new" href="http://www.gnu.org/licenses/agpl-3.0.html">Affero GPL</a>.
+                Para saber mais sobre isso, veja a <a target="_new" href="http://github.com/gabinetedigital">
+                  nossa página sobre desenvolvimento</a>.</p>
+            </div>
+          </div>
+
+          <div class="span4">
+            <div class="bloco">
+              <div class="contato pull-left">
+                <address>
+                  <strong>Palácio Piratini</strong><br>
+                  Praça Marechal Deodoro s/n<br>
+                  Porto Alegre - RS<br>
+                  CEP 90010-282<br>
+                  <a href="mailto:gabinetedigital@sgg.rs.gov.br">gabinetedigital@sgg.rs.gov.br</a><br>
+                  <abbr title="Telefone">T:</abbr> (51) 3210-4590
+                </address>
+              </div>
+              <a href="http://www.rs.gov.br">
+                <div class="logors pull-right hidden-tablet">
+                  Governo Rio Grande do sul
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+    <div id="content-loading" class="loadingbase loadingmodal"><!-- Place at bottom of page --></div>
+
+    <script>
+      var SIO_BASE = "{{ host }}";
+      var BASE_URL = "{{ request.url_root }}";
+      var CURRENT_URL = "{{ request.url }}";
+      var VOTACAO_ROOT = "{{VOTACAO_ROOT}}";
+      var VOTACAO_URL = "{{VOTACAO_URL}}";
+    </script>
+
+    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-ui.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.tools.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/base/urls.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/base/loader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/base/base.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/easypaginate.js') }}"></script>
+
+
+    {% if user %}
+    <script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
+    {% endif %}
+
+    {% if 'signup' in request.values %}
+    <script> $(function () { auth.showSignupForm('directToForm'); }); </script>
+    {% endif %}
+
+    {% if 'concluido' in request.values and not user %}
+    <script> $(function () { showModalAgradecimento(); }); </script>
+    {% endif %}
+
+    {% block javascript %}
+    <!-- <script> -->
+    <!--   $(function(){ -->
+    <!--   $('#signupoverlay').hide(); -->
+    <!--   $('#tos').hide(); -->
+    <!--   }); -->
+    <!-- </script> -->
+    {% endblock %}
+
+    <script type="text/javascript">
+      //GOOGLE ANALYTICS
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-32544090-1']);
+      _gaq.push(['_setDomainName', 'gabinetedigital.rs.gov.br']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </body>
+</html>
