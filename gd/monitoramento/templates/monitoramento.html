@@ -259,6 +259,7 @@ $('.typeahead').typeahead({
                         {%if obra.custom_fields['gdobra_obra_entregue']%}
                         <div class="dono"></div>
                         {%endif%}
+                        <div class="tge salto"></div>
                         {%if obra.thumbs%}
                         <img src="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
                         {%else%}
