@@ -390,4 +390,26 @@ $(window).load(function () {
         'trigger'  : 'hover'
     });
 
+
+    function pula( i, n) {
+        $('#obra-' + i +' .tge').show();
+        $('#obra-' + i +' .tge').jani({ frameWidth: 270, frameHeight: 180, speed: 200, totalFrames: 5 });
+        $('#obra-' + i +' .tge').jani.play();
+
+        if ( i <= n ) {
+            setTimeout(function() {
+            $('#obra-' + i +' .tge').hide();
+            $('#obra-' + i +' .tge').jani.stop();
+                pula(i+1,n);
+            },800);
+        }
+
+    }
+
+    Mousetrap.bind('up up down down left right left right b a', function() {
+        console.log('konami code');
+        var n = $(".obra").length;
+        pula(1, n);
+    });
+
 });

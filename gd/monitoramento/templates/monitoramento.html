@@ -7,6 +7,8 @@
 
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('static', filename='js/monitoramento/mousetrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/jani/jani.js') }}"></script>
 <script>
 
 obras_list = Array()
@@ -249,10 +251,11 @@ $('.typeahead').typeahead({
               </a>
               <ul class="thumbnails">
                 {% for obra in obras %}
-                <li class="span3 {{ loop.cycle('light', 'dark') }}" {% if loop.index == 1 %} data-intro="Obras que você pode monitorar" data-position="bottom" {% endif %}>
+                <li id="obra-{{loop.index}}" class="span3 {{ loop.cycle('light', 'dark') }}" {% if loop.index == 1 %} data-intro="Obras que você pode monitorar" data-position="bottom" {% endif %}>
                   <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
                     <div class="thumbnail">
                       <div class="obra">
+                        <div class="tge salto"></div>
                         {%if obra.thumbs%}
                         <img src="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
                         {%else%}

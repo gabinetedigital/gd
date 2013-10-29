@@ -350,8 +350,17 @@
       text-decoration: none
 
     .thumbnail
+      border: 0
+      +box-shadow(none)
       @media (max-width: 767px)
         padding: 10px 0
+
+      .tge
+        position: absolute
+        display: none
+
+      .salto
+        background: url(../img/monitoramento/tge01.gif) no-repeat
 
     .obra
       width: 100%
