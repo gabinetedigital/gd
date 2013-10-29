@@ -661,10 +661,10 @@ def sendnews():
 
 	ct = usuarios.count()
 	if ct <= 0:
-		print "DE-OLHO-NAS-OBRAS::", "Não existe nenhum usuário seguindo esta obra."
+		print "DE-OLHO-NAS-OBRAS::", "Não existe nenhum usuario seguindo esta obra."
 		return "Não existe nenhum usuário seguindo esta obra"
 
-	print "DE-OLHO-NAS-OBRAS::", "Enviando aviso de atualizações para", ct,"usuários."
+	print "DE-OLHO-NAS-OBRAS::", "Enviando aviso de atualizacoes para", ct,"usuarios."
 
 	print "DE-OLHO-NAS-OBRAS::", "twitter connect"
 	# t = Twython(current_app.config['TWITTER_CONSUMER_KEY'], current_app.config['TWITTER_CONSUMER_SECRET'],
@@ -677,7 +677,7 @@ def sendnews():
 	msg_twitter = current_app.config['OBRA_ATUALIZACAO_TWITTER']
 
 	for u in usuarios:
-		print "DE-OLHO-NAS-OBRAS::", u.obra_id, u.mode, u.facebook_id, u.twitter_id, u.email
+		# print "DE-OLHO-NAS-OBRAS::", u.obra_id, u.mode, u.facebook_id, u.twitter_id, u.email
 		# print "USER:", u.user.email
 
 		if u.facebook_id:
@@ -689,7 +689,7 @@ def sendnews():
 			else:
 				fid = u.facebook_id
 
-			print "DE-OLHO-NAS-OBRAS::", fid
+			# print "DE-OLHO-NAS-OBRAS::", fid
 			femail = "%s@facebook.com" % fid
 			sendmail(msg_titulo, femail, msg)
 
