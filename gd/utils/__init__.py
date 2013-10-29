@@ -200,8 +200,6 @@ def sendmail(subject="", to_addr="", message=""):
         msg['To'] = to_addr
         msg['From'] = conf.FROM_ADDR
 
-        print "SENDING MAIL:", subject, to_addr, conf.FROM_ADDR
-
         # Finally, sending the mail
         smtp = smtplib.SMTP(conf.SMTP)
         smtp.sendmail(conf.FROM_ADDR, to_addr, msg.as_string())
