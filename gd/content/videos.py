@@ -38,7 +38,11 @@ def redir_videos_recentes():
 @videos.route('/populares')
 def listing():
 
-    # hvideos = wordpress.wpgd.getHighlightedVideos()
+    page = int(request.args.get('page') or 1)
+    page -= 1
+    print "Carregando pagina", page
+
+    # page = wordpress.wpgd.getHighlightedVideos()
     hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
         wordpress.wpgd.getHighlightedVideos() )
 
@@ -70,8 +74,12 @@ def listing():
         videos_json[v['title']] = v['id']
 
     print "Buscando", current_app.config['VIDEO_PAGINACAO'], "vídeos por página!"
-    videos = fromcache("videos_root_%s" % order) or tocache("videos_root_%s" % order,
-        wordpress.wpgd.getVideos(where='status=true', orderby=order_by, limit=current_app.config['VIDEO_PAGINACAO']) )
+    cacheid = "videos_root_%s_page_%s" % (order,page)
+    pagging = int(current_app.config['VIDEO_PAGINACAO'])
+    offset = page * pagging
+    print "PAGINACAO", page, pagging, offset
+    videos = fromcache(cacheid) or tocache(cacheid,
+        wordpress.wpgd.getVideos(where='status=true', orderby=order_by, limit=pagging, offset=offset) )
 
     try:
         twitter_hash_cabecalho = twitts()
