@@ -23,6 +23,7 @@ from gd.utils.gdcache import fromcache, tocache, removecache
 from gd.utils import twitts
 #from gd.auth import is_authenticated
 from gd.content.wp import wordpress
+from decimal import Decimal
 
 videos = Blueprint(
     'videos', __name__,
@@ -77,7 +78,8 @@ def listing():
     cacheid = "videos_root_%s_page_%s" % (order,page)
     pagging = int(current_app.config['VIDEO_PAGINACAO'])
     offset = page * pagging
-    print "PAGINACAO", page, pagging, offset
+    page_total = int( round( Decimal( len(allvideos) ) / pagging ) )
+    print "PAGINACAO", len(allvideos), page, pagging, offset
     videos = fromcache(cacheid) or tocache(cacheid,
         wordpress.wpgd.getVideos(where='status=true', orderby=order_by, limit=pagging, offset=offset) )
 
@@ -90,7 +92,7 @@ def listing():
     return render_template('videos.html', videos=videos
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
         ,menu=menus, titulos=videos_json, categories=categories, hvideos=hvideos
-        ,canal=nome_canal, canalclass=canalclass)
+        ,canal=nome_canal, canalclass=canalclass, page=page+1, page_total=page_total)
 
 @videos.route('/canal/<int:categoria_id>')
 def canal(categoria_id):
