@@ -132,6 +132,31 @@
             </ul>
           </div>
         </div>
+
+        <div class="row">
+          <div class="span3 offset3">
+            <div class="btn-group">
+              {%if page > 1%}
+              <a class="btn btn-inverse" href="{{request.path}}">&lt;&lt;</a>
+              <a class="btn btn-inverse" href="?page={{page-1}}">&lt;</a>
+              {%else%}
+              <span  class="btn btn-inverse disabled" href="{{request.path}}">&lt;&lt;</span>
+              <span class="btn btn-inverse disabled">&lt;&lt;</span>
+              {%endif%}
+              <span class="btn btn-inverse">{{page}}</span>
+              {%if page < page_total%}
+              <a class="btn btn-inverse" href="?page={{page+1}}">&gt;</a>
+              <a class="btn btn-inverse" href="?page={{page_total}}">&gt;&gt;</a>
+              {%else%}
+              <span class="btn btn-inverse disabled" href="?page={{page+1}}">&gt;</span>
+              <span class="btn btn-inverse disabled" href="?page={{page_total}}">&gt;&gt;</span>
+              {%endif%}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">&nbsp;</div>
+
       </div>
     </div>
   </div>
