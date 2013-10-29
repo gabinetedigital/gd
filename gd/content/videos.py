@@ -57,11 +57,11 @@ def listing():
     if 'populares' in str(request.url_rule):
         order = "views" #recents
         nome_canal = "Populares"
-        canalclass="icon-star"
+        canalclass="fa-star"
     else :
         order = "date"
         nome_canal = "Recentes"
-        canalclass="icon-time"
+        canalclass="fa fa-clock-o"
 
     order_by = "%s desc" % order
 
@@ -136,19 +136,19 @@ def canal(categoria_id):
         wordpress.wpgd.getHighlightedVideos() )
 
     return render_template('videos.html', videos=videos, titulos=videos_json,
-        categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="icon-th-large",
+        categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="fa fa-th-large",
         page=page+1, page_total=page_total)
 
 
-# @videos.route('/nextpage/<int:pagina>/')
-# def nextpage(pagina):
-#     paginacao = int(current_app.config['VIDEO_PAGINACAO'])
-#     offset = pagina * paginacao
-#     print "OFFSET:", offset
-#     videos = fromcache("videos_%s" % str(offset)) or tocache("videos_%s" % str(offset), wordpress.wpgd.getVideos(
-#         where='status=true', orderby='date DESC', limit=paginacao,
-#         offset=offset))
-#     return render_template('videos_pagina.html', videos=videos)
+@videos.route('/nextpage/<int:pagina>/')
+def nextpage(pagina):
+    paginacao = int(current_app.config['VIDEO_PAGINACAO'])
+    offset = pagina * paginacao
+    print "OFFSET:", offset
+    videos = fromcache("videos_%s" % str(offset)) or tocache("videos_%s" % str(offset), wordpress.wpgd.getVideos(
+        where='status=true', orderby='date DESC', limit=paginacao,
+        offset=offset))
+    return render_template('videos_pagina.html', videos=videos)
 
 
 @videos.route('/<int:vid>/')
