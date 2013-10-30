@@ -98,6 +98,10 @@ def listing():
 def canal(categoria_id):
     categories = fromcache("all_videos_categories") or tocache("all_videos_categories",wordpress.wpgd.getVideosCategories())
 
+    page = int(request.args.get('page') or 1)
+    page -= 1
+    print "Carregando pagina", page
+
     print categories
     nome_canal = ""
     for cat in categories:
@@ -105,31 +109,46 @@ def canal(categoria_id):
             nome_canal = cat['name']
             break
 
-    videos = fromcache("videos_canal_%s" % str(categoria_id)) or tocache("videos_canal_%s" % str(categoria_id),
-             wordpress.wpgd.getVideosByCategory(category=categoria_id, orderby='date DESC'))
-
     videos_json = {}
     allvideos = fromcache("all_videos_root") or tocache("all_videos_root",wordpress.wpgd.getVideos(
         where='status=true', orderby='title'))
     for v in allvideos:
         videos_json[v['title']] = v['id']
 
+
+    print "Buscando", current_app.config['VIDEO_PAGINACAO'], "vídeos por página!"
+    cacheid = "videos_canal_%s_page_%s" % (str(categoria_id),page)
+    cacheidall = "videos_canal_%s" % str(categoria_id)
+    pagging = int(current_app.config['VIDEO_PAGINACAO'])
+    offset = page * pagging
+
+    allvideos_cat = fromcache(cacheidall) or tocache(cacheidall,
+             wordpress.wpgd.getVideosByCategory(category=categoria_id))
+
+    print "PAGINACAO", len(allvideos_cat), page, pagging, offset
+    page_total = int( round( Decimal( len(allvideos_cat) ) / pagging ) )
+
+    videos = fromcache(cacheid) or tocache(cacheid,
+             wordpress.wpgd.getVideosByCategory(category=categoria_id,
+                orderby='date DESC', limit=pagging, offset=offset))
+
     hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
         wordpress.wpgd.getHighlightedVideos() )
 
     return render_template('videos.html', videos=videos, titulos=videos_json,
-        categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="icon-th-large")
+        categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="icon-th-large",
+        page=page+1, page_total=page_total)
 
 
-@videos.route('/nextpage/<int:pagina>/')
-def nextpage(pagina):
-    paginacao = int(current_app.config['VIDEO_PAGINACAO'])
-    offset = pagina * paginacao
-    print "OFFSET:", offset
-    videos = fromcache("videos_%s" % str(offset)) or tocache("videos_%s" % str(offset), wordpress.wpgd.getVideos(
-        where='status=true', orderby='date DESC', limit=paginacao,
-        offset=offset))
-    return render_template('videos_pagina.html', videos=videos)
+# @videos.route('/nextpage/<int:pagina>/')
+# def nextpage(pagina):
+#     paginacao = int(current_app.config['VIDEO_PAGINACAO'])
+#     offset = pagina * paginacao
+#     print "OFFSET:", offset
+#     videos = fromcache("videos_%s" % str(offset)) or tocache("videos_%s" % str(offset), wordpress.wpgd.getVideos(
+#         where='status=true', orderby='date DESC', limit=paginacao,
+#         offset=offset))
+#     return render_template('videos_pagina.html', videos=videos)
 
 
 @videos.route('/<int:vid>/')
