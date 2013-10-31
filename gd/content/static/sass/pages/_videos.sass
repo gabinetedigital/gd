@@ -1,8 +1,14 @@
-#video-home, #video-theater
+.nova
+  @media (max-width: 768px)
+    padding: 0
+    overflow: hidden
 
+#video-home, #video-theater
+  margin: 0
   padding-top: 80px
   background-color: #ecf0f1
-  border-top: 2px solid #bdc3c7
+  @media (max-width: 768px)
+    padding: 0 20px
 
   .video-filter
     background-color: #34495e
@@ -59,6 +65,12 @@
               color: #FFF
               text-decoration: none
 
+#video-theater
+
+  .video-filter
+    .filter
+      p,ul
+        display: none
 
 #video-home
 
@@ -239,6 +251,7 @@
       margin: 10px 0
       display: block
 
+
       &:hover
         cursor: pointer
         text-decoration: none
@@ -247,6 +260,9 @@
         display: block
         clear: both
         margin-top: 4px
+        @media (min-width: 768px) and (max-width: 979px)
+          font-size: 1.6em
+
 
       &.video
         text-align: center
@@ -270,31 +286,35 @@
       &.gplus:hover
         background-color: #e74c3c
 
-  .stage
+  .theater
+    overflow: hidden
 
-    .desc
-      background-color: white
-      padding: 20px 15px
-      margin-bottom: 20px
-      display: block
+    .stage
+      position: relative
 
-    a.canal
-      background-color: #e74c3c
-      color: white
-      display: inline-block
-      margin: 10px 0
-      padding: 0 15px
-      height: 72px
+      .desc
+        background-color: white
+        padding: 20px 15px
+        margin-bottom: 20px
+        display: block
 
-      &:hover
-        text-decoration: none
-
-      i
-        margin-right: 10px
+      a.canal
+        background-color: #e74c3c
+        color: white
         display: inline-block
-        vertical-align: middle
+        margin: 10px 0
+        padding: 0 15px
+        height: 72px
 
-      p
-        margin-top: 22px
-        display: inline-block
-        font-size: 1.2em
+        &:hover
+          text-decoration: none
+
+        i
+          margin-right: 10px
+          display: inline-block
+          vertical-align: middle
+
+        p
+          margin-top: 22px
+          display: inline-block
+          font-size: 1.2em
