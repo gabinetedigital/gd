@@ -286,17 +286,19 @@
       &.gplus:hover
         background-color: #e74c3c
 
-  .theater
-    overflow: hidden
 
-    .stage
-      position: relative
+  .stage
+    position: relative
 
-      .desc
-        background-color: white
-        padding: 20px 15px
-        margin-bottom: 20px
-        display: block
+    .desc
+      background-color: white
+      padding: 20px 15px
+      margin-bottom: 20px
+      display: block
+
+    .meta
+      .button
+        margin-right: 20px
 
       a.canal
         background-color: #e74c3c
@@ -315,6 +317,20 @@
           vertical-align: middle
 
         p
-          margin-top: 22px
+          margin-top: 18px
           display: inline-block
           font-size: 1.2em
+
+      a.ecode
+        text-align: center
+        padding: 0
+        position: relative
+        display: none
+
+        textarea
+          background-color: #bdc3c7
+          height: 65px
+          padding: 5pt 0 0 0
+          border: 0
+          +box-shadow(none)
+          margin: 0
