@@ -151,6 +151,24 @@ def nextpage(pagina):
     return render_template('videos_pagina.html', videos=videos)
 
 
+@videos.route('/<int:vid>/mv', methods=('POST',) )
+def addview(vid):
+    video = fromcache("video_%s" % str(vid))
+    if not video:
+        print "Video do wordpress..."
+        video = tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+
+    if 'views' in video:
+        video['views'] = int(video['views']) + 1
+    else:
+        video['views'] = 1
+
+    removecache("video_%s" % str(vid))
+    tocache("video_%s" % str(vid), video)
+    wordpress.wpgd.setVideoViews(video['views'], vid);
+    return "ok"
+
+
 @videos.route('/<int:vid>/')
 def details(vid):
     video = fromcache("video_%s" % str(vid))
@@ -160,12 +178,12 @@ def details(vid):
         print "Video do wordpress..."
         video = tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
 
-    video['views'] = int(video['views']) + 1
+    # video['views'] = int(video['views']) + 1
     # print "Delete video cache!"
-    removecache("video_%s" % str(vid))
+    # removecache("video_%s" % str(vid))
     # print "Set video to cache!"
-    tocache("video_%s" % str(vid), video)
-    wordpress.wpgd.setVideoViews(video['views'], vid);
+    # tocache("video_%s" % str(vid), video)
+    # wordpress.wpgd.setVideoViews(video['views'], vid);
 
     sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
 
