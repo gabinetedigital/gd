@@ -23,6 +23,16 @@ $(window).load(function() {
     //Dos videos em destaque
     $('.carousel').carousel();
 
+    $('.seta.esq').click(function(){
+        $('.carousel').carousel('prev');
+    });
+
+    $('.seta.dir').click(function(){
+        $('.carousel').carousel('next');
+    });
+
+
+
     var video_page = 1;
     $(".thumbnails").append("")
     $("#readmorevideos").click(function(){
