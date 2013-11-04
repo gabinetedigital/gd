@@ -264,6 +264,9 @@ $('.typeahead').typeahead({
                         <h4>{{obra.title}}</h4>
                       </div>
                       <div class="meta-obra">
+                        {%if obra.custom_fields['gdobra_obra_entregue']%}
+                        <div class="obra-entregue">OBRA ENTREGUE - SUA IMAGEM VAI AQUI!</div>
+                        {%endif%}
                         <ul>
                           <li class="seguidores" {% if loop.index == 3 %}data-intro="Seguidores" data-position="top" {% endif %}>
                             <i class="icon-star"></i>{{obra.total_follows}}
