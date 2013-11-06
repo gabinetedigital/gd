@@ -3,23 +3,10 @@
 {% block head %}prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# video: http://ogp.me/ns/video#"{% endblock %}
 
 {% block video %}
-<meta property="fb:app_id"      content="410061562412374" />
 <meta property="og:type"        content="video.movie" />
-<meta property="og:url"         content="{{base_url}}{{ url_for('static', filename="me/build/flashmediaelement.swf") }}?controls=true&file={{sources['video/x-flv']}}" />
+<meta property="og:url"         content="{{sources['video/x-flv']}}" />
 <meta property="og:title"       content="{{ video.title }}" />
 <meta property="og:image"       content="{{video.thumbnail}}" />
-<meta property="video:actor:id" content="http://gabinetedigital.rs.gov.br" />
-
-<!-- <meta property="og:type" content="video.movie">
-<meta property="og:url" content="{{base_url}}{{url_for('.details',vid=video.id)}}">
-<meta property="og:title" content="{{ video.title }}" />
-<meta property="og:description" content="{{ video.description }}" />
-<meta property="og:image" content="{{video.thumbnail}}" />
-<meta property="og:video" content="{{base_url}}{{ url_for('static', filename="me/build/flashmediaelement.swf") }}?controls=true&file={{sources['video/x-flv']}}" />
-<meta property="og:video:type" content="application/x-shockwave-flash">
-
-<meta property="og:video:height" content="{{ video.video_height }}" />
-<meta property="og:video:width" content="{{ video.video_width }}" />  -->
 
 <meta name="twitter:card" value="player">
 <meta name="twitter:site" value="@gabinetedigital">
@@ -132,4 +119,30 @@
 <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.cookie.js') }}"></script>
 <script src="{{ url_for('static', filename='js/base/video-views.js') }}"></script>
 <script src="{{ url_for('static', filename='js/base/video.js') }}"></script>
+
+<script>
+  // Additional JS functions here
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : "410061562412374", // App ID
+      status     : false,    // check login status
+      cookie     : false,    // enable cookies to allow the
+                            // server to access the session
+      xfbml      : false     // parse page for xfbml or html5
+                            // social plugins like login button below
+                          });
+
+    // Put additional init code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/all.js";
+   fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));
+</script>
+
 {% endblock %}
