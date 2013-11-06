@@ -37,6 +37,9 @@ $(window).load(function () {
       <div class="row">
         <div class="span8">
           <div class="head">
+            {%if obra.custom_fields['gdobra_obra_entregue']%}
+            <div class="dono"></div>
+            {% endif %}
             <h2>{{obra.title}}</h2>
             <div class="content">
               {{ obra.content|safe }}
