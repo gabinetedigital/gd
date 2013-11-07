@@ -3,10 +3,16 @@
 {% block head %}prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# video: http://ogp.me/ns/video#"{% endblock %}
 
 {% block video %}
-<meta property="og:type"        content="video.movie" />
-<meta property="og:url"         content="{{sources['video/x-flv']}}" />
+<meta property="og:type"        content="video.other" />
+
 <meta property="og:title"       content="{{ video.title }}" />
 <meta property="og:image"       content="{{video.thumbnail}}" />
+<meta property="og:description" content="{{video.description}}" />
+
+<meta property="og:video"            content="{{sources['video/mp4']}}">
+<meta property="og:video:type"       content="video/mp4">
+<meta property="og:video:width"      content="{{ video.video_width }}">
+<meta property="og:video:height"     content="{{ video.video_height }}">
 
 <meta name="twitter:card" value="player">
 <meta name="twitter:site" value="@gabinetedigital">
