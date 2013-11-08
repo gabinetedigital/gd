@@ -74,7 +74,15 @@ $(window).load(function () {
     });
 
     $('.carousel').carousel({
-        interval: 10000
+        interval: 3000
+    });
+
+    $('.goPrev').click(function() {
+        $('.carousel').carousel('prev');
+    });
+
+    $('.goNext').click(function() {
+        $('.carousel').carousel('next');
     });
 
     // $('#myCarousel .item').click(function(){

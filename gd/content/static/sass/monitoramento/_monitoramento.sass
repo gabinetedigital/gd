@@ -281,19 +281,22 @@
       width: 100%
 
       a
-        color: #7f8c8d
-        font-size: 4em
+        color: white
+        font-size: 1em
         position: absolute
+        display: block
+        z-index: 9999
+
+        &.goNext
+          right: 5px
+
+        &.goPrev
+          left: 5px
 
         &:hover
-          color: #7f8c8d
+          color: #3498db
           text-decoration: none
 
-        &.seta-right
-          right: 10px
-
-        &.seta-left
-          left: 10px
 
     .content
       padding: 30px

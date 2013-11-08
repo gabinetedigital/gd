@@ -163,6 +163,16 @@ $('.typeahead').typeahead({
           </div>
           <div id="index">
             <div id="myCarousel" class="slideshow visible-desktop carousel slide">
+              <div class="controls">
+                <a href="#" class="goPrev">
+                <i class="icon-angle-left icon-4x"></i>
+                </a>
+              </div>
+              <div class="controls">
+                <a href="#" class="goNext">
+                <i class="icon-angle-right icon-4x"></i>
+                </a>
+              </div>
             <div class="content carousel-inner">
 
               {%for slide in slides%}
@@ -240,6 +250,7 @@ $('.typeahead').typeahead({
               {%endfor%}
 
               </div>
+
             </div>
 
 
