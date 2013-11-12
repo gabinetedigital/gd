@@ -1,131 +1,35 @@
 {% extends "base.html" %}
 
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/carousel.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/about.css') }}">
-<!--[if IE]>
-<link rel="stylesheet" href="{{ url_for('.static', filename='css/ie-about.css') }}">
-<![endif]-->
-{% endblock %}
-
 {% block javascript %}
-<script src="{{ url_for('.static', filename='js/jquery.jcarousel.min.js') }}"></script>
-<script src="{{ url_for('.static', filename='js/about.js') }}"></script>
-{% endblock %}
-{% block slideshow %}
-<div class="row">
-  <div id="slideshow" class="col12"></div>
-</div>
+<script src="{{ url_for('.static', filename='js/base/home.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="row">
-    <div id="content" class="col8">
-        <div id="page">
-          {{ page.content|safe }}
-        </div>
-    </div>
 
-    <div id="sidebar" class="col4">
-      <div id="contacts">
-          <h2>Contato</h2>
-          <div class="address">
-            <p>Gabinete do Governador
-            Palácio Piratini, Praça Marechal Deodoro s/n
-            Porto Alegre - RS. CEP 90010-282</p>
-
-            <p>Telefone (51) 3210 4100
-            gabinetedigital@gg.rs.gov.br</p>
-
+  <div class="row" id="sobre">
+    <div class="container">
+      <section>
+        <div class="row">
+          <div class="span6">
+            <div class="page-header">
+              <h2>{{ page_about.title|safe }}</h2>
+            </div>
+            <div class="block">
+              {{ page_about.content|safe }}
+            </div>
           </div>
-      </div>
 
-      <div id="equipe">
-        <h2>Equipe</h2>
-        <ul>
-          <li>
-            <h3>Gabinete Digital do</h3><h3> Governador Tarso Genro</h3>
-          </li>
-
-          <li>
-            <h5>Coordenador Geral:</h5>
-            Secretário Chefe de Gabinete Vinícius Wu
-          </li>
-
-          <li>
-            <h5>Coordenador Executivo:</h5>
-            Fabricio Solagna
-          </li>
-
-          <li>
-            <h5>Gestor Técnico:</h5>
-            Sérgio Hilton Berlotto Jr
-          </li>
-
-          <li>
-            <h5>Gestor de Redes Sociais:</h5>
-            Everton Rodrigues
-          </li>
-
-          <li>
-            <h5>Comunicação/Conteúdo:</h5>
-            Thaís Rucker
-          </li>
-
-          <li>
-            <h5>Relações Públicas:</h5>
-            Bianca Persici Toniolo
-          </li>
-
-          <li>
-            <h5>Videomaker:</h5>
-            Thiago Köche
-          </li>
-
-          <li>
-            <h5>Desenvolvedor de Interface:</h5>
-            Guilherme Guerra
-          </li>
-
-          <li>
-            <h5>Assistente-admnistrativo:</h5>
-            Chrystian Menezes
-          </li>
-
-          <li>
-            <h4>PROCERGS:</h4>
-          </li>
-
-          <li>
-            <h5>Gerente de projetos:</h5>
-            Cristiane Ligabue Chemello
-          </li>
-
-          <li>
-            <h5>Programadores</h5>
-            Felipe Mergel Pasquali<br>
-            Leo Batista Rodrigues Andrade
-          </li>
-
-          <li>
-            <h4>Convidados:</h4>
-          </li>
-
-          <li>
-            <h5>Desenvolvedor:</h5>
-            Thiago Silva
-          </li>
-
-          <li><h4>Agradecimentos:</h4>
-            Lincoln de Sousa, Alessandra Nunes, Rodrigo Rosa, Hozielt Huston, Matthew Salganik, Pablo Lorenzoni, Fundação
-            Getúlio Vargas e Programa ICT4Gov do Banco Mundial
-          </li>
-        </ul>
-      </div>
+          <div class="span6">
+            <ul class="nav nav-tabs" id="myTab">
+              <li><a class="pub" data-toggle="tab">Publicações</a></li>
+              <li><a class="clip" data-toggle="tab">Clipping</a></li>
+              <li><a class="membros" data-toggle="tab">Equipe</a></li>
+            </ul>
+            {{ sidebar(id='sidebar-6')|safe }}
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="row-end"></div>
   </div>
 
-</div>
-{% endblock %}
+{%endblock content%}
