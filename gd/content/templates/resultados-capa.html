@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block javascript %}
+<script src="{{ url_for('.static', filename='js/base/home.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+  <div class="row" id="resultados">
+    <div class="container">
+      <section>
+        <div class="page-header">
+          <h2>Resultados</h2>
+        </div>
+        <ul class="thumbnails">
+          {{ sidebar(id='sidebar-5')|safe }}
+        </ul>
+      </section>
+    </div>
+  </div>
+
+{%endblock content%}

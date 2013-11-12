@@ -391,12 +391,12 @@ def index():
     pagevot = fromcache('pagevot')    or tocache('pagevot', wordpress.getPageByPath('votacao'))
     pagehow = fromcache('pagehow')      or tocache('pagehow', wordpress.getPageByPath('como-funciona'))
     pageseg = fromcache('pageseg')      or tocache('pageseg', wordpress.getPageByPath('seguranca-2'))
-    pagesobre = fromcache('pagesobre')  or tocache('pagesobre', wordpress.getPageByPath('sobre'))
+    # pagesobre = fromcache('pagesobre')  or tocache('pagesobre', wordpress.getPageByPath('sobre'))
 
     return render_template(
         'index.html', wp=wordpress,
         sidebar=wordpress.getSidebar,
-        page_about=pagesobre,
+        # page_about=pagesobre,
         # page_pri=pagepri,
         page_pq=pagepq,
         pagevot=pagevot,
@@ -409,6 +409,38 @@ def index():
         VOTACAO_URL=vote_url,
         VOTACAO_ROOT=vote_root,
         VOTACAO_ALTURA=vote_altura,
+    )
+
+
+@app.route('/resultados')
+def resultados_gd():
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = twitts()
+    except KeyError:
+        twitter_hash_cabecalho = ""
+    return render_template(
+        'resultados-capa.html', wp=wordpress,
+        menu=menus,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
+        sidebar=wordpress.getSidebar
+    )
+
+
+@app.route('/sobre')
+def sobre_gd():
+    pagesobre = fromcache('pagesobre')  or tocache('pagesobre', wordpress.getPageByPath('sobre'))
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    try:
+        twitter_hash_cabecalho = twitts()
+    except KeyError:
+        twitter_hash_cabecalho = ""
+    return render_template(
+        'sobre.html', wp=wordpress,
+        menu=menus,
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
+        sidebar=wordpress.getSidebar,
+        page_about=pagesobre
     )
 
 

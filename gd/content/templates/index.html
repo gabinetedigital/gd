@@ -22,32 +22,6 @@
     </div>
   </div>
 
-  <div class="row" id="sobre">
-    <div class="container">
-      <section>
-        <div class="row">
-          <div class="span6">
-            <div class="page-header">
-              <h2>{{ page_about.title|safe }}</h2>
-            </div>
-            <div class="block">
-              {{ page_about.content|safe }}
-            </div>
-          </div>
-
-          <div class="span6">
-            <ul class="nav nav-tabs" id="myTab">
-              <li><a class="pub" data-toggle="tab">Publicações</a></li>
-              <li><a class="clip" data-toggle="tab">Clipping</a></li>
-              <li><a class="membros" data-toggle="tab">Equipe</a></li>
-            </ul>
-            {{ sidebar(id='sidebar-6')|safe }}
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-
 {%if VOTACAO_URL%}
   <div class="row" id="govpergunta">
     <div class="container">
@@ -123,18 +97,6 @@
 
 {%endif%}
 
-  <div class="row" id="resultados">
-    <div class="container">
-      <section>
-        <div class="page-header">
-          <h2>Resultados</h2>
-        </div>
-        <ul class="thumbnails">
-          {{ sidebar(id='sidebar-5')|safe }}
-        </ul>
-      </section>
-    </div>
-  </div>
 </div>
 
 {% endblock %}
