@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-nova.html" %}
 
 {% block javascript %}
 <script src="{{ url_for('.static', filename='js/base/home.js') }}"></script>
@@ -9,94 +9,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="content">
-  <div class="row widgets">
-    <div class="container">
-      <section>
-        <div class="fixie">
-        </div>
-        <ul class="thumbnails">
-          {{ sidebar(id='sidebar-4')|safe }}
-        </ul>
-      </section>
+<div class="content widgets">
+  <div class="container">
+    <div class="row">
+      <ul class="thumbnails">
+        {{ sidebar(id='sidebar-4')|safe }}
+      </ul>
     </div>
   </div>
-
-{%if VOTACAO_URL%}
-  <div class="row" id="govpergunta">
-    <div class="container">
-      <section>
-        <div class="row">
-          <img class="span12 banner" src="{{url_for('static', filename="img/banner-reforma.png")}}">
-        </div>
-
-        <div class="row">
-          <div class="span12">
-            <div class="well">
-            {{pagevot.content|safe}}
-            </div>
-          </div>
-        </div>
-
-        <div class="page-header questao1">
-          <h2 class="reforma"  style="line-height: 1.8em;">1. Como deve ser feita a reforma política no Brasil?</h2>
-        </div>
-        <div class="row questao1">
-          <div class="span12">
-            <div class="well">
-
-              <form id="frmquestao1" class="form-horizontal" method="POST" action="/opcaoRefPolitica">
-                <input type="hidden" name="hdnquestao1">
-                  <h4 class="center">Clique em uma das opções abaixo</h4>
-                  <div class="botaovotacapa esquerda span5">
-                    <button id="botao1" class="btn btn-large btn-primary btn-block" data-value="1">Pelo Congresso, com deputados e senadores escolhidos nas últimas eleições</button>
-                  </div>
-                  <div class="botaovotacapa span5">
-                    <button id="botao2" class="btn btn-large btn-primary btn-block" data-value="2">Através de uma Câmara Constituinte com representantes eleitos exclusivamente para esse fim</button>
-                  </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <div id="titquestao2" class="page-header questao2 {%if not reforma_voted%}hide{%endif%}">
-          <h2 class="reforma" style="line-height: 1.8em;">2. Na sua opinião, quais devem ser as prioridades da reforma política?</h2>
-        </div>
-
-        <div class="row questao2 {%if not reforma_voted%}hide{%endif%}">
-          <div class="span12">
-            <div class="pergunta">
-              {%if VOTACAO_ALTURA%}
-              <iframe id="iframevotacao" src='{{VOTACAO_URL}}' width='100%' height='{{VOTACAO_ALTURA}}' frameborder='0' scrolling='auto'></iframe>
-              {%else%}
-              <iframe id="iframevotacao" src='{{VOTACAO_URL}}' width='100%' height='100%' frameborder='0' scrolling='auto'></iframe>
-              {%endif%}
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="span12">
-            <div class="well">
-            Se você encontrar dificuldades no envio da proposta ou tiver alguma dúvida, envie um e-mail para <a href="mailto:&#103;&#097;&#098;&#105;&#110;&#101;&#116;&#101;&#100;&#105;&#103;&#105;&#116;&#097;&#108;&#064;&#115;&#103;&#103;&#046;&#114;&#115;&#046;&#103;&#111;&#118;&#046;&#098;&#114;">gabinetedigital@sgg.rs.gov.br</a>.
-            </div>
-          </div>
-        </div>
-
-      </section>
-    </div>
-  </div>
-
-  {%if reforma_voted%}
-  <script>
-  $(document).ready(function () {
-    donextstep({{reforma_voted}});
-  });
-  </script>
-  {%endif%}
-
-{%endif%}
-
 </div>
-
 {% endblock %}
