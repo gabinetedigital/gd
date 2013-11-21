@@ -35,23 +35,45 @@ def redir_videos_recentes():
     return redirect("/videos/recentes")
 
 
+def treat_categories(videos, unico=False):
+    #Como a lista de videos vem com as várias categorias, o resultado da query
+    #traz videos duplicados na lista, então este método une em 1 item apenas
+    #o mesmo vídeo com suas várias catetorias
+    todos = {}
+
+    if unico:
+        videos = [videos]
+
+    for video in videos:
+        if video['id'] in todos.keys() :
+            todos[video['id']]['category'] = todos[video['id']]['category'] + "," + video['category']
+        else:
+            todos[video['id']] = video
+            todos[video['id']]['category_list'] = []
+
+        todos[video['id']]['category_list'].append( {'id':video['category'], 'name':video['category_name']})
+
+    if unico:
+        return todos.values()[0]
+    else:
+        return todos.values()
+
 @videos.route('/recentes')
 @videos.route('/populares')
 def listing():
 
     page = int(request.args.get('page') or 1)
     page -= 1
-    print "Carregando pagina", page
 
     # page = wordpress.wpgd.getHighlightedVideos()
     hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
-        wordpress.wpgd.getHighlightedVideos() )
+        treat_categories(wordpress.wpgd.getHighlightedVideos()) )
 
-    print "========================================================"
+    # print "========================================================"
     # print dir(request)
     # print request.url
-    print request.url_rule
-    print "========================================================"
+    # print request.url_rule
+    # print "========================================================"
 
     canalclass=""
     if 'populares' in str(request.url_rule):
@@ -66,22 +88,24 @@ def listing():
     order_by = "%s desc" % order
 
     videos_json = {}
-    allvideos = fromcache("all_videos_root_") or tocache("all_videos_root_" ,wordpress.wpgd.getVideos(
-        where='status=true', orderby="date DESC" ))
+    allvideos = fromcache("all_videos_root_") or \
+                tocache("all_videos_root_" ,
+                        treat_categories(wordpress.wpgd.getVideos(where='status=true', orderby="date DESC" )) )
 
-    categories = fromcache("all_videos_categories") or tocache("all_videos_categories",wordpress.wpgd.getVideosCategories())
+    categories = fromcache("all_videos_categories") or \
+        tocache("all_videos_categories",wordpress.wpgd.getVideosCategories())
 
     for v in allvideos:
         videos_json[v['title']] = v['id']
 
-    print "Buscando", current_app.config['VIDEO_PAGINACAO'], "vídeos por página!"
+    # print "Buscando", current_app.config['VIDEO_PAGINACAO'], "vídeos por página!"
     cacheid = "videos_root_%s_page_%s" % (order,page)
     pagging = int(current_app.config['VIDEO_PAGINACAO'])
     offset = page * pagging
     page_total = int( round( Decimal( len(allvideos) ) / pagging ) )
-    print "PAGINACAO", len(allvideos), page, pagging, offset
+    # print "PAGINACAO", len(allvideos), page, pagging, offset
     videos = fromcache(cacheid) or tocache(cacheid,
-        wordpress.wpgd.getVideos(where='status=true', orderby=order_by, limit=pagging, offset=offset) )
+        treat_categories(wordpress.wpgd.getVideos(where='status=true', orderby=order_by, limit=pagging, offset=offset)) )
 
     try:
         twitter_hash_cabecalho = twitts()
@@ -100,9 +124,9 @@ def canal(categoria_id):
 
     page = int(request.args.get('page') or 1)
     page -= 1
-    print "Carregando pagina", page
+    # print "Carregando pagina", page
 
-    print categories
+    # print categories
     nome_canal = ""
     for cat in categories:
         if int(cat['term_id']) == categoria_id:
@@ -110,52 +134,40 @@ def canal(categoria_id):
             break
 
     videos_json = {}
-    allvideos = fromcache("all_videos_root") or tocache("all_videos_root",wordpress.wpgd.getVideos(
-        where='status=true', orderby='title'))
+    allvideos = fromcache("all_videos_root") or tocache("all_videos_root",
+        treat_categories(wordpress.wpgd.getVideos(where='status=true', orderby='title')) )
     for v in allvideos:
         videos_json[v['title']] = v['id']
 
 
-    print "Buscando", current_app.config['VIDEO_PAGINACAO'], "vídeos por página!"
+    # print "Buscando", current_app.config['VIDEO_PAGINACAO'], "vídeos por página!"
     cacheid = "videos_canal_%s_page_%s" % (str(categoria_id),page)
     cacheidall = "videos_canal_%s" % str(categoria_id)
     pagging = int(current_app.config['VIDEO_PAGINACAO'])
     offset = page * pagging
 
     allvideos_cat = fromcache(cacheidall) or tocache(cacheidall,
-             wordpress.wpgd.getVideosByCategory(category=categoria_id))
+             treat_categories(wordpress.wpgd.getVideosByCategory(category=categoria_id)) )
 
-    print "PAGINACAO", len(allvideos_cat), page, pagging, offset
+    # print "PAGINACAO", len(allvideos_cat), page, pagging, offset
     page_total = int( round( Decimal( len(allvideos_cat) ) / pagging ) )
 
     videos = fromcache(cacheid) or tocache(cacheid,
-             wordpress.wpgd.getVideosByCategory(category=categoria_id,
-                orderby='date DESC', limit=pagging, offset=offset))
+             treat_categories(wordpress.wpgd.getVideosByCategory(category=categoria_id,
+                orderby='date DESC', limit=pagging, offset=offset)) )
 
     hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
-        wordpress.wpgd.getHighlightedVideos() )
+        treat_categories(wordpress.wpgd.getHighlightedVideos()) )
 
     return render_template('videos.html', videos=videos, titulos=videos_json,
         categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="fa fa-th-large",
         page=page+1, page_total=page_total)
 
 
-@videos.route('/nextpage/<int:pagina>/')
-def nextpage(pagina):
-    paginacao = int(current_app.config['VIDEO_PAGINACAO'])
-    offset = pagina * paginacao
-    print "OFFSET:", offset
-    videos = fromcache("videos_%s" % str(offset)) or tocache("videos_%s" % str(offset), wordpress.wpgd.getVideos(
-        where='status=true', orderby='date DESC', limit=paginacao,
-        offset=offset))
-    return render_template('videos_pagina.html', videos=videos)
-
-
 @videos.route('/<int:vid>/mv', methods=('POST',) )
 def addview(vid):
     video = fromcache("video_%s" % str(vid))
     if not video:
-        print "Video do wordpress..."
         video = tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
 
     if 'views' in video:
@@ -172,18 +184,10 @@ def addview(vid):
 @videos.route('/<int:vid>/')
 def details(vid):
     video = fromcache("video_%s" % str(vid))
-    print "Video do cache!"
 
     if not video:
-        print "Video do wordpress..."
-        video = tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
-
-    # video['views'] = int(video['views']) + 1
-    # print "Delete video cache!"
-    # removecache("video_%s" % str(vid))
-    # print "Set video to cache!"
-    # tocache("video_%s" % str(vid), video)
-    # wordpress.wpgd.setVideoViews(video['views'], vid);
+        # print "Video do wordpress...", vid
+        video = tocache("video_%s" % str(vid), treat_categories(wordpress.wpgd.getVideo(vid))[0] )
 
     sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
 

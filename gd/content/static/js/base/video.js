@@ -35,24 +35,6 @@ $(window).load(function() {
 
     var video_page = 1;
     $(".thumbnails").append("")
-    $("#readmorevideos").click(function(){
-        $.ajax({
-            url:"/videos/nextpage/" + video_page + "/",
-            success: function(resp){
-                if(!resp){
-                    $("#readmorevideos").attr("disabled", "disabled");
-                    $("#readmorevideos").html("Não há mais vídeos!");
-                    return;
-                }
-                $(".thumbnails").append(resp);
-                //alert(resp);
-                video_page = video_page + 1;
-                window.setTimeout(function(){
-                    $('.thumbnails').masonry('reload');
-                },1000);
-            }
-        });
-    });
 
     $('video').mediaelementplayer({});
 
