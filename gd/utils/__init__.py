@@ -248,3 +248,27 @@ def categoria_contribuicao_text(id):
         u'Instituições da sociedade civil e movimentos sociais',
         u'Instituições de ensino e pesquisa da área da comunicação social no Rio Grande do Sul',
     ][int(id)];
+
+
+def treat_categories(videos, unico=False):
+    #Como a lista de videos vem com as várias categorias, o resultado da query
+    #traz videos duplicados na lista, então este método une em 1 item apenas
+    #o mesmo vídeo com suas várias catetorias
+    todos = {}
+
+    if unico:
+        videos = [videos]
+
+    for video in videos:
+        if video['id'] in todos.keys() :
+            todos[video['id']]['category'] = todos[video['id']]['category'] + "," + video['category']
+        else:
+            todos[video['id']] = video
+            todos[video['id']]['category_list'] = []
+
+        todos[video['id']]['category_list'].append( {'id':video['category'], 'name':video['category_name']})
+
+    if unico:
+        return todos.values()[0]
+    else:
+        return todos.values()

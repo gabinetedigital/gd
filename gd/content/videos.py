@@ -20,7 +20,7 @@
 
 from flask import Blueprint, render_template, current_app, request, redirect
 from gd.utils.gdcache import fromcache, tocache, removecache
-from gd.utils import twitts
+from gd.utils import twitts, treat_categories
 #from gd.auth import is_authenticated
 from gd.content.wp import wordpress
 from decimal import Decimal
@@ -34,29 +34,6 @@ videos = Blueprint(
 def redir_videos_recentes():
     return redirect("/videos/recentes")
 
-
-def treat_categories(videos, unico=False):
-    #Como a lista de videos vem com as várias categorias, o resultado da query
-    #traz videos duplicados na lista, então este método une em 1 item apenas
-    #o mesmo vídeo com suas várias catetorias
-    todos = {}
-
-    if unico:
-        videos = [videos]
-
-    for video in videos:
-        if video['id'] in todos.keys() :
-            todos[video['id']]['category'] = todos[video['id']]['category'] + "," + video['category']
-        else:
-            todos[video['id']] = video
-            todos[video['id']]['category_list'] = []
-
-        todos[video['id']]['category_list'].append( {'id':video['category'], 'name':video['category_name']})
-
-    if unico:
-        return todos.values()[0]
-    else:
-        return todos.values()
 
 @videos.route('/recentes')
 @videos.route('/populares')
@@ -168,7 +145,7 @@ def canal(categoria_id):
 def addview(vid):
     video = fromcache("video_%s" % str(vid))
     if not video:
-        video = tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+        video = tocache("video_%s" % str(vid), treat_categories(wordpress.wpgd.getVideo(vid))[0])
 
     if 'views' in video:
         video['views'] = int(video['views']) + 1
@@ -214,7 +191,7 @@ def details(vid):
 
 @videos.route('/embed/<int:vid>/')
 def embed(vid):
-    video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+    video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), treat_categories(wordpress.wpgd.getVideo(vid))[0])
     sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
     video_sources = {}
     for s in sources:

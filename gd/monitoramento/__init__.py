@@ -36,7 +36,7 @@ from hashlib import md5
 
 # from gd.auth import is_authenticated, authenticated_user #, NobodyHome
 from gd import auth as authapi
-from gd.utils import dumps, sendmail, send_welcome_email, send_password, twitts, get_twitter_connection
+from gd.utils import dumps, sendmail, send_welcome_email, send_password, twitts, get_twitter_connection, treat_categories
 from gd.model import UserFollow, session as dbsession
 from gd.content import wordpress
 from gd.utils.gdcache import fromcache, tocache #, cache, removecache
@@ -88,7 +88,7 @@ def adjustCf(obras):
 				#=== tratamento especial para alguns custom fields
 				if cf['key'] == 'gdvideo':
 					vid = valor
-					video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+					video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), treat_categories(wordpress.wpgd.getVideo(vid))[0])
 					sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
 					# print "SOURCES===", sources
 
@@ -160,7 +160,7 @@ def index():
 			# print "SLIDE===", slide
 			if slide['custom_fields'].has_key('gdvideo'):
 				vid = slide['custom_fields']['gdvideo']
-				video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), wordpress.wpgd.getVideo(vid))
+				video = fromcache("video_%s" % str(vid)) or tocache("video_%s" % str(vid), treat_categories(wordpress.wpgd.getVideo(vid))[0])
 				sources = fromcache("video_src_%s" % str(vid)) or tocache("video_src_%s" % str(vid),wordpress.wpgd.getVideoSources(vid))
 				# print "SOURCES===", sources
 
