@@ -37,7 +37,7 @@ $(window).load(function () {
       <div class="row">
         <div class="span8">
           <div class="head">
-            {%if obra.custom_fields['gdobra_obra_entregue']%}
+            {%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
             <div class="dono"></div>
             {% endif %}
             <h2>{{obra.title}}</h2>
