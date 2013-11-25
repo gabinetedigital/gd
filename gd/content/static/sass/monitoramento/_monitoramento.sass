@@ -733,47 +733,66 @@
   margin-top: 15px
   position: absolute
 
-#monitoramento.obra .govresp
-  background: #F1C40F
-  overflow: hidden
-  display: block
-  width: 800px
-  margin: 0 auto
+#monitoramento.obra
+  .govresp
+    background: #F1C40F
+    overflow: hidden
+    display: block
+    width: 800px
+    margin: 0 auto
 
-#monitoramento.obra .govresp .content
-  margin: 0
-  font-weight: 400
-  width: 435px
+  .content-full
+    margin: 0
+    font-weight: 400
+    width: 100%
 
-#monitoramento.obra .govresp .content-full
-  margin: 0
-  font-weight: 400
-  width: 100%
+  .content
+    margin: 0
+    font-weight: 400
+    padding: 10px 20px
+    text-align: justify
 
-#monitoramento.obra .govresp .content .text
-  margin-top: 20px
-  padding: 10px
+    .titulo
+      display: block
+      clear: both
+      overflow: hidden
 
-#monitoramento.obra .govresp .text p
-  display: table-row
+    .text
+      margin-top: 20px
+      padding: 10px
 
-#monitoramento.obra .govresp .cal
-  background: url(../img/monitoramento/calendar.png) no-repeat
-  float: left
-  height: 67px
-  margin: 10px
-  width: 50px
-  text-align: center
-  text-transform: uppercase
-  color: #2C3E50
+      p
+        display: table-row
 
-#monitoramento.obra .govresp .cal .dia
-  font-size: 20pt
-  font-weight: 600
-  margin-top: 20px
+    .cal
+      background: url(../img/monitoramento/calendar.png) no-repeat
+      float: left
+      height: 67px
+      margin: 10px 10px 10px 0
+      width: 50px
+      text-align: center
+      text-transform: uppercase
+      color: #2C3E50
 
-#monitoramento.obra .govresp .cal .mes
-  margin-top: 2px
+      .dia
+        font-size: 20pt
+        font-weight: 600
+        margin-top: 20px
+
+      .mes
+        margin-top: 2px
+
+    .data
+      font-size: 15pt
+      font-weight: 200
+      margin-bottom: 18px
+      margin-top: -5px
+
+    .video
+      width: 435px
+      float: right
+      padding: 10px
+      margin: 0 10px 5px 0
 
 #monitoramento.obra .updates .govresp h2
   color: #2c3e50
@@ -782,16 +801,7 @@
 #monitoramento.obra .updates .govresp.remote > h2
   margin-left: 10px
 
-#monitoramento.obra .govresp .content .data
-  font-size: 15pt
-  font-weight: 200
-  margin-bottom: 18px
-  margin-top: -5px
 
-#monitoramento.obra .govresp .video
-  width: 435px
-  float: right
-  padding: 10px
 
 #monitoramento.obra .comofunciona,
 #monitoramento.obra .comofunciona.fechado
