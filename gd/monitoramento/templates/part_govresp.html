@@ -39,29 +39,27 @@
 
     {%else%}
 
-    {%if update.thumbs.slideshow%}
-    <div class="video">
-      <img src="{{ thumborurl(update.thumbs.slideshow.url, (350,233) ) }}">
-    </div>
-    {%elif update.thumbs.normal%}
-    <div class="video">
-      <img src="{{ thumborurl(update.thumbs.normal.url, (350,233) ) }}">
-    </div>
-    {%elif update.thumbs.thumb%}
-    <div class="video">
-      <img src="{{ thumborurl(update.thumbs.thumb.url, (350,233) ) }}">
-    </div>
-    {%elif update.custom_fields.gdobra_imagem%}
-    <div class="video">
-      <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (350,233) ) }}">
-    </div>
+      {%if update.thumbs.slideshow%}
+      <div class="video">
+        <img src="{{ thumborurl(update.thumbs.slideshow.url, (350,233) ) }}">
+      </div>
+      {%elif update.thumbs.normal%}
+      <div class="video">
+        <img src="{{ thumborurl(update.thumbs.normal.url, (350,233) ) }}">
+      </div>
+      {%elif update.thumbs.thumb%}
+      <div class="video">
+        <img src="{{ thumborurl(update.thumbs.thumb.url, (350,233) ) }}">
+      </div>
+      {%elif update.custom_fields.gdobra_imagem%}
+      <div class="video">
+        <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (350,233) ) }}">
+      </div>
+      {%else%}
+        {{update.content|safe}}
+      {%endif%}
 
-    {%else%}
-      {{update.content|safe}}
-    {%endif%}
-    {{update.content|safe}}
     {%endif%}
 
-    {{update.content|safe}}
   </div>
   </div>

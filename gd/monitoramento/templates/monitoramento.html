@@ -267,7 +267,7 @@ $('.typeahead').typeahead({
                     <div class="thumbnail">
                       <div class="obra">
                         <div class="tge salto"></div>
-                        {%if obra.custom_fields['gdobra_obra_entregue']%}
+                        {%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
                         <div class="dono"></div>
                         {%endif%}
                         <div class="tge salto"></div>
