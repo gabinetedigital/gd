@@ -35,6 +35,11 @@ def redir_videos_recentes():
     return redirect("/videos/recentes")
 
 
+def paginate(videos, limit, offset):
+    print "PAGINANDO %d videos, offset %d num total de %d" % (limit, offset, len(videos))
+    return videos[offset:offset+limit]
+
+
 @videos.route('/recentes')
 @videos.route('/populares')
 def listing():
@@ -82,7 +87,7 @@ def listing():
     page_total = int( round( Decimal( len(allvideos) ) / pagging ) )
     # print "PAGINACAO", len(allvideos), page, pagging, offset
     videos = fromcache(cacheid) or tocache(cacheid,
-        treat_categories(wordpress.wpgd.getVideos(where='status=true', orderby=order_by, limit=pagging, offset=offset)) )
+        paginate(treat_categories(wordpress.wpgd.getVideos(where='status=true', orderby=order_by)), pagging, offset) )
 
     try:
         twitter_hash_cabecalho = twitts()
@@ -130,8 +135,8 @@ def canal(categoria_id):
     page_total = int( round( Decimal( len(allvideos_cat) ) / pagging ) )
 
     videos = fromcache(cacheid) or tocache(cacheid,
-             treat_categories(wordpress.wpgd.getVideosByCategory(category=categoria_id,
-                orderby='date DESC', limit=pagging, offset=offset)) )
+             paginate(treat_categories(wordpress.wpgd.getVideosByCategory(category=categoria_id,
+                orderby='date DESC')), pagging, offset) )
 
     hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
         treat_categories(wordpress.wpgd.getHighlightedVideos()) )
