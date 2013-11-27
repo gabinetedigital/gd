@@ -97,7 +97,7 @@ def twitts(hashtag=None, count=25):
         # tws = [status for status in result['statuses']]
         result = []
         for status in result:
-            print status
+            # print status
             status['classe'] = 'pessoa' + str(random.choice(range(1,10)))
             status['created_at'] = convert_todatetime(status.created_at)
             result.append(status)
@@ -260,13 +260,16 @@ def treat_categories(videos, unico=False):
         videos = [videos]
 
     for video in videos:
-        if video['id'] in todos.keys() :
-            todos[video['id']]['category'] = todos[video['id']]['category'] + "," + video['category']
+        if video['category']:
+            if video['id'] in todos.keys():
+                todos[video['id']]['category'] = todos[video['id']]['category'] + "," + video['category']
+            else:
+                todos[video['id']] = video
+                todos[video['id']]['category_list'] = []
+
+            todos[video['id']]['category_list'].append( {'id':video['category'], 'name':video['category_name']})
         else:
             todos[video['id']] = video
-            todos[video['id']]['category_list'] = []
-
-        todos[video['id']]['category_list'].append( {'id':video['category'], 'name':video['category_name']})
 
     if unico:
         return todos.values()[0]
