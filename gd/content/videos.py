@@ -59,11 +59,11 @@ def listing():
 
     canalclass=""
     if 'populares' in str(request.url_rule):
-        order = "views" #recents
+        order = "v.views" #recents
         nome_canal = "Populares"
         canalclass="fa-star"
     else :
-        order = "date"
+        order = "v.date"
         nome_canal = "Recentes"
         canalclass="fa fa-clock-o"
 
@@ -87,7 +87,7 @@ def listing():
     page_total = int( round( Decimal( len(allvideos) ) / pagging ) )
     # print "PAGINACAO", len(allvideos), page, pagging, offset
     videos = fromcache(cacheid) or tocache(cacheid,
-        paginate(treat_categories(wordpress.wpgd.getVideos(where='status=true', orderby=order_by)), pagging, offset) )
+        paginate(treat_categories(wordpress.wpgd.getVideos(where='v.status=true', orderby=order_by)), pagging, offset) )
 
     try:
         twitter_hash_cabecalho = twitts()

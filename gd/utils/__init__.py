@@ -259,7 +259,10 @@ def treat_categories(videos, unico=False):
     if unico:
         videos = [videos]
 
+    print videos
+
     for video in videos:
+        print "XX Video:", video['id'], video['views']
         if video['category']:
             if video['id'] in todos.keys():
                 todos[video['id']]['category'] = todos[video['id']]['category'] + "," + video['category']
