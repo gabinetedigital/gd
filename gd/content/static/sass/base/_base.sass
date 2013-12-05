@@ -1,10 +1,10 @@
 body
   font-family: 'Open Sans', sans-serif
-
+  margin-top: 30px
 a
   color: $red
 
-.home h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
+.nova h1, .search, .feed, .twitter, .facebook, .mail, #tweets,
 .pessoa1, .pessoa2, .pessoa3, .pessoa4,
 .pessoa5, .pessoa6, .pessoa7, .pessoa8,
 .male, a.brand, .pri, .pq, .pro, .como, .logors,
@@ -15,20 +15,65 @@ a
 
 /* Cabeçalho
 
-.home h1
-  display: block
-  width: 270px
-  height: 123px
-  text-indent: -1000px
-  overflow: hidden
-  padding-bottom: 15px
+.nova 
+  h1
+    display: block
+    width: 270px
+    height: 123px
+    text-indent: -1000px
+    overflow: hidden
+    padding-bottom: 15px
+      
+  .clipping
+    color: #7f8c8d
+    padding-top: 20px
+    font-style: italic
+    padding-left: 350px
+    .author
+      text-align: right
+
+  .menu
+    border: 1px solid #bdc3c7
+    border-right: 0
+    border-left: 0
+    padding: 10px 20px
+    margin: 20px 0
+
+    li
+      display: inline-block
+      list-decoration: none
+      margin-right: 20px
+
+      &.procurar
+        width: 48%
+        text-align: right
+        margin: 0
+
+        .input-append
+          margin: 0
+
+      a
+        color: #4d4d4d
+        font-size: 1em
+        text-transform: lowercase
+
+      input.busca
+        +border-radius(0)
+        border-color: #95a5a6
+      
+      button.lupa
+        border: 1px solid #95a5a6
+        background: none
+        +border-radius(0)
+        +box-shadow(none)
+        
 
 #search, #social
   text-align: right
   margin-top: 50px
   margin-left: 20px
 
-.home h1, .search, .feed, .twitter, .facebook, .mail
+.nova h1, .search, .feed, .twitter, .facebook, .mail
   display: block
   float: left
 
