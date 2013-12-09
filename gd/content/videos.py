@@ -59,11 +59,11 @@ def listing():
 
     canalclass=""
     if 'populares' in str(request.url_rule):
-        order = "v.views" #recents
+        order = "views" #recents
         nome_canal = "Populares"
         canalclass="fa-star"
     else :
-        order = "v.date"
+        order = "date"
         nome_canal = "Recentes"
         canalclass="fa fa-clock-o"
 
@@ -72,7 +72,7 @@ def listing():
     videos_json = {}
     allvideos = fromcache("all_videos_root_") or \
                 tocache("all_videos_root_" ,
-                        treat_categories(wordpress.wpgd.getVideos(where='status=true', orderby="date DESC" )) )
+                        treat_categories(wordpress.wpgd.getVideos(where='status=true'), orderby="date") )
 
     categories = fromcache("all_videos_categories") or \
         tocache("all_videos_categories",wordpress.wpgd.getVideosCategories())
@@ -87,7 +87,7 @@ def listing():
     page_total = int( round( Decimal( len(allvideos) ) / pagging ) )
     # print "PAGINACAO", len(allvideos), page, pagging, offset
     videos = fromcache(cacheid) or tocache(cacheid,
-        paginate(treat_categories(wordpress.wpgd.getVideos(where='v.status=true', orderby=order_by)), pagging, offset) )
+        paginate(treat_categories(wordpress.wpgd.getVideos(where='v.status=true'),orderby=order_by), pagging, offset) )
 
     try:
         twitter_hash_cabecalho = twitts()
@@ -117,7 +117,7 @@ def canal(categoria_id):
 
     videos_json = {}
     allvideos = fromcache("all_videos_root") or tocache("all_videos_root",
-        treat_categories(wordpress.wpgd.getVideos(where='status=true', orderby='title')) )
+        treat_categories(wordpress.wpgd.getVideos(where='status=true'), orderby='title') )
     for v in allvideos:
         videos_json[v['title']] = v['id']
 
@@ -136,7 +136,7 @@ def canal(categoria_id):
 
     videos = fromcache(cacheid) or tocache(cacheid,
              paginate(treat_categories(wordpress.wpgd.getVideosByCategory(category=categoria_id,
-                orderby='date DESC')), pagging, offset) )
+                ), orderby='date'), pagging, offset) )
 
     hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
         treat_categories(wordpress.wpgd.getHighlightedVideos()) )
