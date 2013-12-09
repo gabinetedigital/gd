@@ -14,6 +14,7 @@
         <source type="video/youtube" src="{{update.custom_fields['gdobra_video']}}" />
       </video>
     </div>
+    {{update.content|safe}}
     {%elif 'gdvideo' in update.custom_fields%}
     {#GDVIDEO#}
     <div class="video">
@@ -36,7 +37,7 @@
         </object>
       </video>
     </div>
-
+    {{update.content|safe}}
     {%else%}
 
       {%if update.thumbs.slideshow%}
