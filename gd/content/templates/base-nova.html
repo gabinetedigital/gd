@@ -31,7 +31,7 @@
     {% block id %}
     {% endblock %}
 
-    
+
     <div class="container">
       <div class="row">
           <div class="span4">
@@ -39,29 +39,19 @@
           </div>
           <div class="span8">
             <div class="clipping">
-              <p>
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing
-                elit. Donec hendrerit tempor tellus. Donec pretium posuere
-                tellus. Proin quam nisl, tincidunt et, mattis eget,
-                convallis nec, purus. Cum sociis natoque penatibus et
-                magnis dis parturient montes, nascetur ridiculus
-                mus. Nulla posuere. Donec vitae dolor. Nullam tristique
-                diam non turpis. Cras placerat accumsan nulla. Nullam
-                rutrum. Nam vestibulum accumsan nisl."
-              </p>
-              <span class="author">-- Blog RS Urgente</span>
+              {{ sidebar(id='sidebar-11')|safe }}
             </div>
           </div>
       </div>
       <div class="row">
         <div class="span12">
           <ul class="menu">
-            {{ menu | safe }}  
+            {{ menu | safe }}
             <li class="procurar">
               <div class="input-append">
                 <input type="text" class="input-small busca search-query"  id="s" name="s">
                 <button type="submit" class="btn lupa"><i class="icon-search"></i></button>
-              </div>          
+              </div>
             </li>
           </ul>
         </div>
