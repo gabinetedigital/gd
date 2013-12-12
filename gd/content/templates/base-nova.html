@@ -48,11 +48,15 @@
           <ul class="menu">
             {{ menu | safe }}
             <li class="procurar">
-              <div class="input-append">
-                <input type="text" class="input-small busca search-query"  id="s" name="s">
-                <button type="submit" class="btn lupa"><i class="icon-search"></i></button>
-              </div>
-            </li>
+                <form class="navbar-search form-search pull-right tools" action='/search/'>
+                  <div class="input-append">
+
+                    <input type="text" class="input-small busca search-query"  id="s" name="s">
+                    <button type="submit" class="btn lupa"><i class="icon-search"></i></button>
+
+                    </div>
+                </form>
+           </li>
           </ul>
         </div>
       </div>
