@@ -98,7 +98,8 @@ def listing():
     return render_template('videos.html', videos=videos
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
         ,menu=menus, titulos=videos_json, categories=categories, hvideos=hvideos
-        ,canal=nome_canal, canalclass=canalclass, page=page+1, page_total=page_total)
+        ,canal=nome_canal, canalclass=canalclass, page=page+1, page_total=page_total,
+        sidebar=wordpress.getSidebar,)
 
 @videos.route('/canal/<int:categoria_id>')
 def canal(categoria_id):
@@ -143,7 +144,8 @@ def canal(categoria_id):
 
     return render_template('videos.html', videos=videos, titulos=videos_json,
         categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="fa fa-th-large",
-        page=page+1, page_total=page_total)
+        page=page+1, page_total=page_total,
+        sidebar=wordpress.getSidebar,)
 
 
 @videos.route('/<int:vid>/mv', methods=('POST',) )
@@ -191,7 +193,7 @@ def details(vid):
     return render_template('video.html', video=video, sources=video_sources
         ,menu=menus
         ,twitter_hash_cabecalho=twitter_hash_cabecalho
-        ,base_url=base_url)
+        ,base_url=base_url, sidebar=wordpress.getSidebar,)
 
 
 @videos.route('/embed/<int:vid>/')
