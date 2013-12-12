@@ -4,6 +4,15 @@ Ah, temos **várias** delas, você pode ver uma lista detalhada no arquivo
 _DEPS_. A maioria dessas dependências são fáceis de instalar, mas por
 favor nos envie um email caso você encontre dificuldades na instalação
 
+Recomendamos que você use um sistema GNU/Linux como Debian/Ubuntu
+Para que a instalação das dependências do python ocorra sem problemas
+instale as seguintes dependências:
+
+```bash
+    $ apt-get install python-dev nginix uwsgi
+    $ apt-get easy-install -U
+```
+
 Recomendamos a utilização do virtualenv ou virtualenvwrapper.  Para
 utilizar o virtualenv siga os seguintes passos:
 
@@ -20,12 +29,18 @@ Se optar pelo virtualenvwrapper:
 
 Após concluir o passo anterior você estará dentro do virtualenv.  Assim
 poderá instalar facilmente todas as dependências com a ferramenta pip ou
-easy_install.
+easy_install ou o incrível e rápido [Curdling](https://github.com/clarete/curdling)
 
-Caso opte pelo pip execute:
+Caso opte pelo curdinling execute:
 
 ```bash
-    $ pip install -r DEPS_PIP
+    $ easy_install curdling
+```
+
+em seguida
+
+```bash
+    $ curd install -r DEPS_PIP
 ```
 
 ## Configuração
