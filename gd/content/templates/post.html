@@ -14,10 +14,30 @@
 {% endblock %}
 
 {% block javascript %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=159464544196767";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<!-- Place this tag after the last share tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'pt-BR'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
 <script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
 <script src="{{ url_for('static', filename='js/base/post.js') }}"></script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "2cb22250-8513-4f40-add3-9af9905f61a5"});</script>
 {% endblock %}
 
 {% block title %}{{ post.title }}{% endblock %}
@@ -37,7 +57,7 @@
           <h2>{{ post.title }}</h2>
           <div class="meta">
             <div class="pull-left">
-              <i class="icon-calendar "></i> 
+              <i class="icon-calendar "></i>
                 {{ post.the_date.day }} de {{ post.the_date.strftime("%B").capitalize().decode('utf8') }} de {{ post.the_date.year }}
               </div>
           </div>
@@ -50,52 +70,23 @@
               </ul>
             </div>
           <div class="shares pull-right">
-            <span class='st_facebook_hcount' displayText='Facebook'></span>
-            <span class='st_twitter_hcount' displayText='Tweet'></span>
-            <span class='st_plusone_hcount' displayText='Google +1'></span>
+            <div class="fb-share-button" data-href="{{base_url}}{{url_for('post_slug',slug=post.slug)}}" data-type="button_count"></div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="gabinetedigital" data-lang="pt" data-related="gabinetedigital">Tweetar</a>
+
+
+            <!-- Place this tag where you want the share button to render. -->
+            <div class="g-plus" data-action="share"></div>
+
           </div>
         </div>
         <div id="comments">
           <div class="postcontent">
             <h3>Comentários</h3>
 
-            {% if post.comments.allow_comments %}
-            <!-- the comment error msg -->
-            <div class="msg error alert alert-error hide"></div>
-            <div class="msg success alert alert-success hide"></div>
-
-
-            <form
-               id="blog_comment_form" method="post"
-               action="{{ url_for('new_comment') }}">
-
-              <input type="hidden" name="post_id" value="{{ post.id }}">
-
-
-              <div class="form">
-                <img src="{{ social_image(user) or user.email | gravatar(size=150) }}" class="pull-left">
-                <div class="commentbox">
-                  <textarea name="content" maxlength="2000" onKeyUp="return countChar(this,2000,'#comf_contador')" placeholder="Deixe seu comentário…">{{live_comment_save}}</textarea>
-                  <span id="contador">Restam ainda <span id="comf_contador">2000</span> caracteres.</span>
-                  <input class="btn btn-danger pull-right enviar" type="submit" value="Enviar">
-                </div>
-              </div>
-            </form>
-            {% endif %}
-            {% for comment in comments %}
             <div class="comment">
-              <img src="{{ comment.user.email | gravatar(size=150) }}" class="pull-left">
-              <div class="comcontent">
-                <h3>{{ comment.author|safe }}</h3>
-
-                <div class="meta">
-                  <i class="icon-calendar "></i>
-                </div>
-
-                {{ comment.content|safe }} <br>
-              </div>
+              <div class="fb-comments" data-href="{{base_url}}{{url_for('post_slug',slug=post.slug)}}" data-width="870" data-numposts="10" data-colorscheme="light"></div>
             </div>
-            {% endfor %}
+
           </div>
         </div>
       </div>
