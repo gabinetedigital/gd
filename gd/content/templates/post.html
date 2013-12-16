@@ -70,13 +70,9 @@
               </ul>
             </div>
           <div class="shares pull-right">
-            <div class="fb-share-button" data-href="{{base_url}}{{url_for('post_slug',slug=post.slug)}}" data-type="button_count"></div>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-via="gabinetedigital" data-lang="pt" data-related="gabinetedigital">Tweetar</a>
-
-
-            <!-- Place this tag where you want the share button to render. -->
-            <div class="g-plus" data-action="share"></div>
-
+            <div class="share fb-share-button" data-href="{{base_url}}{{url_for('post_slug',slug=post.slug)}}" data-type="button_count"></div>
+            <div class="share g-plus" data-action="share" data-annotation="bubble"></div>
+            <div class="share tw-share"><a href="https://twitter.com/share" class="twitter-share-button" data-via="gabinetedigital" data-lang="pt" data-related="gabinetedigital">Tweetar</a></div>
           </div>
         </div>
         <div id="comments">
