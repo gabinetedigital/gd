@@ -30,10 +30,6 @@ videos = Blueprint(
     template_folder='templates',
     static_folder='static')
 
-@videos.route('/')
-def redir_videos_recentes():
-    return redirect("/videos/recentes")
-
 
 def paginate(videos, limit, offset):
     print "PAGINANDO %d videos, offset %d num total de %d" % (limit, offset, len(videos))
@@ -42,6 +38,7 @@ def paginate(videos, limit, offset):
 
 @videos.route('/recentes')
 @videos.route('/populares')
+@videos.route('/')
 def listing():
 
     page = int(request.args.get('page') or 1)
