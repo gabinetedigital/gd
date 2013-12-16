@@ -47,6 +47,7 @@ def galerias(slug=None):
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         titulos=titulos,
+        sidebar=wordpress.getSidebar
     )
 
 
@@ -88,7 +89,8 @@ def index(slug=None):
         s=search_terms,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
-        titulos=titulos) 
+        titulos=titulos,
+        sidebar=wordpress.getSidebar)
 
 @gallery.route('/vote/<int:gid>/')
 @gallery.route('/vote/<int:gid>/<int:rate>/')
@@ -123,4 +125,4 @@ def fotoDownload(gallery=None,filename=None):
     localFile.close()
 
     return send_from_directory("/tmp",filename, as_attachment=True)
-    
+
