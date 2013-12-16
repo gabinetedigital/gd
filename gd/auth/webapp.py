@@ -125,7 +125,8 @@ def login():
      render_template('login.html', next=next,
         # signup_process=signup_process,
         menu=menus,
-        twitter_hash_cabecalho=twitter_hash_cabecalho
+        twitter_hash_cabecalho=twitter_hash_cabecalho,
+        sidebar=wordpress.getSidebar,
      )
     )
     resp.set_cookie('connect_type', '')
@@ -140,7 +141,7 @@ def lost_password():
         twitter_hash_cabecalho = utils.twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
-    return render_template('lost_password.html', menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
+    return render_template('lost_password.html', menu=menus, sidebar=wordpress.getSidebar, twitter_hash_cabecalho=twitter_hash_cabecalho)
 
 
 @auth.route('/logon', methods=('POST',))
@@ -180,7 +181,7 @@ def logon():
         #     return redirect(request.referrer)
         # else:
         #     return render_template('login.html', form=formcad, next=next)
-        return render_template('login.html', form=formcad, next=next, menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
+        return render_template('login.html', form=formcad, next=next, sidebar=wordpress.getSidebar, menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
 
 
 @auth.route('/logout/')
@@ -205,7 +206,8 @@ def logout():
             menu=menus,
             app=app,
             twitter_hash_cabecalho=twitter_hash_cabecalho,
-            voltar=request.referrer or "/"
+            voltar=request.referrer or "/",
+            sidebar=wordpress.getSidebar,
             )
 
 @auth.route('/logout_json')
@@ -305,6 +307,7 @@ def signup_continuation():
         'signup_second.html', form=form,
         menu=menus,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
+        sidebar=wordpress.getSidebar,
         username=username
     )
 
@@ -410,6 +413,7 @@ def signup():
         'signup.html', form=form,
         readmore=rm,tos=tos, menu=menus,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
+        sidebar=wordpress.getSidebar,
         ret_code=ret_code
     )
 
@@ -432,7 +436,7 @@ def profile():
     except KeyError:
         twitter_hash_cabecalho = ""
     return render_template(
-        'profile.html', profile=profile, passwd=passwd, menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
+        'profile.html', profile=profile, passwd=passwd, sidebar=wordpress.getSidebar, menu=menus, twitter_hash_cabecalho=twitter_hash_cabecalho)
 
 
 @auth.route('/profile_json', methods=('POST',))
