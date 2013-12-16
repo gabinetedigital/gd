@@ -772,32 +772,33 @@ def post_slug(slug):
     #Retorna a ultima foto inserida neste album.
     # picday = wordpress.wpgd.getLastFromGallery(conf.GALLERIA_FOTO_DO_DIA_ID)
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-    cmts = fromcache("comentarios_post_slug-%s"%slug) or tocache("comentarios_post_slug-%s"%slug, wordpress.getComments(status='approve',post_id=pid))
+    # cmts = fromcache("comentarios_post_slug-%s"%slug) or tocache("comentarios_post_slug-%s"%slug, wordpress.getComments(status='approve',post_id=pid))
     tags = fromcache("tags") or tocache("tags", wordpress.getTagCloud())
     try:
         twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
 
-    live_comment_ = request.cookies.get('live_comment_save')
-    if live_comment_:
-        live_comment_ = live_comment_.replace('<br/>','\n')
+    # live_comment_ = request.cookies.get('live_comment_save')
+    # if live_comment_:
+    #     live_comment_ = live_comment_.replace('<br/>','\n')
 
     resp = make_response(
      render_template(
         'post.html',
         post=post,
         tags=tags,
-        live_comment_save=live_comment_,
+        # live_comment_save=live_comment_,
         sidebar=wordpress.getSidebar,
         # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
-        comments=cmts,
+        base_url=app.config['BASE_URL'],
+        # comments=cmts,
         show_comment_form=is_authenticated(),
         recent_posts=recent_posts)
     )
-    resp.set_cookie('live_comment_save', "" )
+    # resp.set_cookie('live_comment_save', "" )
     return resp
 
 
@@ -820,13 +821,13 @@ def post(pid):
         twitter_hash_cabecalho = twitts()
     except KeyError:
         twitter_hash_cabecalho = ""
-    live_comment_ = request.cookies.get('live_comment_save')
+    # live_comment_ = request.cookies.get('live_comment_save')
     return render_template(
         'post.html',
         post=p,
         tags=tags,
         sidebar=wordpress.getSidebar,
-        live_comment_save=live_comment_,
+        # live_comment_save=live_comment_,
         # picday=picday,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         menu=menus,
@@ -870,8 +871,8 @@ def new_comment():
             'msg': _(u'User not authenticated'),
             'redirectTo': url_for('auth.login')
         }))
-        if request.form['content']:
-            resp.set_cookie('live_comment_save', request.form['content'].replace('\n','<br/>') )
+        # if request.form['content']:
+        #     resp.set_cookie('live_comment_save', request.form['content'].replace('\n','<br/>') )
         return resp
 
     try:
