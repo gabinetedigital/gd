@@ -56,30 +56,6 @@
 
                     </div>
                 </form>
-
-              <div class="pull-right signin">
-              {%if user%}
-              <a href="/auth/profile/"><img src="{{ social_image(user) or user.email | gravatar(size=16) }}"></a>
-              <div class="btn-group">
-                <a class="btn btn-primary" href="/auth/profile/">{{user.name|truncate(20)}}</a>
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/auth/profile/"><i class="icon-pencil"></i> Editar perfil</a></li>
-                  <li><a href="/auth/logout/"><i class="icon-ban-circle"></i> Logout</a></li>
-                   <!-- <li class="divider"></li> -->
-                  <!-- <li><a href="#"><i class="i"></i> Make admin</a></li> -->
-<!--                   <li>
-                    <div class="avatar avatarmenu">
-                      <img src="{{ user.email | gravatar }}" class="img-polaroid">
-                    </div>
-                  </li>
- -->                </ul>
-              </div>
-              {%else%}
-              <a class="btn btn-success" href="/auth/login/">Entrar</a>
-              {%endif%}
-              </div>
-
            </li>
           </ul>
         </div>
