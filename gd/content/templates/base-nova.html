@@ -47,7 +47,7 @@
         <div class="span12">
           <ul class="menu">
             {{ menu | safe }}
-            <li class="procurar">
+            <li class="procurar pull-right">
                 <form class="navbar-search form-search pull-right tools" action='/search/'>
                   <div class="input-append">
 
@@ -57,7 +57,7 @@
                     </div>
                 </form>
 
-              <div class="pull-right">
+              <div class="pull-right signin">
               {%if user%}
               <a href="/auth/profile/"><img src="{{ social_image(user) or user.email | gravatar(size=16) }}"></a>
               <div class="btn-group">
