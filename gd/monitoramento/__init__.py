@@ -235,12 +235,17 @@ def timelineitem(slug, itemid):
 	except KeyError:
 		twitter_hash_cabecalho = ""
 
+	cacheid = "cmts-item-obra-%s" % itemid
+	cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=itemid, number=1000))
+
 	return render_template('timeline-item.html',
+		base_url = current_app.config['BASE_URL'],
 		menu=menus,
 		obra=obra,
 		howto=howto,
 		tos=tos,
 		update=update,
+		comentarios=cmts[::-1],
 		twitter_hash_cabecalho=twitter_hash_cabecalho
 	)
 
