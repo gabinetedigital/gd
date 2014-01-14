@@ -886,12 +886,18 @@ def new_comment():
         post_id = request.form['post_id']
 
     try:
+        comment_parent = int(request.form['reply_to_id'])
+    except:
+        comment_parent = None
+
+    try:
         wordpress.newComment(
             username=session['username'],
             password=session['password'],
             post_id=post_id,
             content=request.form['content'],
-            nao_exibir_nome=nao_exibir_nome
+            nao_exibir_nome=nao_exibir_nome,
+            comment_parent=comment_parent
         )
         removecache("comentarios%s" % str(post_id))
         return msg.ok(_(u'Thank you. Your comment was successfuly sent'))
