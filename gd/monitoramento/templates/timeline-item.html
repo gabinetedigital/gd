@@ -9,15 +9,61 @@
 {%endmacro%}
 
 {%block css%}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}"> -->
 {%endblock%}
 
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script>
-$('video').mediaelementplayer();
+  $('video').mediaelementplayer();
+
+  $('#commentform').ajaxForm({
+      success:function(pData){
+        console.log(pData);
+        var data = $.parseJSON(pData);
+        console.log(data);
+
+        alert(data.msg);
+        if(data.status == 'ok'){
+          $('#content').val('');
+        }
+      }
+  });
+
+  $('#commentbutton').click(function(){
+    $("#commentformdiv").show();
+    $("#content").focus();
+  });
+
+  $('.btn-cancel').click(function(){
+    $(this).parent().parent().hide();
+  });
+
 </script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=159464544196767";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<!-- Place this tag after the last share tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'pt-BR'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+
 {% endblock %}
 
 {% block subcontent %}
@@ -63,8 +109,50 @@ $('video').mediaelementplayer();
 
         <div class="participe">
           {%include 'timeline-importante.html'%}
+          <a class="btn pull-right commentbutton" id="commentbutton" href="#"><i class="fa fa-comment"></i> Comentar</a>
         </div>
+
       </div>
+
+      <div class="shares share-item">
+        <div class="share fb-share-button" data-href="{{base_url}}{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}" data-type="button_count"></div>
+        <div class="share g-plus" data-action="share" data-annotation="bubble"></div>
+        <div class="share tw-share"><a href="https://twitter.com/share" class="twitter-share-button" data-via="gabinetedigital" data-lang="pt" data-related="gabinetedigital">Tweetar</a></div>
+      </div>
+
+      <div class="commentformdiv hide" id="commentformdiv">
+        {%if not user%}
+        <div class="needlogin">
+          <h4>É necessário que você esteja autenticado para enviar comentários.</h4>
+          <p><a class="btn btn-large btn-success" href="{{url_for('auth.login')}}">Entrar</a></p>
+        </div>
+        {%else%}
+        <form action="{{url_for('new_comment')}}" id="commentform" method="POST">
+          <label for="content">Escreva seu comentário abaixo:</label>
+          <div class="inreplyto hide">Em resposta ao comentário de <span class="replytoname"></span></div>
+          <input type="hidden" name="post_id" value="{{update.id}}">
+          <textarea name="content" id="content" cols="80" rows="4"></textarea>
+          <button class="btn btn-success" type="submit">Enviar</button>
+          <button class="btn btn-cancel" type="button">Cancelar</button>
+        </form>
+        {%endif%}
+      </div>
+
+      <div class="comment-item">
+        {%for comentario in comentarios%}
+        <div class="comentario{%if comentario.parent != "0"%} depth{%endif%}" id="comment-{{comentario.comment_id}}">
+          <div class="usuario">
+            <img src="{{ social_image(comentario.user) or comentario.user.email | gravatar(size=75) }}" class="comentario-user-image img-polaroid">
+          </div>
+          <div class="post-info">
+            <span class="name">Por: {{comentario.parent}} {{comentario.user.display_name}}</span>
+            <span class="date">Em: {{comentario.date_created_gmt|formatarDataeHora}}</span>
+          </div>
+          <div class="conteudo">{{comentario.content}}</div>
+        </div>
+        {%endfor%}
+      </div>
+
     </div>
   </div>
 </div>
