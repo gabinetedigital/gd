@@ -28,6 +28,29 @@ $(window).load(function () {
   });
 });
 </script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=159464544196767";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<!-- Place this tag after the last share tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'pt-BR'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
 {% endblock %}
 
 {% block content %}
@@ -184,6 +207,17 @@ $(window).load(function () {
                 <li><a href="#seguirobraform" class="seguirobra" data-panel="#follow-email"><i class="icon-envelope icon-2x email"></i></a></li>
               </ul>
               <a href="#seguirobraform" class="btn btn-large btn-danger seguirobra">Seguir obra</a>
+            </div>
+
+            <div class="separador"></div>
+
+            <div class="nossodados">
+              <h3>Compartilhar</h3>
+              <div class="shares share-item">
+                <div class="share fb-share-button" data-href="{{base_url}}{{ url_for('.obra', slug=obra.slug) }}" data-type="button_count"></div>
+                <div class="share g-plus" data-action="share" data-annotation="bubble"></div>
+                <div class="share tw-share"><a href="https://twitter.com/share" class="twitter-share-button" data-via="gabinetedigital" data-lang="pt" data-related="gabinetedigital">Tweetar</a></div>
+              </div>
             </div>
 
             <div class="separador"></div>
