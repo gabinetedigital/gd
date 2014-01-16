@@ -118,23 +118,23 @@ $(window).load(function () {
     });
 
     var showMsg = function(status, otherclass){
-        // alert(status);
-        $(".alert").html(status);
-        if(otherclass){
-            $(".alert").addClass(otherclass);
-        }
-        $(".alert").show();
+        alert(status);
+        // $(".alert").html(status);
+        // if(otherclass){
+        //     $(".alert").addClass(otherclass);
+        // }
+        // $(".alert").show();
 
-        $('html, body').animate({
-            scrollTop: $("#participar-geral").offset().top - 50
-        }, 600);
-
+        // $('html, body').animate({
+        //     scrollTop: $("#participar-geral").offset().top - 50
+        // }, 600);
     };
 
     var ret = function(data) {
         var pData = $.parseJSON(data);
 
         /* It's everything ok, let's get out */
+        $(".waiticon").hide();
         if (pData.status === 'ok') {
           showMsg('Obrigado por sua contribuição! ','alert-success');
           if(pData.refresh){
@@ -146,7 +146,6 @@ $(window).load(function () {
         } else {
           showMsg(pData.message);
         }
-        $(this).hideLoadingModal();
 
 
     };
@@ -165,14 +164,14 @@ $(window).load(function () {
                 alert('Você precisa aceitar os termos de uso!')
                 return false;
             }
-
-            $(this).showLoadingModal();
+            console.log("Mostrando...");
+            $(".waiticon").show();
 
         },
         success:ret,
         error: function(){
+            $(".waiticon").hide();
             showMsg("Ocorreu um erro ao enviar sua solicitação",'alert-error');
-            $(this).hideLoadingModal();
         }
     });
 
