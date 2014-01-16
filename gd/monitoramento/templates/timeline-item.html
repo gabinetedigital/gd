@@ -9,10 +9,11 @@
 {%endmacro%}
 
 {%block css%}
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
 {%endblock%}
 
 {% block javascript %}
+<script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script>
   $('video').mediaelementplayer();
@@ -145,10 +146,10 @@
             <img src="{{ social_image(comentario.user) or comentario.user.email | gravatar(size=75) }}" class="comentario-user-image img-polaroid">
           </div>
           <div class="post-info">
-            <span class="name">Por: {{comentario.parent}} {{comentario.user.display_name}}</span>
+            <span class="name">Por: {{comentario.user.display_name}}</span>
             <span class="date">Em: {{comentario.date_created_gmt|formatarDataeHora}}</span>
           </div>
-          <div class="conteudo">{{comentario.content}}</div>
+          <div class="conteudo">{{comentario.content|safe}}</div>
         </div>
         {%endfor%}
       </div>

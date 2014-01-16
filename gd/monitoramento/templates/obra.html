@@ -16,6 +16,7 @@
 
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('static', filename='js/base/gallery.js') }}"></script>
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script>
 $(window).load(function () {
@@ -495,4 +496,12 @@ $(window).load(function () {
   <h1>{{tos.title}}</h1>
   {{tos.content|safe}}
 </div>
+
+<div class="waiticon" style="display: none">
+ <div class="iconcenter">
+  <p>Aguarde, processando...</p>
+  <i class="fa fa-refresh fa-spin fa-2x"></i>
+ </div>
+</div>
+
 {% endblock %}
