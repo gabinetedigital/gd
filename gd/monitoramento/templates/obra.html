@@ -441,7 +441,7 @@ $(window).load(function () {
                 </div>
 
                 <div class="content">
-                  <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}"><h4>{{update.title}}</h4></a>
+                  <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}"><h4>{{update.title}} <i class="fa fa-external-link pull-right"></i> </h4> </a>
                   <div class="user">
                     <small>por</small> {{update.author.display_name}} <small>em</small>
                     <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</a>

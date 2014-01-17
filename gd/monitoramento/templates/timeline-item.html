@@ -139,7 +139,7 @@
         {%endif%}
       </div>
 
-      <div class="comment-item">
+      <div id="comments" class="comment-item">
         {%for comentario in comentarios%}
         <div class="comentario{%if comentario.parent != "0"%} depth{%endif%}" id="comment-{{comentario.comment_id}}">
           <div class="usuario">
