@@ -15,3 +15,9 @@
     <p class="counter">{{update.custom_fields.gdobra_voto_score or "0"}}</p>
   </li>
 </ul>
+
+<div class="comment-count-item pull-right" title="Comente e Veja os comentários !">
+  <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}#comments">
+  {{update.total_comments}} <i class="fa fa-comments-o"></i>
+  </a>
+</div>
