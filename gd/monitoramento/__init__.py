@@ -547,7 +547,8 @@ def contribui(slug):
 		print user
 
 		author_id = user.id if hasattr(user,'id') else user['id']
-		status    = "pending"
+		# status    = "pending"
+		status    = "publish"
 
 		ultimo_status = wordpress.monitoramento.getUltimaRespostaGovObra(obra['id'])
 		print "Achou o ultimo status publico da obra:"
