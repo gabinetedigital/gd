@@ -432,12 +432,21 @@ def seguir(obraid):
 		follow.obra_id = int(obraid)
 
 		if request.form.has_key('faceid'):
+			has = UserFollow.query.filter_by(obra_id=obraid, facebook_id=request.form['faceid'])
+			if has.count() > 0:
+				return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Facebook'})
 			follow.facebook_id = request.form['faceid']
 
 		if request.form.has_key('twitterid'):
+			has = UserFollow.query.filter_by(obra_id=obraid, twitter_id=request.form['twitterid'])
+			if has.count() > 0:
+				return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Twitter'})
 			follow.twitter_id = request.form['twitterid']
 
 		if request.form.has_key('email'):
+			has = UserFollow.query.filter_by(obra_id=obraid, email=request.form['email'])
+			if has.count() > 0:
+				return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Email'})
 			follow.email = request.form['email']
 			emailto = follow.email
 
