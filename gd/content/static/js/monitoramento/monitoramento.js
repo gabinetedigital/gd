@@ -176,10 +176,18 @@ $(window).load(function () {
     });
 
     var retSeguir = function(data){
-        showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
+        var pData = $.parseJSON(data);
+        console.log(pData);
+        console.log(pData.status);
+        console.log(pData.msg);
+        if (pData.status != 'ok'){
+            showMsg(pData.msg,'alert-warning');
+        }else{
+            showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
+        }
         window.setTimeout(function(){
             $.fancybox.close();
-        },3000);
+        },1500);
     }
 
     $('#seguirobraform .ajaxform').ajaxForm({
