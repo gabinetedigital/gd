@@ -99,6 +99,7 @@ def index():
             FACEBOOK_APP_ID = facebook_app_id,
             FACEBOOK_COMMENT_MODERATORS = facebook_comment_moderators,
             buzzesSelec = buzzesSelec,
+            sidebar=wordpress.getSidebar,
             how_to=getattr(how_to, 'content', ''),
            #notice=inst.get_last_published_notice(),
         )

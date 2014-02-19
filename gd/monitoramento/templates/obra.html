@@ -207,6 +207,8 @@ $(window).load(function () {
                 <li><a href="#seguirobraform" class="seguirobra" data-panel="#follow-email"><i class="icon-envelope icon-2x email"></i></a></li>
               </ul>
               <a href="#seguirobraform" class="btn btn-large btn-danger seguirobra">Seguir obra</a>
+              <br/>
+              <a href="#deixarseguirobraform" class="deixarseguirobra">Deixar de seguir</a>
             </div>
 
             <div class="separador"></div>
@@ -524,6 +526,21 @@ $(window).load(function () {
       </form>
     </div>
   </div>
+</div>
+
+<div id="deixarseguirobraform" style="display:none; width:450px;">
+  <h3>Deixar de seguir esta obra</h3>
+  <p>Informe seus dados abaixo para deixar de seguir a obra.</p>
+  <form class="form form-inline ajaxform" action="/deolho/obra/deseguir/{{obra.id}}" method="POST">
+    <label for="faceid">Seu e-mail:</label>
+    <input type="text" name="email" id="email" {%if user%}value="{{user.email}}"{%endif%}><br>
+    <label for="faceid">Facebook ID:</label>
+    <input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook')}}"{%endif%}><br>
+    <label for="faceid">Twitter ID:</label>
+    <input type="text" name="twitterid" id="twitterid" {%if user%}value="{{user.get_meta('twitter')}}"{%endif%}><br>
+    <hr>
+    <input type="submit" class="btn btn-success pull-right" value="Descadastrar">
+  </form>
 </div>
 
 <div id="tos" class="tos hide">

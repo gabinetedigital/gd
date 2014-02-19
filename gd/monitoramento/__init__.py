@@ -410,6 +410,49 @@ def timelineplus(obra_slug, statusid):
 	# return "Mais um item... %s " % statusid
 
 
+@monitoramento.route('/obra/deseguir/<obraid>', methods=('POST',))
+def deseguir(obraid):
+	obra = fromcache("obra-" + obraid) or tocache("obra-" + obraid, _get_obras(obraid=obraid)[0])
+
+	if not obra:
+		print "Não achou a obra!"
+		return abort(404)
+
+	slug = obra['slug']
+
+	haveone = False
+	if request.form:
+
+		if request.form.has_key('faceid'):
+			has = UserFollow.query.filter_by(obra_id=obraid, facebook_id=request.form['faceid'])
+			if has.count() > 0:
+				haveone = True
+				for f in has:
+					has.delete()
+
+		if request.form.has_key('twitterid'):
+			has = UserFollow.query.filter_by(obra_id=obraid, twitter_id=request.form['twitterid'])
+			if has.count() > 0:
+				haveone = True
+				for f in has:
+					has.delete()
+
+		if request.form.has_key('email'):
+			has = UserFollow.query.filter_by(obra_id=obraid, email=request.form['email'])
+			if has.count() > 0:
+				haveone = True
+				for f in has:
+					has.delete()
+
+		dbsession.commit()
+
+		if haveone :
+			return dumps({'status':'ok', 'msg':u'Suas opções foram removidas. Obrigado por participar!'})
+		else:
+			return dumps({'status':'ok', 'msg':u'Não haviam seguidores desta obra com estas informações.'})
+	else:
+		return dumps({'status':'error'})
+
 @monitoramento.route('/obra/seguir/<obraid>', methods=('POST',))
 def seguir(obraid):
 
@@ -722,7 +765,7 @@ def sendnews():
 				t.create_friendship(screen_name=tid)
 				dm = t.send_direct_message(
 					user=tid,
-					text="Tem atualização na obra %s! Veja: %s" % (obra_titulo, obra_link) )
+					text=u"Tem atualização na obra %s! Veja: %s" % (obra_titulo, obra_link) )
 			except Exception as e:
 				print "Ocorreu um erro enviando DM para twitter..."
 				print e
