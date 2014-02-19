@@ -117,6 +117,20 @@ $(window).load(function () {
         });
     });
 
+    $(".deixarseguirobra").each(function(){
+        var obj = $(this);
+        obj.fancybox({
+            afterLoad: function(upcoming, current){
+                // $('.main-follow').find("input[type=text]").val("");
+                $('.main-follow').find(".alert").hide();
+            },
+            afterShow: function(){
+                // $('.main-follow').find('a[target=#follow-email]').trigger('click');
+                $('.main-follow').find('a[target='+obj.attr('data-panel')+']').trigger('click');
+            }
+        });
+    });
+
     var showMsg = function(status, otherclass){
         alert(status);
         // $(".alert").html(status);
@@ -177,20 +191,32 @@ $(window).load(function () {
 
     var retSeguir = function(data){
         var pData = $.parseJSON(data);
-        console.log(pData);
-        console.log(pData.status);
-        console.log(pData.msg);
         if (pData.status != 'ok'){
             showMsg(pData.msg,'alert-warning');
         }else{
-            showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
+            if(pData.msg){
+                showMsg(pData.msg,'alert-success');
+            }else{
+                showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
+            }
         }
-        window.setTimeout(function(){
-            $.fancybox.close();
-        },1500);
+        $('.ajaxform input[type=submit]').removeAttr('disabled');
+        $('.ajaxform input[type=submit]').addClass('btn-success');
+
+        // window.setTimeout(function(){
+        //     $.fancybox.close();
+        // },1500);
     }
 
     $('#seguirobraform .ajaxform').ajaxForm({
+        success:retSeguir,
+        beforeSubmit: function (arr, form, options) {
+            form.find('input[type=submit]').attr('disabled','disabled');
+            form.find('input[type=submit]').removeClass('btn-success');
+        }
+    });
+
+    $('#deixarseguirobraform .ajaxform').ajaxForm({
         success:retSeguir,
         beforeSubmit: function (arr, form, options) {
             form.find('input[type=submit]').attr('disabled','disabled');

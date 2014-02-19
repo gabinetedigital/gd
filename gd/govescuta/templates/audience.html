@@ -1,7 +1,7 @@
 {%if facebook%}
   {% extends "base_slim.html" %}
 {%else%}
-  {% extends "base.html" %}
+  {% extends "base-nova.html" %}
 {%endif%}
 
 {%block htmldef%} xmlns:fb="http://ogp.me/ns/fb#" {%endblock%}
@@ -53,7 +53,7 @@
                 <p class="description">{{ audience.post_content|safe }}</p>
                 <div class="info-btn visible-desktop">
                   <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-info">Mais Detalhes</button>
-                  <a href="#works-like-this" id="how-it-works"  class="btn btn-success" data-toggle="modal">Como Funciona</a>
+                  <!-- <a href="#works-like-this" id="how-it-works"  class="btn btn-success" data-toggle="modal">Como Funciona</a> -->
                 </div>
               </div>
             </div>

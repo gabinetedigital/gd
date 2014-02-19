@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-nova.html" %}
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/audience.css') }}">
@@ -31,10 +31,10 @@
         	<p class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</p>
         	<p class="hour">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}h</p>
         	<p class="min">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}</p>
-        	
-        	
+
+
       	</div>
-      	
+
       	<div id="tag" class="row">
       		<div class="inner">
     		</div>
@@ -111,7 +111,7 @@
 
         </div>
         <div id="beingAnswered-anterior">
-        	
+
         </div>
         <div id="streaming">
 			{% if audience.video  %}
@@ -126,7 +126,7 @@
       		{% else %}
       		<div class="video">
           		<div class="container">
-            		<img src="static/imgs/logo_aguarde.png" 
+            		<img src="static/imgs/logo_aguarde.png"
                  		alt="Aguarde o vídeo"
                  		width="600" height="400">
           		</div>
@@ -156,7 +156,7 @@
 	      		</li>
 	      		{% endfor %}
     		</ul>
-    		{% endif %} 
+    		{% endif %}
 
   		</div>
 
@@ -187,7 +187,7 @@
       			<li class="answer">{{ buzz.content }}</li>
     		</ul>
   		</li>
-      {% endfor %}	
+      {% endfor %}
       </ul >
       <div id="message-statusbar" class="alert"></div>
     </div>

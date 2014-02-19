@@ -82,7 +82,7 @@ app.register_blueprint(govescuta, url_prefix='/govescuta')
 app.register_blueprint(videos, url_prefix='/videos')
 app.register_blueprint(gallery, url_prefix='/fotos')
 app.register_blueprint(balanco, url_prefix='/balanco')
-app.register_blueprint(audience, url_prefix='/audience')
+app.register_blueprint(audience, url_prefix='/aovivo')
 app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(monitoramento, url_prefix='/deolho')
@@ -1011,3 +1011,8 @@ def opcaoRefPolitica():
 @app.route('/monitore/')
 def redir_deolho():
     return redirect( url_for('monitoramento.index') )
+
+@app.route('/audience/')
+def redir_audience():
+    return redirect( url_for('audience.index') )
+
