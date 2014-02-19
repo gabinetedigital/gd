@@ -22,7 +22,7 @@
         {%endif%}
 
         {%if update.format == 'link'%}
-        <a href="{{update.content|striptags}}">{{update.content|striptags}}</a>
+        <a href="{{update.custom_fields.gdobra_arquivo|striptags}}">{{update.content|striptags}}</a>
         {%endif%}
 
         {%if update.format == 'video'%}
