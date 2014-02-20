@@ -514,9 +514,9 @@ $(window).load(function () {
   <form class="form form-inline ajaxform" action="/deolho/obra/deseguir/{{obra.id}}" method="POST">
     <label for="faceid"><i class="icon-envelope icon-2x email"></i> <strong>E-mail</strong></label>
     <input type="text" name="email" id="email" {%if user%}value="{{user.email}}"{%endif%}><br>
-    <label for="faceid"><i class="icon-twitter icon-2x face"></i> <strong>http://twitter.com/</strong></label>
-    <input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook')}}"{%endif%}><br>
     <label for="faceid"><i class="icon-facebook icon-2x twit"></i> <strong>http://facebook.com/</strong></label>
+    <input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook')}}"{%endif%}><br>
+    <label for="faceid"><i class="icon-twitter icon-2x face"></i> <strong>http://twitter.com/</strong></label>
     <input type="text" name="twitterid" id="twitterid" {%if user%}value="{{user.get_meta('twitter')}}"{%endif%}><br>
     <hr>
     <input type="submit" class="btn btn-success pull-right" value="Descadastrar">
