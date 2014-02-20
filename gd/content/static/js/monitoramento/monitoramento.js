@@ -224,15 +224,15 @@ $(window).load(function () {
         }
     });
 
-    $('#seguirobraform a').click(function(){
-        // alert('vai abrir ' + this.target );
-        $('.main-follow .follow').hide();
-        $(this.target).show();
-        $(this.target).find('input[type=submit]').removeAttr('disabled');
-        $(this.target).find('input[type=submit]').addClass('btn-success');
-        $(this.target).find("input[type=text]").focus();
-        return false;
-    });
+    // $('#seguirobraform a').click(function(){
+    //     // alert('vai abrir ' + this.target );
+    //     $('.main-follow .follow').hide();
+    //     $(this.target).show();
+    //     $(this.target).find('input[type=submit]').removeAttr('disabled');
+    //     $(this.target).find('input[type=submit]').addClass('btn-success');
+    //     $(this.target).find("input[type=text]").focus();
+    //     return false;
+    // });
 
     $('.botoesparticipar a').mouseenter( function() {
         $(this).find('.funcao').stop().animate({ opacity: 0, left: "-80px" }, 'slow');
