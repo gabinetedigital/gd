@@ -420,38 +420,60 @@ def deseguir(obraid):
 
 	slug = obra['slug']
 
-	haveone = False
 	if request.form:
 
 		if request.form.has_key('faceid'):
 			has = UserFollow.query.filter_by(obra_id=obraid, facebook_id=request.form['faceid'])
 			if has.count() > 0:
-				haveone = True
 				for f in has:
 					has.delete()
 
 		if request.form.has_key('twitterid'):
 			has = UserFollow.query.filter_by(obra_id=obraid, twitter_id=request.form['twitterid'])
 			if has.count() > 0:
-				haveone = True
 				for f in has:
 					has.delete()
 
 		if request.form.has_key('email'):
 			has = UserFollow.query.filter_by(obra_id=obraid, email=request.form['email'])
 			if has.count() > 0:
-				haveone = True
 				for f in has:
 					has.delete()
 
 		dbsession.commit()
 
-		if haveone :
-			return dumps({'status':'ok', 'msg':u'Suas opções foram removidas. Obrigado por participar!'})
-		else:
-			return dumps({'status':'ok', 'msg':u'Não haviam seguidores desta obra com estas informações.'})
+		return dumps({'status':'ok', 'msg':u'Suas opções foram removidas. Obrigado por participar!'})
 	else:
 		return dumps({'status':'error'})
+
+def _make_follow(obraid):
+	follow = UserFollow()
+	if authapi.is_authenticated():
+		follow.user = authapi.authenticated_user()
+
+	follow.obra_id = int(obraid)
+	return follow
+
+
+def _send_twitter_dm(twitterid, msg):
+	tre = re.compile("(?P<link>(?:http(|s):\/\/)?(?:www.)?(twitter).com\/?)*(?P<nome>[\w\.\-]*)")
+	if tre.match(twitterid):
+		tid = tre.search(twitterid).group('nome')
+	else:
+		tid = u.twitter_id
+
+	print "DE-OLHO-NAS-OBRAS::", tid
+	try:
+		t = get_twitter_connection()
+		#send direct message
+		t.create_friendship(screen_name=tid)
+		dm = t.send_direct_message(
+			user=tid,
+			text=msg )
+	except Exception as e:
+		print "Ocorreu um erro enviando DM para twitter..."
+		print e
+
 
 @monitoramento.route('/obra/seguir/<obraid>', methods=('POST',))
 def seguir(obraid):
@@ -466,33 +488,31 @@ def seguir(obraid):
 	slug = obra['slug']
 
 	if request.form:
-		follow = UserFollow()
-
-		if authapi.is_authenticated():
-			follow.user = authapi.authenticated_user()
-			emailto = follow.user.email
-
-		follow.obra_id = int(obraid)
 
 		if request.form.has_key('faceid'):
 			has = UserFollow.query.filter_by(obra_id=obraid, facebook_id=request.form['faceid'])
-			if has.count() > 0:
-				return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Facebook'})
-			follow.facebook_id = request.form['faceid']
-			emailto = "%s@facebook.com" % follow.facebook_id
+			if has.count() <= 0:
+				# return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Facebook'})
+				follow = _make_follow(obraid)
+				follow.facebook_id = request.form['faceid']
+				emailto = "%s@facebook.com" % follow.facebook_id
 
 		if request.form.has_key('twitterid'):
 			has = UserFollow.query.filter_by(obra_id=obraid, twitter_id=request.form['twitterid'])
-			if has.count() > 0:
-				return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Twitter'})
-			follow.twitter_id = request.form['twitterid']
+			if has.count() <= 0:
+				# return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Twitter'})
+				follow = _make_follow(obraid)
+				follow.twitter_id = request.form['twitterid']
+				msg = u"A partir de agora você segue a obra %s!" % obra['title']
+				_send_twitter_dm(follow.twitter_id, msg)
 
 		if request.form.has_key('email'):
 			has = UserFollow.query.filter_by(obra_id=obraid, email=request.form['email'])
-			if has.count() > 0:
-				return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Email'})
-			follow.email = request.form['email']
-			emailto = follow.email
+			if has.count() <= 0:
+				# return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Email'})
+				follow = _make_follow(obraid)
+				follow.email = request.form['email']
+				emailto = follow.email
 
 		dbsession.commit()
 
@@ -729,8 +749,6 @@ def sendnews():
 	# t = Twython(current_app.config['TWITTER_CONSUMER_KEY'], current_app.config['TWITTER_CONSUMER_SECRET'],
 	# 	current_app.config['TWITTER_ACCESS_TOKEN'], current_app.config['TWITTER_ACCESS_TOKEN_SECRET'])
 
-	t = get_twitter_connection()
-
 	msg_titulo = current_app.config['OBRA_ATUALIZACAO_SUBJECT']
 	msg = current_app.config['OBRA_ATUALIZACAO_MSG'] % _dados_obra
 	msg_twitter = current_app.config['OBRA_ATUALIZACAO_TWITTER']
@@ -754,22 +772,8 @@ def sendnews():
 
 		elif u.twitter_id:
 			print "DE-OLHO-NAS-OBRAS::", "Via twitter..."
-			tre = re.compile("(?P<link>(?:http(|s):\/\/)?(?:www.)?(facebook|fb).com\/?)*(?P<nome>[\w\.\-]*)")
-			if tre.match(u.twitter_id):
-				tid = fre.search(u.twitter_id).group('nome')
-			else:
-				tid = u.twitter_id
-
-			print "DE-OLHO-NAS-OBRAS::", tid
-			try:
-				#send direct message
-				t.create_friendship(screen_name=tid)
-				dm = t.send_direct_message(
-					user=tid,
-					text=u"Tem atualização na obra %s! Veja: %s" % (obra_titulo, obra_link) )
-			except Exception as e:
-				print "Ocorreu um erro enviando DM para twitter..."
-				print e
+			msg = u"Tem atualização na obra %s! Veja: %s" % (obra_titulo, obra_link)
+			_send_twitter_dm(u.twitter_id, msg)
 
 		elif u.email:
 			#sendmail
