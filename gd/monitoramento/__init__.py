@@ -479,6 +479,7 @@ def seguir(obraid):
 			if has.count() > 0:
 				return dumps({'status':'error','msg':'Você já é seguidor desta obra pelo Facebook'})
 			follow.facebook_id = request.form['faceid']
+			emailto = "%s@facebook.com" % follow.facebook_id
 
 		if request.form.has_key('twitterid'):
 			has = UserFollow.query.filter_by(obra_id=obraid, twitter_id=request.form['twitterid'])
