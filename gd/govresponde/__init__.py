@@ -154,7 +154,8 @@ def index():
         'base_date': base_date,
         'statusedicao': statusedicao,
         'pagination': pagination,
-        'pg' : pg
+        'pg' : pg,
+        'sidebar':wordpress.getSidebar
     }))
 
 
@@ -186,7 +187,8 @@ def results(rid, page=0):
             'rclass': 'result',
             'referrals': posts,
             'pagination': pagination,
-            'statusedicao': statusedicao
+            'statusedicao': statusedicao,
+            'sidebar':wordpress.getSidebar
         })
     )
 
@@ -199,7 +201,9 @@ def comofunciona():
             'page': wordpress.getPageByPath('govresponde/como-funciona'),
             'hidesidebar': True,
             'hidesidebarright' : True,
-            'statusedicao': statusedicao
+            'statusedicao': statusedicao,
+            'sidebar':wordpress.getSidebar,
+            'menu':wordpress.exapi.getMenuItens(menu_slug='menu-principal')
         })
     )
 
@@ -208,7 +212,7 @@ def comofunciona():
 def send():
 
     #Temporariamente desabilitado o envio de perguntas
-    return redirect( url_for('govresponde.index') );
+    # return redirect( url_for('govresponde.index') );
 
     form = forms.QuestionForm(csrf_enabled=False)
     form.theme.choices = [(None, '----')] + \
@@ -221,7 +225,9 @@ def send():
             'form': form,
             'hidesidebar': True,
             'hidesidebarright' : True,
-            'statusedicao': statusedicao
+            'statusedicao': statusedicao,
+            'sidebar':wordpress.getSidebar,
+            'menu':wordpress.exapi.getMenuItens(menu_slug='menu-principal'),
         }))
 
 
@@ -296,7 +302,8 @@ def questions():
         'questions': questions,
         'pagination': pagination,
         'sortby': sortby,
-        'statusedicao': statusedicao
+        'statusedicao': statusedicao,
+        'sidebar':wordpress.getSidebar
     })
 
     return render_template('govresponde_questions.html', **ctx)
@@ -321,7 +328,8 @@ def question(qid):
 
     return render_template(
         'govresponde_question.html',
-        **_get_context({ 'question': contrib, 'statusedicao': statusedicao })
+        **_get_context({ 'question': contrib, 'statusedicao': statusedicao ,
+        'sidebar':wordpress.getSidebar })
     )
 
 
