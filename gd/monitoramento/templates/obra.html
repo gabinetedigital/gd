@@ -431,7 +431,7 @@ $(window).load(function () {
             <div class="line"></div>
 
           {%else%} {#===========================================================================#}
-              <div class="update {{ update.format }}">
+              <div class="update {%if update.format%}{{ update.format }}{%else%}aside{%endif%}">
 
                 <div class="seta">
                   <span class="mark"> <span class="dot"></span> </span>
@@ -444,12 +444,14 @@ $(window).load(function () {
                     <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</a>
                   </div>
 
-                  {%if update.format not in ('link')%}
-                  {{update.content|safe}}
-                  {%endif%}
-
                   {%if update.format == 'link'%}
-                  <a target="_blank" class="linkcontent" href="{{update.custom_fields.gdobra_arquivo|striptags}}">{{update.content|striptags}}</a>
+
+                    <a target="_blank" class="linkcontent" href="{{update.custom_fields.gdobra_arquivo|striptags}}">{{update.content|striptags}}</a>
+
+                  {%else%}
+
+                    {{update.content|safe}}
+
                   {%endif%}
 
                   {%if update.format == 'video'%}
