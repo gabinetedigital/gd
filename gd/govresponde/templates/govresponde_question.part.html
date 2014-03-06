@@ -17,7 +17,6 @@
   <div class="balloon">
     <p class="desc">{{ question.content|safe }}</p>
 
-{#
     {% if question.user_can_vote or not user %}
     <button class="awesome" onclick="vote({{ question.id }})">
       Votar
@@ -25,12 +24,12 @@
     {% else %}
     <em class="alreadyvoted">Você já votou</em>
     {% endif %}
-#}
+
   </div>
 
   <div class="meta">
     <div class="date">
-      Pergunta enviada em {{ question.created_at.strftime('%d/%m/%Y') }} | 
+      Pergunta enviada em {{ question.created_at.strftime('%d/%m/%Y') }} |
     </div>
     <a href="{{ url_for('govresponde.comofunciona')}}" class="mobilize">Mobilize</a>
     <!-- AddThis Button BEGIN -->
