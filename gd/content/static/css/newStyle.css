@@ -1,7 +1,11 @@
 /*====================================== Font Stuff ======================================*/
 
 @font-face {
+<<<<<<< HEAD
 	font-family:"Open Sans"
+=======
+	font-family:"Open Sans";
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 	src:url(/static/fonts/OpenSans-Light-webfont.eot);
 	src:url(/static/fonts/OpenSans-Light-webfont.eot?#iefix) format('eot'), url(/static/fonts/OpenSans-Light-webfont.woff) format('woff'),  url(/static/fonts/OpenSans-Light-webfont.ttf) format('truetype'),  url(/static/fonts/OpenSans-Light-webfont.svg) format('svg');
 	font-weight:300;
@@ -337,6 +341,7 @@ a  {color:#d12d33;}
 /*====================================== Footer ======================================*/
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 footer {margin-top: 50px;
 =======
 footer {
@@ -344,6 +349,12 @@ footer {
 =======
 footer {margin-top: 50px;
 >>>>>>> Logos maiores e pÃ¡ginas de politica e termos
+=======
+footer {margin-top: 50px;
+=======
+footer {
+>>>>>>> (DONO) Ultimas correcoes da Lucile
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 	background:#222;
 	background:url('../img/footer.png?1361287234'), -webkit-gradient(linear,  50% 0%,  50% 100%,  color-stop(0%,  #222222),  color-stop(100%,  #111111)), #222;
 	background:url('../img/footer.png?1361287234'), -webkit-linear-gradient(center top,  #222222, #111111), #222;
@@ -2839,6 +2850,7 @@ p.errmsg {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .regularPage {padding-top:20px; background:url(../img/minsqr.png);}
 
 /*====================================== Estilo Governo Responde.======================================*/
@@ -2854,6 +2866,8 @@ p.errmsg {
 .head .menu li a {display:inline; float:right; margin-right:30px; font-size:12pt; padding-top:51px;}
 =======
 =======
+=======
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 
 
 .regularPage {padding-top:20px; background:url(../img/minsqr.png);}
@@ -3060,7 +3074,189 @@ span.afake{color:#c5c5c5;}
 =======
 .rcolumn {margin-top:20px;}
 .rcolumn h2 {color:#a00; margin-bottom:10px; display:block; height:49px;}
+<<<<<<< HEAD
 >>>>>>> css changes
+=======
+=======
+.govresponde {
+	padding-top:20px;
+	border-top:2px solid #ddd;
+	background:url(../img/minsqr.png);
+}
+
+.govresponde li {
+	list-style:none;
+}
+
+.govresponde ul {
+	margin:0;
+}
+
+#logo h1 {
+	background:url("../img/govresponde.png") no-repeat;
+	overflow:hidden;
+	width:230px;
+	height:77px;
+	margin:30px 0;
+	text-indent:-1000px;
+}
+
+#logo a {
+	padding-top:80px;
+	display:block;
+}
+
+.head .menu {
+	padding-top:32px;
+	text-align:right;
+}
+
+.head .menu li a {
+	display:inline;
+	float:right;
+	margin-right:30px;
+	font-size:12pt;
+	padding-top:51px;
+}
+
+.container .head .menu li.comofunciona a {
+	background:url(../img/comofunciona.png) no-repeat scroll 35px top transparent;
+	color:#008dc4;
+}
+
+.container .head .menu li.respostasgov a {
+	background:url("../img/respostasgov.png") no-repeat center top;
+	color:#fe6200;
+}
+
+.container .head .menu li.enviadas a {
+	background:url("../img/envie.png") no-repeat center top;
+	color:#d12d33;
+}
+
+.container .head .menu li a:hover {
+	margin-top:-5px;
+	text-decoration:none;
+}
+
+.container .head .menu a {
+	color:#333;
+}
+
+.head .boxfinal {
+	font-size:11pt;
+	margin-bottom:20px;
+	color:#999;
+	border:1px solid #ccc;
+	padding:30px;
+	background-color:#fff;
+}
+
+.container .answerlink {
+	margin-top:20px;
+	clear:both;
+	margin-bottom:40px;
+}
+
+.container .answerlink .encaminhamento, .referrals .encaminhamento {
+	font-size:16px;
+	color:#563a11;
+	background:url("../img/encaminhamento.png") no-repeat left;
+	padding-left:20px;
+}
+
+a.otherquestions {
+	display:block;
+	background:url("../img/others.png") no-repeat left;
+	clear:both;
+	float:left;
+	font-size:16px;
+	margin-right:20px;
+	margin-bottom:20px;
+}
+
+a.otherquestions .share {
+	width:208px;
+	float:left;
+	margin-right:21px;
+	padding-top:3px;
+}
+
+p.desc {
+	color:#000;
+}
+
+.sidebar form.search {
+	margin-bottom:20px;
+}
+
+.sidebar form.search input {
+	border:solid 1px #999;
+	padding:4px;
+}
+
+.sidebar form.search .text {
+	width:160px;
+}
+
+.sidebar form.search .button {
+	padding:3px 5px;
+}
+
+.sidebar dt {
+	color:#4f9700;
+	font-size:12pt;
+	margin:10px 0 10px 0;
+}
+
+.sidebar dt.section {
+	background:url("../img/vote.png") no-repeat;
+	height:41px;
+	padding-left:53px;
+}
+
+.sidebar dt.section_respostas {
+	background:url("../img/respostasgov.png") no-repeat;
+	height:45px;
+	line-height:30px;
+	padding-left:66px;
+}
+
+.sidebar dt.section_respostas a {
+	color:#fe6200;
+}
+
+.sidebar dd {
+	margin-left:20px;
+	background:url("../img/lista.png") no-repeat 0 center;
+	margin-top:5px;
+	padding-left:8px;
+}
+
+.sidebar dd.choosen {
+	font-weight:bold;
+}
+
+.sidebar dd a {
+	color:#000;
+}
+
+.sidebar dd a:hover {
+	text-decoration:underline;
+}
+
+.rcolumn {
+	margin-top:20px;
+}
+
+.rcolumn h2 {
+	color:#a00;
+	margin-bottom:10px;
+	display:block;
+	height:49px;
+}
+>>>>>>> (DONO) Ultimas correcoes da Lucile
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 
 .highlight .bigger a.otherquestions {
 	margin-left:480px;
@@ -3243,6 +3439,7 @@ form#send .helptext {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .error:not(.alert) {
 =======
 .error {
@@ -3250,6 +3447,12 @@ form#send .helptext {
 =======
 .error:not(.alert) {
 >>>>>>> Ajustes js, formulario envio
+=======
+.error:not(.alert) {
+=======
+.error {
+>>>>>>> (DONO) Ultimas correcoes da Lucile
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 	background:none repeat scroll 0 0 #ce3316;
 	border:1px solid #ef2929;
 	margin:20px auto 0;
@@ -3259,6 +3462,9 @@ form#send .helptext {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 #comofunciona { display:none; background:#fff; padding:20px; border-radius:20px;}
 #comofunciona .close {cursor:pointer; height:35px; width:35px; display:block; left:640px; position:absolute; top:5px;}
 
@@ -3546,6 +3752,425 @@ h3.respgov { font-size:22px; color:#000;}
 #showmore #content p {margin:10px 0;}
 #showmore .modal {width:500px;}
 #showmore #content li {list-style:disc;margin-left:43px;padding:4px;}
+=======
+#comofunciona {
+	display:none;
+	background:#fff;
+	padding:20px;
+	border-radius:20px;
+}
+
+#comofunciona .close {
+	cursor:pointer;
+	height:35px;
+	width:35px;
+	display:block;
+	left:640px;
+	position:absolute;
+	top:5px;
+}
+
+.questions .head {
+	display:block;
+	margin-bottom:40px;
+	height:38px;
+}
+
+form input, form select, form textarea {
+	background:none repeat scroll 0 0 #fff;
+	border-radius:4px 4px 4px 4px;
+	box-shadow:none;
+}
+
+h1.questions {
+	float:left;
+	color:#93b937;
+	font-size:26px;
+	font-weight:normal;
+}
+
+.questions #orderby {
+	float:right;
+}
+
+.questions ul li {
+	margin-bottom:20px;
+	border-bottom:dotted 1px #ccc;
+	overflow:auto;
+}
+
+.questions .title {
+	font-size:13pt;
+	font-weight:bold;
+	margin:10px 0;
+	color:#000;
+	height:49px;
+}
+
+.questions .title a {
+	color:#000;
+	font-weight:normal;
+	font-size:14pt;
+}
+
+.questions .meta .date {
+	color:#4d4d4d;
+	float:left;
+	font-size:13px;
+}
+
+.questions .meta .date {
+	color:#4d4d4d;
+	float:left;
+	font-size:13px;
+}
+
+.questions .meta .mobilize {
+	float:left;
+	color:#e10000;
+	font-size:16px;
+	margin:7px 11px;
+}
+
+.questions .date {
+	margin:10px 0;
+}
+
+.questions .content .balloon {
+	background:#2da7d3;
+	border-radius:13px;
+	padding:12px 14px;
+	margin-top:10px;
+}
+
+.questions .content .balloon p.desc {
+	color:#fff;
+}
+
+.questions .addthis_toolbox {
+	height:20px;
+	padding:10px 0;
+}
+
+.questions .votes {
+	width:92px;
+	text-align:center;
+	float:left;
+	padding-top:33px;
+	background:url("../img/circle.png") no-repeat scroll 0 0 transparent;
+	height:92px;
+	color:#93b937;
+}
+
+.questions button {
+	margin-bottom:10px;
+	float:right;
+}
+
+.questions .votes strong {
+	font-size:20px;
+	line-height:10px;
+}
+
+.questions .alreadyvoted {
+	color:#666;
+	display:block;
+	margin-bottom:10px;
+}
+
+.questions .content {
+	margin-left:100px;
+}
+
+.aggregated {
+	margin:10px 10px 0 40px;
+	display:none;
+}
+
+.encaminhada {
+	margin:10px 10px 0 40px;
+	display:none;
+}
+
+.questions .aggregated li {
+	padding-bottom:20px;
+	margin-top:20px;
+	margin-bottom:10px;
+}
+
+.questions #filterform {
+	float:right;
+}
+
+
+/*====================================== Estilo Governo Responde.======================================*/
+#govresponde .comofunciona {
+	display:block;
+}
+
+h1.cfunciona {
+	background:url("../img/comofunciona.png") no-repeat scroll left center transparent;
+	color:#0094d8;
+	font-weight:normal;
+	height:50px;
+	margin-left:34px;
+	padding-left:50px;
+	padding-top:13px;
+}
+
+.comofunciona p {
+	margin:10px 0;
+}
+
+#govresponde #slideshow {
+	height:320px;
+}
+
+#govresponde #header #slideshow li {
+	float:left;
+	width:642px;
+	margin-right:30px;
+}
+
+#govresponde #slideshow p {
+	font-size:24px;
+	font-weight:300;
+	font-family:OpenSansLight;
+}
+
+#govresponde #slideshow #step2 p {
+	background:url("../img/vote.png") no-repeat scroll center left transparent;
+	padding-left:66px;
+	text-align:left;
+}
+
+#govresponde #slideshow .slide {
+	display:table-cell;
+	height:320px;
+	width:642px;
+	vertical-align:middle;
+}
+
+#step1 b {
+	color:#390;
+	font-weight:bold;
+}
+
+#step3 p {
+	margin-bottom:20px;
+}
+
+#step3 big {
+	color:#390;
+}
+
+#step3 b {
+	font-weight:bold;
+}
+
+#step4 p {
+	margin-bottom:30px;
+}
+
+#step5 p {
+	margin-bottom:30px;
+}
+
+#govresponde #slideshow .controls {
+	float:right;
+}
+
+#govresponde #slideshow .controls li {
+	display:block;
+	float:left;
+	margin-right:7px;
+	text-indent:-9999px;
+	overflow:hidden;
+	background-color:#fff;
+}
+
+#govresponde #slideshow .controls a {
+	background:url("../img/estep.png") no-repeat scroll center left transparent;
+	height:22px;
+	width:22px;
+	display:block;
+}
+
+#govresponde #slideshow .controls a.current {
+	background:url("../img/step.png") no-repeat scroll center left transparent;
+}
+
+h1.respgov {
+	background:url("../img/respostasgov.png") no-repeat scroll center left transparent;
+	color:#fe6200;
+	height:50px;
+	padding-left:68px;
+	padding-top:3px;
+}
+
+h3.respgov {
+	font-size:22px;
+	color:#000;
+}
+
+.questions .qdate {
+	margin-left:40px;
+	color:#969a9c;
+	font-weight:normal;
+}
+
+.respgov_balao {
+	background-color:#2da7d3;
+	border-radius:32px 32px 32px 0px;
+	padding:20px 20px 0;
+	text-align:justify;
+	width:300px;
+	float:left;
+	height:173px;
+	margin-top:10px;
+}
+
+.respgov_balao h4 {
+	color:#fff;
+	font-size:21px;
+	font-weight:normal;
+	margin-bottom:9px;
+}
+
+.respgov_balao a {
+	color:#fff;
+}
+
+#govresponde .video .thumb {
+	height:190px;
+	margin-bottom:10px;
+	width:300px;
+}
+
+.video .container {
+	height:190px;
+	overflow:hidden;
+}
+
+.video .play {
+	height:50px;
+	margin-left:125px;
+	margin-top:-76px;
+	position:relative;
+	top:-94px;
+	width:50px;
+}
+
+.video .permalink {
+	left:277px;
+	position:relative;
+	top:-25px;
+}
+
+.resultpage .videobox {
+	margin:10px 0;
+	width:100%;
+	text-align:center;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.resultpage .videobox .video-js-box {
+	margin:0 auto;
+}
+
+.resultpage .mobilize {
+	float:left;
+	color:#e10000;
+	font-size:16px;
+	margin-right:5px;
+	margin-top:-3px;
+}
+
+.resultpage .question div, .resultpage .answer div {
+	padding-left:20px;
+}
+
+.resultpage .referrals {
+	padding-top:40px;
+}
+
+.resultpage .referrals ul {
+	padding-left:20px;
+}
+
+.resultpage .referrals ul li {
+	margin-bottom:25px;
+}
+
+.resultpage .referrals ul li h4 {
+	margin-bottom:5px;
+}
+
+.aviso {
+	padding-left:20px;
+	margin-bottom:20px;
+}
+
+/*estilos para os overlays dos widgets*/
+
+.modal {
+	background-color:#fff;
+	display:none;
+	width:800px;
+	padding:15px;
+	text-align:left;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-moz-box-shadow:0 0 50px #ccc;
+	-webkit-box-shadow:0 0 50px #ccc;
+}
+
+.modal h2 {
+	background:url(../img/alert-overlay.png) 0 50% no-repeat;
+	margin:0px;
+	padding:10px 0 10px 45px;
+	border-bottom:1px solid #333;
+	font-size:20px;
+}
+
+.modal .close {
+	cursor:pointer;
+	height:35px;
+	width:35px;
+	display:block;
+	left:810px;
+	position:absolute;
+	top:-14px;
+}
+
+.modal #content p {
+	font-size:16px;
+}
+
+.right {
+	float:right;
+}
+
+#showmore {
+	font-size:15px;
+}
+
+#showmore #content p {
+	margin:10px 0;
+}
+
+#showmore .modal {
+	width:500px;
+}
+
+#showmore #content li {
+	list-style:disc;
+	margin-left:43px;
+	padding:4px;
+}
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 
 /*======================================================= Estilo Monitoramento =====================================================*/
 =======
@@ -3702,10 +4327,17 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento .aside .buttons .voltar-gd p {background-color:#e74c3c;}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento .help {color:#3498db; text-align:left; margin-top:10px; }
 =======
 #monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
 >>>>>>> new header
+=======
+#monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
+=======
+#monitoramento .help {color:#3498db; text-align:right; margin-top:10px;}
+>>>>>>> (DONO) Ultimas correcoes da Lucile
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 #monitoramento .help:hover {cursor:pointer;}
 #monitoramento .help p {width:55px; display:inline;}
 
@@ -3741,12 +4373,20 @@ h3.respgov { font-size:22px; color:#000;}
 	}
 
 
+<<<<<<< HEAD
 #monitoramento .slideshow {background:#2c3e50; display:block; margin:10px 30px 30px 0; padding:0;}
+=======
+#monitoramento .slideshow {background:#2c3e50; display:block; margin:10px 0 30px; padding:0;}
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 #monitoramento .slideshow .controls {position:relative; top:80px; width:100%; }
 #monitoramento .slideshow .controls a {color:#fff; font-size:1em; position:absolute; display:block; z-index:9999; }
 #monitoramento .slideshow .controls a.goNext {right:-25px;}
 #monitoramento .slideshow .controls a.goPrev {left:-25px;}
+<<<<<<< HEAD
 #monitoramento .slideshow .controls a.goPrev  i, #monitoramento .slideshow .controls a.goNext i {overflow: hidden;}
+=======
+#monitoramento .slideshow .controls a.goPrev  i, #monitoramento .slideshow .controls a.goNext i {overflow: hidden;} 
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 #monitoramento .slideshow .controls a:hover {color:#3498db; text-decoration:none;}
 #monitoramento .slideshow .content {padding:30px;}
 #monitoramento .slideshow .content img {float:left; width:40%; margin-left: 30px;}
@@ -3758,7 +4398,10 @@ h3.respgov { font-size:22px; color:#000;}
 	@media (max-width: 767px) {
 		#monitoramento .lista-obras {background:#ecf0f1; left:100%; top:160px; position:absolute; width:100%; display:none;}
 	}
+<<<<<<< HEAD
 #monitoramento .lista-obras {padding-right: 30px; }
+=======
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 #monitoramento .lista-obras a.listagem {font-weight:200; margin:10px; font-size:1.8em; color:#3498db;}
 #monitoramento .lista-obras a.listagem:hover {text-decoration:none;}
 #monitoramento .lista-obras a.listagem i {margin-right:10px;}
@@ -3776,7 +4419,11 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento .lista-obras .thumbnail .salto {background:url(../img/monitoramento/tge01.gif) no-repeat;}
 #monitoramento .lista-obras .obra {-webkit-box-sizing: border-box;-moz-box-sizing:    border-box;box-sizing:         border-box; margin:0; padding: 0; width:100%; position:relative; margin-bottom:0;}
 	@media (max-width: 767px) {
+<<<<<<< HEAD
 		#monitoramento .lista-obras .obra {padding:0 10px ;}
+=======
+		#monitoramento .lista-obras .obra {padding:0 10px;}
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 	}
 	@media (max-width: 767px) {
 		#monitoramento .lista-obras .obra>img {width:50px; height:50px; display:inline-block;}
@@ -4299,7 +4946,11 @@ h3.respgov { font-size:22px; color:#000;}
 >>>>>>> new header
 
 #monitoramento.obra .updates {
+<<<<<<< HEAD
 	background: #2c3e50;
+=======
+	background:#2c3e50;
+>>>>>>> (DONO) Ultimas correcoes da Lucile
 	padding:10px;
 	padding-bottom:100px;
 	overflow:hidden;
@@ -4867,6 +5518,7 @@ h3.respgov { font-size:22px; color:#000;}
 
 
 
+<<<<<<< HEAD
 /*============================== Esquema de cores experimental detalhe obra / Modificações Lucile aos estilos originais ==============================*/
 .head .menu {padding-top: 10px; text-align: right;}
 .head .menu {border-width: 0; margin: 0; padding: 0;}
@@ -5005,6 +5657,9 @@ color: #6E6E6E !important;
 >>>>>>> new header
 
  /*  Font Awesome 4.0.1
+=======
+ *  Font Awesome 4.0.1
+>>>>>>> (DONO) Ultimas correcoes da Lucile
  *  the iconic font designed for Bootstrap
  *  ------------------------------------------------------------------------------
  *  The full suite of pictographic icons, examples, and documentation can be
