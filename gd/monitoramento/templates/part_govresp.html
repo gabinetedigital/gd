@@ -5,7 +5,7 @@
         <div class="dia">{{update.date.date|formatarDataeHora(formato="%d")}}</div>
         <div class="mes">{{update.date.date|formatarDataeHora(formato="%b")}}</div>
       </div>
-      <h2>Governo Responde</h2>
+      <h2>Governo Informa</h2>
     </div>
     {%if 'gdobra_video' in update.custom_fields%}
     {#YOUTUBE VIDEO#}
@@ -56,9 +56,8 @@
       <div class="video">
         <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (350,233) ) }}">
       </div>
-      {%else%}
-        {{update.content|safe}}
       {%endif%}
+      {{update.content|safe}}
 
     {%endif%}
 
