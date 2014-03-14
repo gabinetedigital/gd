@@ -74,7 +74,7 @@ $(window).load(function () {
     });
 
     $('.carousel').carousel({
-        interval: 3000
+        interval: 8000
     });
 
     $('.goPrev').click(function() {
@@ -117,38 +117,24 @@ $(window).load(function () {
         });
     });
 
-    $(".deixarseguirobra").each(function(){
-        var obj = $(this);
-        obj.fancybox({
-            afterLoad: function(upcoming, current){
-                // $('.main-follow').find("input[type=text]").val("");
-                $('.main-follow').find(".alert").hide();
-            },
-            afterShow: function(){
-                // $('.main-follow').find('a[target=#follow-email]').trigger('click');
-                $('.main-follow').find('a[target='+obj.attr('data-panel')+']').trigger('click');
-            }
-        });
-    });
-
     var showMsg = function(status, otherclass){
-        alert(status);
-        // $(".alert").html(status);
-        // if(otherclass){
-        //     $(".alert").addClass(otherclass);
-        // }
-        // $(".alert").show();
+        // alert(status);
+        $(".alert").html(status);
+        if(otherclass){
+            $(".alert").addClass(otherclass);
+        }
+        $(".alert").show();
 
-        // $('html, body').animate({
-        //     scrollTop: $("#participar-geral").offset().top - 50
-        // }, 600);
+        $('html, body').animate({
+            scrollTop: $("#participar-geral").offset().top - 50
+        }, 600);
+
     };
 
     var ret = function(data) {
         var pData = $.parseJSON(data);
 
         /* It's everything ok, let's get out */
-        $(".waiticon").hide();
         if (pData.status === 'ok') {
           showMsg('Obrigado por sua contribuição! ','alert-success');
           if(pData.refresh){
@@ -160,6 +146,7 @@ $(window).load(function () {
         } else {
           showMsg(pData.message);
         }
+        $(this).hideLoadingModal();
 
 
     };
@@ -178,34 +165,22 @@ $(window).load(function () {
                 alert('Você precisa aceitar os termos de uso!')
                 return false;
             }
-            console.log("Mostrando...");
-            $(".waiticon").show();
+
+            $(this).showLoadingModal();
 
         },
         success:ret,
         error: function(){
-            $(".waiticon").hide();
             showMsg("Ocorreu um erro ao enviar sua solicitação",'alert-error');
+            $(this).hideLoadingModal();
         }
     });
 
     var retSeguir = function(data){
-        var pData = $.parseJSON(data);
-        if (pData.status != 'ok'){
-            showMsg(pData.msg,'alert-warning');
-        }else{
-            if(pData.msg){
-                showMsg(pData.msg,'alert-success');
-            }else{
-                showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
-            }
-        }
-        $('.ajaxform input[type=submit]').removeAttr('disabled');
-        $('.ajaxform input[type=submit]').addClass('btn-success');
-
-        // window.setTimeout(function(){
-        //     $.fancybox.close();
-        // },1500);
+        showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
+        window.setTimeout(function(){
+            $.fancybox.close();
+        },3000);
     }
 
     $('#seguirobraform .ajaxform').ajaxForm({
@@ -216,23 +191,15 @@ $(window).load(function () {
         }
     });
 
-    $('#deixarseguirobraform .ajaxform').ajaxForm({
-        success:retSeguir,
-        beforeSubmit: function (arr, form, options) {
-            form.find('input[type=submit]').attr('disabled','disabled');
-            form.find('input[type=submit]').removeClass('btn-success');
-        }
+    $('#seguirobraform a').click(function(){
+        // alert('vai abrir ' + this.target );
+        $('.main-follow .follow').hide();
+        $(this.target).show();
+        $(this.target).find('input[type=submit]').removeAttr('disabled');
+        $(this.target).find('input[type=submit]').addClass('btn-success');
+        $(this.target).find("input[type=text]").focus();
+        return false;
     });
-
-    // $('#seguirobraform a').click(function(){
-    //     // alert('vai abrir ' + this.target );
-    //     $('.main-follow .follow').hide();
-    //     $(this.target).show();
-    //     $(this.target).find('input[type=submit]').removeAttr('disabled');
-    //     $(this.target).find('input[type=submit]').addClass('btn-success');
-    //     $(this.target).find("input[type=text]").focus();
-    //     return false;
-    // });
 
     $('.botoesparticipar a').mouseenter( function() {
         $(this).find('.funcao').stop().animate({ opacity: 0, left: "-80px" }, 'slow');

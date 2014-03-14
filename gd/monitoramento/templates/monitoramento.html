@@ -240,8 +240,7 @@ $('.typeahead').typeahead({
                       <img src="{{slide.thumbs.slideshow.url}}">
 
                       <div class="text">
-                        <h4>{{slide.title|safe}}</h4>
-                        <span>{{slide.content|safe}}</span>
+                       {{slide.content|safe}}
                       </div>
 
                     {%endif%}
@@ -276,7 +275,7 @@ $('.typeahead').typeahead({
                         {%else%}
                         <img src="http://placehold.it/270x180">
                         {%endif%}
-                        <h4>{{obra.title}}</h4>
+                        <h4><span>{{obra.title}}</span></h4>
                       </div>
                       <div class="meta-obra">
                         <ul>
