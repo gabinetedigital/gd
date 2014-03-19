@@ -166,7 +166,7 @@ $(window).load(function () {
                 return false;
             }
 
-            $(this).showLoadingModal();
+            // $(this).showLoadingModal();
 
         },
         success:ret,
