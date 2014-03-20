@@ -265,6 +265,11 @@ def questions():
     theme_id = theme and \
          theme['id'] or ''
 
+    # Copa do Mundo ------------------------- TEMPORARIO - Forca o tema "Copa do Mundo"
+    if not theme_id or theme_id <> '21':
+        return redirect( url_for('.questions')+'?theme=21' )
+    # ---------------------------------------------------------
+
     # Finally, listing the questions that are able to receive votes.
     pagination = {}
 
