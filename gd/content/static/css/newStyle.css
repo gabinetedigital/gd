@@ -3682,7 +3682,7 @@ h3.respgov {
 #monitoramento .aside .buttons .voltar-gd i {background-color:#c0392b;}
 #monitoramento .aside .buttons .voltar-gd p {background-color:#e74c3c;}
 
-#monitoramento .help {color:#3498db; text-align:right; margin-top:10px;}
+#monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
 #monitoramento .help:hover {cursor:pointer;}
 #monitoramento .help p {width:55px; display:inline;}
 
@@ -3714,7 +3714,7 @@ h3.respgov {
 	}
 
 
-#monitoramento .slideshow {background:#2c3e50; display:block; margin:10px 0 30px; padding:0;}
+#monitoramento .slideshow {background:#2c3e50; display:block; margin:10px 30px 30px 0; padding:0;}
 #monitoramento .slideshow .controls {position:relative; top:80px; width:100%; }
 #monitoramento .slideshow .controls a {color:#fff; font-size:1em; position:absolute; display:block; z-index:9999; }
 #monitoramento .slideshow .controls a.goNext {right:-25px;}
@@ -3731,6 +3731,7 @@ h3.respgov {
 	@media (max-width: 767px) {
 		#monitoramento .lista-obras {background:#ecf0f1; left:100%; top:160px; position:absolute; width:100%; display:none;}
 	}
+#monitoramento .lista-obras {padding-right: 30px; }
 #monitoramento .lista-obras a.listagem {font-weight:200; margin:10px; font-size:1.8em; color:#3498db;}
 #monitoramento .lista-obras a.listagem:hover {text-decoration:none;}
 #monitoramento .lista-obras a.listagem i {margin-right:10px;}
@@ -3748,7 +3749,7 @@ h3.respgov {
 #monitoramento .lista-obras .thumbnail .salto {background:url(../img/monitoramento/tge01.gif) no-repeat;}
 #monitoramento .lista-obras .obra {-webkit-box-sizing: border-box;-moz-box-sizing:    border-box;box-sizing:         border-box; margin:0; padding: 0; width:100%; position:relative; margin-bottom:0;}
 	@media (max-width: 767px) {
-		#monitoramento .lista-obras .obra {padding:0 10px;}
+		#monitoramento .lista-obras .obra {padding:0 10px ;}
 	}
 	@media (max-width: 767px) {
 		#monitoramento .lista-obras .obra>img {width:50px; height:50px; display:inline-block;}
@@ -4267,7 +4268,7 @@ h3.respgov {
 }
 
 #monitoramento.obra .updates {
-	background:#2c3e50;
+	background: #2c3e50;
 	padding:10px;
 	padding-bottom:100px;
 	overflow:hidden;
@@ -4826,7 +4827,114 @@ h3.respgov {
 
 
 
- *  Font Awesome 4.0.1
+/*============================== Esquema de cores experimental detalhe obra / Modificações Lucile aos estilos originais ==============================*/
+#monitoramento .timeline {margin:0; padding:0;}
+
+
+#monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video  {background: #E6EBEC !important; color: #797979 !important; z-index: 999 !important;}
+
+
+
+#monitoramento .timeline .aside .content p {font-size: 12px !important;}
+
+#monitoramento.obra .update.aside .seta.esquerda,
+#monitoramento.obra .update.image .seta.esquerda, 
+#monitoramento.obra .update.video .seta.esquerda {
+	border-left:15px solid #E6EBEC;
+}
+
+#monitoramento.obra .update.aside .seta.direita,
+#monitoramento.obra .update.image .seta.direita,
+#monitoramento.obra .update.video .seta.direita {
+	border-right:15px solid #E6EBEC;
+}
+
+#monitoramento.obra .updates {
+	background:  #ffffff !important;}
+
+#monitoramento .info,
+#monitoramento .info h3,
+#monitoramento .info p {
+	color:#fff !important;
+}
+
+#monitoramento.obra .update .participe {
+	border-top:5px solid #ffffff;
+}
+
+#monitoramento.obra .update .seta .mark {display: block; margin:-10px 0 0 0; padding:8px 0; width: 4px; height: 6px; background:#ffffff; z-index: 1 !important;}
+
+#monitoramento.obra .update .seta .dot {display: block; margin:0; padding:0;  width: 4px; height: 6px; background:#2C3E50; margin-top: 0px solid #2C3E50; margin-bottom: 0px solid #2C3E50; z-index: 1 !important;}
+
+#monitoramento.obra .updates>p {display: none;}
+
+#monitoramento.obra .govresp {margin-bottom: 0px !important; background-color: #2C3E50;}
+#monitoramento.obra .govresp .content {margin-bottom: 0px !important}
+
+
+#monitoramento.obra .govresp,
+#monitoramento.obra .govresp h2{margin-bottom: 6px;
+color: #2ECC69 !important;
+}
+#monitoramento.obra .govresp p {color: #ffffff !important;}
+#monitoramento.obra .updates>p {display: none;}
+
+#monitoramento.obra .line {
+	background:#2C3E50;
+}
+
+
+#monitoramento.obra .content .cal {
+margin-right: 20px;
+	background:url(../img/monitoramento/calendar_grun.png) no-repeat;
+	color:#2ECC69;
+}
+
+#monitoramento.obra .comofunciona .content {text-align: center; }
+#monitoramento.obra .comofunciona .content img {margin:10px auto 0 auto; }
+
+
+#monitoramento.obra .comofunciona .cmore {
+cursor: pointer;
+}
+
+#monitoramento.obra .content .video {margin:0 ;}
+.video-obras {margin:0; padding:0; width: 95% !important; height: 95% !important; float: right;}
+
+.thumbnails  li {margin-top: -0 !important;
+    margin-bottom: 10 !important;
+}
+
+.thumbnails  li:nth-of-type(3n+1) {
+    margin-left: 0px !important;
+}
+
+#monitoramento.obra .info {padding:10px;}
+
+.seguirobra {display: block; margin: 0 auto; width: 50%; clear: both;}
+
+#monitoramento.obra .botoesparticipar {margin-left:0px; margin-top:0;}
+
+/* Grey option
+#monitoramento.obra .govresp {background-color: #DDDDDD;}
+
+#monitoramento.obra .govresp,
+#monitoramento.obra .govresp h2{
+color: #6E6E6E !important;
+}
+#monitoramento.obra .updates>p {display: none;}
+
+#monitoramento.obra .line {
+	background:#DDDDDD;
+}
+
+
+#monitoramento.obra .content .cal {
+	background:url(../img/monitoramento/calendar_grey.png) no-repeat;
+	color:#6E6E6E;
+}*/
+
+ /*  Font Awesome 4.0.1
  *  the iconic font designed for Bootstrap
  *  ------------------------------------------------------------------------------
  *  The full suite of pictographic icons, examples, and documentation can be

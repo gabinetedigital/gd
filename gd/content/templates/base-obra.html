@@ -1,100 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-br" {%block htmldef%}{%endblock%}>
-  <head {% block head %}{% endblock %}>
-    <title>
-      Gabinete Digital - {% block title %}Democracia em Rede{% endblock %}
-    </title>
+	<head {% block head %}{% endblock %}>
+		<title>Gabinete Digital - {% block title %}Democracia em Rede{% endblock %}</title>
+		{% block video %}{% endblock %}
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.realperson.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/newStyle.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+		{% block css %}{% endblock %}
+		<script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
+		<script type="text/javascript" src="{{  url_for('static', filename='js/monitoramento/jquery.realperson.min.js') }}"></script>
+		<script type="text/javascript">
+		$(function() {
+			$('#defaultReal').realperson();
+		});
+		</script>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body id="monitoramento">
+	{% block content %}{% endblock %}
 
-    {% block video %}{% endblock %}
+		<script>
+		  var SIO_BASE = "{{ host }}";
+		  var BASE_URL = "{{ request.url_root }}";
+		  var CURRENT_URL = "{{ request.url }}";
+		  var TWITTER_HASH_TAG_CABECALHO = "{{twitter_hash_cabecalho}}";
+		  var VOTACAO_ROOT = "{{VOTACAO_ROOT}}";
+		  var VOTACAO_URL = "{{VOTACAO_URL}}";
+		</script>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.realperson.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/newStyle.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+		<script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/vendor/jquery/jquery-ui.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/vendor/jquery/jquery.tools.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/vendor/jquery/jquery.cookie.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/base/urls.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/base/loader.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/vendor/easypaginate.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/vendor/chardinjs.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 
-    {% block css %}{% endblock %}
 
-	<script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
-	<script type="text/javascript" src="{{  url_for('static', filename='js/monitoramento/jquery.realperson.min.js') }}"></script>
+		{% if user %}
+		<script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
+		{% endif %}
+
+		{% if 'signup' in request.values %}
+		<script> $(function () { auth.showSignupForm('directToForm'); }); </script>
+		{% endif %}
+
+		{% if 'concluido' in request.values and not user %}
+		<script> $(function () { showModalAgradecimento(); }); </script>
+		{% endif %}
+
+		{% block javascript %}
+		<!-- <script> -->
+		<!--   $(function(){ -->
+		<!--   $('#signupoverlay').hide(); -->
+		<!--   $('#tos').hide(); -->
+		<!--   }); -->
+		<!-- </script> -->
+		{% endblock %}
+
+	<!-- Piwik -->
 	<script type="text/javascript">
-	$(function() {
-		$('#defaultReal').realperson();
-	});
+	  var _paq = _paq || [];
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+		var u=(("https:" == document.location.protocol) ? "https" : "http") + "://gabinetedigital.rs.gov.br/piwik//";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', 1]);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+		g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	  })();
 	</script>
-    <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 
-  </head>
-  <body id="monitoramento">
-    {% block content %}{% endblock %}
+	<noscript><p><img src="http://gabinetedigital.rs.gov.br/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
 
-    <script>
-      var SIO_BASE = "{{ host }}";
-      var BASE_URL = "{{ request.url_root }}";
-      var CURRENT_URL = "{{ request.url }}";
-      var TWITTER_HASH_TAG_CABECALHO = "{{twitter_hash_cabecalho}}";
-      var VOTACAO_ROOT = "{{VOTACAO_ROOT}}";
-      var VOTACAO_URL = "{{VOTACAO_URL}}";
-    </script>
-
-    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-ui.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.tools.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.cookie.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/base/urls.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/base/loader.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.masonry.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vendor/easypaginate.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vendor/chardinjs.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
-
-
-    {% if user %}
-    <script>auth.userAuthenticated({{ user.public_json()|safe }});</script>
-    {% endif %}
-
-    {% if 'signup' in request.values %}
-    <script> $(function () { auth.showSignupForm('directToForm'); }); </script>
-    {% endif %}
-
-    {% if 'concluido' in request.values and not user %}
-    <script> $(function () { showModalAgradecimento(); }); </script>
-    {% endif %}
-
-    {% block javascript %}
-    <!-- <script> -->
-    <!--   $(function(){ -->
-    <!--   $('#signupoverlay').hide(); -->
-    <!--   $('#tos').hide(); -->
-    <!--   }); -->
-    <!-- </script> -->
-    {% endblock %}
-
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://gabinetedigital.rs.gov.br/piwik//";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 1]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
-    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-
-</script>
-<noscript><p><img src="http://gabinetedigital.rs.gov.br/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Code -->
-
-  </body>
+	</body>
 </html>

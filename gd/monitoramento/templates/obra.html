@@ -31,87 +31,62 @@ $(window).load(function () {
 
 {% block content %}
 <div id="monitoramento" class="obra">
-  <div class="container">
-    <div class="painel">
-      <div class="header">
-      <div class="row">
-        <div class="span8">
-          <div class="head">
-            {%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
-            <div class="dono"></div>
-            {% endif %}
-            <h2>{{obra.title}}</h2>
-            <div class="content">
-              {{ obra.content|safe }}
-            </div>
-          </div>
-        </div>
-        <div class="span4">
-          <div class="mapa">
-            <!-- <img src="{{ url_for('.static', filename='mapa.png' ) }}"> -->
-            {%if 'gdobra_link_maps' in obra.custom_fields %}
-            <a target="_blank" href="{{obra.custom_fields['gdobra_link_maps']}}">
-              <img src="{{obra.custom_fields['gdobra_link_maps_estatico']}}">
-            </a>
-            {%elif 'gdobra_coordenadas' in obra.custom_fields and obra.custom_fields.gdobra_coordenadas %}
-            {%set lls = obra.custom_fields.gdobra_coordenadas%}
-            <a target="_blank" href="https://maps.google.com.br/maps?{%for ll in lls%}{%if loop.index > 1%}&{%endif%}q={{ll}}{%endfor%}&hl=pt&z=18">
-              <img src="http://maps.googleapis.com/maps/api/staticmap?center={{lls[0]}}{%for ll in lls%}&markers={{ll}}{%endfor%}&zoom=11&size=370x250&sensor=false">
-            </a>
-            {%else%}
-              <img src="http://maps.google.com/maps/api/staticmap?center=-29.509137,-53.017184&zoom=6&size=370x250&sensor=true">
-            {%endif%}
-          </div>
-        </div>
-      </div>
-    </div>
+	<div class="container">
+		<div class="painel">
+			<div class="header">
+				<div class="row-fluid">
+					<div class="span8">
+						<div class="head">
+							{%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
+							<div class="dono"></div>
+							{% endif %}
+							<h2>{{obra.title}}</h2>
+							<div class="content">{{ obra.content|safe }}</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="mapa">
+							<!-- <img src="{{ url_for('.static', filename='mapa.png' ) }}"> -->
+							{%if 'gdobra_link_maps' in obra.custom_fields %}
+							<a target="_blank" href="{{obra.custom_fields['gdobra_link_maps']}}"><img src="{{obra.custom_fields['gdobra_link_maps_estatico']}}"></a>
+							{%elif 'gdobra_coordenadas' in obra.custom_fields and obra.custom_fields.gdobra_coordenadas %}
+							{%set lls = obra.custom_fields.gdobra_coordenadas%}
+							<a target="_blank" href="https://maps.google.com.br/maps?{%for ll in lls%}{%if loop.index > 1%}&{%endif%}q={{ll}}{%endfor%}&hl=pt&z=18"><img src="http://maps.googleapis.com/maps/api/staticmap?center={{lls[0]}}{%for ll in lls%}&markers={{ll}}{%endfor%}&zoom=11&size=370x250&sensor=false"></a>
+							{%else%}
+							<img src="http://maps.google.com/maps/api/staticmap?center=-29.509137,-53.017184&zoom=6&size=370x250&sensor=true">
+							{%endif%}
+						</div>
+					</div>
+				</div>
+			</div>
 
-    <div class="barra">
-      <div class="row">
-        <div class="span12">
-          <ul class="geral clearfix">
-
-            <li class="field">
-              <ul class="dados-obra">
-                <li class="icon">
-                  <span class="circle">
-                    <i class="icon-calendar icon-2x red"></i>
-                  </span>
-                </li>
-                <li class="data">
-                  <strong>Previsão de conclusão</strong>
-                </li>
-                <li class="result">{{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}</li>
-              </ul>
-            </li>
-            <li class="field">
-              <ul class="dados-obra">
-                <li class="icon">
-                  <span class="circle"> <i class="icon-money icon-2x green"></i>
-                  </span>
-                </li>
-                <li class="data"><strong>Valor Global</strong></li>
-                <li class="result">{{obra.custom_fields.gdobra_valor_global|formatCurrency}}</li>
-              </ul>
-            </li>
-
-            <li class="field">
-              <ul class="dados-obra">
-                <li class="icon">
-                  <span class="circle"> <i class="icon-cogs icon-2x blue"></i>
-                  </span>
-                </li>
-                <li class="data"><strong>Andamento</strong></li>
-                <li  class="result">
-                  <div class="progressbar">
-                    <div class="progress"style=" width:{{obra.custom_fields.gdobra_porc_concluido}}%">
-                    </div>
-                  </div> {{obra.custom_fields.gdobra_porc_concluido}} %
-                </li>
-              </ul>
-            </li>
-            <li class="field">
-              <ul class="dados-obra">
+			<div class="barra">
+				<div class="row-fluid">
+					<div class="span12">
+						<ul class="geral clearfix">
+							<li class="field">
+								<ul class="dados-obra">
+									<li class="icon"><span class="circle"><i class="icon-calendar icon-2x red"></i></span></li>
+									<li class="data"><strong>Previsão de conclusão</strong></li>
+									<li class="result">{{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}</li>
+								</ul>
+							</li>
+							<li class="field">
+								<ul class="dados-obra">
+									<li class="icon"><span class="circle"> <i class="icon-money icon-2x green"></i></span></li>
+									<li class="data"><strong>Valor Global</strong></li>
+									<li class="result">{{obra.custom_fields.gdobra_valor_global|formatCurrency}}</li>
+								</ul>
+							</li>
+							<li class="field">
+								<ul class="dados-obra">
+									<li class="icon"><span class="circle"> <i class="icon-cogs icon-2x blue"></i></span></li>
+									<li class="data"><strong>Andamento</strong></li>
+									<li  class="result"><div class="progressbar"><div class="progress"style=" width:{{obra.custom_fields.gdobra_porc_concluido}}%"></div></div> {{obra.custom_fields.gdobra_porc_concluido}} %</li>
+								</ul>
+							</li>
+							<li class="field">
+								<ul class="dados-obra">
                 <li class="icon">
                   <span class="circle">
                     <i class="icon-wrench icon-2x orange"></i>
@@ -148,7 +123,7 @@ $(window).load(function () {
         </div>
       </div>
     </div>
-      <div class="row">
+      <div class="row-fluid"  style="background:#34495e; padding-right:0;">
         <div class="span3">
           <div class="info">
             <div class="botoesparticipar">
@@ -232,7 +207,7 @@ $(window).load(function () {
 
           </div>
         </div>
-        <div class="span9">
+        <div class="span9"  style="background:#ffffff; margin-left: 0px; padding-left: 0px; margin-right: 0px; padding-right: 0px; width: 76.9%;">
           <div class="stage">
             {%if more%}
             <div class="more-content fechado">
@@ -240,7 +215,7 @@ $(window).load(function () {
             </div>
             {%endif%}
             <div class="api-content hide" >
-              <div class="row">
+              <div class="row-fluid">
                 <div class="span9">
                   <h2>Acesso aos dados via API</h2>
 

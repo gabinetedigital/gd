@@ -45,264 +45,205 @@ $('.typeahead').typeahead({
 {% endblock %}
 
 {% block content %}
-<div class="topbar">
-  <a href="#" class="voltar-obra">
-    <p><i class="icon-arrow-left"></i>voltar</p>
-  </a>
-</div>
+<div class="topbar"><a href="#" class="voltar-obra"><p><i class="icon-arrow-left"></i>voltar</p></a></div>
+
 <div class="capa">
-  <div class="container">
-    <div class="app">
-      <div class="row">
-        <div class="span3 col aside">
-          <a href="/deolho">
-            <div class="logo">
-              <img src="{{ url_for('.static', filename='logo.png')}}">
-            </div>
-          </a>
+	<div class="container"  style="background-color:#FFFF00;">
+		<div class="app" style="background-color: #ffffff;">
+			<div class="row-fluid">
 
-          <div class="busca widget hidden-phone" data-intro="Procure obras por nome, local ou tema" data-position="top">
-            <p>procure por uma obra</p>
-            <div class="input-busca">
-              <input class="typeahead" type="text" placeholder="nome da obra..." autocomplete="off">
-              <button class="add-on" type="button"><i class="icon-search"></i></button>
-            </div>
-          </div>
+			<!-- ======================== Beginning of the sidebar ========================-->
+				<div class="span3 col aside homeSideBar">
+					<a href="/deolho"><div class="logo"><img src="{{ url_for('.static', filename='logo.png')}}"></div></a>
 
-          <div class="login widget hidden-phone">
-            {%if not user%}
-            <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
-              <p><i class="icon-key"></i> login</p>
-              <input type="text" name="username" id="username" class="user" placeholder="username">
-              <input type="password" id="password" name="password" class="pass" placeholder="password">
+					<div class="busca widget hidden-phone" data-intro="Procure obras por nome, local ou tema" data-position="top">
+						<p>procure por uma obra</p>
+						<div class="input-busca">
+							<input class="typeahead" type="text" placeholder="nome da obra..." autocomplete="off">
+							<button class="add-on" type="button"><i class="icon-search"></i></button>
+						</div>
+					</div>
 
-              <a onclick="document.getElementById('login').submit();" class="button
-              login-submit">entrar</a>
+					<div class="login widget hidden-phone">
+						{%if not user%}
+							<form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
+								<p><i class="icon-key"></i> login</p>
+								<input type="text" name="username" id="username" class="user" placeholder="username">
+								<input type="password" id="password" name="password" class="pass" placeholder="password">
 
-              <a href="{{url_for("auth.lost_password")}}" class="button
-              login-forget">esqueci a senha</a>
+								<a onclick="document.getElementById('login').submit();" class="button
+								login-submit">entrar</a>
 
-              <a href="{{url_for("auth.signup")}}" class="button
-              login-cadastrar">cadastre-se</a>
+								<a href="{{url_for("auth.lost_password")}}" class="button
+								login-forget">esqueci a senha</a>
 
-              <input type="hidden" name="next" value="{{next or
-              url_for("monitoramento.index")}}">
+								<a href="{{url_for("auth.signup")}}" class="button
+								login-cadastrar">cadastre-se</a>
 
-            </form>
-            {%else%}
-            <ul class="user-panel">
-              <li class="avatar">
-                <img src="{{ social_image(user) or user.email | gravatar(size=48) }}">
-              </li>
-              <li>Olá, <a class="user" href="/auth/profile/">{{user.name|truncate(20)}}</a></li>
-              <li class="logout"><a class="button logout" href="/auth/logout/?app=monitoramento"><i class="icon-signout"></i> sair</a></li>
-            </ul>
+								<input type="hidden" name="next" value="{{next or
+								url_for("monitoramento.index")}}">
+							</form>
+						{%else%}
+							<ul class="user-panel">
+								<li class="avatar"><img src="{{ social_image(user) or user.email | gravatar(size=48) }}"></li>
+								<li>Olá, <a class="user" href="/auth/profile/">{{user.name|truncate(20)}}</a></li>
+								<li class="logout"><a class="button logout" href="/auth/logout/?app=monitoramento"><i class="icon-signout"></i> sair</a></li>
+							</ul>
+						{%endif%}
+					</div>
 
+					<div class="buttons widget">
+						<a href="#comofunciona" class="comofunciona"><p><i class="icon-cog"></i>como funciona ?</p></a>
+						<a href="#" class="listagem visible-phone"><p><i class="icon-list-ul"></i>lista das obras</p></a>
+						<a href="/" class="voltar-gd"><p><i class="icon-arrow-left"></i>gabinete digital</p></a>
+					</div>
+				</div>
+			<!-- ======================== End of the sidebar ========================-->
 
-            {%endif%}
-          </div>
-
-          <div class="buttons widget">
-            <a href="#comofunciona" class="comofunciona">
-              <p><i class="icon-cog"></i>como funciona ?</p>
-            </a>
-            <a href="#" class="listagem visible-phone">
-              <p><i class="icon-list-ul"></i>lista das obras</p>
-            </a>
-            <a href="/" class="voltar-gd">
-              <p><i class="icon-arrow-left"></i>gabinete digital</p>
-            </a>
-          </div>
-        </div>
-        <div class="span9 col">
-          <div class="help hidden-phone">
-            <p data-intro="Clique para ver as instruções" data-position="left">
-              <i class="icon-question-sign"></i> Ajuda
-            </p>
-          </div>
-          <div id="instrucoes">
-            <div class="close hidden-phone">
-              fechar
-            </div>
-            <h2><i class="icon-cog"></i> como funciona?</h2>
-            <ul>
-              <li>
-                <p><b>1.ESCOLHA</b> ao lado uma obra do Governo
-                  Estadual para acompanhar</p>
-              </li>
-
-              <li>
-                <p><b>2.INFORME-SE</b> sobre o
-                andamento, veja imagens e conheça o cronograma de
-                entrega de cada obra</p>
-              </li>
-
-              <li>
-                <p><b>3.SIGA</b> as obras de seu
-                interesse e receba atualizações a cada nova etapa</p>
-              </li>
-
-              <li>
-                <p><b>4.FISCALIZE!</b> Envie fotos e
-                  vídeos das obras, comentários, dúvidas ou
-                  críticas.</p>
-              </li>
-
-              <li>
-                <p><b>5.COMPARTILHE</b> as obras que
-                  você fiscaliza e chame seus amigos para ficar de
-                  olho</p>
-              </li>
-
-              <li>
-                <p><b>6.GOVERNO RESPONDE:</b> a cada
-                  30 dias, o Governador se manifesta, em vídeo, sobre as
-                  obras mais acessadas e fiscalizadas</p>
-              </li>
-            </ul>
-          </div>
-          <div id="index">
-            <div id="myCarousel" class="slideshow visible-desktop carousel slide">
-              <div class="controls">
-                <a href="#" class="goPrev">
-                <i class="icon-angle-left icon-4x"></i>
-                </a>
-              </div>
-              <div class="controls">
-                <a href="#" class="goNext">
-                <i class="icon-angle-right icon-4x"></i>
-                </a>
-              </div>
-            <div class="content carousel-inner">
-
-              {%for slide in slides%}
-              <div id="myCarouselItem{{loop.index}}" class="item {%if loop.index-1 == 0%}active{%endif%}">
-
-                    {%if 'gdvideo' in slide%}
-                      {#GDVIDEO#}
-                      <a href="#video{{ slide.gdvideo.id }}"><img width="360" height="200" src="{{slide.gdvideo.thumbnail}}"></a>
-
-                      <div class="text">
-                        <h4>{{slide.title|safe}}</h4>
-                        <span>{{slide.content|safe}}</span>
-                      </div>
-
-                      <div class="video hide" height="100%" id="video{{ slide.gdvideo.id }}">
-                        <video class="video-obras" height="100%" poster="{{slide.gdvideo.thumbnail}}" controls="controls" preload="none">
-                          <!-- MP4 source must come first for iOS -->
-                          <source type="video/mp4" src="{{slide.gdvideo.sources['video/mp4']}}" />
-                          <!-- WebM for Firefox 4 and Opera -->
-                          <source type="video/webm" src="{{slide.gdvideo.sources['video/webm']}}" />
-                          <!-- OGG for Firefox 3 -->
-                          <!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
-                          <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
-
-                          <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">
-                            <param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" />
-                            <param name="flashvars" value="controls=true&amp;file={{slide.gdvideo.sources['video/mp4']}}" />
-                            <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
-                            <img src="{{slide.gdvideo.thumbnail}}" width="{{ slide.gdvideo.video_width }}" height="{{ slide.gdvideo.video_height }}" alt="Here we are"
-                              title="No video playback capabilities" />
-                          </object>
-                        </video>
-                      </div>
-
-                    {%elif 'video' in slide%}
-                      {#VIDEO#}
-                      <a href="#video{{ slide.id }}"><img width="320" height="160" src="{{slide.thumbs.slideshow.url}}"></a>
-
-                      <div class="text">
-                        <h4>{{slide.title|safe}}</h4>
-                        <span>{{slide.content|safe}}</span>
-                      </div>
-
-                      <div class="video hide" width="300" height="500" id="video{{ slide.id }}">
-                        <video width="640" height="360" id="player{{ slide.id }}" preload="none">
-                            <source src="{{slide.video}}" />
-                        </video>
-                      </div>
-
-                    {%elif 'youtube' in slide%}
-                      {#YOUTUBE VIDEO#}
-                      <a href="#video{{ slide.id }}"><img width="320" height="160" src="{{slide.youtube.thumb}}"></a>
-
-                      <div class="text">
-                        <h4>{{slide.title|safe}}</h4>
-                        <span>{{slide.content|safe}}</span>
-                      </div>
-
-                      <div class="video hide" height="100%" id="video{{ slide.id }}">
-                        <video height="100%" id="player{{ slide.id }}" preload="none">
-                            <source type="video/youtube" src="{{slide.youtube.video}}" />
-                        </video>
-                      </div>
-                    {%elif slide.thumbs%}
-                      <img src="{{slide.thumbs.slideshow.url}}">
-
-                      <div class="text">
-                       {{slide.content|safe}}
-                      </div>
-
-                    {%endif%}
-
-              </div>
-              {%endfor%}
-
-              </div>
-
-            </div>
+			<!-- ======================== Beginning of the content container ========================-->
+				<div class="span9 col">
+					<div class="help hidden-phone"><p data-intro="Clique para ver as instruções" data-position="left"><i class="icon-question-sign"></i> Ajuda</p></div>
+					
+					<!-- Instruções -->
+					<div id="instrucoes">
+						<div class="close hidden-phone">fechar</div>
+						<h2><i class="icon-cog"></i> como funciona?</h2>
+						<ul>
+							<li><p><b>1.ESCOLHA</b> ao lado uma obra do Governo Estadual para acompanhar</p></li>
+							<li><p><b>2.INFORME-SE</b> sobre o andamento, veja imagens e conheça o cronograma de entrega de cada obra</p></li>
+							<li><p><b>3.SIGA</b> as obras de seu interesse e receba atualizações a cada nova etapa</p></li>
+							<li><p><b>4.FISCALIZE!</b> Envie fotos e vídeos das obras, comentários, dúvidas ou críticas.</p></li>
+							<li><p><b>5.COMPARTILHE</b> as obras que você fiscaliza e chame seus amigos para ficar de olho</p></li>
+							<li><p><b>6.GOVERNO RESPONDE:</b> a cada 30 dias, o Governador se manifesta, em vídeo, sobre as obras mais acessadas e fiscalizadas</p></li>
+						</ul>
+					</div>
 
 
+					<div id="index">
 
-            {%if obras%}
-            <div class="lista-obras">
-              <a href="#" class="listagem visible-phone">
-                <p><i class="icon-list-ul"></i>lista das obras</p>
-              </a>
-              <ul class="thumbnails">
-                {% for obra in obras %}
-                <li id="obra-{{loop.index}}" class="span3 {{ loop.cycle('light', 'dark') }}" {% if loop.index == 1 %} data-intro="Obras que você pode monitorar" data-position="bottom" {% endif %}>
-                  <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
-                    <div class="thumbnail">
-                      <div class="obra">
-                        <div class="tge salto"></div>
-                        {%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
-                        <div class="dono"></div>
-                        {%endif%}
-                        <div class="tge salto"></div>
-                        {%if obra.thumbs%}
-                        <img src="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
-                        {%else%}
-                        <img src="http://placehold.it/270x180">
-                        {%endif%}
-                        <h4><span>{{obra.title}}</span></h4>
-                      </div>
-                      <div class="meta-obra">
-                        <ul>
-                          <li class="seguidores" {% if loop.index == 3 %}data-intro="Seguidores" data-position="top" {% endif %}>
-                            <i class="icon-star"></i>{{obra.total_follows}}
-                          </li>
-                          <li class="local"  {% if loop.index == 3 %}data-intro="Local da obra" data-position="bottom" {% endif %}>
-                            <i class="icon-map-marker"></i> <span class="cidade">{%if obra.custom_fields.gdobra_municipio%} {{obra.custom_fields.gdobra_municipio[0]}} {%endif%}</span>
-                          </li>
-                          <li class="comentarios" {% if loop.index == 3 %}data-intro="Comentários" data-position="top" {% endif %}>
-                            <i class="icon-comments"></i>{{obra.total_contributions}}
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
-            {%endif%}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+						<!--  Begin Slider -->
+						<div id="myCarousel" class="slideshow visible-desktop carousel slide">
+							<div class="controls"><a href="#" class="goPrev"><i class="icon-angle-left icon-4x"></i></a></div>
+							<div class="controls"><a href="#" class="goNext"><i class="icon-angle-right icon-4x"></i></a></div>
+							<div class="content carousel-inner">
+								{%for slide in slides%}
+								<div id="myCarouselItem{{loop.index}}" class="item {%if loop.index-1 == 0%}active{%endif%}">
+
+
+									{%if 'gdvideo' in slide%}
+									{#GDVIDEO#}
+									<a href="#video{{ slide.gdvideo.id }}"><img width="360" height="200" src="{{slide.gdvideo.thumbnail}}"></a>
+									<div class="text">
+										<h4>{{slide.title|safe}}</h4>
+										<span>{{slide.content|safe}}</span>
+									</div>
+									<div class="video hide" height="100%" id="video{{ slide.gdvideo.id }}">
+										<video class="video-obras" height="100%" poster="{{slide.gdvideo.thumbnail}}" controls="controls" preload="none">
+											<!-- MP4 source must come first for iOS -->
+											<source type="video/mp4" src="{{slide.gdvideo.sources['video/mp4']}}" />
+											<!-- WebM for Firefox 4 and Opera -->
+											<source type="video/webm" src="{{slide.gdvideo.sources['video/webm']}}" />
+											<!-- OGG for Firefox 3 -->
+											<!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
+											<!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
+											<object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">
+												<param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" />
+												<param name="flashvars" value="controls=true&amp;file={{slide.gdvideo.sources['video/mp4']}}" />
+												<!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
+												<img src="{{slide.gdvideo.thumbnail}}" width="{{ slide.gdvideo.video_width }}" height="{{ slide.gdvideo.video_height }}" alt="Here we are"
+												  title="No video playback capabilities" />
+											</object>
+										</video>
+									</div>
+
+									{%elif 'video' in slide%}
+									{#VIDEO#}
+									<a href="#video{{ slide.id }}"><img width="320" height="160" src="{{slide.thumbs.slideshow.url}}"></a>
+									<div class="text">
+										<h4>{{slide.title|safe}}</h4>
+										<span>{{slide.content|safe}}</span>
+									</div>
+									<div class="video hide" width="300" height="500" id="video{{ slide.id }}">
+										<video width="640" height="360" id="player{{ slide.id }}" preload="none">
+											<source src="{{slide.video}}" />
+										</video>
+									</div>
+
+									{%elif 'youtube' in slide%}
+									{#YOUTUBE VIDEO#}
+									<a href="#video{{ slide.id }}"><img width="320" height="160" src="{{slide.youtube.thumb}}"></a>
+									<div class="text">
+										<h4>{{slide.title|safe}}</h4>
+										<span>{{slide.content|safe}}</span>
+									</div>
+									<div class="video hide" height="100%" id="video{{ slide.id }}">
+										<video height="100%" id="player{{ slide.id }}" preload="none">
+											<source type="video/youtube" src="{{slide.youtube.video}}" />
+										</video>
+									</div>
+
+									{%elif slide.thumbs%}
+									<img src="{{slide.thumbs.slideshow.url}}">
+									<div class="text">{{slide.content|safe}}</div>
+									
+									{%endif%}
+								</div>
+							{%endfor%}
+							</div>
+						</div>
+						<!--  End Slider -->
+
+
+						{%if obras%}
+						<div class="lista-obras">
+							<a href="#" class="listagem visible-phone"><p><i class="icon-list-ul"></i>lista das obras</p></a>
+							<ul class="thumbnails">
+								{% for obra in obras %}
+									<li id="obra-{{loop.index}}" class="span4" {% if loop.index == 1 %} data-intro="Obras que você pode monitorar" data-position="bottom" {% endif %}><a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
+										<div class="thumbnail">
+											<div class="obra">
+												<div class="tge salto"></div>
+												{%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
+												<div class="dono"></div>
+												{%endif%}
+												<div class="tge salto"></div>
+												{%if obra.thumbs%}
+												<img src="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
+												{%else%}
+												<img src="http://placehold.it/270x180">
+												{%endif%}
+												<h4><span>{{obra.title}}</span></h4>
+											</div>
+											<div class="meta-obra">
+												<ul>
+													<li class="seguidores" {% if loop.index == 3 %}data-intro="Seguidores" data-position="top" {% endif %}><i class="icon-star"></i>{{obra.total_follows}}</li>
+													<li class="local"  {% if loop.index == 3 %}data-intro="Local da obra" data-position="bottom" {% endif %}><i class="icon-map-marker"></i> <span class="cidade">{%if obra.custom_fields.gdobra_municipio%} {{obra.custom_fields.gdobra_municipio[0]}} {%endif%}</span></li>
+													<li class="comentarios" {% if loop.index == 3 %}data-intro="Comentários" data-position="top" {% endif %}><i class="icon-comments"></i>{{obra.total_contributions}}</li>
+												</ul>
+											</div>
+										</div>
+									</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+						{%endif%}
+					</div>
+
+
+				</div><!-- span9 closing tag -->
+
+
+<!-- closing main containers -->
+			</div>
+		</div>
+	</div>
 </div>
+
+
+
+
+
 <script type="text/javascript">
 $(window).load(function () {
     $('video').mediaelementplayer();
