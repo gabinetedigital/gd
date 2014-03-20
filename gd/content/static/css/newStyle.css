@@ -4328,16 +4328,25 @@ h3.respgov { font-size:22px; color:#000;}
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento .help {color:#3498db; text-align:left; margin-top:10px; }
 =======
 #monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
 >>>>>>> new header
 =======
+=======
+>>>>>>> Alterações no design para padronizar páginas part II
 #monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
 =======
 #monitoramento .help {color:#3498db; text-align:right; margin-top:10px;}
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+<<<<<<< HEAD
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+=======
+#monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
+>>>>>>> Alterações no design para padronizar páginas part II
+>>>>>>> Alterações no design para padronizar páginas part II
 #monitoramento .help:hover {cursor:pointer;}
 #monitoramento .help p {width:55px; display:inline;}
 
@@ -4374,10 +4383,14 @@ h3.respgov { font-size:22px; color:#000;}
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento .slideshow {background:#2c3e50; display:block; margin:10px 30px 30px 0; padding:0;}
 =======
 #monitoramento .slideshow {background:#2c3e50; display:block; margin:10px 0 30px; padding:0;}
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+#monitoramento .slideshow {background:#2c3e50; display:block; margin:10px 30px 30px 0; padding:0;}
+>>>>>>> Alterações no design para padronizar páginas part II
 #monitoramento .slideshow .controls {position:relative; top:80px; width:100%; }
 #monitoramento .slideshow .controls a {color:#fff; font-size:1em; position:absolute; display:block; z-index:9999; }
 #monitoramento .slideshow .controls a.goNext {right:-25px;}
@@ -4399,9 +4412,13 @@ h3.respgov { font-size:22px; color:#000;}
 		#monitoramento .lista-obras {background:#ecf0f1; left:100%; top:160px; position:absolute; width:100%; display:none;}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento .lista-obras {padding-right: 30px; }
 =======
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+#monitoramento .lista-obras {padding-right: 30px; }
+>>>>>>> Alterações no design para padronizar páginas part II
 #monitoramento .lista-obras a.listagem {font-weight:200; margin:10px; font-size:1.8em; color:#3498db;}
 #monitoramento .lista-obras a.listagem:hover {text-decoration:none;}
 #monitoramento .lista-obras a.listagem i {margin-right:10px;}
@@ -4420,10 +4437,14 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento .lista-obras .obra {-webkit-box-sizing: border-box;-moz-box-sizing:    border-box;box-sizing:         border-box; margin:0; padding: 0; width:100%; position:relative; margin-bottom:0;}
 	@media (max-width: 767px) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		#monitoramento .lista-obras .obra {padding:0 10px ;}
 =======
 		#monitoramento .lista-obras .obra {padding:0 10px;}
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+		#monitoramento .lista-obras .obra {padding:0 10px ;}
+>>>>>>> Alterações no design para padronizar páginas part II
 	}
 	@media (max-width: 767px) {
 		#monitoramento .lista-obras .obra>img {width:50px; height:50px; display:inline-block;}
@@ -4947,10 +4968,14 @@ h3.respgov { font-size:22px; color:#000;}
 
 #monitoramento.obra .updates {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	background: #2c3e50;
 =======
 	background:#2c3e50;
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+	background: #2c3e50;
+>>>>>>> Alterações no design para padronizar páginas part II
 	padding:10px;
 	padding-bottom:100px;
 	overflow:hidden;
@@ -5519,6 +5544,7 @@ h3.respgov { font-size:22px; color:#000;}
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*============================== Esquema de cores experimental detalhe obra / Modifica��es Lucile aos estilos originais ==============================*/
 .head .menu {padding-top: 10px; text-align: right;}
 .head .menu {border-width: 0; margin: 0; padding: 0;}
@@ -5526,6 +5552,9 @@ h3.respgov { font-size:22px; color:#000;}
 .head .menu li a {display:inline; float:none; margin-right:10px; font-size:12pt; padding-top:51px;}
 
 
+=======
+/*============================== Esquema de cores experimental detalhe obra / Modifica��es Lucile aos estilos originais ==============================*/
+>>>>>>> Alterações no design para padronizar páginas part II
 #monitoramento .timeline {margin:0; padding:0;}
 
 
@@ -5536,7 +5565,11 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento .timeline .aside .content p {font-size: 12px !important;}
 
 #monitoramento.obra .update.aside .seta.esquerda,
+<<<<<<< HEAD
 #monitoramento.obra .update.image .seta.esquerda,
+=======
+#monitoramento.obra .update.image .seta.esquerda, 
+>>>>>>> Alterações no design para padronizar páginas part II
 #monitoramento.obra .update.video .seta.esquerda {
 	border-left:15px solid #E6EBEC;
 }
@@ -5657,9 +5690,12 @@ color: #6E6E6E !important;
 >>>>>>> new header
 
  /*  Font Awesome 4.0.1
+<<<<<<< HEAD
 =======
  *  Font Awesome 4.0.1
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+>>>>>>> Alterações no design para padronizar páginas part II
  *  the iconic font designed for Bootstrap
  *  ------------------------------------------------------------------------------
  *  The full suite of pictographic icons, examples, and documentation can be
