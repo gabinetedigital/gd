@@ -6,8 +6,14 @@
 
 {% block lcolumn %}
 
-<h1 class="envie">Envie sua pergunta</h1>
+{%if not user%}
+        <div class="needlogin">
+          <h4>É necessário que você esteja autenticado para enviar comentários.</h4>
+          <p><a class="btn btn-large btn-success" href="{{url_for('auth.login')}}">Entrar</a></p>
+        </div>
+{%else%}
 
+<h1 class="envie">Envie sua pergunta</h1>
 <form id="send" method="post" action="{{ url_for('.send_json') }}">
   <p class="helptext">
     Envie uma pergunta diretamente ao Governador. Se o tema escolhido e a
@@ -15,8 +21,8 @@
     aqui pelo site.
   </p>
 
-  <div class="msg error"></div>
-  <div class="msg success envio">
+  <div class="msg hide error"></div>
+  <div class="msg hide success envio">
     <p>
       Sua colaboração foi enviada com sucesso. Após uma breve moderação,
       ela será publicada e estará apta a receber votos.
@@ -49,6 +55,8 @@
       <button class="awesome">Enviar</button>
     </li>
   </ol>
+
+{%endif%}
 </form>
 
 <div id="comofunciona">
