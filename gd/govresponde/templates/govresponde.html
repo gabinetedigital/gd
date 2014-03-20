@@ -13,7 +13,7 @@
 {% block content %}
 <div class="govresponde" id="govresponde">
 	<div class="container" class="boxed">
-		
+
 		<div class="row-fluid head">
 			<div class="span6"><a href="{{ url_for('.index') }}"><img src="{{ url_for('static', filename='img/govresponde/govresponde_marca.png') }}" border="0" alt="Governador Responde" class="logoGR"></a>
 			<a href="{{ url_for('.index') }}"><img src="{{ url_for('static', filename='img/govresponde/dgcopa_marca.png') }}" border="0" alt="" class="logoDG"></a></div>
@@ -32,7 +32,7 @@
 				<div class="boxfinal">
 					<p>Em 9 edições do Governador Responde, mais de 90 questões foram respondidas em vídeo pelo governador e  mais de 25 mil votos foram recebidos.</p>
 					<p>Agora a ferramenta entra em uma nova fase, passará por uma reestruturação técnica e metodológica. Durante esse período, todas as respostas enviadas até o momento serão respondidas gradualmente em texto. O recebimento de perguntas será retomado em 2013.</p>
-					<p>Você pode continuar participando através das demais ferramentas. Exerça sua cidadania. Dúvidas ou sugestões podem ser enviadas para <a href="mailto:gabinetedigital@sgg.rs.gov.br">gabinetedigital@sgg.rs.gov.br</a></p> 
+					<p>Você pode continuar participando através das demais ferramentas. Exerça sua cidadania. Dúvidas ou sugestões podem ser enviadas para <a href="mailto:gabinetedigital@sgg.rs.gov.br">gabinetedigital@sgg.rs.gov.br</a></p>
 				</div>
 			</div>
 		</div>
@@ -58,10 +58,17 @@
 					</dt>
 					<dd {% if not theme and request.path.endswith('questions') %} class="choosen"{% endif %}></dd>
 
-					{% for i in wordpress.govr.getThemes(pg) %}
-					<dd {% if theme and theme.id == i.id %}class="choosen"{% endif %}><a href="{% if pg %}?pg=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
-					{{ i.name }}</a></dd>
-					{% endfor %}
+            {% for i in wordpress.govr.getThemes(pg) %}
+            <dd {% if theme and theme.id == i.id %}class="choosen"{% endif %}>
+              {%if i.id == '21'%}
+              <a href="{% if pg %}?pg=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
+                {{ i.name }}
+              </a>
+              {%else%}
+              <span class='afake'>{{ i.name }}</a>
+              {%endif%}
+            </dd>
+            {% endfor %}
 
 					{% if user %}
 					<dt>Suas contribuições</dt>
@@ -87,7 +94,7 @@
 
 			</div>
 			</div>
-		
+
 		</div><!-- row fluid -->
 
 
