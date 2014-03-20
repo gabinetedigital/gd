@@ -9,7 +9,7 @@
 
 <div class="questions">
   <div class="head">
-    <h1 class="questions">{% if theme %}{{ theme.name }}{% endif %}</h1>
+    <h2 class="questions">{% if theme %}{{ theme.name }}{% endif %}</h2>
     <form id="filterform" method="get" action="{{ url_for('.questions') }}">
       <input type="hidden" name="theme" value="{{ theme.id }}">
       <select name="sortby" onchange="$('#filterform').submit()">
