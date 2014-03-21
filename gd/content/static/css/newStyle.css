@@ -2888,9 +2888,8 @@ p.errmsg {
 .head .govRespSubMenu li:nth-of-type(1) a {color: #111A3E; }
 .head .govRespSubMenu li:nth-of-type(2) a {color: #52A529;}
 
-.iconedHelp {position: absolute; top: 10px; right: 0; line-height: 34px; font-size: 18px; }
+.iconedHelp {position: absolute; bottom: 0px; right: 10px; width: 80px; height: 60px; line-height: 20px; font-size: 18px;  text-align: center;}
 .iconedHelp a {color: #D62A4B;}
-.iconedHelp a i {margin: 0 10px 0 0;  float: left; width: 45px; }
 
 .iconedBackQ {line-height: 34px; font-size: 18px; }
 .iconedBackQ a {color: #700094;}
@@ -3370,7 +3369,7 @@ h1.questions {
 
 #govresponde h1 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #4EA325; font-size: 40px; width: 100%; background: none;}
 #govresponde h1.cfunciona {color: #D62A4B;}
-#govresponde h1.respgov {color: #700094;}
+#govresponde h1.respgov {color: #0089B9;}
 #govresponde h2 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #D62A4B; font-size: 30px; width: 100%; background: none;}
 #govresponde h2.envie {color:#111A3E !important;}
 #govresponde h2.questions {color:#52A529;}
