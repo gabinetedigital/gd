@@ -22,7 +22,7 @@
 					<li><a href="{{ url_for('govresponde.send') }}"><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
 					<li><a href="{{ url_for('.comofunciona') }}"><i class="fa fa-question-circle fa-2x"></i>como funciona</a></li>
 					<li><a href="{{ url_for('.questions') }}"><i class="fa fa-check-circle fa-2x"></i>votar em uma pergunta</a></li>
-					<li><a href=""><i class="fa fa-folder-open fa-2x"></i>edi&ccedil;&otilde;es anteriores</a></li>
+					<li><a href="{{ url_for('.index')+"?pg=todos" }}"><i class="fa fa-folder-open fa-2x"></i>edi&ccedil;&otilde;es anteriores</a></li>
 				</ul>
 			</div>
 		</div>
@@ -60,7 +60,7 @@
 
             {% for i in wordpress.govr.getThemes(pg) %}
             <dd {% if theme and theme.id == i.id %}class="choosen"{% endif %}>
-              {%if i.id == '21'%}
+              {%if i.id == '21' or pg %}
               <a href="{% if pg %}?pg=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
                 {{ i.name }}
               </a>
