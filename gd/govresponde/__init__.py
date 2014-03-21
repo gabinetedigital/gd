@@ -84,7 +84,8 @@ def index():
     ctx = _get_context()
     theme = ctx['theme']
     page  = ctx['page']
-    pg    = ctx['pg'] or 'resp'
+    pg    = ctx['pg']
+    # pg    = ctx['pg'] or 'resp'
     # Discovering the theme id
     theme_id = theme and \
          theme['id'] or ''
@@ -96,6 +97,7 @@ def index():
             statusedicao = 'ultima'
         pagerender = 'govresponde_edicoesanteriores.html'
     else:
+        return redirect( url_for('.questions')+"?theme=21" )
         statusedicao = 'ultima'
         pagerender = 'govresponde_home.html'
 
