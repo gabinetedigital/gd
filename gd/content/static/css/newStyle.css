@@ -3254,6 +3254,7 @@ h1.questions {
 	margin-bottom:20px;
 	border-bottom:dotted 1px #ccc;
 	overflow:auto;
+	width: 100% !important;
 }
 
 .questions .title {
@@ -3364,7 +3365,11 @@ h1.questions {
 #govresponde .comofunciona {display:block;}
 
 #govresponde h1 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #4EA325; font-size: 40px; width: 100%; background: none;}
-#govresponde h2 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #D62A4B; font-size: 30px; width: 100%; background: none;}}
+#govresponde h1.cfunciona {color: #D62A4B;}
+#govresponde h1.respgov {color: #700094;}
+#govresponde h2 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #D62A4B; font-size: 30px; width: 100%; background: none;}
+#govresponde h2.envie {color:#111A3E !important;}
+#govresponde h2.questions {color:#52A529;}
 #govresponde h3 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #F9BE00; font-size: 20px; width: 100%; background: none;}}
 
 h1.cfunciona {margin: 0; padding:0; float: none; clear: both;  text-indent: 60px; width: 95%; background:url("../img/comofunciona.png") no-repeat scroll left center transparent; color:#0094d8; font-weight:normal; height: 50px; line-height:  40px;}
