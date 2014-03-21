@@ -336,7 +336,8 @@ def question(qid):
     return render_template(
         'govresponde_question.html',
         **_get_context({ 'question': contrib, 'statusedicao': statusedicao ,
-        'sidebar':wordpress.getSidebar })
+        'sidebar':wordpress.getSidebar,
+        'menu':wordpress.exapi.getMenuItens(menu_slug='menu-principal'), })
     )
 
 

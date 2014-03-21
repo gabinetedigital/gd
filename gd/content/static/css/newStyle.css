@@ -3233,6 +3233,10 @@ form#send .helptext {
 	height:38px;
 }
 
+.questions.single .title{
+	display: none;
+}
+
 form input, form select, form textarea {
 	background:none repeat scroll 0 0 #fff;
 	border-radius:4px 4px 4px 4px;
