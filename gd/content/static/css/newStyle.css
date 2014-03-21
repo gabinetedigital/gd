@@ -2988,8 +2988,13 @@ p.desc {
 	font-weight:bold;
 }
 
-.sidebar dd a {
+.sidebar dd a,
+.sidebar dd{
 	color:#000;
+}
+
+span.afake{
+	color:#c5c5c5;
 }
 
 .sidebar dd a:hover {
@@ -3692,7 +3697,7 @@ h3.respgov {
 #monitoramento .slideshow .controls a {color:#fff; font-size:1em; position:absolute; display:block; z-index:9999; }
 #monitoramento .slideshow .controls a.goNext {right:-25px;}
 #monitoramento .slideshow .controls a.goPrev {left:-25px;}
-#monitoramento .slideshow .controls a.goPrev  i, #monitoramento .slideshow .controls a.goNext i {overflow: hidden;} 
+#monitoramento .slideshow .controls a.goPrev  i, #monitoramento .slideshow .controls a.goNext i {overflow: hidden;}
 #monitoramento .slideshow .controls a:hover {color:#3498db; text-decoration:none;}
 #monitoramento .slideshow .content {padding:30px;}
 #monitoramento .slideshow .content img {float:left; width:40%; margin-left: 30px;}
@@ -4817,7 +4822,7 @@ h3.respgov {
 #monitoramento .timeline .aside .content p {font-size: 12px !important;}
 
 #monitoramento.obra .update.aside .seta.esquerda,
-#monitoramento.obra .update.image .seta.esquerda, 
+#monitoramento.obra .update.image .seta.esquerda,
 #monitoramento.obra .update.video .seta.esquerda {
 	border-left:15px solid #E6EBEC;
 }

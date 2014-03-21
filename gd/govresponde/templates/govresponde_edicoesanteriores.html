@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block rcolumn %}
-<div class="row">
-<h1 class="respgov">Respostas do Governador</h1>
-</div>
 <div class="row highlight questions">
+
+  <div class="row">
+    <div class="span9">
+      <h1 class="respgov"><i class="fa fa-folder-open"></i> Respostas do Governador</h1><br>
+    </div>
+  </div>
+
     {% for contrib in contribs %}
 
     {% set date = contrib.answered_at.strftime('%d/%m/%Y') %}
@@ -23,7 +27,7 @@
         </div>
 
         <a href="{{ url_for('.results', rid=contrib.id) }}" class="title">
-          {{ contrib.title }} 
+          {{ contrib.title }}
         </a>
         <h3>{{ contrib.theme.name }} - ({{ contrib.real_score }} votos)</h3>
       </div>
@@ -102,7 +106,7 @@
     </li>
     {% endfor %}
   </ul>
-  
+
   </div>
 </div>
 {% if pagination.pages > 1 %}
