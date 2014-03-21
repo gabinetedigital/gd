@@ -2922,18 +2922,31 @@ p.errmsg {
 
 .head .logoGR {margin: 15px 0 0 0px; float: left;}
 .head .logoDG {margin: 0 0 20px 80px; float: left;}
-.head .govRespSubMenu {margin:0; padding:0; float: right; width: 500px;}
-.head .govRespSubMenu li {float: left; width: 49%; margin-top: 18px;}
-.head .govRespSubMenu li a  {line-height: 26px; font-size: 16px; }
+.head .govRespSubMenu {margin:10px 0 0 0; padding:0; float: right; width: 260px;}
+.head .govRespSubMenu li {float: left; width: 49%; margin-top: 18px; width: 260px; }
+.head .govRespSubMenu li a  {line-height: 34px; font-size: 18px; }
 .head .govRespSubMenu li a i {margin: 0 10px 0 0;  float: left; width: 45px; }
-.head .govRespSubMenu li:nth-of-type(1) {width: 290px; }
 .head .govRespSubMenu li:nth-of-type(1) a {color: #111A3E; }
+<<<<<<< HEAD
 >>>>>>> new header
+=======
+.head .govRespSubMenu li:nth-of-type(2) a {color: #52A529;}
+
+.iconedHelp {position: absolute; top: 10px; right: 0; line-height: 34px; font-size: 18px; }
+.iconedHelp a {color: #D62A4B;}
+.iconedHelp a i {margin: 0 10px 0 0;  float: left; width: 45px; }
+
+.iconedBackQ {line-height: 34px; font-size: 18px; }
+.iconedBackQ a {color: #700094;}
+.iconedBackQ a i {margin: 0 10px 0 0;  float: left; width: 45px; }
+/*
+>>>>>>> Alteração menu e incones
 .head .govRespSubMenu li:nth-of-type(2) {width: 200px; }
 .head .govRespSubMenu li:nth-of-type(2) a {color: #D62A4B;}
 .head .govRespSubMenu li:nth-of-type(3) {width: 290px; }
 .head .govRespSubMenu li:nth-of-type(3) a {color: #52A529;}
 .head .govRespSubMenu li:nth-of-type(4) {width: 200px; }
+<<<<<<< HEAD
 <<<<<<< HEAD
 .head .govRespSubMenu li:nth-of-type(4) a {color: #700094;}*/
 
@@ -2968,8 +2981,13 @@ span.afake{color:#c5c5c5;}
 .rcolumn h2 {color:#a00; margin-bottom:10px; display:block; height:49px;}
 =======
 .head .govRespSubMenu li:nth-of-type(4) a {color: #700094;}
+=======
+.head .govRespSubMenu li:nth-of-type(4) a {color: #700094;}*/
 
-.head .boxfinal {
+
+>>>>>>> Alteração menu e incones
+
+.head .boxfinal {position: relative;
 	font-size:11pt;
 	margin-bottom:20px;
 	color:#999;
