@@ -12,4 +12,12 @@
   {% include "govresponde_question.part.html" %}
 </div>
 
+{%if not user%}
+<div class="alert alert-block">
+<h4>Atenção!</h4>
+Para que seja possível você votar nesta questão, é necessário que faça o login no site.
+<span class="label label-success"><a href="/auth/login" class="textobranco">Login</a></span>
+</div>
+{%endif%}
+
 {% endblock %}
