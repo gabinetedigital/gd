@@ -2921,16 +2921,22 @@ p.errmsg {
 }
 
 .head .logoGR {margin: 15px 0 0 0px; float: left;}
-.head .logoDG {margin: 0 0 20px 80px; float: left;}
-.head .govRespSubMenu {margin:10px 0 0 0; padding:0; float: right; width: 260px;}
-.head .govRespSubMenu li {float: left; width: 49%; margin-top: 18px; width: 260px; }
-.head .govRespSubMenu li a  {line-height: 34px; font-size: 18px; }
+.head .logoDG {margin: 0 0 20px 0; float: right; width: 106px;}
+.head .govRespSubMenu {margin: 0; padding:0; float: none; width: 650px;}
+.head .govRespSubMenu li {float: left; margin-top: 10px; margin-bottom: 60px; width: 300px; }
+.head .govRespSubMenu li:hover {   opacity: 0.6;  -moz-opacity: 0.6;  filter: alpha(opacity=60);}
+.head .govRespSubMenu li a  {display: block; padding: 40px 20px;  height: 40px; line-height: 40px; font-size: 18px;  color: #ffffff; border-radius: 6px; text-align: center;}
 .head .govRespSubMenu li a i {margin: 0 10px 0 0;  float: left; width: 45px; }
+<<<<<<< HEAD
 .head .govRespSubMenu li:nth-of-type(1) a {color: #111A3E; }
 <<<<<<< HEAD
 >>>>>>> new header
 =======
 .head .govRespSubMenu li:nth-of-type(2) a {color: #52A529;}
+=======
+.head .govRespSubMenu li:nth-of-type(1) a {background-color: #111A3E;  margin-right: 30px;}
+.head .govRespSubMenu li:nth-of-type(2) a {background-color: #52A529;}
+>>>>>>> huge buttons
 
 .iconedHelp {position: absolute; bottom: 0px; right: 10px; width: 80px; height: 60px; line-height: 20px; font-size: 18px;  text-align: center;}
 .iconedHelp a {color: #D62A4B;}
