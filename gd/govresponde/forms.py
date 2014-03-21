@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 # Copyright (C) 2012  Governo do Estado do Rio Grande do Sul
 #
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
@@ -26,7 +27,7 @@ class QuestionForm(Form):
     theme = SelectField(
         _('Theme'),
         [validators.Required(
-                message=_(u'You need to choose one of the options above'))],
+                message=_(u'Você precisa escolher um tema'))],
     )
 
     title = TextField(
