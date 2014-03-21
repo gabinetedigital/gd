@@ -3347,31 +3347,19 @@ h1.questions {
 /*====================================== Estilo Governo Responde.======================================*/
 #govresponde .comofunciona {display:block;}
 
+#govresponde h1 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #4EA325; font-size: 40px; width: 100%; background: none;}
+#govresponde h2 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #D62A4B; font-size: 30px; width: 100%; background: none;}}
+#govresponde h3 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #F9BE00; font-size: 20px; width: 100%; background: none;}}
+
 h1.cfunciona {margin: 0; padding:0; float: none; clear: both;  text-indent: 60px; width: 95%; background:url("../img/comofunciona.png") no-repeat scroll left center transparent; color:#0094d8; font-weight:normal; height: 50px; line-height:  40px;}
 
 .comofunciona p {margin:10px 0;}
 
 #govresponde #slideshow {height:320px;}
 #govresponde #header #slideshow li {float:left; width:642px;margin-right:30px;}
-
-#govresponde #slideshow p {
-	font-size:24px;
-	font-weight:300;
-	font-family:OpenSansLight;
-}
-
-#govresponde #slideshow #step2 p {
-	background:url("../img/vote.png") no-repeat scroll center left transparent;
-	padding-left:66px;
-	text-align:left;
-}
-
-#govresponde #slideshow .slide {
-	display:table-cell;
-	height:320px;
-	width:642px;
-	vertical-align:middle;
-}
+#govresponde #slideshow p {font-size:24px; font-weight:300; font-family:OpenSansLight;}
+#govresponde #slideshow #step2 p {background:url("../img/vote.png") no-repeat scroll center left transparent; padding-left:66px; text-align:left;}
+#govresponde #slideshow .slide { display:table-cell; height:320px; width:642px; vertical-align:middle;}
 
 #step1 b {
 	color:#390;
@@ -3422,7 +3410,9 @@ h1.cfunciona {margin: 0; padding:0; float: none; clear: both;  text-indent: 60px
 	background:url("../img/step.png") no-repeat scroll center left transparent;
 }
 
+form#send {margin:10px 0 0 0;}
 
+button.awesome {margin:0; padding:10px 20px; text-align: center; color: #ffffff; background-color: #4EA325; font-size: 14px; border: 0px; border-radius: 4px;}
 .span4 .comofunciona {padding-bottom: 60px;}
 h1.respgov {
 	background:url("../img/respostasgov.png") no-repeat scroll center left transparent;
