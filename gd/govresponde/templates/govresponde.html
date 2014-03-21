@@ -15,19 +15,19 @@
 	<div class="container" class="boxed">
 		
 		<div class="row-fluid head">
-			<div id="logo" class="span3"><h1 class="title"><a href="{{ url_for('.index') }}">Governador Responde</a></h1></div>
-			<div class="span9">
-					<div class="menu">
-						<ul>
-							<li class="enviadas"> <a href="{{ url_for('.questions') }}">Propostas Enviadas</a></li>
-							<li class="enviarPergunta"><a href="{{ url_for('govresponde.send') }}">Enviar Perguntas</a></li>
-							<li class="comofunciona"><a href="{{ url_for('.comofunciona') }}">Como Funciona</a></li>
-						</ul>
-					</div>
+			<div class="span6"><a href="{{ url_for('.index') }}"><img src="{{ url_for('static', filename='img/govresponde/govresponde_marca.png') }}" border="0" alt="Governador Responde" class="logoGR"></a>
+			<a href="{{ url_for('.index') }}"><img src="{{ url_for('static', filename='img/govresponde/dgcopa_marca.png') }}" border="0" alt="" class="logoDG"></a></div>
+			<div class="span6">
+				<ul class="govRespSubMenu">
+					<li><a href="{{ url_for('govresponde.send') }}"><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
+					<li><a href="{{ url_for('.comofunciona') }}"><i class="fa fa-question-circle fa-2x"></i>como funciona</a></li>
+					<li><a href="{{ url_for('.questions') }}"><i class="fa fa-check-circle fa-2x"></i>votar em uma pergunta</a></li>
+					<li><a href=""><i class="fa fa-folder-open fa-2x"></i>edi&ccedil;&otilde;es anteriores</a></li>
+				</ul>
 			</div>
 		</div>
 
-<!-- 		<div class="row-fluid head">
+ 		<div class="row-fluid head">
 			<div class="span12">
 				<div class="boxfinal">
 					<p>Em 9 edições do Governador Responde, mais de 90 questões foram respondidas em vídeo pelo governador e  mais de 25 mil votos foram recebidos.</p>
@@ -35,7 +35,7 @@
 					<p>Você pode continuar participando através das demais ferramentas. Exerça sua cidadania. Dúvidas ou sugestões podem ser enviadas para <a href="mailto:gabinetedigital@sgg.rs.gov.br">gabinetedigital@sgg.rs.gov.br</a></p> 
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 <!-- content -->
 	<div class="row-fluid">
