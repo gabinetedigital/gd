@@ -59,7 +59,7 @@
 					</dt>
 					<dd {% if not theme and request.path.endswith('questions') %} class="choosen"{% endif %}></dd>
 
-            {% for i in wordpress.govr.getThemes(pg) %}
+            {% for i in wordpress.govr.getThemes(pg)[::-1] %}
             <dd {% if theme and theme.id == i.id %}class="choosen"{% endif %}>
               {%if i.id == '21' or pg %}
               <a href="{% if pg %}?pg=resp&{% else %}{{ url_for('.questions') }}?{% endif %}theme={{ i.id }}">
