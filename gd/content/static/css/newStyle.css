@@ -3575,229 +3575,61 @@ h3.respgov { font-size:22px; color:#000;}
 #govresponde #slideshow .slide { display:table-cell; height:320px; width:642px; vertical-align:middle;}
 >>>>>>> Alterações no design part III
 
-#step1 b {
-	color:#390;
-	font-weight:bold;
-}
+#step1 b {color:#390; font-weight:bold;}
+#step3 p {margin-bottom:20px;}
+#step3 big {color:#390;}
+#step3 b {font-weight:bold;}
+#step4 p {margin-bottom:30px;}
+#step5 p {margin-bottom:30px;}
 
-#step3 p {
-	margin-bottom:20px;
-}
-
-#step3 big {
-	color:#390;
-}
-
-#step3 b {
-	font-weight:bold;
-}
-
-#step4 p {
-	margin-bottom:30px;
-}
-
-#step5 p {
-	margin-bottom:30px;
-}
-
-#govresponde #slideshow .controls {
-	float:right;
-}
-
-#govresponde #slideshow .controls li {
-	display:block;
-	float:left;
-	margin-right:7px;
-	text-indent:-9999px;
-	overflow:hidden;
-	background-color:#fff;
-}
-
-#govresponde #slideshow .controls a {
-	background:url("../img/estep.png") no-repeat scroll center left transparent;
-	height:22px;
-	width:22px;
-	display:block;
-}
-
-#govresponde #slideshow .controls a.current {
-	background:url("../img/step.png") no-repeat scroll center left transparent;
-}
+#govresponde #slideshow .controls {float:right;}
+#govresponde #slideshow .controls li {display:block; float:left; margin-right:7px; text-indent:-9999px; overflow:hidden; background-color:#fff;}
+#govresponde #slideshow .controls a {background:url("../img/estep.png") no-repeat scroll center left transparent; height:22px; width:22px; display:block;}
+#govresponde #slideshow .controls a.current {background:url("../img/step.png") no-repeat scroll center left transparent;}
 
 form#send {margin:10px 0 0 0;}
 
 button.awesome {margin:0; padding:10px 20px; text-align: center; color: #ffffff; background-color: #4EA325; font-size: 14px; border: 0px; border-radius: 4px;}
+
 .span4 .comofunciona {padding-bottom: 60px;}
-h1.respgov {
-	background:url("../img/respostasgov.png") no-repeat scroll center left transparent;
-	color:#fe6200;
-	height:50px;
-	padding-left:68px;
-	padding-top:3px;
-}
 
-h3.respgov {
-	font-size:22px;
-	color:#000;
-}
+h1.respgov {background:url("../img/respostasgov.png") no-repeat scroll center left transparent; color:#fe6200; height:50px; padding-left:68px; padding-top:3px;}
+h3.respgov { font-size:22px; color:#000;}
+.questions .qdate { margin-left:40px; color:#969a9c; font-weight:normal;}
+.respgov_balao { background-color:#2da7d3; border-radius:32px 32px 32px 0px; padding:20px 20px 0; text-align:justify; width:300px; float:left; height:173px; margin-top:10px;}
+.respgov_balao h4 { color:#fff; font-size:21px; font-weight:normal; margin-bottom:9px;}
+.respgov_balao a { color:#fff;}
 
-.questions .qdate {
-	margin-left:40px;
-	color:#969a9c;
-	font-weight:normal;
-}
+#govresponde .video .thumb {height:190px; margin-bottom:10px; width:300px;}
 
-.respgov_balao {
-	background-color:#2da7d3;
-	border-radius:32px 32px 32px 0px;
-	padding:20px 20px 0;
-	text-align:justify;
-	width:300px;
-	float:left;
-	height:173px;
-	margin-top:10px;
-}
+.video .container {height:190px; overflow:hidden;}
+.video .play {height:50px; margin-left:125px; margin-top:-76px; position:relative; top:-94px; width:50px;}
+.video .permalink {left:277px; position:relative; top:-25px;}
 
-.respgov_balao h4 {
-	color:#fff;
-	font-size:21px;
-	font-weight:normal;
-	margin-bottom:9px;
-}
+.resultpage .videobox { margin:10px 0; width:100%; text-align:center; margin-top:10px; margin-bottom:10px;}
+.resultpage .videobox .video-js-box {margin:0 auto;}
+.resultpage .mobilize { float:left; color:#e10000; font-size:16px; margin-right:5px;margin-top:-3px;}
+.resultpage .question div, .resultpage .answer div {padding-left:20px;}
+.resultpage .referrals {padding-top:40px;}
+.resultpage .referrals ul {padding-left:20px;}
+.resultpage .referrals ul li {margin-bottom:25px;}
+.resultpage .referrals ul li h4 {margin-bottom:5px;}
 
-.respgov_balao a {
-	color:#fff;
-}
-
-#govresponde .video .thumb {
-	height:190px;
-	margin-bottom:10px;
-	width:300px;
-}
-
-.video .container {
-	height:190px;
-	overflow:hidden;
-}
-
-.video .play {
-	height:50px;
-	margin-left:125px;
-	margin-top:-76px;
-	position:relative;
-	top:-94px;
-	width:50px;
-}
-
-.video .permalink {
-	left:277px;
-	position:relative;
-	top:-25px;
-}
-
-.resultpage .videobox {
-	margin:10px 0;
-	width:100%;
-	text-align:center;
-	margin-top:10px;
-	margin-bottom:10px;
-}
-
-.resultpage .videobox .video-js-box {
-	margin:0 auto;
-}
-
-.resultpage .mobilize {
-	float:left;
-	color:#e10000;
-	font-size:16px;
-	margin-right:5px;
-	margin-top:-3px;
-}
-
-.resultpage .question div, .resultpage .answer div {
-	padding-left:20px;
-}
-
-.resultpage .referrals {
-	padding-top:40px;
-}
-
-.resultpage .referrals ul {
-	padding-left:20px;
-}
-
-.resultpage .referrals ul li {
-	margin-bottom:25px;
-}
-
-.resultpage .referrals ul li h4 {
-	margin-bottom:5px;
-}
-
-.aviso {
-	padding-left:20px;
-	margin-bottom:20px;
-}
+.aviso {padding-left:20px; margin-bottom:20px;}
 
 /*estilos para os overlays dos widgets*/
 
-.modal {
-	background-color:#fff;
-	display:none;
-	width:800px;
-	padding:15px;
-	text-align:left;
-	border-radius:10px;
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	-moz-box-shadow:0 0 50px #ccc;
-	-webkit-box-shadow:0 0 50px #ccc;
-}
+.modal {background-color:#fff; display:none; width:800px; padding:15px; text-align:left; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; -moz-box-shadow:0 0 50px #ccc; -webkit-box-shadow:0 0 50px #ccc;}
+.modal h2 {background:url(../img/alert-overlay.png) 0 50% no-repeat; margin:0px; padding:10px 0 10px 45px; border-bottom:1px solid #333; font-size:20px;}
+.modal .close { cursor:pointer; height:35px; width:35px; display:block; left:810px; position:absolute; top:-14px;}
+.modal #content p {font-size:16px;}
 
-.modal h2 {
-	background:url(../img/alert-overlay.png) 0 50% no-repeat;
-	margin:0px;
-	padding:10px 0 10px 45px;
-	border-bottom:1px solid #333;
-	font-size:20px;
-}
+.right {float:right;}
 
-.modal .close {
-	cursor:pointer;
-	height:35px;
-	width:35px;
-	display:block;
-	left:810px;
-	position:absolute;
-	top:-14px;
-}
-
-.modal #content p {
-	font-size:16px;
-}
-
-.right {
-	float:right;
-}
-
-#showmore {
-	font-size:15px;
-}
-
-#showmore #content p {
-	margin:10px 0;
-}
-
-#showmore .modal {
-	width:500px;
-}
-
-#showmore #content li {
-	list-style:disc;
-	margin-left:43px;
-	padding:4px;
-}
+#showmore {font-size:15px;}
+#showmore #content p {margin:10px 0;}
+#showmore .modal {width:500px;}
+#showmore #content li {list-style:disc;margin-left:43px;padding:4px;}
 
 
 /*====================================== Estilo Monitoramento.======================================*/
