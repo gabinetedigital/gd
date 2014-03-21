@@ -3286,10 +3286,14 @@ form#send .helptext {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .error:not(.alert) {
 =======
 .error {
 >>>>>>> new header
+=======
+.error:not(.alert) {
+>>>>>>> Ajustes js, formulario envio
 	background:none repeat scroll 0 0 #ce3316;
 	border:1px solid #ef2929;
 	margin:20px auto 0;

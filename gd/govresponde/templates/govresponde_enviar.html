@@ -1,7 +1,7 @@
 {% extends "govresponde.html" %}
 
 {% block js %}
-<script src="{{ url_for('.static', filename='js/govresponde_enviar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/govresponde/govresponde_enviar.js') }}"></script>
 {% endblock %}
 
 {% block lcolumn %}
@@ -21,8 +21,8 @@
     aqui pelo site.
   </p>
 
-  <div class="msg hide error"></div>
-  <div class="msg hide success envio">
+  <div class="hide msg error alert alert-error"></div>
+  <div class="hide msg success alert alert-success envio">
     <p>
       Sua colaboração foi enviada com sucesso. Após uma breve moderação,
       ela será publicada e estará apta a receber votos.
