@@ -3367,6 +3367,10 @@ h1.questions {float:left; color:#93b937; font-size:26px; font-weight:normal;}
 	height:38px;
 }
 
+.questions.single .title{
+	display: none;
+}
+
 form input, form select, form textarea {
 	background:none repeat scroll 0 0 #fff;
 	border-radius:4px 4px 4px 4px;
