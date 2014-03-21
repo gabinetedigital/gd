@@ -3202,7 +3202,7 @@ form#send .helptext {
 	font-size:14px;
 }
 
-.error {
+.error:not(.alert) {
 	background:none repeat scroll 0 0 #ce3316;
 	border:1px solid #ef2929;
 	margin:20px auto 0;
