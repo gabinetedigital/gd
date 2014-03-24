@@ -23,6 +23,7 @@ from flask import Blueprint, request, render_template, abort, current_app, Respo
 from werkzeug import secure_filename
 from jinja2.utils import Markup
 # from twython import Twython
+import numpy as np
 
 import datetime as d
 import os
@@ -544,6 +545,18 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
+#------------------------------
+def rpHash(person):
+    hash = 5381
+
+    value = person.upper()
+    for caracter in value:
+        hash = (( np.left_shift(hash, 5) + hash) + ord(caracter))
+    hash = np.int32(hash)
+    return str(hash)
+#-----------------------------
+
+
 @monitoramento.route('/obra/<slug>/contribui', methods=('POST',))
 def contribui(slug):
 
@@ -552,6 +565,13 @@ def contribui(slug):
 		return abort(404)
 
 	r = {'status':'ok', 'message':'Sua contibuição foi aceita com sucesso'}
+
+
+	#Validação do RealPerson (reCaptcha)
+	if rpHash(request.form['defaultReal']) != request.form['defaultRealHash']:
+		r = {'status':'nok', 'message':'O código de validação está incorreto'}
+		return dumps(r)
+
 	user_recent = False
 	if not authapi.is_authenticated():
 		# r = {'status':'not_logged'}

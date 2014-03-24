@@ -134,15 +134,16 @@ $(window).load(function () {
     var ret = function(data) {
         var pData = $.parseJSON(data);
 
+        $( ".realperson-regen" ).trigger( "click" );
         /* It's everything ok, let's get out */
         if (pData.status === 'ok') {
           showMsg('Obrigado por sua contribuição! ','alert-success');
+          $('#part-geral').clearForm();
           if(pData.refresh){
             window.setTimeout(function(){
                 window.location.reload();
             },1000);
           }
-          $('#part-geral').clearFields();
         } else {
           showMsg(pData.message);
         }
@@ -156,13 +157,19 @@ $(window).load(function () {
 
             // console.log($('#accept_Tos').is(':checked'));
             if( $('#conteudo').val() == "" || $('#titulo').val() == "" ){
-                alert('Você precisa preencher o Título e a Sua Contribuição!')
+                alert('Você precisa preencher o Título e a Sua Contribuição')
                 $('#titulo').focus();
                 return false;
             }
 
+            if( $('#defaultReal').val() == ""){
+                alert('Você precisa preencher o campo verificador')
+                $('#defaultReal').focus();
+                return false;
+            }
+
             if(!$('#accept_Tos').is(':checked')){
-                alert('Você precisa aceitar os termos de uso!')
+                alert('Você precisa aceitar os termos de uso')
                 return false;
             }
 
@@ -172,6 +179,7 @@ $(window).load(function () {
         success:ret,
         error: function(){
             showMsg("Ocorreu um erro ao enviar sua solicitação",'alert-error');
+            $( ".realperson-regen" ).trigger( "click" );
             $(this).hideLoadingModal();
         }
     });
@@ -231,7 +239,7 @@ $(window).load(function () {
         $('.updates').hide();
         $('.api-content').hide();
         $('.comofunciona').hide();
-        $('#part-geral').clearFields();
+        $('#part-geral').clearForm();
     }, function() {
         $('.suplementar').hide();
         $('.updates').fadeIn();
@@ -275,7 +283,7 @@ $(window).load(function () {
     });
 
     $('a.fechar').click( function(){
-        $('#part-geral').clearFields();
+        $('#part-geral').clearForm();
         $('.suplementar').hide();
         $('.updates').fadeIn();
     });
@@ -413,6 +421,8 @@ $(window).load(function () {
         }
 
     }
+
+    $('#part-geral').clearForm();
 
     Mousetrap.bind('up up down down left right left right b a', function() {
         console.log('konami code');
