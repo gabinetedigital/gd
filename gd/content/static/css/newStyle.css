@@ -1,7 +1,7 @@
 /*====================================== Font Stuff ======================================*/
 
 @font-face {
-	font-family:"Open Sans";
+	font-family:"Open Sans"
 	src:url(/static/fonts/OpenSans-Light-webfont.eot);
 	src:url(/static/fonts/OpenSans-Light-webfont.eot?#iefix) format('eot'), url(/static/fonts/OpenSans-Light-webfont.woff) format('woff'),  url(/static/fonts/OpenSans-Light-webfont.ttf) format('truetype'),  url(/static/fonts/OpenSans-Light-webfont.svg) format('svg');
 	font-weight:300;
@@ -336,10 +336,14 @@ a  {color:#d12d33;}
 
 /*====================================== Footer ======================================*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 footer {margin-top: 50px;
 =======
 footer {
 >>>>>>> new header
+=======
+footer {margin-top: 50px;
+>>>>>>> Logos maiores e páginas de politica e termos
 	background:#222;
 	background:url('../img/footer.png?1361287234'), -webkit-gradient(linear,  50% 0%,  50% 100%,  color-stop(0%,  #222222),  color-stop(100%,  #111111)), #222;
 	background:url('../img/footer.png?1361287234'), -webkit-linear-gradient(center top,  #222222, #111111), #222;
@@ -2834,6 +2838,7 @@ p.errmsg {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .regularPage {padding-top:20px; background:url(../img/minsqr.png);}
 
 /*====================================== Estilo Governo Responde.======================================*/
@@ -2848,6 +2853,15 @@ p.errmsg {
 .head .menu {padding-top:32px; text-align:right;}
 .head .menu li a {display:inline; float:right; margin-right:30px; font-size:12pt; padding-top:51px;}
 =======
+=======
+
+
+.regularPage {padding-top:20px; background:url(../img/minsqr.png);}
+
+
+
+
+>>>>>>> Logos maiores e páginas de politica e termos
 .govresponde {
 	padding-top:20px;
 	background:url(../img/minsqr.png);
@@ -2920,8 +2934,8 @@ p.errmsg {
 	color:#333;
 }
 
-.head .logoGR {margin: 15px 0 0 0px; float: left;}
-.head .logoDG {margin: 0 0 20px 0; float: right; width: 106px;}
+.head .logoGR {margin: 15px 0 0 0px; float: left; width: 210px;}
+.head .logoDG {margin: 0 0 20px 0; float: right; width: 130px;}
 .head .govRespSubMenu {margin: 0; padding:0; float: none; width: 650px;}
 .head .govRespSubMenu li {float: left; margin-top: 10px; margin-bottom: 60px; width: 300px; }
 .head .govRespSubMenu li:hover {   opacity: 0.6;  -moz-opacity: 0.6;  filter: alpha(opacity=60);}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-fluid.html" %}
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('.static', filename='css/blog.css') }}">
@@ -8,22 +8,23 @@
 {% endblock %}
 
 {% block content %}
-<div id="container">
-  <div class="row">
-    <div id="post" class="col8">
-      <div id="news">
-          <h1>{{ page.title }}</h1>
-          <div class="postcontent">
-            {{ page.content|safe }}
-          </div>
-      </div>
-    </div>
-    <div id="sidebar" class="col4">
-      <div id="wordpress-sidebar-1">
-        {{ sidebar(id='sidebar-1')|safe }}
-      </div>
-    </div>
-  </div>
-  <div class="row-end"></div>
+<div class="regularPage">
+	<div class="container" class="boxed">
+		<div class="row-fluid">
+			<div id="post" class="span9">
+				<div id="news">
+					<h2>{{ page.title }}</h2>
+					<div class="postcontent">
+						{{ page.content|safe }}
+					</div>
+				</div>
+			</div>
+			<div id="sidebar" class="span3">
+				<div id="wordpress-sidebar-1">
+					{{ sidebar(id='sidebar-1')|safe }}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
