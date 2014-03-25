@@ -2851,6 +2851,7 @@ p.errmsg {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .regularPage {padding-top:20px; background:url(../img/minsqr.png);}
 
 /*====================================== Estilo Governo Responde.======================================*/
@@ -2868,6 +2869,8 @@ p.errmsg {
 =======
 =======
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+>>>>>>> alterações emergenciais
 
 
 .regularPage {padding-top:20px; background:url(../img/minsqr.png);}
@@ -3164,91 +3167,90 @@ span.afake{color:#c5c5c5;}
 	background:url("../img/encaminhamento.png") no-repeat left;
 	padding-left:20px;
 }
+=======
+.regularPage {padding-top:20px; background:url(../img/minsqr.png);}
+>>>>>>> alterações emergenciais
 
-a.otherquestions {
+/*====================================== Estilo Governo Responde.======================================*/
+
+<<<<<<< HEAD
+.rcolumn h2 {
+	color:#a00;
+	margin-bottom:10px;
 	display:block;
-	background:url("../img/others.png") no-repeat left;
-	clear:both;
-	float:left;
-	font-size:16px;
-	margin-right:20px;
-	margin-bottom:20px;
+	height:49px;
 }
+>>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+.govresponde {padding-top:20px;background:url(../img/minsqr.png);}
+.govresponde li {list-style:none;}
+.govresponde ul {margin:0;}
 
-a.otherquestions .share {
-	width:208px;
-	float:left;
-	margin-right:21px;
-	padding-top:3px;
-}
+#logo h1 {background:url("../img/govresponde.png") no-repeat; overflow:hidden; width:230px; height:77px; margin:30px 0; text-indent:-1000px;}
+#logo a { padding-top:80px; display:block;}
 
-p.desc {
-	color:#000;
-}
+.head .menu {padding-top:32px; text-align:right;}
+.head .menu li a {display:inline; float:right; margin-right:30px; font-size:12pt; padding-top:51px;}
 
-.sidebar form.search {
-	margin-bottom:20px;
-}
+.container .head .menu li.comofunciona a {background:url(../img/comofunciona.png) no-repeat scroll 35px top transparent; color:#008dc4;}
+.container .head .menu li.respostasgov a {background:url(../img/respostasgov.png) no-repeat center top;color:#fe6200;}
+.container .head .menu li.enviarPergunta a {background:url(../img/respostasgov.png) no-repeat center top;color:#fe6200;}
+.container .head .menu li.enviadas a {background:url(../img/envie.png) no-repeat center top;color:#d12d33;}
+.container .head .menu li a:hover {margin-top:-5px;text-decoration:none;}
+.container .head .menu a {color:#333;}
 
-.sidebar form.search input {
-	border:solid 1px #999;
-	padding:4px;
-}
+.head .logoGR {margin: 15px 0 0 0px; float: left; width: 210px;}
+.head .logoDG {margin: 0 0 20px 0; float: right; width: 130px;}
+.head .govRespSubMenu {margin: 0; padding:0; float: none; width: 650px;}
+.head .govRespSubMenu li {float: left; margin-top: 10px; margin-bottom: 60px; width: 300px; }
+.head .govRespSubMenu li:hover {   opacity: 0.6;  -moz-opacity: 0.6;  filter: alpha(opacity=60);}
+.head .govRespSubMenu li a  {display: block; padding: 40px 20px;  height: 40px; line-height: 40px; font-size: 18px;  color: #ffffff; border-radius: 6px; text-align: center;}
+.head .govRespSubMenu li a i {margin: 0 10px 0 0;  float: left; width: 45px; }
+.head .govRespSubMenu li:nth-of-type(1) a {background-color: #111A3E;  margin-right: 30px;}
+.head .govRespSubMenu li:nth-of-type(2) a {background-color: #52A529;}
 
-.sidebar form.search .text {
-	width:160px;
-}
+.iconedHelp {position: absolute; bottom: 0px; right: 10px; width: 80px; height: 60px; line-height: 20px; font-size: 18px;  text-align: center;}
+.iconedHelp a {color: #D62A4B;}
 
-.sidebar form.search .button {
-	padding:3px 5px;
-}
+.iconedBackQ {line-height: 34px; font-size: 18px; }
+.iconedBackQ a {color: #700094;}
+.iconedBackQ a i {margin: 0 10px 0 0;  float: left; width: 45px; }
+/*
+.head .govRespSubMenu li:nth-of-type(2) {width: 200px; }
+.head .govRespSubMenu li:nth-of-type(2) a {color: #D62A4B;}
+.head .govRespSubMenu li:nth-of-type(3) {width: 290px; }
+.head .govRespSubMenu li:nth-of-type(3) a {color: #52A529;}
+.head .govRespSubMenu li:nth-of-type(4) {width: 200px; }
+.head .govRespSubMenu li:nth-of-type(4) a {color: #700094;}*/
 
-.sidebar dt {
-	color:#4f9700;
-	font-size:12pt;
-	margin:10px 0 10px 0;
-}
+.head .boxfinal {position: relative; font-size:11pt; margin-bottom:20px; color:#999; border:1px solid #ccc; padding:30px; background-color:#fff;}
 
-.sidebar dt.section {
-	background:url("../img/vote.png") no-repeat;
-	height:41px;
-	padding-left:53px;
-}
+.container .answerlink {margin-top:20px; clear:both; margin-bottom:40px;}
+.container .answerlink .encaminhamento, .referrals .encaminhamento { font-size:16px; color:#563a11; background:url("../img/encaminhamento.png") no-repeat left; padding-left:20px;}
 
-.sidebar dt.section_respostas {
-	background:url("../img/respostasgov.png") no-repeat;
-	height:45px;
-	line-height:30px;
-	padding-left:66px;
-}
+a.otherquestions {display:block; background:url("../img/others.png") no-repeat left; clear:both; float:left; font-size:16px; margin-right:20px; margin-bottom:20px;}
+a.otherquestions .share { width:208px; float:left; margin-right:21px; padding-top:3px;}
 
-.sidebar dt.section_respostas a {
-	color:#fe6200;
-}
+p.desc {color:#000;}
 
-.sidebar dd {
-	margin-left:20px;
-	background:url("../img/lista.png") no-repeat 0 center;
-	margin-top:5px;
-	padding-left:8px;
-}
+.sidebar form.search {margin-bottom:20px;}
+.sidebar form.search input {border:solid 1px #999; padding:4px;}
+.sidebar form.search .text { width:160px;}
+.sidebar form.search .button {padding:3px 5px;}
+.sidebar dt {color:#4f9700; font-size:12pt; margin:10px 0 10px 0;}
+.sidebar dt.section {background:url("../img/vote.png") no-repeat; height:41px; padding-left:53px;}
+.sidebar dt.section_respostas { background:url("../img/respostasgov.png") no-repeat; height:45px; line-height:30px; padding-left:66px;}
+.sidebar dt.section_respostas a { color:#fe6200;}
+.sidebar dd { margin-left:20px; background:url("../img/lista.png") no-repeat 0 center; margin-top:5px; padding-left:8px;}
+.sidebar dd.choosen { font-weight:bold;}
+.sidebar dd a, 
+.sidebar dd{ color:#000;}
 
-.sidebar dd.choosen {
-	font-weight:bold;
-}
+span.afake{color:#c5c5c5;}
 
-.sidebar dd a {
-	color:#000;
-}
+.sidebar dd a:hover {text-decoration:underline;}
 
-.sidebar dd a:hover {
-	text-decoration:underline;
-}
-
-.rcolumn {
-	margin-top:20px;
-}
-
+<<<<<<< HEAD
 .rcolumn h2 {
 	color:#a00;
 	margin-bottom:10px;
@@ -3257,6 +3259,11 @@ p.desc {
 }
 >>>>>>> (DONO) Ultimas correcoes da Lucile
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+.rcolumn {margin-top:20px;}
+.rcolumn h2 {color:#a00; margin-bottom:10px; display:block; height:49px;}
+>>>>>>> alterações emergenciais
+>>>>>>> alterações emergenciais
 
 .highlight .bigger a.otherquestions {
 	margin-left:480px;
@@ -3440,6 +3447,7 @@ form#send .helptext {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .error:not(.alert) {
 =======
 .error {
@@ -3448,11 +3456,19 @@ form#send .helptext {
 .error:not(.alert) {
 >>>>>>> Ajustes js, formulario envio
 =======
+=======
+>>>>>>> alterações emergenciais
 .error:not(.alert) {
 =======
 .error {
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+<<<<<<< HEAD
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+=======
+.error:not(.alert) {
+>>>>>>> alterações emergenciais
+>>>>>>> alterações emergenciais
 	background:none repeat scroll 0 0 #ce3316;
 	border:1px solid #ef2929;
 	margin:20px auto 0;
@@ -3460,6 +3476,7 @@ form#send .helptext {
 	width:76%;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3641,6 +3658,10 @@ h1.questions {
 	margin-left:100px;
 }
 =======
+=======
+=======
+>>>>>>> alterações emergenciais
+>>>>>>> alterações emergenciais
 #comofunciona { display:none; background:#fff; padding:20px; border-radius:20px;}
 #comofunciona .close {cursor:pointer; height:35px; width:35px; display:block; left:640px; position:absolute; top:5px;}
 >>>>>>> css changes
@@ -3738,6 +3759,7 @@ h3.respgov { font-size:22px; color:#000;}
 .resultpage .referrals ul li h4 {margin-bottom:5px;}
 
 .aviso {padding-left:20px; margin-bottom:20px;}
+<<<<<<< HEAD
 
 /*estilos para os overlays dos widgets*/
 
@@ -4111,68 +4133,34 @@ h3.respgov {
 	padding-left:20px;
 	margin-bottom:20px;
 }
+=======
+>>>>>>> alterações emergenciais
 
 /*estilos para os overlays dos widgets*/
 
-.modal {
-	background-color:#fff;
-	display:none;
-	width:800px;
-	padding:15px;
-	text-align:left;
-	border-radius:10px;
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	-moz-box-shadow:0 0 50px #ccc;
-	-webkit-box-shadow:0 0 50px #ccc;
-}
+.modal {background-color:#fff; display:none; width:800px; padding:15px; text-align:left; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; -moz-box-shadow:0 0 50px #ccc; -webkit-box-shadow:0 0 50px #ccc;}
+.modal h2 {background:url(../img/alert-overlay.png) 0 50% no-repeat; margin:0px; padding:10px 0 10px 45px; border-bottom:1px solid #333; font-size:20px;}
+.modal .close { cursor:pointer; height:35px; width:35px; display:block; left:810px; position:absolute; top:-14px;}
+.modal #content p {font-size:16px;}
 
-.modal h2 {
-	background:url(../img/alert-overlay.png) 0 50% no-repeat;
-	margin:0px;
-	padding:10px 0 10px 45px;
-	border-bottom:1px solid #333;
-	font-size:20px;
-}
+.right {float:right;}
 
-.modal .close {
-	cursor:pointer;
-	height:35px;
-	width:35px;
-	display:block;
-	left:810px;
-	position:absolute;
-	top:-14px;
-}
-
-.modal #content p {
-	font-size:16px;
-}
-
-.right {
-	float:right;
-}
-
-#showmore {
-	font-size:15px;
-}
-
-#showmore #content p {
-	margin:10px 0;
-}
-
-#showmore .modal {
-	width:500px;
-}
-
+<<<<<<< HEAD
 #showmore #content li {
 	list-style:disc;
 	margin-left:43px;
 	padding:4px;
 }
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+#showmore {font-size:15px;}
+#showmore #content p {margin:10px 0;}
+#showmore .modal {width:500px;}
+#showmore #content li {list-style:disc;margin-left:43px;padding:4px;}
+>>>>>>> alterações emergenciais
 
 /*======================================================= Estilo Monitoramento =====================================================*/
+<<<<<<< HEAD
 =======
 
 #govresponde #slideshow p {
@@ -4258,6 +4246,12 @@ h3.respgov { font-size:22px; color:#000;}
 
 /*====================================== Estilo Monitoramento.======================================*/
 >>>>>>> new header
+=======
+/*============================================================================================================================*/
+/*============================================================================================================================*/
+/*============================================================================================================================*/
+
+>>>>>>> alterações emergenciais
 #monitoramento {margin:0; background:#ecf0f1;}
 	@media (max-width: 767px) {
 		#monitoramento {padding:0; background:#34495e; overflow-x:hidden;}
@@ -4329,6 +4323,7 @@ h3.respgov { font-size:22px; color:#000;}
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento .help {color:#3498db; text-align:left; margin-top:10px; }
 =======
 #monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
@@ -4336,6 +4331,8 @@ h3.respgov { font-size:22px; color:#000;}
 =======
 =======
 >>>>>>> Alterações no design para padronizar páginas part II
+=======
+>>>>>>> alterações emergenciais
 #monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
 =======
 #monitoramento .help {color:#3498db; text-align:right; margin-top:10px;}
@@ -4346,7 +4343,13 @@ h3.respgov { font-size:22px; color:#000;}
 =======
 #monitoramento .help {color:#3498db; text-align:right; margin-top:10px; margin-right: 30px;}
 >>>>>>> Alterações no design para padronizar páginas part II
+<<<<<<< HEAD
 >>>>>>> Alterações no design para padronizar páginas part II
+=======
+=======
+#monitoramento .help {color:#3498db; text-align:left; margin-top:10px; }
+>>>>>>> alterações emergenciais
+>>>>>>> alterações emergenciais
 #monitoramento .help:hover {cursor:pointer;}
 #monitoramento .help p {width:55px; display:inline;}
 
@@ -4362,9 +4365,13 @@ h3.respgov { font-size:22px; color:#000;}
 		#monitoramento #instrucoes h2 {font-size:2em;}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento .instrucoes p {color: #34495E; padding-left: 20px;  padding-right: 20px;}
 =======
 >>>>>>> new header
+=======
+#monitoramento .instrucoes p {color: #34495E; padding-left: 20px;  padding-right: 20px;}
+>>>>>>> alterações emergenciais
 #monitoramento #instrucoes ul {margin:0;}
 	@media (max-width: 767px) {
 		#monitoramento #instrucoes ul {width:90%;}
@@ -4959,12 +4966,16 @@ h3.respgov { font-size:22px; color:#000;}
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento.obra .stage {margin:0; padding:0; background:#ffffff; color: #34495E;}
 =======
 #monitoramento.obra .stage {
 	background:#34495e;
 }
 >>>>>>> new header
+=======
+#monitoramento.obra .stage {margin:0; padding:0; background:#ffffff; color: #34495E;}
+>>>>>>> alterações emergenciais
 
 #monitoramento.obra .updates {
 <<<<<<< HEAD
@@ -5337,6 +5348,7 @@ h3.respgov { font-size:22px; color:#000;}
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento .suplementar h2 {font-weight:400; color:#27ae60; text-align:left;margin:10px 20px;}
 =======
 #monitoramento .suplementar h2 {
@@ -5346,6 +5358,9 @@ h3.respgov { font-size:22px; color:#000;}
 	margin:10px 20px;
 }
 >>>>>>> new header
+=======
+#monitoramento .suplementar h2 {font-weight:400; color:#27ae60; text-align:left;margin:10px 20px;}
+>>>>>>> alterações emergenciais
 
 #monitoramento .suplementar .help {
 	padding:10px 20px;
@@ -5374,6 +5389,7 @@ h3.respgov { font-size:22px; color:#000;}
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #monitoramento .suplementar .anexos a {color:#34495E; display:inline-block; width:140px; text-decoration:none; margin-left:20px;}
 .lead {color:#34495E; font-size: 26px; font-weight: 400; line-height: 1.2;}
 =======
@@ -5386,6 +5402,10 @@ h3.respgov { font-size:22px; color:#000;}
 }
 
 >>>>>>> new header
+=======
+#monitoramento .suplementar .anexos a {color:#34495E; display:inline-block; width:140px; text-decoration:none; margin-left:20px;}
+.lead {color:#34495E; font-size: 26px; font-weight: 400; line-height: 1.2;}
+>>>>>>> alterações emergenciais
 #monitoramento .suplementar .anexos .help-block {
 	color:#fff;
 	font-style:italic;
@@ -5633,9 +5653,13 @@ cursor: pointer;
 .video-obras {margin:0; padding:0; width: 95% !important; height: 95% !important; float: right;}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ul.thumbnails {margin:0; padding:0; }
 =======
 >>>>>>> new header
+=======
+ul.thumbnails {margin:0; padding:0; }
+>>>>>>> alterações emergenciais
 .thumbnails  li {margin-top: -0 !important;
     margin-bottom: 10 !important;
 }
@@ -5645,13 +5669,19 @@ ul.thumbnails {margin:0; padding:0; }
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> alterações emergenciais
 .thumbnails  li:nth-of-type(3n+1) {
     margin-left: 0px !important;
 }
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> new header
+=======
+>>>>>>> alterações emergenciais
 #monitoramento.obra .info {padding:10px;}
 
 .seguirobra {display: block; margin: 0 auto; width: 50%; clear: both;}
