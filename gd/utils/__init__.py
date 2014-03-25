@@ -85,27 +85,30 @@ def get_twitter_connection():
 
 
 def twitts(hashtag=None, count=25):
-    result = None
-    if not hashtag:
-        result = fromcache("twetts_cabecalho")
-    if not result:
-        t = get_twitter_connection()
-        if not hashtag:
-            hashtag = conf.TWITTER_HASH_CABECALHO
-        result = t.search(hashtag, result_type='mixed', count=count)
-        # pdb.set_trace()
-        # tws = [status for status in result['statuses']]
-        result = []
-        for status in result:
-            # print status
-            status['classe'] = 'pessoa' + str(random.choice(range(1,10)))
-            status['created_at'] = convert_todatetime(status.created_at)
-            result.append(status)
+    print "->>twitts desabilitada!"
+    return []
 
-        tocache("twetts_cabecalho", result)
-    # print result
-    # print len(result)
-    return result
+    # result = None
+    # if not hashtag:
+    #     result = fromcache("twetts_cabecalho")
+    # if not result:
+    #     t = get_twitter_connection()
+    #     if not hashtag:
+    #         hashtag = conf.TWITTER_HASH_CABECALHO
+    #     result = t.search(hashtag, result_type='mixed', count=count)
+    #     # pdb.set_trace()
+    #     # tws = [status for status in result['statuses']]
+    #     result = []
+    #     for status in result:
+    #         # print status
+    #         status['classe'] = 'pessoa' + str(random.choice(range(1,10)))
+    #         status['created_at'] = convert_todatetime(status.created_at)
+    #         result.append(status)
+
+    #     tocache("twetts_cabecalho", result)
+    # # print result
+    # # print len(result)
+    # return result
 
 
 def dumps(obj):
