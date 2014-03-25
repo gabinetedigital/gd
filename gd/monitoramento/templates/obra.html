@@ -238,149 +238,121 @@ $(window).load(function () {
                 </div>
               </div>
             </div>
-            <div class="suplementar hide">
-              <div id="participar-geral">
-                <div class="row">
-                  <div class="span9">
-                  <h2>Enviar contribuição</h2>
-                   <p class="help">Envie seu posicionamento sobre esta obra, informe-nos como está andando a obra, sob seu ponto de vista. Sua opinião é muito importante para nós.</p>
-                   </div>
-                   </div>
-                   <div class="row">
-                   <div class="span4">
-                     <div class="space">
-                       <div class="alert message hide">Mensagem</div>
-                       <form  id="part-geral" class="form ajaxform" method="POST" action="/deolho/obra/{{obra.slug}}/contribui">
-                         <label for="titulo">Título:</label>
-                         <input type="text" placeholder="Título..." name="titulo" id="titulo">
-                         <label for="conteudo">Sua contribuição</label>
-                         <textarea name="conteudo" id="conteudo" placeholder="Digite sua contribuição aqui"></textarea>
 
-                         <div class="anexos">
-                           <a href="#" class="inFoto">
-                             <i class="icon-camera icon-large"></i>
-                             <p>Envie uma imagem</p>
+<div class="suplementar hide">
+	<div id="participar-geral">
+		<div class="row-fluid">
+			<div class="span12">
+				<h2>Enviar contribuição</h2>
+				<p class="help">Envie seu posicionamento sobre esta obra, informe-nos como está andando a obra, sob seu ponto de vista. Sua opinião é muito importante para nós.</p>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<div class="space">
+					<div class="alert message hide">Mensagem</div>
+					<form  id="part-geral" class="form ajaxform" method="POST" action="/deolho/obra/{{obra.slug}}/contribui">
+						<label for="titulo">Título:</label>
+						<input type="text" placeholder="Título..." name="titulo" id="titulo">
+						<label for="conteudo">Sua contribuição</label>
+						<textarea name="conteudo" id="conteudo" placeholder="Digite sua contribuição aqui"></textarea>
+						<div class="anexos">
+							<a href="#" class="inFoto"><i class="icon-camera icon-large"></i><p>Envie uma imagem</p></a>
+							<a href="#" class="inVideo"><i class="icon-facetime-video icon-large"></i><p>Envie um vídeo</p></a>
+							<div class="video hide">
+								<label for="link">Link do video</label>
+								<span class="help-block">Insira aqui o link do seu vídeo no youtube.</span>
+								<input type="text" placeholder="link do seu vídeo..." name="link" id="link">
+							</div>
+							<div class="foto hide">
+								<label for="foto">Sua imagem</label>
+								<input type="file" name="foto" id="foto">
+							</div>
+						</div>
 
+						{%if user%}
+						<p class="lead">Enviando contribuição como {{user.name}}</p>
+						{%else%}
+						<label for="email">Email</label>
+						<input type="text" placeholder="Digite aqui seu email..." name="email" id="email">
 
-                             <a href="#" class="inVideo">
-                               <i class="icon-facetime-video icon-large"></i>
-                               <p>Envie um vídeo</p>
-                             </a>
+						<p class="lead">Você possui cadastro no Gabinete Digital ?</p>
+						<div class="comCadastro">
+							<div class="resposta"><big>Sim</big>, eu tenho uma senha</div>
+							<div class="input-append">
+								<input class="span2" id="senha" type="password" placeholder="senha" name="senha">
+								<button class="btn btn-success" type="submit">Entrar</button>
+							</div>
+						</div>
 
+						<div class="semCadastro">
+							<div class="resposta"><big>Não</big>, desejo confirmar por email</div>
+							<input type="text" placeholder="Nome" name="nome" id="nome">
+							<div class="hide telefone">
+								<input type="text" placeholder="Telefone" name="telefone" id="telefone"> (opcional)
+							</div>
+							<div class="hide newPassword">
+								<input type="password" placeholder="Senha" name="newPassword" id="newPassword"> (opcional)
+							</div>
+						</div>
 
-                             <div class="video hide">
-                               <label for="link">Link do video</label>
-                               <span class="help-block">Insira aqui o link do seu vídeo no youtube.</span>
-                               <input type="text" placeholder="link do seu vídeo..." name="link" id="link">
+						<div class="semCadastro">
+							<p>Precisamos saber se voc&ecirc; &eacute; mesmo uma pessoa. Por favor, digite no campo as letras que voc&ecirc; v&ecirc; abaixo:</p>
+							<input type="text" id="defaultReal" name="defaultReal"></p>
+						</div>
 
-                             </div>
-                             <div class="foto hide">
-                               <label for="foto">Sua imagem</label>
-                               <input type="file" name="foto" id="foto">
-                             </div>
-                         </div>
+						{%endif%}
 
-                        {%if user%}
-                          <p class="lead">
-                           Enviando contribuição como {{user.name}}
-                         </p>
+						<label for="accept_tos" class="checkbox">
+							<input type="checkbox" name="accept_tos" id="accept_Tos">
+							Aceito os <a href="#tos" class="showtos">Termos de uso</a>.
+						</label>
 
-                        {%else%}
-                         <label for="email">Email</label>
-                         <input type="text" placeholder="Digite aqui seu email..." name="email" id="email">
+						<div class="form-footer">
+							<a class="btn fechar">Cancelar</a>
+							<button type="submit" class="btn btn-success">Enviar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="span6">
+				<h2>{{howto.title}}</h2>
+				<div class="instrucoes">
+					{{howto.content|safe}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% block subcontent %}
 
-                         <p class="lead">
-                           Você possui cadastro no Gabinete Digital ?
-                         </p>
-
-                         <div class="comCadastro">
-                           <div class="resposta"><big>Sim</big>, eu tenho uma senha</div>
-
-                           <div class="input-append">
-                             <input class="span2" id="senha" type="password" placeholder="senha" name="senha">
-                             <button class="btn btn-success" type="submit">Entrar</button>
-                           </div>
-                         </div>
-
-                         <div class="semCadastro">
-                           <div class="resposta"><big>Não</big>, desejo confirmar por email</div>
-                           <input type="text" placeholder="Nome" name="nome" id="nome">
-                           <div class="hide telefone">
-                             <input type="text" placeholder="Telefone" name="telefone" id="telefone"> (opcional)
-                           </div>
-                           <div class="hide newPassword">
-                             <input type="password" placeholder="Senha" name="newPassword" id="newPassword"> (opcional)
-                           </div>
-                         </div>
-
-                         {%endif%}
-
-                         <div class="semCadastro">
-                          <p>Precisamos saber se voc&ecirc; &eacute; mesmo uma pessoa. Por favor, digite no campo as letras que voc&ecirc; v&ecirc; abaixo:</p>
-                          <input type="text" id="defaultReal" name="defaultReal"></p>
-                         </div>
-
-
-                         <label for="accept_tos" class="checkbox">
-                           <input type="checkbox" name="accept_tos" id="accept_Tos">
-                           Aceito os <a href="#tos" class="showtos">Termos de uso</a>.
-                         </label>
-
-                         <div class="form-footer">
-                           <a class="btn fechar">Cancelar</a>
-                           <button type="submit" class="btn btn-success">Enviar</button>
-                         </div>
-
-                       </form>
-                     </div>
-                   </div>
-                   <div class="span5">
-                     <h2>{{howto.title}}</h2>
-                     <div class="instrucoes">
-                        {{howto.content|safe}}
-                     </div>
-                   </div>
-                   </div>
-              </div>
-            </div>
-    {% block subcontent %}
-
-            <div class="comofunciona fechado">
-              <h2>Como funciona ?</h2>
-                <div class="cmore">
-                  +
-                </div>
-
-              <div class="content">
-
-                <img src="{{ url_for('.static', filename='como.png' ) }}">
-              </div>
-            </div>
+<div class="comofunciona fechado">
+	<h2>Como funciona ?</h2>
+	<div class="cmore"> + </div>
+	<div class="content"><img src="{{ url_for('.static', filename='como.png' ) }}"></div>
+</div>
 
 
-          <div class="updates">
+<div class="updates">
+	{%for update in timeline%}
+	{%if update.format == 'status'%} {#===================================================#}
+	{%if loop.index > 1%}
+</div> <!-- fim timeline -->
 
-        {%for update in timeline%}
+{%endif%}
+{%include 'part_govresp.html'%}
 
-          {%if update.format == 'status'%} {#===================================================#}
+{%if timeline%}
+	<p>O que as pessoas estão falando...</p>
+{%else%}
+	<p>Seja o primeiro a fiscalizar essa obra!</p>
+{%endif%}
 
-            {%if loop.index > 1%}
-            </div> <!-- fim timeline -->
-            {%endif%}
 
-            {%include 'part_govresp.html'%}
-
-            {%if timeline%}
-              <p>O que as pessoas estão falando...</p>
-            {%else%}
-              <p>Seja o primeiro a fiscalizar essa obra!</p>
-            {%endif%}
-
-            <div class="timeline" id="timeline{{update.id}}">
-            <div class="line"></div>
-
-          {%else%} {#===========================================================================#}
-              <div class="update {{ update.format }}">
+<div class="timeline" id="timeline{{update.id}}">
+	<div class="line"></div>
+{%else%} {#===========================================================================#}
+	<div class="update {{ update.format }}">
 
                 <div class="seta">
                   <span class="mark"> <span class="dot"></span> </span>
