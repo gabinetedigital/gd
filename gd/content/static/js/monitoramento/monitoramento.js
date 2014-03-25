@@ -117,6 +117,21 @@ $(window).load(function () {
         });
     });
 
+    $(".deixarseguirobra").each(function(){
+        var obj = $(this);
+        obj.fancybox({
+            afterLoad: function(upcoming, current){
+                // $('.main-follow').find("input[type=text]").val("");
+                $('.main-unfollow').find(".alert").hide();
+            },
+            afterShow: function(){
+                // $('.main-follow').find('a[target=#follow-email]').trigger('click');
+                $('.main-unfollow').find('a[target='+obj.attr('data-panel')+']').trigger('click');
+                $('.main-unfollow').find('input[type=submit]').removeAttr('disabled')
+            }
+        });
+    });
+
     var showMsg = function(status, otherclass){
         // alert(status);
         $(".alert").html(status);
@@ -185,11 +200,27 @@ $(window).load(function () {
     });
 
     var retSeguir = function(data){
-        showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
-        window.setTimeout(function(){
-            $.fancybox.close();
-        },3000);
+        var pData = $.parseJSON(data);
+        if (pData.status != 'ok'){
+            showMsg(pData.msg,'alert-warning');
+        }else{
+            if(pData.msg){
+                showMsg(pData.msg,'alert-success');
+            }else{
+                showMsg('Obrigado! Agora você receberá informações sobre esta obra.','alert-success');
+            }
+        }
+        $('.ajaxform input[type=submit]').removeAttr('disabled');
+        $('.ajaxform input[type=submit]').addClass('btn-success');
     }
+
+    $('#deixarseguirobraform .ajaxform').ajaxForm({
+        success:retSeguir,
+        beforeSubmit: function (arr, form, options) {
+            form.find('input[type=submit]').attr('disabled','disabled');
+            form.find('input[type=submit]').removeClass('btn-success');
+        }
+    });
 
     $('#seguirobraform .ajaxform').ajaxForm({
         success:retSeguir,

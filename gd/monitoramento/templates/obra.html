@@ -16,6 +16,7 @@
 
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ url_for('static', filename='js/monitoramento/mousetrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/monitoramento/monitoramento.js') }}"></script>
 <script>
 $(window).load(function () {
@@ -158,6 +159,8 @@ $(window).load(function () {
                 <li><a href="#seguirobraform" class="seguirobra" data-panel="#follow-email"><i class="icon-envelope icon-2x email"></i></a></li>
               </ul>
               <a href="#seguirobraform" class="btn btn-large btn-danger seguirobra">Seguir obra</a>
+              <br>
+              <a href="#deixarseguirobraform" class="deixarseguirobra">Deixar de seguir</a>
             </div>
 
             <div class="separador"></div>
@@ -414,33 +417,35 @@ $(window).load(function () {
 <div id="seguirobraform" style="display:none; width:450px;">
   <h3>Quer seguir esta obra ?</h3>
   <div class="main-follow">
-    <a href="#" target="#follow-email"><i class="icon-envelope icon-3x email"></i></a>
-    <a href="#" target="#follow-facebook"><i class="icon-facebook icon-3x face"></i></a>
-    <a href="#" target="#follow-twitter"><i class="icon-twitter icon-3x twit"></i></a>
-    <div class="follow follow-email hide" id="follow-email">
-      <div class="alert message hide">Mensagem</div>
-      <form class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
-        <label for="faceid">Seu e-mail:</label>
-        <input type="text" name="email" id="email" {%if user%}value="{{user.email}}"{%endif%}>
-        <input type="submit" class="btn btn-success" value="Seguir">
-      </form>
-    </div>
-    <div class="follow follow-facebook" id="follow-facebook">
-      <div class="alert message hide">Mensagem</div>
-      <form class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
-        <label for="faceid">Facebook ID:</label>
-        <input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook')}}"{%endif%}>
-        <input type="submit" class="btn btn-success" value="Seguir">
-      </form>
-    </div>
-    <div class="follow follow-twitter hide" id="follow-twitter">
-      <div class="alert message hide">Mensagem</div>
-      <form class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
-        <label for="faceid">Twitter ID:</label>
-        <input type="text" name="twitterid" id="twitterid" {%if user%}value="{{user.get_meta('twitter')}}"{%endif%}>
-        <input type="submit" class="btn btn-success" value="Seguir">
-      </form>
-    </div>
+    <div class="alert message hide">Mensagem</div>
+    <form class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
+      <label for="faceid"><i class="icon-envelope icon-2x email"></i> <strong>E-mail</strong></label>
+      <input type="text" name="email" id="email" {%if user%}value="{{user.email or ""}}"{%endif%}>
+      <label for="faceid"><i class="icon-facebook icon-2x twit"></i> <strong>http://facebook.com/</strong></label>
+      <input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook') or ""}}"{%endif%}>
+      <label for="faceid"><i class="icon-twitter icon-2x face"></i> <strong>http://twitter.com/</strong></label>
+      <input type="text" name="twitterid" id="twitterid" {%if user%}value="{{user.get_meta('twitter') or ""}}"{%endif%}>
+      <hr>
+      <input type="submit" class="btn btn-success pull-right" value="Seguir">
+    </form>
+  </div>
+</div>
+
+<div id="deixarseguirobraform" style="display:none; width:450px;">
+  <h3>Deixar de seguir esta obra</h3>
+  <p>Informe seus dados abaixo para deixar de seguir a obra.</p>
+  <div class="main-unfollow">
+    <div class="alert message hide">Mensagem</div>
+    <form class="form form-inline ajaxform" action="/deolho/obra/deseguir/{{obra.id}}" method="POST">
+      <label for="faceid"><i class="icon-envelope icon-2x email"></i> <strong>E-mail</strong></label>
+      <input type="text" name="email" id="email" {%if user%}value="{{user.email or ""}}"{%endif%}><br>
+      <label for="faceid"><i class="icon-facebook icon-2x twit"></i> <strong>http://facebook.com/</strong></label>
+      <input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook')  or ""}}"{%endif%}><br>
+      <label for="faceid"><i class="icon-twitter icon-2x face"></i> <strong>http://twitter.com/</strong></label>
+      <input type="text" name="twitterid" id="twitterid" {%if user%}value="{{user.get_meta('twitter') or ""}}"{%endif%}><br>
+      <hr>
+      <input type="submit" class="btn btn-success pull-right" value="Descadastrar">
+    </form>
   </div>
 </div>
 
