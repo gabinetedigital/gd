@@ -43,7 +43,9 @@
       {% include "govresponde_question.part.html" %}
     </li>
     {%else%}
-    <p>Ainda não foram enviadas perguntas. Seja o primeiro !</p>
+    <p>Ainda não foram enviadas perguntas. Seja o primeiro clicando em:
+      <a href="{{ url_for('govresponde.send') }}"><i class="fa fa-envelope"></i> enviar pergunta</a>
+    </p>
 
     {% endfor %}
   </ul>
