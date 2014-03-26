@@ -4502,6 +4502,13 @@ ul.thumbnails {margin:0; padding:0; }
 .messageLayer {margin:0; padding:0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgba(0,0,0, 0.8); z-index: 999; overflow: hidden;}
 .messageLayer p.carregando {position: absolute; top: 50%; left: 50%; margin:-70px 0 0 -50px; padding:0; text-align: center; width: 140px; height: 100px; font-size: 18px; color: #ffffff; background: transparent url(../img/monitoramento/loadingSquares.gif) no-repeat center center; font-weight: bold;}
 
+.govEscutaBox {margin:0 0 10px 0; padding:10px; width: 48%; height: 120px; float: left;}
+.govEscutaBox img {margin: 0 15px 0 0; float: left;}
+.govEscutaBox h4 {margin:0; padding:0; line-height: 1;}
+.govEscutaBox h4 small {font-size: 10px; font-style: italic;}
+.govEscutaBox p {margin:0; padding: 10px 0 0 0; font-size: 12px; line-height: 1.2;}
+
+
  /*  Font Awesome 4.0.1
  *  the iconic font designed for Bootstrap
  *  ------------------------------------------------------------------------------

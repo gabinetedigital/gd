@@ -12,137 +12,93 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/newStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+
 
     {% block css %}{% endblock %}
 
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-1.8.3.min.js') }}"></script>
     <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
     <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-  </head>
-  <body data-spy="scroll" data-target="#menu">
+</head>
+<body data-spy="scroll" data-target="#menu" class="nova">
 
-    {% block id %}
-    {% endblock %}
+{% block id %}
+{% endblock %}
 
-    <div class="container">
-      <div id="menu" class="subnav subnav-fixed navbar-invert pull-right">
-        <a class="brand pull-left" href="#home">Gabinete Digital</a>
-        <a class="btn btn-navbar pull-right hidden-desktop" data-toggle="collapse" data-target=".nav-collapse">
-          menu
-        </a>
-        <div class="nav-collapse">
-          <form class="navbar-search form-search pull-right tools" action='/search/'>
-            <div class="input-append">
-              <input type="text" class="input-small busca search-query"  id="s" name="s">
-              <button type="submit" class="btn"><i class="icon-search"></i></button>
-            </div>
-            <div class="entrar">
-              {%if user%}
-              <a href="/auth/profile/"><img src="{{ social_image(user) or user.email | gravatar(size=16) }}"></a>
-              <div class="btn-group">
-                <a class="btn btn-primary" href="/auth/profile/">{{user.name|truncate(20)}}</a>
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/auth/profile/"><i class="icon-pencil"></i> Editar perfil</a></li>
-                  <li><a href="/auth/logout/"><i class="icon-ban-circle"></i> Logout</a></li>
-                   <!-- <li class="divider"></li> -->
-                  <!-- <li><a href="#"><i class="i"></i> Make admin</a></li> -->
-<!--                   <li>
-                    <div class="avatar avatarmenu">
-                      <img src="{{ user.email | gravatar }}" class="img-polaroid">
-                    </div>
-                  </li>
- -->                </ul>
-              </div>
-              {%else%}
-              <a class="btn btn-success" href="/auth/login/">Entrar</a>
-              {%endif%}
-            </div>
-          </form>
 
-          <ul class="nav nav-pills">
-            {{ menu | safe }}
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <section>
-          <div class="span3">
-            <a href="/" class="home">
-              <h1>Gabinete Digital <small>Democracia em rede</small></h1>
-            </a>
-          </div>
-          <div class="span8 offset1">
-            <div class="tweets">
-              <ul>
-                {%for status in twitter_hash_cabecalho%}
-                <li class='{{status.classe}}' id='{{status.id}}' data-title="@{{status.user.screen_name}}" data-content="{{status.text}}" data-trigger="hover" data-placement="left"> </li>
-                {%endfor%}
-              </ul>
-            </div>
-          </div>
-        </section>
-      </div>
+<div class="container">
+	
+	<div class="row-fluid">
+		<div class="span12"><a href="/"><h1>Gabinete Digital</h1></a></div>
+	</div>
+	
+	<div class="row-fluid">
+		<div class="span12">
+			<ul class="menu">
+				{{ menu | safe }}
+				<li class="procurar pull-right">
+					<form class="navbar-search form-search pull-right tools" action='/search/'>
+						<div class="input-append">
+							<input type="text" class="input-small busca search-query"  id="s" name="s">
+							<button type="submit" class="btn lupa"><i class="icon-search"></i></button>
+						</div>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</div>
 
-    </div>
+</div>
+
     {% block content %}{% endblock %}
 
-    <footer>
-      <div class="container">
-        <div class="row">
+<footer>
+	<div class="container">
+		<div class="row-fluid">
 
-          <div class="span4">
-            <div class="bloco">
-              <ul>
-                <li><a href="http://twitter.com/gabinetedigital"><i class="ftweet"></i>@gabinetedigital</a></li>
-                <li><a href="http://facebook.com/gabinetedigital"><i class="ffb"></i>gabinetedigital</a></li>
-                <li><a href="http://gabinetedigital.rs.gov.br/feed"><i class="frss"></i>feed de notícias</a></li>
-              </ul>
-            </div>
-          </div>
+			<div class="span4">
+				<div class="bloco">
+					<ul>
+						<li><a href="http://twitter.com/gabinetedigital"><i class="ftweet"></i>@gabinetedigital</a></li>
+						<li><a href="http://facebook.com/gabinetedigital"><i class="ffb"></i>gabinetedigital</a></li>
+						<li><a href="http://gabinetedigital.rs.gov.br/feed"><i class="frss"></i>feed de notícias</a></li>
+					</ul>
+				</div>
+			</div><a href=""><a href="">
 
-          <div class="span4">
-            <div class="bloco">
-              <p class="">Todo o conteúdo do site está disponível sobre a licença
-                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.pt_BR">
-                  Creative Commons Attribution 3.0</a> não adaptada.</p>
+			<div class="span4">
+				<div class="bloco">
+					<p>Todo o conteúdo do site está disponível sobre a licença <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.pt_BR"> Creative Commons Attribution 3.0</a> não adaptada.</p>
+					<p>O código deste site é livre, licenciado sob a <a target="_new" href="http://www.gnu.org/licenses/agpl-3.0.html">Affero GPL</a>. Para saber mais sobre isso, veja a <a target="_new" href="http://github.com/gabinetedigital"> nossa página sobre desenvolvimento</a>.</p>
+				</div></a></a>
+			</div>
 
-              <p class="">O código deste site é livre, licenciado sob a
-                <a target="_new" href="http://www.gnu.org/licenses/agpl-3.0.html">Affero GPL</a>.
-                Para saber mais sobre isso, veja a <a target="_new" href="http://github.com/gabinetedigital">
-                  nossa página sobre desenvolvimento</a>.</p>
-            </div>
-          </div>
+			<div class="span4">
+				<div class="bloco">
+					<div class="contato pull-left">
+						<address>
+							<strong>Palácio Piratini</strong><br><a href=""></a>
+							Praça Marechal Deodoro s/n<br>
+							Porto Alegre - RS<br>
+							CEP 90010-282<br>
+							<a href="mailto:gabinetedigital@sgg.rs.gov.br">gabinetedigital@sgg.rs.gov.br</a><br>
+							<abbr title="Telefone">T:</abbr> (51) 3210-4590
+						</address>
+					</div>
 
-          <div class="span4">
-            <div class="bloco">
-              <div class="contato pull-left">
-                <address>
-                  <strong>Palácio Piratini</strong><br>
-                  Praça Marechal Deodoro s/n<br>
-                  Porto Alegre - RS<br>
-                  CEP 90010-282<br>
-                  <a href="mailto:gabinetedigital@sgg.rs.gov.br">gabinetedigital@sgg.rs.gov.br</a><br>
-                  <abbr title="Telefone">T:</abbr> (51) 3210-4590
-                </address>
-              </div>
-              <a href="http://www.rs.gov.br">
-                <div class="logors pull-right hidden-tablet">
-                  Governo Rio Grande do sul
-                </div>
-              </a>
-            </div>
-          </div>
+					<div class="logors pull-right hidden-tablet"><a href="http://www.rs.gov.br">Governo Rio Grande do sul</a></div>
+				</div>
+			</div>
 
-        </div>
-      </div>
-    </footer>
+		</div>
+	</div>
+<a href=""></a></footer>
 
     <div id="content-loading" class="loadingbase loadingmodal"><!-- Place at bottom of page --></div>
 
@@ -204,11 +160,5 @@
 <noscript><p><img src="http://gabinetedigital.rs.gov.br/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Code -->
 
-
-<!-- ======= Inicio bloco com a mensagem de carregando  =======-->
-<div class="messageLayer hide" >
-	<p class="carregando">Carregando...</p>
-</div>
-<!-- ======= Fim bloco com a mensagem de carregando  =======-->
   </body>
 </html>
