@@ -70,10 +70,10 @@
               <a href="./" class="btn btn-primary todas">Ver mais audiências</a>
               {% endif%}            </div>
             <div id="date" class="pull-right visible-desktop">
-              <div class="month">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}</div>
-              <div class="day">{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%d') }}</div>
+              <div class="month">{{ audience.aud_wp_govescuta_data_govesc|strftime(formato_origem="%Y-%m-%d %H:%M",formato="%b") }}</div>
+              <div class="day">{{ audience.aud_wp_govescuta_data_govesc|strftime(formato_origem="%Y-%m-%d %H:%M",formato="%d") }}</div>
               <div class="time">
-                {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%H') }}:{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType('%M') }}
+                {{ audience.aud_wp_govescuta_data_govesc|strftime(formato_origem="%Y-%m-%d %H:%M",formato="%H:%M") }}
               </div>
             </div>
             <div class="share">
