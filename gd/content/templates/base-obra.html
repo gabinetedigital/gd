@@ -5,6 +5,7 @@
 		{% block video %}{% endblock %}
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% block metaStuff %}{% endblock %}
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-image-gallery.min.css') }}">

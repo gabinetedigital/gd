@@ -1,4 +1,35 @@
 {% extends "base-obra.html" %}
+{%block metaStuff%}
+		<meta name="title" content="{{obra.title}} | De Olho Nas Obras">
+		<meta name="description" content="{{ obra.content|safe }}">
+		<meta name="author" http-equiv="" content="Gabinete Digital">
+		<meta name="owner" http-equiv="" content="Gabinete Digital">
+		<meta name="copyright" http-equiv="" content="(c) 2014 - PROCERGS">
+		<meta name="doc-type" http-equiv="" content="Web Page">
+		<meta name="" http-equiv="content-language" content="pt-br">
+		<meta name="distribution" http-equiv="" content="global">
+		<meta name="classification" http-equiv="" content="general">
+		<meta name="rating" http-equiv="" content="general">
+		<meta name="robots" http-equiv="" content="index,follow">
+		<meta name="googlebot" http-equiv="" content="index,follow">
+		<meta name="msnbot" http-equiv="" content="index,follow">
+		<meta name="revisit-after" http-equiv="" content="7 days">
+		<meta name="" http-equiv="pragma" content="no-cache">
+		<meta name="expires" http-equiv="" content="never">
+		<meta name="" http-equiv="expires" content="-1">
+		<link rel="alternate" type="application/rss+xml" title="Canal RSS" href="/rss">
+
+		<!--[if gte IE 9]><style type="text/css">.gradient {filter: none;}</style><![endif]-->
+		<link rel="icon" href="{{ url_for('static', filename='img/monitoramento/favicon.ico') }}" type="image/x-icon">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='img/monitoramento/favicon.ico') }}" type="image/x-icon">
+		<link rel="shortcut" href="{{ url_for('static', filename='img/monitoramento/favicon.ico') }}" type="image/x-icon">
+		<meta property="og:title" content="{{obra.title}} | De Olho Nas Obras">
+		<meta property="og:site_name" content="Gabinete Digital">
+		<meta property="og:description" content="{{ obra.content|safe }}">
+		<meta property="og:url" content="http://gabinetedigital.rs.gov.br/deolho/">
+		<meta property="og:image" content="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
+		<meta property="og:type" content="website">
+{%endblock%}
 
 {%macro temas()%}
   {#Macro para listar os temas, pois podem ser marcados mais de um tema#}
