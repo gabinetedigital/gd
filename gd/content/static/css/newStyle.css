@@ -342,6 +342,7 @@ a  {color:#d12d33;}
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 footer {margin-top: 50px;
 =======
 footer {
@@ -350,11 +351,19 @@ footer {
 footer {margin-top: 50px;
 >>>>>>> Logos maiores e páginas de politica e termos
 =======
+=======
+>>>>>>> DE OLHO - css atualizado e completo
 footer {margin-top: 50px;
 =======
 footer {
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+<<<<<<< HEAD
 >>>>>>> (DONO) Ultimas correcoes da Lucile
+=======
+=======
+footer {margin-top: 50px;
+>>>>>>> DE OLHO - css atualizado e completo
+>>>>>>> DE OLHO - css atualizado e completo
 	background:#222;
 	background:url('../img/footer.png?1361287234'), -webkit-gradient(linear,  50% 0%,  50% 100%,  color-stop(0%,  #222222),  color-stop(100%,  #111111)), #222;
 	background:url('../img/footer.png?1361287234'), -webkit-linear-gradient(center top,  #222222, #111111), #222;
@@ -4161,6 +4170,7 @@ h3.respgov {
 
 /*======================================================= Estilo Monitoramento =====================================================*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #govresponde #slideshow p {
@@ -4252,6 +4262,8 @@ h3.respgov { font-size:22px; color:#000;}
 /*============================================================================================================================*/
 
 >>>>>>> alterações emergenciais
+=======
+>>>>>>> DE OLHO - css atualizado e completo
 #monitoramento {margin:0; background:#ecf0f1;}
 	@media (max-width: 767px) {
 		#monitoramento {padding:0; background:#34495e; overflow-x:hidden;}
@@ -5574,7 +5586,16 @@ h3.respgov { font-size:22px; color:#000;}
 
 =======
 /*============================== Esquema de cores experimental detalhe obra / Modifica��es Lucile aos estilos originais ==============================*/
+<<<<<<< HEAD
 >>>>>>> Alterações no design para padronizar páginas part II
+=======
+.head .menu {padding-top: 10px; text-align: right;}
+.head .menu {border-width: 0; margin: 0; padding: 0;}
+.head .menu li {margin:80px 0 0 0; padding:0 0 0 40px; float: right; width: auto;}
+.head .menu li a {display:inline; float:none; margin-right:10px; font-size:12pt; padding-top:51px;}
+
+
+>>>>>>> DE OLHO - css atualizado e completo
 #monitoramento .timeline {margin:0; padding:0;}
 
 
