@@ -59,7 +59,7 @@ def index(page=0):
     return render_template(
         'govescuta.html',
         menu=menus,
-        # sidebar=wordpress.getSidebar,
+        sidebar=wordpress.getSidebar,
         pagination=pagination,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         audiences=posts,
@@ -117,6 +117,7 @@ def govescuta_details(aid):
     return render_template(
         'audience.html', #this template is from gd/audience
         # 'govescuta_edicaoanter.html',
+        sidebar=wordpress.getSidebar,
         sources=video_sources,
         audiences=inst,
         referrals=posts,
