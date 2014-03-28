@@ -27,7 +27,9 @@
 		<meta property="og:site_name" content="Gabinete Digital">
 		<meta property="og:description" content="{{ obra.content|safe }}">
 		<meta property="og:url" content="http://gabinetedigital.rs.gov.br/deolho/">
-		<meta property="og:image" content="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
+		{%if obra.thumbs %}
+    <meta property="og:image" content="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
+    {%endif%}
 		<meta property="og:type" content="website">
 {%endblock%}
 
@@ -336,8 +338,6 @@ $(window).load(function () {
               <p>Precisamos saber se voc&ecirc; &eacute; mesmo uma pessoa. Por favor, digite no campo as letras que voc&ecirc; v&ecirc; abaixo:</p>
               <input type="text" id="defaultReal" name="defaultReal"></p>
             </div>
-
-						{%endif%}
 
 						<label for="accept_tos" class="checkbox">
 							<input type="checkbox" name="accept_tos" id="accept_Tos">
