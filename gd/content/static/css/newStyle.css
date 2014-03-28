@@ -4478,8 +4478,8 @@ margin-right: 20px;
 cursor: pointer;
 }
 
-#monitoramento.obra .content .video {margin:0 ;}
-.video-obras {margin:0; padding:0; width: 95% !important; height: 95% !important; float: right;}
+#monitoramento.obra .content .video {margin:0 0 10px 10px; padding:0;  position: relative;  height: auto !important;}
+.video-obras {margin:0; padding:0; width: 100% !important;  float: right;}
 
 ul.thumbnails {margin:0; padding:0; }
 .thumbnails  li {margin-top: -0 !important;
