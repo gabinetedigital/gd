@@ -367,8 +367,6 @@ $(window).load(function () {
 	<div class="content"><img src="{{ url_for('.static', filename='como.png' ) }}"></div>
 </div>
 
-{% cache 600 %}
-
 <div class="updates">
 {%for update in timeline%}
 	{%if update.format == 'status'%} {#===================================================#}
@@ -437,7 +435,6 @@ $(window).load(function () {
 
             </div> <!-- fim timeline -->
           </div> <!-- fim updates -->
-{%endcache%}
 
         </div> <!-- fim span9 -->
       </div>
