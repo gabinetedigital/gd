@@ -47,12 +47,16 @@ from gd.content.gallery import gallery
 from gd.audience import audience
 from gd.buzz.webapp import buzz
 from gd.utils.gravatar import Gravatar
-from gd.utils.gdcache import cache, fromcache, tocache, removecache
 from libthumbor import CryptoURL
 from gd.monitoramento import monitoramento
 from gd.seminario import seminario
+from flask.ext.cache import Cache
 
 app = Flask(__name__)
+
+cache = Cache(app)
+
+from gd.utils.gdcache import cache, fromcache, tocache, removecache
 
 # try:
 from gd.content.config_objects import WordpressConfiguration

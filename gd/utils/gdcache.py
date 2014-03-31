@@ -15,12 +15,15 @@ cache.CACHE_DEFAULT_TIMEOUT = 600 #10 minutos
 def fromcache(name):
 	o = cache.get(name)
 	if o:
+		print "COM CACHE", name
 		return o
 	else:
+		print "SEM CACHE", name
 		return False
 
 def tocache(name, obj):
 	global cache
+	print "TOCACHE", name
 	cache.add(name, obj)
 	return obj
 

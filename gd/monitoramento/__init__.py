@@ -39,8 +39,8 @@ from hashlib import md5
 from gd import auth as authapi
 from gd.utils import dumps, sendmail, send_welcome_email, send_password, twitts, get_twitter_connection, treat_categories
 from gd.model import UserFollow, session as dbsession
-from gd.content import wordpress
-from gd.utils.gdcache import fromcache, tocache #, cache, removecache
+from gd.content.wp import wordpress
+from gd.utils.gdcache import fromcache, tocache, cache#, removecache
 from gd import conf
 
 monitoramento = Blueprint(
@@ -51,6 +51,9 @@ monitoramento = Blueprint(
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+
+def checkpoint(name=""):
+	print "-------------------------------->" , d.datetime.strftime(d.datetime.now(),"%H:%M:%S.%f"), name
 
 def _get_stats(obraid=None):
 	"""
@@ -130,14 +133,19 @@ def adjustCf(obras):
 	return r_obras
 
 
+@cache.cached()
 @monitoramento.route('/')
 def index():
 
+	checkpoint("get obras")
 	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras())
+	checkpoint("get menu")
 	# print "OBRAS =========================================================================="
 	# print obras
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-	slides = wordpress.getPagesByParent('capa-obras',thumbsizes=['slideshow','thumbnail']);
+
+	checkpoint("get slides")
+	slides = fromcache('slidesobras') or tocache('slidesobras', wordpress.getPagesByParent('capa-obras',thumbsizes=['slideshow','thumbnail']));
 
 	"""
 		Os slides que aparecem da capa do Monitoramento são Páginas filhas de uma página com slug 'capa-obras'.
@@ -147,7 +155,7 @@ def index():
 		- Se tem custom_field "youtube" busca o thumbnail do youtube através do VideoID
 		- Se tem custom_field "video" , contendo o endereco de um video qualquer, usa a imagem destacada como thumbnail também.
 	"""
-
+	checkpoint("loop")
 	retslides = []
 	for slide in slides:
 		#Trata o retorno dos custom_fields para facilitar a utilizacao
@@ -198,7 +206,7 @@ def index():
 		retslides.append(slide)
 
 	# print "OBRAS SLIDES ==========================================================================", len(slides)
-
+	checkpoint("render")
 	# try:
 	# 	twitter_hash_cabecalho = twitts()
 	# except KeyError:
@@ -217,6 +225,7 @@ def index():
 	)
 
 
+@cache.memoize()
 @monitoramento.route('/obra/<slug>/item/<itemid>/')
 def timelineitem(slug, itemid):
 	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
@@ -349,30 +358,37 @@ def vote(obraid, slug, plus):
 	return dumps(ret)
 
 
+@cache.memoize()
 @monitoramento.route('/obra/<slug>/')
 def obra(slug):
+	checkpoint("obra")
 	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
+	checkpoint("timeline")
 	if not obra:
 		return abort(404)
 
 	cacheid = "obratl-%s"%slug
 	timeline = fromcache(cacheid) or tocache(cacheid,wordpress.monitoramento.getObraTimeline(obra['id']))
+	checkpoint("ajustaCF-timeline")
 	timeline = adjustCf(timeline)
+	checkpoint("list comprehensions")
 	statuses = [ s for s in timeline if s['format'] == 'status' ]
-
+	checkpoint("page-more")
 	cacheid = "page-more-"+slug
 	more = fromcache(cacheid) or tocache(cacheid,wordpress.getPageByPath('more-'+slug))
 	if more:
 		more = more.content
-
+	checkpoint("menuprincipal")
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	try:
 		twitter_hash_cabecalho = twitts()
 	except KeyError:
 		twitter_hash_cabecalho = ""
-
+	checkpoint("tos")
 	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
+	checkpoint("howto")
 	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
+	checkpoint("render")
 	return render_template('obra.html',
 		menu=menus,
 		obra=obra,
