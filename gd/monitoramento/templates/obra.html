@@ -360,15 +360,16 @@ $(window).load(function () {
 		</div>
 	</div>
 </div>
-
+{% block subcontent %}
 <div class="comofunciona fechado">
 	<h2>Como funciona ?</h2>
 	<div class="cmore"> + </div>
 	<div class="content"><img src="{{ url_for('.static', filename='como.png' ) }}"></div>
 </div>
 
+
 <div class="updates">
-{%for update in timeline%}
+	{%for update in timeline%}
 	{%if update.format == 'status'%} {#===================================================#}
 	{%if loop.index > 1%}
 </div> <!-- fim timeline -->
@@ -435,6 +436,8 @@ $(window).load(function () {
 
             </div> <!-- fim timeline -->
           </div> <!-- fim updates -->
+
+    {%endblock%}
 
         </div> <!-- fim span9 -->
       </div>
