@@ -405,7 +405,7 @@ $(window).load(function () {
                   {%endif%}
 
                   {%if update.format == 'link'%}
-                  <a class="linkcontent" href="{{update.content|striptags}}">{{update.content|striptags}}</a>
+                  <a class="linkcontent" href="{{update.custom_fields.gdobra_arquivo|striptags}}">{{update.content|striptags}}</a>
                   {%endif%}
 
                   {%if update.format == 'video'%}
