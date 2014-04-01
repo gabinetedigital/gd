@@ -400,7 +400,7 @@ $(window).load(function () {
                     <a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</a>
                   </div>
 
-                  {%if update.format not in ('link')%}
+                  {%if update.format and update.format not in ('link',)%}
                   {{update.content|safe}}
                   {%endif%}
 

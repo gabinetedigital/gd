@@ -4286,9 +4286,7 @@ h3.respgov { font-size:22px; color:#000;}
 }
 
 #monitoramento .suplementar .semCadastro, #monitoramento .suplementar .comCadastro {
-    background:#2c3e50;
-    padding:20px;
-    margin-bottom:10px;
+    color:#2c3e50; padding:20px; margin-bottom:10px;
 }
 
 #monitoramento .suplementar .resposta {
