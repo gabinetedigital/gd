@@ -20,13 +20,32 @@ function showAggregated(parentId) {
     $('#aggregated-' + parentId).slideToggle();
 }
 
-function vote(qid) {
+var showNeedLogin = function(obj, msg){
+        // var botaoentrar = $('#menu .entrar a');
+        // console.log( obj );
+        var cont = "Você precisa <a href='/auth/login/'>efetuar o login</a> para votar!";
+        if (msg != "" && msg != null) {
+            cont = msg;
+        }
+        var options = {
+            'content'      : cont,
+            'title'     : "É necessário efetuar login",
+            'animation' : true,
+            'placement' : "left",
+            'trigger'   : "manual"
+        }
+        obj.popover(options);
+        obj.popover('show');
+
+        window.setTimeout(function(){
+            obj.popover('hide');
+        },10000);
+    };
+
+function vote(qid, obj) {
     if (!auth.isAuthenticated()) {
-        return auth.showLoginForm({
-            success: function () {
-                vote(qid);
-            }
-        });
+        showNeedLogin($(obj));
+        return false;
     }
 
     $.get(url_for('govresponde.vote.<qid>', { qid: qid }), function (data) {

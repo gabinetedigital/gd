@@ -18,7 +18,7 @@
     <p class="desc">{{ question.content|safe }}</p>
 
     {% if question.user_can_vote or not user %}
-    <button class="awesome" onclick="vote({{ question.id }})">
+    <button class="awesome" onclick="vote({{ question.id }}, this)">
       Votar
     </button>
     {% else %}
