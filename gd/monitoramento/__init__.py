@@ -22,7 +22,6 @@ import locale
 from flask import Blueprint, request, render_template, abort, current_app, Response, url_for
 from werkzeug import secure_filename
 from jinja2.utils import Markup
-# from twython import Twython
 import numpy as np
 
 import datetime as d
@@ -40,7 +39,7 @@ from gd import auth as authapi
 from gd.utils import dumps, sendmail, send_welcome_email, send_password, twitts, get_twitter_connection, treat_categories
 from gd.model import UserFollow, session as dbsession
 from gd.content.wp import wordpress
-from gd.utils.gdcache import fromcache, tocache, cache#, removecache
+from gd.utils.gdcache import fromcache, tocache, cache, removecache
 from gd import conf
 
 monitoramento = Blueprint(
@@ -260,6 +259,17 @@ def timelineitem(slug, itemid):
 	)
 
 
+def renova_cache_obra(obraid):
+	# print "RENOVA CACHE OBRA INICIO", obraid
+	post = wordpress.getPost(int(obraid)) #governo informa
+	post = wordpress.getPost(post.parent) #a obra
+	# print "SLUG", post.slug
+	cacheid = "obratl-%s" % post.slug
+	# print "RENOVA CACHE OBRA FIM"
+	checkpoint("(item votado) remove cache %s" % cacheid)
+	removecache(cacheid)
+
+
 @monitoramento.route('/obra/<obraid>/<slug>/<plus>/')
 def vote(obraid, slug, plus):
 	"""
@@ -354,6 +364,7 @@ def vote(obraid, slug, plus):
 		# 	custom_fields = cfs
 		# )
 		edit_post_id = wordpress.exapi.setPostCustomFields(post['id'], newcfs)
+		renova_cache_obra(post['parent'])
 
 	return dumps(ret)
 

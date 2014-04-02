@@ -28,5 +28,6 @@ def tocache(name, obj):
 	return obj
 
 def removecache(name):
+	print "REMOVECACHE", name
 	global cache
 	cache.delete(name)
