@@ -321,7 +321,7 @@ $(window).load(function () {
 
 
 
-    $('.participe a.votar').on("click",function(){
+    $('.participe a.votar').not('.voted').unbind().on("click",function(){
         var url = $(this).attr('href');
         var _clicado_ = $(this)
         _clicado_.attr('disabled','disabled');
