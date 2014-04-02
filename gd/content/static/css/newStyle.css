@@ -4286,8 +4286,16 @@ h3.respgov { font-size:22px; color:#000;}
 }
 
 #monitoramento .suplementar .semCadastro, #monitoramento .suplementar .comCadastro {
-    color:#2c3e50; padding:20px; margin-bottom:10px;
+	color:#2c3e50;
+    padding:20px;
+    margin-bottom:10px;
 }
+
+.comCadastro, .semCadastro, .comCadastro .input-append, .semCadastro .resposta {width: 100% !important;}
+ 
+.comCadastro .input-append input[type="password"] {width: 78% !important;}
+
+.semCadastro input[type="text"] {width: 95% !important;}
 
 #monitoramento .suplementar .resposta {
     margin-bottom:20px;
@@ -4409,6 +4417,8 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento .timeline {margin:0; padding:0;}
 
 
+
+
 #monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video  {background: #E6EBEC !important; color: #797979 !important; z-index: 999 !important;}
 
 
@@ -4508,6 +4518,15 @@ ul.thumbnails {margin:0; padding:0; }
 .govEscutaBox h4 small {font-size: 10px; font-style: italic;}
 .govEscutaBox p {margin:0; padding: 10px 0 0 0; font-size: 12px; line-height: 1.2;}
 
+.popupMessages {margin-left: -415px;}
+.popupMessages .close {top:10px; left: 790px; font-size: 20px !important;}
+.popupMessages h3 {padding-left: 10px; text-align: left !important;}
+.popupMessages p {line-height: 3 !important;}
+.popupMessages p i {margin:0 20px 0 0; float: left;}
+
+.ThumbsUpIcon {color: #006000; }
+.WarningIcon {color: #EEA012;}
+.ThumbsDownIcon {color: #BB0000;}
 
  /*  Font Awesome 4.0.1
  *  the iconic font designed for Bootstrap
