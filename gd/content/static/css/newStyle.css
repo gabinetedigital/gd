@@ -3168,6 +3168,10 @@ h3.respgov { font-size:22px; color:#000;}
 .respgov_balao h4 { color:#fff; font-size:21px; font-weight:normal; margin-bottom:9px;}
 .respgov_balao a { color:#fff;}
 
+.questions ol.pagination {margin:0 0 10px 0; padding:0;}
+.questions ol.pagination li {margin:0; padding:0; float: left;}
+.questions ol.pagination li a {display: block; margin: 0 10px 0 0; padding: 5px 10px;  background-color: #53A753; color: #ffffff; text-align: center; border-radius: 6px;}
+
 #govresponde .video .thumb {height:190px; margin-bottom:10px; width:300px;}
 
 .video .container {height:190px; overflow:hidden;}
