@@ -4365,7 +4365,7 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento.obra .updates {
     background:  #ffffff !important;}
 
-#monitoramento.obra .update.link a {color: #34495E;}
+#monitoramento.obra .update.link a.linkcontent {color: #34495E;}
 
 
 #monitoramento .info,
