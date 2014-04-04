@@ -33,7 +33,7 @@
 
 <div class="container">
 	<div class="row-fluid">
-		<div class="span4 logoGD"><a href="/"><img src="../static/img/logo-GD.png"  alt="Gabinete Digital" /></a></div>
+		<div class="span4 logoGD"><a href="/"><img src="{{ url_for('static', filename='img/logo-GD.png') }}"  alt="Gabinete Digital" /></a></div>
 		<div class="span8"><div class="clipping">{{ sidebar(id='sidebar-11')|safe }}</div></div>
 	</div>
 </div>
