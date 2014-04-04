@@ -110,7 +110,7 @@ def login_user_instance(user, password, fromsocial=False, bypass_pwverify=False)
         if not hasher.check_password(password, user.password):
             raise UserAndPasswordMissmatch()
 
-    print 
+    print
     # Everything seems to be ok here, let's register the user in our
     # session and return its data (but the password, of course) to the
     # caller.
@@ -183,7 +183,10 @@ def create_user(name, username, password, email, meta=None, receive_sms=False, r
     # Creating an user instance and getting its id by commiting the
     # chage to the database
     print "CREATING USER", username, password
-    activation_key = md5(username + password).hexdigest()
+
+    activation_key = "" #removendo necessidade de confirmar usuario
+    # activation_key = md5(username + password).hexdigest()
+
     user = User(
         name=name, username=username, password=password, email=email,
         receive_sms=receive_sms, receive_email=receive_email,
