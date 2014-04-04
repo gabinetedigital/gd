@@ -1,0 +1,33 @@
+{% macro fielderrors(field) -%}
+    {%- if field.errors %}
+      {%- for error in field.errors %}
+<span class="help-inline">{{error}}</span>
+      {%- endfor %}
+    {%- endif %}
+{%- endmacro %}
+
+{% extends "base-nova.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/vendor/fancybox/jquery.fancybox.js') }}"></script>
+<script type="text/javascript">
+  $(window).load(function () {
+        $('a.showtos').fancybox({
+            maxWidth: 800,
+            maxHeight: 600
+        });
+  });
+</script>
+{% endblock %}
+
+{% block cabecalho %}{% endblock %}
+
+{% block content %} 
+	{% include 'signup-form.html' %}
+{% endblock %}
+
+{% block rodape %}{% endblock %}

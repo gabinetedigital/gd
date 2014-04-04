@@ -68,138 +68,56 @@
 body  {margin:0; padding:0;  font-family:"Open Sans", sans-serif; }
 a  {color:#d12d33;}
 
-/*====================================== Nova ======================================*/
+/*====================================== Main container and menu styles ======================================*/
 .nova h1, .search, .feed, .twitter, .facebook, .mail, #tweets, .pessoa1, .pessoa2, .pessoa3, .pessoa4, .pessoa5, .pessoa6, .pessoa7, .pessoa8, .male, a.brand, .pri, .pq, .pro, .como, .logors, .ftweet, .ffb, .frss {overflow:hidden; text-indent:1000px; background:url(../img/home.png) no-repeat;}
 
-.nova h1 {display:block; width:270px; height:123px; text-indent:-1000px; overflow:hidden; padding-bottom:15px;}
+.nova h1 {margin: 20px 0 10px 0; padding: 0; display:block; width:270px; height:123px; text-indent:-1000px; overflow:hidden; }
+.logoGD {padding: 20px 0 10px 0;}
 .nova .clipping {color:#7f8c8d; padding-top:20px; font-style:italic; padding-left:350px;}
 .nova .clipping .author {text-align:right;}
-.nova .menu {border:1px solid #bdc3c7; border-right:0; border-left:0; padding:10px 20px; margin:20px 0;}
-.nova .menu li {display:inline-block; list-decoration:none; margin-right:20px;}
-.nova .menu li.procurar {width:48%; text-align:right; margin:0;}
-.nova .menu li.procurar .input-append {margin:0;}
-.nova .menu li.procurar .navbar-search {margin-right:0px; margin-top:-5px;}
-.nova .menu li.procurar .pull-right.signin {margin-top:-5px;}
-.nova .menu li a {color:#4d4d4d; font-size:1em;}
-.nova .menu li input.busca { -webkit-border-radius:0; -moz-border-radius:0; -ms-border-radius:0; -o-border-radius:0; border-radius:0; border-color:#95a5a6;}
-.nova .menu li button.lupa {border:1px solid #95a5a6; background:none; -webkit-border-radius:0; -moz-border-radius:0; -ms-border-radius:0; -o-border-radius:0; border-radius:0; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none;}
+
+.nova .menuContainer  {margin:20px 0 0 0; padding:0;  border:1px solid #bdc3c7; border-right:0; border-left:0;}
+.nova .menu {margin:0; padding:0 0 0 5px;}
+.nova .menu li {display:inline-block; list-decoration:none; margin-right:20px; line-height: 40px;}
+
+.nova .menuContainer .procurar {text-align:right;}
+.nova .menuContainer .procurar .input-append {margin:0;}
+.nova .menuContainer .procurar .navbar-search {margin: 5px; float: right;}
+.nova .menuContainer  a {color:#4d4d4d; font-size:1em;}
+.nova .menuContainer input.busca { -webkit-border-radius:0; -moz-border-radius:0; -ms-border-radius:0; -o-border-radius:0; border-radius:0; border-color:#95a5a6;}
+.nova .menuContainer button.lupa {border:1px solid #95a5a6; background:none; -webkit-border-radius:0; -moz-border-radius:0; -ms-border-radius:0; -o-border-radius:0; border-radius:0; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none;}
+
+.navbar {margin-bottom: 0;}
+.navbar-inner {background-color: #ffffff; background-image: linear-gradient(to bottom, #FFFFFF, #ffffff); background-repeat: repeat-x; border: 0px solid #D4D4D4; border-radius: 0px; box-shadow: 0 0 0 rgba(0, 0, 0, 0); padding-left: 0px; padding-right: 0px;}
+.navbar .btn-navbar {float: left; margin-left: 10px;}
 
 
 /*====================================== Search ======================================*/
 #search, #social {text-align:right; margin-top:50px; margin-left:20px;}
 .nova h1, .search, .feed, .twitter, .facebook, .mail {display:block; float:left;}
-.search {
-    width:22px;
-    height:19px;
-    background-position:0px -274px;
-    border:0;
-    text-indent:-1000px;
-}
 
-.feed {
-    width:32px;
-    height:32px;
-    background-position:-46px -270px;
-    border:0;
-}
-
-.twitter {
-    width:32px;
-    height:32px;
-    background-position:-82px -270px;
-    border:0;
-}
-
-.facebook {
-    width:32px;
-    height:32px;
-    background-position:-116px -270px;
-    border:0;
-}
-
-.mail {
-    width:32px;
-    height:32px;
-    background-position:-153px -270px;
-    border:0;
-}
-
-.tweets {
-    height:71px;
-    overflow:hidden;
-    margin-top:87px;
-    text-align:right;
-}
-
-.tweets ul {
-    margin:0;
-}
-
-.tweets ul>li {
-    display:inline-block;
-    margin-right:14px;
-}
+.search {width:22px; height:19px; background-position:0px -274px; border:0; text-indent:-1000px;}
+.feed {width:32px; height:32px; background-position:-46px -270px; border:0;}
+.twitter { width:32px; height:32px; background-position:-82px -270px; border:0;}
+.facebook {width:32px; height:32px; background-position:-116px -270px; border:0;}
+.mail { width:32px; height:32px; background-position:-153px -270px; border:0;}
+.tweets {height:71px; overflow:hidden; margin-top:87px; text-align:right;}
+.tweets ul {margin:0;}
+.tweets ul>li {display:inline-block; margin-right:14px;}
 
 /*====================================== Pessoas ======================================*/
-.pessoa1, .pessoa2, .pessoa3, .pessoa4, .pessoa5, .pessoa6, .pessoa7, .pessoa8 {
-    height:71px;
-    display:block;
-}
-
-.pessoa1 {
-    width:44px;
-    background-position:0 -167px;
-}
-
-.pessoa2 {
-    background-position:-62px -167px;
-    width:18px;
-}
-
-.pessoa3 {
-    background-position:-102px -165px;
-    width:66px;
-}
-
-.pessoa4 {
-    background-position:-189px -165px;
-    width:41px;
-}
-
-.pessoa5 {
-    width:41px;
-    background-position:-250px -165px;
-}
-
-.pessoa6 {
-    background-position:-311px -165px;
-    width:21px;
-}
-
-.pessoa7 {
-    background-position:-354px -166px;
-    width:23px;
-}
-
-.pessoa8 {
-    background-position:-398px -165px;
-    width:21px;
-}
-
-.male {
-    display:block;
-    height:76px;
-    width:23px;
-    background-position:0 -161px;
-}
-
-.popover {
-    width:300px;
-}
-
-.popover-content {
-    font-size:13px;
-}
+.pessoa1, .pessoa2, .pessoa3, .pessoa4, .pessoa5, .pessoa6, .pessoa7, .pessoa8 {height:71px; display:block;}
+.pessoa1 {width:44px; background-position:0 -167px;}
+.pessoa2 {background-position:-62px -167px; width:18px;}
+.pessoa3 {background-position:-102px -165px; width:66px;}
+.pessoa4 {background-position:-189px -165px; width:41px;}
+.pessoa5 {width:41px; background-position:-250px -165px;}
+.pessoa6 {background-position:-311px -165px; width:21px;}
+.pessoa7 {background-position:-354px -166px; width:23px;}
+.pessoa8 {background-position:-398px -165px; width:21px;}
+.male {display:block; height:76px; width:23px; background-position:0 -161px;}
+.popover {width:300px;}
+.popover-content {font-size:13px;}
 
 /*====================================== Login ======================================*/
 .login form {
@@ -2852,7 +2770,7 @@ p.errmsg {
 
 .head .logoGR {margin: 15px 0 0 0px; float: left; width: 210px;}
 .head .logoDG {margin: 0 0 20px 0; float: right; width: 130px;}
-.head .govRespSubMenu {margin: 0; padding:0; float: none; width: 650px;}
+.head .govRespSubMenu {margin: 0 auto; padding:0; float: none; width: 600px;}
 .head .govRespSubMenu li {float: left; margin-top: 10px; margin-bottom: 60px; width: 300px; }
 .head .govRespSubMenu li:hover {   opacity: 0.6;  -moz-opacity: 0.6;  filter: alpha(opacity=60);}
 .head .govRespSubMenu li a  {display: block; padding: 40px 20px;  height: 40px; line-height: 40px; font-size: 18px;  color: #ffffff; border-radius: 6px; text-align: center;}
@@ -3131,7 +3049,7 @@ h1.questions {float:left; color:#93b937; font-size:26px; font-weight:normal;}
 #govresponde h2 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #D62A4B; font-size: 30px; width: 100%; background: none;}
 #govresponde h2.envie {color:#111A3E !important;}
 #govresponde h2.questions {color:#52A529;}
-#govresponde h3 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #F9BE00; font-size: 20px; width: 100%; background: none;}}
+#govresponde h3 {margin:0; padding:0; float: none; clear: both; text-indent: 0px;  color: #F9BE00; font-size: 20px; width: 100%; background: none;}
 
 h1.cfunciona {margin: 0; padding:0; float: none; clear: both;  text-indent: 60px; width: 95%; background:url("../img/comofunciona.png") no-repeat scroll left center transparent; color:#0094d8; font-weight:normal; height: 50px; line-height:  40px;}
 
@@ -3888,12 +3806,13 @@ h3.respgov { font-size:22px; color:#000;}
 
 #monitoramento.obra .voltar {
     margin-bottom:20px;
-    color:#fff;
+    color: #34495E;
     font-size:12pt;
 }
 
 #monitoramento.obra .voltar i {
     margin-right:10px;
+	color: #34495E;
 }
 
 #monitoramento.obra .update {
@@ -4290,7 +4209,6 @@ h3.respgov { font-size:22px; color:#000;}
 }
 
 #monitoramento .suplementar .semCadastro, #monitoramento .suplementar .comCadastro {
-
 	color:#2c3e50;
     padding:20px;
     margin-bottom:10px;
@@ -4424,7 +4342,7 @@ h3.respgov { font-size:22px; color:#000;}
 
 
 
-#monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video  {background: #E6EBEC !important; color: #797979 !important; z-index: 999 !important;}
+#monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video, #monitoramento .timeline .link  {background: #E6EBEC !important; color: #797979 !important; z-index: 999 !important;}
 
 
 
@@ -4432,12 +4350,14 @@ h3.respgov { font-size:22px; color:#000;}
 
 #monitoramento.obra .update.aside .seta.esquerda,
 #monitoramento.obra .update.image .seta.esquerda,
+#monitoramento.obra .update.link .seta.esquerda,
 #monitoramento.obra .update.video .seta.esquerda {
     border-left:15px solid #E6EBEC;
 }
 
 #monitoramento.obra .update.aside .seta.direita,
 #monitoramento.obra .update.image .seta.direita,
+#monitoramento.obra .update.link .seta.direita,
 #monitoramento.obra .update.video .seta.direita {
     border-right:15px solid #E6EBEC;
 }
@@ -4532,6 +4452,111 @@ ul.thumbnails {margin:0; padding:0; }
 .ThumbsUpIcon {color: #006000; }
 .WarningIcon {color: #EEA012;}
 .ThumbsDownIcon {color: #BB0000;}
+
+
+/*=====================================================================================================================================================
+Begin media queries ========================================================================================================================================
+=====================================================================================================================================================*/
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 480px) {
+
+.nova h1 {margin: 5px 20px; padding: 0;}
+.logoGD {margin:-50px 0 0 0; padding: 0; text-align: center; height: 60px;}
+.logoGD img {max-width: 60%;}
+
+.nova .menuContainer  {margin:20px 0 0 0; padding:0;  border:1px solid #bdc3c7; border-right:0; border-left:0;}
+.nova .menu {margin:0; padding:0 0 0 5px;}
+.nova .menu li {display:block; list-decoration:none; margin-left:20px; line-height: 30px;}
+.nova .menu li a {font-size: 16px;}
+
+.nova .menuContainer .procurar {text-align:center;}
+.nova .menuContainer .procurar .navbar-search {margin: 5px auto; float: none;}
+
+.head .logoGR {margin: 0 0 0 10px; width: 150px;}
+.head .logoDG {margin: -30px 10px 0 0;  width: 80px;}
+
+.head .govRespSubMenu {margin: 20px auto 0 auto; padding:0 14px; float: none; width: auto;}
+.head .govRespSubMenu li {float: none; margin-top: 10px; margin-bottom: 20px; width: 300px; }
+
+.head .govRespSubMenu li a  {display: block; padding: 10px 0;  height: 40px; line-height: 40px; font-size: 14px;  color: #ffffff; border-radius: 6px; text-align: left;}
+.head .govRespSubMenu li a i {margin: 5px 10px -0 10px;  width: auto; }
+.head .govRespSubMenu li:nth-of-type(1) a {background-color: #111A3E;  margin-right: auto;}
+.head .govRespSubMenu li:nth-of-type(2) a {background-color: #52A529;}
+
+.head .govRespSubMenu li:nth-of-type(1) a i {margin-left: 80px;}
+.head .govRespSubMenu li:nth-of-type(2) a i {margin-left: 60px;}
+
+.head .boxfinal {margin:10px; padding-bottom: 80px;}
+
+.span3 {padding-left: 10px; width: 95%;}
+.span9 {padding-left: 10px; padding-right: 10px; width: 95%;}
+.span8, .span4 {padding-left: 10px; width: 95%;}
+
+
+#govresponde h1 {font-size: 24px; line-height: 1.1;}
+#govresponde h2 {font-size: 20px; line-height: 1.1;}
+#govresponde h3 {font-size: 16px; line-height: 1.1;}
+
+.questions .head #filterform {margin:0; padding:10px; text-align: left; width: 95%;}
+.mobilize { float:none; display: block;  width: 100%;}
+.meta {border: 0px; }
+.addthis_toolbox, .atclear {border: 0px solid #ffffff !important;}
+
+.questions ul li {margin-bottom:20px;  padding-bottom: 20px;border-bottom:dotted 1px #ccc; overflow:hidden; width: 95% !important;}
+
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) 
+and (orientation : portrait) {
+
+.nova h1 {margin: -40px 0 10px 0;}
+.nav-collapse, .nav-collapse.collapse {overflow: visible;}
+.navbar .btn-navbar {display: none;}
+#govresponde h1 { font-size: 30px; width: 100%; background: none;}
+
+
+/* Styles */
+}
+
+
+/*=====================================================================================================================================================
+End of media queries =======================================================================================================================================
+=====================================================================================================================================================*/
+
 
  /*  Font Awesome 4.0.1
  *  the iconic font designed for Bootstrap

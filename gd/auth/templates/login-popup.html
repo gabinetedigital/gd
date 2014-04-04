@@ -1,0 +1,25 @@
+{% macro fielderrors(field) -%} {%- if field.errors %} {%- for error in
+field.errors %}
+<p class="errmsg name-error">{{error}}</p><br> {%- endfor %} {%- endif
+%} {%- endmacro %}
+
+{% extends "base-nova.html" %}
+
+{% block css %}
+<!-- <link rel="stylesheet" href="{{ url_for('.static', filename='css/auth.css') }}"> -->
+{% endblock %}
+
+{% block javascript %} <!-- <script src="{{ url_for('.static',
+filename='js/login.js') }}"></script> -->
+
+{% endblock %}
+
+{% block bodyclass %}login{% endblock %}
+
+{% block cabecalho %}{% endblock %}
+
+{% block content %} 
+	{% include 'login-form.html' %}
+{% endblock %}
+
+{% block rodape %}{% endblock %}

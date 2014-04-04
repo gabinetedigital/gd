@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block javascript %}
+
 {# This blockception happens to make it possible to custom javascript
 # in the child templates, like govresponde_enviar #}
 {% block js %}{% endblock %}
@@ -19,14 +20,25 @@
 			<div class="span6"><a href="{{ url_for('.index') }}"><img src="{{ url_for('static', filename='img/govresponde/dgcopa_marca.png') }}" border="0" alt="" class="logoDG"></a></div>
 		</div>
 		<div class="row-fluid head clearfix">
-		<div class="span3"></div>
-			<div class="span6">
+			<div class="span12">
 				<ul class="govRespSubMenu">
-					<li><a href="{{ url_for('govresponde.send') }}"><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
+					<li><a href="{{ url_for('govresponde.send') }}" ><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
 					<li><a href="{{ url_for('.questions') }}"><i class="fa fa-check-circle fa-2x"></i>votar em uma pergunta</a></li>
 				</ul>
+
+
+<!-- ========================================================= Begin Code for Login Popup =========================================================-->
+<!-- <a href="#loginBox" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+<div id="loginBox" class="modal hide fade popupMessages">
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<h3>Logue-se</h3>
+	<div class="modal-body" style="overflow: hidden; min-height: 475px !important;">
+	 <iframe src="/auth/login/?popup=1" style="margin:-125px 0 0 -210px; padding:0; width: 1200px; min-height: 870px !important; border: 0; overflow: hidden;"></iframe> 
+	 </div>
+</div> -->
+<!-- ========================================================= End Code for Login Popup =========================================================-->
+
 			</div>
-			<div class="span3"></div>
 		</div>
 
  		<div class="row-fluid head">

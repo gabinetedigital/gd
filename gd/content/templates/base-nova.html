@@ -31,7 +31,7 @@
     {% block id %}
     {% endblock %}
 
-
+   {% block cabecalho %}
     <div class="container">
       <div class="row">
           <div class="span4">
@@ -61,9 +61,11 @@
         </div>
       </div>
     </div>
+{% endblock %}
 
     {% block content %}{% endblock %}
 
+   {% block rodape %}
     <footer>
       <div class="container">
         <div class="row">
@@ -114,7 +116,7 @@
         </div>
       </div>
     </footer>
-
+{% endblock %}
     <div id="content-loading" class="loadingbase loadingmodal"><!-- Place at bottom of page --></div>
 
     <script>

@@ -409,6 +409,7 @@ $(window).load(function () {
                   {%endif%}
 
                   {%if update.format == 'video'%}
+				  bibibi
                   <video width="100%" height="100%" id="player{{update.id}}" preload="none">
                     {% if 'youtube' in update.custom_fields.gdobra_video %}
                     <source type="video/youtube" src="{{update.custom_fields.gdobra_video|striptags}}" />
@@ -482,16 +483,34 @@ $(window).load(function () {
 </div>
 
 
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" style="margin-left: -415px;">
+<!-- Exemplo de modal de sucesso -->
+<!-- <div id="myModalSuccess" class="modal hide fade popupMessages ThumbsUpIcon">
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<h3>Certo!</h3>
+	<div class="modal-body">
+		<p class="messageThumbsUpIcon"><i class="fa fa-thumbs-o-up fa-3x"></i>
+		Algo saiu certo e esta é uma mensagem de motivação...</p>
+		</div>
+</div> -->
+<!-- Exemplo de modal de advertencia -->
+<!-- <div id="myModalWarning" class="modal hide fade popupMessages WarningIcon">
+		<button type="button" class="close" data-dismiss="modal"  style="top:10px; left: 790px;">&times;</button>
+		<h3>Problemas!</h3>
+	<div class="modal-body">
+		<p><i class="fa fa-exclamation fa-5x"></i></p>
+		<p>Algo não está bem certo e vai dar problemas eventualmente.</p>
+		</div>
+</div> -->
+<!-- Exemplo de modal de erro -->
+<!-- <div id="myModalError" class="modal hide fade popupMessages ThumbsDownIcon">
 		<button type="button" class="close" data-dismiss="modal"  style="top:10px; left: 790px;">&times;</button>
 		<h3>Erro!</h3>
 	<div class="modal-body">
+	<p><i class="fa fa-thumbs-o-down fa-5x"></i></p>
 		<p>Algo saiu errado...</p>
 		</div>
-</div>
+</div> -->
 
 
 

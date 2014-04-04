@@ -107,6 +107,10 @@ def login():
         return redirect(url_for('.profile'))
     # signup_process = g.signup_process
 
+    template = "login.html"
+    if "popup" in request.args:
+        template = "login-popup.html"
+
     if 'twitter_token' in session:
         del session['twitter_token']
 
@@ -122,7 +126,7 @@ def login():
         twitter_hash_cabecalho = ""
 
     resp = make_response(
-     render_template('login.html', next=next,
+     render_template(template, next=next,
         # signup_process=signup_process,
         menu=menus,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
@@ -331,6 +335,9 @@ def signup():
 
     if authapi.is_authenticated():
         return redirect(url_for('.profile'))
+    template='signup.html'
+    if 'popup' in request.args:
+        template='signup-popup.html'
 
     # default_data=None
     ret_code = -1
@@ -410,7 +417,7 @@ def signup():
         twitter_hash_cabecalho = ""
 
     return render_template(
-        'signup.html', form=form,
+        template, form=form,
         readmore=rm,tos=tos, menu=menus,
         twitter_hash_cabecalho=twitter_hash_cabecalho,
         sidebar=wordpress.getSidebar,

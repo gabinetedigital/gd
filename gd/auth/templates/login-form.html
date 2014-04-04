@@ -1,0 +1,64 @@
+<div class="content" id="auth">
+  <div class="container">
+    <div class="row efetuarlogin">
+      <div class="offset3 span6">
+        <div class="container-fluid">
+        <div id="auth-error" class="msg error alert alert-error
+                                    hide"></div>
+        <div id="confirmation-success" class="msg success alert
+                                              alert-success hide"></div>
+        <div class="auth-stage">
+          <form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
+            <fieldset>
+              <div class="stage-header">
+                <legend>Entrar
+                  <span class="pull-right">
+                    <a class="btn btn-mini"
+                       href="/auth/tw"><i class="icon-twitter"></i> Entrar como
+                       o Twitter</a>
+                    <a class="btn btn-mini"
+                       href="/auth/fb"><i class="icon-facebook"></i> Entrar
+                       como o Facebook</a>
+                  </span>
+                </legend>
+                {%if next%}
+                <input type="hidden" name="next" value="{{next}}">
+                {%endif%}
+              </div>
+              <div class="modal-body">
+                {%include 'parts/flashes.html'%}
+                <div class="control-group">
+                  <label for="username"
+                         class="control-label">Email</label>
+                  <div class="controls">
+                    <input id="username" type="text" name="username" placeholder="usuário">
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label for="password"
+                         class="control-label">Senha</label>
+                  <div class="controls">
+                    <input id="password" type="password" name="password" placeholder="senha">
+                    <span class="help-block"><a href="/auth/lost_password/">Esqueci minha senha</a></span>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn btn-large btn-success">Entrar</button>
+                  </div>
+                </div>
+              </div>
+              <div class="stage-footer">
+                <a href="{{url_for('.signup')}}" class="btn
+                   btn-info">Quero me cadastrar</a>
+
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+      </div>
+  </div>
+</div>
