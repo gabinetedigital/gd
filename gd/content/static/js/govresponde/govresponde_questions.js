@@ -20,6 +20,11 @@ function showAggregated(parentId) {
     $('#aggregated-' + parentId).slideToggle();
 }
 
+
+$('.voteNeedLogin').click(function(){
+    $('#loginBox').modal();
+});
+
 var showNeedLogin = function(obj, msg){
         // var botaoentrar = $('#menu .entrar a');
         // console.log( obj );

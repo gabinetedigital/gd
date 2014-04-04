@@ -22,20 +22,24 @@
 		<div class="row-fluid head clearfix">
 			<div class="span12">
 				<ul class="govRespSubMenu">
-					<li><a href="{{ url_for('govresponde.send') }}" ><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
+					{%if user%}
+                    <li><a href="{{ url_for('govresponde.send') }}" ><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
+                    {%else%}
+                    <li><a href="#" class="voteNeedLogin" ><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
+                    {%endif%}
 					<li><a href="{{ url_for('.questions') }}"><i class="fa fa-check-circle fa-2x"></i>votar em uma pergunta</a></li>
 				</ul>
 
 
 <!-- ========================================================= Begin Code for Login Popup =========================================================-->
-<!-- <a href="#loginBox" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+<!-- <a href="#loginBox" role="button" class="btn" data-toggle="modal">Launch demo modal</a> -->
 <div id="loginBox" class="modal hide fade popupMessages">
 		<button type="button" class="close" data-dismiss="modal">&times;</button>
 		<h3>Logue-se</h3>
 	<div class="modal-body" style="overflow: hidden; min-height: 475px !important;">
-	 <iframe src="/auth/login/?popup=1" style="margin:-125px 0 0 -210px; padding:0; width: 1200px; min-height: 870px !important; border: 0; overflow: hidden;"></iframe> 
+	 <iframe src="/auth/login/?popup=1" style="margin:-125px 0 0 -210px; padding:0; width: 1200px; min-height: 870px !important; border: 0; overflow: hidden;"></iframe>
 	 </div>
-</div> -->
+</div>
 <!-- ========================================================= End Code for Login Popup =========================================================-->
 
 			</div>

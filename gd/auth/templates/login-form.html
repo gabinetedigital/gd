@@ -50,9 +50,7 @@
                 </div>
               </div>
               <div class="stage-footer">
-                <a href="{{url_for('.signup')}}" class="btn
-                   btn-info">Quero me cadastrar</a>
-
+                <a href="{{url_for('.signup')}}?{{request.query_string}}" class="btn btn-info">Quero me cadastrar</a>
               </div>
             </fieldset>
           </form>
