@@ -120,35 +120,13 @@ a  {color:#d12d33;}
 .popover-content {font-size:13px;}
 
 /*====================================== Login ======================================*/
-.login form {
-    margin:0;
-}
-
-.login p.saudacao {
-    font-size:18px;
-    line-height:20px;
-    color:inherit;
-    font-family:inherit;
-    font-weight:bold;
-    line-height:1;
-    margin:10px 0;
-    text-rendering:optimizelegibility;
-}
-
-.login .on {
-    padding-top:20px;
-}
-
-.login .control {
-    padding-top:7px;
-}
-
-.login .control a {
-    color:#d12d33;
-}
+.login form { margin:0;}
+.login p.saudacao { font-size:18px; line-height:20px; color:inherit; font-family:inherit; font-weight:bold; line-height:1; margin:10px 0; text-rendering:optimizelegibility;}
+.login .on {padding-top:20px;}
+.login .control {padding-top:7px;}
+.login .control a {color:#d12d33;}
 
 /*====================================== Subnav ======================================*/
-
 .subnav .nav {
     font-size:1em;
     text-transform:lowercase;
