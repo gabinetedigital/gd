@@ -83,6 +83,58 @@
             {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}
           </div>
 
+          {%if update.format == 'status'%}
+
+            {%if 'gdobra_video' in update.custom_fields%}
+            {#YOUTUBE VIDEO#}
+            <div class="video">
+              <video width="80%" height="80%" id="player1" preload="none">
+                <source type="video/youtube" src="{{update.custom_fields['gdobra_video']}}" />
+              </video>
+            </div>
+            {{update.content|safe}}
+            {%elif 'gdvideo' in update.custom_fields%}
+            {#GDVIDEO#}
+            <div class="video">
+              <video class="video-obras" width="80%" height="80%"  poster="{{update.custom_fields.gdvideo.thumbnail}}"
+                     controls="controls" preload="none">
+                <!-- MP4 source must come first for iOS -->
+                <source type="video/mp4" src="{{update.custom_fields.gdvideo.sources['video/mp4']}}" />
+                <!-- WebM for Firefox 4 and Opera -->
+                <source type="video/webm" src="{{update.custom_fields.gdvideo.sources['video/webm']}}" />
+                <!-- OGG for Firefox 3 -->
+                <!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
+                <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
+
+                <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">
+                  <param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" />
+                  <param name="flashvars" value="controls=true&amp;file={{update.custom_fields.gdvideo.sources['video/mp4']}}" />
+                  <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
+                  <img src="{{update.custom_fields.gdvideo.thumbnail}}" width="{{ update.custom_fields.gdvideo.video_width }}" height="{{ update.custom_fields.gdvideo.video_height }}" alt="Here we are"
+                       title="No video playback capabilities" />
+                </object>
+              </video>
+            </div>
+            {%elif update.thumbs.slideshow%}
+            <div class="video">
+              <img src="{{ thumborurl(update.thumbs.slideshow.url, (350,233) ) }}">
+            </div>
+            {%elif update.thumbs.normal%}
+            <div class="video">
+              <img src="{{ thumborurl(update.thumbs.normal.url, (350,233) ) }}">
+            </div>
+            {%elif update.thumbs.thumb%}
+            <div class="video">
+              <img src="{{ thumborurl(update.thumbs.thumb.url, (350,233) ) }}">
+            </div>
+            {%elif update.custom_fields.gdobra_imagem%}
+            <div class="video">
+              <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (350,233) ) }}">
+            </div>
+            {%endif%}
+
+          {%endif%}
+
           {{update.content|safe}}
 
           {%if update.format == 'link'%}

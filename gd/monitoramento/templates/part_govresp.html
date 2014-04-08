@@ -4,7 +4,7 @@
         <div class="dia">{{update.date.date|formatarDataeHora(formato="%d")}}</div>
         <div class="mes">{{update.date.date|formatarDataeHora(formato="%b")}}</div>
       </div>
-      <h2>Governo Informa</h2>
+      <h2><a href="{{ url_for('.timelineitem', slug=obra.slug, itemid=update.id) }}">Governo Informa</a></h2>
     {%if 'gdobra_video' in update.custom_fields%}
     {#YOUTUBE VIDEO#}
     <div class="video">
