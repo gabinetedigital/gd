@@ -22,7 +22,8 @@ function showAggregated(parentId) {
 
 
 $('.voteNeedLogin').click(function(){
-    $('#loginBox').modal();
+    showNeedLogin($(this));
+    return false;
 });
 
 var showNeedLogin = function(obj, msg){
