@@ -3605,7 +3605,8 @@ h3.respgov { font-size:22px; color:#000;}
 
 
 
-#monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video, #monitoramento .timeline .link  {background: #E6EBEC !important; color: #797979 !important; z-index: 999 !important;}
+#monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video, #monitoramento .timeline .link, 
+#monitoramento.obra .update.status   {background: #E6EBEC !important; color: #797979 !important; z-index: 999 !important;}
 
 
 
@@ -3652,9 +3653,10 @@ h3.respgov { font-size:22px; color:#000;}
 
 
 #monitoramento.obra .govresp,
-#monitoramento.obra .govresp h2{margin-bottom: 6px;
-color: #2ECC69 !important;
-}
+#monitoramento.obra .govresp h2 {margin-bottom: 6px;
+color: #2ECC69 !important;}
+#monitoramento.obra .govresp h2 a {color: #2ECC69}
+
 #monitoramento.obra .govresp p {color: #ffffff !important;}
 #monitoramento.obra .updates>p {display: none;}
 
@@ -3700,6 +3702,9 @@ ul.thumbnails {margin:0; padding:0; }
 
 #monitoramento.obra .botoesparticipar {margin-left:0px; margin-top:0;}
 
+#monitoramento.obra .update .content h3 {text-align: left; color: #34495E; font-weight: bold; margin-left: 0;}
+
+
 .messageLayer {margin:0; padding:0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgba(0,0,0, 0.8); z-index: 999; overflow: hidden;}
 .messageLayer p.carregando {position: absolute; top: 50%; left: 50%; margin:-70px 0 0 -50px; padding:0; text-align: center; width: 140px; height: 100px; font-size: 18px; color: #ffffff; background: transparent url(../img/monitoramento/loadingSquares.gif) no-repeat center center; font-weight: bold;}
 
@@ -3719,6 +3724,7 @@ ul.thumbnails {margin:0; padding:0; }
 .WarningIcon {color: #EEA012;}
 .ThumbsDownIcon {color: #BB0000;}
 
+.clear {clear: both;}
 
 /*=====================================================================================================================================================
 Begin media queries ========================================================================================================================================

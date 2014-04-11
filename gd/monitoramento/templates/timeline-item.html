@@ -77,7 +77,7 @@
       </a>
       <div class="update {{ update.format }}">
         <div class="content">
-          <h4>{{update.title}}</h4>
+          <h3>{{update.title}} </h3>
           <div class="user">
             <small>por</small> {{update.author.display_name}} <small>em</small>
             {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}
@@ -158,8 +158,10 @@
               {%set thumb_size = (780,520)%}
               {%include 'item-image-part.html'%}
           {%endif%}
-        </div>
 
+		  
+        </div>
+		<br class="clear" />
         <div class="participe">
           {%include 'timeline-importante.html'%}
           <a class="btn pull-right commentbutton" id="commentbutton" href="#"><i class="fa fa-comment"></i> Comentar</a>
