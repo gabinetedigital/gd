@@ -1811,68 +1811,17 @@ section h2.reforma {color:#fff; background-color:#ff8c00;}
 }
 
 /*====================================== Estilo Auth.======================================*/
-#auth {
-    color:#1f1f21;
-    padding-top:30px;
-    border-top:2px solid #ddd;
-    background:url(../img/minsqr.png);
-    padding-bottom:20px;
-}
+#auth {color:#1f1f21; padding-top:30px; border-top:2px solid #ddd; background:url(../img/minsqr.png); padding-bottom:20px;}
 
-.auth-stage {
-    background-clip:padding-box;
-    background-color:#fff;
-    border:1px solid rgba(0, 0, 0, 0.3);
-    -webkit-border-radius:6px;
-    -moz-border-radius:6px;
-    -ms-border-radius:6px;
-    -o-border-radius:6px;
-    border-radius:6px;
-    box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);
-    outline:medium none;
-    text-algin:center;
-    margin:50px 0;
-}
+.auth-stage {background-clip:padding-box; background-color:#fff; border:1px solid rgba(0, 0, 0, 0.3); -webkit-border-radius:6px; -moz-border-radius:6px; -ms-border-radius:6px; -o-border-radius:6px; border-radius:6px; box-shadow:0 3px 7px rgba(0, 0, 0, 0.3); outline:medium none; text-algin:center; margin:50px 0;}
+.auth-stage .stage-header {padding:20px 20px 0;}
+.auth-stage .modal-body {max-height:none; overflow-y:visible;}
+.auth-stage .stage-footer {background-color:#f5f5f5; border-radius:0 0 6px 6px; border-top:1px solid #ddd; box-shadow:0 1px 0 #fff inset; margin-bottom:0; padding:14px 15px 15px; text-align:right;}
 
-.auth-stage .stage-header {
-    padding:20px 20px 0;
-}
+#auth form { margin:0;}
 
-.auth-stage .modal-body {
-    max-height:none;
-    overflow-y:visible;
-}
-
-.auth-stage .stage-footer {
-    background-color:#f5f5f5;
-    border-radius:0 0 6px 6px;
-    border-top:1px solid #ddd;
-    box-shadow:0 1px 0 #fff inset;
-    margin-bottom:0;
-    padding:14px 15px 15px;
-    text-align:right;
-}
-
-#auth form {
-    margin:0;
-}
-
-.auth .header {
-    margin-bottom:40px;
-}
-
-.auth h2 {
-    font-size:50px;
-    color:#0089af;
-    font-weight:300;
-    background-color:#333;
-    padding:10px 20px;
-    width:100%;
-    line-height:1.1em;
-    height:1.2em;
-    display:inline;
-    text-shadow:0px 1px 3px rgba(51, 51, 51, 0.6);
-}
+.auth .header {margin-bottom:40px;}
+.auth h2 {font-size:50px; color:#0089af; font-weight:300; background-color:#333; padding:10px 20px; width:100%; line-height:1.1em; height:1.2em; display:inline; text-shadow:0px 1px 3px rgba(51, 51, 51, 0.6);}
 
 .auth .enviar {
     margin-top:20px;
@@ -2087,192 +2036,38 @@ span.afake{color:#c5c5c5;}
 .rcolumn {margin-top:20px;}
 .rcolumn h2 {color:#a00; margin-bottom:10px; display:block; height:49px;}
 
-.highlight .bigger a.otherquestions {
-    margin-left:480px;
-}
+.highlight .bigger a.otherquestions {margin-left:480px;}
+.highlight h3 {color:#969a9c; font-size:11pt; font-weight:normal; margin:0;}
+.highlight .video {width:470px; height:280px; background:#000; float:left; margin-right:10px; margin-bottom:20px;}
+.highlight li {padding:0 0 30px 0; clear:both;}
+.highlight .video {width:300px; height:190px; border:solid 1px #999; float:right; margin-top:10px;}
+.highlight .date {float:left; margin:0 10px 0 0 !important; height:90px; color:#a40000; text-align:center; line-height:28px;}
 
-.highlight h3 {
-    color:#969a9c;
-    font-size:11pt;
-    font-weight:normal;
-    margin:0;
-}
+#date {width:45px; height:40px; margin-right:20px; margin-bottom:30px;}
+#date div {font-weight:bold;}
+#date div.day {font-size:14pt; text-align:center; border-right:2px solid #ccc; border-bottom:2px solid #ccc; border-left:2px solid #ccc; background-color:#ddd; padding:2px 0; color:#000; background-image:-webkit-gradient(linear,  50% 0%,  50% 100%,  color-stop(0%,  #ffffff),  color-stop(100%,  #dddddd)); background-image:-webkit-linear-gradient(#ffffff, #dddddd); background-image:-moz-linear-gradient(#ffffff, #dddddd); background-image:-o-linear-gradient(#ffffff, #dddddd); background-image:linear-gradient(#ffffff, #dddddd);}
+#date div.month {font-size:8pt; background-color:#d72314; color:#fff; text-align:center; border-top:2px solid #d72314; border-right:2px solid #d72314; border-left:2px solid #d72314; background-image:-webkit-gradient(linear,  50% 0%,  50% 100%,  color-stop(0%,  #d72314),  color-stop(100%,  #a81704)); background-image:-webkit-linear-gradient(#d72314, #a81704); background-image:-moz-linear-gradient(#d72314, #a81704); background-image:-o-linear-gradient(#d72314, #a81704); background-image:linear-gradient(#d72314, #a81704);}
 
-.highlight .video {
-    width:470px;
-    height:280px;
-    background:#000;
-    float:left;
-    margin-right:10px;
-    margin-bottom:20px;
-}
+.highlight .caso {background-color:#ff861d; border-radius:32px 0 32px 0; float:right; margin-bottom:20px; padding:20px; width:80%;}
+.highlight .pergunta {margin-bottom:20px; margin-top:20px; background-color:#2da7d3; border-radius:0px 32px; padding:20px;}
+.highlight .caso h5 {color:#fff; font-size:21px; font-weight:normal; margin-top:9px;}
+.highlight .pergunta h5 {color:#fff; font-size:21px; font-weight:normal; margin-bottom:9px;}
+.highlight .content p {margin-bottom:10px;}
+.highlight h4 {clear:both; margin:20px 0;}
+.highlight .videobox {width:100%; text-align:center; margin-top:10px; margin-bottom:10px;}
+.highlight li.first .videobox .video-js-box {margin:0 auto;}
 
-.highlight li {
-    padding:0 0 30px 0;
-    clear:both;
-}
+h1.envie {background:url("../img/envie.png") no-repeat scroll left center transparent; color:#af0000; height:50px; font-weight:normal; margin-left:23px; padding-left:109px; padding-top:9px;}
 
-.highlight .video {
-    width:300px;
-    height:190px;
-    border:solid 1px #999;
-    float:right;
-    margin-top:10px;
-}
+form#send {margin-left:23px; display:block;}
+form#send label {display:block; font-size:12pt; margin:15px 0 5px;}
+form#send select {width:390px;}
+form#send input, form#send textarea {width:380px;}
+form#send textarea {height:100px;}
+form#send .sendbtn {margin-top:20px; float:right; margin-bottom:20px; margin-right:231px;}
+form#send .helptext {font-size:14px;}
 
-.highlight .date {
-    float:left;
-    margin:0 10px 0 0 !important;
-    height:90px;
-    color:#a40000;
-    text-align:center;
-    line-height:28px;
-}
-
-#date {
-    width:45px;
-    height:40px;
-    margin-right:20px;
-    margin-bottom:30px;
-}
-
-#date div {
-    font-weight:bold;
-}
-
-#date div.day {
-    font-size:14pt;
-    text-align:center;
-    border-right:2px solid #ccc;
-    border-bottom:2px solid #ccc;
-    border-left:2px solid #ccc;
-    background-color:#ddd;
-    padding:2px 0;
-    color:#000;
-    background-image:-webkit-gradient(linear,  50% 0%,  50% 100%,  color-stop(0%,  #ffffff),  color-stop(100%,  #dddddd));
-    background-image:-webkit-linear-gradient(#ffffff, #dddddd);
-    background-image:-moz-linear-gradient(#ffffff, #dddddd);
-    background-image:-o-linear-gradient(#ffffff, #dddddd);
-    background-image:linear-gradient(#ffffff, #dddddd);
-}
-
-#date div.month {
-    font-size:8pt;
-    background-color:#d72314;
-    color:#fff;
-    text-align:center;
-    border-top:2px solid #d72314;
-    border-right:2px solid #d72314;
-    border-left:2px solid #d72314;
-    background-image:-webkit-gradient(linear,  50% 0%,  50% 100%,  color-stop(0%,  #d72314),  color-stop(100%,  #a81704));
-    background-image:-webkit-linear-gradient(#d72314, #a81704);
-    background-image:-moz-linear-gradient(#d72314, #a81704);
-    background-image:-o-linear-gradient(#d72314, #a81704);
-    background-image:linear-gradient(#d72314, #a81704);
-}
-
-.highlight .caso {
-    background-color:#ff861d;
-    border-radius:32px 0 32px 0;
-    float:right;
-    margin-bottom:20px;
-    padding:20px;
-    width:80%;
-}
-
-.highlight .pergunta {
-    margin-bottom:20px;
-    margin-top:20px;
-    background-color:#2da7d3;
-    border-radius:0px 32px;
-    padding:20px;
-}
-
-.highlight .caso h5 {
-    color:#fff;
-    font-size:21px;
-    font-weight:normal;
-    margin-top:9px;
-}
-
-.highlight .pergunta h5 {
-    color:#fff;
-    font-size:21px;
-    font-weight:normal;
-    margin-bottom:9px;
-}
-
-.highlight .content p {
-    margin-bottom:10px;
-}
-
-.highlight h4 {
-    clear:both;
-    margin:20px 0;
-}
-
-.highlight .videobox {
-    width:100%;
-    text-align:center;
-    margin-top:10px;
-    margin-bottom:10px;
-}
-
-.highlight li.first .videobox .video-js-box {
-    margin:0 auto;
-}
-
-h1.envie {
-    background:url("../img/envie.png") no-repeat scroll left center transparent;
-    color:#af0000;
-    height:50px;
-    font-weight:normal;
-    margin-left:23px;
-    padding-left:109px;
-    padding-top:9px;
-}
-
-form#send {
-    margin-left:23px;
-    display:block;
-}
-
-form#send label {
-    display:block;
-    font-size:12pt;
-    margin:15px 0 5px;
-}
-
-form#send select {
-    width:390px;
-}
-
-form#send input, form#send textarea {
-    width:380px;
-}
-
-form#send textarea {
-    height:100px;
-}
-
-form#send .sendbtn {
-    margin-top:20px;
-    float:right;
-    margin-bottom:20px;
-    margin-right:231px;
-}
-
-form#send .helptext {
-    font-size:14px;
-}
-
-.error:not(.alert) {
-    background:none repeat scroll 0 0 #ce3316;
-    border:1px solid #ef2929;
-    margin:20px auto 0;
-    text-align:center;
-    width:76%;
-}
+.error:not(.alert) {background:none repeat scroll 0 0 #ce3316; border:1px solid #ef2929; margin:20px auto 0; text-align:center; width:76%;}
 
 #comofunciona { display:none; background:#fff; padding:20px; border-radius:20px;}
 #comofunciona .close {cursor:pointer; height:35px; width:35px; display:block; left:640px; position:absolute; top:5px;}
@@ -2544,7 +2339,6 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento .lista-obras .meta-obra li.local i {color:#3498db;}
 #monitoramento .lista-obras .meta-obra li.comentarios i {color:#e74c3c;}
 
-
 #monitoramento.obra {background:#ecf0f1;}
 #monitoramento .painel {background:#fff; -webkit-box-shadow:#7f8c8d 0px 5px 7px 0px; -moz-box-shadow:#7f8c8d 0px 5px 7px 0px; box-shadow:#7f8c8d 0px 5px 7px 0px;}
 #monitoramento .meio {margin-top:0px; -webkit-border-radius:0; -moz-border-radius:0; -ms-border-radius:0; -o-border-radius:0; border-radius:0;}
@@ -2566,41 +2360,13 @@ h3.respgov { font-size:22px; color:#000;}
 
 #monitoramento.obra h1 {background:none repeat scroll 0 0 #7f8c8d; color:#fff; font-size:18pt; font-weight:900; padding:0 16px; text-align:right; text-transform:lowercase;}
 #monitoramento.obra .header {background:#34495e;}
-#monitoramento.obra .head h2 {color:#fff;
-    font-size:30pt;
-    font-weight:200;
-    padding:10px;
-}
+#monitoramento.obra .head h2 {color:#fff; font-size:30pt; font-weight:200; padding:10px;}
+#monitoramento.obra .head>a {float:left; padding:10px;}
+#monitoramento.obra .head .dono {background:url(../img/monitoramento/dono.png) no-repeat; width:128px; height:116px; display:block; float:right;}
 
-#monitoramento.obra .head>a {
-    float:left;
-    padding:10px;
-}
-
-#monitoramento.obra .head .dono {
-    background:url(../img/monitoramento/dono.png) no-repeat;
-    width:128px;
-    height:116px;
-    display:block;
-    float:right;
-}
-
-#monitoramento.obra .barra {
-    background:#2c3e50;
-    color:#fff;
-    padding:10px 0;
-    position: relative;
-}
-
-#monitoramento.obra .barra .geral, #monitoramento.obra .barra .dados-obra {
-    margin:0;
-    padding:0;
-}
-
-#monitoramento.obra .barra .geral li.field:last-child {
-    border:none;
-}
-
+#monitoramento.obra .barra {background:#2c3e50; color:#fff; padding:10px 0; position: relative;}
+#monitoramento.obra .barra .geral, #monitoramento.obra .barra .dados-obra {margin:0; padding:0;}
+#monitoramento.obra .barra .geral li.field:last-child {border:none;}
 #monitoramento.obra .barra .geral {overflow: hidden;}
 #monitoramento.obra .barra .geral li.field {margin:0; padding:0; border-right:3px solid #34495e; float:left; width: 19%; white-space: normal; padding-bottom: 10000px; margin-bottom: -10000px;}
 
@@ -2608,991 +2374,205 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento.obra .barra .geral li:nth-of-type(3).field {width:18%; }
 #monitoramento.obra .barra .geral li:nth-of-type(4).field {width:23%; }
 #monitoramento.obra .barra .geral li:nth-of-type(4).field  li.empcontratadas {white-space: normal !important; width: 75%;}
-    @media (max-width: 767px) {
-        #monitoramento.obra .barra .geral li.field {width: 90%;  border-right: 0px; }
-        #monitoramento.obra .barra .geral li:nth-of-type(2).field {width:90%;}
-        #monitoramento.obra .barra .geral li:nth-of-type(3).field {width:90%; }
-        #monitoramento.obra .barra .geral li:nth-of-type(4).field {width:90%; }
-        #monitoramento.obra .barra .geral li:nth-of-type(4).field  li.empcontratadas {white-space: normal !important; width: 100%;}
-    }
-
-
-
-
-#monitoramento.obra .barra .geral li.icon {
-    float:left;
-    margin:0 5px;
-}
-
-#monitoramento.obra .barra .geral span.circle {
-    display:block;
-    -webkit-border-radius:100%;
-    -moz-border-radius:100%;
-    -ms-border-radius:100%;
-    -o-border-radius:100%;
-    border-radius:100%;
-    padding:10px;
-}
-
-#monitoramento.obra .barra .geral .green {
-    color:#2ecc71;
-}
-
-#monitoramento.obra .barra .geral .blue {
-    color:#3498db;
-}
-
-#monitoramento.obra .barra .geral .red {
-    color:#e74c3c;
-}
-
-#monitoramento.obra .barra .geral .orange {
-    color:#e67e22;
-}
-
-#monitoramento.obra .barra .geral .yellow {
-    color:#f1c40f;
-}
-
-#monitoramento.obra .barra .geral .dados-obra li.data {
-    display:inline-block;
-    color:#ecf0f1;
-}
-
-#monitoramento.obra .barra .geral .dados-obra li.result {
-    display:block;
-    margin-left:58px;
-    text-align:left;
-    width:100%;
-}
-
-#monitoramento.obra .barra .geral .dados-obra div.progressbar {
-    background:#fff;
-    display:inline-block;
-    height:10px;
-    width:100px;
-}
-
-#monitoramento.obra .barra .geral .dados-obra div.progressbar>.progress {
-    background:#3498db;
-    height:10px;
-    -webkit-border-radius:0;
-    -moz-border-radius:0;
-    -ms-border-radius:0;
-    -o-border-radius:0;
-    border-radius:0;
-}
-
-#monitoramento.obra .barra a .more {
-    color:#fff;
-}
-
-#monitoramento.obra .barra .more { position: absolute; top: 10px; right: 5px;
-    background:#1abc9c;
-    -webkit-border-radius:6px;
-    -moz-border-radius:6px;
-    -ms-border-radius:6px;
-    -o-border-radius:6px;
-    border-radius:6px;
-    float:right;
-    height:26px;
-    text-align:center;
-    width:32px;
-    margin:10px 0 10px 15px;
-    font-size:20pt;
-    font-weight:bold;
-    line-height:17pt;
-}
-
-#monitoramento.obra .head .content {
-    color:#fff;
-    display:inline-block;
-    padding:0 0 0 20px;
-}
-
-#monitoramento.obra .follow {
-    text-align:center;
-}
-
-#monitoramento.obra .follow p.desc {
-    color:#000;
-    text-align:left;
-    width:300px;
-}
-
-#monitoramento.obra .follow .social {
-    display:inline-block;
-    margin-bottom:15px;
-}
-
-#monitoramento.obra .follow .social li {
-    display:inline-block;
-    margin-right:10px;
-}
-
-#seguirobraform .main-follow a:hover {
-    text-decoration:none;
-}
-
-#seguirobraform .main-follow a i.face, #monitoramento.obra .follow i.face {
-    color:#34495e;
-}
-
-#seguirobraform .main-follow a i.twit, #monitoramento.obra .follow i.twit {
-    color:#3498db;
-}
-
-#seguirobraform .main-follow a i.email, #monitoramento.obra .follow i.email {
-    color:#e74c3c;
-}
-
-#monitoramento.obra img.mapa {
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
-    margin-bottom:10px;
-}
-
-#monitoramento.obra .info {
-    padding-left:20px;
-}
-
-#monitoramento.obra .botoesparticipar {
-    background:#e74c3c;
-    overflow:hidden;
-    margin-left:10px;
-    margin-top:20px;
-}
-
-#monitoramento.obra .botoesparticipar a {
-    display:block;
-    padding:0 10px;
-    color:#fff;
-    height:70px;
-    border-bottom:2px solid #c0392b;
-    text-decoration:none;
-    overflow:hidden;
-}
-
-#monitoramento.obra .botoesparticipar a:last-child {
-    border:none;
-}
-
-#monitoramento.obra .botoesparticipar .funcao {
-    font-weight:200;
-    font-size:30px;
-    line-height:65px;
-    position:relative;
-}
-
-#monitoramento.obra .botoesparticipar div.help-text {
-    margin-left:240px;
-    margin-top:-50px;
-    white-space:nowrap;
-}
-
-#monitoramento.obra .botoesparticipar a>i {
-    float:left;
-    line-height:65px;
-    margin-right:10px;
-    color:#34495e;
-}
-
-#monitoramento.obra .separador {
-    border:2px solid #ddd;
-    margin:20px;
-}
-
-#monitoramento.obra .info strong {
-    clear:both;
-    display:block;
-}
-
-#monitoramento.obra h3 {
-    text-align:center;
-}
-
-#monitoramento.obra .code {
-    text-align:center;
-}
-
-#monitoramento.obra .code img {
-    margin-top:10px;
-}
-
-#monitoramento.obra .nossodados, #monitoramento.obra .acesso {
-    text-align:center;
-    overflow:hidden;
-    margin-bottom:20px;
-}
-
-#monitoramento.obra .acesso a.parceiro {
-    margin-left:23px;
-}
-
-#monitoramento.obra .nossodados p.desc {
-    text-align:left;
-}
-
-#monitoramento.obra .api, #monitoramento.obra .xml {
-    color:#fff;
-    font-weight:bold;
-    padding:0px 4px;
-    font-size:11pt;
-}
-
-#monitoramento.obra .nossodados a:hover {
-    text-decoration:none;
-}
-
-#monitoramento.obra .api {
-    background:#27ae60;
-}
-
-#monitoramento.obra .xml {
-    background:#e67e22;
-}
-
-#monitoramento.obra .updates>p {
-    color:#f1c40f;
-    float:left;
-    font-size:14pt;
-    font-style:italic;
-    font-weight:600;
-    margin-left:36px;
-    margin-top:15px;
-    position:absolute;
-}
-
-#monitoramento.obra .govresp {
-    background:#f1c40f;
-    overflow:hidden;
-    display:block;
-    width:800px;
-    margin:0 auto;
-}
-
-#monitoramento.obra .content-full {
-    margin:0;
-    font-weight:400;
-    width:100%;
-}
-
-#monitoramento.obra .content {
-    margin:0;
-    font-weight:400;
-    padding:10px 20px;
-    text-align:justify;
-}
-
-#monitoramento.obra .content .titulo {
-    display:block;
-    clear:both;
-    overflow:hidden;
-}
-
-#monitoramento.obra .content .text {
-    margin-top:20px;
-    padding:10px;
-}
-
-#monitoramento.obra .content .text p {
-    display:table-row;
-}
-
-#monitoramento.obra .content .cal {
-    background:url(../img/monitoramento/calendar.png) no-repeat;
-    float:left;
-    height:67px;
-    margin:10px 10px 10px 0;
-    width:50px;
-    text-align:center;
-    text-transform:uppercase;
-    color:#2c3e50;
-}
-
-#monitoramento.obra .content .cal .dia {
-    font-size:20pt;
-    font-weight:600;
-    margin-top:20px;
-}
-
-#monitoramento.obra .content .cal .mes {
-    margin-top:2px;
-}
-
-#monitoramento.obra .content .data {
-    font-size:15pt;
-    font-weight:200;
-    margin-bottom:18px;
-    margin-top:-5px;
-}
-
-#monitoramento.obra .content .video {
-    width:435px;
-    float:right;
-    padding:10px;
-    margin:0 10px 5px 0;
-}
-
-#monitoramento.obra .updates .govresp h2 {
-    color:#2c3e50;
-    font-size:23pt;
-}
-
-#monitoramento.obra .updates .govresp.remote>h2 {
-    margin-left:10px;
-}
-
-#monitoramento.obra .comofunciona, #monitoramento.obra .comofunciona.fechado {
-    background:#16a085;
-    height:60px;
-    overflow:hidden;
-    text-align:center;
-}
-
-#monitoramento.obra .comofunciona h2 {
-    margin:0;
-    color:#fff;
-    padding:10px 20px;
-    margin:0;
-    font-weight:200;
-}
-
-#monitoramento.obra .comofunciona .cmore {
-    color:#fff;
-    font-size:20pt;
-    margin-top:-40px;
-    margin-right:20px;
-    float:right;
-    background:#1abc9c;
-    width:32px;
-    height:26px;
-    font-weight:bold;
-    line-height:17pt;
-    display:block;
-    -webkit-border-radius:6px;
-    -moz-border-radius:6px;
-    -ms-border-radius:6px;
-    -o-border-radius:6px;
-    border-radius:6px;
-}
-
-#monitoramento.obra .comofunciona.aberto {
-    height:600px;
-}
-
-#monitoramento.obra .comofunciona .content {
-    padding:10px 20px;
-}
-
-#monitoramento.obra .primeiro {
-    background:none repeat scroll 0 0 #000;
-    color:#fff;
-}
-
-#monitoramento.obra .primeiro>p {
-    padding:10px 20px 0;
-}
-
-#monitoramento.obra .primeiro .info-meta ul {
-    background:none repeat scroll 0 0 #fff;
-    border:1px solid #ddd;
-    color:#000;
-}
-
-#monitoramento.obra p.content {
-    padding-top:10px;
-}
-
-#monitoramento.obra .fiscalize {
-    text-align:left;
-}
-
-#monitoramento.obra .comente {
-    padding-left:20px;
-    margin:10px 0;
-    display:none;
-}
-
-#monitoramento.obra .comente h3 {
-    margin-bottom:10px;
-    margin-left:-20px;
-    text-align:left;
-}
-
-#monitoramento.obra .info-meta {
-    clear:both;
-    display:block;
-    font-size:9pt;
-    text-align:right;
-}
-
-#monitoramento.obra .info-meta ul {
-    border-top:1px solid #ddd;
-}
-
-#monitoramento.obra .info-meta ul li {
-    display:inline-block;
-    padding:3px 10px;
-    border-right:1px solid #ccc;
-}
+#monitoramento.obra .barra .geral li.icon {float:left; margin:0 5px;}
+#monitoramento.obra .barra .geral span.circle {display:block; -webkit-border-radius:100%; -moz-border-radius:100%; -ms-border-radius:100%; -o-border-radius:100%; border-radius:100%; padding:10px;}
+#monitoramento.obra .barra .geral .green {color:#2ecc71;}
+#monitoramento.obra .barra .geral .blue {color:#3498db;}
+#monitoramento.obra .barra .geral .red {color:#e74c3c;}
+#monitoramento.obra .barra .geral .orange {color:#e67e22;}
+#monitoramento.obra .barra .geral .yellow {color:#f1c40f;}
+#monitoramento.obra .barra .geral .dados-obra li.data {display:inline-block; color:#ecf0f1;}
+#monitoramento.obra .barra .geral .dados-obra li.result {display:block; margin-left:58px; text-align:left; width:100%;}
+#monitoramento.obra .barra .geral .dados-obra div.progressbar {background:#fff; display:inline-block; height:10px; width:100px;}
+#monitoramento.obra .barra .geral .dados-obra div.progressbar>.progress {background:#3498db; height:10px; -webkit-border-radius:0;  -moz-border-radius:0; -ms-border-radius:0; -o-border-radius:0; border-radius:0;}
+#monitoramento.obra .barra a .more {color:#fff;}
+#monitoramento.obra .barra .more {position: absolute; top: 10px; right: 5px; background:#1abc9c; -webkit-border-radius:6px; -moz-border-radius:6px; -ms-border-radius:6px; -o-border-radius:6px; border-radius:6px; float:right; height:26px; text-align:center; width:32px; margin:10px 0 10px 15px; font-size:20pt; font-weight:bold; line-height:17pt;}
+
+#monitoramento.obra .head .content {color:#fff; display:inline-block; padding:0 0 0 20px;}
+
+#monitoramento.obra .follow { text-align:center;}
+#monitoramento.obra .follow p.desc {color:#000; text-align:left; width:300px;}
+#monitoramento.obra .follow .social {display:inline-block; margin-bottom:15px;}
+#monitoramento.obra .follow .social li {display:inline-block; margin-right:10px;}
+
+#seguirobraform .main-follow a:hover {text-decoration:none;}
+#seguirobraform .main-follow a i.face, #monitoramento.obra .follow i.face {color:#34495e;}
+#seguirobraform .main-follow a i.twit, #monitoramento.obra .follow i.twit {color:#3498db;}
+#seguirobraform .main-follow a i.email, #monitoramento.obra .follow i.email {color:#e74c3c;}
+
+#monitoramento.obra img.mapa {border-top:1px solid #ccc; border-bottom:1px solid #ccc; margin-bottom:10px;}
+#monitoramento.obra .info {padding-left:20px;}
+
+#monitoramento.obra .botoesparticipar {background:#e74c3c; overflow:hidden; margin-left:10px; margin-top:20px;}
+#monitoramento.obra .botoesparticipar a {display:block; padding:0 10px; color:#fff; height:70px; border-bottom:2px solid #c0392b; text-decoration:none; overflow:hidden;}
+#monitoramento.obra .botoesparticipar a:last-child {border:none;}
+#monitoramento.obra .botoesparticipar .funcao {font-weight:200; font-size:30px; line-height:65px; position:relative;}
+#monitoramento.obra .botoesparticipar div.help-text {margin-left:240px; margin-top:-50px; white-space:nowrap;}
+#monitoramento.obra .botoesparticipar a>i {float:left; line-height:65px; margin-right:10px; color:#34495e;}
+
+#monitoramento.obra .separador {border:2px solid #ddd; margin:20px;}
+#monitoramento.obra .info strong {clear:both; display:block;}
+#monitoramento.obra h3 {text-align:center;}
+#monitoramento.obra .code {text-align:center;}
+#monitoramento.obra .code img {margin-top:10px;}
+#monitoramento.obra .nossodados, #monitoramento.obra .acesso {text-align:center; overflow:hidden; margin-bottom:20px;}
+#monitoramento.obra .acesso a.parceiro {margin-left:23px;}
+#monitoramento.obra .nossodados p.desc {text-align:left;}
+#monitoramento.obra .api, #monitoramento.obra .xml {color:#fff; font-weight:bold; padding:0px 4px; font-size:11pt;}
+#monitoramento.obra .nossodados a:hover {text-decoration:none;}
+#monitoramento.obra .api {background:#27ae60;}
+#monitoramento.obra .xml {background:#e67e22;}
+#monitoramento.obra .updates>p {color:#f1c40f; float:left; font-size:14pt; font-style:italic; font-weight:600; margin-left:36px; margin-top:15px; position:absolute;}
+#monitoramento.obra .govresp {background:#f1c40f; overflow:hidden; display:block; width:800px; margin:0 auto;}
+
+#monitoramento.obra .content-full {margin:0; font-weight:400; width:100%;}
+#monitoramento.obra .content {margin:0; font-weight:400; padding:10px 20px; text-align:justify;}
+#monitoramento.obra .content .titulo {display:block; clear:both; overflow:hidden;}
+#monitoramento.obra .content .text {margin-top:20px; padding:10px;}
+#monitoramento.obra .content .text p {display:table-row;}
+#monitoramento.obra .content .cal {background:url(../img/monitoramento/calendar.png) no-repeat; float:left; height:67px; margin:10px 10px 10px 0; width:50px; text-align:center; text-transform:uppercase; color:#2c3e50;}
+#monitoramento.obra .content .cal .dia { font-size:20pt; font-weight:600; margin-top:20px;}
+#monitoramento.obra .content .cal .mes {margin-top:2px;}
+#monitoramento.obra .content .data {font-size:15pt; font-weight:200; margin-bottom:18px; margin-top:-5px;}
+#monitoramento.obra .content .video {width:435px; float:right; padding:10px; margin:0 10px 5px 0;}
+
+#monitoramento.obra .updates .govresp h2 {color:#2c3e50; font-size:23pt;}
+#monitoramento.obra .updates .govresp.remote>h2 {margin-left:10px;}
+
+#monitoramento.obra .comofunciona, #monitoramento.obra .comofunciona.fechado {background:#16a085; height:60px; overflow:hidden; text-align:center;}
+#monitoramento.obra .comofunciona h2 {margin:0; color:#fff; padding:10px 20px; margin:0; font-weight:200;}
+#monitoramento.obra .comofunciona .cmore {color:#fff; font-size:20pt; margin-top:-40px; margin-right:20px; float:right; background:#1abc9c; width:32px; height:26px; font-weight:bold; line-height:17pt; display:block; -webkit-border-radius:6px; -moz-border-radius:6px; -ms-border-radius:6px; -o-border-radius:6px; border-radius:6px;}
+#monitoramento.obra .comofunciona.aberto {height:600px;}
+#monitoramento.obra .comofunciona .content {padding:10px 20px;}
+
+#monitoramento.obra .primeiro {background:none repeat scroll 0 0 #000; color:#fff;}
+#monitoramento.obra .primeiro>p {padding:10px 20px 0;}
+#monitoramento.obra .primeiro .info-meta ul {background:none repeat scroll 0 0 #fff; border:1px solid #ddd; color:#000;}
+
+#monitoramento.obra p.content {padding-top:10px;}
+#monitoramento.obra .fiscalize {text-align:left;}
+#monitoramento.obra .comente {padding-left:20px; margin:10px 0; display:none;}
+#monitoramento.obra .comente h3 { margin-bottom:10px; margin-left:-20px; text-align:left;}
+
+#monitoramento.obra .info-meta {clear:both; display:block; font-size:9pt; text-align:right;}
+#monitoramento.obra .info-meta ul {border-top:1px solid #ddd;}
+#monitoramento.obra .info-meta ul li {display:inline-block; padding:3px 10px; border-right:1px solid #ccc;}
 
 #monitoramento.obra .stage {margin:0; padding:0; background:#ffffff; color: #34495E;}
 
-#monitoramento.obra .updates {
-    background: #2c3e50;
-    padding:10px;
-    padding-bottom:100px;
-    overflow:hidden;
-    position: relative;
-}
+#monitoramento.obra .updates {background: #2c3e50; padding:10px; padding-bottom:100px; overflow:hidden; position: relative;}
+#monitoramento.obra .updates h2 {color:#f1c40f; margin:0; padding:10px 0;}
 
-#monitoramento.obra .updates h2 {
-    color:#f1c40f;
-    margin:0;
-    padding:10px 0;
-}
+#monitoramento.obra .timeline {margin:0 auto; width:800px; padding-bottom:80px; overflow:hidden;}
+#monitoramento.obra .line {background:#f1c40f; height:100%; left:49.8%; position:absolute; width:4px; z-index: 1 !important;}
+#monitoramento.obra .voltar {margin-bottom:20px; color: #34495E; font-size:12pt;}
+#monitoramento.obra .voltar i {margin-right:10px; color: #34495E;}
 
-#monitoramento.obra .timeline {
-    margin:0 auto;
-    width:800px;
-    padding-bottom:80px;
-    overflow:hidden;
-}
-
-#monitoramento.obra .line {
-    background:#f1c40f;
-    height:100%;
-    left:49.8%;
-    position:absolute;
-    width:4px;
-    z-index: 1 !important;
-}
-
-#monitoramento.obra .voltar {
-    margin-bottom:20px;
-    color: #34495E;
-    font-size:12pt;
-}
-
-#monitoramento.obra .voltar i {
-    margin-right:10px;
-	color: #34495E;
-}
-
-#monitoramento.obra .update {
-    padding:10px;
-    color:#fff;
-    text-align:left;
-    width:350px;
-    display:block;
-    float:left;
-    margin-top:50px;
-    z-index: 900 !important;
-}
-
-#monitoramento.obra .update.direita {
-    margin-top:120px;
-}
-
-#monitoramento.obra .unico .update {
-    width:100%;
-    margin-top:0;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    box-sizing:border-box;
-}
-
-#monitoramento.obra .update a h4 {
-    font-weight:600;
-    margin-bottom:2px;
-    margin-top:0px;
-}
-
-#monitoramento.obra .update a h4 {
-    color:#2c3e50;
-}
-
-#monitoramento.obra .update .seta.direita, #monitoramento.obra .update .seta.esquerda {
-    border-bottom:15px solid transparent;
-    border-top:15px solid transparent;
-    height:0;
-    width:0;
-    margin-top:15px;
-}
-
-#monitoramento.obra .update .seta.esquerda {
-    float:right;
-}
-
-#monitoramento.obra .update .seta.direita {
-    float:left;
-}
-
-#monitoramento.obra .update.aside .seta.esquerda {
-    border-left:15px solid #95a5a6;
-    margin-right:-25px;
-}
-
-#monitoramento.obra .update.aside .seta.direita {
-    border-right:15px solid #95a5a6;
-    margin-left:-25px;
-}
-
-#monitoramento.obra .update.image .seta.esquerda {
-    border-left:15px solid #2ecc71;
-    margin-right:-25px;
-}
-
-#monitoramento.obra .update.image .seta.direita {
-    border-right:15px solid #2ecc71;
-    margin-left:-25px;
-}
-
-#monitoramento.obra .update.video .seta.esquerda {
-    border-left:15px solid #e74c3c;
-    margin-right:-25px;
-}
-
-#monitoramento.obra .update.video .seta.direita {
-    border-right:15px solid #e74c3c;
-    margin-left:-25px;
-}
-
-#monitoramento.obra .update.link .seta.esquerda {
-    border-left:15px solid #f39c12;
-    margin-right:-25px;
-}
-
-#monitoramento.obra .update.link .seta.direita {
-    border-right:15px solid #f39c12;
-    margin-left:-25px;
-}
-
-#monitoramento.obra .update.status .seta.esquerda {
-    border-left:15px solid #f1c40f;
-    margin-right:-25px;
-}
-
-#monitoramento.obra .update.status .seta.direita {
-    border-right:15px solid #f1c40f;
-    margin-left:-25px;
-}
-
-#monitoramento.obra .update .content {
-    margin-bottom:20px;
-}
-
-#monitoramento.obra .update.aside {
-    background:#95a5a6;
-}
-
-#monitoramento.obra .update.video {
-    background:#e74c3c;
-}
-
-#monitoramento.obra .update.image {
-    background:#2ecc71;
-}
-
-#monitoramento.obra .update.link {
-    background:#f39c12;
-}
-
-#monitoramento.obra .update.status {
-    background:#f1c40f;
-}
-
-#monitoramento.obra .update.link a.linkcontent {
-    color:#fff;
-    text-decoration:underline;
-}
-
-#monitoramento.obra .update .user a, #monitoramento.obra .update .user {
-    color:#2c3e50;
-    margin-bottom:20px;
-}
-
-#monitoramento.obra .update .seta .mark {
-    background:#2c3e50;
-    display:block;
-    height:15px;
-    margin-top:-18px;
-    padding-top:21px;
-    width:4px;
-}
-
-#monitoramento.obra .update .seta.esquerda .mark {
-    margin-left:13px;
-}
-
-#monitoramento.obra .update .seta.direita .mark {
-    margin-left:-17px;
-}
-
-#monitoramento.obra .update .seta .dot {
-    background:#f1c40f;
-    width:9px;
-    height:9px;
-    margin-top:-8px;
-    display:block;
-    margin-left:-3px;
-    margin-top: 10px solid #2C3E50;
-    margin-bottom: 10px solid #2C3E50;
-    z-index: 50;
-}
-
-#monitoramento.obra .update .participe {
-    border-top:5px solid #2c3e50;
-    font-weight:bold;
-    margin:0 -10px;
-    padding-left:10px;
-    padding-top:10px;
-    font-size:13pt;
-}
-
-#monitoramento.obra .update .participe li {
-    float:left;
-    margin-right:10px;
-}
-
-#monitoramento.obra .update .participe p {
-    margin:3px 0 0;
-}
-
-#monitoramento.obra .update .participe a {
-    color:#2c3e50;
-    text-decoration:none;
-}
+#monitoramento.obra .update {padding:10px; color:#fff; text-align:left; width:350px; display:block; float:left; margin-top:50px; z-index: 900 !important;}
+#monitoramento.obra .update.direita {margin-top:120px;}
+#monitoramento.obra .unico .update {width:100%; margin-top:0; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+#monitoramento.obra .update a h4 {font-weight:600; margin-bottom:2px; margin-top:0px;}
+#monitoramento.obra .update a h4 {color:#2c3e50;}
+#monitoramento.obra .update .seta.direita, #monitoramento.obra .update .seta.esquerda {border-bottom:15px solid transparent; border-top:15px solid transparent; height:0; width:0; margin-top:15px;}
+#monitoramento.obra .update .seta.esquerda {float:right;}
+#monitoramento.obra .update .seta.direita {float:left;}
+#monitoramento.obra .update.aside .seta.esquerda {border-left:15px solid #95a5a6; margin-right:-25px;}
+#monitoramento.obra .update.aside .seta.direita {border-right:15px solid #95a5a6; margin-left:-25px;}
+#monitoramento.obra .update.image .seta.esquerda {border-left:15px solid #2ecc71; margin-right:-25px;}
+#monitoramento.obra .update.image .seta.direita {border-right:15px solid #2ecc71; margin-left:-25px;}
+#monitoramento.obra .update.video .seta.esquerda {border-left:15px solid #e74c3c; margin-right:-25px;}
+#monitoramento.obra .update.video .seta.direita {border-right:15px solid #e74c3c; margin-left:-25px;}
+#monitoramento.obra .update.link .seta.esquerda {border-left:15px solid #f39c12; margin-right:-25px;}
+#monitoramento.obra .update.link .seta.direita {border-right:15px solid #f39c12; margin-left:-25px;}
+#monitoramento.obra .update.status .seta.esquerda {border-left:15px solid #f1c40f; margin-right:-25px;}
+#monitoramento.obra .update.status .seta.direita {border-right:15px solid #f1c40f; margin-left:-25px;}
+#monitoramento.obra .update .content {margin-bottom:20px;}
+#monitoramento.obra .update.aside {background:#95a5a6;}
+#monitoramento.obra .update.video {background:#e74c3c;}
+#monitoramento.obra .update.image {background:#2ecc71;}
+#monitoramento.obra .update.link {background:#f39c12;}
+#monitoramento.obra .update.status {background:#f1c40f;}
+#monitoramento.obra .update.link a.linkcontent {color:#fff; text-decoration:underline;}
+#monitoramento.obra .update .user a, #monitoramento.obra .update .user {color:#2c3e50; margin-bottom:20px;}
+#monitoramento.obra .update .seta .mark {background:#2c3e50; display:block; height:15px; margin-top:-18px; padding-top:21px; width:4px;}
+#monitoramento.obra .update .seta.esquerda .mark {margin-left:13px;}
+#monitoramento.obra .update .seta.direita .mark {margin-left:-17px;}
+#monitoramento.obra .update .seta .dot {background:#f1c40f; width:9px; height:9px; margin-top:-8px; display:block; margin-left:-3px; margin-top: 10px solid #2C3E50; margin-bottom: 10px solid #2C3E50; z-index: 50;}
+#monitoramento.obra .update .participe {border-top:5px solid #2c3e50; font-weight:bold; margin:0 -10px; padding-left:10px; padding-top:10px; font-size:13pt;}
+#monitoramento.obra .update .participe li {float:left; margin-right:10px;}
+#monitoramento.obra .update .participe p {margin:3px 0 0;}
+#monitoramento.obra .update .participe a {color:#2c3e50; text-decoration:none;}
 
 .masonry-brick {z-index: 999 !important;}
 
-#monitoramento.obra .comment-item {
-    width:100%;
-    margin-top:25px;
-    background-color:#fff;
-}
+#monitoramento.obra .comment-item {width:100%; margin-top:25px; background-color:#fff;}
+#monitoramento.obra .commentbutton {margin-right:15px;}
+#monitoramento.obra .comentario {min-height:60px;}
+#monitoramento.obra .comentario .usuario {width:75px; float:left; height:75px; text-align:center; vertical-align:middle;}
+#monitoramento.obra .comentario .post-info .date {font-size:7pt; display:inline;}
+#monitoramento.obra .comentario .post-info .name {font-size:8pt; display:inline;}
+#monitoramento.obra .comentario .comentario-user-image {width:36px; margin-top:6px;}
+.fancybox-inner .commentformdiv {width:780; background-color:transparent; min-height:200px; float:left; margin-top:20px; padding:10px;}
+.fancybox-inner .commentformdiv textarea {width:760px; display:block;}
 
-#monitoramento.obra .commentbutton {
-    margin-right:15px;
-}
+.iconcenter {margin:auto; top:40%; left:0; right:0; bottom:0; position:relative; width:30%; height:50%; overflow:hidden; text-align:center; color:#fff; min-height:60px;}
+.waiticon {padding:4px; border-radius:4px; box-shadow:1px 1px 6px #c5c5c5; margin:auto; top:0; left:0; right:0; bottom:0; position:fixed; width:30%; height:50%; background-color:rgba(21, 45, 68, 0.5); min-height:120px;}
 
-#monitoramento.obra .comentario {
-    min-height:60px;
-}
-
-#monitoramento.obra .comentario .usuario {
-    width:75px;
-    float:left;
-    height:75px;
-    text-align:center;
-    vertical-align:middle;
-}
-
-#monitoramento.obra .comentario .post-info .date {
-    font-size:7pt;
-    display:inline;
-}
-
-#monitoramento.obra .comentario .post-info .name {
-    font-size:8pt;
-    display:inline;
-}
-
-#monitoramento.obra .comentario .comentario-user-image {
-    width:36px;
-    margin-top:6px;
-}
-
-.fancybox-inner .commentformdiv {
-    width:780;
-    background-color:transparent;
-    min-height:200px;
-    float:left;
-    margin-top:20px;
-    padding:10px;
-}
-
-.fancybox-inner .commentformdiv textarea {
-    width:760px;
-    display:block;
-}
-
-.iconcenter {
-    margin:auto;
-    top:40%;
-    left:0;
-    right:0;
-    bottom:0;
-    position:relative;
-    width:30%;
-    height:50%;
-    overflow:hidden;
-    text-align:center;
-    color:#fff;
-    min-height:60px;
-}
-
-.waiticon {
-    padding:4px;
-    border-radius:4px;
-    box-shadow:1px 1px 6px #c5c5c5;
-    margin:auto;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    position:fixed;
-    width:30%;
-    height:50%;
-    background-color:rgba(21, 45, 68, 0.5);
-    min-height:120px;
-}
-
-#monitoramento.obra .needlogin {
-    text-align:center;
-    margin-top:50px;
-}
-
-#monitoramento.obra .commentformdiv {
-    width:100%;
-    background-color:#fff;
-    min-height:200px;
-    float:left;
-    margin-top:20px;
-    padding:10px 10px 0px 10px;
-}
-
-#monitoramento.obra .commentformdiv textarea {
-    width:760px;
-}
-
-#monitoramento.obra .replied {
-    margin-left:-120px;
-    position:absolute;
-}
-
-#monitoramento.obra .depth {
-    margin-left:60px;
-    position:relative;
-}
-
-#monitoramento.obra .comment-item, #monitoramento.obra .share-item {
-    display:inline-block;
-}
-
-.shareobra .share {
-    display:block;
-    margin-bottom:6px;
-    text-align:left;
-}
-
-#monitoramento.obra .curtir {
-    background:url(../img/monitoramento/curtir.png) no-repeat;
-    height:25px;
-    width:25px;
-}
-
-#monitoramento.obra .curtir:hover, #monitoramento.obra .curtir.voted {
-    background-position:-25px 0;
-}
-
-#monitoramento .suplementar {
-    color:#fff;
-    border-top:4px solid #27ae60;
-}
-
+#monitoramento.obra .needlogin {text-align:center; margin-top:50px;}
+#monitoramento.obra .commentformdiv {width:100%; background-color:#fff; min-height:200px; float:left; margin-top:20px; padding:10px 10px 0px 10px;}
+#monitoramento.obra .commentformdiv textarea {width:760px;}
+#monitoramento.obra .replied {margin-left:-120px; position:absolute;}
+#monitoramento.obra .depth {margin-left:60px; position:relative;}
+#monitoramento.obra .comment-item, #monitoramento.obra .share-item {display:inline-block;}
+.shareobra .share {display:block; margin-bottom:6px; text-align:left;}
+#monitoramento.obra .curtir {background:url(../img/monitoramento/curtir.png) no-repeat; height:25px; width:25px;}
+#monitoramento.obra .curtir:hover, #monitoramento.obra .curtir.voted {background-position:-25px 0;}
+#monitoramento .suplementar {color:#fff; border-top:4px solid #27ae60;}
 #monitoramento .suplementar h2 {font-weight:400; color:#27ae60; text-align:left;margin:10px 20px;}
-
-#monitoramento .suplementar .help {
-    padding:10px 20px;
-}
-
-#monitoramento .suplementar label {
-    color:#2ecc71;
-    font-size:14pt;
-}
-
-#monitoramento .suplementar .space textarea {
-    font-size:13pt;
-    height:190px;
-    width:100%;
-}
-
-#monitoramento .suplementar #part-geral>input {
-    width:100%;
-    font-size:13pt;
-    margin-bottom:20px;
-}
-
-#monitoramento .suplementar .anexos {
-    margin:20px 0;
-    text-align:center;
-}
+#monitoramento .suplementar .help {padding:10px 20px;}
+#monitoramento .suplementar label {color:#2ecc71; font-size:14pt;}
+#monitoramento .suplementar .space textarea {font-size:13pt; height:190px; width:100%;}
+#monitoramento .suplementar #part-geral>input {width:100%; font-size:13pt; margin-bottom:20px;}
+#monitoramento .suplementar .anexos {margin:20px 0; text-align:center;}
 
 #monitoramento .suplementar .anexos a {color:#34495E; display:inline-block; width:140px; text-decoration:none; margin-left:20px;}
 .lead {color:#34495E; font-size: 26px; font-weight: 400; line-height: 1.2;}
-#monitoramento .suplementar .anexos .help-block {
-    color:#fff;
-    font-style:italic;
-}
+#monitoramento .suplementar .anexos .help-block {color:#fff; font-style:italic;}
+#monitoramento .suplementar .anexos a:hover {text-decoration:none;}
+#monitoramento .suplementar .anexos a>i {color:#2ecc71; background:#2c3e50; padding:10px; float:left; -webkit-border-radius:100%; -moz-border-radius:100%; -ms-border-radius:100%; -o-border-radius:100%; border-radius:100%;}
+#monitoramento .suplementar .anexos a>p {margin-left:50px; text-align:left;}
+#monitoramento .suplementar .space {padding:10px 20px;}
+#monitoramento .suplementar .btn-group {display:block; clear:both; margin:20px 0;}
+#monitoramento .suplementar .foto, #monitoramento .suplementar .video {margin-top:10px; text-align:left;}
 
-#monitoramento .suplementar .anexos a:hover {
-    text-decoration:none;
-}
-
-#monitoramento .suplementar .anexos a>i {
-    color:#2ecc71;
-    background:#2c3e50;
-    padding:10px;
-    float:left;
-    -webkit-border-radius:100%;
-    -moz-border-radius:100%;
-    -ms-border-radius:100%;
-    -o-border-radius:100%;
-    border-radius:100%;
-}
-
-#monitoramento .suplementar .anexos a>p {
-    margin-left:50px;
-    text-align:left;
-}
-
-#monitoramento .suplementar .space {
-    padding:10px 20px;
-}
-
-#monitoramento .suplementar .btn-group {
-    display:block;
-    clear:both;
-    margin:20px 0;
-}
-
-#monitoramento .suplementar .foto, #monitoramento .suplementar .video {
-    margin-top:10px;
-    text-align:left;
-}
-
-#monitoramento .suplementar .semCadastro, #monitoramento .suplementar .comCadastro {
-	color:#2c3e50;
-    padding:20px;
-    margin-bottom:10px;
-}
-
+#monitoramento .suplementar .semCadastro, #monitoramento .suplementar .comCadastro {color:#2c3e50; padding:20px; margin-bottom:10px;}
 .comCadastro, .semCadastro, .comCadastro .input-append, .semCadastro .resposta {width: 100% !important;}
- 
 .comCadastro .input-append input[type="password"] {width: 78% !important;}
-
 .semCadastro input[type="text"] {width: 95% !important;}
 
-#monitoramento .suplementar .resposta {
-    margin-bottom:20px;
-}
+#monitoramento .suplementar .resposta {margin-bottom:20px;}
+#monitoramento .suplementar big {font-weight:400; font-size:20pt;}
+.form-footer {width:100%; margin-top:15px; text-align:right;}
+.main-follow {text-align:center;}
+.main-follow a {margin-left:10px;}
+.follow {margin-top:20px;}
 
-#monitoramento .suplementar big {
-    font-weight:400;
-    font-size:20pt;
-}
+#monitoramento.obra .vote {width:50px;}
+#monitoramento.obra .vote .score {font-size:13pt; font-weight:bold;}
+#monitoramento.obra .more-content.fechado {color:#fff; height:0; overflow:hidden; padding:0 30px;}
+#monitoramento.obra .more-content.aberto {color:#fff; height:auto; overflow:hidden; padding:10px 30px;}
 
-.form-footer {
-    width:100%;
-    margin-top:15px;
-    text-align:right;
-}
+.acesso {text-align:center; padding-bottom:20px;}
+#monitoramento .api-content {color:#fff; border-top:4px solid #27ae60;}
+#monitoramento .api-content h2, #monitoramento .api-content h3 {color:#27ae60; text-align:left; margin:10px 20px;}
+#monitoramento .api-content h2 {font-weight:400;}
+#monitoramento .api-content h3 {font-weight:200;}
+#monitoramento .api-content p, #monitoramento .api-content dl {padding:10px 20px;}
+#monitoramento .api-content blockquote {margin-left:20px;}
+#monitoramento .api-content .close {float:right; font-size:16pt; font-weight:bold; height:26px; line-height:17pt; text-align:center; margin-right:28px; margin-bottom:28px;}
 
-.main-follow {
-    text-align:center;
-}
-
-.main-follow a {
-    margin-left:10px;
-}
-
-.follow {
-    margin-top:20px;
-}
-
-#monitoramento.obra .vote {
-    width:50px;
-}
-
-#monitoramento.obra .vote .score {
-    font-size:13pt;
-    font-weight:bold;
-}
-
-#monitoramento.obra .more-content.fechado {
-    color:#fff;
-    height:0;
-    overflow:hidden;
-    padding:0 30px;
-}
-
-#monitoramento.obra .more-content.aberto {
-    color:#fff;
-    height:auto;
-    overflow:hidden;
-    padding:10px 30px;
-}
-
-.acesso {
-    text-align:center;
-    padding-bottom:20px;
-}
-
-#monitoramento .api-content {
-    color:#fff;
-    border-top:4px solid #27ae60;
-}
-
-#monitoramento .api-content h2, #monitoramento .api-content h3 {
-    color:#27ae60;
-    text-align:left;
-    margin:10px 20px;
-}
-
-#monitoramento .api-content h2 {
-    font-weight:400;
-}
-
-#monitoramento .api-content h3 {
-    font-weight:200;
-}
-
-#monitoramento .api-content p, #monitoramento .api-content dl {
-    padding:10px 20px;
-}
-
-#monitoramento .api-content blockquote {
-    margin-left:20px;
-}
-
-#monitoramento .api-content .close {
-    float:right;
-    font-size:16pt;
-    font-weight:bold;
-    height:26px;
-    line-height:17pt;
-    text-align:center;
-    margin-right:28px;
-    margin-bottom:28px;
-}
-
-@media (max-width: 767px) {
-    #monitoramento .container {
-    overflow:visible;
-}
-
-}.comment-count-item {
-    margin-right:10px;
-}
-
-#monitoramento #deixarseguirobraform .form label, #monitoramento #seguirobraform .form label {
-    min-width:180px;
-    text-align:right;
-    margin-right:5px;
-}
-
+.comment-count-item {margin-right:10px;}
+#monitoramento #deixarseguirobraform .form label, #monitoramento #seguirobraform .form label {min-width:180px; text-align:right; margin-right:5px;}
 
 
 /*============================== Esquema de cores experimental detalhe obra / Modificações Lucile aos estilos originais ==============================*/
@@ -3601,16 +2581,10 @@ h3.respgov { font-size:22px; color:#000;}
 .head .menu li {margin:80px 0 0 0; padding:0 0 0 40px; float: right; width: auto;}
 .head .menu li a {display:inline; float:none; margin-right:10px; font-size:12pt; padding-top:51px;}
 
-
 #monitoramento .timeline {margin:0; padding:0;}
-
-
-
 
 #monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video, #monitoramento .timeline .link, 
 #monitoramento.obra .update.status   {background: #E6EBEC !important; color: #797979 !important; z-index: 999 !important;}
-
-
 
 #monitoramento .timeline .aside .content p {font-size: 12px !important;}
 
@@ -3624,25 +2598,16 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento.obra .update.aside .seta.direita,
 #monitoramento.obra .update.image .seta.direita,
 #monitoramento.obra .update.link .seta.direita,
-#monitoramento.obra .update.video .seta.direita {
-    border-right:15px solid #E6EBEC;
-}
+#monitoramento.obra .update.video .seta.direita {border-right:15px solid #E6EBEC;}
 
-#monitoramento.obra .updates {
-    background:  #ffffff !important;}
+#monitoramento.obra .updates {background:  #ffffff !important;}
 
 #monitoramento.obra .update.link a.linkcontent {color: #34495E;}
 
-
 #monitoramento .info,
 #monitoramento .info h3,
-#monitoramento .info p {
-    color:#fff !important;
-}
-
-#monitoramento.obra .update .participe {
-    border-top:5px solid #ffffff;
-}
+#monitoramento .info p {color:#fff !important;}
+#monitoramento.obra .update .participe {border-top:5px solid #ffffff;}
 
 #monitoramento.obra .update .seta .mark {display: block; margin:-10px 0 0 0; padding:8px 0; width: 4px; height: 6px; background:#ffffff; z-index: 1 !important;}
 
@@ -3653,49 +2618,30 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento.obra .govresp {margin-bottom: 0px !important; background-color: #2C3E50;}
 #monitoramento.obra .govresp .content {margin-bottom: 0px !important}
 
-
 #monitoramento.obra .govresp,
-#monitoramento.obra .govresp h2 {margin-bottom: 6px;
-color: #2ECC69 !important;}
+#monitoramento.obra .govresp h2 {margin-bottom: 6px; color: #2ECC69 !important;}
 #monitoramento.obra .govresp h2 a {color: #2ECC69}
 
 #monitoramento.obra .govresp p {color: #ffffff !important;}
 #monitoramento.obra .updates>p {display: none;}
 
-#monitoramento.obra .line {
-    background:#2C3E50;
-}
+#monitoramento.obra .line {background:#2C3E50;}
 
-
-#monitoramento.obra .content .cal {
-margin-right: 20px;
-    background:url(../img/monitoramento/calendar_grun.png) no-repeat;
-    color:#2ECC69;
-}
+#monitoramento.obra .content .cal {margin-right: 20px; background:url(../img/monitoramento/calendar_grun.png) no-repeat; color:#2ECC69;}
 
 #monitoramento.obra .comofunciona .content {text-align: center; }
 #monitoramento.obra .comofunciona .content img {margin:10px auto 0 auto; }
 
-
-#monitoramento.obra .comofunciona .cmore {
-cursor: pointer;
-}
+#monitoramento.obra .comofunciona .cmore {cursor: pointer;}
 
 #monitoramento.obra .content .video {margin:0 0 10px 10px; padding:0;  position: relative;  height: auto !important;}
 .video-obras {margin:0; padding:0; width: 100% !important;  float: right;}
 
 ul.thumbnails {margin:0; padding:0; }
-.thumbnails  li {margin-top: -0 !important;
-    margin-bottom: 10 !important;
-}
+.thumbnails  li {margin-top: -0 !important; margin-bottom: 10 !important;}
 
-.thumbnails  li:nth-of-type(3n+1) {
-    margin-left: 0px !important;
-}
-
-.thumbnails  li:nth-of-type(3n+1) {
-    margin-left: 0px !important;
-}
+.thumbnails  li:nth-of-type(3n+1) {margin-left: 0px !important;}
+.thumbnails  li:nth-of-type(3n+1) {margin-left: 0px !important;}
 
 
 #monitoramento.obra .info {padding:10px;}
@@ -3705,7 +2651,6 @@ ul.thumbnails {margin:0; padding:0; }
 #monitoramento.obra .botoesparticipar {margin-left:0px; margin-top:0;}
 
 #monitoramento.obra .update .content h3 {text-align: left; color: #34495E; font-weight: bold; margin-left: 0;}
-
 
 .messageLayer {margin:0; padding:0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgba(0,0,0, 0.8); z-index: 999; overflow: hidden;}
 .messageLayer p.carregando {position: absolute; top: 50%; left: 50%; margin:-70px 0 0 -50px; padding:0; text-align: center; width: 140px; height: 100px; font-size: 18px; color: #ffffff; background: transparent url(../img/monitoramento/loadingSquares.gif) no-repeat center center; font-weight: bold;}
@@ -3760,20 +2705,15 @@ Begin media queries ============================================================
 	.bloco {display:block; height:110px; margin-bottom:20px; padding:25px 20px;}
 	footer ul {padding-top:0px;}
 	footer li {display:block;}
+
+	#monitoramento.obra .barra .geral li.field {width: 90%;  border-right: 0px; }
+	#monitoramento.obra .barra .geral li:nth-of-type(2).field {width:90%;}
+	#monitoramento.obra .barra .geral li:nth-of-type(3).field {width:90%; }
+	#monitoramento.obra .barra .geral li:nth-of-type(4).field {width:90%; }
+	#monitoramento.obra .barra .geral li:nth-of-type(4).field  li.empcontratadas {white-space: normal !important; width: 100%;}
+	#monitoramento .container {overflow:visible;}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
