@@ -92,6 +92,7 @@ a  {color:#d12d33;}
 .nova .menu li {display:inline-block; list-decoration:none; margin-right:20px; line-height: 40px;}
 
 .nova .menuContainer .procurar {text-align:right;}
+.nova .menuContainer .procurar .loginLogout { line-height: 40px; padding-right: 20px;}
 .nova .menuContainer .procurar .input-append {margin:0;}
 .nova .menuContainer .procurar .navbar-search {margin: 5px; float: right;}
 .nova .menuContainer  a {color:#4d4d4d; font-size:1em;}
