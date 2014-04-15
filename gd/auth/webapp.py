@@ -386,6 +386,24 @@ def signup():
 
             utils.send_welcome_email(user)
 
+
+            # TEMP Auto Login new User
+            if username and password:
+                try:
+                    user = authapi.login(username, password)
+                except authapi.UserNotFound:
+                    flash(_(u'Wrong user or password'), 'alert-error')
+                    gonext = False
+                except authapi.UserAndPasswordMissmatch:
+                    flash(_(u'Wrong user or password'), 'alert-error')
+                    gonext = False
+                # else:
+                    # msg.ok({ 'user': user })
+                    # flash(_(u'Login successfuly!'), 'alert-success')
+
+            # ========================
+
+
             flash(_(u'Your user was registered with successful!'), 'alert-success')
             ret_code = 0
         except authapi.UserExists:
