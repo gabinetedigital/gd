@@ -35,11 +35,11 @@ from flask import url_for, abort
 from flaskext.uploads import UploadConfiguration, UploadSet, IMAGES
 from gd import conf
 from gd.utils import phpass, dumps
-from sqlalchemy import not_, desc, event
+from sqlalchemy import not_, desc, event, create_engine
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-Session = scoped_session(sessionmaker(autoflush=True)) 
+Session = scoped_session(sessionmaker(autoflush=True))
 # elixir.scoped_session = Session
 scoped_session = Session
 
@@ -555,8 +555,9 @@ def get_or_404(model, **kwargs):
 
 # Database setup
 
-metadata.bind = conf.DATABASE_URI
-metadata.bind.echo = conf.DEBUG
+metadata.bind = create_engine(conf.DATABASE_URI, pool_recycle=1800, pool_size=15, echo=conf.DEBUG)
+# metadata.bind = conf.DATABASE_URI
+# metadata.bind.echo = conf.DEBUG
 setup_all(__name__ == '__main__')
 
 
