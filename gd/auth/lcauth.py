@@ -25,35 +25,42 @@ from gd import conf
 from gd import auth
 
 
-fbauth = Blueprint('fbauth', __name__)
-facebook = OAuth().remote_app('facebook',
-    base_url='https://graph.facebook.com/',
+cidadao = Blueprint('logincidadao', __name__,
+    template_folder='templates',
+    static_folder='static')
+
+lc = OAuth().remote_app('lc',
+    base_url='http://meu.hml.procergs.reders/',
     request_token_url=None,
-    access_token_url='/oauth/access_token',
-    authorize_url='https://www.facebook.com/dialog/oauth',
-    consumer_key=conf.FACEBOOK_APP_ID,
-    consumer_secret=conf.FACEBOOK_APP_SECRET,
-    request_token_params={'scope': 'email,user_location,user_about_me,user_birthday,user_hometown,user_website'}
+    access_token_url='/oauth/v2/token',
+    authorize_url='/oauth/v2/auth',
+    consumer_key=conf.LC_APP_ID,
+    consumer_secret=conf.LC_APP_SECRET,
+    request_token_params={'scope': 'id,username,full_name,name,cpf,birthdate,email,city'}
 )
 
 
-@fbauth.route('/')
+@cidadao.route('/')
+def auth_index():
+    return redirect(url_for('.login'))
+
+@cidadao.route('/login')
 def login():
     """Entry point for the facebook login feature"""
     next_url = request.values.get('next') or request.referrer or None
-    return facebook.authorize(callback=conf.BASE_URL+url_for(
-            '.facebook_authorized', next=next_url))
+    return lc.authorize(callback=conf.BASE_URL+url_for('.lc_authorized',
+        next=next_url, _external=True))
 
 
-@fbauth.route('/data')
+@cidadao.route('/data')
 def data():
-    return str(facebook.get('/me').data)
+    return str(lc.get('/api/v1/person').data)
 
 
-@fbauth.route('/authorized')
-@facebook.authorized_handler
-def facebook_authorized(resp):
-    """Callback that is fired by facebook after user acceptance"""
+@cidadao.route('/authorized')
+@lc.authorized_handler
+def lc_authorized(resp):
+    """Callback that is fired by login cidadao after user acceptance"""
     if resp is None:
         return 'Access denied: reason=%s error=%s' % (
             request.values['error_reason'],
@@ -66,7 +73,7 @@ def facebook_authorized(resp):
     session['oauth_token'] = (resp['access_token'], '')
 
     # Let's log the user in if he/she has already signed up.
-    userdata = facebook.get('/me')
+    userdata = lc.get('/api/v1/person')
 
     username = userdata.data['email']
     print "LOGANDO VIA FACE:", username
@@ -84,46 +91,46 @@ def facebook_authorized(resp):
     return resp
 
 
-@facebook.tokengetter
+@lc.tokengetter
 def get_facebook_oauth_token():
     """Function responsible for getting the facebook token"""
     return session.get('oauth_token')
 
 
-def checkfblogin():
-    try:
-        if request.cookies.get('connect_type') == 'social_f':
-            req = facebook.get('/me')
-            print "\n\nFACEBOOK DATA FROM USER /me =================================="
-            print req.data
-        else:
-            return {}
-    except :
-        return {}
+# def checkfblogin():
+#     try:
+#         if request.cookies.get('connect_type') == 'social_f':
+#             req = lc.get('/me')
+#             print "\n\nFACEBOOK DATA FROM USER /me =================================="
+#             print req.data
+#         else:
+#             return {}
+#     except :
+#         return {}
 
-    if 'error' in req.data or not 'oauth_token' in session:
-        return {}
+#     if 'error' in req.data or not 'oauth_token' in session:
+#         return {}
 
-    # The following data will be used to fill a part of the signup form
-    # in the first user's login.
-    user = req.data
+#     # The following data will be used to fill a part of the signup form
+#     # in the first user's login.
+#     user = req.data
 
-    print "\n\n ======================================= FACEBOOK DATA ==================================="
-    print user
-    print " ======================================= FACEBOOK DATA ===================================\n\n"
+#     print "\n\n ======================================= FACEBOOK DATA ==================================="
+#     print user
+#     print " ======================================= FACEBOOK DATA ===================================\n\n"
 
-    location = user['location']['name'].split(', ', 1) + ['']
-    states = dict((x[1], x[0]) for x in auth.choices.FULL_STATES)
-    city, state = city, state = location[:2]
-    gender = user.get('gender') and user['gender'][0] or None
-    link = user['link']
-    return {
-        'id': user['id'],
-        'name': user['name'],
-        'email': user['email'],
-        'email_confirmation': user['email'],
-        'gender': gender,
-        'facebook': link[link.rindex('/')+1:],
-        # 'city': city,
-        # 'state': states.get(state),
-    }
+#     location = user['location']['name'].split(', ', 1) + ['']
+#     states = dict((x[1], x[0]) for x in auth.choices.FULL_STATES)
+#     city, state = city, state = location[:2]
+#     gender = user.get('gender') and user['gender'][0] or None
+#     link = user['link']
+#     return {
+#         'id': user['id'],
+#         'name': user['name'],
+#         'email': user['email'],
+#         'email_confirmation': user['email'],
+#         'gender': gender,
+#         'facebook': link[link.rindex('/')+1:],
+#         # 'city': city,
+#         # 'state': states.get(state),
+#     }

@@ -5,6 +5,7 @@
 #   Author: Lincoln de Sousa <lincoln@gg.rs.gov.br>
 #   Author: Rodrigo Sebastiao da Rosa <rodrigo-rosa@procergs.rs.gov.br>
 #   Author: Thiago Silva <thiago@metareload.com>
+#   Author: Sérgio Berlotto <sergio.berlotto@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -70,16 +71,14 @@ app.config.from_object(conf)
 #     print "Ocorreu um ERRO ao configurar via wordpress!!"
 
 # ===> imports that depends the conf module <===
-from gd.auth.webapp import auth
-from gd.auth.fbauth import fbauth
-from gd.auth.twauth import twauth
+from gd.auth.lcauth import cidadao
 from gd.admin import admin
 # ===> imports that depends the conf module <===
 
 
-app.register_blueprint(auth, url_prefix='/auth')
-app.register_blueprint(fbauth, url_prefix='/auth/fb')
-app.register_blueprint(twauth, url_prefix='/auth/tw')
+app.register_blueprint(cidadao, url_prefix='/auth')
+# app.register_blueprint(fbauth, url_prefix='/auth/fb')
+# app.register_blueprint(twauth, url_prefix='/auth/tw')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
 app.register_blueprint(govresponde, url_prefix='/govresponde')
 app.register_blueprint(govescuta, url_prefix='/govescuta')

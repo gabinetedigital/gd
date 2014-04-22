@@ -28,8 +28,9 @@ from gd import utils
 from gd import conf
 from gd.utils import msg
 from gd import auth as authapi
-from gd.auth.fbauth import checkfblogin #, facebook as remote_facebook
-from gd.auth.twauth import checktwlogin, twitter as remote_twitter
+# from gd.auth.fbauth import checkfblogin #, facebook as remote_facebook
+# from gd.auth.twauth import checktwlogin, twitter as remote_twitter
+from gd.auth import lcauth as lc
 from gd.auth.forms import SignupForm, ProfileForm, ChangePasswordForm
 from gd.model import Upload, session as dbsession, User
 from gd.content.wp import wordpress
@@ -102,50 +103,51 @@ def social(form, show=True, default=None):
 
 @auth.route('/login/')
 def login():
-    """Renders the login form"""
-    if authapi.is_authenticated():
-        return redirect(url_for('.profile'))
-    # signup_process = g.signup_process
 
-    template = "login.html"
-    if "popup" in request.args:
-        template = "login-popup.html"
+    # """Renders the login form"""
+    # if authapi.is_authenticated():
+    #     return redirect(url_for('.profile'))
+    # # signup_process = g.signup_process
 
-    if 'twitter_token' in session:
-        del session['twitter_token']
+    # template = "login.html"
+    # # if "popup" in request.args:
+    # #     template = "login-popup.html"
 
-    next = request.args.get('next') or request.referrer
-    if next and '/auth/' in next :
-        next = ""
-    print 'NEXT=', request.args.get('next')
-    print 'NEXT=', next
-    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-    try:
-        twitter_hash_cabecalho = utils.twitts()
-    except KeyError:
-        twitter_hash_cabecalho = ""
+    # if 'oauth_token' in session:
+    #     del session['oauth_token']
 
-    resp = make_response(
-     render_template(template, next=next,
-        # signup_process=signup_process,
-        menu=menus,
-        twitter_hash_cabecalho=twitter_hash_cabecalho,
-        sidebar=wordpress.getSidebar,
-     )
-    )
-    resp.set_cookie('connect_type', '')
-    return resp
+    # next = request.args.get('next') or request.referrer
+    # if next and '/auth/' in next :
+    #     next = ""
+    # print 'NEXT=', request.args.get('next')
+    # print 'NEXT=', next
+    # menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    # try:
+    #     twitter_hash_cabecalho = utils.twitts()
+    # except KeyError:
+    #     twitter_hash_cabecalho = ""
+
+    # resp = make_response(
+    #  render_template(template, next=next,
+    #     # signup_process=signup_process,
+    #     menu=menus,
+    #     twitter_hash_cabecalho=twitter_hash_cabecalho,
+    #     sidebar=wordpress.getSidebar,
+    #  )
+    # )
+    # resp.set_cookie('connect_type', '')
+    # return resp
 
 
-@auth.route('/lost_password/')
-def lost_password():
-    """Renders the lost password form"""
-    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-    try:
-        twitter_hash_cabecalho = utils.twitts()
-    except KeyError:
-        twitter_hash_cabecalho = ""
-    return render_template('lost_password.html', menu=menus, sidebar=wordpress.getSidebar, twitter_hash_cabecalho=twitter_hash_cabecalho)
+# @auth.route('/lost_password/')
+# def lost_password():
+#     """Renders the lost password form"""
+#     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+#     try:
+#         twitter_hash_cabecalho = utils.twitts()
+#     except KeyError:
+#         twitter_hash_cabecalho = ""
+#     return render_template('lost_password.html', menu=menus, sidebar=wordpress.getSidebar, twitter_hash_cabecalho=twitter_hash_cabecalho)
 
 
 @auth.route('/logon', methods=('POST',))
