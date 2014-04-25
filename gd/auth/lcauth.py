@@ -25,7 +25,8 @@ from gd import conf
 from gd import auth
 
 
-cidadao = Blueprint('logincidadao', __name__,
+#Login Cidadao
+cidadao = Blueprint('auth', __name__,
     template_folder='templates',
     static_folder='static')
 
@@ -33,10 +34,12 @@ lc = OAuth().remote_app('lc',
     base_url='http://meu.hml.procergs.reders/',
     request_token_url=None,
     access_token_url='/oauth/v2/token',
+    access_token_method='GET',
+    access_token_params={'scope': 'id username full_name name cpf birthdate email city', 'response_type': 'code', 'grant_type': 'authorization_code'},
+    request_token_params={'scope': 'id username full_name name cpf birthdate email city', 'response_type': 'code', 'grant_type': 'authorization_code'},
     authorize_url='/oauth/v2/auth',
     consumer_key=conf.LC_APP_ID,
     consumer_secret=conf.LC_APP_SECRET,
-    request_token_params={'scope': 'id,username,full_name,name,cpf,birthdate,email,city'}
 )
 
 
@@ -48,13 +51,19 @@ def auth_index():
 def login():
     """Entry point for the facebook login feature"""
     next_url = request.values.get('next') or request.referrer or None
-    return lc.authorize(callback=conf.BASE_URL+url_for('.lc_authorized',
-        next=next_url, _external=True))
+    return lc.authorize(callback=url_for('.lc_authorized',next=next_url, _external=True))
 
+
+@cidadao.route('/logout')
+def logout():
+    next_url = request.values.get('next') or request.referrer or None
+    auth.logout()
+    return redirect( next_url )
 
 @cidadao.route('/data')
 def data():
-    return str(lc.get('/api/v1/person').data)
+    print "RETUNING USER DATA >>>>>>>>>>>"
+    return str(lc.get('/api/v1/person', data={"access_token" : session.get('access_token')[0] }).data)
 
 
 @cidadao.route('/authorized')
@@ -69,32 +78,36 @@ def lc_authorized(resp):
 
     # This is the flag that says that a user is logged in from a social
     # network!
-    print "========>>>>> OAUTH_TOKEN"
-    session['oauth_token'] = (resp['access_token'], '')
+    print "========>>>>> access_token"
+    session['access_token'] = (resp['access_token'], '')
 
     # Let's log the user in if he/she has already signed up.
-    userdata = lc.get('/api/v1/person')
+    userdata = lc.get('/api/v1/person', data={"access_token" : resp['access_token'] } )
+
+    import pdb
+    pdb.set_trace()
 
     username = userdata.data['email']
-    print "LOGANDO VIA FACE:", username
+    print "LOGANDO VIA LOGIN CIDADAO:", username
     try:
-        auth.login(username, None, fromsocial=True)
-        print "FACE LOGADO!"
+        auth.login(username, "", userdata.data, resp['access_token'], resp['refresh_token'])
+        print "LOGIN CIDADAO LOGADO!"
     except auth.UserNotFound:
         print "NAO LOGADO, CADASTRANDO..."
-        resp = make_response( redirect(url_for('auth.signup')) )
-        resp.set_cookie('connect_type', 'social_f')
-        return resp
+        # resp = make_response( redirect(url_for('auth.signup')) )
+        # resp.set_cookie('connect_type', 'social_f')
+        return redirect(url_for('auth.signup'))
 
-    resp = make_response( redirect(url_for('index')) )
-    resp.set_cookie('connect_type', 'social_f')
-    return resp
+    # resp = make_response( redirect(url_for('index')) )
+    # resp.set_cookie('connect_type', 'social_f')
+    return redirect( request.args['next'] )
 
 
 @lc.tokengetter
-def get_facebook_oauth_token():
+def get_access_token():
     """Function responsible for getting the facebook token"""
-    return session.get('oauth_token')
+    print "RETURNING TOKEN", session.get('access_token')
+    return session.get('access_token')
 
 
 # def checkfblogin():
@@ -108,7 +121,7 @@ def get_facebook_oauth_token():
 #     except :
 #         return {}
 
-#     if 'error' in req.data or not 'oauth_token' in session:
+#     if 'error' in req.data or not 'access_token' in session:
 #         return {}
 
 #     # The following data will be used to fill a part of the signup form

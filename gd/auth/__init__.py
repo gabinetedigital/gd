@@ -80,43 +80,31 @@ def authenticated_user():
         raise NobodyHome()
 
 
-def login(username, password, fromsocial=False, bypass_pwverify=False):
+def login(username, password, userdata=None, access_token=None, refresh_token=None):
     """Logs a user in the current session"""
     # Testing if the user exists
     try:
-        print "BUSCAN USUARIO",username,'FROM_SOCIAL', fromsocial
+        print "BUSCAN USUARIO",username
         user = User.query.filter_by(username=username).one()
+
     except NoResultFound:
-        raise UserNotFound()
-    return login_user_instance(user, password, fromsocial, bypass_pwverify)
+        if userdata:
+            name = userdata['fullname']
+            username = userdata['username']
+            password = ""
+            email = userdata['email']
+            meta = {}
+            if "cpf" in userdata.keys():
+                meta = {'cpf':userdata['cpf']}
+            user = create_user(name, username, password, email, meta=meta)
+        else:
+            raise UserNotFound()
 
-
-def login_user_instance(user, password, fromsocial=False, bypass_pwverify=False):
-    """Logs an user instance in, instead of receiving it's username as a
-    string"""
-
-    print 'USER ACTIVATION_KEY:', user.user_activation_key, user.user_activation_key.strip()
-
-    # We won't log unconfirmed users in
-    if user.user_activation_key.strip():
-        raise UserNotFound()
-
-    print '================> USER DEBUG:',user.get_meta('fromsocial'), 'oauth_token' in session, 'twitter_token' in session
-
-    # If user is not logging in from a social network, let's verify
-    # his/her local password information.
-    if not (user.get_meta('fromsocial') and ('oauth_token' in session or 'twitter_token' in session)) and not fromsocial and not bypass_pwverify:
-        hasher = phpass.PasswordHash(8, True)
-        if not hasher.check_password(password, user.password):
-            raise UserAndPasswordMissmatch()
-
-    print
-    # Everything seems to be ok here, let's register the user in our
-    # session and return its data (but the password, of course) to the
-    # caller.
     session['username'] = user.username
     session['password'] = password #we need this for RPC
+    # session['user'] = user
     return user.public_dict()
+
 
 def compare_pwd(user_password, password):
 
@@ -134,8 +122,8 @@ def logout():
         session.pop('username')
     if 'oauth_token' in session:
         session.pop('oauth_token')
-    if 'twitter_token' in session:
-        session.pop('twitter_token')
+    if 'access_token' in session:
+        session.pop('access_token')
 
 
 class checkroles(object):
@@ -173,7 +161,7 @@ class checkroles(object):
 def create_user(name, username, password, email, meta=None, receive_sms=False, receive_email=False):
     """Create a new user in the database"""
     # There will be one and only one user with a given username
-    if User.query.filter_by(username=username, user_activation_key="").count():
+    if User.query.filter_by(username=username).count():
         raise UserExists()
     if User.query.filter_by(username=username).count():
         raise UserExistsUnconfirmed()

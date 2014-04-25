@@ -71,12 +71,12 @@ app.config.from_object(conf)
 #     print "Ocorreu um ERRO ao configurar via wordpress!!"
 
 # ===> imports that depends the conf module <===
-from gd.auth.lcauth import cidadao
+from gd.auth.lcauth import cidadao as auth
 from gd.admin import admin
 # ===> imports that depends the conf module <===
 
 
-app.register_blueprint(cidadao, url_prefix='/auth')
+app.register_blueprint(auth, url_prefix='/auth')
 # app.register_blueprint(fbauth, url_prefix='/auth/fb')
 # app.register_blueprint(twauth, url_prefix='/auth/tw')
 app.register_blueprint(govpergunta, url_prefix='/govpergunta')
