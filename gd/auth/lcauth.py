@@ -84,8 +84,8 @@ def lc_authorized(resp):
     # Let's log the user in if he/she has already signed up.
     userdata = lc.get('/api/v1/person', data={"access_token" : resp['access_token'] } )
 
-    import pdb
-    pdb.set_trace()
+    # import pdb
+    # pdb.set_trace()
 
     username = userdata.data['email']
     print "LOGANDO VIA LOGIN CIDADAO:", username
