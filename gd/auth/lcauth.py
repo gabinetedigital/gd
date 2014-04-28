@@ -31,7 +31,8 @@ cidadao = Blueprint('auth', __name__,
     static_folder='static')
 
 lc = OAuth().remote_app('lc',
-    base_url='http://meu.hml.procergs.reders/',
+    # base_url='http://meu.hml.procergs.reders/',
+    base_url='http://meu.rs.gov.br/',
     request_token_url=None,
     access_token_url='/oauth/v2/token',
     access_token_method='GET',
