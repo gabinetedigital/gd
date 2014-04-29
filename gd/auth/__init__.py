@@ -83,9 +83,21 @@ def authenticated_user():
 def login(username, password, userdata=None, access_token=None, refresh_token=None):
     """Logs a user in the current session"""
     # Testing if the user exists
+
+    metauser = {}
+
     try:
+
+        metauser['access_token'] = access_token
+        metauser['refresh_token'] = refresh_token
+
         print "BUSCAN USUARIO",username
         user = User.query.filter_by(username=username).one()
+
+        for key, value in metauser.items():
+            user.set_meta(key, value)
+
+        dbsession.commit()
 
     except NoResultFound:
         if userdata:
@@ -93,16 +105,15 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
             username = userdata['username']
             password = ""
             email = userdata['email']
-            meta = {}
             if "cpf" in userdata.keys():
-                meta = {'cpf':userdata['cpf']}
-            user = create_user(name, username, password, email, meta=meta)
+                metauser['cpf'] = userdata['cpf']
+            user = create_user(name, username, password, email, meta=metauser)
         else:
             raise UserNotFound()
 
     session['username'] = user.username
     session['password'] = password #we need this for RPC
-    # session['user'] = user
+
     return user.public_dict()
 
 
