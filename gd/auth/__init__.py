@@ -94,8 +94,8 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
         metauser['access_token'] = access_token
         metauser['refresh_token'] = refresh_token
 
-        import pdb
-        pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
 
         print "BUSCAN USUARIO",username
         try:
@@ -130,6 +130,7 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
             if "cpf" in userdata.keys():
                 metauser['cpf'] = userdata['cpf']
             user = create_user(name, username, password, email, meta=metauser)
+            session['username'] = user.username
             raise UserUncomplete()
         else:
             raise UserNotFound()

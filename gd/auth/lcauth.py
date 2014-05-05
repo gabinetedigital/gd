@@ -18,7 +18,7 @@
 """Authentication machinery for facebook"""
 
 # from httplib2 import ServerNotFoundError
-from flask import Blueprint, url_for, session, request, redirect, make_response, render_template
+from flask import Blueprint, url_for, session, request, redirect, make_response, render_template, flash
 from flask_oauth import OAuth #, OAuthException
 from gd.auth.forms import SignupForm, ProfileForm #, ChangePasswordForm
 
@@ -98,7 +98,8 @@ def lc_authorized(resp):
         print "LOGIN CIDADAO LOGADO (by email)!"
 
     except auth.UserUncomplete:
-        return redirect(url_for('auth.signup'))
+        flash(u"Seu cadastro foi efetuado. Complete agora seu perfil!")
+        return redirect(url_for('auth.profile'))
 
     except auth.UserNotFound:
         print "NAO ENCONTRADO COM EMAIL, CADASTRANDO..."
