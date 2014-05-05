@@ -139,9 +139,10 @@ def canal(categoria_id):
     hvideos = fromcache("h_videos_root") or tocache("h_videos_root",
         treat_categories(wordpress.wpgd.getHighlightedVideos()) )
 
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template('videos.html', videos=videos, titulos=videos_json,
         categories=categories, hvideos=hvideos, canal=nome_canal, canalclass="fa fa-th-large",
-        page=page+1, page_total=page_total,
+        page=page+1, page_total=page_total,menu=menus,
         sidebar=wordpress.getSidebar,)
 
 
