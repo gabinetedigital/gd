@@ -112,29 +112,7 @@ class BaseDataForm(Form):
 
 
 
-class BasePasswordForm(Form):
-    """Form that holds password fields"""
-
-    password = PasswordField(
-        _('New Password'),
-        [validators.Required(),
-         ]
-    )
-
-    password_confirmation = PasswordField(
-        _('Password confirmation'),
-        [validators.Required(),
-         ]
-    )
-
-    def validate_password_confirmation(self, field):
-        """Compound validation between password and its confirmation"""
-        if field.data != self.password.data:
-            raise ValidationError(
-                _(u'Password does not match its confirmation'))
-
-
-class SignupForm(BaseDataForm, BasePasswordForm):
+class SignupForm(BaseDataForm):
     """Wtform that builds the signup form"""
 
     # email_confirmation = TextField(
@@ -188,20 +166,3 @@ class ProfileForm(BaseDataForm):
         ]
     )
 
-
-class ChangePasswordForm(BasePasswordForm):
-    """Form to change the password of an user"""
-
-    current_password = PasswordField(
-        _('Your current password'),
-        [validators.Required(),
-         ]
-    )
-
-    def validate_current_password(self, field):
-        """Validates the current password of the logged in user"""
-        hasher = phpass.PasswordHash(8, True)
-        user = authenticated_user()
-        if not hasher.check_password(field.data, user.password):
-            raise ValidationError(
-                _('The current password is wrong'))

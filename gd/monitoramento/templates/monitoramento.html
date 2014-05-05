@@ -98,28 +98,12 @@ $('.typeahead').typeahead({
 
 					<div class="login widget hidden-phone">
 						{%if not user%}
-							<form class="form-horizontal" method="post" id="login" action="{{ url_for('auth.logon') }}">
-								<p><i class="icon-key"></i> login</p>
-								<input type="text" name="username" id="username" class="user" placeholder="username">
-								<input type="password" id="password" name="password" class="pass" placeholder="password">
-
-								<a onclick="document.getElementById('login').submit();" class="button
-								login-submit">entrar</a>
-
-								<a href="{{url_for("auth.lost_password")}}" class="button
-								login-forget">esqueci a senha</a>
-
-								<a href="{{url_for("auth.signup")}}" class="button
-								login-cadastrar">cadastre-se</a>
-
-								<input type="hidden" name="next" value="{{next or
-								url_for("monitoramento.index")}}">
-							</form>
+							<a href="{{ url_for('auth.login',next=next or url_for("monitoramento.index") ) }}">Entrar</a>
 						{%else%}
 							<ul class="user-panel">
 								<li class="avatar"><img src="{{ social_image(user) or user.email | gravatar(size=48) }}"></li>
 								<li>Olá, <a class="user" href="/auth/profile/">{{user.name|truncate(20)}}</a></li>
-								<li class="logout"><a class="button logout" href="/auth/logout/?app=monitoramento"><i class="icon-signout"></i> sair</a></li>
+								<li class="logout"><a class="button logout" href="url_for('auth.logout') }}"><i class="icon-signout"></i> sair</a></li>
 							</ul>
 						{%endif%}
 					</div>

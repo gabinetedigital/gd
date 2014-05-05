@@ -66,6 +66,9 @@ class EmailAddressExists(AuthError):
     database"""
 
 
+class UserUncomplete(AuthError):
+    """Raise when a new user is logged in on GD by Login Cidadao"""
+
 
 def is_authenticated():
     """Boolean func that says if the current user is authenticated"""
@@ -91,8 +94,23 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
         metauser['access_token'] = access_token
         metauser['refresh_token'] = refresh_token
 
+        import pdb
+        pdb.set_trace()
+
         print "BUSCAN USUARIO",username
-        user = User.query.filter_by(username=username).one()
+        try:
+            user = User.query.filter_by(username=username).one()
+            #
+            # TENTAR ALTERAR O USERNAME DO USUARIO DO EMAIL para USERNAME do LC
+            #
+            user.username = userdata['username']
+            print "LOGADO POR EMAIL"
+
+        except NoResultFound:
+            username = userdata['username']
+            print "BUSCAN DENOVO O USUARIO",username, "por", username
+            user = User.query.filter_by(username=username).one()
+            print "LOGADO POR USERNAME"
 
         for key, value in metauser.items():
             user.set_meta(key, value)
@@ -101,13 +119,18 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
 
     except NoResultFound:
         if userdata:
-            name = userdata['fullname']
+            # {u'username': u'sergio.berlotto', u'city': {u'id': 4309209, u'name': u'GRAVATAI'},
+            #  u'first_name': u'S\xe9rgio', u'surname': u'Hilton Berlotto Jr', u'cpf': u'96107804072',
+            #  u'email': u'sergio.berlotto@gmail.com', u'birthdate': u'1981-01-31T00:00:00-0300',
+            #  u'full_name': u'S\xe9rgio Hilton Berlotto Jr', u'id': 69}
+            name = userdata['full_name']
             username = userdata['username']
             password = ""
             email = userdata['email']
             if "cpf" in userdata.keys():
                 metauser['cpf'] = userdata['cpf']
             user = create_user(name, username, password, email, meta=metauser)
+            raise UserUncomplete()
         else:
             raise UserNotFound()
 

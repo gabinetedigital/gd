@@ -18,11 +18,14 @@
 """Authentication machinery for facebook"""
 
 # from httplib2 import ServerNotFoundError
-from flask import Blueprint, url_for, session, request, redirect, make_response
+from flask import Blueprint, url_for, session, request, redirect, make_response, render_template
 from flask_oauth import OAuth #, OAuthException
+from gd.auth.forms import SignupForm, ProfileForm #, ChangePasswordForm
 
 from gd import conf
 from gd import auth
+from gd.content.wp import wordpress
+from gd.utils.gdcache import fromcache, tocache
 
 
 #Login Cidadao
@@ -48,14 +51,14 @@ lc = OAuth().remote_app('lc',
 def auth_index():
     return redirect(url_for('.login'))
 
-@cidadao.route('/login')
+@cidadao.route('/login/')
 def login():
     """Entry point for the facebook login feature"""
     next_url = request.values.get('next') or request.referrer or None
     return lc.authorize(callback=url_for('.lc_authorized',next=next_url, _external=True))
 
 
-@cidadao.route('/logout')
+@cidadao.route('/logout/')
 def logout():
     next_url = request.values.get('next') or request.referrer or None
     auth.logout()
@@ -92,9 +95,13 @@ def lc_authorized(resp):
     print "LOGANDO VIA LOGIN CIDADAO:", username
     try:
         auth.login(username, "", userdata.data, resp['access_token'], resp['refresh_token'])
-        print "LOGIN CIDADAO LOGADO!"
+        print "LOGIN CIDADAO LOGADO (by email)!"
+
+    except auth.UserUncomplete:
+        return redirect(url_for('auth.signup'))
+
     except auth.UserNotFound:
-        print "NAO LOGADO, CADASTRANDO..."
+        print "NAO ENCONTRADO COM EMAIL, CADASTRANDO..."
         # resp = make_response( redirect(url_for('auth.signup')) )
         # resp.set_cookie('connect_type', 'social_f')
         return redirect(url_for('auth.signup'))
@@ -111,40 +118,122 @@ def get_access_token():
     return session.get('access_token')
 
 
-# def checkfblogin():
-#     try:
-#         if request.cookies.get('connect_type') == 'social_f':
-#             req = lc.get('/me')
-#             print "\n\nFACEBOOK DATA FROM USER /me =================================="
-#             print req.data
-#         else:
-#             return {}
-#     except :
-#         return {}
 
-#     if 'error' in req.data or not 'access_token' in session:
-#         return {}
+@cidadao.route('/profile/')
+def profile():
+    """Shows the user profile form"""
 
-#     # The following data will be used to fill a part of the signup form
-#     # in the first user's login.
-#     user = req.data
+    if not auth.is_authenticated():
+        return redirect(url_for('index'))
 
-#     print "\n\n ======================================= FACEBOOK DATA ==================================="
-#     print user
-#     print " ======================================= FACEBOOK DATA ===================================\n\n"
+    data = auth.authenticated_user().metadata()
+    print "DATA FOR PROFILE", data
 
-#     location = user['location']['name'].split(', ', 1) + ['']
-#     states = dict((x[1], x[0]) for x in auth.choices.FULL_STATES)
-#     city, state = city, state = location[:2]
-#     gender = user.get('gender') and user['gender'][0] or None
-#     link = user['link']
-#     return {
-#         'id': user['id'],
-#         'name': user['name'],
-#         'email': user['email'],
-#         'email_confirmation': user['email'],
-#         'gender': gender,
-#         'facebook': link[link.rindex('/')+1:],
-#         # 'city': city,
-#         # 'state': states.get(state),
-#     }
+    profile = social(ProfileForm, default=data)
+    # passwd = ChangePasswordForm()
+    menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+    return render_template(
+        'profile.html', profile=profile, sidebar=wordpress.getSidebar, menu=menus)
+
+
+@cidadao.route('/profile_json', methods=('POST',))
+def profile_json():
+    """Validate the request of the update of a profile.
+
+    This method will not operate in any user instance but the
+    authenticated one. If there's nobody authenticated, there's no way
+    to execute it successfuly.
+    """
+    form = social(ProfileForm, False)
+    if not form.validate_on_submit():
+        # This field is special, it must be validated before anything. If it
+        # doesn't work, the action must be aborted.
+        if not form.csrf_is_valid:
+            return msg.error(_('Invalid csrf token'), 'InvalidCsrfToken')
+
+        # Usual validation error
+        return utils.format_csrf_error(form, form.errors, 'ValidationError')
+
+    # Let's save the authenticated user's meta data
+    mget = form.meta.get
+    try:
+        user = auth.authenticated_user()
+    except auth.NobodyHome:
+        return redirect(url_for('index'))
+
+    # First, the specific ones
+    email = mget('email')
+    redologin = False
+    if user.username == user.email and user.username != email \
+       and not (user.get_meta('twitteruser') or user.get_meta('facebookuser')):
+        flash(_(u'You changed your email, please relogin.'))
+        redologin = True
+        user.username = email
+    user.name = mget('name')
+    user.email = email
+
+    # Saving the thumbnail
+    form.meta.pop('avatar')
+    if bool(form.avatar.file):
+        flike = form.avatar.file
+        thumb = utils.thumbnail(flike, (48, 48))
+        form.meta['avatar'] = Upload.imageset.save(
+            FileStorage(thumb, flike.filename, flike.name),
+            'thumbs/%s' % user.name[0].lower())
+
+    # And then, the meta ones, stored in `UserMeta'
+    for key, val in form.meta.items():
+        user.set_meta(key, val)
+
+    # return msg.ok({
+    #     'data': _('User profile updated successfuly'),
+    #     'csrf': form.csrf.data,
+    # })
+    flash(_(u'Profile update successful'), 'alert-success')
+    if redologin:
+        auth.logout()
+        return redirect(url_for('auth.login'))
+    else:
+        return redirect(url_for('.profile'))
+
+
+def social(form, show=True, default=None):
+    """This function prepares a signup form to be used from a social
+    network.
+
+    This version is currently LoginCidadao only, but it's easy to extend it
+    to support other social networks."""
+    # Here's the line that says that we're social or not
+    #
+    data = default or {}
+    # data.update(facebook or twitter)
+    inst = form(**data) if show else form()
+    inst.csrf_enabled = False
+
+    # Preparing form meta data
+    inst.social = True
+
+
+    if default and 'social' in default:
+        inst.social = default['social']
+
+    inst.meta = inst.data.copy()
+
+    # Cleaning unwanted metafields (they are not important after
+    # validating the form)
+    if 'csrf' in inst.meta:
+        del inst.meta['csrf']
+    if 'accept_tos' in inst.meta:
+        del inst.meta['accept_tos']
+
+    # Setting up meta extra fields
+    inst.meta['lc'] = session.get('username')
+
+
+    inst.meta['fromsocial'] = True
+    # inst.meta['password'] = urandom(10)
+    # else:
+    #     print "IS NOT FACEBOOK OR TWITTER!"
+
+    # We're not social right now
+    return inst
