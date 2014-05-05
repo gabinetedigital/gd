@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="img/ico/favicon.ico">
+
+<title>De Olho nas Obras</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/DONO.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Yanone+Kaffeesatz:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+</head>
+
+
+<body class="fade-in">
+<!-- NAVBAR
+================================================== -->
+	<header class="navbar navbar-static-top" role="navigation" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+		<div class="container">
+			<div class="navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#"><i class="fa fa-user"></i><br />Login</a></li>
+					<li><a href="#compartilhar" data-toggle="modal"><i class="fa fa-share"></i><br />Compartilhe</a></li>
+					<li><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
+				</ul>
+			</div>
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">De Olho Nas Obras</a>
+			</div>
+			<div class="homeSearch">
+				<input type="text" id="" placeholder="Procure por uma obra" />
+			</div>
+		</div>
+	</header>
+
+
+<!-- CAROUSEL
+================================================== -->
+<div class="sliderBody">
+	<div id="myCarousel" class="carousel slide container" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="images/slider01.jpg" alt="" />
+				<div class="carousel-caption">
+					<h1>Implantação da rede hidráulica na Zona Mista de Guaíba</h1>
+					<p><a class="sliderLink" href="#" role="button">visite essa obra</a></p>
+				</div>
+			</div>
+			<div class="item">
+				<div class="obraConcluidaSlider"></div>
+				<img src="images/slider02.jpg" alt="" />
+				<div class="carousel-caption">
+					<h1>Implantação da rede hidráulica na Zona Mista de Guaíba</h1>
+					<p><a class="sliderLink" href="#" role="button">visite essa obra</a></p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="images/slider03.jpg" alt="" />
+				<div class="carousel-caption">
+					<h1>Implantação da rede hidráulica na Zona Mista de Guaíba</h1>
+					<p><a class="sliderLink" href="#" role="button">visite essa obra</a></p>
+				</div>
+			</div>
+		</div>
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="icon-prev"><i class="fa fa-angle-left"></i></span></a>
+		<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="icon-next"><i class="fa fa-angle-right"></i></span></a>
+	</div>
+</div>
+<!-- /.carousel -->
+
+<!-- COMO FUNCIONA
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+		<h2>Como Funciona</h2>
+		</div>
+	</div>
+	<div class="row colourfulBoxesSmall">
+		<div class="col-md-2">
+			<h3>1</h3>
+			<p>Escolha uma obra </p>
+		</div>
+		<div class="col-md-2">
+			<h3>2</h3>
+			<p>Acompanhe o andamento</p>
+		</div>
+		<div class="col-md-2">
+			<h3>3</h3>
+			<p>Siga as obras de seu interesse e receba atualizações regularmante</p>
+		</div>
+		<div class="col-md-2">
+			<h3>4</h3>
+			<p>Fiscalize! Envie fotos, vídeos, dúvidas e comentários</p>
+		</div>
+		<div class="col-md-2">
+			<h3>5</h3>
+			<p>Compartilhe as obras que você fiscaliza e chame mais gente pra ficar De Olho</p>
+		</div>
+		<div class="col-md-2">
+			<h3>6</h3>
+			<p>A cada 42 dias, em média, as obras são atualizadas com novas informações</p>
+		</div>
+	</div>
+</div>
+
+
+<!-- FILTROS
+================================================== -->
+<div class="container">
+	<div class="row filterBox">
+		<div class="col-md-4">
+			<div class="btn-group">
+				<button type="button" class="btn btn-filter dropdown-toggle" data-toggle="dropdown">Filtrar por:<span class="caret"></span></button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#">Todas (120 obras)</a></li>
+					<li><a href="#">Tema</a></li>
+					<li><a href="#">Município</a></li>
+					<li><a href="#">Região</a></li>
+					<li><a href="#">Obras Concluídas</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="btn-group" style="display: none;">
+				<button type="button" class="btn btn-filter dropdown-toggle" data-toggle="dropdown">dropdown dependente:<span class="caret"></span></button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#"></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="btn-group">
+				<button type="button" class="btn btn-filter dropdown-toggle pull-right" data-toggle="dropdown">Ordenar por:<span class="caret"></span></button>
+				<ul class="dropdown-menu pull-right" role="menu">
+					<li><a href="#">% Conclusão</a></li>
+					<li><a href="#">Mais Recentes</a></li>
+					<li><a href="#">Oredem de Atualização</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- LISTA DE OBRAS
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 listaObras">
+
+			<!-- Inicio Obra -->
+			<div class="constructionBox">
+				<div class="image">
+					<div class="obraConcluidaListagem"></div>
+					<a href=""><img src="images/tecnounisc.jpg" alt="" /></a>
+				</div>
+				<div class="description">
+					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
+					<h4><a href="">Santa Cruz do Sul</a></h4>
+					<ul>
+						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
+						<li><i class="fa fa-comment"></i> <span>99</span></li>
+						<li><i class="fa fa-star"></i><span>12</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Fim Obra -->
+
+			<!-- Inicio Obra -->
+			<div class="constructionBox">
+				<div class="image">
+					<a href=""><img src="images/tecnounisc.jpg" alt="" /></a>
+				</div>
+				<div class="description">
+					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
+					<h4><a href="">Santa Cruz do Sul</a></h4>
+					<ul>
+						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
+						<li><i class="fa fa-comment"></i> <span>99</span></li>
+						<li><i class="fa fa-star"></i><span>12</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Fim Obra -->
+
+			<!-- Inicio Obra -->
+			<div class="constructionBox">
+				<div class="image">
+					<a href=""><img src="images/tecnounisc.jpg" alt="" /></a>
+				</div>
+				<div class="description">
+					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
+					<h4><a href="">Santa Cruz do Sul</a></h4>
+					<ul>
+						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
+						<li><i class="fa fa-comment"></i> <span>99</span></li>
+						<li><i class="fa fa-star"></i><span>12</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Fim Obra -->
+
+			<!-- Inicio Obra -->
+			<div class="constructionBox">
+				<div class="image">
+					<a href=""><img src="images/tecnounisc.jpg" alt="" /></a>
+				</div>
+				<div class="description">
+					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
+					<h4><a href="">Santa Cruz do Sul</a></h4>
+					<ul>
+						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
+						<li><i class="fa fa-comment"></i> <span>99</span></li>
+						<li><i class="fa fa-star"></i><span>12</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Fim Obra -->
+
+			<!-- Inicio Obra -->
+			<div class="constructionBox">
+				<div class="image">
+					<a href=""><img src="images/tecnounisc.jpg" alt="" /></a>
+				</div>
+				<div class="description">
+					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
+					<h4><a href="">Santa Cruz do Sul</a></h4>
+					<ul>
+						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
+						<li><i class="fa fa-comment"></i> <span>99</span></li>
+						<li><i class="fa fa-star"></i><span>12</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Fim Obra -->
+
+			<!-- Inicio Obra -->
+			<div class="constructionBox">
+				<div class="image">
+					<a href=""><img src="images/tecnounisc.jpg" alt="" /></a>
+				</div>
+				<div class="description">
+					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
+					<h4><a href="">Santa Cruz do Sul</a></h4>
+					<ul>
+						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
+						<li><i class="fa fa-comment"></i> <span>99</span></li>
+						<li><i class="fa fa-star"></i><span>12</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Fim Obra -->
+
+			<!-- Inicio Obra -->
+			<div class="constructionBox">
+				<div class="image">
+					<a href=""><img src="images/tecnounisc.jpg" alt="" /></a>
+				</div>
+				<div class="description">
+					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
+					<h4><a href="">Santa Cruz do Sul</a></h4>
+					<ul>
+						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
+						<li><i class="fa fa-comment"></i> <span>99</span></li>
+						<li><i class="fa fa-star"></i><span>12</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Fim Obra -->
+
+
+		</div>
+	</div>
+</div>
+<!-- RODAPÉ
+================================================== -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"><a href="http://gabinetedigital.rs.gov.br/" target="_blank"><img src="images/GD_logo.png"  alt="Gabinete Digital" /></a></div>
+			<div class="col-md-3">
+				<h4>Nossos Dados</h4>
+				<p>As informações das obras são dados abertos. Acesse a API: <strong>JSON</strong></p>
+			</div>
+			<div class="col-md-3"><h4>Acesso à informação </h4>
+			<p>Se você quiser obter alguma informação específica e de maneira personalizada, utilize a Lei de Acesso à Informação. O governo dará uma resposta em no máximo 30 dias.</p>
+			<p><img src="images/acessoAinformacao.png" width="168" height="72" alt="" /></p>
+			</div>
+			<div class="col-md-3"><h4>Parceiros</h4>
+			<p>Desenvolvido em parceria com:</p>
+			<p><img src="images/procergs.png" width="77" height="76" alt="" /></p>
+			<p><img src="images/FGV.png" width="97" height="20" alt="" /></p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="compartilhar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Compartilhe nas redes sociais</h4>
+      </div>
+      <div class="modal-body">
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52037f9434ccf4aa"></script>
+<!-- AddThis Button END -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/docs.min.js"></script>
+<script src="js/customScripts.js"></script>
+</body>
+</html>
