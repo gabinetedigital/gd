@@ -24,7 +24,7 @@ from gd.model import Upload
 
 from flask.ext.wtf import validators, ValidationError
 from flask.ext.wtf import Form, TextField, PasswordField, SelectField, \
-    BooleanField, FileField, file_allowed
+    FileField, file_allowed, BooleanField
 
 
 class BaseDataForm(Form):
@@ -80,12 +80,10 @@ class BaseDataForm(Form):
 
     receive_email = BooleanField(
         _('I want to receive updates by email.'),
-        default=True,
     )
 
     receive_sms = BooleanField(
         _('I want to receive updates by sms.'),
-        default=False,
     )
 
     # def validate_receive_sms(self, field):
@@ -110,9 +108,20 @@ class BaseDataForm(Form):
                     _(u'This field is required.'))
 
 
+class ProfileForm(BaseDataForm):
+    """Wtform that allows the user to change his/her profile"""
+
+    avatar = FileField(
+        _('User avatar'),
+        validators=[
+            file_allowed(
+                Upload.imageset,
+                _('Only images are allowed in this field!')),
+        ]
+    )
 
 
-class SignupForm(BaseDataForm):
+class SignupForm(ProfileForm):
     """Wtform that builds the signup form"""
 
     # email_confirmation = TextField(
@@ -152,17 +161,4 @@ class SignupForm(BaseDataForm):
     #     if field.data != self.email.data:
     #         raise ValidationError(
     #             _(u'Email does not match its confirmation'))
-
-
-class ProfileForm(BaseDataForm):
-    """Wtform that allows the user to change his/her profile"""
-
-    avatar = FileField(
-        _('User avatar'),
-        validators=[
-            file_allowed(
-                Upload.imageset,
-                _('Only images are allowed in this field!')),
-        ]
-    )
 

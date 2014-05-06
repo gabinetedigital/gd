@@ -60,7 +60,7 @@ def login():
 
 @cidadao.route('/logout/')
 def logout():
-    next_url = request.values.get('next') or request.referrer or None
+    next_url = request.values.get('next') or request.referrer or "/"
     auth.logout()
     return redirect( next_url )
 
@@ -99,6 +99,7 @@ def lc_authorized(resp):
 
     except auth.UserUncomplete:
         flash(u"Seu cadastro foi efetuado. Complete agora seu perfil!")
+        session['uncomplete_profile'] = True
         return redirect(url_for('auth.profile'))
 
     except auth.UserNotFound:
@@ -127,14 +128,29 @@ def profile():
     if not auth.is_authenticated():
         return redirect(url_for('index'))
 
+    template = 'profile.html'
+    form = None
+    tos = None
+    rm = None
+
     data = auth.authenticated_user().metadata()
     print "DATA FOR PROFILE", data
 
+    # if 'uncomplete_profile' in session:
+    #     profile = social(SignupForm, default=data)
+    #     # template = "signup-second.html"
+    #     # form = social(SignupForm)
+    #     tos = fromcache('tossigin') or tocache('tossigin',wordpress.getPageByPath('tos'))
+    #     rm = fromcache('moresigin') or tocache('moresigin',wordpress.getPageByPath('signup-read-more'))
+    #     del session['uncomplete_profile']
+    # else:
+    #     profile = social(ProfileForm, default=data)
     profile = social(ProfileForm, default=data)
-    # passwd = ChangePasswordForm()
+
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     return render_template(
-        'profile.html', profile=profile, sidebar=wordpress.getSidebar, menu=menus)
+        template, profile=profile, sidebar=wordpress.getSidebar, menu=menus,
+        username=session.get('username'), tos=tos, readmore=rm)
 
 
 @cidadao.route('/profile_json', methods=('POST',))
@@ -164,13 +180,9 @@ def profile_json():
 
     # First, the specific ones
     email = mget('email')
-    redologin = False
-    if user.username == user.email and user.username != email \
-       and not (user.get_meta('twitteruser') or user.get_meta('facebookuser')):
-        flash(_(u'You changed your email, please relogin.'))
-        redologin = True
-        user.username = email
     user.name = mget('name')
+    user.receive_sms = mget('receive_sms')
+    user.receive_email = mget('receive_email')
     user.email = email
 
     # Saving the thumbnail
@@ -191,11 +203,7 @@ def profile_json():
     #     'csrf': form.csrf.data,
     # })
     flash(_(u'Profile update successful'), 'alert-success')
-    if redologin:
-        auth.logout()
-        return redirect(url_for('auth.login'))
-    else:
-        return redirect(url_for('.profile'))
+    return redirect(url_for('.profile'))
 
 
 def social(form, show=True, default=None):
