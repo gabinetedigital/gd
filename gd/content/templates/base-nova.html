@@ -45,9 +45,12 @@
           </div>
           <div class="span8">
 		  		<ul class="profileInfo">
-					<li><a href=""><i class="fa fa-lock"></i> Login</a></li>
-					<li><a href=""><i class="fa fa-lock"></i> Logout</a></li>
-					<li><a href=""><i class="fa fa-user"></i>  Perfil</a></li>
+         {%if user%}
+          <li><a href="{{url_for('auth.logout')}}"><i class="fa fa-lock"></i> Logout</a></li>
+          <li><a href="{{url_for('auth.profile')}}"><i class="fa fa-user"></i>  Perfil</a></li>
+          {%else%}
+					<li><a href="{{url_for('auth.login')}}"><i class="fa fa-lock"></i> Login</a></li>
+          {%endif%}
 				</ul>
             <div class="clipping">
               {{ sidebar(id='sidebar-11')|safe }}
