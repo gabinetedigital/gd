@@ -2397,7 +2397,7 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento.obra .follow .social li {display:inline-block; margin-right:10px;}
 
 #seguirobraform .main-follow a:hover {text-decoration:none;}
-#seguirobraform .main-follow a i.face, #monitoramento.obra .follow i.face {color:#34495e;}
+#seguirobraform .main-follow a i.face, #monitoramento.obra .follow i.face {color:#fff;}
 #seguirobraform .main-follow a i.twit, #monitoramento.obra .follow i.twit {color:#3498db;}
 #seguirobraform .main-follow a i.email, #monitoramento.obra .follow i.email {color:#e74c3c;}
 
@@ -2584,7 +2584,7 @@ h3.respgov { font-size:22px; color:#000;}
 
 #monitoramento .timeline {margin:0; padding:0;}
 
-#monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video, #monitoramento .timeline .link, 
+#monitoramento .timeline .aside, #monitoramento .timeline .image, #monitoramento .timeline .video, #monitoramento .timeline .link,
 #monitoramento.obra .update.status   {background: #E6EBEC !important; color: #797979 !important; z-index: 999 !important;}
 
 #monitoramento .timeline .aside .content p {font-size: 12px !important;}
@@ -2768,28 +2768,28 @@ Begin media queries ============================================================
 }
 
 /* Smartphones (landscape) ----------- */
-@media only screen 
+@media only screen
 and (min-width : 321px) {
 
 }
 
 /* Smartphones (portrait) ----------- */
-@media only screen 
+@media only screen
 and (max-width : 320px) {
 
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media only screen 
-and (min-width : 768px) 
+@media only screen
+and (min-width : 768px)
 and (max-width : 1024px) {
 
 }
 
 /* iPads (landscape) ----------- */
-@media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
 and (orientation : landscape) {
 
 }
