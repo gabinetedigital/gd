@@ -73,6 +73,13 @@ a  {color:#d12d33;}
 
 .nova h1 {margin: 20px 0 10px 0; padding: 0; display:block; width:270px; height:123px; text-indent:-1000px; overflow:hidden; }
 .logoGD {padding: 20px 0 10px 0;}
+
+.profileInfo {margin:10px 0 0 0; padding:0; list-style-type: none; width: 220px; float: right;}
+.profileInfo li {margin:0; padding:0;  float: left;}
+.profileInfo li a {display: block; margin:0; padding: 10px 12px; color: #8C8C8C; font-size: 11px; text-transform: uppercase; font-style: normal; border-radius: 6px;}
+.profileInfo li a:hover {color: #B2B2B2; background-color: #ECECEC;}
+
+
 .nova .clipping {color:#7f8c8d; padding-top:20px; font-style:italic; padding-left:350px;}
 .nova .clipping .author {text-align:right;}
 

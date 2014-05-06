@@ -63,10 +63,16 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span4 logoGD"><a href="/"><img src="{{ url_for('static', filename='img/logo-GD.png') }}"  alt="Gabinete Digital" /></a></div>
-		<div class="span8"><div class="clipping">{{ sidebar(id='sidebar-11')|safe }}</div></div>
+		<div class="span8">
+			<ul class="profileInfo">
+				<li><a href=""><i class="fa fa-lock"></i> Login</a></li>
+				<li><a href=""><i class="fa fa-lock"></i> Logout</a></li>
+				<li><a href=""><i class="fa fa-user"></i>  Perfil</a></li>
+			</ul>
+			<div class="clipping">{{ sidebar(id='sidebar-11')|safe }}</div></div>
 	</div>
 </div>
-
+	
 
 <div class="menuContainer">
 	<div class="container">
@@ -85,7 +91,7 @@
 							</ul>
 						</div>
 						<div class="span4 procurar">
-							{%if user%} <a href="{{url_for('auth.logout')}}" class="loginLogout">{{user.name}} [Sair]</a> {%else%} <a href="{{url_for('auth.login')}}" class="loginLogout">Login</a> {%endif%}
+						<!-- {%if user%} <a href="{{url_for('auth.logout')}}" class="loginLogout">Sair</a> {%else%} <a href="{{url_for('auth.login')}}" class="loginLogout">Login</a> {%endif%} -->
 							<form class="navbar-search form-search tools" action='/search/'>
 								<div class="input-append">
 									<input type="text" class="input-small busca search-query"  id="s" name="s">
