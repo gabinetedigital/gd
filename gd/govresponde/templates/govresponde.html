@@ -22,11 +22,7 @@
 		<div class="row-fluid head clearfix">
 			<div class="span12">
 				<ul class="govRespSubMenu">
-					{%if user%}
-                    <li><a href="{{ url_for('govresponde.send') }}" ><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
-                    {%else%}
-                    <li><a href="#" class="voteNeedLogin" ><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
-                    {%endif%}
+                    <li><a href="#" class="enviarDesabilitado" ><i class="fa fa-envelope fa-2x"></i>enviar pergunta</a></li>
 					<li><a href="{{ url_for('.questions') }}"><i class="fa fa-check-circle fa-2x"></i>votar em uma pergunta</a></li>
 				</ul>
 
@@ -49,7 +45,7 @@
 			<div class="span12">
 				<div class="boxfinal">
 
-          <p>Aqui você pergunta e o governo gaúcho responde! Entre os dias 25 de março e 18 de abril,
+          <p>Aqui você pergunta e o governo gaúcho responde! Entre os dias 25 de março e 10 de maio,
             o Gabinete Digital recebe questões relacionadas à realização da Copa do Mundo 2014.
             Qualquer pergunta vale, desde que não fuja do tema.</p>
 

@@ -1987,10 +1987,11 @@ p.errmsg {
 .head .logoDG {margin: 0 0 20px 0; float: right; width: 130px;}
 .head .govRespSubMenu {margin: 0 auto; padding:0; float: none; width: 600px;}
 .head .govRespSubMenu li {float: left; margin-top: 10px; margin-bottom: 60px; width: 300px; }
-.head .govRespSubMenu li:hover {   opacity: 0.6;  -moz-opacity: 0.6;  filter: alpha(opacity=60);}
+.head .govRespSubMenu li:nth-of-type(2):hover {   opacity: 0.6;  -moz-opacity: 0.6;  filter: alpha(opacity=60);}
 .head .govRespSubMenu li a  {display: block; padding: 40px 20px;  height: 40px; line-height: 40px; font-size: 18px;  color: #ffffff; border-radius: 6px; text-align: center;}
 .head .govRespSubMenu li a i {margin: 0 10px 0 0;  float: left; width: 45px; }
-.head .govRespSubMenu li:nth-of-type(1) a {background-color: #111A3E;  margin-right: 30px;}
+.head .govRespSubMenu li:nth-of-type(1) a {background-color: #c5c5c5;  margin-right: 30px;}
+.head .govRespSubMenu li:nth-of-type(1) a:hover {text-decoration:none;}
 .head .govRespSubMenu li:nth-of-type(2) a {background-color: #52A529;}
 
 .iconedHelp {position: absolute; bottom: 0px; right: 10px; width: 80px; height: 60px; line-height: 20px; font-size: 18px;  text-align: center;}

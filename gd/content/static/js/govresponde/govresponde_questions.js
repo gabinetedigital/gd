@@ -21,7 +21,7 @@ function showAggregated(parentId) {
 }
 
 
-$('.voteNeedLogin').click(function(){
+$('.enviarDesabilitado').click(function(){
     showNeedLogin($(this));
     return false;
 });
@@ -29,13 +29,13 @@ $('.voteNeedLogin').click(function(){
 var showNeedLogin = function(obj, msg){
         // var botaoentrar = $('#menu .entrar a');
         // console.log( obj );
-        var cont = "Você precisa <a href='/auth/login/'>efetuar o login</a> para votar!";
+        var cont = "O prazo para envio de perguntas foi encerrado no dia 7 de maio. <br>Mas você ainda pode votar até o dia 10 nas questões já enviadas.";
         if (msg != "" && msg != null) {
             cont = msg;
         }
         var options = {
             'content'      : cont,
-            'title'     : "É necessário efetuar login",
+            'title'     : "Envio encerrado",
             'animation' : true,
             'placement' : "left",
             'trigger'   : "manual"
