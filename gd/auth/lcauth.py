@@ -35,7 +35,7 @@ cidadao = Blueprint('auth', __name__,
 
 lc = OAuth().remote_app('lc',
     # base_url='http://meu.hml.procergs.reders/',
-    base_url='http://meu.rs.gov.br/',
+    base_url='https://meu.rs.gov.br/',
     request_token_url=None,
     access_token_url='/oauth/v2/token',
     access_token_method='GET',
@@ -90,6 +90,13 @@ def lc_authorized(resp):
 
     # import pdb
     # pdb.set_trace()
+
+    # print "=== RETORNADOS OS DADOS ===", userdata.data
+    #{u'username': u'sergio.berlotto', u'city': {u'id': 4309209, u'name': u'GRAVATAI'},
+    #u'age_range': {u'min': 21}, u'surname': u'Hilton Berlotto Jr',
+    #u'profile_picutre_url': u'https://meu.rs.gov.br/uploads/profile-pictures/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.png',
+    #u'first_name': u'S\xe9rgio', u'cpf': u'96107804072', u'email': u'sergio.berlotto@gmail.com',
+    #u'birthdate': u'1981-01-31T00:00:00-0300', u'full_name': u'S\xe9rgio Hilton Berlotto Jr', u'id': 69}
 
     username = userdata.data['email']
     print "LOGANDO VIA LOGIN CIDADAO:", username

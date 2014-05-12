@@ -318,13 +318,17 @@ def cleanup(response):
 @app.context_processor
 def inject_social_image():
     def social_image(user):
+        if user and (user.get_meta('profile_picutre_url')):
+            return user.get_meta('profile_picutre_url')
         if user and (user.get_meta('facebookuser') or user.get_meta('facebook')):
             return "http://graph.facebook.com/%s/picture" % user.get_meta('facebook') or ""
         if user and user.get_meta('twitteruser'):
             return "https://api.twitter.com/1/users/profile_image?screen_name=%s&size=bigger" % user.get_meta('twitter')
         return None
     def social_image_from(user):
-        if user and (user.get_meta('facebookuser') or user.get_meta('facebook')):
+        if user and (user.get_meta('profile_picutre_url')):
+            return "http://meu.rs.gov.br"
+        elif user and (user.get_meta('facebookuser') or user.get_meta('facebook')):
             return "http://facebook.com"
         elif user and user.get_meta('twitteruser'):
             return "http://twitter.com"
