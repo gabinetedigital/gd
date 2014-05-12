@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="img/ico/favicon.ico">
+
+<title>De Olho nas Obras - Detalhe Obra</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/flat.min.css" rel="stylesheet" type="text/css" />
+<link href="css/lightbox.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+<link href="css/DONO.min.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+<link href="css/ie8fix.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Yanone+Kaffeesatz:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.timeline.min.js"></script>
+<script type="text/javascript" src="js/image.js"></script>
+<script type="text/javascript" src="js/lightbox.js"></script>
+
+
+</head>
+
+
+<body class="fade-in">
+<!-- NAVBAR
+================================================== -->
+	<header class="navbar internalHeader navbar-static-top" role="navigation" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+		<div class="container">
+			<div class="navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#"><i class="fa fa-user"></i><br />Login</a></li>
+					<li><a href="#compartilhar" data-toggle="modal"><i class="fa fa-share"></i><br />Compartilhe</a></li>
+					<li><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
+				</ul>
+			</div>
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">De Olho Nas Obras</a>
+			</div>
+			<div class="homeSearch">
+				<input type="text" id="" placeholder="Procure por uma obra" />
+			</div>
+		</div>
+	</header>
+
+
+<!-- DADOS DA OBRA
+================================================== -->
+<div class="constructionMainInfo">
+	<div class="container">
+		<div class="row specificInfoBox">
+			<div class="col-md-7 imageDescription">
+				<div class="constructionDesc">
+					<div class="obraConcluidaItem"></div>
+					<h1>Implantação da rede hidráulica na Zona Mista de Guaíba</h1>
+					<p>Implantação da rede hidráulica na Zona Mista de Guaíba pela CORSAN.</p>
+					<ul>
+						<li><a href="images/6820.jpg" rel="lightbox[timeline]"><i class="fa fa-camera-retro"></i> Galeria de Fotos</a></li>
+						<li><a href="javascript:void(0)" id="linkSaibaMais">Saiba mais <i class="fa fa-angle-double-right"></i></a></li>
+					</ul>
+				</div>
+				<img src="images/6820.jpg" alt="" />
+			</div>
+			<div class="col-md-5">
+				<div id="additionalInfo">
+						<p>Aliquam vulputate lacinia quam, a sagittis tellus. Vivamus nec diam in lectus congue pellentesque. Duis pellentesque turpis non est placerat laoreet. Nunc vitae ultrices tortor. Nullam justo leo, iaculis molestie diam ac, scelerisque ornare libero. Phasellus blandit venenatis augue, vel aliquet libero.</p>
+
+						<p>Vivamus lorem est, sollicitudin ac pharetra nec, aliquam non mauris. Ut scelerisque, ipsum quis semper luctus, est eros suscipit mauris, in laoreet elit nibh vitae urna. Phasellus eget urna volutpat nibh egestas gravida et vitae nunc. Curabitur sit amet lobortis lorem, in vestibulum metus.</p>
+				</div>
+				<ul>
+					<li><i class="fa fa-calendar-o"></i>
+						<h2>Previsão de conclusão</h2>
+						<h3>30/04/2014</h3>
+					</li>
+					<li><i class="fa fa-money"></i>
+						<h2>Valor Global</h2>
+						<h3>0.00</h3>
+					</li>
+					<li><i class="fa fa-gears"></i>
+						<h2>Andamento</h2>
+						<h3>94%</h3>
+					</li>
+					<li><i class="fa fa-wrench"></i>
+						<h2>Empresas responsáveis</h2>
+						<h3>Nome da Empresa</h3>
+					</li>
+					<li><i class="fa fa-users"></i>
+						<h2>Secretaria Responsável</h2>
+						<h3>Nome da Secretaria</h3>
+					</li>
+					<li><i class="fa  fa-map-marker"></i>
+						<h2>Visualização no Mapa</h2>
+						<h3><a href="">Clique aqui</a> para ver a localização no mapa</h3>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- BARRA DE FERRAMENTAS
+================================================== -->
+<div class="container">
+	<div class="row toolBar">
+		<div class="col-md-12">
+			<ul class="toolBar">
+				<li><a href="javascript:void(0)" id="fiscalizeObra"><i class="fa fa-crosshairs"></i>Fiscalize</a>
+					<div id="fiscalizeObraBox" class="innerBoxes"><i class="fa fa-caret-up"></i>
+						<p>Participe dessa obra enviando fotos, videos ou comentarios. <a href="enviarContribuicao.html">Clique aqui</a> para enviar suas contribuicoes.</p>
+					</div>
+				</li>
+				<li><a href="javascript:void(0)" id="sigaObra"><i class="fa fa-star"></i>Siga esta obra</a>
+				<!-- Inicio Caixa do siga esta obra -->
+						<div id="sigaObraBox" class="innerBoxes"><i class="fa fa-caret-up"></i>
+							<div class="row">
+								<div class="col-md-2">
+									<i class="fa fa-envelope"></i>
+								</div>
+								<div class="col-md-4">
+									<label>Email</label>
+								</div>
+								<div class="col-md-6">
+									<input type="text" id="" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									<i class="fa fa-facebook-square"></i>
+								</div>
+								<div class="col-md-4">
+									<label>http://facebook.com/</label>
+								</div>
+								<div class="col-md-6">
+									<input type="text" id="" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									<i class="fa fa-twitter-square"></i>
+								</div>
+								<div class="col-md-4">
+									<label>http://twitter.com/</label>
+								</div>
+								<div class="col-md-6">
+									<input type="text" id="" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+
+								</div>
+								<div class="col-md-4">
+									<input type="submit" value="seguir" />
+								</div>
+								<div class="col-md-6">
+									<p>ou <a href="">clique aqui</a> para descadastrar e parar de seguir essa obra</p>
+								</div>
+							</div>
+						</div>
+						<!-- Fim Caixa do siga esta obra -->
+				</li>
+
+				<li><a href="javascript:void(0)" id="compartilhaObra"><i class="fa fa-share"></i>Compartilhe</a>
+						<div id="compartilhaObraBox" class="innerBoxes"><i class="fa fa-caret-up"></i>
+							<p>Compartilhe essa obra nas redes sociais</p>
+							<!-- AddThis Button BEGIN -->
+							<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+							<a class="addthis_button_preferred_1"></a>
+							<a class="addthis_button_preferred_2"></a>
+							<a class="addthis_button_preferred_3"></a>
+							<a class="addthis_button_preferred_4"></a>
+							<a class="addthis_button_compact"></a>
+							<a class="addthis_counter addthis_bubble_style"></a>
+							</div>
+							<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52037f9434ccf4aa"></script>
+							<!-- AddThis Button END -->
+						</div>
+				</li>
+				<li><a href="index.html"><i class="fa fa-list"></i>Lista de Obras</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- TIMELINE
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+		<h2>Andamento da obra:</h2>
+		<p>Clique nos pontos da linha do tempo para conferir as atualizações. Em azul, informações do governo. Já os itens rosas sinalizam conteúdos enviados pela população.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 timelinePerSe">
+
+	<script type="text/javascript">
+
+$(window).load(function() {
+	// light
+	$('.tl1').timeline({
+		openTriggerClass : '.read_more',
+		startItem : '04/05/2012',
+		closeText : 'x'
+	});
+	$('.tl1').on('ajaxLoaded.timeline', function(e){
+		var height = e.element.height()-60-e.element.find('h2').height();
+		e.element.find('.timeline_open_content span').css('max-height', height).mCustomScrollbar({
+			autoHideScrollbar:true,
+			theme:"light-thin"
+		});
+	});
+});
+</script>
+<div class="timelineLoader">
+	<img src="images/timeline/loadingAnimation.gif" />
+</div>
+<!-- BEGIN TIMELINE -->
+<div class="timelineFlat tl1">
+
+		<div class="item govResp" data-id="04/05/2012" data-description="Governo Informa">
+			<h1>Governo Informa</h1>
+			<h2>4 de maio</h2>
+            <div class="media">
+                <a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/1.jpg" rel="lightbox[timeline]"><img src="images/flat/default/1.jpg" alt=""/></a>
+            </div>
+			<p>Do total de 908 residências e estabelecimentos comerciais localizados em áreas em processo de desapropriação, restam apenas 205 ocupações a serem retiradas. No lote 3, onde o adensamento urbano é maior, uma frente de trabalho de 1,5 km foi aberta graças às remoções. Já no lote 1, a empresa Triunfo atua em cinco frentes, ampliando as obras de terraplanagem e drenagem. Já no lote 2 os avanços são menores e espera-se que a empresa Sultepa adote um ritmo compatível com as frentes de trabalho já disponíveis. A empresa aguarda a aprovação de um aditivo ao contrato, mas já seria possível retomar os trabalhos. Até o final de março, a expectativa é liberar 4 km de pista nova entre os lotes 2 e 3, bem como encaminhar cinco licitações entre passarelas, a elevação do viaduto sobre a RS-020 e o muro de contenção da Marechal Rondon.</p>
+            
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style ">
+                <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                <a class="addthis_button_tweet"></a>
+                <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+                <a class="addthis_counter addthis_pill_style"></a>
+            </div>
+            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52037f9434ccf4aa"></script>
+            <!-- AddThis Button END -->            
+		</div>
+
+
+		<div class="item povoQuest" data-id="12/05/2012" data-description="Cachoeirinha">
+			<h1>cachoeirinha</h1>
+			<h2>por sandra regina em 17 Jan, 2014 </h2>
+			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+		</div>
+
+
+		<div class="item povoQuest" data-id="14/05/2012" data-description="Cachoeirinha">
+			<h1>cachoeirinha</h1>
+			<h2>por sandra regina em 17 Jan, 2014 </h2>
+			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+		</div>
+
+		<div class="item povoQuest" data-id="20/05/2012" data-description="Cachoeirinha">
+			<h1>cachoeirinha</h1>
+			<h2>por sandra regina em 17 Jan, 2014 </h2>
+			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+		</div>
+
+		<div class="item povoQuest" data-id="02/06/2012" data-description="Cachoeirinha">
+			<h1>cachoeirinha</h1>
+			<h2>por sandra regina em 17 Jan, 2014 </h2>
+			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+		</div>
+
+		<div class="item govResp" data-id="04/06/2012" data-description="Governo Informa">
+			<div class="media">
+				<a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/1.jpg" rel="lightbox[timeline]"><img src="images/flat/default/1.jpg" alt=""/></a>
+			</div>
+			<h1>Governo Informa</h1>
+			<h2>4 de maio</h2>
+			<p>Do total de 908 residências e estabelecimentos comerciais localizados em áreas em processo de desapropriação, restam apenas 205 ocupações a serem retiradas. No lote 3, onde o adensamento urbano é maior, uma frente de trabalho de 1,5 km foi aberta graças às remoções. Já no lote 1, a empresa Triunfo atua em cinco frentes, ampliando as obras de terraplanagem e drenagem. Já no lote 2 os avanços são menores e espera-se que a empresa Sultepa adote um ritmo compatível com as frentes de trabalho já disponíveis. A empresa aguarda a aprovação de um aditivo ao contrato, mas já seria possível retomar os trabalhos. Até o final de março, a expectativa é liberar 4 km de pista nova entre os lotes 2 e 3, bem como encaminhar cinco licitações entre passarelas, a elevação do viaduto sobre a RS-020 e o muro de contenção da Marechal Rondon.</p>
+		</div>
+
+		<div class="item povoQuest" data-id="07/06/2012" data-description="Cachoeirinha">
+			<h1>cachoeirinha</h1>
+			<h2>por sandra regina em 17 Jan, 2014 </h2>
+			<p><img src="images/flat/default/3.jpg" alt=""/></p>
+			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+		</div>
+
+
+</div> <!-- /END TIMELINE -->
+		</div>
+	</div>
+</div>
+
+
+<!-- RODAPÉ
+================================================== -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"><a href="http://gabinetedigital.rs.gov.br/" target="_blank"><img src="images/GD_logo.png"  alt="Gabinete Digital" /></a></div>
+			<div class="col-md-3">
+				<h4>Nossos Dados</h4>
+				<p>As informações das obras são dados abertos. Acesse a API: <strong>JSON</strong></p>
+			</div>
+			<div class="col-md-3"><h4>Acesso à informação </h4>
+			<p>Se você quiser obter alguma informação específica e de maneira personalizada, utilize a Lei de Acesso à Informação. O governo dará uma resposta em no máximo 30 dias.</p>
+			<p><img src="images/acessoAinformacao.png" width="168" height="72" alt="" /></p>
+			</div>
+			<div class="col-md-3"><h4>Parceiros</h4>
+			<p>Desenvolvido em parceria com:</p>
+			<p><img src="images/procergs.png" width="77" height="76" alt="" /></p>
+			<p><img src="images/FGV.png" width="97" height="20" alt="" /></p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="compartilhar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Compartilhe nas redes sociais</h4>
+      </div>
+      <div class="modal-body">
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52037f9434ccf4aa"></script>
+<!-- AddThis Button END -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/docs.min.js"></script>
+<script src="js/customScripts.js"></script>
+
+</body>
+</html>
