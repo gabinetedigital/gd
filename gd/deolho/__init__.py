@@ -208,7 +208,7 @@ def index():
 	except KeyError:
 		valor_investimentos = ""
 
-	return render_template('monitoramento.html',
+	return render_template('deolho.html',
 		obras=obras,
 		slides=retslides,
 		stats=_get_stats(),
