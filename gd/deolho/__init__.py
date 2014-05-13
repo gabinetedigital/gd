@@ -208,6 +208,7 @@ def index():
 	except KeyError:
 		valor_investimentos = ""
 
+	print "RETORNANDO DEOLHO.HTML......"
 	return render_template('deolho.html',
 		obras=obras,
 		slides=retslides,
@@ -372,7 +373,7 @@ def obra(slug):
 
 	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
 	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
-	return render_template('obra.html',
+	return render_template('detalhe_obra.html',
 		menu=menus,
 		obra=obra,
 		tos=tos,

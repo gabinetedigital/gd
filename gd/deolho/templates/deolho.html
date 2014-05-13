@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="shortcut icon" href="img/ico/favicon.ico">
+<link rel="shortcut icon" href="{{url_for('.static',filename="img/ico/favicon.ico")}}">
 
 <title>De Olho nas Obras</title>
 
@@ -31,7 +31,11 @@
 		<div class="container">
 			<div class="navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#"><i class="fa fa-user"></i><br />Login</a></li>
+					{%if user%}
+					<li><a href="{{url_for("auth.login")}}"><i class="fa fa-user"></i><br />Login</a></li>
+					{%else%}
+					<li><a href="{{url_for("auth.logout")}}"><i class="fa fa-user"></i><br />Logout</a></li>
+					{%endif%}
 					<li><a href="#compartilhar" data-toggle="modal"><i class="fa fa-share"></i><br />Compartilhe</a></li>
 					<li><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
 				</ul>
@@ -52,33 +56,22 @@
 	<div id="myCarousel" class="carousel slide container" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
+			{%for slide in slides%}
+			<li data-target="#myCarousel" data-slide-to="{{loop.index0}}" {%if loop.index0==0%}class="active"{%endif%}></li>
+			{%endfor%}
 		</ol>
 		<div class="carousel-inner">
-			<div class="item active">
-				<img src="{{url_for('.static',filename="images/slider01.jpg")}}" alt="" />
+
+			{%for slide in slides%}
+			<div class="item {%if loop.index0==0%}active{%endif%}">
+				<img src="{{ thumborurl(slide.thumbs.slideshow.url, (1200,464)) }}" alt="" />
 				<div class="carousel-caption">
-					<h1>Implantação da rede hidráulica na Zona Mista de Guaíba</h1>
-					<p><a class="sliderLink" href="#" role="button">visite essa obra</a></p>
+					<h1>{{slide.title}}</h1>
+					<p><a class="sliderLink" href="{{url_for('monitoramento.obra',slug=slide.slug)}}" role="button">visite essa obra</a></p>
 				</div>
 			</div>
-			<div class="item">
-				<div class="obraConcluidaSlider"></div>
-				<img src="{{url_for('.static',filename="images/slider02.jpg")}}" alt="" />
-				<div class="carousel-caption">
-					<h1>Implantação da rede hidráulica na Zona Mista de Guaíba</h1>
-					<p><a class="sliderLink" href="#" role="button">visite essa obra</a></p>
-				</div>
-			</div>
-			<div class="item">
-				<img src="{{url_for('.static',filename="images/slider03.jpg")}}" alt="" />
-				<div class="carousel-caption">
-					<h1>Implantação da rede hidráulica na Zona Mista de Guaíba</h1>
-					<p><a class="sliderLink" href="#" role="button">visite essa obra</a></p>
-				</div>
-			</div>
+			{%endfor%}
+
 		</div>
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="icon-prev"><i class="fa fa-angle-left"></i></span></a>
 		<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="icon-next"><i class="fa fa-angle-right"></i></span></a>
@@ -166,126 +159,34 @@
 	<div class="row">
 		<div class="col-md-12 listaObras">
 
+		{%for obra in obras%}
 			<!-- Inicio Obra -->
 			<div class="constructionBox">
 				<div class="image">
+					{%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
 					<div class="obraConcluidaListagem"></div>
-					<a href=""><img src="{{url_for('.static',filename="images/tecnounisc.jpg")}}" alt="" /></a>
+					{%endif%}
+					<a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
+						{%if obra.thumbs%}
+						<img src="{{ thumborurl(obra.thumbs.normal.url, (277,217) ) }}">
+						{%else%}
+						<img src="http://placehold.it/277x217&text=Obra">
+						{%endif%}
+						<!-- <img src="{{url_for('.static',filename="images/tecnounisc.jpg")}}" alt="" /> -->
+					</a>
 				</div>
 				<div class="description">
-					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
-					<h4><a href="">Santa Cruz do Sul</a></h4>
+					<h3><a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">{{obra.title}}</a></h3>
+					<h4><a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">{%if obra.custom_fields.gdobra_municipio%} {{obra.custom_fields.gdobra_municipio[0]}} {%endif%}</a></h4>
 					<ul>
-						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
-						<li><i class="fa fa-comment"></i> <span>99</span></li>
-						<li><i class="fa fa-star"></i><span>12</span></li>
+						<li><i class="fa fa-cogs"></i> <span>{{obra.custom_fields.gdobra_porc_concluido}}%</span></li>
+						<li><i class="fa fa-comment"></i> <span>{{obra.total_contributions}}</span></li>
+						<li><i class="fa fa-star"></i><span>{{obra.total_follows}}</span></li>
 					</ul>
 				</div>
 			</div>
 			<!-- Fim Obra -->
-
-			<!-- Inicio Obra -->
-			<div class="constructionBox">
-				<div class="image">
-					<a href=""><img src="{{url_for('.static',filename="images/tecnounisc.jpg")}}" alt="" /></a>
-				</div>
-				<div class="description">
-					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
-					<h4><a href="">Santa Cruz do Sul</a></h4>
-					<ul>
-						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
-						<li><i class="fa fa-comment"></i> <span>99</span></li>
-						<li><i class="fa fa-star"></i><span>12</span></li>
-					</ul>
-				</div>
-			</div>
-			<!-- Fim Obra -->
-
-			<!-- Inicio Obra -->
-			<div class="constructionBox">
-				<div class="image">
-					<a href=""><img src="{{url_for('.static',filename="images/tecnounisc.jpg")}}" alt="" /></a>
-				</div>
-				<div class="description">
-					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
-					<h4><a href="">Santa Cruz do Sul</a></h4>
-					<ul>
-						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
-						<li><i class="fa fa-comment"></i> <span>99</span></li>
-						<li><i class="fa fa-star"></i><span>12</span></li>
-					</ul>
-				</div>
-			</div>
-			<!-- Fim Obra -->
-
-			<!-- Inicio Obra -->
-			<div class="constructionBox">
-				<div class="image">
-					<a href=""><img src="{{url_for('.static',filename="images/tecnounisc.jpg")}}" alt="" /></a>
-				</div>
-				<div class="description">
-					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
-					<h4><a href="">Santa Cruz do Sul</a></h4>
-					<ul>
-						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
-						<li><i class="fa fa-comment"></i> <span>99</span></li>
-						<li><i class="fa fa-star"></i><span>12</span></li>
-					</ul>
-				</div>
-			</div>
-			<!-- Fim Obra -->
-
-			<!-- Inicio Obra -->
-			<div class="constructionBox">
-				<div class="image">
-					<a href=""><img src="{{url_for('.static',filename="images/tecnounisc.jpg")}}" alt="" /></a>
-				</div>
-				<div class="description">
-					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
-					<h4><a href="">Santa Cruz do Sul</a></h4>
-					<ul>
-						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
-						<li><i class="fa fa-comment"></i> <span>99</span></li>
-						<li><i class="fa fa-star"></i><span>12</span></li>
-					</ul>
-				</div>
-			</div>
-			<!-- Fim Obra -->
-
-			<!-- Inicio Obra -->
-			<div class="constructionBox">
-				<div class="image">
-					<a href=""><img src="{{url_for('.static',filename="images/tecnounisc.jpg")}}" alt="" /></a>
-				</div>
-				<div class="description">
-					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
-					<h4><a href="">Santa Cruz do Sul</a></h4>
-					<ul>
-						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
-						<li><i class="fa fa-comment"></i> <span>99</span></li>
-						<li><i class="fa fa-star"></i><span>12</span></li>
-					</ul>
-				</div>
-			</div>
-			<!-- Fim Obra -->
-
-			<!-- Inicio Obra -->
-			<div class="constructionBox">
-				<div class="image">
-					<a href=""><img src="{{url_for('.static',filename="images/tecnounisc.jpg")}}" alt="" /></a>
-				</div>
-				<div class="description">
-					<h3><a href="">TECNOUNISC - Centro de Pesquisa e Desenvolvimento de Empresas Tecnologicamente Inovadoras</a></h3>
-					<h4><a href="">Santa Cruz do Sul</a></h4>
-					<ul>
-						<li><i class="fa fa-cogs"></i> <span>75%</span></li>
-						<li><i class="fa fa-comment"></i> <span>99</span></li>
-						<li><i class="fa fa-star"></i><span>12</span></li>
-					</ul>
-				</div>
-			</div>
-			<!-- Fim Obra -->
-
+		{%endfor%}
 
 		</div>
 	</div>

@@ -300,7 +300,9 @@ def extend_context():
 
     # Time to add the `user' var
     try:
+        print "Adding user var in context.................."
         context['user'] = authenticated_user()
+        print "User var in context OK ....................."
     except NobodyHome:
         context['user'] = None
 
