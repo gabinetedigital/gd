@@ -49,7 +49,7 @@ from gd.audience import audience
 from gd.buzz.webapp import buzz
 from gd.utils.gravatar import Gravatar
 from libthumbor import CryptoURL
-from gd.monitoramento import monitoramento
+from gd.deolho import monitoramento
 from gd.seminario import seminario
 from flask.ext.cache import Cache
 
