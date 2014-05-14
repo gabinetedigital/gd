@@ -120,32 +120,63 @@
 ================================================== -->
 <div class="container">
 	<div class="row filterBox">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="btn-group">
+				<label for="slfiltro">Filtrar por</label>
 				<select id="slfiltro">
-					<option value="todas">Todas ({{obras|length}} obras)</option>
+					<option value="">Todas ({{obras|length}} obras)</option>
 					<option value="tema">Tema</option>
 					<option value="municipio">Município</option>
 					<option value="regiao">Região</option>
-					<option value="concluidas">Obras concluídas</option>
 				</select>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="btn-group" style="display: none;">
-				<button type="button" class="btn btn-filter dropdown-toggle" data-toggle="dropdown">dropdown dependente:<span class="caret"></span></button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="#"></a></li>
-				</ul>
+		<div class="col-md-5">
+			<div class="btn-group" id="filtros">
+				<div id="divtema" style="display:none;">
+					<label for="sltema">Tema:</label>
+					<select id="sltema">
+						<option value="">- Selecione -</option>
+						<option value="">Infraestrutura</option>
+						<option value="">Saúde</option>
+						<option value="">Educação</option>
+					</select>
+				</div>
+				<div id="divmunicipio" style="display:none;">
+					<label for="slmunicipio">Município:</label>
+					<select id="slmunicipio">
+						<option value="">- Selecione -</option>
+						<option value="">Porto Alegre</option>
+						<option value="">Gravataí</option>
+						<option value="">Esteio</option>
+						<option value="">São Borja</option>
+						<option value="">Bagé</option>
+					</select>
+				</div>
+				<div id="divregiao" style="display:none;">
+					<label for="slregiao">Região:</label>
+					<select id="slregiao">
+						<option value="">- Selecione -</option>
+						<option value="">Região 1</option>
+						<option value="">Região 2</option>
+						<option value="">Região 3</option>
+						<option value="">Região 4</option>
+						<option value="">Região 5</option>
+					</select>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="btn-group">
-				<select id="slordem" class="pull-right">
-					<option value="conclusao">% Conclusão</option>
-					<option value="recentes">Mais recentes</option>
-					<option value="atualizacao">Ordem de atualização</option>
-				</select>
+			<div class="btn-group" >
+				<div class="pull-right">
+					<label for="slordem" >Ordenar por</label>
+					<select id="slordem" >
+						<option value="">- Ordenar -</option>
+						<option value="conclusao">% Conclusão</option>
+						<option value="recentes">Mais recentes</option>
+						<option value="atualizacao">Ordem de atualização</option>
+					</select>
+				</div>
 			</div>
 		</div>
 	</div>
