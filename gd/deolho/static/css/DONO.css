@@ -26,7 +26,7 @@ h2 {margin:0; padding:35px 0 40px 0; font-family: 'Yanone Kaffeesatz', 'sans-ser
 p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 
 /* ========================== TOP BAR ==========================*/
-.navbar-nav {margin:0; padding:10px 0 0 0; width: 190px; float: right;}
+.navbar-nav {margin:0; padding:10px 0 0 0; width: 200px; float: right;}
 .navbar-nav li a {transition-property: color; transition-duration: 1s; transition-timing-function: ease-out; display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center;}
 .navbar-nav li a i {font-size: 24px;}
 
@@ -50,7 +50,7 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 
 .affix-top {margin:0; padding:0; height: 220px; !important; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out;}
 .affix-top header.navbar {margin:0; padding:0; max-height: 220px !important; height: 220px !important; text-align: center;}
-.affix-top .navbar-nav {margin:0; padding:10px 0 0 0; width: 190px; float: right;}
+.affix-top .navbar-nav {margin:0; padding:10px 0 0 0; width: 200px; float: right;}
 .affix-top .navbar-nav li a {transition-property: all; transition-duration: 1s; transition-timing-function: ease-out; display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center;}
 .affix-top .navbar-nav li a i {font-size: 24px;}
 
@@ -70,9 +70,9 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 .affix-top .homeSearch input[type='text'] {margin: 0 auto; padding:0 10px 0 40px; width: 380px; height: 38px; border-radius: 6px; border: 1px solid #cdcccc; color: #cdcccc; font-size: 17px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase; background: transparent url(../images/search_icon.png) no-repeat 10px center;}
 
 
-.affix {margin:0; padding:0; height: 60px; !important; width: 100%;background-color: #ffffff; transition-property: all; transition-duration: 0.5s; transition-timing-function: ease-out; z-index: 99999; overflow: hidden; z-index: 999;}
+.affix {margin:0; padding:4px 0; height: 68px; !important; width: 100%;background-color: #ffffff; transition-property: all; transition-duration: 0.5s; transition-timing-function: ease-out; z-index: 99999; overflow: hidden; z-index: 999;}
 .affix header.navbar {margin:0; padding:0; max-height: 60px !important; height: 60px !important; text-align: center;}
-.affix .navbar-nav {margin:0; padding: 6px 0 0 0; width: 190px; float: right;}
+.affix .navbar-nav {margin:0; padding: 10px 0 0 0; width: 220px; float: right;}
 .affix .navbar-nav li a {transition-property: color; transition-duration: 1s; transition-timing-function: ease-out;display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center;}
 .affix .navbar-nav li a i {font-size: 24px;}
 
@@ -301,21 +301,92 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 .timelinePerSe {margin:50px 0; padding:0;}
 .t_line_holder {margin-bottom: 70px;}
 
-.timelineFlat .item {margin:0 2px; padding: 10px; border-radius: 6px; height:auto; color:#777777; font-size:12px; line-height:16px;position: relative;}
+.timelineFlat .item {margin:0; padding: 0;  background-color: transparent; width: 650px; height:auto; color:#777777; font-size:12px; line-height:16px;position: relative;}
 .timelineFlat .item h1 {margin:0; padding:0; line-height: 1; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 35px; letter-spacing: 7px !important; font-weight: 400; text-transform: uppercase; }
 .timelineFlat .item h2 {margin:0; padding:0 0 20px 0; line-height: 1; color: #f13c6e; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 16px; font-weight: 400; text-transform: uppercase;}
-.timelineFlat .item .media {margin:0 0 20px 20px; padding:0; float: right; width: 40%;}
 
-.govResp {padding:20px 30px !important; width: 840px; background-color: #5ab9c0; color: #ffffff !important; line-height: 20px !important;}
-.govResp p {color: #ffffff !important; font-size: 12px; line-height: 20px !important;}
-
-.povoQuest { padding: 25px 20px !important; width: 400px; background-color: #cdcdcd;}
-.povoQuest p {color: #414040 !important; font-size: 12px; line-height: 20px !important;}
-.povoQuest h1 {line-height: 1; font-size: 18px !important; letter-spacing: 2px !important; color: #545353;}
-.povoQuest h2 {line-height: 1.4 !important; font-size: 14px !important;}
+.timelineFlat .govResp .media {margin:0 0 20px 20px; padding:0; float: right; width: 55%;}
+.timelineFlat .povoQuest .media {margin:20px auto; padding:0; width: 30%;}
 
 
-/* ========================== FOOTER ===================;=======*/
+.timelineFlat .govResp {margin: 0; padding:20px 30px !important; border-radius: 6px 6px 0 0;  background-color: #5ab9c0 !important; color: #ffffff !important; line-height: 20px !important;}
+.timelineFlat .govResp p {color: #ffffff !important; font-size: 12px; line-height: 20px !important; border-radius: 6px; }
+
+.timelineFlat .povoQuest {margin:0; padding: 25px 20px !important; background-color: #cdcdcd !important; border-radius: 6px 6px 0 0; }
+.timelineFlat .povoQuest p {color: #414040 !important; font-size: 12px; line-height: 20px !important;}
+.timelineFlat .povoQuest h1 {line-height: 1; font-size: 18px !important; letter-spacing: 2px !important; color: #545353;}
+.timelineFlat .povoQuest h2 {line-height: 1.4 !important; font-size: 14px !important;}
+
+.timelineFlat .item .itemFooter {margin: 0 !important; padding:10px 30px 40px 30px !important; border-radius:0 0 6px 6px; color: #ffffff !important; height: auto;}
+
+.timelineFlat .item .itemFooter .addthis_toolbox {margin: 0; padding: 0; float: left;}
+.timelineFlat .item .itemFooter .addthis_toolbox a {margin-right: 5px; height: 15px; width: 15px !important;}
+
+.issoEImportante {margin:5px 0 0 0; padding:0; width:150px; height: 20px; float: left; color: #f6772c; line-height: 1; font-size: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase;}
+.issoEImportante span {}
+.issoEImportante a {float: right; margin-top: -3px; color: #f6772c;}
+
+
+.timelineFlat .item .govFoot {background-color: #5ab9c0 !important;}
+.timelineFlat .item .peopleFoot {background-color: #cdcdcd !important; padding-bottom: 60px;}
+
+.timelineFlat .item .comentarItem {margin:0; padding:0; float: right; width: 150px;  color: #b63b6a !important; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 18px; line-height: 20px; height: 20px; text-transform: uppercase; letter-spacing: 0px !important;}
+.timelineFlat .item .comentarItem strong {display: block; margin:0; padding:8px 0 0 0; float: left; height: 16px; width: auto;}
+
+.timelineFlat .item .toggle-trigger {display: block; float:right; position: relative; margin:0; padding:0; cursor: pointer; width: 38px; height; 36px; text-align: center; float: right;}
+.timelineFlat .item .toggle-trigger i {display: block; font-size: 34px; color: #b63b6a !important; position: absolute; top: 0; left:0; height: 36px; width: 38px; z-index: 98;}
+.timelineFlat .item .toggle-trigger span {display:block; margin:0; padding:0;  color:#ffffff !important; position: absolute; top: 0; left:0; line-height: 30px; height: 36px; width: 38px; z-index: 99;}
+
+.timelineFlat .item .toggle-wrap {margin:0; padding:10px 0; display: none; width: 100%;}
+
+.timelineFlat .item .toggle-wrap .directComment {margin:10px 0; padding: 15px 20px 20px 20px; border-radius: 6px; background-color: #b63b6a; font-size: 10px; color: #fff;}
+.timelineFlat .item .toggle-wrap .directComment h4 {margin:0; padding:0; line-height: 1; color: #5ab9c0; font-size: 16px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase;}
+.timelineFlat .item .toggle-wrap .directComment p {margin:0; padding: 10px 0 0 0; line-height: 1.8 !important; font-size: 10px; color: #fff;}
+
+.timelineFlat .item .toggle-wrap textarea {margin:20px 0 0 0; padding: 10px; width: 100%; height: 150px; border: 1px solid #b63b6a; border-radius: 6px;}
+.timelineFlat .item .toggle-wrap input[type="submit"] {margin:30px 0 0 0; padding:15px 20px; float: right; border-radius: 6px; border: 0px; background-color: #b63b6a; text-align: center; color: #fff; font-size: 16px;}
+
+
+/* ========================== ENVIAR CONTRIBUIÇÃO ==========================*/
+.titleBar {margin:0 0 10px 0; padding: 16px 0; text-align: left; background-color:#502841; color: #fff;}
+.titleBar h1 {margin:0; padding:0; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 40px; line-height: 1.2; text-transform: uppercase; letter-spacing:0.2px; text-shadow: 2px 2px 1px rgba(0, 0, 0, 1); }
+.titleBar p {margin:0; padding:20px 0 14px 0; color: #fff; font-size: 16px; line-height: 1.2;}
+
+
+.colourfulBoxesMedium {margin:0; padding:0;}
+.colourfulBoxesMedium {margin:0; padding:0 0 70px 0;}
+.colourfulBoxesMedium div {margin:0; padding: 0; min-height: 190px; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out;}
+.colourfulBoxesMedium div:hover {opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50);}
+.colourfulBoxesMedium div h3 {margin:0; padding:0; width: 30px; height: 32px; text-align: center; color: #ffffff; font-size: 16px; line-height: 32px; background-color: rgba(0, 0, 0, 0.2);}
+.colourfulBoxesMedium div p {margin:0; padding: 60px 10px 10px 10px; text-align: center; font-size: 10px; color: #ffffff;}
+
+.colourfulBoxesMedium div:nth-of-type(1) {background: #b63b6a url(../images/comoParticipar01.png) no-repeat center 25px;}
+.colourfulBoxesMedium div:nth-of-type(2) {background: #f13c6e url(../images/comoParticipar02.png) no-repeat center 25px;}
+.colourfulBoxesMedium div:nth-of-type(3) {background: #f6772c url(../images/comoParticipar03.png) no-repeat center 25px;}
+.colourfulBoxesMedium div:nth-of-type(4) {background: #ffbb42 url(../images/comoParticipar04.png) no-repeat center 25px;}
+
+/* ========================== FORM FIELDS ==========================*/
+form {margin:0 auto; padding:0 0 100px 0; width: 90%;}
+form p {margin:0; padding:0;}
+
+form label {display: block; margin:0; padding:0 !important; height: auto; color: #B63B6A; font-size: 18px; line-height: 1; font-weight: 400;}
+form  input[type="text"] {margin:8px 0 20px 0; padding: 4px; width: 100%; height: 35px; border: 1px solid #b63b6a; border-radius: 6px; color: #B63B6A !important; font-size: 14px !important; line-height: 1 !important; font-weight: 400;}
+form  textarea {margin:8px 0 20px 0; padding: 10px; width: 100%; height: 150px; border: 1px solid #b63b6a; border-radius: 6px; color: #B63B6A !important; font-size: 14px !important; line-height: 1 !important; font-weight: 400;}
+form  input[type="submit"] {margin:30px 0 0 0; padding:15px 60px; float: right; border-radius: 6px; border: 0px; background-color: #b63b6a; text-align: center; color: #fff; font-size: 16px;}
+
+
+
+.fileContainer {overflow: hidden; position: relative; margin:8px 0 20px 0; padding: 4px; width: 100%; height: 35px; border: 1px solid #b63b6a; border-radius: 6px;   }
+.fileContainer span {display: block; position: absolute; right: 0px; top: 0px; margin:0; padding:10px 20px; float: right; background-color: #b63b6a; text-align: center; color: #fff; font-size: 14px;}
+.fileContainer [type=file] {display: block; padding: 0; min-height: 100%; min-width: 100%; position: absolute; left: -83px; top: 1px; color: #000; cursor: pointer; color: #B63B6A !important; font-size: 14px !important; line-height: 1 !important; font-weight: 400;}
+
+
+.select {position: absolute; width: 158px; /* With the padding included, the width is 190 pixels: the actual width of the image. */ height: 21px; padding: 0 24px 0 8px; color: #fff; font: 12px/21px arial,sans-serif; background: url(../images/select.png) no-repeat; overflow: hidden;}
+
+
+
+
+/* ========================== FOOTER ==========================*/
 footer {margin:0; padding: 50px 0 0 0; background-color:#502841; height: 320px; color: #a2688c;}
 footer h4 {margin:0; padding:0 0 5px 0; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 22px; letter-spacing: 1px; line-height: 20px; text-transform: uppercase; font-weight: 500;}
 footer p {margin:0; padding:15px 0 10px 0; font-size:12px; color: #a2688c;} 

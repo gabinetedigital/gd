@@ -1,44 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="shortcut icon" href="img/ico/favicon.ico">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="title" content="{{obra.title}} | De Olho Nas Obras">
+        <meta name="description" content="{{ obra.content|safe }}">
+        <meta name="author" http-equiv="" content="Gabinete Digital">
+        <meta name="owner" http-equiv="" content="Gabinete Digital">
+        <meta name="copyright" http-equiv="" content="(c) 2014 - PROCERGS">
+        <meta name="doc-type" http-equiv="" content="Web Page">
+        <meta name="" http-equiv="content-language" content="pt-br">
+        <meta name="distribution" http-equiv="" content="global">
+        <meta name="classification" http-equiv="" content="general">
+        <meta name="rating" http-equiv="" content="general">
+        <meta name="robots" http-equiv="" content="index,follow">
+        <meta name="googlebot" http-equiv="" content="index,follow">
+        <meta name="msnbot" http-equiv="" content="index,follow">
+        <meta name="revisit-after" http-equiv="" content="7 days">
+        <meta name="" http-equiv="pragma" content="no-cache">
+        <meta name="expires" http-equiv="" content="never">
+        <meta name="" http-equiv="expires" content="-1">
+        <link rel="alternate" type="application/rss+xml" title="Canal RSS" href="/rss">        
+        <link rel="shortcut icon" href="{{url_for('.static',filename="img/ico/favicon.ico")}}">
+        <title>De Olho nas Obras</title>
+        <meta property="og:title" content="{{obra.title}} | De Olho Nas Obras">
+        <meta property="og:site_name" content="Gabinete Digital">
+        <meta property="og:description" content="{{ obra.content|safe }}">
+        <meta property="og:url" content="http://gabinetedigital.rs.gov.br/deolho/">
+        {%if obra.thumbs %}
+        <meta property="og:image" content="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
+        {%endif%}
+        <meta property="og:type" content="website">            
 
-<title>De Olho nas Obras - Detalhe Obra</title>
-
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="css/flat.min.css" rel="stylesheet" type="text/css" />
-<link href="css/lightbox.css" rel="stylesheet" type="text/css" />
-<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
-<link href="css/DONO.min.css" rel="stylesheet">
-
-<!--[if lt IE 9]>
-<link href="css/ie8fix.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
+        <!-- Bootstrap core CSS -->
+        <link href="{{url_for('.static', filename="css/bootstrap.min.css")}}" rel="stylesheet">        
+        <link href="{{url_for('.static', filename="css/flat.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{url_for('.static', filename="css/lightbox.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{url_for('.static', filename="css/jquery.mCustomScrollbar.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{url_for('.static', filename="css/DONO.min.css")}}" rel="stylesheet">
+        <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet"        
+        
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Yanone+Kaffeesatz:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Yanone+Kaffeesatz:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
-<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="js/jquery.timeline.min.js"></script>
-<script type="text/javascript" src="js/image.js"></script>
-<script type="text/javascript" src="js/lightbox.js"></script>
-
-
-</head>
-
+        <script src="{{url_for('.static', filename="js/jquery.mCustomScrollbar.js")}}"></script>
+        <script src="{{url_for('.static', filename="js/jquery.easing.1.3.js")}}"></script>
+        <script src="{{url_for('.static', filename="js/jquery.timeline.min.js")}}"></script>
+        <script src="{{url_for('.static', filename="js/image.js")}}"></script>
+        <script src="{{url_for('.static', filename="js/lightbox.js")}}"></script>        
+        
+    </head>
 
 <body class="fade-in">
 <!-- NAVBAR
@@ -240,67 +257,206 @@ $(window).load(function() {
 <!-- BEGIN TIMELINE -->
 <div class="timelineFlat tl1">
 
-		<div class="item govResp" data-id="04/05/2012" data-description="Governo Informa">
-			<h1>Governo Informa</h1>
-			<h2>4 de maio</h2>
-            <div class="media">
-                <a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/1.jpg" rel="lightbox[timeline]"><img src="images/flat/default/1.jpg" alt=""/></a>
-            </div>
-			<p>Do total de 908 residências e estabelecimentos comerciais localizados em áreas em processo de desapropriação, restam apenas 205 ocupações a serem retiradas. No lote 3, onde o adensamento urbano é maior, uma frente de trabalho de 1,5 km foi aberta graças às remoções. Já no lote 1, a empresa Triunfo atua em cinco frentes, ampliando as obras de terraplanagem e drenagem. Já no lote 2 os avanços são menores e espera-se que a empresa Sultepa adote um ritmo compatível com as frentes de trabalho já disponíveis. A empresa aguarda a aprovação de um aditivo ao contrato, mas já seria possível retomar os trabalhos. Até o final de março, a expectativa é liberar 4 km de pista nova entre os lotes 2 e 3, bem como encaminhar cinco licitações entre passarelas, a elevação do viaduto sobre a RS-020 e o muro de contenção da Marechal Rondon.</p>
+    
+    <!-- ============================================ ITEM GOVERNO INFORMA ============================================--> 
+    <div class="item" data-id="04/05/2012" data-description="Governo Informa">
+        <!-- Titulo, media e texto -->
+        <div class="govResp">
+			 <h1>Governo Informa</h1>
+             <h2>4 de maio de 2012</h2>
+            <div class="media"><a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/1.jpg" rel="lightbox[timeline]"><img src="images/flat/default/1.jpg" alt=""/></a></div>
+			 <p>Do total de 908 residências e estabelecimentos comerciais localizados em áreas em processo de desapropriação, restam apenas 205 ocupações a serem retiradas. No lote 3, onde o adensamento urbano é maior, uma frente de trabalho de 1,5 km foi aberta graças às remoções. Já no lote 1, a empresa Triunfo atua em cinco frentes, ampliando as obras de terraplanagem e drenagem. Já no lote 2 os avanços são menores e espera-se que a empresa Sultepa adote um ritmo compatível com as frentes de trabalho já disponíveis. A empresa aguarda a aprovação de um aditivo ao contrato, mas já seria possível retomar os trabalhos. Até o final de março, a expectativa é liberar 4 km de pista nova entre os lotes 2 e 3, bem como encaminhar cinco licitações entre passarelas, a elevação do viaduto sobre a RS-020 e o muro de contenção da Marechal Rondon.</p>
+        </div>
+        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
             
-            <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style ">
-                <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-                <a class="addthis_button_tweet"></a>
-                <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-                <a class="addthis_counter addthis_pill_style"></a>
+        <div class="itemFooter govFoot clearfix">    
+        <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a><p class="comentarItem"><strong>Comente este item</strong></p></div>  
+
+            <!-- Caixa de comentarios -->        
+        <div class="toggle-wrap">
+                <div class="directComment"> 
+                    <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                    <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+                </div>
+
+                <div class="directComment"> 
+                    <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                    <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+                </div>
+
+            <form>
+             <textarea name="" cols="" rows=""></textarea>
+            <input name="" type="submit" value="enviar comentario" />
+            </form>
+        </div>                  
+</div>
+    <!-- Fim do item de timeline -->
+
+
+    <!-- ============================================ ITEM NORMAL ============================================--> 
+		<div class="item" data-id="12/05/2012" data-description="Cachoeirinha">
+            <div class="povoQuest">
+			     <h1>cachoeirinha</h1>
+			     <h2>por sandra regina em 17 Jan, 2014 </h2>
+			     <p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
             </div>
-            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52037f9434ccf4aa"></script>
-            <!-- AddThis Button END -->            
-		</div>
+            <!-- Caixa de icones para compartilhar + links para ver comentarios -->
+
+            <div class="itemFooter peopleFoot clearfix">
+                <div class="issoEImportante">Isso &eacute; importante? <a href=""><i class="fa fa-thumbs-up"></i> 99</a></div>
 
 
-		<div class="item povoQuest" data-id="12/05/2012" data-description="Cachoeirinha">
-			<h1>cachoeirinha</h1>
-			<h2>por sandra regina em 17 Jan, 2014 </h2>
-			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
-		</div>
+                <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a></div>  
+
+            <!-- Caixa de comentarios -->        
+            <div class="toggle-wrap">
+                <div class="directComment"> 
+                    <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                    <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+                </div>
+
+                <div class="directComment"> 
+                    <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                    <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+                </div>
+
+                <form>
+                    <textarea name="" cols="" rows=""></textarea>
+                    <input name="" type="submit" value="enviar comentario" />
+                </form>
+         </div>                         
+</div>
+
+    <!-- ============================================ ITEM NORMAL ============================================--> 
+    <div class="item" data-id="20/05/2012" data-description="Cachoeirinha">
+        <div class="povoQuest">
+            <h1>cachoeirinha</h1>
+            <h2>por sandra regina em 17 Jan, 2014 </h2>
+            <p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+        </div>
+        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
+
+        <div class="itemFooter peopleFoot clearfix">
+            <div class="issoEImportante">Isso &eacute; importante? <a href=""><i class="fa fa-thumbs-up"></i> 99</a></div>
 
 
-		<div class="item povoQuest" data-id="14/05/2012" data-description="Cachoeirinha">
-			<h1>cachoeirinha</h1>
-			<h2>por sandra regina em 17 Jan, 2014 </h2>
-			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
-		</div>
+            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a></div>  
 
-		<div class="item povoQuest" data-id="20/05/2012" data-description="Cachoeirinha">
-			<h1>cachoeirinha</h1>
-			<h2>por sandra regina em 17 Jan, 2014 </h2>
-			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
-		</div>
+        <!-- Caixa de comentarios -->        
+        <div class="toggle-wrap">
+            <div class="directComment"> 
+                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+            </div>
 
-		<div class="item povoQuest" data-id="02/06/2012" data-description="Cachoeirinha">
-			<h1>cachoeirinha</h1>
-			<h2>por sandra regina em 17 Jan, 2014 </h2>
-			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
-		</div>
+            <div class="directComment"> 
+                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+            </div>
 
-		<div class="item govResp" data-id="04/06/2012" data-description="Governo Informa">
-			<div class="media">
-				<a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/1.jpg" rel="lightbox[timeline]"><img src="images/flat/default/1.jpg" alt=""/></a>
-			</div>
-			<h1>Governo Informa</h1>
-			<h2>4 de maio</h2>
-			<p>Do total de 908 residências e estabelecimentos comerciais localizados em áreas em processo de desapropriação, restam apenas 205 ocupações a serem retiradas. No lote 3, onde o adensamento urbano é maior, uma frente de trabalho de 1,5 km foi aberta graças às remoções. Já no lote 1, a empresa Triunfo atua em cinco frentes, ampliando as obras de terraplanagem e drenagem. Já no lote 2 os avanços são menores e espera-se que a empresa Sultepa adote um ritmo compatível com as frentes de trabalho já disponíveis. A empresa aguarda a aprovação de um aditivo ao contrato, mas já seria possível retomar os trabalhos. Até o final de março, a expectativa é liberar 4 km de pista nova entre os lotes 2 e 3, bem como encaminhar cinco licitações entre passarelas, a elevação do viaduto sobre a RS-020 e o muro de contenção da Marechal Rondon.</p>
-		</div>
+            <form>
+                <textarea name="" cols="" rows=""></textarea>
+                <input name="" type="submit" value="enviar comentario" />
+            </form>
+        </div>                         
+    </div>
 
-		<div class="item povoQuest" data-id="07/06/2012" data-description="Cachoeirinha">
-			<h1>cachoeirinha</h1>
-			<h2>por sandra regina em 17 Jan, 2014 </h2>
-			<p><img src="images/flat/default/3.jpg" alt=""/></p>
-			<p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
-		</div>
+    
+    <!-- ============================================ ITEM NORMAL ============================================--> 
+    <div class="item" data-id="02/06/2012" data-description="Cachoeirinha">
+        <div class="povoQuest">
+            <h1>cachoeirinha</h1>
+            <h2>por sandra regina em 17 Jan, 2014 </h2>
+            <p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+        </div>
+        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
+
+        <div class="itemFooter peopleFoot clearfix">
+            <div class="issoEImportante">Isso &eacute; importante? <a href=""><i class="fa fa-thumbs-up"></i> 99</a></div>
+
+
+            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a></div>  
+
+        <!-- Caixa de comentarios -->        
+        <div class="toggle-wrap">
+            <div class="directComment"> 
+                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+            </div>
+
+            <div class="directComment"> 
+                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+            </div>
+
+            <form>
+                <textarea name="" cols="" rows=""></textarea>
+                <input name="" type="submit" value="enviar comentario" />
+            </form>
+        </div>                         
+    </div>    
+    
+    
+    
+    
+    <div class="item" data-id="12/06/2012" data-description="Governo Informa">
+        <!-- Titulo, media e texto -->
+        <div class="govResp">
+            <h1>Governo Informa</h1>
+            <h2>12 de Junho de 2012</h2>
+            <div class="media"><a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/10.jpg" rel="lightbox[timeline]"><img src="images/flat/default/10.jpg" alt=""/></a></div>
+            <p>Do total de 908 residências e estabelecimentos comerciais localizados em áreas em processo de desapropriação, restam apenas 205 ocupações a serem retiradas. No lote 3, onde o adensamento urbano é maior, uma frente de trabalho de 1,5 km foi aberta graças às remoções. Já no lote 1, a empresa Triunfo atua em cinco frentes, ampliando as obras de terraplanagem e drenagem. Já no lote 2 os avanços são menores e espera-se que a empresa Sultepa adote um ritmo compatível com as frentes de trabalho já disponíveis. A empresa aguarda a aprovação de um aditivo ao contrato, mas já seria possível retomar os trabalhos. Até o final de março, a expectativa é liberar 4 km de pista nova entre os lotes 2 e 3, bem como encaminhar cinco licitações entre passarelas, a elevação do viaduto sobre a RS-020 e o muro de contenção da Marechal Rondon.</p>
+        </div>
+        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
+
+        <div class="itemFooter govFoot clearfix">
+            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a><p class="comentarItem"><strong>Comente este item</strong></p></div>  
+
+        <!-- Caixa de comentarios -->        
+        <div class="toggle-wrap">
+            <div class="directComment"> 
+                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+            </div>
+
+            <div class="directComment"> 
+                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+            </div>
+
+            <form>
+                <textarea name="" cols="" rows=""></textarea>
+                <input name="" type="submit" value="enviar comentario" />
+            </form>
+        </div>                  
+    </div>
+    <!-- Fim do item de timeline -->
+
+    <!-- ============================================ ITEM NORMAL ============================================--> 
+    <div class="item" data-id="12/07/2012" data-description="Cachoeirinha">
+        <div class="povoQuest">
+            <h1>cachoeirinha</h1>
+            <h2>por sandra regina em 17 Jan, 2014 </h2>
+            <p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+            <div class="media"><a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/8.jpg" rel="lightbox[timeline]"><img src="images/flat/default/8.jpg" alt=""/></a></div>
+            
+        </div>
+        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
+
+        <div class="itemFooter peopleFoot clearfix">
+            <div class="issoEImportante">Isso &eacute; importante? <a href=""><i class="fa fa-thumbs-up"></i> 99</a></div>
+
+
+            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>&nbsp;</span></a></div>  
+
+        <!-- Caixa de comentarios -->        
+        <div class="toggle-wrap">
+            <form>
+                <textarea name="" cols="" rows=""></textarea>
+                <input name="" type="submit" value="enviar comentario" />
+            </form>
+        </div>                         
+    </div>
 
 
 </div> <!-- /END TIMELINE -->
@@ -360,14 +516,14 @@ $(window).load(function() {
 
 
 
-<!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
 ================================================== -->
 
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/docs.min.js"></script>
-<script src="js/customScripts.js"></script>
-
-</body>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="{{url_for('.static', filename="js/bootstrap.min.js")}}"></script>
+    <script src="{{url_for('.static', filename="js/docs.min.js")}}"></script>
+    <script src="{{url_for('.static', filename="js/customScripts.js")}}"></script>
+    </body>
 </html>
+

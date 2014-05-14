@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('fonts/fontawesome-webfont.eot?v=4.0.3');
+  src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('fonts/awesome/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 /* -----------------------------------
  TIMELINE FLAT PORTFOLIO 
@@ -9,7 +17,7 @@
 
 .timelineFlat.timelineFlatPortfolio .item,
 .timelineFlat.timelineFlatPortfolio .item_open {
-	height: auto;
+	height: 427px;
 }
 
 /* -----------------------------------
@@ -17,7 +25,7 @@
  ---------------------------------- */
 .timelineFlat.timelineFlatBlog .item,
 .timelineFlat.timelineFlatBlog .item_open {
-	height: auto;
+	height: 338px;
 }
 
 .timelineFlat.timelineFlatBlog .item .post_date {
@@ -240,7 +248,6 @@
 	position: relative;
 	width: 100%;
 	margin: 10px 0;
-	height: auto;
 }
 
 /* items container */
@@ -249,11 +256,15 @@
 }
 
 /* single item (margines set from javascript) */
-.govResp {padding:20px 30px; width: 840px; background-color: #5ab9c0; color: #fff;}
-.povoQuest { padding: 25px 20px; width: 400px; background-color: #cdcdcd;}
-
-.timelineFlat .item {margin:0 2px; padding: 10px; border-radius: 6px; height:auto; color:#777777; font-size:12px; line-height:16px;position: relative;}
-.timelineFlat .item .media {margin:0; padding:0; float: right; width: 40%;}
+.timelineFlat .item {
+	width:410px;
+	height:410px;
+	background:#eaeaea; 
+	color:#777777;
+	font-size:14px;
+	line-height:14px;
+	position: relative;
+}
 .timelineFlat .item.item_node_hover:before {
 	content: "";
 	position: absolute;
@@ -320,7 +331,7 @@
 /* item details (margines set from javascript) */
 .timelineFlat .item_open {
 	width:410px;
-	height:auto;
+	height:410px;
 	background:#eaeaea; 
 	position:relative;
 	color:#777777;
@@ -527,7 +538,7 @@
 	
 	.timelineFlat .item_open {
 		width:280px;
-		height:auto;
+		height:390px;
 	}
 	.timelineFlat .item_open img {
 		max-width:280px;

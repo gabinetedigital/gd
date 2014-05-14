@@ -1,20 +1,31 @@
-
 $( "#linkSaibaMais" ).click(function() {
-	$( "#additionalInfo" ).toggle( "slide",{direction: 'left'}, 1000 );
+    $( "#additionalInfo" ).toggle( "slide", 'slow' );
 });
 
 $( "#fiscalizeObra" ).click(function() {
-	$( "#fiscalizeObraBox" ).toggle( "slide",{direction: 'up'}, 1000 );
+    $( "#fiscalizeObraBox" ).toggle('normal');
 });
 
 $( "#sigaObra" ).click(function() {
-	$( "#sigaObraBox" ).toggle( "slide",{direction: 'up'}, 1000 );
+    $( "#sigaObraBox" ).toggle('normal');
 });
 
 
 $( "#compartilhaObra" ).click(function() {
-	$( "#compartilhaObraBox" ).toggle( "slide",{direction: 'up'}, 1000 );
+    $( "#compartilhaObraBox" ).toggle('normal');
 });
+
+
+
+
+//================================================================================================================================================
+$(document).ready(function() {
+    $(".toggle-trigger").click(function() {
+        $(this).parent().nextAll('.toggle-wrap').first().toggle('normal');
+    });
+});
+
+
 
 function GetURLParameter(sParam)
 {
