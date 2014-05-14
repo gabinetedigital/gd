@@ -32,9 +32,9 @@
 			<div class="navbar-collapse">
 				<ul class="nav navbar-nav">
 					{%if user%}
-					<li><a href="{{url_for("auth.login")}}"><i class="fa fa-user"></i><br />Login</a></li>
-					{%else%}
 					<li><a href="{{url_for("auth.logout")}}"><i class="fa fa-user"></i><br />Logout</a></li>
+					{%else%}
+					<li><a href="{{url_for("auth.login")}}"><i class="fa fa-user"></i><br />Login</a></li>
 					{%endif%}
 					<li><a href="#compartilhar" data-toggle="modal"><i class="fa fa-share"></i><br />Compartilhe</a></li>
 					<li><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
@@ -122,14 +122,13 @@
 	<div class="row filterBox">
 		<div class="col-md-4">
 			<div class="btn-group">
-				<button type="button" class="btn btn-filter dropdown-toggle" data-toggle="dropdown">Filtrar por:<span class="caret"></span></button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="#">Todas (120 obras)</a></li>
-					<li><a href="#">Tema</a></li>
-					<li><a href="#">Município</a></li>
-					<li><a href="#">Região</a></li>
-					<li><a href="#">Obras Concluídas</a></li>
-				</ul>
+				<select id="slfiltro">
+					<option value="todas">Todas ({{obras|length}} obras)</option>
+					<option value="tema">Tema</option>
+					<option value="municipio">Município</option>
+					<option value="regiao">Região</option>
+					<option value="concluidas">Obras concluídas</option>
+				</select>
 			</div>
 		</div>
 		<div class="col-md-4">
@@ -142,12 +141,11 @@
 		</div>
 		<div class="col-md-4">
 			<div class="btn-group">
-				<button type="button" class="btn btn-filter dropdown-toggle pull-right" data-toggle="dropdown">Ordenar por:<span class="caret"></span></button>
-				<ul class="dropdown-menu pull-right" role="menu">
-					<li><a href="#">% Conclusão</a></li>
-					<li><a href="#">Mais Recentes</a></li>
-					<li><a href="#">Oredem de Atualização</a></li>
-				</ul>
+				<select id="slordem" class="pull-right">
+					<option value="conclusao">% Conclusão</option>
+					<option value="recentes">Mais recentes</option>
+					<option value="atualizacao">Ordem de atualização</option>
+				</select>
 			</div>
 		</div>
 	</div>
