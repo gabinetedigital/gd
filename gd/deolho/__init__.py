@@ -129,7 +129,7 @@ def adjustCf(obras):
 	return r_obras
 
 
-@monitoramento.route('/')
+@monitoramento.route('/', methods=("GET","POST"))
 def index():
 
 	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras())

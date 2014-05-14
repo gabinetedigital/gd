@@ -43,33 +43,47 @@ function GetURLParameter(sParam)
 $(function() {
 
     //Verifica se está ordenado e ajusta o select
-    var ordenado = GetURLParameter("o");
+    var filtrado = GetURLParameter("filtro");
+    if(filtrado){
+        $('#slfiltro').val(filtrado);
+        $('#div'+filtrado).show();
+        $("input[name=filtro]").val( filtrado );
+    }
+    var valorf = GetURLParameter("valor");
+    //Metodo para retirar deixar os acentos corretor e retirar os '+'
+    valorf = decodeURIComponent(valorf.replace( /\+/, " " ));
+    if(valorf){
+        $('#sl'+filtrado).val(valorf);
+        $("input[name=valor]").val( valorf );
+    }
+    var ordenado = GetURLParameter("ordem");
     if(ordenado){
         $('#slordem').val(ordenado);
     }
 
+
     $('#slordem').change(function(ev){
-        var ordem = $(this).val();
-        // window.location.href = window.location.href.replace( /[\?#].*|$/, "?single" );
-        console.log(ev);
-        console.log("ORDEM", ordem);
-        var newurl = "";
-        if(ordem){
-            newurl = window.location.href.replace( /[\?#].*|$/, "?o="+ordem );
-        }else{
-            newurl = window.location.href.replace( /[\?#].*|$/, "" );
-        }
-        console.log("URL", newurl);
-        window.location.href = newurl;
+        $('#frmfilterbox').submit();
+    });
+
+    $('#sltema, #slmunicipio, #slregiao').change(function(ev){
+
+        // console.log("Changed...");
+        var filtro = $('#slfiltro').val();
+        $("input[name=filtro]").val( filtro );
+
+        var vlr = $(this).val();
+        console.log("VALOR DO FILTRO:",  vlr);
+        $("input[name=valor]").val( vlr );
+
+        $('#frmfilterbox').submit();
     });
 
     $('#slfiltro').change(function(ev){
-        console.log("CHANGED FILTRO!");
         $('#filtros div').hide();
-        console.log("HIDE FILTRO!");
         var filtro = $(this).val();
-        console.log("FILTRO:",filtro);
         $('#div'+filtro).show();
     });
+
 
 });

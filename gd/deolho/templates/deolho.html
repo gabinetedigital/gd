@@ -119,6 +119,9 @@
 <!-- FILTROS
 ================================================== -->
 <div class="container">
+	<form id="frmfilterbox" action="." method="GET">
+	<input type="hidden" name="filtro" value="">
+	<input type="hidden" name="valor" value="">
 	<div class="row filterBox">
 		<div class="col-md-3">
 			<div class="btn-group">
@@ -137,31 +140,31 @@
 					<label for="sltema">Tema:</label>
 					<select id="sltema">
 						<option value="">- Selecione -</option>
-						<option value="">Infraestrutura</option>
-						<option value="">Saúde</option>
-						<option value="">Educação</option>
+						<option value="infra">Infraestrutura</option>
+						<option value="saude">Saúde</option>
+						<option value="educacao">Educação</option>
 					</select>
 				</div>
 				<div id="divmunicipio" style="display:none;">
 					<label for="slmunicipio">Município:</label>
 					<select id="slmunicipio">
 						<option value="">- Selecione -</option>
-						<option value="">Porto Alegre</option>
-						<option value="">Gravataí</option>
-						<option value="">Esteio</option>
-						<option value="">São Borja</option>
-						<option value="">Bagé</option>
+						<option value="Porto Alegre">Porto Alegre</option>
+						<option value="Gravataí">Gravataí</option>
+						<option value="Esteio">Esteio</option>
+						<option value="São Borja">São Borja</option>
+						<option value="Bagé">Bagé</option>
 					</select>
 				</div>
 				<div id="divregiao" style="display:none;">
 					<label for="slregiao">Região:</label>
 					<select id="slregiao">
 						<option value="">- Selecione -</option>
-						<option value="">Região 1</option>
-						<option value="">Região 2</option>
-						<option value="">Região 3</option>
-						<option value="">Região 4</option>
-						<option value="">Região 5</option>
+						<option value="Região 1">Região 1</option>
+						<option value="Região 2">Região 2</option>
+						<option value="Região 3">Região 3</option>
+						<option value="Região 4">Região 4</option>
+						<option value="Região 5">Região 5</option>
 					</select>
 				</div>
 			</div>
@@ -170,7 +173,7 @@
 			<div class="btn-group" >
 				<div class="pull-right">
 					<label for="slordem" >Ordenar por</label>
-					<select id="slordem" >
+					<select name="ordem" id="slordem" >
 						<option value="">- Ordenar -</option>
 						<option value="conclusao">% Conclusão</option>
 						<option value="recentes">Mais recentes</option>
@@ -180,6 +183,7 @@
 			</div>
 		</div>
 	</div>
+	</form>
 </div>
 
 <!-- LISTA DE OBRAS
