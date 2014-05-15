@@ -285,7 +285,7 @@ $(window).load(function() {
 });
 </script>
 <div class="timelineLoader">
-	<img src="images/timeline/loadingAnimation.gif" />
+	<img src="{{url_for('.static',filename="images/timeline/loadingAnimation.gif")}}" />
 </div>
 <!-- BEGIN TIMELINE -->
 <div class="timelineFlat tl1">
@@ -449,20 +449,23 @@ $(window).load(function() {
 
             <!-- Caixa de comentarios -->
             <div class="toggle-wrap">
-                <div class="directComment">
-                    <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                    <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-                </div>
 
+                {%for comentario in update['comments']%}
                 <div class="directComment">
-                    <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                    <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+                    <h4> por {{comentario.user.display_name}} em {{comentario.date_created_gmt|formatarDataeHora}} </h4>
+                    {{comentario.content|safe}}
                 </div>
+                {%endfor%}
 
-                <form>
-                    <textarea name="" cols="" rows=""></textarea>
+                {%if not user%}
+                <h4>É necessário que você esteja autenticado para enviar comentários.</h4>
+                {%else%}
+                <form action="{{url_for('new_comment')}}" id="commentform" method="POST">
+                    <input type="hidden" name="post_id" value="{{update.id}}">
+                    <textarea name="content" id="content" cols="" rows=""></textarea>
                     <input name="" type="submit" value="enviar comentario" />
                 </form>
+                {%endif%}
             </div>
         </div>
     {%endif%} {#==========================================================================#}
@@ -479,7 +482,7 @@ $(window).load(function() {
 <footer>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3"><a href="http://gabinetedigital.rs.gov.br/" target="_blank"><img src="images/GD_logo.png"  alt="Gabinete Digital" /></a></div>
+			<div class="col-md-3"><a href="http://gabinetedigital.rs.gov.br/" target="_blank"><img src="{{url_for('.static',filename="images/GD_logo.png")}}"  alt="Gabinete Digital" /></a></div>
 			<div class="col-md-3">
 				<h4>Nossos Dados</h4>
 				<p>As informações das obras são dados abertos. Acesse a API: <strong>JSON</strong></p>

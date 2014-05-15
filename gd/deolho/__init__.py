@@ -126,6 +126,14 @@ def adjustCf(obras):
 				custom_fields[cf['key']] = valor
 			del obra['custom_fields']
 			obra['custom_fields'] = custom_fields
+
+		cacheid = "cmts-item-obra-%s" % obra['id']
+		cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=obra['id'], number=1000) or [] )
+		if cmts:
+			print "COMENTARIOS::::::::::::::::::::::", cmts
+			obra['comments'] = cmts[::-1]
+		else:
+			obra['comments'] = []
 		r_obras.append(obra)
 
 	return r_obras

@@ -899,6 +899,7 @@ def new_comment():
     except:
         comment_parent = None
 
+    print "COMENTANDO COM USER/SENHA:",session['username'], session['password']
     try:
         wordpress.newComment(
             username=session['username'],

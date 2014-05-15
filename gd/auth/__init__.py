@@ -110,6 +110,7 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
             username = userdata['username']
             print "BUSCAN DENOVO O USUARIO",username, "por", username
             user = User.query.filter_by(username=username).one()
+            password = userdata['username']
             print "LOGADO POR USERNAME"
 
         if userdata:
@@ -126,14 +127,9 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
 
     except NoResultFound:
         if userdata:
-            #{u'username': u'sergio.berlotto', u'city': {u'id': 4309209, u'name': u'GRAVATAI'},
-            #u'age_range': {u'min': 21}, u'surname': u'Hilton Berlotto Jr',
-            #u'profile_picutre_url': u'https://meu.rs.gov.br/uploads/profile-pictures/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.png',
-            #u'first_name': u'S\xe9rgio', u'cpf': u'96107804072', u'email': u'sergio.berlotto@gmail.com',
-            #u'birthdate': u'1981-01-31T00:00:00-0300', u'full_name': u'S\xe9rgio Hilton Berlotto Jr', u'id': 69}
             name = userdata['full_name']
             username = userdata['username']
-            password = ""
+            password = userdata['username']
             email = userdata['email']
             if "cpf" in userdata.keys():
                 metauser['cpf'] = userdata['cpf']
@@ -143,6 +139,7 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
                 metauser['city'] = userdata['city']['name'].capitalize()
             user = create_user(name, username, password, email, meta=metauser)
             session['username'] = user.username
+            session['password'] = password
             raise UserUncomplete()
         else:
             raise UserNotFound()
