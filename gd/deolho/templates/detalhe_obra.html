@@ -49,7 +49,8 @@
         <link href="{{url_for('.static', filename="css/lightbox.css")}}" rel="stylesheet" type="text/css" />
         <link href="{{url_for('.static', filename="css/jquery.mCustomScrollbar.css")}}" rel="stylesheet" type="text/css" />
         <link href="{{url_for('.static', filename="css/DONO.min.css")}}" rel="stylesheet">
-        <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet"
+        <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -64,6 +65,7 @@
         <script src="{{url_for('.static', filename="js/jquery.timeline.min.js")}}"></script>
         <script src="{{url_for('.static', filename="js/image.js")}}"></script>
         <script src="{{url_for('.static', filename="js/lightbox.js")}}"></script>
+        <script src="{{ url_for('static', filename='me/build/mediaelement-and-player.min.js') }}"></script>
 
     </head>
 
@@ -74,13 +76,17 @@
 		<div class="container">
 			<div class="navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#"><i class="fa fa-user"></i><br />Login</a></li>
+                    {%if user%}
+                    <li><a href="{{url_for("auth.logout")}}"><i class="fa fa-user"></i><br />Logout</a></li>
+                    {%else%}
+                    <li><a href="{{url_for("auth.login")}}"><i class="fa fa-user"></i><br />Login</a></li>
+                    {%endif%}
 					<li><a href="#compartilhar" data-toggle="modal"><i class="fa fa-share"></i><br />Compartilhe</a></li>
 					<li><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
 				</ul>
 			</div>
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index.html">De Olho Nas Obras</a>
+				<a class="navbar-brand" href="{{url_for("monitoramento.index")}}">De Olho Nas Obras</a>
 			</div>
 			<div class="homeSearch">
 				<input type="text" id="" placeholder="Procure por uma obra" />

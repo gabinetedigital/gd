@@ -51,8 +51,8 @@ $(function() {
     }
     var valorf = GetURLParameter("valor");
     //Metodo para retirar deixar os acentos corretor e retirar os '+'
-    valorf = decodeURIComponent(valorf.replace( /\+/, " " ));
     if(valorf){
+        valorf = decodeURIComponent(valorf.replace( /\+/, " " ));
         $('#sl'+filtrado).val(valorf);
         $("input[name=valor]").val( valorf );
     }
