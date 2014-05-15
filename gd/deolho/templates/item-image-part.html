@@ -1,0 +1,34 @@
+              <div class="media">
+                  <a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN"
+
+                {%if not thumb_size %}
+                    {%if update.thumbs.normal%}
+                      href="{{ thumborurl(update.thumbs.normal.url, (640,480) ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.thumbs.normal.url, (350,233) ) }}">
+                    {%elif update.thumbs.slideshow%}
+                      href="{{ thumborurl(update.thumbs.slideshow.url, (640,480) ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.thumbs.slideshow.url, (350,233) ) }}">
+                    {%elif update.thumbs.thumb%}
+                      href="{{ thumborurl(update.thumbs.thumb.url, (640,480) ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.thumbs.thumb.url, (350,233) ) }}">
+                    {%elif update.custom_fields.gdobra_imagem%}
+                      href="{{ thumborurl(update.custom_fields.gdobra_imagem, (640,480) ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (350,233) ) }}">
+                    {%endif%}
+                {%else%}
+                    {%if update.thumbs.normal%}
+                      href="{{ thumborurl(update.thumbs.normal.url, thumb_size ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.thumbs.normal.url, thumb_size ) }}">
+                    {%elif update.thumbs.slideshow%}
+                      href="{{ thumborurl(update.thumbs.slideshow.url, thumb_size ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.thumbs.slideshow.url, thumb_size ) }}">
+                    {%elif update.thumbs.thumb%}
+                      href="{{ thumborurl(update.thumbs.thumb.url, thumb_size ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.thumbs.thumb.url, thumb_size ) }}">
+                    {%elif update.custom_fields.gdobra_imagem%}
+                      href="{{ thumborurl(update.custom_fields.gdobra_imagem, thumb_size ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, thumb_size ) }}">
+                    {%endif%}
+                {%endif%}
+                  </a>
+              </div>

@@ -1,3 +1,13 @@
+{%macro temas()%}
+  {#Macro para listar os temas, pois podem ser marcados mais de um tema#}
+  {%if obra.tema%}
+    {%for t in obra.tema%}
+      {{obra.tema[t].name}}
+      {%if not loop.last%},{%endif%}
+    {%endfor%}
+  {%endif%}
+{%endmacro%}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,7 +31,7 @@
         <meta name="" http-equiv="pragma" content="no-cache">
         <meta name="expires" http-equiv="" content="never">
         <meta name="" http-equiv="expires" content="-1">
-        <link rel="alternate" type="application/rss+xml" title="Canal RSS" href="/rss">        
+        <link rel="alternate" type="application/rss+xml" title="Canal RSS" href="/rss">
         <link rel="shortcut icon" href="{{url_for('.static',filename="img/ico/favicon.ico")}}">
         <title>De Olho nas Obras</title>
         <meta property="og:title" content="{{obra.title}} | De Olho Nas Obras">
@@ -31,16 +41,16 @@
         {%if obra.thumbs %}
         <meta property="og:image" content="{{ thumborurl(obra.thumbs.normal.url, (270,180) ) }}">
         {%endif%}
-        <meta property="og:type" content="website">            
+        <meta property="og:type" content="website">
 
         <!-- Bootstrap core CSS -->
-        <link href="{{url_for('.static', filename="css/bootstrap.min.css")}}" rel="stylesheet">        
+        <link href="{{url_for('.static', filename="css/bootstrap.min.css")}}" rel="stylesheet">
         <link href="{{url_for('.static', filename="css/flat.css")}}" rel="stylesheet" type="text/css" />
         <link href="{{url_for('.static', filename="css/lightbox.css")}}" rel="stylesheet" type="text/css" />
         <link href="{{url_for('.static', filename="css/jquery.mCustomScrollbar.css")}}" rel="stylesheet" type="text/css" />
         <link href="{{url_for('.static', filename="css/DONO.min.css")}}" rel="stylesheet">
-        <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet"        
-        
+        <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet"
+
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -53,8 +63,8 @@
         <script src="{{url_for('.static', filename="js/jquery.easing.1.3.js")}}"></script>
         <script src="{{url_for('.static', filename="js/jquery.timeline.min.js")}}"></script>
         <script src="{{url_for('.static', filename="js/image.js")}}"></script>
-        <script src="{{url_for('.static', filename="js/lightbox.js")}}"></script>        
-        
+        <script src="{{url_for('.static', filename="js/lightbox.js")}}"></script>
+
     </head>
 
 <body class="fade-in">
@@ -86,46 +96,63 @@
 		<div class="row specificInfoBox">
 			<div class="col-md-7 imageDescription">
 				<div class="constructionDesc">
-					<div class="obraConcluidaItem"></div>
-					<h1>Implantação da rede hidráulica na Zona Mista de Guaíba</h1>
-					<p>Implantação da rede hidráulica na Zona Mista de Guaíba pela CORSAN.</p>
+                    {%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
+    				<div class="obraConcluidaItem"></div>
+                    {% endif %}
+					<h1>{{obra.title}}</h1>
+					<p>{{ obra.content|safe }}</p>
 					<ul>
-						<li><a href="images/6820.jpg" rel="lightbox[timeline]"><i class="fa fa-camera-retro"></i> Galeria de Fotos</a></li>
+						<li><a href="{{ thumborurl(obra.thumbs.normal.url, (682,350) ) }}" rel="lightbox[timeline]"><i class="fa fa-camera-retro"></i> Galeria de Fotos</a></li>
+                        {%if more%}
 						<li><a href="javascript:void(0)" id="linkSaibaMais">Saiba mais <i class="fa fa-angle-double-right"></i></a></li>
+                        {%endif%}
 					</ul>
 				</div>
-				<img src="images/6820.jpg" alt="" />
+                {%if obra.thumbs%}
+                <img src="{{ thumborurl(obra.thumbs.normal.url, (682,350) ) }}">
+                {%else%}
+                <img src="http://placehold.it/682x350&text=Obra">
+                {%endif%}
 			</div>
 			<div class="col-md-5">
 				<div id="additionalInfo">
-						<p>Aliquam vulputate lacinia quam, a sagittis tellus. Vivamus nec diam in lectus congue pellentesque. Duis pellentesque turpis non est placerat laoreet. Nunc vitae ultrices tortor. Nullam justo leo, iaculis molestie diam ac, scelerisque ornare libero. Phasellus blandit venenatis augue, vel aliquet libero.</p>
-
-						<p>Vivamus lorem est, sollicitudin ac pharetra nec, aliquam non mauris. Ut scelerisque, ipsum quis semper luctus, est eros suscipit mauris, in laoreet elit nibh vitae urna. Phasellus eget urna volutpat nibh egestas gravida et vitae nunc. Curabitur sit amet lobortis lorem, in vestibulum metus.</p>
+                    {%if more%}
+                      {{more|safe}}
+                    {%endif%}
 				</div>
 				<ul>
 					<li><i class="fa fa-calendar-o"></i>
 						<h2>Previsão de conclusão</h2>
-						<h3>30/04/2014</h3>
+						<h3>{{obra.custom_fields.gdobra_fim_previsto|formatarDataObra}}</h3>
 					</li>
 					<li><i class="fa fa-money"></i>
 						<h2>Valor Global</h2>
-						<h3>0.00</h3>
+						<h3>{{obra.custom_fields.gdobra_valor_global|formatCurrency}}</h3>
 					</li>
 					<li><i class="fa fa-gears"></i>
 						<h2>Andamento</h2>
-						<h3>94%</h3>
+						<h3>{{obra.custom_fields.gdobra_porc_concluido}}%</h3>
 					</li>
 					<li><i class="fa fa-wrench"></i>
 						<h2>Empresas responsáveis</h2>
-						<h3>Nome da Empresa</h3>
+						<h3>{%for e in obra.custom_fields.gdobra_empresa_contratada%}{{e}}<br/>{%endfor%}</h3>
 					</li>
 					<li><i class="fa fa-users"></i>
 						<h2>Secretaria Responsável</h2>
-						<h3>Nome da Secretaria</h3>
+						<h3>{{temas()}}</h3>
 					</li>
 					<li><i class="fa  fa-map-marker"></i>
 						<h2>Visualização no Mapa</h2>
-						<h3><a href="">Clique aqui</a> para ver a localização no mapa</h3>
+                        <h3>
+                            {%if 'gdobra_link_maps' in obra.custom_fields %}
+                            <a target="_blank" href="{{obra.custom_fields['gdobra_link_maps']}}">Clique aqui</a>
+                            {%elif 'gdobra_coordenadas' in obra.custom_fields and obra.custom_fields.gdobra_coordenadas %}
+                            {%set lls = obra.custom_fields.gdobra_coordenadas%}
+                            <a target="_blank" href="https://maps.google.com.br/maps?{%for ll in lls%}{%if loop.index > 1%}&{%endif%}q={{ll}}{%endfor%}&hl=pt&z=18">Clique aqui</a>
+                            {%else%}
+                            <a target="_blank" href="http://maps.google.com/maps/api/staticmap?center=-29.509137,-53.017184&zoom=6&size=370x250&sensor=true">Clique aqui</a>
+                            {%endif%}
+						para ver a localização no mapa</h3>
 					</li>
 				</ul>
 			</div>
@@ -212,7 +239,7 @@
 							<!-- AddThis Button END -->
 						</div>
 				</li>
-				<li><a href="index.html"><i class="fa fa-list"></i>Lista de Obras</a></li>
+				<li><a href="{{url_for('monitoramento.index')}}"><i class="fa fa-list"></i>Lista de Obras</a></li>
 			</ul>
 		</div>
 	</div>
@@ -257,65 +284,171 @@ $(window).load(function() {
 <!-- BEGIN TIMELINE -->
 <div class="timelineFlat tl1">
 
-    
-    <!-- ============================================ ITEM GOVERNO INFORMA ============================================--> 
-    <div class="item" data-id="04/05/2012" data-description="Governo Informa">
-        <!-- Titulo, media e texto -->
-        <div class="govResp">
-			 <h1>Governo Informa</h1>
-             <h2>4 de maio de 2012</h2>
-            <div class="media"><a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/1.jpg" rel="lightbox[timeline]"><img src="images/flat/default/1.jpg" alt=""/></a></div>
-			 <p>Do total de 908 residências e estabelecimentos comerciais localizados em áreas em processo de desapropriação, restam apenas 205 ocupações a serem retiradas. No lote 3, onde o adensamento urbano é maior, uma frente de trabalho de 1,5 km foi aberta graças às remoções. Já no lote 1, a empresa Triunfo atua em cinco frentes, ampliando as obras de terraplanagem e drenagem. Já no lote 2 os avanços são menores e espera-se que a empresa Sultepa adote um ritmo compatível com as frentes de trabalho já disponíveis. A empresa aguarda a aprovação de um aditivo ao contrato, mas já seria possível retomar os trabalhos. Até o final de março, a expectativa é liberar 4 km de pista nova entre os lotes 2 e 3, bem como encaminhar cinco licitações entre passarelas, a elevação do viaduto sobre a RS-020 e o muro de contenção da Marechal Rondon.</p>
+{%for update in timeline%}
+
+    {%if update.format == 'status'%} {#===================================================#}
+
+        <!-- ============================================ ITEM GOVERNO INFORMA ============================================-->
+        <div class="item" data-id="{{update.date.date|formatarDataeHora(formato="%d/%m/%Y")}}" data-description="Governo Informa">
+            <!-- Titulo, media e texto -->
+            <div class="govResp">
+    			 <h1>Governo Informa</h1>
+                 <h2>{{update.date.date|formatarDataeHora(formato="%d %b, %Y")}}</h2>
+
+{#---------------------------- GOVERNO INFORMA CONTENT ------------------------------#}
+                {%if 'gdobra_video' in update.custom_fields%}
+                {#YOUTUBE VIDEO#}
+                <div class="media">
+                    <div class="video">
+                      <video width="80%" height="80%" id="player1" preload="none">
+                        <source type="video/youtube" src="{{update.custom_fields['gdobra_video']}}" />
+                      </video>
+                    </div>
+                </div>
+                {{update.content|safe}}
+                {%elif 'gdvideo' in update.custom_fields%}
+                {#GDVIDEO#}
+                <div class="media">
+                      <video class="video-obras" width="80%" height="80%"  poster="{{update.custom_fields.gdvideo.thumbnail}}"
+                             controls="controls" preload="none">
+                        <!-- MP4 source must come first for iOS -->
+                        <source type="video/mp4" src="{{update.custom_fields.gdvideo.sources['video/mp4']}}" />
+                        <!-- WebM for Firefox 4 and Opera -->
+                        <source type="video/webm" src="{{update.custom_fields.gdvideo.sources['video/webm']}}" />
+                        <!-- OGG for Firefox 3 -->
+                        <!-- <source type="video/ogg" src="../media/echo-hereweare.ogv" /> -->
+                        <!-- Fallback flash player for no-HTML5 browsers with JavaScript turned off -->
+
+                        <object width="640" height="360" type="application/x-shockwave-flash" data="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}">
+                          <param name="movie" value="{{ url_for('static', filename="me/build/flashmediaelement.swf") }}" />
+                          <param name="flashvars" value="controls=true&amp;file={{update.custom_fields.gdvideo.sources['video/mp4']}}" />
+                          <!-- Image fall back for non-HTML5 browser with JavaScript turned off and no Flash player installed -->
+                          <img src="{{update.custom_fields.gdvideo.thumbnail}}" width="{{ update.custom_fields.gdvideo.video_width }}" height="{{ update.custom_fields.gdvideo.video_height }}" alt="Here we are"
+                               title="No video playback capabilities" />
+                        </object>
+                      </video>
+                </div>
+                {{update.content|safe}}
+                {%else%}
+
+                  {%if update.thumbs.slideshow%}
+                    <div class="media">
+                        <a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="{{ thumborurl(update.thumbs.slideshow.url, (350,233) ) }}" rel="lightbox[timeline]">
+                            <img src="{{ thumborurl(update.thumbs.slideshow.url, (350,233) ) }}">
+                        </a>
+                    </div>
+                  {%elif update.thumbs.normal%}
+                    <div class="media">
+                        <a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="{{ thumborurl(update.thumbs.normal.url, (350,233) ) }}" rel="lightbox[timeline]">
+                            <img src="{{ thumborurl(update.thumbs.normal.url, (350,233) ) }}">
+                        </a>
+                    </div>
+                  {%elif update.thumbs.thumb%}
+                   <div class="media">
+                    <a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="{{ thumborurl(update.thumbs.thumb.url, (350,233) ) }}" rel="lightbox[timeline]">
+                      <img src="{{ thumborurl(update.thumbs.thumb.url, (350,233) ) }}">
+                    </a>
+                   </div>
+                  {%elif update.custom_fields.gdobra_imagem%}
+                  <div class="media">
+                    <a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="{{ thumborurl(update.custom_fields.gdobra_imagem, (350,233) ) }}" rel="lightbox[timeline]">
+                        <img src="{{ thumborurl(update.custom_fields.gdobra_imagem, (350,233) ) }}">
+                    </a>
+                  </div>
+                  {%endif%}
+                  {{update.content|safe}}
+
+                {%endif%}
+{#---------------------------- GOVERNO INFORMA CONTENT ------------------------------#}
+
+            </div>
+            <!-- Caixa de icones para compartilhar + links para ver comentarios -->
+
+            <div class="itemFooter govFoot clearfix">
+            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>{{update.total_comments}}</span></a><p class="comentarItem"><strong>Comente este item</strong></p></div>
+
+                <!-- Caixa de comentarios -->
+            <div class="toggle-wrap">
+                    <div class="directComment">
+                        <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                        <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+                    </div>
+
+                    <div class="directComment">
+                        <h4> por Aninha Alves em 28 Fev, 2014 </h4>
+                        <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
+                    </div>
+
+                <form>
+                 <textarea name="" cols="" rows=""></textarea>
+                <input name="" type="submit" value="enviar comentario" />
+                </form>
+            </div>
         </div>
-        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
-            
-        <div class="itemFooter govFoot clearfix">    
-        <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a><p class="comentarItem"><strong>Comente este item</strong></p></div>  
+        <!-- Fim do item de timeline -->
 
-            <!-- Caixa de comentarios -->        
-        <div class="toggle-wrap">
-                <div class="directComment"> 
-                    <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                    <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-                </div>
+    {%else%} {#===========================================================================#}
 
-                <div class="directComment"> 
-                    <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                    <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-                </div>
-
-            <form>
-             <textarea name="" cols="" rows=""></textarea>
-            <input name="" type="submit" value="enviar comentario" />
-            </form>
-        </div>                  
-</div>
-    <!-- Fim do item de timeline -->
-
-
-    <!-- ============================================ ITEM NORMAL ============================================--> 
-		<div class="item" data-id="12/05/2012" data-description="Cachoeirinha">
+        <!-- ============================================ ITEM NORMAL ============================================-->
+		<div class="item" data-id="{{update.date.date|formatarDataeHora(formato="%d/%m/%Y")}}" data-description="{{update.title}}">
             <div class="povoQuest">
-			     <h1>cachoeirinha</h1>
-			     <h2>por sandra regina em 17 Jan, 2014 </h2>
-			     <p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+			     <h1>{{update.title}}</h1>
+			     <h2>por {{update.author.display_name}} em {{update.date.date|formatarDataeHora(formato="%d %b, %Y")}} </h2>
+
+
+                {%if update.format and update.format not in ('link',)%}
+                    {{update.content|safe}}
+                {%endif%}
+
+                {%if update.format == 'link'%}
+                    <a class="linkcontent" href="{{update.custom_fields.gdobra_arquivo|striptags}}">{{update.content|striptags}}</a>
+                {%endif%}
+
+                {%if update.format == 'video'%}
+                    <video width="100%" height="100%" id="player{{update.id}}" preload="none">
+                    {% if 'youtube' in update.custom_fields.gdobra_video %}
+                        <source type="video/youtube" src="{{update.custom_fields.gdobra_video|striptags}}" />
+                    {%else%}
+                        <source type="video/vimeo" src="{{update.custom_fields.gdobra_video|striptags}}" />
+                    {%endif%}
+                    </video>
+                    <script type="text/javascript">
+                    $('#player{{update.id}}').mediaelementplayer({});
+                    </script>
+                {%endif%}
+
+                {%if update.format == 'image'%}
+                    {%include 'item-image-part.html'%}
+                {%endif%}
+
             </div>
             <!-- Caixa de icones para compartilhar + links para ver comentarios -->
 
             <div class="itemFooter peopleFoot clearfix">
-                <div class="issoEImportante">Isso &eacute; importante? <a href=""><i class="fa fa-thumbs-up"></i> 99</a></div>
+                <div class="issoEImportante">Isso &eacute; importante?
+                    {%if user and not user.username in update.custom_fields.gdobra_users_voted %}
+                    <a class="votar" href="/deolho/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/">
+                    {%elif not user%}
+                    <a class="need" href="#">
+                    {%else%}
+                    <a class="votar voted">
+                    {%endif%}
+                        <i class="fa fa-thumbs-up"></i>
+                        {{update.custom_fields.gdobra_voto_score or "0"}}
+                    </a>
+                </div>
 
 
-                <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a></div>  
+                <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>{{update.total_comments}}</span></a></div>
 
-            <!-- Caixa de comentarios -->        
+            <!-- Caixa de comentarios -->
             <div class="toggle-wrap">
-                <div class="directComment"> 
+                <div class="directComment">
                     <h4> por Aninha Alves em 28 Fev, 2014 </h4>
                     <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
                 </div>
 
-                <div class="directComment"> 
+                <div class="directComment">
                     <h4> por Aninha Alves em 28 Fev, 2014 </h4>
                     <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
                 </div>
@@ -324,140 +457,10 @@ $(window).load(function() {
                     <textarea name="" cols="" rows=""></textarea>
                     <input name="" type="submit" value="enviar comentario" />
                 </form>
-         </div>                         
-</div>
-
-    <!-- ============================================ ITEM NORMAL ============================================--> 
-    <div class="item" data-id="20/05/2012" data-description="Cachoeirinha">
-        <div class="povoQuest">
-            <h1>cachoeirinha</h1>
-            <h2>por sandra regina em 17 Jan, 2014 </h2>
-            <p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
+            </div>
         </div>
-        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
-
-        <div class="itemFooter peopleFoot clearfix">
-            <div class="issoEImportante">Isso &eacute; importante? <a href=""><i class="fa fa-thumbs-up"></i> 99</a></div>
-
-
-            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a></div>  
-
-        <!-- Caixa de comentarios -->        
-        <div class="toggle-wrap">
-            <div class="directComment"> 
-                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-            </div>
-
-            <div class="directComment"> 
-                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-            </div>
-
-            <form>
-                <textarea name="" cols="" rows=""></textarea>
-                <input name="" type="submit" value="enviar comentario" />
-            </form>
-        </div>                         
-    </div>
-
-    
-    <!-- ============================================ ITEM NORMAL ============================================--> 
-    <div class="item" data-id="02/06/2012" data-description="Cachoeirinha">
-        <div class="povoQuest">
-            <h1>cachoeirinha</h1>
-            <h2>por sandra regina em 17 Jan, 2014 </h2>
-            <p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
-        </div>
-        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
-
-        <div class="itemFooter peopleFoot clearfix">
-            <div class="issoEImportante">Isso &eacute; importante? <a href=""><i class="fa fa-thumbs-up"></i> 99</a></div>
-
-
-            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a></div>  
-
-        <!-- Caixa de comentarios -->        
-        <div class="toggle-wrap">
-            <div class="directComment"> 
-                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-            </div>
-
-            <div class="directComment"> 
-                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-            </div>
-
-            <form>
-                <textarea name="" cols="" rows=""></textarea>
-                <input name="" type="submit" value="enviar comentario" />
-            </form>
-        </div>                         
-    </div>    
-    
-    
-    
-    
-    <div class="item" data-id="12/06/2012" data-description="Governo Informa">
-        <!-- Titulo, media e texto -->
-        <div class="govResp">
-            <h1>Governo Informa</h1>
-            <h2>12 de Junho de 2012</h2>
-            <div class="media"><a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/10.jpg" rel="lightbox[timeline]"><img src="images/flat/default/10.jpg" alt=""/></a></div>
-            <p>Do total de 908 residências e estabelecimentos comerciais localizados em áreas em processo de desapropriação, restam apenas 205 ocupações a serem retiradas. No lote 3, onde o adensamento urbano é maior, uma frente de trabalho de 1,5 km foi aberta graças às remoções. Já no lote 1, a empresa Triunfo atua em cinco frentes, ampliando as obras de terraplanagem e drenagem. Já no lote 2 os avanços são menores e espera-se que a empresa Sultepa adote um ritmo compatível com as frentes de trabalho já disponíveis. A empresa aguarda a aprovação de um aditivo ao contrato, mas já seria possível retomar os trabalhos. Até o final de março, a expectativa é liberar 4 km de pista nova entre os lotes 2 e 3, bem como encaminhar cinco licitações entre passarelas, a elevação do viaduto sobre a RS-020 e o muro de contenção da Marechal Rondon.</p>
-        </div>
-        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
-
-        <div class="itemFooter govFoot clearfix">
-            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>99</span></a><p class="comentarItem"><strong>Comente este item</strong></p></div>  
-
-        <!-- Caixa de comentarios -->        
-        <div class="toggle-wrap">
-            <div class="directComment"> 
-                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-            </div>
-
-            <div class="directComment"> 
-                <h4> por Aninha Alves em 28 Fev, 2014 </h4>
-                <p>Etiam sit amet dictum purus, eu suscipit lorem. Sed adipiscing neque in tellus egestas, nec porta libero egestas. Fusce dolor risus, blandit ac ornare eget, pretium a purus. Duis euismod, nisl vitae congue mollis, sapien sapien semper est, ac pretium nisl ante in purus. Fusce lectus odio, aliquam eu dui ut, rhoncus interdum quam. Suspendisse aliquet sollicitudin mi. In hac habitasse platea dictumst. Integer sagittis gravida velit, ac sollicitudin sapien. Nulla at nunc at erat placerat tristique. Curabitur rhoncus, lectus ut facilisis elementum, diam enim molestie elit, ut vulputate ipsum elit nec sapien. Suspendisse vehicula mauris at tortor. </p>
-            </div>
-
-            <form>
-                <textarea name="" cols="" rows=""></textarea>
-                <input name="" type="submit" value="enviar comentario" />
-            </form>
-        </div>                  
-    </div>
-    <!-- Fim do item de timeline -->
-
-    <!-- ============================================ ITEM NORMAL ============================================--> 
-    <div class="item" data-id="12/07/2012" data-description="Cachoeirinha">
-        <div class="povoQuest">
-            <h1>cachoeirinha</h1>
-            <h2>por sandra regina em 17 Jan, 2014 </h2>
-            <p>Sed ac purus ante. Aliquam placerat mauris risus, quis consequat lectus sodales at. Aenean porttitor sodales pharetra. Mauris nunc neque, tincidunt ac iaculis nec, feugiat quis lectus. Cras nulla lacus, aliquet eget ipsum at, malesuada rhoncus felis. Aenean non eleifend purus. Aliquam eleifend pulvinar tortor, id faucibus felis. Fusce nec nisl at diam interdum lobortis vitae et odio. Donec accumsan, lorem ac suscipit semper, risus odio dignissim leo, eget ultricies arcu diam sed orci. Pellentesque quis aliquam nisl. Aliquam semper vulputate metus, a volutpat est. </p>
-            <div class="media"><a class="image_rollover_bottom con_borderImage" data-description="ZOOM IN" href="images/flat/default/8.jpg" rel="lightbox[timeline]"><img src="images/flat/default/8.jpg" alt=""/></a></div>
-            
-        </div>
-        <!-- Caixa de icones para compartilhar + links para ver comentarios -->
-
-        <div class="itemFooter peopleFoot clearfix">
-            <div class="issoEImportante">Isso &eacute; importante? <a href=""><i class="fa fa-thumbs-up"></i> 99</a></div>
-
-
-            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>&nbsp;</span></a></div>  
-
-        <!-- Caixa de comentarios -->        
-        <div class="toggle-wrap">
-            <form>
-                <textarea name="" cols="" rows=""></textarea>
-                <input name="" type="submit" value="enviar comentario" />
-            </form>
-        </div>                         
-    </div>
-
+    {%endif%} {#==========================================================================#}
+{%endfor%}
 
 </div> <!-- /END TIMELINE -->
 		</div>

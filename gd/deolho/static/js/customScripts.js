@@ -85,5 +85,18 @@ $(function() {
         $('#div'+filtro).show();
     });
 
+    $('div.styled-select span i').click(function(){
+        console.log("CLIDADO NA SETINHA");
+        var sel = $(this).parent().parent().find("select");
+
+        //TODO: Achar uma forma de abrir a caixa de seleção do select.
+        // var size = sel.find('option').size();
+        // if (size != sel.prop('size')) {
+        //     sel.prop('size', size);
+        // } else {
+        //     sel.prop('size', 1);
+        // }
+
+    });
 
 });

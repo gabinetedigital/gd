@@ -68,6 +68,7 @@ def _get_obras(slug=None, obraid=None):
 	elif obraid:
 		obras = [wordpress.monitoramento.getObraById(obraid)]
 	else:
+		print ">>>>>>>>>>>>>>>>>> GET TODAS AS OBRAS"
 		obras = wordpress.monitoramento.getObras()
 
 	# print "="*40
@@ -81,6 +82,7 @@ def adjustCf(obras):
 	"""#Trata o retorno dos custom_fields para facilitar a utilizacao"""
 	r_obras = []
 	for obra in obras:
+		# print "--->>>", obra['title'], obra['date']['date']
 		if obra['custom_fields']:
 			custom_fields = {}
 			for cf in obra['custom_fields']:
@@ -131,6 +133,14 @@ def adjustCf(obras):
 
 @monitoramento.route('/', methods=("GET","POST"))
 def index():
+
+	filtros = {}
+	if "filtro" in request.args or "ordem" in request.args:
+		filtros = {
+			'filtro': request.args['filtro'],
+			'valor' : request.args['valor'],
+			'ordem' : request.args['ordem']
+		}
 
 	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras())
 	# print "OBRAS =========================================================================="
@@ -208,7 +218,6 @@ def index():
 	except KeyError:
 		valor_investimentos = ""
 
-	print "RETORNANDO DEOLHO.HTML......"
 	return render_template('deolho.html',
 		obras=obras,
 		slides=retslides,
@@ -217,38 +226,38 @@ def index():
 	)
 
 
-@monitoramento.route('/obra/<slug>/item/<itemid>/')
-def timelineitem(slug, itemid):
-	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
-	if not obra:
-		return abort(404)
+# @monitoramento.route('/obra/<slug>/item/<itemid>/')
+# def timelineitem(slug, itemid):
+# 	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
+# 	if not obra:
+# 		return abort(404)
 
-	cacheid = "obratl%s-%s"%(obra['id'],itemid)
-	timeline = fromcache(cacheid) or tocache(cacheid, wordpress.monitoramento.getObraTimeline(obra['id'], int(itemid) ))
-	timeline = adjustCf(timeline)
-	update = timeline[0]
+# 	cacheid = "obratl%s-%s"%(obra['id'],itemid)
+# 	timeline = fromcache(cacheid) or tocache(cacheid, wordpress.monitoramento.getObraTimeline(obra['id'], int(itemid) ))
+# 	timeline = adjustCf(timeline)
+# 	update = timeline[0]
 
-	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
-	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
-	try:
-		twitter_hash_cabecalho = twitts()
-	except KeyError:
-		twitter_hash_cabecalho = ""
+# 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+# 	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
+# 	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
+# 	try:
+# 		twitter_hash_cabecalho = twitts()
+# 	except KeyError:
+# 		twitter_hash_cabecalho = ""
 
-	cacheid = "cmts-item-obra-%s" % itemid
-	cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=itemid, number=1000))
+# 	cacheid = "cmts-item-obra-%s" % itemid
+# 	cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=itemid, number=1000))
 
-	return render_template('timeline-item.html',
-		base_url = current_app.config['BASE_URL'],
-		menu=menus,
-		obra=obra,
-		howto=howto,
-		tos=tos,
-		update=update,
-		comentarios=cmts[::-1],
-		twitter_hash_cabecalho=twitter_hash_cabecalho
-	)
+# 	return render_template('timeline-item.html',
+# 		base_url = current_app.config['BASE_URL'],
+# 		menu=menus,
+# 		obra=obra,
+# 		howto=howto,
+# 		tos=tos,
+# 		update=update,
+# 		comentarios=cmts[::-1],
+# 		twitter_hash_cabecalho=twitter_hash_cabecalho
+# 	)
 
 
 @monitoramento.route('/obra/<obraid>/<slug>/<plus>/')
@@ -351,11 +360,13 @@ def vote(obraid, slug, plus):
 
 @monitoramento.route('/obra/<slug>/')
 def obra(slug):
+	print " >>>> BUSCANDO A OBRA por SLUG", slug
 	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
 	if not obra:
 		return abort(404)
 
 	cacheid = "obratl-%s"%slug
+	print ">>>>>> BUSCANDO A TIMELINE DA OBRA PELO ID"
 	timeline = fromcache(cacheid) or tocache(cacheid,wordpress.monitoramento.getObraTimeline(obra['id']))
 	timeline = adjustCf(timeline)
 	statuses = [ s for s in timeline if s['format'] == 'status' ]
