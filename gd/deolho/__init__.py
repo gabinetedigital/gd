@@ -567,6 +567,14 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
+@monitoramento.route('/obra/<slug>/contribui', methods=('GET',))
+def contribuir(slug):
+	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
+	if not obra:
+		return abort(404)
+	return render_template("enviarContribuicao.html", obra=obra)
+
+
 @monitoramento.route('/obra/<slug>/contribui', methods=('POST',))
 def contribui(slug):
 
@@ -577,61 +585,7 @@ def contribui(slug):
 	r = {'status':'ok', 'message':'Sua contibuição foi aceita com sucesso'}
 	user_recent = False
 	if not authapi.is_authenticated():
-		# r = {'status':'not_logged'}
-		"""
-		Se não está autenticado, tenta achar o usuário pelo email, e
-		acessar com a senha inserida no formulario.
-		Se não, cadastra o camarada, com o nome e email informados, gerando
-		uma senha para ele e enviando o email de boas vindas.
-		"""
-		email = request.form['email']
-
-		if request.form['senha']:
-			#Informou a senha do cadastro já existente
-			# username = email
-			# senha = request.form['senha']
-			#Efetua o login
-			print "Usuario e senha informado... logando!"
-			username = request.values.get('email')
-			senha = request.values.get('senha')
-			print "tentando logar com", username, senha
-			try:
-				user = authapi.login(username, senha)
-				r = {'status':'ok', 'message':'Sua contibuição foi aceita com sucesso', 'refresh': True}
-			except authapi.UserNotFound:
-				r = {'status':'nok', 'message':_(u'Wrong user or password')}
-				return dumps(r)
-			except authapi.UserAndPasswordMissmatch:
-				r = {'status':'nok', 'message':_(u'Wrong user or password')}
-				return dumps(r)
-		elif request.form['nome']:
-			print "Nome informado... cadastrando..."
-			#Informou a senha para cadastro
-			nome = request.form['nome']
-			telefone = request.form['telefone'] if 'telefone' in request.form else ""
-			novasenha = request.form['newPassword'] if 'newPassword' in request.form else ""
-
-			if not novasenha:
-				# novasenha = "gabinetedigital"
-				novasenha = ''.join(random.choice(string.printable) for x in range(8))
-
-			# print nome, '-', email, '-', novasenha
-
-			try:
-				user = authapi.create_user(nome, email, unicode(novasenha), email)
-				r = {'status':'ok', 'message':'Sua contibuição foi aceita com sucesso. Verifique seu email para confirmar o cadastro.'}
-				user_recent = True
-				send_welcome_email(user)
-				send_password(user.email, novasenha)
-			except authapi.UserExistsUnconfirmed, e:
-				r = {'status':'nok', 'message':u'Seu usuário precisa ser confirmado, veja seu email!'}
-				return dumps(r)
-
-			if telefone:
-				user.set_meta('phone', telefone)
-				dbsession.commit()
-		else:
-			r = {'status':'nok', 'message':u'É necessário informar uma senha ou dados para cadastro.'}
+		r = {'status':'nok', 'message':u'É necessário estar logado para contribuir.'}
 	else:
 		print "JAH ESTAVA LOGADO!"
 		user = authapi.authenticated_user()

@@ -6,14 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="shortcut icon" href="img/ico/favicon.ico">
+<link rel="shortcut icon" href="{{url_for('.static', filename="img/ico/favicon.ico")}}">
 
 <title>De Olho nas Obras - Enviar Contribuição</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="css/DONO.min.css" rel="stylesheet">    
+<link href="{{url_for('.static', filename="css/bootstrap.min.css")}}" rel="stylesheet">
+<link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet">
+<link href="{{url_for('.static', filename="css/DONO.min.css")}}" rel="stylesheet">
+<style>
+.timelineLoader {
+    display: none;
+    text-align: center;
+    margin-bottom: 30px;
+}
+</style>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -21,6 +28,31 @@
 <![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Yanone+Kaffeesatz:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    $('form').ajaxForm({
+        dataType: 'json',
+        beforeSubmit: function (fields, myform, xhr) {
+            // console.log(p1,p2,p3,p4);
+            $('.alert').remove();
+            $('.timelineLoader').show();
+            $('.formulario').hide();
+        },
+        success: function (data, status, xhr, myform) {
+            $('.timelineLoader').hide();
+            $(myform).parent().prepend("<div class='alert alert-success'>"+data.message+"</div>");
+            $(myform).resetForm();
+            $('.formulario').show();
+            // console.log(status, myform);
+            // console.log("data",data);
+        }
+    });
+
+});
+</script>
+
 </head>
 
 
@@ -31,13 +63,17 @@
         <div class="container">
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#"><i class="fa fa-user"></i><br />Login</a></li>
+                    {%if user%}
+                    <li><a href="{{url_for("auth.logout")}}"><i class="fa fa-user"></i><br />Logout</a></li>
+                    {%else%}
+                    <li><a href="{{url_for("auth.login")}}"><i class="fa fa-user"></i><br />Login</a></li>
+                    {%endif%}
                     <li><a href="#compartilhar" data-toggle="modal"><i class="fa fa-share"></i><br />Compartilhe</a></li>
                     <li><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
                 </ul>
             </div>
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">De Olho Nas Obras</a>
+                <a class="navbar-brand" href="{{url_for("monitoramento.index")}}">De Olho Nas Obras</a>
             </div>
             <div class="homeSearch">
                 <input type="text" id="" placeholder="Procure por uma obra" />
@@ -93,29 +129,39 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-            <form class="clearfix" action="" method="get">
-                <p>
-                    <label>Título:</label>
-                    <input name="" type="text" />
-                </p>
-                <p>
-                    <label>Sua contribuição:</label>
-                   <textarea name="" cols="" rows=""></textarea>
-                </p>
-                <p>
-                    <label>Link do video:</label>
-                    <input name="" type="text" />
-                </p>                
-                <p>
-                    <label>Envie sua imagem:</label>
-                    
-                <label class="fileContainer">
-                    <span>selecionar arquivo:</span>
-                    <input type="file"/>
-                </label>
-                </p>                
-                <p><input name="" type="submit" value="enviar" /></p>
-            </form>
+            <div class="timelineLoader">
+                <img src="{{url_for('.static',filename="images/timeline/loadingAnimation.gif")}}" />
+            </div>
+            <div class="formulario">
+                <form class="clearfix" method="POST" action="/deolho/obra/{{obra.slug}}/contribui">
+                    <p>
+                        <label>Obra:</label> {{obra.title}} <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-primary">Voltar</a>
+                        <br>
+                        <br>
+                    </p>
+                    <p>
+                        <label>Título:</label>
+                        <input name="titulo" id="titulo" type="text" />
+                    </p>
+                    <p>
+                        <label>Sua contribuição:</label>
+                       <textarea name="conteudo" id="conteudo" cols="" rows="" placeholder="Escreva aqui sua opinião/contribuição..."></textarea>
+                    </p>
+                    <p>
+                        <label>Link do vídeo (apenas vídeos do youtube):</label>
+                        <input name="link" id="link" type="text" placeholder="https://www.youtube.com/watch?v=gE4Ig8L8vZo" />
+                    </p>
+                    <p>
+                        <label>Envie sua imagem:</label>
+
+                    <label class="fileContainer">
+                        <span>selecionar arquivo:</span>
+                        <input type="file" name="foto" id="foto"/>
+                    </label>
+                    </p>
+                    <p><input name="" type="submit" value="enviar" /></p>
+                </form>
+            </div>
 		</div>
 	</div>
 </div>
@@ -124,19 +170,19 @@
 <footer>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3"><a href="http://gabinetedigital.rs.gov.br/" target="_blank"><img src="images/GD_logo.png"  alt="Gabinete Digital" /></a></div>
+			<div class="col-md-3"><a href="http://gabinetedigital.rs.gov.br/" target="_blank"><img src="{{url_for('.static', filename="")}}images/GD_logo.png"  alt="Gabinete Digital" /></a></div>
 			<div class="col-md-3">
 				<h4>Nossos Dados</h4>
 				<p>As informações das obras são dados abertos. Acesse a API: <strong>JSON</strong></p>
 			</div>
 			<div class="col-md-3"><h4>Acesso à informação </h4>
 			<p>Se você quiser obter alguma informação específica e de maneira personalizada, utilize a Lei de Acesso à Informação. O governo dará uma resposta em no máximo 30 dias.</p>
-			<p><img src="images/acessoAinformacao.png" width="168" height="72" alt="" /></p>
+			<p><img src="{{url_for('.static', filename="images/acessoAinformacao.png")}}" width="168" height="72" alt="" /></p>
 			</div>
 			<div class="col-md-3"><h4>Parceiros</h4>
 			<p>Desenvolvido em parceria com</p>
-			<p><img src="images/procergs.png" width="77" height="76" alt="" /></p>
-			<p><img src="images/FGV.png" width="97" height="20" alt="" /></p>
+			<p><img src="{{url_for('.static', filename="images/procergs.png")}}" width="77" height="76" alt="" /></p>
+			<p><img src="{{url_for('.static', filename="images/FGV.png")}}" width="97" height="20" alt="" /></p>
 			</div>
 		</div>
 	</div>
@@ -174,6 +220,7 @@
 ================================================== -->
 
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/docs.min.js"></script>
