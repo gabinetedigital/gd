@@ -595,7 +595,27 @@ footer p {margin:0; padding:15px 0 10px 0; font-size:12px; color: #a2688c;}
     .constructionBox {margin:0 0 3% 0; padding:0; background-color: #673453; float: left; width: 98%;}
     .constructionBox .image {width: 30%;}
 
-    .constructionBox ul {width: 70%; left: 30%;}  
+    .constructionBox ul {width: 70%; left: 30%;}
+    
+    
+    .constructionMainInfo {height: auto;}
+
+    .imageDescription {background-color: transparent; height: 350px;}
+    .obraConcluidaItem {position: absolute; top: 10px; right: 10px; margin:0; padding: 0; background: transparent url(../images/selo-obra-concluida-item.png) no-repeat 0px 0px; width: 69px; height: 64px;}
+    .imageDescription img {display: none;}
+    .imageDescription .constructionDesc {position: absolute; top: 0p; left: 0; z-index: 13; height: 350px;}
+    .imageDescription .constructionDesc h1 {padding:10px 0 20px 20px; font-size: 30px; width: 98%; height: auto;}
+    .imageDescription .constructionDesc p {margin:0; padding: 0 20px; font-size: 14px; height: auto; line-height: 16px;}
+
+    .toolBar {margin: 10px 0px; padding:0; width:100%;}
+    .toolBar li a {margin:0 1px; padding:20px 0;}    
+
+    .colourfulBoxesMedium {margin:0; padding:0 0 70px 0;}
+    .colourfulBoxesMedium div {float: left; width: 50%; min-height: 160px;}
+
+    #sigaObraBox .col-md-2 {margin:0; padding:0; float: left; width: 20%;}
+    #sigaObraBox .col-md-4 {margin:0; padding:0; float: left; width: 40%;}
+    #sigaObraBox .col-md-6 {margin:0; padding:0; float: left; width: 40%;}
     
     footer .col-md-3 {float: left; width: 25%;}
     
