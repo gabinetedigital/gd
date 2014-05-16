@@ -141,7 +141,7 @@
 					</li>
 					<li><i class="fa fa-wrench"></i>
 						<h2>Empresas responsáveis</h2>
-						<h3>{%for e in obra.custom_fields.gdobra_empresa_contratada%}{{e}}<br/>{%endfor%}</h3>
+						<h3>{%for e in obra.custom_fields.gdobra_empresa_contratada%}{{e}}{%if not loop.last%},{%endif%}{%endfor%}</h3>
 					</li>
 					<li><i class="fa fa-users"></i>
 						<h2>Secretaria Responsável</h2>

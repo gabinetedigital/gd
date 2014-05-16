@@ -68,7 +68,7 @@ def _get_obras(slug=None, obraid=None):
 	elif obraid:
 		obras = [wordpress.monitoramento.getObraById(obraid)]
 	else:
-		print ">>>>>>>>>>>>>>>>>> GET TODAS AS OBRAS"
+		# print ">>>>>>>>>>>>>>>>>> GET TODAS AS OBRAS"
 		obras = wordpress.monitoramento.getObras()
 
 	# print "="*40
@@ -127,13 +127,6 @@ def adjustCf(obras):
 			del obra['custom_fields']
 			obra['custom_fields'] = custom_fields
 
-		# cacheid = "cmts-item-obra-%s" % obra['id']
-		# cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=obra['id'], number=1000) or [] )
-		# if cmts:
-		# 	print "COMENTARIOS::::::::::::::::::::::", cmts
-		# 	obra['comments'] = cmts[::-1]
-		# else:
-		# 	obra['comments'] = []
 		r_obras.append(obra)
 
 	return r_obras
