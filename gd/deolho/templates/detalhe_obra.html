@@ -435,14 +435,14 @@ $(window).load(function() {
             <div class="itemFooter peopleFoot clearfix">
                 <div class="issoEImportante">Isso &eacute; importante?
                     {%if user and not user.username in update.custom_fields.gdobra_users_voted %}
-                    <a class="votar" href="/deolho/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/">
+                    <a class="votar" href="#" data-url="/deolho/obra/{{update.id}}/{{update.slug|md5}}/{{[update.id|string,'1']|join("")|md5}}/">
                     {%elif not user%}
                     <a class="need" href="#">
                     {%else%}
                     <a class="votar voted">
                     {%endif%}
-                        <i class="fa fa-thumbs-up"></i>
-                        {{update.custom_fields.gdobra_voto_score or "0"}}
+                    <i class="fa fa-thumbs-up"></i>
+                    <span class="counter">{{update.custom_fields.gdobra_voto_score or "0"}}</span>
                     </a>
                 </div>
 

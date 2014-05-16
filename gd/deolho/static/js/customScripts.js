@@ -45,6 +45,25 @@ $(document).ready(function() {
         }
     });
 
+   $('.issoEImportante a.votar').not('.voted').unbind().on("click",function(){
+        var url = $(this).attr('data-url');
+        var _clicado_ = $(this)
+        _clicado_.attr('disabled','disabled');
+        console.log("Chamando ", url);
+        if(url){
+            $.get(url, function(data){
+                var pData = $.parseJSON(data);
+                console.log("Retornado",pData);
+                _clicado_.parent().parent().find(".counter").html(pData.score);
+                _clicado_.removeAttr('href');
+                _clicado_.removeAttr('data-url');
+                _clicado_.find('div.curtir').addClass("voted");
+            });
+        }
+
+       return false;
+    });
+
 });
 
 
