@@ -13,6 +13,7 @@
 
 
 body {margin: 0; padding:0; font-family: 'Roboto Slab', 'serif';}
+
 a, a:hover, a:active, a:focus, button {outline: 0; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out;}
 a:hover {text-decoration: none; opacity: 0.6; -moz-opacity: 0.6;  filter: alpha(opacity=60); }
 a:focus {text-decoration: none;}
@@ -70,12 +71,12 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 .affix-top .homeSearch input[type='text'] {margin: 0 auto; padding:0 10px 0 40px; width: 380px; height: 38px; border-radius: 6px; border: 1px solid #cdcccc; color: #cdcccc; font-size: 17px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase; background: transparent url(../images/search_icon.png) no-repeat 10px center;}
 
 
-.affix {margin:0; padding:4px 0; height: 68px; !important; width: 100%;background-color: #ffffff; transition-property: all; transition-duration: 0.5s; transition-timing-function: ease-out; z-index: 99999; overflow: hidden; z-index: 999;}
-.affix header.navbar {margin:0; padding:0; max-height: 60px !important; height: 60px !important; text-align: center;}
-.affix .navbar-nav {margin:0; padding: 10px 0 0 0; width: 220px; float: right;}
-.affix .navbar-nav li a {transition-property: color; transition-duration: 1s; transition-timing-function: ease-out;display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center;}
+.affix {margin:0; padding:4px 0; height: 68px; !important; width: 100%;background-color: #ffffff; transition-property: all; transition-duration: 0.5s; transition-timing-function: ease-out; z-index: 99999; overflow: hidden; z-index: 999; -webkit-transform: translateZ(0);}
+.affix header.navbar {margin:0; padding:0; max-height: 60px !important; height: 60px !important; text-align: center; position: fixed;}
+.affix .navbar-nav {margin:0; padding: 10px 0 0 0; width: 220px; float: right; display: block;}
+.affix .navbar-nav li {}
+.affix .navbar-nav li a {transition-property: color; transition-duration: 1s; transition-timing-function: ease-out; display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center; }
 .affix .navbar-nav li a i {font-size: 24px;}
-
 .affix .navbar-nav li:nth-of-type(1) a {color: #5ab9c0;}
 .affix .navbar-nav li:nth-of-type(1) a:hover {color: #2F7479; background-color: #ffffff;}
 .affix .navbar-nav li:nth-of-type(2) a {color: #ffbb42;}
@@ -92,9 +93,9 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 /* ========================== INTERNAL HEADER ==========================*/
 
 
-.internalHeader {margin:0; padding:0; height: 60px; !important; width: 100%;background-color: #ffffff; transition-property: all; transition-duration: 0.5s; transition-timing-function: ease-out; z-index: 99999; overflow: hidden; z-index: 999;}
-.internalHeader header.navbar {margin:0; padding:0; max-height: 60px !important; height: 60px !important; text-align: center;}
-.internalHeader .navbar-nav {margin:0; padding: 6px 0 0 0; width: 190px; float: right;}
+.internalHeader {margin:0; padding:0; height: 60px; !important; width: 100%; background-color: #ffffff; transition-property: all; transition-duration: 0.5s; transition-timing-function: ease-out; z-index: 99999; overflow: hidden; z-index: 999;}
+.internalHeader header.navbar {margin:0; padding:0; max-height: 60px !important; height: 60px !important; text-align: center; display: block;  -webkit-transform: translateZ(0);}
+.internalHeader .navbar-nav {margin:0; padding: 6px 0 0 0; width: 220px; float: right;}
 .internalHeader .navbar-nav li a {transition-property: color; transition-duration: 1s; transition-timing-function: ease-out;display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center;}
 .internalHeader .navbar-nav li a i {font-size: 24px;}
 
@@ -162,44 +163,39 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 
 /* ========================== FILTROS ==========================*/
 .btn-group {margin:0; padding:0;width: 100%;} 
-.btn-filter {text-align: left; padding: 12px 20px; line-height: 1; width: 70%; color: #878585; background-color: #e0dddd; border-color: #e0dddd; font-size:16px !important; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase;}
 
-.btn-filter span.caret {color: #ffffff; margin-top: -10px; float: right;}
-.dropdown-menu {width: 70%;}
 
 
 /* ========================== LISTA DE OBRAS ==========================*/
 .listaObras {margin:0; padding:30px 0 0 15px;}
 
-.constructionBox {margin:0 0 3% 0; padding:0; background-color: #673453; float: left; width: 48%;}
+.constructionBox {margin:0 0 3% 0; padding:0; background-color: #673453; float: left; width: 48%; position: relative;}
 .constructionBox:nth-of-type(2n+1) {margin:0 3% 3% 0;}
 
-.constructionBox .image {margin:0; padding:0; float: left; width: 50%; position: relative;}
+.constructionBox .image {margin:0 15px 0 0; padding:0; float: left; width: 50%; position: relative;}
 .constructionBox .image img {max-width: 100%;}
 
 .obraConcluidaListagem {position: absolute; top: 10px; left: 10px; margin:0; padding: 0; background: transparent url(../images/selo-obra-concluida-listagem.png) no-repeat 0px 0px; width: 58px; height: 54px;}
 
+.constructionBox h3 {margin:0; padding:15px 15px 0 0; line-height: 1.1; color: #fff; letter-spacing:0.6px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 18px; text-transform: uppercase;}
+.constructionBox h3 a {color: #fff;}
 
-.constructionBox .description {margin:0; padding:10px 15px; float: left; width: 50%; height: 210px; position: relative;}
-.constructionBox .description h3 {margin:0; padding:0; line-height: 1.1; color: #fff; letter-spacing:0.6px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 18px; text-transform: uppercase;}
-.constructionBox .description h3 a {color: #fff;}
+.constructionBox h4 {margin:0; padding:0 15px 30px 0; line-height: 2; color: #ffbb42; font-size: 12px;}
+.constructionBox h4 a {color: #ffbb42;}
 
-.constructionBox .description h4 {margin:0; padding:0; line-height: 2; color: #ffbb42; font-size: 12px;}
-.constructionBox .description h4 a {color: #ffbb42;}
+.constructionBox ul {margin:0; padding:0 0 0 15px; width: 50%; list-style-type: none; position: absolute; bottom: 10px; height: 35px; left: 50%; font-family: 'Yanone Kaffeesatz', 'sans-serif';}
+.constructionBox ul li {margin:0; padding:0; color: #fff; height: 35px; position: relative; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out;}
+.constructionBox ul li:hover {color: #fea301;}
 
-.constructionBox .description ul {margin:0; padding:0; width: 100%; list-style-type: none; position: absolute; bottom: 2px; left: 15px; font-family: 'Yanone Kaffeesatz', 'sans-serif';}
-.constructionBox .description ul li {margin:0; padding:0; color: #fff; height: 35px; position: relative; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out;}
-.constructionBox .description ul li:hover {color: #fea301;}
+.constructionBox ul li:nth-of-type(1) {width: 80px; line-height: 1; float: left;}
+.constructionBox ul li:nth-of-type(1) i {font-size: 30px;}
+.constructionBox ul li:nth-of-type(1) span {display: block; position: absolute; top: 2px; left: 40px; font-size: 20px;}
 
-.constructionBox .description ul li:nth-of-type(1) {width: 80px; line-height: 1; float: left;}
-.constructionBox .description ul li:nth-of-type(1) i {font-size: 30px;}
-.constructionBox .description ul li:nth-of-type(1) span {display: block; position: absolute; top: 2px; left: 40px; font-size: 20px;}
+.constructionBox ul li:nth-of-type(2) {margin-top: -2px; font-size: 26px; width: 45px; float: right;}
+.constructionBox ul li:nth-of-type(2) span {display: block; position: absolute; width: 20px; height:20px; text-align: center;  top: 8px; left: 3px; font-size: 12px; color: #673453;}
 
-.constructionBox .description ul li:nth-of-type(2) {margin-top: -2px; font-size: 26px; width: 55px; float: right;}
-.constructionBox .description ul li:nth-of-type(2) span {display: block; position: absolute; width: 20px; height:20px; text-align: center;  top: 8px; left: 3px; font-size: 12px; color: #673453;}
-
-.constructionBox .description ul li:nth-of-type(3) {margin-top: -5px; font-size: 30px; width: 35px; float: right;}
-.constructionBox .description ul li:nth-of-type(3) span {display: block; position: absolute; width: 20px; height:20px; top: 12px; left: 4px; text-align: center; font-size: 12px; color: #673453;}
+.constructionBox ul li:nth-of-type(3) {margin-top: -5px; font-size: 30px; width: 35px; float: right;}
+.constructionBox ul li:nth-of-type(3) span {display: block; position: absolute; width: 20px; height:20px; top: 12px; left: 4px; text-align: center; font-size: 12px; color: #673453;}
 
 
 
@@ -214,10 +210,10 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 .obraConcluidaItem {position: absolute; top: 10px; right: 10px; margin:0; padding: 0; background: transparent url(../images/selo-obra-concluida-item.png) no-repeat 0px 0px; width: 69px; height: 64px;}
 .imageDescription img {position: absolute; top: 0p; left: 0; z-index: 9; opacity: 0.5; -moz-opacity: 0.5;  filter: alpha(opacity=50);}
 .imageDescription .constructionDesc {position: absolute; top: 0p; left: 0; z-index: 13; height: 350px;}
-.imageDescription .constructionDesc h1 {margin:0; padding:30px 0 0 20px; color: #fff; letter-spacing:1px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 40px; line-height: 1.1; text-transform: uppercase; text-shadow: 2px 2px 1px rgba(0, 0, 0, 1); width: 85%; height: 190px; text-align: left;}
-.imageDescription .constructionDesc p {margin:0; padding:0 0 0 20px; color: #fff; text-align: left; font-size: 16px;}
+.imageDescription .constructionDesc h1 {margin:0; padding:30px 0 0 20px; color: #fff; letter-spacing:1px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 40px; line-height: 1.1; text-transform: uppercase; text-shadow: 2px 2px 1px rgba(0, 0, 0, 1); width: 85%; height: 160px; text-align: left;}
+.imageDescription .constructionDesc p {margin:0; padding:0 20px 0 20px; color: #fff; text-align: left; font-size: 16px;}
 
-.imageDescription .constructionDesc ul {position: absolute; bottom: 10px; left: 20px;z-index: 20; width: 95%; height: 30px;}
+.imageDescription .constructionDesc ul {position: absolute; bottom: 6px; left: 20px;z-index: 20; width: 95%; height: 30px;}
 .imageDescription .constructionDesc ul li {margin:0; padding: 0; border-left: 0px solid #ffbb42; background-color: transparent; text-align: left; width: 50%; float: left;}
 .imageDescription .constructionDesc ul li:hover {margin:0; padding: 0; border-left: 0px solid #ffbb42; background-color: transparent; color: #ffbb42;}
 .imageDescription .constructionDesc ul li:hover a {color: #ffbb42;}
@@ -306,7 +302,7 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 .timelineFlat .item h2 {margin:0; padding:0 0 20px 0; line-height: 1; color: #f13c6e; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 16px; font-weight: 400; text-transform: uppercase;}
 
 .timelineFlat .govResp .media {margin:0 0 20px 20px; padding:0; float: right; width: 55%;}
-.timelineFlat .povoQuest .media {margin:20px auto; padding:0; width: 30%;}
+.timelineFlat .povoQuest .media {margin:20px auto; padding:0; width: 50%;}
 
 
 .timelineFlat .govResp {margin: 0; padding:20px 30px !important; border-radius: 6px 6px 0 0;  background-color: #5ab9c0 !important; color: #ffffff !important; line-height: 20px !important;}
@@ -317,7 +313,7 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 .timelineFlat .povoQuest h1 {line-height: 1; font-size: 18px !important; letter-spacing: 2px !important; color: #545353;}
 .timelineFlat .povoQuest h2 {line-height: 1.4 !important; font-size: 14px !important;}
 
-.timelineFlat .item .itemFooter {margin: 0 !important; padding:10px 30px 40px 30px !important; border-radius:0 0 6px 6px; color: #ffffff !important; height: auto;}
+.timelineFlat .item .itemFooter {margin: -1px 0 0 0 !important; padding:10px 30px 40px 30px !important; border-radius:0 0 6px 6px; color: #ffffff !important; height: auto;}
 
 .timelineFlat .item .itemFooter .addthis_toolbox {margin: 0; padding: 0; float: left;}
 .timelineFlat .item .itemFooter .addthis_toolbox a {margin-right: 5px; height: 15px; width: 15px !important;}
@@ -345,6 +341,20 @@ p {margin:0; padding 0 10px; font-size: 14px; color: #838282;}
 
 .timelineFlat .item .toggle-wrap textarea {margin:20px 0 0 0; padding: 10px; width: 100%; height: 150px; border: 1px solid #b63b6a; border-radius: 6px;}
 .timelineFlat .item .toggle-wrap input[type="submit"] {margin:30px 0 0 0; padding:15px 20px; float: right; border-radius: 6px; border: 0px; background-color: #b63b6a; text-align: center; color: #fff; font-size: 16px;}
+
+.lb-outerContainer {
+    position: relative;
+    background-color: white;
+    *zoom: 1;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
 
 
 /* ========================== ENVIAR CONTRIBUIÇÃO ==========================*/
@@ -383,9 +393,11 @@ form  input[type="submit"] {margin:30px 0 0 0; padding:15px 60px; float: right; 
 
 .styled-select {margin:0; padding:0; border-radius: 4px; width: 100%; height: 40px; overflow: hidden; background-color:#E1DDDE; position: relative;}
 
-.styled-select select {margin:0; padding: 10px; color: #878586; background: transparent; width: 100%; font-size: 16px; line-height: 1; border: 0; border-radius: 0; height: 40px; -webkit-appearance: none; font-size: 14px; letter-spacing: 0.8px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase;}
-.styled-select span {display: block; position: absolute; top: 0px; right: 0px;  margin:0; padding: 6px 0 0 0; width: 20px; height: 40px; background-color:#E1DDDE; color: #fff; font-size: 20px;}
+.styled-select select {position: absolute; top: 0px; left: 0px; z-index: 10; margin:0; padding: 10px; color: #878586; background: transparent; width: 110%; font-size: 16px; line-height: 1; border: 0; border-radius: 0; height: 40px; -webkit-appearance: none; font-size: 14px; letter-spacing: 0.8px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase;}
+.styled-select span {display: block; position: absolute; top: 0px; right: 0px; z-index: 5;  margin:0; padding: 6px 0 0 0; width: 20px; height: 40px; background-color:#E1DDDE; color: #fff; font-size: 20px;}
 
+form.filtrosHome {margin:0; padding:0; width: 100%;}
+form.filtrosHome label {display: block; margin:0 0 10px 0; padding:0 !important; height: auto; color: #B63B6A; font-size: 12px; line-height: 1; font-weight: 400;}
 
 
 /* ========================== FOOTER ==========================*/
@@ -409,60 +421,194 @@ footer p {margin:0; padding:15px 0 10px 0; font-size:12px; color: #a2688c;}
 @-ms-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
 @keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
  
-.fade-in {
-     opacity:0;  
-   
-   /* make things invisible upon start */
-    -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
- 
-    -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
- 
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
-}
-
+.fade-in {opacity:0;  /* make things invisible upon start */ -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */ -moz-animation:fadeIn ease-in 1; animation:fadeIn ease-in 1; -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/ -moz-animation-fill-mode:forwards; animation-fill-mode:forwards; -webkit-animation-duration:1s; -moz-animation-duration:1s; animation-duration:1s;}
 :root .fade-in { opacity:1 \0/IE9; }  /* IE9 */
  
-.fade-in.first {
--webkit-animation-delay: 0.25s;
--moz-animation-delay: 0.25s;
-animation-delay: 0.25s;
-}
- 
-.fade-in.second {
--webkit-animation-delay: 0.5s;
--moz-animation-delay:0.5s;
-animation-delay: 0.5s;
-}
- 
-.fade-in.third {
--webkit-animation-delay: 1s;
--moz-animation-delay: 1s;
-animation-delay: 1s;
+.fade-in.first {-webkit-animation-delay: 0.25s; -moz-animation-delay: 0.25s; animation-delay: 0.25s;}
+.fade-in.second {-webkit-animation-delay: 0.5s; -moz-animation-delay:0.5s; animation-delay: 0.5s;}
+.fade-in.third {-webkit-animation-delay: 1s; -moz-animation-delay: 1s; animation-delay: 1s;}
+
+.fade-out.first {-webkit-animation-delay: 0.25s; -moz-animation-delay: 0.25s; animation-delay: 0.25s;}
+.fade-out.second {-webkit-animation-delay: 0.5s; -moz-animation-delay:0.5s; animation-delay: 0.5s;}
+.fade-out.third {-webkit-animation-delay: 1s; -moz-animation-delay: 1s; animation-delay: 1s;}
+
+/* ================================================================== MEDIA QUERIES ==================================================================*/
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width : 320px) and (max-width : 580px) {
+    
+    /* ========================== TOP BAR ==========================*/
+    .navbar-collapse {margin:0; padding:0; width: 98% !important; float: none;}
+
+    .affix-top, .affix, .internalHeader {display: block; position: static; text-align: center; height: auto;}
+    .affix-top header.navbar, .affix header.navbar, .internalHeader header.navbar {margin:0; padding:0; max-height: auto; height: auto; text-align: center;}
+    .navbar-nav, .affix-top .navbar-nav, .affix .navbar-nav, .internalHeader .navbar-nav {margin:0 auto; padding:0; width: 60px;}
+    .navbar-nav li, .affix-top .navbar-nav li, .affix .navbar-nav li {margin:0; padding:0;} 
+    .navbar-nav li a, .affix-top .navbar-nav li a, .affix .navbar-nav li a, .internalHeader .navbar-nav li a { margin:0; padding:0; line-height: 1; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 16px; text-transform: uppercase; text-align: center; height: 16px; text-align: right;}
+    .navbar-nav li:nth-of-type(2), .affix-top .navbar-nav li:nth-of-type(2), .affix .navbar-nav li:nth-of-type(2) {display: none;}    
+    .navbar-nav li:nth-of-type(3), .affix-top .navbar-nav li:nth-of-type(3), .affix .navbar-nav li:nth-of-type(3) {display: none;}
+    .navbar-nav li a i, .affix-top .navbar-nav li a i, .affix .navbar-nav li a i {display: none;}
+
+    .navbar-header, .affix-top .navbar-header, .affix .navbar-header, .internalHeader .navbar-header {margin: 0; padding:0; width: 98%; text-align: center; float: none; clear: both; }
+    .navbar-header .navbar-brand, .affix-top .navbar-header .navbar-brand, .affix .navbar-header .navbar-brand, .internalHeader .navbar-header .navbar-brand {display: block; float: none; margin:0 auto !important; padding:0; background: transparent url(../images/DONO_tiny.png) no-repeat center 40px; width:99%; height: 78px; text-indent: -9000px;}
+    
+    .homeSearch, .affix-top .homeSearch, .affix .homeSearch, .internalHeader .homeSearch {margin:0; padding:20px 0 20px 0; width: 98%; text-align: center;}
+    .homeSearch input[type='text'], .affix-top .homeSearch input[type='text'], .affix .homeSearch input[type='text'], .internalHeader .homeSearch input[type='text'] {margin: 0 auto; padding:0 10px 0 40px; width: 80%; height: 38px; border-radius: 6px; border: 1px solid #cdcccc; color: #cdcccc; font-size: 17px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase; background: transparent url(../images/search_icon.png) no-repeat 10px center;}
+
+    .sliderBody {display: none;}
+
+    /* ========================== COMO FUNCIONA ==========================*/
+    .colourfulBoxesSmall {margin:0; padding:0 0 70px 0;}
+    .colourfulBoxesSmall div {margin:-1px 0 0 0; padding: 0; height: auto; max-height: auto; min-height: 60px; overflow: hidden; background-position: -9000px 0;}
+    .colourfulBoxesSmall div:hover {opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50);}
+    .colourfulBoxesSmall div h3 {margin:0; padding:0; width: 30px; height: 32px; text-align: center; color: #ffffff; font-size: 16px; line-height: 32px; background-color: rgba(0, 0, 0, 0.2); float: left; }
+    .colourfulBoxesSmall div p {margin:0; padding: 10px 10px 10px 40px; text-align: left; font-size: 12px; color: #ffffff; height: auto;}
+    
+    .colourfulBoxesSmall div:nth-of-type(1) {background: #b63b6a url(../images/comoFuncionaBg01.png) no-repeat center -9000px;}
+    .colourfulBoxesSmall div:nth-of-type(2) {background: #f13c6e url(../images/comoFuncionaBg02.png) no-repeat center -9000px;}
+    .colourfulBoxesSmall div:nth-of-type(3) {background: #f6772c url(../images/comoFuncionaBg03.png) no-repeat center -9000px;}
+    .colourfulBoxesSmall div:nth-of-type(4) {background: #ffbb42 url(../images/comoFuncionaBg04.png) no-repeat center -9000px;}
+    .colourfulBoxesSmall div:nth-of-type(5) {background: #37b494 url(../images/comoFuncionaBg05.png) no-repeat center -9000px;}
+    .colourfulBoxesSmall div:nth-of-type(6) {background: #5ab9c0 url(../images/comoFuncionaBg06.png) no-repeat center -9000px;}
+
+    
+    /* ========================== LISTA DE OBRAS ==========================*/
+    .listaObras {margin:0; padding:30px 0 0 5px;}
+
+    .constructionBox {margin:0 0 3% 0; padding:0; background-color: #673453; float: left; width: 98%;}
+    .constructionBox:nth-of-type(2n+1) {margin:0 0 3% 0;}
+
+    .constructionBox .image {margin:0; padding:0; float: left; width: 20%; position: relative;}
+
+    .obraConcluidaListagem {width: 28px; height: 24px; background-size: cover;}
+
+    .constructionBox h3 {margin:0; padding:15px 15px 0 0; line-height: 1.1; color: #fff; letter-spacing:0.6px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 18px; text-transform: uppercase;}
+    .constructionBox h3 a {color: #fff;}
+
+    .constructionBox h4 {margin:0; padding:0 15px 30px 0; line-height: 2; color: #ffbb42; font-size: 12px;}
+    .constructionBox h4 a {color: #ffbb42;}
+
+    .constructionBox ul {margin:0; padding:0 0 0 15px; width: 80%; list-style-type: none; position: absolute; bottom: 10px; height: 35px; left: 20%; font-family: 'Yanone Kaffeesatz', 'sans-serif';}
+    
+    
+    /* ========================== CONSTRUCTION DESCRIPTION ==========================*/
+
+    .constructionMainInfo {height: auto;}
+
+    .imageDescription {background-color: transparent; height: 350px;}
+    .obraConcluidaItem {position: absolute; top: 10px; right: 10px; margin:0; padding: 0; background: transparent url(../images/selo-obra-concluida-item.png) no-repeat 0px 0px; width: 69px; height: 64px;}
+    .imageDescription img {display: none;}
+    .imageDescription .constructionDesc {position: absolute; top: 0p; left: 0; z-index: 13; height: 350px;}
+    .imageDescription .constructionDesc h1 {padding:10px 0 20px 20px; font-size: 20px; width: 98%; height: auto;}
+    .imageDescription .constructionDesc p {margin:0; padding: 0 20px; font-size: 12px; height: auto; line-height: 16px;}
+
+
+    /* ========================== TOOLBAR ==========================*/
+
+    .toolBar {margin: 10px 0px; padding:0; width:100%;}
+    .toolBar li {margin:0; padding:0; width:25%;}
+    .toolBar li a {margin:0 1px; padding:20px 0; width: 100%; letter-spacing: 0px; height: 100px;  font-size: 14px;}
+    .toolBar li a i {font-size: 26px;}
+
+
+
+    .innerBoxes {position: absolute; top: 110px;}
+    .innerBoxes i {display: block; margin: -30px auto 0 auto; font-size: 60px; display: none;}
+    .innerBoxes .row {text-align: left; margin-bottom: 10px;}
+    .innerBoxes p {margin:0px; padding:0; text-align: center; font-size: 18px; color:#fff; line-height: 1.2;}
+    .innerBoxes p a {display: inline !important; padding:0; margin:0; font-family: 'Roboto Slab', 'serif'; font-size: 18px; letter-spacing: 0; text-transform: none; text-decoration: underline;}
+    .innerBoxes .row i {display: block; margin: -5px 0 0 30px; font-size: 40px; color: #fff !important;}
+    .innerBoxes .row label {color: #fff; font-size: 18px; font-weight: normal;}
+    .innerBoxes .row input[type="text"] {margin:4px auto 0 auto; padding:4px; height: 30px; border-radius: 6px; border: 1px solid #fff; width: 98%;}
+
+
+    #fiscalizeObraBox {left: 0px; padding: 10px; background-color: #f43876; width:100%; height: auto;}
+    #fiscalizeObraBox i {color: #f43876;}
+
+    #sigaObraBox {padding: 10px;left: 0;background-color: #f6772c; width:100%; height: auto;}
+    #sigaObraBox .col-md-2 {margin:0; padding:0; float: left; width: 25%;}
+    #sigaObraBox .col-md-4 {margin:0; padding:0; float: left; width: 75%;}
+    #sigaObraBox .col-md-4 label {display: block;font-size: 12px; padding-top: 4px;}
+    #sigaObraBox i {color: #f6772c; padding-top: 10px;font-size: 25px;}
+    #sigaObraBox input[type="submit"] {margin:0 auto; padding: 12px 55px; text-align: center; background-color: #f6772c !important; border: 1px solid #fff; border-radius: 6px; color: #fff; font-size: 18px;}
+    #sigaObraBox p {margin:10px auto; padding:20px 0; text-align: center; font-size: 10px; color:#fff; line-height: 1.2; width: 90%;}
+    #sigaObraBox p a {font-size: 10px; }
+
+    #compartilhaObraBox {left: 0; padding: 10px; width:100%; height: auto;}
+    #compartilhaObraBox i {color: #ffbb42;}
+
+  
+    
+    
+    
+    .timelineFlat .item {margin:0; padding: 0;  background-color: transparent; width: 300px; height:auto; color:#777777; font-size:12px; line-height:16px;position: relative;}
+    
+    /* ========================== FOOTER ==========================*/
+    footer {padding: 20px 0; height: auto; text-align: center;}
+    footer h4 {padding:30px 10px 5px 10px;}
+    footer p {margin:0; padding:15px 0 0 0; text-align: left;}     
+    footer p img {margin: 0 auto;}
+    
+    
 }
 
 
- 
-.fade-out.first {
--webkit-animation-delay: 0.25s;
--moz-animation-delay: 0.25s;
-animation-delay: 0.25s;
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+    .constructionBox .image {width: 40%;}
+
+    .constructionBox ul {width: 60%; left: 40%;} 
+    footer {padding: 20px 0; height: auto;}    
+    
 }
- 
-.fade-out.second {
--webkit-animation-delay: 0.5s;
--moz-animation-delay:0.5s;
-animation-delay: 0.5s;
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
+        
 }
- 
-.fade-out.third {
--webkit-animation-delay: 1s;
--moz-animation-delay: 1s;
-animation-delay: 1s;
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
+    .colourfulBoxesSmall div {float: left; width:33%;}   
+    .constructionBox {margin:0 0 3% 0; padding:0; background-color: #673453; float: left; width: 98%;}
+    .constructionBox .image {width: 30%;}
+
+    .constructionBox ul {width: 70%; left: 30%;}  
+    
+    footer .col-md-3 {float: left; width: 25%;}
+    
+    footer {padding-top: 6%;}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
