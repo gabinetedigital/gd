@@ -134,11 +134,7 @@ $(document).ready(function() {
             </div>
             <div class="formulario">
                 <form class="clearfix" method="POST" action="/deolho/obra/{{obra.slug}}/contribui">
-                    <p>
-                        <label>Obra:</label> {{obra.title}} <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="btn btn-primary">Voltar</a>
-                        <br>
-                        <br>
-                    </p>
+                   <h3>{{obra.title}}</h3> 
                     <p>
                         <label>Título:</label>
                         <input name="titulo" id="titulo" type="text" />
@@ -159,7 +155,7 @@ $(document).ready(function() {
                         <input type="file" name="foto" id="foto"/>
                     </label>
                     </p>
-                    <p><input name="" type="submit" value="enviar" /></p>
+                    <p><input name="" type="submit" value="enviar" /> <a href="{{url_for('monitoramento.obra',slug=obra.slug)}}" class="back">voltar</a></p>
                 </form>
             </div>
 		</div>
