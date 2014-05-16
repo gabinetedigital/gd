@@ -62,7 +62,7 @@ def _get_stats(obraid=None):
 	       }
 
 
-def _get_obras(slug=None, obraid=None):
+def _get_obras(slug=None, obraid=None, slim=False):
 	if slug:
 		obras = [wordpress.monitoramento.getObra(slug)]
 	elif obraid:
@@ -74,8 +74,10 @@ def _get_obras(slug=None, obraid=None):
 	# print "="*40
 	# print obras
 	# print "="*40
-
-	return adjustCf(obras)
+	if not slim:
+		return adjustCf(obras)
+	else:
+		return obras
 
 
 def adjustCf(obras):
@@ -237,40 +239,6 @@ def index():
 	)
 
 
-# @monitoramento.route('/obra/<slug>/item/<itemid>/')
-# def timelineitem(slug, itemid):
-# 	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
-# 	if not obra:
-# 		return abort(404)
-
-# 	cacheid = "obratl%s-%s"%(obra['id'],itemid)
-# 	timeline = fromcache(cacheid) or tocache(cacheid, wordpress.monitoramento.getObraTimeline(obra['id'], int(itemid) ))
-# 	timeline = adjustCf(timeline)
-# 	update = timeline[0]
-
-# 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-# 	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
-# 	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
-# 	try:
-# 		twitter_hash_cabecalho = twitts()
-# 	except KeyError:
-# 		twitter_hash_cabecalho = ""
-
-# 	cacheid = "cmts-item-obra-%s" % itemid
-# 	cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=itemid, number=1000))
-
-# 	return render_template('timeline-item.html',
-# 		base_url = current_app.config['BASE_URL'],
-# 		menu=menus,
-# 		obra=obra,
-# 		howto=howto,
-# 		tos=tos,
-# 		update=update,
-# 		comentarios=cmts[::-1],
-# 		twitter_hash_cabecalho=twitter_hash_cabecalho
-# 	)
-
-
 @monitoramento.route('/obra/<obraid>/<slug>/<plus>/')
 def vote(obraid, slug, plus):
 	"""
@@ -395,9 +363,11 @@ def obra(slug):
 
 	tos = fromcache('tosobras') or tocache('tosobras',wordpress.getPageByPath('tos-obras'))
 	howto = fromcache('howtoobras') or tocache('howtoobras',wordpress.getPageByPath('howto-obras'))
+	obras = fromcache("obras-monitoramento-slim") or tocache("obras-monitoramento-slim", _get_obras(slim=True))
 	return render_template('detalhe_obra.html',
 		menu=menus,
 		obra=obra,
+		obras=obras,
 		tos=tos,
 		howto=howto,
 		more=more,
@@ -570,9 +540,10 @@ def allowed_file(filename):
 @monitoramento.route('/obra/<slug>/contribui', methods=('GET',))
 def contribuir(slug):
 	obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
+	obras = fromcache("obras-monitoramento-slim") or tocache("obras-monitoramento-slim", _get_obras(slim=True))
 	if not obra:
 		return abort(404)
-	return render_template("enviarContribuicao.html", obra=obra)
+	return render_template("enviarContribuicao.html", obra=obra, obras=obras)
 
 
 @monitoramento.route('/obra/<slug>/contribui', methods=('POST',))

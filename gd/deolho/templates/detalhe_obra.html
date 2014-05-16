@@ -89,7 +89,7 @@
 				<a class="navbar-brand" href="{{url_for("monitoramento.index")}}">De Olho Nas Obras</a>
 			</div>
 			<div class="homeSearch">
-				<input type="text" id="" placeholder="Procure por uma obra" />
+				<input type="text" class="typeahead" placeholder="Procure por uma obra" />
 			</div>
 		</div>
 	</header>
@@ -540,8 +540,59 @@ $(window).load(function() {
     <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="{{url_for('.static', filename="js/bootstrap.min.js")}}"></script>
+    <script src="{{url_for('.static', filename="js/bootstrap3-typeahead.min.js")}}"></script>
     <script src="{{url_for('.static', filename="js/docs.min.js")}}"></script>
     <script src="{{url_for('.static', filename="js/customScripts.js")}}"></script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://gabinetedigital.rs.gov.br/piwik//";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+<noscript><p><img src="http://gabinetedigital.rs.gov.br/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+<script> // ============= PROCURAS DE OBRAS =============
+obras_list = Array()
+obras_list_id = {}
+{%for obra in obras%}
+obras_list[obras_list.length] = '{{obra.title}}';
+obras_list_id['{{obra.title}}'] = '{{obra.slug}}';
+{%endfor%}
+
+$('.typeahead').typeahead({
+  source: obras_list,
+  items: 8,
+  minLength: 2,
+  sorter: function (items) {
+      return items.sort();
+  },
+  highlighter: function (item) {
+      var regex = new RegExp( '(' + this.query + ')', 'gi' );
+      return item.replace( regex, "<strong>$1</strong>" );
+  },
+  matcher: function (item) {
+      if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) != -1) {
+          return true;
+      }
+  },
+  updater: function(item){
+    //obras_list_id é um dicionáraio que contém como chave o Título da obra, e como valor o id,
+    //para poder recdirecionar diretamente para a pagina correta.
+    document.location = "/deolho/obra/" + obras_list_id[item]
+  }
+});
+
+</script>
     </body>
 </html>
 
