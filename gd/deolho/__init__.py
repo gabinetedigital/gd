@@ -127,16 +127,26 @@ def adjustCf(obras):
 			del obra['custom_fields']
 			obra['custom_fields'] = custom_fields
 
-		cacheid = "cmts-item-obra-%s" % obra['id']
-		cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=obra['id'], number=1000) or [] )
-		if cmts:
-			print "COMENTARIOS::::::::::::::::::::::", cmts
-			obra['comments'] = cmts[::-1]
-		else:
-			obra['comments'] = []
+		# cacheid = "cmts-item-obra-%s" % obra['id']
+		# cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=obra['id'], number=1000) or [] )
+		# if cmts:
+		# 	print "COMENTARIOS::::::::::::::::::::::", cmts
+		# 	obra['comments'] = cmts[::-1]
+		# else:
+		# 	obra['comments'] = []
 		r_obras.append(obra)
 
 	return r_obras
+
+@monitoramento.route('/comments/<obraid>/')
+def get_comments(obraid):
+	cacheid = "cmts-item-obra-%s" % obraid
+	cmts = fromcache(cacheid) or tocache(cacheid, wordpress.getComments(status='approve',post_id=obraid, number=1000) or [] )
+	# if cmts:
+	# 	cmts = cmts[::-1]
+	# else:
+	# 	cmts = []
+	return render_template("comentarios.html", comentarios=cmts)
 
 
 @monitoramento.route('/', methods=("GET","POST"))

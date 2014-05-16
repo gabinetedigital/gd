@@ -1,0 +1,6 @@
+{%for comentario in comentarios%}
+<div class="directComment">
+    <h4> por {{comentario.user.display_name}} em {{comentario.date_created_gmt|formatarDataeHora}} </h4>
+    {{comentario.content|replace('\n','<br>')|safe}}
+</div>
+{%endfor%}

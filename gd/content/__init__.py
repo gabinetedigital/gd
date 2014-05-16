@@ -899,7 +899,7 @@ def new_comment():
     except:
         comment_parent = None
 
-    print "COMENTANDO COM USER/SENHA:",session['username'], session['password']
+    #print "COMENTANDO COM USER/SENHA:",session['username'], session['password']
     try:
         wordpress.newComment(
             username=session['username'],
@@ -910,6 +910,7 @@ def new_comment():
             comment_parent=comment_parent
         )
         removecache("comentarios%s" % str(post_id))
+        removecache("cmts-item-obra-%s" % post_id) #remove o cache dos itens das obras
         return msg.ok(_(u'Thank you. Your comment was successfuly sent'))
     except xmlrpclib.Fault, err:
         return msg.error(_(err.faultString), code='CommentError')

@@ -22,7 +22,29 @@ $( "#compartilhaObra" ).click(function() {
 $(document).ready(function() {
     $(".toggle-trigger").click(function() {
         $(this).parent().nextAll('.toggle-wrap').first().toggle('normal');
+        var obraid = $(this).attr('data-id');
+        $.get("/deolho/comments/"+obraid+"/", function (content) {
+            $('#comentarios'+obraid).find(".com-content").html(content);
+            $('#comentarios'+obraid).find("#content").val("");
+        });
     });
+
+    // console.log("AJAXFORM");
+    // console.log( $('.commentform') );
+    $('.commentform').ajaxForm({
+        dataType: 'json',
+        beforeSubmit: function (fields, myform, xhr) {
+            // console.log(p1,p2,p3,p4);
+            $('.alert').remove();
+        },
+        success: function (data, status, xhr, myform) {
+            // console.log(status, myform);
+            // console.log("data",data);
+            $(myform).parent().append("<div class='alert alert-success'>"+data.msg+"</div>");
+            $(myform).find("#content").val("");
+        }
+    });
+
 });
 
 
