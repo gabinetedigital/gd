@@ -64,6 +64,50 @@ $(document).ready(function() {
        return false;
     });
 
+
+   $('#sigaObraForm').ajaxForm({
+        success:function(data){
+            var pData = $.parseJSON(data);
+            if (pData.status != 'ok'){
+                alert(pData.msg);
+            }else{
+                if(pData.msg){
+                    alert(pData.msg);
+                }else{
+                    alert('Obrigado! Agora você receberá informações sobre esta obra quando houver atualização.');
+                }
+            }
+            $('.ajaxform input[type=submit]').removeAttr('disabled');
+        },
+        beforeSubmit: function (arr, form, options) {
+            form.find('input[type=submit]').attr('disabled','disabled');
+        }
+    });
+
+    $('#sigaObraBox .deseguir').click(function(){
+        var url = $(this).attr('data-url');
+        $('#sigaObraForm').ajaxSubmit({
+            url: url,
+            success:function(data){
+                var pData = $.parseJSON(data);
+                if (pData.status != 'ok'){
+                    alert(pData.msg);
+                }else{
+                    if(pData.msg){
+                        alert(pData.msg);
+                    }else{
+                        alert('Agora você não receberá mais informações sobre esta obra.');
+                    }
+                }
+                $('.ajaxform input[type=submit]').removeAttr('disabled');
+            },
+            beforeSubmit: function (arr, form, options) {
+                form.find('input[type=submit]').attr('disabled','disabled');
+            }
+        });
+    });
+
+
 });
 
 

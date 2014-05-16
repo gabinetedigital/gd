@@ -180,6 +180,7 @@
 				</li>
 				<li><a href="javascript:void(0)" id="sigaObra"><i class="fa fa-star"></i>Siga esta obra</a>
 				<!-- Inicio Caixa do siga esta obra -->
+                    <form id="sigaObraForm" class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
 						<div id="sigaObraBox" class="innerBoxes"><i class="fa fa-caret-up"></i>
 							<div class="row">
 								<div class="col-md-2">
@@ -189,7 +190,7 @@
 									<label>Email</label>
 								</div>
 								<div class="col-md-6">
-									<input type="text" id="" />
+									<input type="text" name="email" id="email" {%if user%}value="{{user.email or ""}}"{%endif%} />
 								</div>
 							</div>
 							<div class="row">
@@ -200,7 +201,7 @@
 									<label>http://facebook.com/</label>
 								</div>
 								<div class="col-md-6">
-									<input type="text" id="" />
+									<input type="text" name="faceid" id="faceid" {%if user%}value="{{user.get_meta('facebook') or ""}}"{%endif%} />
 								</div>
 							</div>
 							<div class="row">
@@ -211,7 +212,7 @@
 									<label>http://twitter.com/</label>
 								</div>
 								<div class="col-md-6">
-									<input type="text" id="" />
+									<input type="text" name="twitterid" id="twitterid" {%if user%}value="{{user.get_meta('twitter') or ""}}"{%endif%} />
 								</div>
 							</div>
 							<div class="row">
@@ -222,11 +223,12 @@
 									<input type="submit" value="seguir" />
 								</div>
 								<div class="col-md-6">
-									<p>ou <a href="">clique aqui</a> para descadastrar e parar de seguir essa obra</p>
+									<p>ou <a class="deseguir" href="#" data-url="/deolho/obra/deseguir/{{obra.id}}">clique aqui</a> para descadastrar e parar de seguir essa obra</p>
 								</div>
 							</div>
 						</div>
 						<!-- Fim Caixa do siga esta obra -->
+                    </form>
 				</li>
 
 				<li><a href="javascript:void(0)" id="compartilhaObra"><i class="fa fa-share"></i>Compartilhe</a>
