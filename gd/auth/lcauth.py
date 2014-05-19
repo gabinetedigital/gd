@@ -39,8 +39,8 @@ lc = OAuth().remote_app('lc',
     request_token_url=None,
     access_token_url='/oauth/v2/token',
     access_token_method='GET',
-    access_token_params={'scope': 'id username full_name name cpf birthdate email city', 'response_type': 'code', 'grant_type': 'authorization_code'},
-    request_token_params={'scope': 'id username full_name name cpf birthdate email city', 'response_type': 'code', 'grant_type': 'authorization_code'},
+    access_token_params={'scope': 'id username full_name name email city', 'response_type': 'code', 'grant_type': 'authorization_code'},
+    request_token_params={'scope': 'id username full_name name email city', 'response_type': 'code', 'grant_type': 'authorization_code'},
     authorize_url='/oauth/v2/auth',
     consumer_key=conf.LC_APP_ID,
     consumer_secret=conf.LC_APP_SECRET,
@@ -87,16 +87,6 @@ def lc_authorized(resp):
 
     # Let's log the user in if he/she has already signed up.
     userdata = lc.get('/api/v1/person', data={"access_token" : resp['access_token'] } )
-
-    # import pdb
-    # pdb.set_trace()
-
-    # print "=== RETORNADOS OS DADOS ===", userdata.data
-    #{u'username': u'sergio.berlotto', u'city': {u'id': 4309209, u'name': u'GRAVATAI'},
-    #u'age_range': {u'min': 21}, u'surname': u'Hilton Berlotto Jr',
-    #u'profile_picutre_url': u'https://meu.rs.gov.br/uploads/profile-pictures/a72b20062ec2c47ab2ceb97ac1bee818f8b6c6cb.png',
-    #u'first_name': u'S\xe9rgio', u'cpf': u'96107804072', u'email': u'sergio.berlotto@gmail.com',
-    #u'birthdate': u'1981-01-31T00:00:00-0300', u'full_name': u'S\xe9rgio Hilton Berlotto Jr', u'id': 69}
 
     username = userdata.data['email']
     print "LOGANDO VIA LOGIN CIDADAO:", username

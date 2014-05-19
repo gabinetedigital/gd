@@ -104,6 +104,8 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
             # TENTAR ALTERAR O USERNAME DO USUARIO DO EMAIL para USERNAME do LC
             #
             user.username = userdata['username']
+            password = userdata['username']
+            user.password = password
             print "LOGADO POR EMAIL"
 
         except NoResultFound:
