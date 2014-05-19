@@ -35,7 +35,10 @@ $(document).ready(function() {
     $('form').ajaxForm({
         dataType: 'json',
         beforeSubmit: function (fields, myform, xhr) {
-            // console.log(p1,p2,p3,p4);
+            {%if not user%}
+            alert("É necessário estar logado!");
+            return false;
+            {%endif%}
             $('.alert').remove();
             $('.timelineLoader').show();
             $('.formulario').hide();
@@ -45,8 +48,6 @@ $(document).ready(function() {
             $(myform).parent().prepend("<div class='alert alert-success'>"+data.message+"</div>");
             $(myform).resetForm();
             $('.formulario').show();
-            // console.log(status, myform);
-            // console.log("data",data);
         }
     });
 
@@ -128,6 +129,11 @@ $(document).ready(function() {
 ================================================== -->
 <div class="container">
 	<div class="row">
+        {%if not user%}
+        <div class="col-md-12">
+            <div class="alert alert-info"><strong>É necessário efetuar o <a href="{{url_for("auth.login")}}">login</a></strong> para poder enviar sua contribuição!</div>
+        </div>
+        {%endif%}
 		<div class="col-md-12">
             <div class="timelineLoader">
                 <img src="{{url_for('.static',filename="images/timeline/loadingAnimation.gif")}}" />
