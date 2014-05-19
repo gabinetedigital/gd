@@ -159,7 +159,7 @@ def index():
 	# print "OBRAS =========================================================================="
 	# print obras
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
-	slides = wordpress.getPagesByParent('capa-obras',thumbsizes=['slideshow','thumbnail']);
+	slides = wordpress.getPagesByParent('capa-obras',thumbsizes=['slideshow','thumbnail','full']);
 
 	"""
 		Os slides que aparecem da capa do Monitoramento são Páginas filhas de uma página com slug 'capa-obras'.

@@ -64,7 +64,11 @@
 
 			{%for slide in slides%}
 			<div class="item {%if loop.index0==0%}active{%endif%}">
-				<img src="{{ thumborurl(slide.thumbs.slideshow.url, (1200,464)) }}" alt="" />
+				{%if slide.thumbs%}
+				<img src="{{ thumborurl(slide.thumbs.full.url, (1200,464)) }}" alt="" />
+				{%else%}
+				<img src="http://placehold.it/1600x464&text=slide">
+				{%endif%}
 				<div class="carousel-caption">
 					<h1>{{slide.title}}</h1>
 					<p><a class="sliderLink" href="{{url_for('monitoramento.obra',slug=slide.slug)}}" role="button">visite essa obra</a></p>
@@ -110,7 +114,7 @@
 		</div>
 		<div class="col-md-2">
 			<h3>6</h3>
-			<p>A cada 42 dias, em média, as obras são atualizadas com novas informações</p>
+			<p>Periodicamente as obras são atualizadas com novas informações</p>
 		</div>
 	</div>
 </div>
