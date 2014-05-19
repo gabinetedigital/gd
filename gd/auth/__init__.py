@@ -113,6 +113,10 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
             print "BUSCAN DENOVO O USUARIO",username, "por", username
             user = User.query.filter_by(username=username).one()
             password = userdata['username']
+
+            user.username = userdata['username']
+            user.password = password
+
             print "LOGADO POR USERNAME"
 
         if userdata:
