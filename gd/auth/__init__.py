@@ -97,27 +97,23 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
         # import pdb
         # pdb.set_trace()
 
-        print "BUSCAN USUARIO",username
         try:
+            print "BUSCANDO O USUARIO PELO USERNAME =", username
             user = User.query.filter_by(username=username).one()
-            #
-            # TENTAR ALTERAR O USERNAME DO USUARIO DO EMAIL para USERNAME do LC
-            #
-            user.username = userdata['username']
-            password = userdata['username']
-            user.password = password
-            print "LOGADO POR EMAIL"
+            print "LOGADO POR USERNAME"
 
         except NoResultFound:
-            username = userdata['username']
-            print "BUSCAN DENOVO O USUARIO",username, "por", username
-            user = User.query.filter_by(username=username).one()
-            password = userdata['username']
 
-            user.username = userdata['username']
-            user.password = password
+            print "BUSCANDO O USUARIO PELO EMAIL =", userdata['email']
+            user = User.query.filter_by(username=userdata['email']).one()
+            user.password = userdata['username']
+            print "LOGADO POR EMAIL"
 
-            print "LOGADO POR USERNAME"
+        #
+        # ALTERA O USERNAME DO USUARIO DO EMAIL para USERNAME do LC
+        #
+        user.username = userdata['username']
+        password = userdata['username']
 
         if userdata:
             if "profile_picutre_url" in userdata.keys():
@@ -130,6 +126,10 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
             user.set_meta(key, value)
 
         dbsession.commit()
+
+        session['username'] = user.username
+        session['password'] = password #we need this for RPC
+
 
     except NoResultFound:
         if userdata:
@@ -150,8 +150,6 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
         else:
             raise UserNotFound()
 
-    session['username'] = user.username
-    session['password'] = password #we need this for RPC
 
     return user.public_dict()
 

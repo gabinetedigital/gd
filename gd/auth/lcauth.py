@@ -88,7 +88,7 @@ def lc_authorized(resp):
     # Let's log the user in if he/she has already signed up.
     userdata = lc.get('/api/v1/person', data={"access_token" : resp['access_token'] } )
 
-    username = userdata.data['email']
+    username = userdata.data['username']
     print "LOGANDO VIA LOGIN CIDADAO:", username
     try:
         auth.login(username, "", userdata.data, resp['access_token'], resp['refresh_token'])
