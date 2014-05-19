@@ -378,7 +378,7 @@ $(window).load(function() {
             <!-- Caixa de icones para compartilhar + links para ver comentarios -->
 
             <div class="itemFooter govFoot clearfix">
-            <a class="toggle-trigger"><i class="fa fa-comment"></i> <span>{{update.total_comments}}</span></a><p class="comentarItem"><strong>Comente este item</strong></p></div>
+            <a class="toggle-trigger" data-id="{{update.id}}"><i class="fa fa-comment"></i> <span>{{update.total_comments}}</span></a><p class="comentarItem"><strong>Comente este item</strong></p></div>
 
             <!-- Caixa de comentarios -->
             <div id="comentarios{{update.id}}" class="toggle-wrap">
