@@ -416,7 +416,12 @@
 
 .timelineTouch.timelineFlat .t_left,
 .timelineTouch.timelineFlat .t_right {
-	display: none;
+    opacity: 1;  filter: alpha(opacity=100); background-color: transparent;
+}
+
+.timelineTouch.timelineFlat .t_left:active,
+.timelineTouch.timelineFlat .t_right:active {
+    opacity: 1;  filter: alpha(opacity=100); background-color: transparent;
 }
 
 .timelineFlat:hover .t_left,
