@@ -110,13 +110,17 @@
 					<h1>{{obra.title}}</h1>
 					<p>{{ obra.content|safe|truncate(400,True) }}</p>
 					<ul>
-						<li><a href="{{ thumborurl(obra.thumbs.normal.url, (682,350) ) }}" rel="lightbox[timeline]"><i class="fa fa-camera-retro"></i> Galeria de Fotos</a></li>
+                        {%if obra.thumbs %}
+                        <li><a href="{{ thumborurl(obra.thumbs.normal.url, (682,350) ) }}" rel="lightbox[timeline]"><i class="fa fa-camera-retro"></i> Galeria de Fotos</a></li>
+                        {%else%}
+						<li><a href="http://placehold.it/682x350&text=Obra" rel="lightbox[timeline]"><i class="fa fa-camera-retro"></i> Galeria de Fotos</a></li>
+                        {%endif%}
                         {%if more or obra.content|safe|length > 400%}
 						<li><a href="javascript:void(0)" id="linkSaibaMais">Saiba mais <i class="fa fa-angle-double-right"></i></a></li>
                         {%endif%}
 					</ul>
 				</div>
-                {%if obra.thumbs%}
+                {%if obra.thumbs %}
                 <img src="{{ thumborurl(obra.thumbs.normal.url, (682,350) ) }}">
                 {%else%}
                 <img src="http://placehold.it/682x350&text=Obra">
