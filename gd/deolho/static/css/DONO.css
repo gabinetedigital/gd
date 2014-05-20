@@ -395,17 +395,18 @@ form .labelOnly {margin-bottom:20px; margin-top: 10px;}
 .fileContainer [type=file] {display: block; padding: 0; min-height: 100%; min-width: 100%; position: absolute; left: -83px; top: 1px; color: #000; cursor: pointer; color: #B63B6A !important; font-size: 14px !important; line-height: 1 !important; font-weight: 400; -webkit-appearance: none; }
 
 
-.styled-select {margin:0; padding:0; border-radius: 4px; width: 100%; height: 40px; overflow: hidden; background-color:#E1DDDE; position: relative;}
+.styled-select {margin:0; padding:0; border-radius: 4px; width: 99%; height: 40px; overflow: hidden; background-color:#E1DDDE; position: relative;}
 
 .styled-select select {position: absolute; top: 0px; left: 0px; z-index: 10; margin:0; padding: 10px; color: #878586; background: transparent; width: 110%; font-size: 16px; line-height: 1; border: 0; border-radius: 0; height: 40px; -webkit-appearance: none; font-size: 14px; letter-spacing: 0.8px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; text-transform: uppercase;}
 .styled-select span {display: block; position: absolute; top: 0px; right: 0px; z-index: 5;  margin:0; padding: 6px 0 0 0; width: 20px; height: 40px; background-color:#E1DDDE; color: #fff; font-size: 20px;}
 
 
 
+form#frmfilterbox {margin:0 0 0 -15px; padding:0; width: 100%;}
+form .filterBox {margin:0; padding:0; width: 100%;}
+form .filterBox label {display: block; margin:0; padding:0 0 10px 0 !important; width: 99%; height: 20px; color: #B63B6A; font-size: 14px; line-height: 1; font-weight: 400;}
 
-form.filtrosHome {margin:0; padding:0; width: 100%;}
-form.filtrosHome label {display: block; margin:0 0 10px 0; padding:0 !important; height: auto; color: #B63B6A; font-size: 12px; line-height: 1; font-weight: 400;}
-
+form#frmfilterbox .pull-right {margin-right: -30px;}
 
 /* ========================== FOOTER ==========================*/
 footer {margin:0; padding: 50px 0 0 0; background-color:#502841; height: 320px; color: #a2688c;}

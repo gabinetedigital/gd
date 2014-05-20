@@ -125,11 +125,11 @@
 <div class="container">
 	<form id="frmfilterbox" action="." method="GET">
 	<input type="hidden" name="filtro" value="">
-	<input type="hidden" name="valor" value="">
+	<input type="hidden" name="valor" value="">  
 	<div class="row filterBox">
-		<div class="col-md-3">
-			<div class="btn-group">
-				<label for="slfiltro">Filtrar por</label>
+        
+		<div class="col-md-4">
+            <label for="slfiltro">Filtrar por</label>
 				<div class="styled-select"><span><i class="fa fa-angle-down"></i></span>
 					<select id="slfiltro">
 						<option value="">Todas ({{obras|length}} obras)</option>
@@ -137,11 +137,11 @@
 						<option value="municipio">Município</option>
 						<option value="regiao">Região</option>
 					</select>
-				</div>
-			</div>
+            </div>
 		</div>
-		<div class="col-md-5">
-			<div class="btn-group" id="filtros">
+        
+		<div class="col-md-4">
+			<div id="filtros">
 				<div id="divtema" style="display:none;">
 					<label for="sltema">Tema:</label>
 					<div class="styled-select"><span><i class="fa fa-angle-down"></i></span>
@@ -181,21 +181,18 @@
 				</div>
 			</div>
 		</div>
+        
 		<div class="col-md-4">
-			<div class="btn-group" >
-				<div class="pull-right">
-					<label for="slordem" >Ordenar por</label>
-					<div class="styled-select"><span><i class="fa fa-angle-down"></i></span>
-						<select name="ordem" id="slordem" >
-							<option value="">- Ordenar -</option>
-							<option value="conclusao">% Conclusão</option>
-							<option value="recentes">Mais recentes</option>
-							<option value="atualizacao">Ordem de atualização</option>
-						</select>
-					</div>
+            <label class="pull-right" for="slordem" >Ordenar por</label>
+                <div class="styled-select pull-right"><span><i class="fa fa-angle-down"></i></span>
+				    <select name="ordem" id="slordem" >
+				        <option value="conclusao">% Conclusão</option>
+				        <option value="recentes">Mais recentes</option>
+				        <option value="atualizacao">Ordem de atualização</option>
+				    </select>
 				</div>
-			</div>
 		</div>
+        
 	</div>
 	</form>
 </div>
