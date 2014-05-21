@@ -125,74 +125,96 @@
 <div class="container">
 	<form id="frmfilterbox" action="." method="GET">
 	<input type="hidden" name="filtro" value="">
-	<input type="hidden" name="valor" value="">  
+	<input type="hidden" name="valor" value="">
 	<div class="row filterBox">
-        
+
 		<div class="col-md-4">
             <label for="slfiltro">Filtrar por</label>
 				<div class="styled-select"><span><i class="fa fa-angle-down"></i></span>
 					<select id="slfiltro">
 						<option value="">Todas ({{obras|length}} obras)</option>
-						<option value="tema">Tema</option>
+						<option value="secretaria">Secretaria</option>
 						<option value="municipio">Município</option>
 						<option value="regiao">Região</option>
 					</select>
             </div>
 		</div>
-        
+
 		<div class="col-md-4">
 			<div id="filtros">
-				<div id="divtema" style="display:none;">
-					<label for="sltema">Tema:</label>
+				<div id="divsecretaria" style="display:none;">
+					<label for="slsecretaria">Tema:</label>
 					<div class="styled-select"><span><i class="fa fa-angle-down"></i></span>
-						<select id="sltema">
+						<select id="slsecretaria">
 							<option value="">- Selecione -</option>
-							<option value="infra">Infraestrutura</option>
-							<option value="saude">Saúde</option>
-							<option value="educacao">Educação</option>
+							{%for s in secretarias%}
+							<option value="{{s.id}}">{{s.secretaria}}</option>
+							{%endfor%}
 						</select>
 					</div>
 				</div>
-				<div id="divmunicipio" style="display:none;">
+				<div id="divmunicipio" class="top" style="display:none;">
 					<label for="slmunicipio">Município:</label>
 					<div class="styled-select"><span><i class="fa fa-angle-down"></i></span>
 						<select id="slmunicipio">
 							<option value="">- Selecione -</option>
-							<option value="Porto Alegre">Porto Alegre</option>
-							<option value="Gravataí">Gravataí</option>
-							<option value="Esteio">Esteio</option>
-							<option value="São Borja">São Borja</option>
-							<option value="Bagé">Bagé</option>
+							{%for cidade in cidades%}
+							<option value="{{cidade}}">{{cidade}}</option>
+							{%endfor%}
 						</select>
 					</div>
 				</div>
-				<div id="divregiao" style="display:none;">
+				<div id="divregiao" class="top" style="display:none;">
 					<label for="slregiao">Região:</label>
 					<div class="styled-select"><span><i class="fa fa-angle-down"></i></span>
 						<select id="slregiao">
 							<option value="">- Selecione -</option>
-							<option value="Região 1">Região 1</option>
-							<option value="Região 2">Região 2</option>
-							<option value="Região 3">Região 3</option>
-							<option value="Região 4">Região 4</option>
-							<option value="Região 5">Região 5</option>
+							<option value="alto-jacui">Alto Jacuí</option>
+							<option value="botucarai">Botucaraí</option>
+							<option value="campanha">Campanha</option>
+							<option value="campos-de-cima-da-serra">Campos de Cima da Serra</option>
+							<option value="celeiro">Celeiro</option>
+							<option value="central">Central</option>
+							<option value="centro-sul">Centro-Sul</option>
+							<option value="fronteira-noroeste">Fronteira Noroeste</option>
+							<option value="fronteira-oeste">Fronteira Oeste</option>
+							<option value="hortensias">Hortênsias</option>
+							<option value="jacui-centro">Jacuí Centro</option>
+							<option value="litoral">Litoral</option>
+							<option value="m-delta-do-jacui">M. Delta do Jacuí</option>
+							<option value="medio-alto-uruguai">Médio Alto Uruguai</option>
+							<option value="missoes">Missões</option>
+							<option value="nordeste">Nordeste</option>
+							<option value="noroeste-colonial">Noroeste Colonial</option>
+							<option value="norte">Norte</option>
+							<option value="paranhana">Paranhana</option>
+							<option value="producao">Produção</option>
+							<option value="rio-da-varzea">Rio da Várzea</option>
+							<option value="serra">Serra</option>
+							<option value="sul">Sul</option>
+							<option value="v-rio-dos-sinos">V. Rio dos Sinos</option>
+							<option value="vale-do-cai">Vale do Caí</option>
+							<option value="vale-do-jaguari">Vale do Jaguari</option>
+							<option value="vale-do-rio-pardo">Vale do Rio Pardo</option>
+							<option value="vale-do-taquari">Vale do Taquari</option>
 						</select>
 					</div>
 				</div>
 			</div>
 		</div>
-        
+
 		<div class="col-md-4">
             <label class="pull-right" for="slordem" >Ordenar por</label>
                 <div class="styled-select pull-right"><span><i class="fa fa-angle-down"></i></span>
 				    <select name="ordem" id="slordem" >
-				        <option value="conclusao">% Conclusão</option>
-				        <option value="recentes">Mais recentes</option>
-				        <option value="atualizacao">Ordem de atualização</option>
+						<option value="atualizacao">Ordem de atualização</option>
+						<option value="andamento">Andamento</option>
+						<option value="valorglobal">Valor Global</option>
+						<option value="previsaoconclusao">Previsão de Conclusão</option>
 				    </select>
 				</div>
 		</div>
-        
+
 	</div>
 	</form>
 </div>
@@ -211,7 +233,7 @@
 					<div class="obraConcluidaListagem"></div>
 					{%endif%}
 					<a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
-						{%if obra.thumbs%}
+						{%if obra.thumbs %}
 						<img src="{{ thumborurl(obra.thumbs.normal.url, (277,217) ) }}">
 						{%else%}
 						<img src="http://placehold.it/277x217&text=Obra">
@@ -291,6 +313,7 @@
 
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="{{ url_for('static', filename='js/vendor/jquery/jquery.form.js') }}"></script>
 <script src="{{url_for('.static', filename="js/bootstrap.min.js")}}"></script>
 <script src="{{url_for('.static', filename="js/bootstrap3-typeahead.min.js")}}"></script>
 <script src="{{url_for('.static', filename="js/docs.min.js")}}"></script>

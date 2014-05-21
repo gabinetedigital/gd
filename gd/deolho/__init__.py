@@ -19,8 +19,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import locale
-from flask import Blueprint, request, render_template, abort, current_app, Response, url_for
+from flask import Blueprint, request, render_template, abort, current_app, Response, url_for, redirect
 from werkzeug import secure_filename
+from werkzeug.datastructures import ImmutableMultiDict
 from jinja2.utils import Markup
 # from twython import Twython
 
@@ -62,14 +63,14 @@ def _get_stats(obraid=None):
 	       }
 
 
-def _get_obras(slug=None, obraid=None, slim=False):
+def _get_obras(slug=None, obraid=None, slim=False, filtros=None):
 	if slug:
 		obras = [wordpress.monitoramento.getObra(slug)]
 	elif obraid:
 		obras = [wordpress.monitoramento.getObraById(obraid)]
 	else:
 		# print ">>>>>>>>>>>>>>>>>> GET TODAS AS OBRAS"
-		obras = wordpress.monitoramento.getObras()
+		obras = wordpress.monitoramento.getObras(filtros)
 
 	# print "="*40
 	# print obras
@@ -144,22 +145,48 @@ def get_comments(obraid):
 	return render_template("comentarios.html", comentarios=cmts)
 
 
+def get_cidades_das_obras():
+
+	lcidades = []
+	cidades = wordpress.monitoramento.getCidadesDasObras()
+
+	for c in cidades:
+		valor = [ x[1:-1] for x in re.findall('\".+?\"', c['meta_value'] ) ]
+		for x in valor:
+			if x.strip() not in lcidades:
+				lcidades.append(x.strip())
+
+	return sorted(lcidades)
+
+
 @monitoramento.route('/', methods=("GET","POST"))
 def index():
 
 	filtros = {}
 	if "filtro" in request.args or "ordem" in request.args:
 		filtros = {
-			'filtro': request.args['filtro'],
-			'valor' : request.args['valor'],
-			'ordem' : request.args['ordem']
+			'filtro': request.args['filtro'] if 'filtro' in request.args else "",
+			'valor' : request.args['valor'] if 'valor' in request.args else "",
+			'ordem' : request.args['ordem'] if 'ordem' in request.args else "atualizacao"
+		}
+	else:
+		filtros = {
+			'filtro': '',
+			'valor' : '',
+			'ordem' : 'atualizacao'
 		}
 
-	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras())
+	print ">>>>>>>>>>>>>>>>>>>>>>FILTROS::", filtros
+
+	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras(filtros=filtros))
 	# print "OBRAS =========================================================================="
 	# print obras
+
 	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
 	slides = wordpress.getPagesByParent('capa-obras',thumbsizes=['slideshow','thumbnail','full']);
+
+	cidades = fromcache('cidades-das-obras') or tocache('cidades-das-obras', get_cidades_das_obras() )
+	secretarias = fromcache('secretarias-das-obras') or tocache('secretarias-das-obras', wordpress.monitoramento.getSecretarias() )
 
 	"""
 		Os slides que aparecem da capa do Monitoramento são Páginas filhas de uma página com slug 'capa-obras'.
@@ -233,6 +260,8 @@ def index():
 
 	return render_template('deolho.html',
 		obras=obras,
+		cidades=cidades,
+		secretarias=secretarias,
 		slides=retslides,
 		stats=_get_stats(),
 		milhoes=valor_investimentos,

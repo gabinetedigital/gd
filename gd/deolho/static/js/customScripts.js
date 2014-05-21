@@ -108,25 +108,6 @@ $(document).ready(function() {
     });
 
 
-});
-
-
-
-function GetURLParameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++)
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam)
-        {
-            return sParameterName[1];
-        }
-    }
-}
-$(function() {
-
     //Verifica se está ordenado e ajusta o select
     var filtrado = GetURLParameter("filtro");
     if(filtrado){
@@ -148,10 +129,15 @@ $(function() {
 
 
     $('#slordem').change(function(ev){
+        if( !$('#slfiltro').val() ){
+            //Isto é para não enviar parametros vazios na URL
+            $("input[name=filtro]").removeAttr('name');
+            $("input[name=valor]").removeAttr('name');
+        }
         $('#frmfilterbox').submit();
     });
 
-    $('#sltema, #slmunicipio, #slregiao').change(function(ev){
+    $('#slsecretaria, #slmunicipio, #slregiao').change(function(ev){
 
         // console.log("Changed...");
         var filtro = $('#slfiltro').val();
@@ -161,13 +147,31 @@ $(function() {
         console.log("VALOR DO FILTRO:",  vlr);
         $("input[name=valor]").val( vlr );
 
+        if( !$('#slordem').val() ){
+            //Isto é para não enviar parametros vazios na URL
+            $("input[name=ordem]").removeAttr('name');
+        }
+        if( !$('#slfiltro').val() ){
+            //Isto é para não enviar parametros vazios na URL
+            $("input[name=filtro]").removeAttr('name');
+            $("input[name=valor]").removeAttr('name');
+        }
         $('#frmfilterbox').submit();
     });
 
     $('#slfiltro').change(function(ev){
-        $('#filtros div').hide();
+        $('#filtros div.top').hide();
         var filtro = $(this).val();
         $('#div'+filtro).show();
+
+        //Se selecionar "TODAS" limpa os filtros e recarrega
+        if( !$(this).val() ){
+            //Isto é para não enviar parametros vazios na URL
+            $("input[name=filtro]").removeAttr('name');
+            $("input[name=valor]").removeAttr('name');
+            $('#frmfilterbox').submit();
+        }
+
     });
 
     $('div.styled-select span i').click(function(){
@@ -184,4 +188,21 @@ $(function() {
 
     });
 
+
 });
+
+
+
+function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
