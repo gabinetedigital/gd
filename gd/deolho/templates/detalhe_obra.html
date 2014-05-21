@@ -181,7 +181,7 @@
 <div class="container">
 	<div class="row toolBar">
 		<div class="col-md-12">
-			<ul class="toolBar">
+			<ul>
 				<li><a href="javascript:void(0)" id="fiscalizeObra"><i class="fa fa-crosshairs"></i>Fiscalize</a>
 					<div id="fiscalizeObraBox" class="innerBoxes"><i class="fa fa-caret-up"></i>
 						<p>Participe dessa obra enviando fotos, videos ou comentarios. <a href="{{url_for("monitoramento.contribuir", slug=obra.slug)}}">Clique aqui</a> para enviar suas contribuicoes.</p>
@@ -189,8 +189,9 @@
 				</li>
 				<li><a href="javascript:void(0)" id="sigaObra"><i class="fa fa-star"></i>Siga esta obra</a>
 				<!-- Inicio Caixa do siga esta obra -->
-                    <form id="sigaObraForm" class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
+                    
 						<div id="sigaObraBox" class="innerBoxes"><i class="fa fa-caret-up"></i>
+                            <form id="sigaObraForm" class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
 							<div class="row">
 								<div class="col-md-2">
 									<i class="fa fa-envelope"></i>
@@ -235,9 +236,10 @@
 									<p>ou <a class="deseguir" href="#" data-url="/deolho/obra/deseguir/{{obra.id}}">clique aqui</a> para descadastrar e parar de seguir essa obra</p>
 								</div>
 							</div>
+                            </form>
 						</div>
 						<!-- Fim Caixa do siga esta obra -->
-                    </form>
+                   
 				</li>
 
 				<li><a href="javascript:void(0)" id="compartilhaObra"><i class="fa fa-share"></i>Compartilhe</a>
