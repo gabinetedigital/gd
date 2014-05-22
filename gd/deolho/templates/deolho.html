@@ -243,7 +243,14 @@
 				</div>
 				<div class="description">
 					<h3><a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">{{obra.title}}</a></h3>
-					<h4><a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">{%if obra.custom_fields.gdobra_municipio%} {{obra.custom_fields.gdobra_municipio[0]}} {%endif%}</a></h4>
+					<h4><a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
+						{%if obra.custom_fields.gdobra_municipio%}
+							{%for mun in obra.custom_fields.gdobra_municipio%}
+								{{mun}} {%if not loop.last%},{%endif%}
+							{%endfor%}
+						{%endif%}
+					    </a>
+					</h4>
 					<ul>
 						<li><i class="fa fa-cogs"></i> <span>{{obra.custom_fields.gdobra_porc_concluido}}%</span></li>
 						<li><i class="fa fa-comment"></i> <span>{{obra.total_contributions}}</span></li>
