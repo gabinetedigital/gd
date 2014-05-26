@@ -187,6 +187,7 @@ def index():
 
 	cidades = fromcache('cidades-das-obras') or tocache('cidades-das-obras', get_cidades_das_obras() )
 	secretarias = fromcache('secretarias-das-obras') or tocache('secretarias-das-obras', wordpress.monitoramento.getSecretarias() )
+	total = fromcache('total-das-obras') or tocache('total-das-obras', wordpress.monitoramento.getTotalObras()[0]['total'] )
 
 	"""
 		Os slides que aparecem da capa do Monitoramento são Páginas filhas de uma página com slug 'capa-obras'.
@@ -260,6 +261,7 @@ def index():
 
 	return render_template('deolho.html',
 		obras=obras,
+		total=total,
 		cidades=cidades,
 		secretarias=secretarias,
 		slides=retslides,
