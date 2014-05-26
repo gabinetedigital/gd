@@ -1,0 +1,16 @@
+.navbar-nav {margin:0; padding:10px 0 0 0; width: 200px; float: right;}
+.navbar-nav li a {transition-property: color; transition-duration: 1s; transition-timing-function: ease-out; display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center; color: #5ab9c0;}
+.navbar-nav li a i {font-size: 24px; color: #2F7479; }
+
+.navbar-nav li.gd a {color: #b73d6c; line-height: 21px; background: transparent url(../images/ico_gabineteDigital.png) no-repeat center top; height: 35px; padding-top: 24px;}
+.navbar-nav li.gd a:hover {color: #622038; background: #ffffff url(../images/ico_gabineteDigital_hover.png) no-repeat center top;}
+
+.nav > li > a:focus {background-color: #fff;}
+
+
+
+.colourfulBoxesSmall div {margin:0; padding: 0; min-height: 150px; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out; background-color: #b73d6c}
+.colourfulBoxesSmall div:hover {opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50);}
+
+.colourfulBoxesSmall div p {margin:0; padding: 10px 10px 10px 10px;}
+
