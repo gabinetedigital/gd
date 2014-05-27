@@ -188,6 +188,12 @@ $(document).ready(function() {
 
     });
 
+    $('.lb-image-down').click(function(){
+        var src = $(this).parents("div#lightbox").find('.lb-container').find('.lb-image').attr('src');
+        console.log( src );
+        window.open(src);
+    })
+
 
 });
 
