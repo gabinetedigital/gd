@@ -178,7 +178,11 @@ def index():
 
 	print ">>>>>>>>>>>>>>>>>>>>>>FILTROS::", filtros
 
-	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras(filtros=filtros))
+	strmd5 = "#".join([ "%s:%s" % (x, filtros[x]) for x in filtros ])
+	hashfiltros = md5(strmd5).hexdigest()
+
+	cacheid = "obras-monitoramento-%s" % hashfiltros
+	obras = fromcache(cacheid) or tocache(cacheid, _get_obras(filtros=filtros))
 	# print "OBRAS =========================================================================="
 	# print obras
 
