@@ -51,7 +51,9 @@
         <link href="{{url_for('.static', filename="css/DONO.min.css")}}" rel="stylesheet">
         <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="{{ url_for('static', filename='me/build/mediaelementplayer.min.css') }}">
-
+        <!--[if IE 8]>
+<link href="{{url_for('.static', filename="css/IE8.css")}}" rel="stylesheet">
+<![endif]-->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 10]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -83,7 +85,7 @@
                     <li><a href="{{url_for("auth.login")}}"><i class="fa fa-user"></i><br />Login</a></li>
                     {%endif%}
 					<li><a href="#compartilhar" data-toggle="modal"><i class="fa fa-share"></i><br />Compartilhe</a></li>
-					<li><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
+					<li class="gd"><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
 				</ul>
 			</div>
 			<div class="navbar-header">

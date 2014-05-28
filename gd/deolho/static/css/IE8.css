@@ -1,6 +1,6 @@
 .navbar-nav {margin:0; padding:10px 0 0 0; width: 200px; float: right;}
-.navbar-nav li a {transition-property: color; transition-duration: 1s; transition-timing-function: ease-out; display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center; color: #5ab9c0;}
-.navbar-nav li a i {font-size: 24px; color: #2F7479; }
+.navbar-nav li a {transition-property: color; transition-duration: 1s; transition-timing-function: ease-out; display: block; margin:0; padding:0 10px; line-height: 18px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 12px; text-transform: uppercase; text-align: center; color: #5ab9c0; color: #b73d6c;}
+.navbar-nav li a i {font-size: 24px; color: #b73d6c; }
 
 .navbar-nav li.gd a {color: #b73d6c; line-height: 21px; background: transparent url(../images/ico_gabineteDigital.png) no-repeat center top; height: 35px; padding-top: 24px;}
 .navbar-nav li.gd a:hover {color: #622038; background: #ffffff url(../images/ico_gabineteDigital_hover.png) no-repeat center top;}
@@ -24,3 +24,14 @@
 
 .constructionBox ul li i {font-size: 20px;padding-right: 5px;}
 .constructionBox ul li span {display: inline; font-size: 20px;}
+
+
+.toolBar li a {display: block; margin:0; padding:20px 35px; width: 100%; height: auto; text-align: center; color: #fff; color: #fff; letter-spacing:0.6px; font-family: 'Yanone Kaffeesatz', 'sans-serif'; font-size: 20px; text-transform: uppercase; background-color: #ffbb42;}
+.toolBar li a:hover {opacity: 1; -moz-opacity: 1;  filter: alpha(opacity=100); }
+
+
+.colourfulBoxesMedium div {border-left: 1px #fff solid; background-color: #f6772c;}
+.colourfulBoxesMedium div:hover {opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50);}
+.colourfulBoxesMedium div h3 {background-color: #AA3F01;}
+.colourfulBoxesMedium div p {margin:0; padding: 10px 10px 10px 10px; text-align: center; font-size: 14px; color: #ffffff;}
+

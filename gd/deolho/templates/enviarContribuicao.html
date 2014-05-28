@@ -14,6 +14,9 @@
 <link href="{{url_for('.static', filename="css/bootstrap.min.css")}}" rel="stylesheet">
 <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet">
 <link href="{{url_for('.static', filename="css/DONO.min.css")}}" rel="stylesheet">
+    <!--[if IE 8]>
+<link href="{{url_for('.static', filename="css/IE8.css")}}" rel="stylesheet">
+<![endif]-->    
 <style>
 .timelineLoader {
     display: none;
@@ -70,7 +73,7 @@ $(document).ready(function() {
                     <li><a href="{{url_for("auth.login")}}"><i class="fa fa-user"></i><br />Login</a></li>
                     {%endif%}
                     <li><a href="#compartilhar" data-toggle="modal"><i class="fa fa-share"></i><br />Compartilhe</a></li>
-                    <li><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
+                    <li class="gd"><a href="http://gabinetedigital.rs.gov.br/" target="_blank">Gabinete Digital</a></li>
                 </ul>
             </div>
             <div class="navbar-header">
