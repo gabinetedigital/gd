@@ -9,8 +9,18 @@
 
 
 
-.colourfulBoxesSmall div {margin:0; padding: 0; min-height: 150px; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out; background-color: #b73d6c}
+.colourfulBoxesSmall div {margin:0; padding: 0; min-height: 160px;border-left: 2px #fff solid; background-color: #b73d6c;}
 .colourfulBoxesSmall div:hover {opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50);}
+.colourfulBoxesSmall div h3 {margin:0; padding:0; width: 30px; height: 32px; text-align: center; color: #ffffff; font-size: 16px; line-height: 32px; background-color: #622038;}
+.colourfulBoxesSmall div p {margin:0; padding: 10px 10px 10px 10px; font-size: 14px;}
 
-.colourfulBoxesSmall div p {margin:0; padding: 10px 10px 10px 10px;}
 
+
+.constructionBox {margin:0 20px 20px 0; padding:0; background-color: #673453; float: left; width: 48%; position: relative;}
+
+.constructionBox ul {margin:0; padding:0 0 0 15px; width: 50%; list-style-type: none; position: absolute; bottom: 10px; height: 35px; left: 50%; font-family: 'Yanone Kaffeesatz', 'sans-serif';}
+.constructionBox ul li {margin:0 30px 0 0; padding:0; color: #fff; height: 35px; position: relative; float: left;}
+.constructionBox ul li:hover {color: #fea301;}
+
+.constructionBox ul li i {font-size: 20px;padding-right: 5px;}
+.constructionBox ul li span {display: inline; font-size: 20px;}
