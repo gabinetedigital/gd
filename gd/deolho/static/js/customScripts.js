@@ -29,18 +29,20 @@ $(document).ready(function() {
         });
     });
 
-    // console.log("AJAXFORM");
-    // console.log( $('.commentform') );
     $('.commentform').ajaxForm({
         dataType: 'json',
         beforeSubmit: function (fields, myform, xhr) {
-            // console.log(p1,p2,p3,p4);
-            $('.alert').remove();
+
+            $val = $(myform).find("#content").val();
+            if( $val.length < 3 ){
+                alert('É necessário informar mais de 3 caracteres no comentário!');
+                return false;
+            }else{
+                $('.alert').remove();
+            }
         },
         success: function (data, status, xhr, myform) {
-            // console.log(status, myform);
-            // console.log("data",data);
-            $(myform).parent().append("<div class='alert alert-success'>"+data.msg+"</div>");
+            $(myform).parent().prepend("<div class='alert alert-success'>"+data.msg+"</div>");
             $(myform).find("#content").val("");
         }
     });
@@ -49,11 +51,9 @@ $(document).ready(function() {
         var url = $(this).attr('data-url');
         var _clicado_ = $(this)
         _clicado_.attr('disabled','disabled');
-        console.log("Chamando ", url);
         if(url){
             $.get(url, function(data){
                 var pData = $.parseJSON(data);
-                console.log("Retornado",pData);
                 _clicado_.parent().parent().find(".counter").html(pData.score);
                 _clicado_.removeAttr('href');
                 _clicado_.removeAttr('data-url');
@@ -139,12 +139,10 @@ $(document).ready(function() {
 
     $('#slsecretaria, #slmunicipio, #slregiao').change(function(ev){
 
-        // console.log("Changed...");
         var filtro = $('#slfiltro').val();
         $("input[name=filtro]").val( filtro );
 
         var vlr = $(this).val();
-        console.log("VALOR DO FILTRO:",  vlr);
         $("input[name=valor]").val( vlr );
 
         if( !$('#slordem').val() ){
@@ -175,7 +173,6 @@ $(document).ready(function() {
     });
 
     $('div.styled-select span i').click(function(){
-        console.log("CLIDADO NA SETINHA");
         var sel = $(this).parent().parent().find("select");
 
         //TODO: Achar uma forma de abrir a caixa de seleção do select.
@@ -190,7 +187,6 @@ $(document).ready(function() {
 
     $('.lb-image-down').click(function(){
         var src = $(this).parents("div#lightbox").find('.lb-container').find('.lb-image').attr('src');
-        console.log( src );
         window.open(src);
     })
 

@@ -873,7 +873,6 @@ def new_contribution():
 @app.route('/new_comment/', methods=('POST',))
 def new_comment():
     """Posts new comments to the blog"""
-    print "/new_comment/"
     if not is_authenticated():
         resp = make_response(dumps({
             'status': 'error',
@@ -903,11 +902,14 @@ def new_comment():
     try:
         wordpress.newComment(
             username=session['username'],
-            password=session['password'],
             post_id=post_id,
             content=request.form['content'],
             nao_exibir_nome=nao_exibir_nome,
-            comment_parent=comment_parent
+            comment_parent=comment_parent,
+            request_info={
+                'agent':request.headers['user_agent'],
+                'ip': request.remote_addr
+            },
         )
         removecache("comentarios%s" % str(post_id))
         removecache("cmts-item-obra-%s" % post_id) #remove o cache dos itens das obras

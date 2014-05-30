@@ -128,7 +128,6 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
         dbsession.commit()
 
         session['username'] = user.username
-        session['password'] = password #we need this for RPC
 
 
     except NoResultFound:
@@ -145,7 +144,6 @@ def login(username, password, userdata=None, access_token=None, refresh_token=No
                 metauser['city'] = userdata['city']['name'].capitalize()
             user = create_user(name, username, password, email, meta=metauser)
             session['username'] = user.username
-            session['password'] = password
             raise UserUncomplete()
         else:
             raise UserNotFound()

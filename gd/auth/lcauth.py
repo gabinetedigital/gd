@@ -237,9 +237,4 @@ def social(form, show=True, default=None):
 
 
     inst.meta['fromsocial'] = True
-    # inst.meta['password'] = urandom(10)
-    # else:
-    #     print "IS NOT FACEBOOK OR TWITTER!"
-
-    # We're not social right now
     return inst
