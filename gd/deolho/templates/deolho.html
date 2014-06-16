@@ -14,9 +14,10 @@
 <link href="{{url_for('.static', filename="css/bootstrap.min.css")}}" rel="stylesheet">
 <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet">
 <link href="{{url_for('.static', filename="css/DONO.min.css")}}" rel="stylesheet">
+
 <!--[if IE 8]>
 <link href="{{url_for('.static', filename="css/IE8.css")}}" rel="stylesheet">
-<![endif]-->    
+<![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 10]>
@@ -25,6 +26,11 @@
 <![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Yanone+Kaffeesatz:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <script src="//code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript" charset="utf-8" async defer>
+loadNavbar = function() { $.getScript('https://meu.rs.gov.br/external/navbar.js?app_id=3_1c5oul8tp30kcokg4oksowc8kg0gokokosk4w44wwcgoco48oc', function() { while ($("#external").length) { $("#external").remove(); } citizenLogin.navbar.init(); }); }; $(document).ready(function() { loadNavbar(); });
+</script>
+
 </head>
 
 

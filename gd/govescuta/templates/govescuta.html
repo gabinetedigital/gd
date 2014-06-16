@@ -24,21 +24,25 @@
 			<div class="row-fluid">
 				<div class="span12 clearfix">
 						{% for audience in audiences %}
-						{% if audience.video  %}
+
 							<div class="govEscutaBox">
 								<a href="{{ url_for('.govescuta_details', aid=audience.ID) }}">
+                {% if audience.video  %}
 								<img src="{{ audience.video.thumbnail }}" alt="{{ audience.video.title }}"  width="200" >
+                {%else%}
+                <img src="{{url_for('static', filename="img/bn_govEscuta.png")}}" alt=""  width="200" >
+                {% endif %}
 								<h4>{{ audience.post_title }}<br />
 								<small>
-								{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d") }} 
-								{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }} 
+								{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%d") }}
+								{{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType }}
 								 {{ audience.aud_wp_govescuta_data_govesc|formatarDataeHoraPostType("%y") }}
 								</small>
 								</h4>
+                </a>
 								 <p>{{ audience.post_content|safe }}</p>
-								</a>
+
 							</div>
-             {% endif %}
              {% endfor %}
          </div>
        </div>
