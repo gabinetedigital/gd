@@ -191,7 +191,7 @@
 				</li>
 				<li><a href="javascript:void(0)" id="sigaObra"><i class="fa fa-star"></i>Siga esta obra</a>
 				<!-- Inicio Caixa do siga esta obra -->
-                    
+
 						<div id="sigaObraBox" class="innerBoxes"><i class="fa fa-caret-up"></i>
                             <form id="sigaObraForm" class="form form-inline ajaxform" action="/deolho/obra/seguir/{{obra.id}}" method="POST">
 							<div class="row">
@@ -241,7 +241,7 @@
                             </form>
 						</div>
 						<!-- Fim Caixa do siga esta obra -->
-                   
+
 				</li>
 
 				<li><a href="javascript:void(0)" id="compartilhaObra"><i class="fa fa-share"></i>Compartilhe</a>
@@ -260,7 +260,11 @@
 							<!-- AddThis Button END -->
 						</div>
 				</li>
-				<li><a href="{{url_for('monitoramento.index')}}"><i class="fa fa-list"></i>Lista de Obras</a></li>
+				{% if 'back' in request.args %}
+                    <li><a href="{{request.args['back']}}"><i class="fa fa-list"></i>Lista de Obras</a></li>
+                {% else %}
+                    <li><a href="{{url_for('monitoramento.index')}}"><i class="fa fa-list"></i>Lista de Obras</a></li>
+                {% endif %}
 			</ul>
 		</div>
 	</div>

@@ -1,3 +1,11 @@
+{% macro backurl (url)%}
+	{%if request.args%}
+		{{url}}?back={{request.url|urlencode}}
+	{%else%}
+		{{url}}
+	{%endif%}
+{%- endmacro %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +22,6 @@
 <link href="{{url_for('.static', filename="css/bootstrap.min.css")}}" rel="stylesheet">
 <link href="{{url_for('.static', filename="css/font-awesome.min.css")}}" rel="stylesheet">
 <link href="{{url_for('.static', filename="css/DONO.min.css")}}" rel="stylesheet">
-
 <!--[if IE 8]>
 <link href="{{url_for('.static', filename="css/IE8.css")}}" rel="stylesheet">
 <![endif]-->
@@ -26,11 +33,6 @@
 <![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Yanone+Kaffeesatz:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <script src="//code.jquery.com/jquery-latest.js"></script>
-
-<script type="text/javascript" charset="utf-8" async defer>
-loadNavbar = function() { $.getScript('https://meu.rs.gov.br/external/navbar.js?app_id=3_1c5oul8tp30kcokg4oksowc8kg0gokokosk4w44wwcgoco48oc', function() { while ($("#external").length) { $("#external").remove(); } citizenLogin.navbar.init(); }); }; $(document).ready(function() { loadNavbar(); });
-</script>
-
 </head>
 
 
@@ -242,7 +244,7 @@ loadNavbar = function() { $.getScript('https://meu.rs.gov.br/external/navbar.js?
 					{%if obra.custom_fields['gdobra_obra_entregue'] and obra.custom_fields['gdobra_obra_entregue']|int == 1%}
 					<div class="obraConcluidaListagem"></div>
 					{%endif%}
-					<a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
+					<a href="{{backurl(url_for('monitoramento.obra',slug=obra.slug))}}">
 						{%if obra.thumbs %}
 						<img src="{{ thumborurl(obra.thumbs.normal.url, (277,217) ) }}">
 						{%else%}
@@ -252,8 +254,8 @@ loadNavbar = function() { $.getScript('https://meu.rs.gov.br/external/navbar.js?
 					</a>
 				</div>
 				<div class="description">
-					<h3><a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">{{obra.title}}</a></h3>
-					<h4><a href="{{url_for('monitoramento.obra',slug=obra.slug)}}">
+					<h3><a href="{{backurl(url_for('monitoramento.obra',slug=obra.slug))}}">{{obra.title}}</a></h3>
+					<h4><a href="{{backurl(url_for('monitoramento.obra',slug=obra.slug))}}">
 						{%if obra.custom_fields.gdobra_municipio%}
 							{%for mun in obra.custom_fields.gdobra_municipio%}
 								{{mun}} {%if not loop.last%},{%endif%}
