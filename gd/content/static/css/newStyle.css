@@ -2584,7 +2584,7 @@ h3.respgov { font-size:22px; color:#000;}
 #monitoramento #deixarseguirobraform .form label, #monitoramento #seguirobraform .form label {min-width:180px; text-align:right; margin-right:5px;}
 
 
-/*============================== Esquema de cores experimental detalhe obra / Modificações Lucile aos estilos originais ==============================*/
+/*============================== Esquema de cores experimental detalhe obra / Modificaï¿½ï¿½es Lucile aos estilos originais ==============================*/
 .head .menu {padding-top: 10px; text-align: right;}
 .head .menu {border-width: 0; margin: 0; padding: 0;}
 .head .menu li {margin:80px 0 0 0; padding:0 0 0 40px; float: right; width: auto;}
@@ -2681,6 +2681,9 @@ ul.thumbnails {margin:0; padding:0; }
 .ThumbsDownIcon {color: #BB0000;}
 
 .clear {clear: both;}
+
+
+.logors {background: transparent url(../img/brasao.png) no-repeat 0px 0px !important; background-position: 0px 0px !important;}    
 
 /*=====================================================================================================================================================
 Begin media queries ========================================================================================================================================
