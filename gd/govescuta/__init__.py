@@ -106,7 +106,7 @@ def govescuta_details(aid):
     govescuta = True
     video_sources = {}
     audience = inst[0]
-    if audience['video_sources']:
+    if 'video_sources' in audience:
         for s in audience['video_sources']:
             if(s['format'].find(';') > 0):
                 f = s['format'][0:s['format'].find(';')]

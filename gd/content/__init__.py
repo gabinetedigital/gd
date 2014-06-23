@@ -268,10 +268,13 @@ app.jinja_env.filters['formatCurrency'] = formatCurrency
 
 @app.template_filter('strftime')
 def _jinja2_filter_datetime(date, formato_origem="%Y-%m-%d %H:%M:%S", formato="%d.%m.%Y"):
-    if not type(date) is str:
-        date = str(date)
-    asdate = datetime.datetime.strptime(date, formato_origem)
-    return asdate.strftime(formato)
+    try:
+        if not type(date) is str:
+            date = str(date)
+        asdate = datetime.datetime.strptime(date, formato_origem)
+        return asdate.strftime(formato)
+    except :
+        return "0"
 
 
 @app.template_filter('slugify')
