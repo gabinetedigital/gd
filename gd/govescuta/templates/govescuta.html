@@ -1,7 +1,13 @@
 {% extends "base-nova.html" %}
 
 {% block css %}
-
+<style>
+    .govEscutaBox {margin:0 0 10px 0; padding:10px; width: 48%; height: 120px; float: left;}
+    .govEscutaBox img {margin: 0 15px 0 0; float: left;}
+    .govEscutaBox h4 {margin:0; padding:0; line-height: 1;}
+    .govEscutaBox h4 small {font-size: 10px; font-style: italic;}
+    .govEscutaBox p {margin:0; padding: 10px 0 0 0; font-size: 12px; line-height: 1.2;}
+</style>    
 {% endblock %}
 
 {% block javascript %}
@@ -11,8 +17,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="content regularPage">
-	<div class="container" class="boxed">
+<div class="content regularPage  widgets">
+    <div class="container boxed">
 
 			<div class="row-fluid">
 				<div class="span12">
