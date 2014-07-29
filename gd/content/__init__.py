@@ -55,9 +55,6 @@ from flask.ext.cache import Cache
 
 app = Flask(__name__)
 
-cache = Cache(app)
-
-from gd.utils.gdcache import cache, fromcache, tocache, removecache
 
 # try:
 from gd.content.config_objects import WordpressConfiguration
@@ -69,7 +66,9 @@ conf.__dict__.update(wpconfig.__dict__)
 app.config.from_object(conf)
 # except:
 #     print "Ocorreu um ERRO ao configurar via wordpress!!"
+cache = Cache(app)
 
+from gd.utils.gdcache import cache, fromcache, tocache, removecache
 # ===> imports that depends the conf module <===
 from gd.auth.lcauth import cidadao as auth
 from gd.admin import admin
