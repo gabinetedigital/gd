@@ -72,8 +72,8 @@ necessário seguir os seguintes passos:
 
 * Instalar e habilitar os plugins disponíveis nos repositórios do
   wordpress:
-  * metabox
-  * nextgen-gallery
+  * metabox (http://metabox.io/meta-box/) Versao >=4.3.3
+  * nextgen-gallery (https://wordpress.org/plugins/nextgen-gallery/download/) Versao >=1.9.3
 
 * Habilitar a interface xmlrpc no wordpress. "Configurações >
   Escrita > XML-RPC".
