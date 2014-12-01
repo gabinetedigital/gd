@@ -41,6 +41,7 @@ from gd.model import User, ComiteNews, CadastroComite, VotosReforma, session as 
 
 from gd.govpergunta import govpergunta
 from gd.govresponde import govresponde
+from gd.resultados import resultados
 from gd.govescuta import govescuta
 from gd.content.videos import videos
 from gd.content.balanco import balanco
@@ -89,6 +90,7 @@ app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(buzz, url_prefix='/buzz')
 app.register_blueprint(monitoramento, url_prefix='/deolho')
 app.register_blueprint(seminario, url_prefix='/seminario')
+app.register_blueprint(resultados, url_prefix='/resultados')
 
 gravatar = Gravatar(app,default='mm')
 

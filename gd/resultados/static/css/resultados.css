@@ -1,0 +1,35 @@
+#accordion {margin: 0 auto; padding:0; width: 90%; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out; font-family: 'Open Sans', sans-serif; color: #7C7C7C; letter-spacing: 1px; line-height: 1.5;}
+#accordion h3 {margin:0; padding: 20px; font-size: 25px; color: #ffffff; border: 0; text-transform: uppercase; cursor: pointer;}
+#accordion h3:nth-of-type(1) {background: #b63b6a;} 
+#accordion h3:nth-of-type(2) {background: #f6772c;} 
+#accordion h3:nth-of-type(3) {background: #ffbb42;} 
+#accordion h3:nth-of-type(4) {background: #37b494;} 
+#accordion h3:nth-of-type(5) {background: #5ab9c0;}
+
+#oQueFazemos h3 {margin:0 0 2px 20px; padding: 5px 20px; font-size: 18px; color: #f6772c; border: 0;background-color: transparent !important; cursor: pointer; text-transform: none; border-left: 8px solid #f6772c;}
+#oQueFazemos div p {padding-left: 50px !important;}
+#oQueFazemos div ul {margin:10px 0 0 0 !important;}
+#oQueFazemos div ul li {padding: 10px 20px 0 50px !important;}
+#result h3 {margin:0 0 2px 20px; padding: 5px 20px; font-size: 18px; color: #ffbb42; border: 0; background-color: transparent !important; cursor: pointer; text-transform: none; border-left: 8px solid #ffbb42;}
+#result div p {padding-left: 50px !important;}
+.inside {margin: 0; padding:18px 0 0 50px !important; float: left; width: 21%;}
+#result h3:nth-of-type(1), #oQueFazemos h3:nth-of-type(1) {margin-top: 30px;}
+
+#accordion div {margin:10px 0 0 0; padding:0 0 20px 0; height:auto !important;}
+#accordion div p {margin:0; padding: 10px 20px 10px 20px; font-size: 14px; }
+#accordion div ul {margin:30px 0 0 0; padding:0; list-style-type: none;}
+#accordion div ul li {margin:0; padding: 10px 20px 0 20px; font-size: 14px; list-style-type: none;}
+#accordion div dl {margin:30px 0 0 0; padding:0; list-style-type: none;}
+#accordion div dl dt {margin:0; padding: 10px 20px 0 20px; font-size: 16px; list-style-type: none; font-weight: bold;}
+#accordion div dl dd {margin:0; padding: 10px 20px 0 20px; font-size: 14px; list-style-type: none;}
+img {border: none; width: 100%;}
+
+.minithumbs {line-height: 50px;}
+.minithumbs img {width: 93px; float: left; margin-right: 10px;}
+
+
+.image {margin:0; padding:0; float: left; width: 25%;} 
+.image img {margin-top: 18px;}
+.text {margin:0; padding:0; float: left; width: 75%;}
+.clear {clear: both;}
+a {color: #FF9900; text-decoration: none;}
