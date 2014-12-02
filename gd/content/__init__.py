@@ -425,8 +425,9 @@ def index():
     )
 
 
-@app.route('/resultados')
+@app.route('/banners/')
 def resultados_gd():
+    '''View que era antes o antigo /resultados'''
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
     try:
         twitter_hash_cabecalho = twitts()
@@ -440,7 +441,7 @@ def resultados_gd():
     )
 
 
-@app.route('/sobre')
+@app.route('/sobre/')
 def sobre_gd():
     pagesobre = fromcache('pagesobre')  or tocache('pagesobre', wordpress.getPageByPath('sobre'))
     menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )

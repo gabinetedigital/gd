@@ -5,13 +5,12 @@ Gabinete Digital | Resultados - 2011/2014
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/resultados.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='resultados/css/resultados.css') }}">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/jquery.js')}}"></script>
-<script src="{{ url_for('static', filename='js/jquery-ui.min.js')}}"></script>
+<script src="{{ url_for('static', filename='resultados/js/jquery-ui.min.js')}}"></script>
 <script>
 	$(function() {
 		$( "#accordion" ).accordion({animate: 500, active: false, collapsible: true});
@@ -21,80 +20,81 @@ Gabinete Digital | Resultados - 2011/2014
 </script>
 {% endblock %}
 
-{% block id %}
-<div id="resultados"></div>
-{% endblock %}
-
 {% block content %}
 
+<div class="resultados" id="page-resultados">
+  <div class="container">
+    <div class="row header">
+
+
 <div id="accordion">
-	<h3>O que È?</h3>
+	<h3>O que √©?</h3>
 	<div>
 		<div class="image">
-			<a href="http://gabinetedigital.rs.gov.br/videos/216/"><img src="img/thumb_video01.jpg" alt="" /></a>
+			<a href="/videos/216/"><img src="{{ url_for('static', filename='resultados/img/thumb_video01.jpg')}}" alt="" /></a>
 		</div>
 		<div class="text">
-			<p>Criado em maio de 2011, o Gabinete Digital È um canal de participaÁ„o e di·logo entre a sociedade civil e o Governo do Rio Grande do Sul, e uma das inst‚ncias do Sistema Estadual de ParticipaÁ„o Popular e Cidad„. Inicialmente vinculado ao Gabinete do Governador e a partir de janeiro de 2013 ligado ‡ Secretaria-Geral de Governo, busca permitir que os cidad„os influenciem na gest„o p˙blica e exerÁam maior controle social sobre o Estado atravÈs de mecanismos inovadores relacionados ‡s novas tecnologias de informaÁ„o e comunicaÁ„o.</p> 
+			<p>Criado em maio de 2011, o Gabinete Digital √© um canal de participa√ß√£o e di√°logo entre a sociedade civil e o Governo do Rio Grande do Sul, e uma das inst√¢ncias do Sistema Estadual de Participa√ß√£o Popular e Cidad√£. Inicialmente vinculado ao Gabinete do Governador e a partir de janeiro de 2013 ligado √† Secretaria-Geral de Governo, busca permitir que os cidad√£os influenciem na gest√£o p√∫blica e exer√ßam maior controle social sobre o Estado atrav√©s de mecanismos inovadores relacionados √†s novas tecnologias de informa√ß√£o e comunica√ß√£o.</p> 
 
-			<p>Na pr·tica, o Gabinete Digital realiza processos consultivos pela Internet, incentiva din‚micas colaborativas de construÁ„o de polÌticas p˙blicas e monitoramento das mesmas, explora novas linguagens para aproximar o cidad„o do Estado, promove a troca de experiÍncias no campo da participaÁ„o em rede com outras esferas e inst‚ncias da AdministraÁ„o P˙blica, e investe no desenvolvimento de tecnologias livres e abertas.</p>
+			<p>Na pr√°tica, o Gabinete Digital realiza processos consultivos pela Internet, incentiva din√¢micas colaborativas de constru√ß√£o de pol√≠ticas p√∫blicas e monitoramento das mesmas, explora novas linguagens para aproximar o cidad√£o do Estado, promove a troca de experi√™ncias no campo da participa√ß√£o em rede com outras esferas e inst√¢ncias da Administra√ß√£o P√∫blica, e investe no desenvolvimento de tecnologias livres e abertas.</p>
 		</div><br class="clear" />
 	</div>
 
 	<h3>O que fazemos?</h3>
 	<div>
-		<p>As principais ferramentas e metodologias de di·logo, concertaÁ„o e transparÍncia s„o:</p>
+		<p>As principais ferramentas e metodologias de di√°logo, concerta√ß√£o e transpar√™ncia s√£o:</p>
 		<div id="oQueFazemos">
 			<h3>Governador Pergunta</h3>
 
 			<div>
-				<p>Consulta p˙blica online, em que o governador lanÁa uma pergunta e, por meio do Gabinete Digital, a sociedade responde com proposiÁıes que s„o incorporadas ‡ agenda governamental.</p> 
+				<p>Consulta p√∫blica online, em que o governador lan√ßa uma pergunta e, por meio do Gabinete Digital, a sociedade responde com proposi√ß√µes que s√£o incorporadas √† agenda governamental.</p> 
 
-				<p>A metodologia utilizada nas consultas do Governador Pergunta chama-se wiki-survey. A ferramenta <a href="http://www.allourideas.org/">"All Our Ideias"</a>, desenvolvida na Universidade de Princeton com o intuito de trabalhar da melhor maneira com a cultura de participaÁ„o em rede, tem como principal caracterÌstica a capacidade de articular votaÁ„o e coleta de opiniıes de maneira conjugada. A votaÁ„o em pares permite que somente duas propostas sejam avaliadas a cada interaÁ„o na ferramenta, sorteadas de forma aleatÛria entre todas as opÁıes disponÌveis. A cada voto, uma proposta È priorizada em detrimento da outra, somando pontos em uma escala que pode variar de 0 a 100.</p> 
+				<p>A metodologia utilizada nas consultas do Governador Pergunta chama-se wiki-survey. A ferramenta <a href="http://www.allourideas.org/">"All Our Ideias"</a>, desenvolvida na Universidade de Princeton com o intuito de trabalhar da melhor maneira com a cultura de participa√ß√£o em rede, tem como principal caracter√≠stica a capacidade de articular vota√ß√£o e coleta de opini√µes de maneira conjugada. A vota√ß√£o em pares permite que somente duas propostas sejam avaliadas a cada intera√ß√£o na ferramenta, sorteadas de forma aleat√≥ria entre todas as op√ß√µes dispon√≠veis. A cada voto, uma proposta √© priorizada em detrimento da outra, somando pontos em uma escala que pode variar de 0 a 100.</p> 
 
-				<p>A pontuaÁ„o traduz a probabilidade de cada ideia vencer um embate aleatÛrio na disputa de pares. N„o h· limite no n˙mero de votos por usu·rio j· que a possibilidade de provocar desvios e manipular o resultado È reduzida em face do sorteio aleatÛrio. Se o participante n„o concordar com as duas propostas sorteadas ou n„o souber responder, ele pode pular para um prÛximo par, sem prejuÌzo. As ideias que vencem o maior n˙mero turnos tomam o topo da lista, refletindo a mÈdia da opini„o p˙blica engajada no processo. A plataforma j· foi utilizada em mais de 3,5 mil consultas em todo o mundo. No Rio Grande do Sul, as duas consultas do "Governador Pergunta" foram, ‡ Època, as maiores j· realizadas por via digital no paÌs.</p>
+				<p>A pontua√ß√£o traduz a probabilidade de cada ideia vencer um embate aleat√≥rio na disputa de pares. N√£o h√° limite no n√∫mero de votos por usu√°rio j√° que a possibilidade de provocar desvios e manipular o resultado √© reduzida em face do sorteio aleat√≥rio. Se o participante n√£o concordar com as duas propostas sorteadas ou n√£o souber responder, ele pode pular para um pr√≥ximo par, sem preju√≠zo. As ideias que vencem o maior n√∫mero turnos tomam o topo da lista, refletindo a m√©dia da opini√£o p√∫blica engajada no processo. A plataforma j√° foi utilizada em mais de 3,5 mil consultas em todo o mundo. No Rio Grande do Sul, as duas consultas do "Governador Pergunta" foram, √† √©poca, as maiores j√° realizadas por via digital no pa√≠s.</p>
 
-				<p>Para ampliar as possibilidades de participaÁ„o para alÈm do virtual, vans equipadas com tablets visitam locais de grande circulaÁ„o na Regi„o Metropolitana e no interior do estado, viabilizando o engajamento de cidad„os que n„o haviam tomado conhecimento da consulta e potencializando seu alcance.</p>
+				<p>Para ampliar as possibilidades de participa√ß√£o para al√©m do virtual, vans equipadas com tablets visitam locais de grande circula√ß√£o na Regi√£o Metropolitana e no interior do estado, viabilizando o engajamento de cidad√£os que n√£o haviam tomado conhecimento da consulta e potencializando seu alcance.</p>
 
-				<p>Foram realizadas duas ediÁıes do Governador Pergunta, em 2011 e 2012, e uma terceira aplicaÁ„o da mesma metodologia para reunir insumos sobre o tema da <a href="http://gabinetedigital.rs.gov.br/post/consulta-sobre-reformapolitica-reflete-desejo-de-mais-participacao/">Reforma PolÌtica</a>, em 2013. Seguem os resultados:</p>
+				<p>Foram realizadas duas edi√ß√µes do Governador Pergunta, em 2011 e 2012, e uma terceira aplica√ß√£o da mesma metodologia para reunir insumos sobre o tema da <a href="/post/consulta-sobre-reformapolitica-reflete-desejo-de-mais-participacao/">Reforma Pol√≠tica</a>, em 2013. Seguem os resultados:</p>
 
 				<ul>
 					<li>
 						<div class="image">
-							<a href="http://gabinetedigital.rs.gov.br/videos/16/"><img src="img/thumb_video02.jpg" alt="" /></a>
+							<a href="/videos/16/"><img src="{{ url_for('static', filename='resultados/img/thumb_video02.jp')}}g" alt="" /></a>
 						</div>
 						<dl class="text">
-							<dt><a href="http://gabinetedigital.rs.gov.br/post/governador-recebe-autores-das-propostas-mais-priorizadas-no-governador-pergunta/">1∫ Governador Pergunta, realizado em 2011: "Como podemos melhorar o atendimento ‡ sa˙de p˙blica?"</a></dt>
+							<dt><a href="/post/governador-recebe-autores-das-propostas-mais-priorizadas-no-governador-pergunta/">1¬∫ Governador Pergunta, realizado em 2011: "Como podemos melhorar o atendimento √† sa√∫de p√∫blica?"</a></dt>
 							<dd>Mais de 1300 propostas recebidas</dd>
 							<dd>120 mil votos computados</dd>
 							<dd>50 propostas priorizadas</dd>
 							<dd>60 mil pessoas envolvidas</dd>
-							<dd>Mais informaÁıes: <a href="http://gabinetedigital.rs.gov.br/post/participacao-recorde-demonstra-sucesso-da-ferramenta/">matÈria sobre o evento de encerramento da 1™ consulta/</a></dd>
+							<dd>Mais informa√ß√µes: <a href="/post/participacao-recorde-demonstra-sucesso-da-ferramenta/">mat√©ria sobre o evento de encerramento da 1¬™ consulta/</a></dd>
 						</dl>
 						<br class="clear" />
 					</li>
 					<li>
 						<div class="image">
-							<a href="http://gabinetedigital.rs.gov.br/videos/116/"><img src="img/thumb_video03.jpg" alt="" /></a>
+							<a href="/videos/116/"><img src="{{ url_for('static', filename='resultados/img/thumb_video03.jp')}}g" alt="" /></a>
 						</div>
 						<dl class="text">
-							<dt><a href="http://gabinetedigital.rs.gov.br/govpergunta/resultados/2012/">2∫ Governador Pergunta, realizado em 2012: "Como governo e sociedade podem, juntos, promover a paz no tr‚nsito?"</a></dt>
+							<dt><a href="/govpergunta/resultados/2012/">2¬∫ Governador Pergunta, realizado em 2012: "Como governo e sociedade podem, juntos, promover a paz no tr√¢nsito?"</a></dt>
 							<dd>Duas mil propostas recebidas</dd>
 							<dd>240 mil votos computados</dd>
-							<dd>10 propostas priorizadas e incorporadas ao Plano Estadual de SeguranÁa no Tr‚nsito para a dÈcada 2011 - 2020</dd>
-							<dd>Mais informaÁıes: <a href="http://gabinetedigital.rs.gov.br/post/5248/">matÈria sobre o evento de encerramento da 2™ consulta</a></dd>
+							<dd>10 propostas priorizadas e incorporadas ao Plano Estadual de Seguran√ßa no Tr√¢nsito para a d√©cada 2011 - 2020</dd>
+							<dd>Mais informa√ß√µes: <a href="/post/5248/">mat√©ria sobre o evento de encerramento da 2¬™ consulta</a></dd>
 						</dl>
 						<br class="clear" />
 					</li>
 					<li>
 						<div class="image">
-							<a href="http://gabinetedigital.rs.gov.br/videos/188/"><img src="img/thumb_video04.jpg" alt="" /></a>
+							<a href="/videos/188/"><img src="{{ url_for('static', filename='resultados/img/thumb_video04.jp')}}g" alt="" /></a>
 						</div>
 						<dl class="text">
-							<dt><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2013/07/final.pdf">Consulta sobre a Reforma PolÌtica, realizada em 2013:</a></dt>
+							<dt><a href="/wp/wp-content/uploads/2013/07/final.pdf">Consulta sobre a Reforma Pol√≠tica, realizada em 2013:</a></dt>
 							<dd>2.840 propostas recebidas</dd>
 							<dd>181.759 votos computados</dd>
 							<dd>10 propostas priorizadas</dd>
-							<dd>Mais informaÁıes: <a href="http://gabinetedigital.rs.gov.br/post/resultados-da-consulta-publica-sobre-reformapolitica/">matÈria sobre a apresentaÁ„o dos resultados</a></dd>
+							<dd>Mais informa√ß√µes: <a href="/post/resultados-da-consulta-publica-sobre-reformapolitica/">mat√©ria sobre a apresenta√ß√£o dos resultados</a></dd>
 						</dl>
 						<br class="clear" />
 					</li>
@@ -103,46 +103,46 @@ Gabinete Digital | Resultados - 2011/2014
 			<h3>Governo Escuta</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/164/"><img src="img/thumb_video05.jpg" alt="" /></a>
+					<a href="/videos/164/"><img src="{{ url_for('static', filename='resultados/img/thumb_video05.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-					<p>O Gabinete Digital agrega o componente online ‡s tradicionais audiÍncias p˙blicas, com transmiss„o ao vivo e interatividade entre espectadores, especialistas e agentes p˙blicos. Pela Internet, o p˙blico encontra um canal aberto para opinar ou enviar perguntas que s„o respondias em tempo real pelos convidados presentes no evento. Os resultados da discuss„o e a avaliaÁ„o da percepÁ„o p˙blica incidem diretamente na tomada de decis„o governamental.</p>
+					<p>O Gabinete Digital agrega o componente online √†s tradicionais audi√™ncias p√∫blicas, com transmiss√£o ao vivo e interatividade entre espectadores, especialistas e agentes p√∫blicos. Pela Internet, o p√∫blico encontra um canal aberto para opinar ou enviar perguntas que s√£o respondias em tempo real pelos convidados presentes no evento. Os resultados da discuss√£o e a avalia√ß√£o da percep√ß√£o p√∫blica incidem diretamente na tomada de decis√£o governamental.</p>
 
-					<p>Em 15 iteraÁıes, as ediÁıes do Governo Escuta somaram mais de 700 mil participaÁıes em debates de grande interesse p˙blico, como bullying nas escolas, o modelo de ped·gios adotado pelo Rio Grande do Sul, a liberdade na sociedade digital,  Reforma PolÌtica, Jornadas de Junho e o projeto de lei que buscava vetar estrangeirismos em documentos p˙blicos no ‚mbito do Estado.</p>
+					<p>Em 15 itera√ß√µes, as edi√ß√µes do Governo Escuta somaram mais de 700 mil participa√ß√µes em debates de grande interesse p√∫blico, como bullying nas escolas, o modelo de ped√°gios adotado pelo Rio Grande do Sul, a liberdade na sociedade digital,  Reforma Pol√≠tica, Jornadas de Junho e o projeto de lei que buscava vetar estrangeirismos em documentos p√∫blicos no √¢mbito do Estado.</p>
 
-					<p>A metodologia do Governo Escuta teve grande destaque durante as manifestaÁıes de 2013, nas quais o governo ga˙cho apoiou-se no Gabinete Digital para promover di·logos diretos com os <a href="http://gabinetedigital.rs.gov.br/post/tarso-e-manifestantes-protagonizam-dialogo-inedito-nas-redes/">movimentos e atores sociais que protagonizaram os protestos</a>.</p>
+					<p>A metodologia do Governo Escuta teve grande destaque durante as manifesta√ß√µes de 2013, nas quais o governo ga√∫cho apoiou-se no Gabinete Digital para promover di√°logos diretos com os <a href="/post/tarso-e-manifestantes-protagonizam-dialogo-inedito-nas-redes/">movimentos e atores sociais que protagonizaram os protestos</a>.</p>
 
-					<p>Confira abaixo a relaÁ„o de todas as ediÁıes do "Governo Escuta"</p>
+					<p>Confira abaixo a rela√ß√£o de todas as edi√ß√µes do "Governo Escuta"</p>
 					<ul class="minithumbs">
-						<li><a href="http://gabinetedigital.rs.gov.br/govescuta/5379"><img src="img/mini-thumb01.jpg" width="93" height="50" alt=""  /></a> 04/05/11 - Bullying nas escolas p˙blicas<br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/govescuta/5450"><img src="img/mini-thumb02.jpg" width="93" height="50" alt=""  /></a>
+						<li><a href="/govescuta/5379"><img src="{{ url_for('static', filename='resultados/img/mini-thumb01.jpg')}}" width="93" height="50" alt=""  /></a> 04/05/11 - Bullying nas escolas p√∫blicas<br class="clear" /></li>
+						<li><a href="/govescuta/5450"><img src="{{ url_for('static', filename='resultados/img/mini-thumb02.jpg')}}" width="93" height="50" alt=""  /></a>
 						11/05/11 - Debate sobre a Lei de Estrangeirismos<br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/govescuta/5360"><img src="img/mini-thumb03.jpg" width="93" height="50" alt=""  /></a>
-						29/06/11 - Cultura digital, democracia e governos no sÈculo XXI</li>
-						<li><a href="http://gabinetedigital.rs.gov.br/govescuta/3324"><img src="img/mini-thumb04.jpg" width="93" height="50" alt=""  /></a> 
+						<li><a href="/govescuta/5360"><img src="{{ url_for('static', filename='resultados/img/mini-thumb03.jpg')}}" width="93" height="50" alt=""  /></a>
+						29/06/11 - Cultura digital, democracia e governos no s√©culo XXI</li>
+						<li><a href="/govescuta/3324"><img src="{{ url_for('static', filename='resultados/img/mini-thumb04.jpg')}}" width="93" height="50" alt=""  /></a> 
 						04/06/12 - A liberdade na sociedade digital <br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/50/"><img src="img/mini-thumb05.jpg" width="93" height="50" alt=""  /></a>
-						12/06/12 - <a href="http://gabinetedigital.rs.gov.br/post/mais-de-mil-pessoas-acompanham-debate-sobre-a-copa-do-mundo-de-2014-atraves-do-gabinete-digital/">Impactos e legado da Copa do Mundo</a><br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/128/"><img src="img/mini-thumb06.jpg" width="93" height="50" alt=""  /></a>
-						04/03/13 - LanÁamento do Sistema Estadual de Cultura<br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/130/"><img src="img/mini-thumb07.jpg" width="93" height="50" alt=""  /></a>
-						07/03/13 - <a href="http://gabinetedigital.rs.gov.br/post/governo-escuta-mobilizou-sociedade-gaucha-em-debate-sobre-novo-modelo-de-pedagios/">Novo modelo de ped·gios</a><br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/139"><img src="img/mini-thumb08.jpg" width="93" height="50" alt=""  /></a>
-						04/04/13 - <a href="http://gabinetedigital.rs.gov.br/post/governo-recebe-taxistas-e-apresenta-medidas-de-combate-a-violencia-contra-a-categoria/">SeguranÁa dos taxistas</a><br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/164/"><img src="img/mini-thumb09.jpg" width="93" height="50" alt=""  /></a>
-						20/06/13 - <a href="http://gabinetedigital.rs.gov.br/post/tarso-e-manifestantes-protagonizam-dialogo-inedito-nas-redes/">Jornadas de Junho: O que dizem as ruas?</a><br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/168/"><img src="img/mini-thumb10.jpg" width="93" height="50" alt=""  /></a>
-						27/06/13 - <a href="http://gabinetedigital.rs.gov.br/post/reforma-politica-passe-livre-estudantil-e-ouvidoria-para-a-seguranca-pautam-novo-governo-escuta/">Reforma PolÌtica</a><br class="clear" /></li>
-						<li><img src="img/mini-thumb11.jpg" width="93" height="50" alt=""  />
-						05/08/13 - <a href="http://ww2.rs.gov.br/noticias/1/115284/Noticias-Representacao-e-Renovacao-da-Democracia-estao-em-debate-no-Estado">Abertura do Semin·rio Crise da RepresentaÁ„o e RenovaÁ„o da Democracia</a><br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/230/"><img src="img/mini-thumb12.jpg" width="93" height="50" alt=""  /></a>
-						22/10/13 - <a href="http://gabinetedigital.rs.gov.br/post/governo-escuta-debate-saude-publica-com-a-participacao-de-alexandre-padilha/">Sa˙de p˙blica no Brasil e no RS</a><br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/241/"><img src="img/mini-thumb13.jpg" width="93" height="50" alt=""  /></a>
-						25/11/13 - <a href="http://gabinetedigital.rs.gov.br/post/governador-debate-politicas-publicas-com-ativistas-e-militantes-de-movimentos-de-mulheres/">Rede Lil·s: PolÌticas para as mulheres</a><br class="clear" /></li>
-						<li><a href=""><img src="img/mini-thumb14.jpg" width="93" height="50" alt=""  /></a>
-						23/01/14 -<a href="http://gabinetedigital.rs.gov.br/post/governador-recebe-blogueiros-e-ativistas-digitais-no-palacio-piratini/"> Encontro com Blogueir@s e Ativistas Digitais</a><br class="clear" /></li>
-						<li><a href="http://gabinetedigital.rs.gov.br/videos/308/"><img src="img/mini-thumb15.jpg" width="93" height="50" alt=""  /></a>
-						26/03/14 - <a href="http://gabinetedigital.rs.gov.br/post/governo-do-estado-lanca-dialogos-da-copa-em-debate-com-sociedade-e-movimentos-sociais/">Di·logos da Copa</a><br class="clear" /></li>
+						<li><a href="/videos/50/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb05.jpg')}}" width="93" height="50" alt=""  /></a>
+						12/06/12 - <a href="/post/mais-de-mil-pessoas-acompanham-debate-sobre-a-copa-do-mundo-de-2014-atraves-do-gabinete-digital/">Impactos e legado da Copa do Mundo</a><br class="clear" /></li>
+						<li><a href="/videos/128/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb06.jpg')}}" width="93" height="50" alt=""  /></a>
+						04/03/13 - Lan√ßamento do Sistema Estadual de Cultura<br class="clear" /></li>
+						<li><a href="/videos/130/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb07.jpg')}}" width="93" height="50" alt=""  /></a>
+						07/03/13 - <a href="/post/governo-escuta-mobilizou-sociedade-gaucha-em-debate-sobre-novo-modelo-de-pedagios/">Novo modelo de ped√°gios</a><br class="clear" /></li>
+						<li><a href="/videos/139"><img src="{{ url_for('static', filename='resultados/img/mini-thumb08.jpg')}}" width="93" height="50" alt=""  /></a>
+						04/04/13 - <a href="/post/governo-recebe-taxistas-e-apresenta-medidas-de-combate-a-violencia-contra-a-categoria/">Seguran√ßa dos taxistas</a><br class="clear" /></li>
+						<li><a href="/videos/164/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb09.jpg')}}" width="93" height="50" alt=""  /></a>
+						20/06/13 - <a href="/post/tarso-e-manifestantes-protagonizam-dialogo-inedito-nas-redes/">Jornadas de Junho: O que dizem as ruas?</a><br class="clear" /></li>
+						<li><a href="/videos/168/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb10.jpg')}}" width="93" height="50" alt=""  /></a>
+						27/06/13 - <a href="/post/reforma-politica-passe-livre-estudantil-e-ouvidoria-para-a-seguranca-pautam-novo-governo-escuta/">Reforma Pol√≠tica</a><br class="clear" /></li>
+						<li><img src="{{ url_for('static', filename='resultados/img/mini-thumb11.jpg')}}" width="93" height="50" alt=""  />
+						05/08/13 - <a href="http://ww2.rs.gov.br/noticias/1/115284/Noticias-Representacao-e-Renovacao-da-Democracia-estao-em-debate-no-Estado">Abertura do Semin√°rio Crise da Representa√ß√£o e Renova√ß√£o da Democracia</a><br class="clear" /></li>
+						<li><a href="/videos/230/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb12.jpg')}}" width="93" height="50" alt=""  /></a>
+						22/10/13 - <a href="/post/governo-escuta-debate-saude-publica-com-a-participacao-de-alexandre-padilha/">Sa√∫de p√∫blica no Brasil e no RS</a><br class="clear" /></li>
+						<li><a href="/videos/241/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb13.jpg')}}" width="93" height="50" alt=""  /></a>
+						25/11/13 - <a href="/post/governador-debate-politicas-publicas-com-ativistas-e-militantes-de-movimentos-de-mulheres/">Rede Lil√°s: Pol√≠ticas para as mulheres</a><br class="clear" /></li>
+						<li><a href=""><img src="{{ url_for('static', filename='resultados/img/mini-thumb14.jpg')}}" width="93" height="50" alt=""  /></a>
+						23/01/14 -<a href="/post/governador-recebe-blogueiros-e-ativistas-digitais-no-palacio-piratini/"> Encontro com Blogueir@s e Ativistas Digitais</a><br class="clear" /></li>
+						<li><a href="/videos/308/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb15.jpg')}}" width="93" height="50" alt=""  /></a>
+						26/03/14 - <a href="/post/governo-do-estado-lanca-dialogos-da-copa-em-debate-com-sociedade-e-movimentos-sociais/">Di√°logos da Copa</a><br class="clear" /></li>
 					</ul>
 
 
@@ -154,28 +154,28 @@ Gabinete Digital | Resultados - 2011/2014
 			<h3>Governador Responde</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/40/"><img src="img/thumb_video06.jpg" alt="" /></a>
+					<a href="/videos/40/"><img src="{{ url_for('static', filename='resultados/img/thumb_video06.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>Primeira ferramenta lanÁada pelo Gabinete Digital, ainda em 2011. Por meio do portal, os cidad„os enviam perguntas que gostariam de ver respondidas pelo Governo. ApÛs o perÌodo de recebimento, abre-se uma janela para votaÁ„o e as questıes mais votadas s„o respondidas pelo governador Tarso Genro ou o secret·rio indicado. Em 2014, a ferramenta foi adaptada para integrar a sÈrie de consultas e audiÍncias que constituÌram o programa <a href="http://gabinetedigital.rs.gov.br/post/governo-responde-questionamentos-sobre-a-copa/">Di·logos da Copa</a>. </p>
+				<p>Primeira ferramenta lan√ßada pelo Gabinete Digital, ainda em 2011. Por meio do portal, os cidad√£os enviam perguntas que gostariam de ver respondidas pelo Governo. Ap√≥s o per√≠odo de recebimento, abre-se uma janela para vota√ß√£o e as quest√µes mais votadas s√£o respondidas pelo governador Tarso Genro ou o secret√°rio indicado. Em 2014, a ferramenta foi adaptada para integrar a s√©rie de consultas e audi√™ncias que constitu√≠ram o programa <a href="/post/governo-responde-questionamentos-sobre-a-copa/">Di√°logos da Copa</a>. </p>
 
-				<p>Confira abaixo a relaÁ„o de todas as ediÁıes do ìGovernador Respondeî</p>
+				<p>Confira abaixo a rela√ß√£o de todas as edi√ß√µes do ‚ÄúGovernador Responde‚Äù</p>
 					<ul>
-						<li>15/06/11 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/44">DesvinculaÁ„o dos Bombeiros da Brigada Militar</a></li>
-						<li>15/06/11 - <a href="http://gabinetedigital.rs.gov.br/govresponde/?pg=todos&theme=&page=2">NomeaÁ„o de fiscais do tesouro</a></li>
-						<li>15/06/11 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/73">Software Livre no Governo RS</a></li>
-						<li>16/08/11 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/187">Reajuste para tÈcnicos cientÌficos</a></li>
-						<li>23/09/11 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/374">Copa do Mundo e turismo</a></li>
-						<li>25/10/11 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/256">DÈficit de policiais civis</a></li>
-						<li>05/03/12 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/438">Vencimentos dos agentes administrativos</a></li>
-						<li>05/03/12 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/396">AuxÌlio moradia para servidores do MP</a></li>
-						<li>05/03/12 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/91">Pagamento do Procred</a></li>
-						<li>16/04/12 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/304">Sindicirgs solicita concurso p˙blico</a></li>
-						<li>16/04/12 - <a href="http://gabinetedigital.rs.gov.br/govresponde/?pg=todos">DuplicaÁ„o da RS-118</a></li>
-						<li>25/06/12 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/465">AssÈdio moral no serviÁo p˙blico</a></li>
-						<li>16/08/12 - <a href="http://gabinetedigital.rs.gov.br/govresponde/results/460">NegociaÁ„o coletiva dos servidores p˙blicos</a></li>
-						<li>16/08/12 - <a href="http://gabinetedigital.rs.gov.br/govresponde/?pg=todos">Nota Fiscal Ga˙cha</a></li>
-						<li>09/06/14 - <a href="http://gabinetedigital.rs.gov.br/post/governo-responde-questionamentos-sobre-a-copa/">Encerramento do Di·logos da Copa</a></li>
+						<li>15/06/11 - <a href="/govresponde/results/44">Desvincula√ß√£o dos Bombeiros da Brigada Militar</a></li>
+						<li>15/06/11 - <a href="/govresponde/?pg=todos&theme=&page=2">Nomea√ß√£o de fiscais do tesouro</a></li>
+						<li>15/06/11 - <a href="/govresponde/results/73">Software Livre no Governo RS</a></li>
+						<li>16/08/11 - <a href="/govresponde/results/187">Reajuste para t√©cnicos cient√≠ficos</a></li>
+						<li>23/09/11 - <a href="/govresponde/results/374">Copa do Mundo e turismo</a></li>
+						<li>25/10/11 - <a href="/govresponde/results/256">D√©ficit de policiais civis</a></li>
+						<li>05/03/12 - <a href="/govresponde/results/438">Vencimentos dos agentes administrativos</a></li>
+						<li>05/03/12 - <a href="/govresponde/results/396">Aux√≠lio moradia para servidores do MP</a></li>
+						<li>05/03/12 - <a href="/govresponde/results/91">Pagamento do Procred</a></li>
+						<li>16/04/12 - <a href="/govresponde/results/304">Sindicirgs solicita concurso p√∫blico</a></li>
+						<li>16/04/12 - <a href="/govresponde/?pg=todos">Duplica√ß√£o da RS-118</a></li>
+						<li>25/06/12 - <a href="/govresponde/results/465">Ass√©dio moral no servi√ßo p√∫blico</a></li>
+						<li>16/08/12 - <a href="/govresponde/results/460">Negocia√ß√£o coletiva dos servidores p√∫blicos</a></li>
+						<li>16/08/12 - <a href="/govresponde/?pg=todos">Nota Fiscal Ga√∫cha</a></li>
+						<li>09/06/14 - <a href="/post/governo-responde-questionamentos-sobre-a-copa/">Encerramento do Di√°logos da Copa</a></li>
 					</ul>
 
 				</div>
@@ -184,12 +184,12 @@ Gabinete Digital | Resultados - 2011/2014
 			<h3>De Olho nas Obras</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/289/"><img src="img/thumb_video07.jpg" alt="" /></a>
+					<a href="/videos/289/"><img src="{{ url_for('static', filename='resultados/img/thumb_video07.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-					<p>O <a href="http://gabinetedigital.rs.gov.br/post/esta-no-ar-a-ferramenta-de-monitoramento-de-obras-do-governo-do-estado/">De Olho nas Obras</a>, site que permite o acompanhamento e estimula a fiscalizaÁ„o cidad„ de obras p˙blicas do Estado, foi desenvolvido pelo Gabinete Digital ao longo de 2013 e chegou ‡ sua vers„o final em 2014 com cerca de 100 obras disponÌveis para o monitoramento colaborativo. O cidad„o pode acompanhar as obras individualmente no site ou optar por ìseguirî aquelas do seu interesse, recebendo atualizaÁıes por twitter, email ou facebook. AlÈm da transparÍncia, È possÌvel participar e auxiliar o governo no acompanhamento das obras, enviando coment·rios, fotos e vÌdeos dos trabalhos em andamento. Periodicamente, o Governo responde ‡s colocaÁıes dos usu·rios e atualiza a situaÁ„o das obras.</p>
+					<p>O <a href="/post/esta-no-ar-a-ferramenta-de-monitoramento-de-obras-do-governo-do-estado/">De Olho nas Obras</a>, site que permite o acompanhamento e estimula a fiscaliza√ß√£o cidad√£ de obras p√∫blicas do Estado, foi desenvolvido pelo Gabinete Digital ao longo de 2013 e chegou √† sua vers√£o final em 2014 com cerca de 100 obras dispon√≠veis para o monitoramento colaborativo. O cidad√£o pode acompanhar as obras individualmente no site ou optar por ‚Äúseguir‚Äù aquelas do seu interesse, recebendo atualiza√ß√µes por twitter, email ou facebook. Al√©m da transpar√™ncia, √© poss√≠vel participar e auxiliar o governo no acompanhamento das obras, enviando coment√°rios, fotos e v√≠deos dos trabalhos em andamento. Periodicamente, o Governo responde √†s coloca√ß√µes dos usu√°rios e atualiza a situa√ß√£o das obras.</p>
 
-					<p>O sistema foi concebido para trazer a p˙blico informaÁıes antes restritas aos tÈcnicos e gestores que realizavam o monitoramento interno dos projetos estratÈgicos, na Sala de Gest„o. Os dados hoje disponÌveis na ferramenta s„o os mesmos relatados ao governador na Sistem·tica de Monitoramento EstratÈgico. Como outras iniciativas do Gabinete Digital, o De Olho foi totalmente desenvolvimento em cÛdigo aberto, por equipe prÛpria em parceria com a Procergs, e a ferramenta pode ser replicada livremente em outros estados ou municÌpios.</p>
+					<p>O sistema foi concebido para trazer a p√∫blico informa√ß√µes antes restritas aos t√©cnicos e gestores que realizavam o monitoramento interno dos projetos estrat√©gicos, na Sala de Gest√£o. Os dados hoje dispon√≠veis na ferramenta s√£o os mesmos relatados ao governador na Sistem√°tica de Monitoramento Estrat√©gico. Como outras iniciativas do Gabinete Digital, o De Olho foi totalmente desenvolvimento em c√≥digo aberto, por equipe pr√≥pria em parceria com a Procergs, e a ferramenta pode ser replicada livremente em outros estados ou munic√≠pios.</p>
 				</div>
 				<br class="clear" />
 			</div>
@@ -197,76 +197,76 @@ Gabinete Digital | Resultados - 2011/2014
 			<h3>MEU RS</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/288/"><img src="img/thumb_video08.jpg" alt="" /></a>
+					<a href="/videos/288/"><img src="{{ url_for('static', filename='resultados/img/thumb_video08.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-					<p>LanÁado em 2014, no 15∫ FÛrum Internacional do Software Livre, o MEU RS È o primeiro passo para implementar uma identidade digital do cidad„o ga˙cho, por meio da qual ser· possÌvel autenticar-se enquanto pessoa fÌsica para acessar os mais diversos serviÁos disponÌveis ‡ cidadania. Desenvolvida pelo Gabinete Digital em conjunto com a Procergs, a Seplag e a Sefaz, a plataforma permite o cruzamento de bancos de dados de domÌnio do Estado, o que torna possÌvel implementar aÁıes como a integraÁ„o entre a Nota Fiscal Ga˙cha e a VotaÁ„o de Prioridades, e cria uma nova concepÁ„o de relacionamento entre o Estado e a cidadania por meio de um Login Cidad„o.</p>
+					<p>Lan√ßado em 2014, no 15¬∫ F√≥rum Internacional do Software Livre, o MEU RS √© o primeiro passo para implementar uma identidade digital do cidad√£o ga√∫cho, por meio da qual ser√° poss√≠vel autenticar-se enquanto pessoa f√≠sica para acessar os mais diversos servi√ßos dispon√≠veis √† cidadania. Desenvolvida pelo Gabinete Digital em conjunto com a Procergs, a Seplag e a Sefaz, a plataforma permite o cruzamento de bancos de dados de dom√≠nio do Estado, o que torna poss√≠vel implementar a√ß√µes como a integra√ß√£o entre a Nota Fiscal Ga√∫cha e a Vota√ß√£o de Prioridades, e cria uma nova concep√ß√£o de relacionamento entre o Estado e a cidadania por meio de um Login Cidad√£o.</p>
 
-					<p>Mais informaÁıes: <a href="http://gabinetedigital.rs.gov.br/post/meu-rs-governo-lanca-plataforma-para-facilitar-a-relacao-do-cidadao-com-o-estado/">matÈria de lanÁamento do MEU RS</a></p>
+					<p>Mais informa√ß√µes: <a href="/post/meu-rs-governo-lanca-plataforma-para-facilitar-a-relacao-do-cidadao-com-o-estado/">mat√©ria de lan√ßamento do MEU RS</a></p>
 				</div>
 				<br class="clear" />
 				</div>
-			<h3>Di·logos em Rede</h3>
+			<h3>Di√°logos em Rede</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/261/"><img src="img/thumb_video09.jpg" alt="" /></a>
+					<a href="/videos/261/"><img src="{{ url_for('static', filename='resultados/img/thumb_video09.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>Iniciado em outubro de 2013, o programa Di·logos em Rede do Gabinete Digital promove debates informais transmitidos pela web com movimentos organizados ou n„o, atores e setores sociais ligados ‡ tem·tica da cultura digital sobre pautas em evidÍncia nas redes e nas ruas. Em sete ediÁıes, foram discutidos o <a href="http://gabinetedigital.rs.gov.br/post/participe-do-debate-sobre-o-marcocivil-da-internet/">Marco Civil da Internet</a>, <a href="http://gabinetedigital.rs.gov.br/post/direito-autoral-em-debate/">Direito Autoral</a>, <a href="http://gabinetedigital.rs.gov.br/post/feminismo-e-tecnologia-em-debate/">Feminismo e Tecnologia</a>, <a href="http://gabinetedigital.rs.gov.br/post/governo-da-inicio-aos-dialogos-da-copa/">Copa do Mundo</a>, <a href="http://gabinetedigital.rs.gov.br/post/dialogos-com-a-juventude-chega-a-porto-alegre/">Oportunidades para a Juventude</a>, <a href="http://gabinetedigital.rs.gov.br/post/golpe-de-64-teve-o-apoio-da-imprensa-afirmam-debatedores/">o papel da mÌdia no Golpe de 64</a>, e <a href="http://gabinetedigital.rs.gov.br/post/dialogo-promove-o-compartilhamento-de-ideias-entre-inciativas-de-participacao-do-brasil/">Ferramentas de ParticipaÁ„o Digital</a>. Os di·logos ocorrem fora dos espaÁos institucionais tradicionais.</p>
+				<p>Iniciado em outubro de 2013, o programa Di√°logos em Rede do Gabinete Digital promove debates informais transmitidos pela web com movimentos organizados ou n√£o, atores e setores sociais ligados √† tem√°tica da cultura digital sobre pautas em evid√™ncia nas redes e nas ruas. Em sete edi√ß√µes, foram discutidos o <a href="/post/participe-do-debate-sobre-o-marcocivil-da-internet/">Marco Civil da Internet</a>, <a href="/post/direito-autoral-em-debate/">Direito Autoral</a>, <a href="/post/feminismo-e-tecnologia-em-debate/">Feminismo e Tecnologia</a>, <a href="/post/governo-da-inicio-aos-dialogos-da-copa/">Copa do Mundo</a>, <a href="/post/dialogos-com-a-juventude-chega-a-porto-alegre/">Oportunidades para a Juventude</a>, <a href="/post/golpe-de-64-teve-o-apoio-da-imprensa-afirmam-debatedores/">o papel da m√≠dia no Golpe de 64</a>, e <a href="/post/dialogo-promove-o-compartilhamento-de-ideias-entre-inciativas-de-participacao-do-brasil/">Ferramentas de Participa√ß√£o Digital</a>. Os di√°logos ocorrem fora dos espa√ßos institucionais tradicionais.</p>
 
-				<p>Somadas, as sete ediÁıes envolveram cerca de 3 mil pessoas entre p˙blico presencial e online.</p>
-				<p>Confira abaixo a relaÁ„o de todas as ediÁıes do ìDi·logos em Redeî </p>
+				<p>Somadas, as sete edi√ß√µes envolveram cerca de 3 mil pessoas entre p√∫blico presencial e online.</p>
+				<p>Confira abaixo a rela√ß√£o de todas as edi√ß√µes do ‚ÄúDi√°logos em Rede‚Äù </p>
 
 				<ul class="minithumbs">
-					<li><a href="http://gabinetedigital.rs.gov.br/videos/233/"><img src="img/mini-thumb16.jpg" width="93" height="50" alt=""  /></a>
-					31/10/13 - <a href="http://gabinetedigital.rs.gov.br/post/participe-do-debate-sobre-o-marcocivil-da-internet/">Marco Civil da Internet</a><br class="clear" /></li>
-					<li><a href="http://gabinetedigital.rs.gov.br/videos/242/"><img src="img/mini-thumb17.jpg" width="93" height="50" alt=""  /></a>
-					25/11/13 - <a href="http://gabinetedigital.rs.gov.br/post/direito-autoral-em-debate/">Direitos autorais em debate</a><br class="clear" /></li>
-					<li><a href="http://gabinetedigital.rs.gov.br/videos/245/"><img src="img/mini-thumb18.jpg" width="93" height="50" alt=""  /></a>
-					19/12/13 - <a href="http://gabinetedigital.rs.gov.br/post/preconceito-ou-empoderamento-encontro-debateu-como-as-tecnologias-modificam-as-relacoes-sociais-e-podem-fortalecer-a-luta-feminista/">Feminismo e Novas Tecnologias</a> <br class="clear" /></li>
-					<li><a href="http://gabinetedigital.rs.gov.br/videos/261/"><img src="img/mini-thumb19.jpg" width="93" height="50" alt=""  /></a>
-					26/02/14 - <a href="http://gabinetedigital.rs.gov.br/post/movimentos-discutem-direitos-sociais-e-legado-da-copa-do-mundo-no-brasil/">Copa do Mundo 2014</a><br class="clear" /></li>
-					<li><a href="http://gabinetedigital.rs.gov.br/videos/283/"><img src="img/mini-thumb20.jpg" width="93" height="50" alt=""  /></a>
-					10/04/14 - <a href="http://gabinetedigital.rs.gov.br/post/golpe-de-64-teve-o-apoio-da-imprensa-afirmam-debatedores/">O papel da mÌdia no Golpe de 64</a><br class="clear" /></li>
-					<li><a href="http://gabinetedigital.rs.gov.br/videos/292/"><img src="img/mini-thumb21.jpg" width="93" height="50" alt=""  /></a>
-					19/04/14 - <a href="http://gabinetedigital.rs.gov.br/post/dialogo-promove-o-compartilhamento-de-ideias-entre-inciativas-de-participacao-do-brasil/">ParticipaÁ„o Digital no Brasil</a><br class="clear" /></li>
-					<li><a href="http://gabinetedigital.rs.gov.br/videos/294/"><img src="img/mini-thumb22.jpg" width="93" height="50" alt=""  /></a>
-					27/05/14 - <a href="http://gabinetedigital.rs.gov.br/post/dialogos-com-a-juventude-encerra-atividades-com-mais-de-cinco-mil-jovens-atendidos/">Di·logos com a Juventude</a><br class="clear" /></li>
+					<li><a href="/videos/233/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb16.jpg')}}" width="93" height="50" alt=""  /></a>
+					31/10/13 - <a href="/post/participe-do-debate-sobre-o-marcocivil-da-internet/">Marco Civil da Internet</a><br class="clear" /></li>
+					<li><a href="/videos/242/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb17.jpg')}}" width="93" height="50" alt=""  /></a>
+					25/11/13 - <a href="/post/direito-autoral-em-debate/">Direitos autorais em debate</a><br class="clear" /></li>
+					<li><a href="/videos/245/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb18.jpg')}}" width="93" height="50" alt=""  /></a>
+					19/12/13 - <a href="/post/preconceito-ou-empoderamento-encontro-debateu-como-as-tecnologias-modificam-as-relacoes-sociais-e-podem-fortalecer-a-luta-feminista/">Feminismo e Novas Tecnologias</a> <br class="clear" /></li>
+					<li><a href="/videos/261/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb19.jpg')}}" width="93" height="50" alt=""  /></a>
+					26/02/14 - <a href="/post/movimentos-discutem-direitos-sociais-e-legado-da-copa-do-mundo-no-brasil/">Copa do Mundo 2014</a><br class="clear" /></li>
+					<li><a href="/videos/283/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb20.jpg')}}" width="93" height="50" alt=""  /></a>
+					10/04/14 - <a href="/post/golpe-de-64-teve-o-apoio-da-imprensa-afirmam-debatedores/">O papel da m√≠dia no Golpe de 64</a><br class="clear" /></li>
+					<li><a href="/videos/292/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb21.jpg')}}" width="93" height="50" alt=""  /></a>
+					19/04/14 - <a href="/post/dialogo-promove-o-compartilhamento-de-ideias-entre-inciativas-de-participacao-do-brasil/">Participa√ß√£o Digital no Brasil</a><br class="clear" /></li>
+					<li><a href="/videos/294/"><img src="{{ url_for('static', filename='resultados/img/mini-thumb22.jpg')}}" width="93" height="50" alt=""  /></a>
+					27/05/14 - <a href="/post/dialogos-com-a-juventude-encerra-atividades-com-mais-de-cinco-mil-jovens-atendidos/">Di√°logos com a Juventude</a><br class="clear" /></li>
 				</ul>
 				</div>
 				<br class="clear" />
 			</div>
-			<h3>VotaÁ„o de Prioridades</h3>
+			<h3>Vota√ß√£o de Prioridades</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/301/"><img src="img/thumb_video10.jpg" alt="" /></a>
+					<a href="/videos/301/"><img src="{{ url_for('static', filename='resultados/img/thumb_video10.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-					<p>Em 2014, o Gabinete Digital assumiu a responsabilidade de ampliar a participaÁ„o digital na VotaÁ„o de Prioridades, a etapa final da elaboraÁ„o colaborativa do OÁamento Anual do Rio Grande do Sul. Com 255.751 votos apenas pela via digital, o resultado foi <a href="http://gabinetedigital.rs.gov.br/post/com-255-751-votantes-governo-gaucho-realiza-a-maior-consulta-publica-da-internet-no-brasil/">a maior consulta p˙blica da Internet no paÌs</a>, e o maior processo de orÁamento participativo digital do mundo. Com seu voto, os cidad„os ga˙chos ajudaram a decidir o destino de R$ 200 milhıes vinculados ‡ execuÁ„o orÁament·ria de 2015 do Governo do Estado.  Em 2013, a consulta havia somado 157.549 votos pela Internet. </p>
+					<p>Em 2014, o Gabinete Digital assumiu a responsabilidade de ampliar a participa√ß√£o digital na Vota√ß√£o de Prioridades, a etapa final da elabora√ß√£o colaborativa do O√ßamento Anual do Rio Grande do Sul. Com 255.751 votos apenas pela via digital, o resultado foi <a href="/post/com-255-751-votantes-governo-gaucho-realiza-a-maior-consulta-publica-da-internet-no-brasil/">a maior consulta p√∫blica da Internet no pa√≠s</a>, e o maior processo de or√ßamento participativo digital do mundo. Com seu voto, os cidad√£os ga√∫chos ajudaram a decidir o destino de R$ 200 milh√µes vinculados √† execu√ß√£o or√ßament√°ria de 2015 do Governo do Estado.  Em 2013, a consulta havia somado 157.549 votos pela Internet. </p>
 				</div>
 				<br class="clear" />
 			</div>
 			<h3>Cultura hacker</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/319/"><img src="img/thumb_video11.jpg" alt="" /></a>
+					<a href="/videos/319/"><img src="{{ url_for('static', filename='resultados/img/thumb_video11.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>Fiel aos princÌpios do conhecimento livre e compartilhado, todo o portal do Gabinete Digital foi elaborado e licenciado em cÛdigo aberto. Desde as primeiras linhas de programaÁ„o o projeto foi disponibilizado publicamente, o que permite o desenvolvimento colaborativo e a replicaÁ„o em plataformas de outras cidades e estados do Brasil. Todos os conte˙dos s„o licenciados em Creative Commons, e padrıes tÈcnicos atuais e abertos permitem maior acessibilidade e tornam a interface do Gabinete Digital adapt·vel a dispositivos mÛveis.</p>
+				<p>Fiel aos princ√≠pios do conhecimento livre e compartilhado, todo o portal do Gabinete Digital foi elaborado e licenciado em c√≥digo aberto. Desde as primeiras linhas de programa√ß√£o o projeto foi disponibilizado publicamente, o que permite o desenvolvimento colaborativo e a replica√ß√£o em plataformas de outras cidades e estados do Brasil. Todos os conte√∫dos s√£o licenciados em Creative Commons, e padr√µes t√©cnicos atuais e abertos permitem maior acessibilidade e tornam a interface do Gabinete Digital adapt√°vel a dispositivos m√≥veis.</p>
 
-				<p>Desde seu lanÁamento, o Gabinete Digital mantÈm uma relaÁ„o de proximidade com coletivos hacker e desenvolvedores independentes, promovendo espaÁos de interc‚mbio tecnolÛgico e troca de experiÍncias. Em 2014, foram realizados duas ediÁıes do <a href="http://gabinetedigital.rs.gov.br/post/encontrao-hacker-provoca-debate-sobre-cultura-digital/">Encontr„o Hacker</a>, com debates, oficinas e a construÁ„o coletiva de soluÁıes para os desafios da gest„o p˙blica.</p>
+				<p>Desde seu lan√ßamento, o Gabinete Digital mant√©m uma rela√ß√£o de proximidade com coletivos hacker e desenvolvedores independentes, promovendo espa√ßos de interc√¢mbio tecnol√≥gico e troca de experi√™ncias. Em 2014, foram realizados duas edi√ß√µes do <a href="/post/encontrao-hacker-provoca-debate-sobre-cultura-digital/">Encontr√£o Hacker</a>, com debates, oficinas e a constru√ß√£o coletiva de solu√ß√µes para os desafios da gest√£o p√∫blica.</p>
 				</div>
 				<br class="clear" />
 			</div>
-			<h3>Semin·rios e debates</h3>
+			<h3>Semin√°rios e debates</h3>
 			<div>
 				<div class="inside">
-					<a href="https://www.youtube.com/watch?feature=player_embedded&v=F79c1S8jPT0"><img src="img/thumb_video25.jpg" alt="" /></a>
+					<a href="https://www.youtube.com/watch?feature=player_embedded&v=F79c1S8jPT0"><img src="{{ url_for('static', filename='resultados/img/thumb_video25.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>Ao longo de seus quatro anos de existÍncia, o Gabinete Digital marcou presenÁa e promoveu dezenas de debates, palestras e semin·rios entre Governo, sociedade, academia e instituiÁıes privadas, sempre com o objetivo de ampliar as perspectivas de di·logo sobre Governo aberto, participaÁ„o digital e novos caminhos para a democracia. O evento de maior porte organizado pelo GD foi o <a href="http://gabinetedigital.rs.gov.br/post/seminario-refletiu-sobre-a-crise-de-legitimidade-da-representacao/">Semin·rio Crise da RepresentaÁ„o e RenovaÁ„o da Democracia</a>, que, em agosto de 2013, reuniu ativistas, blogueiros, jornalistas, acadÍmicos e representantes de movimentos sociais para discutirem, entre outros temas, reforma polÌtica, novas tecnologias, mÌdia livre, crise e relaÁıes em rede.</p> 
+				<p>Ao longo de seus quatro anos de exist√™ncia, o Gabinete Digital marcou presen√ßa e promoveu dezenas de debates, palestras e semin√°rios entre Governo, sociedade, academia e institui√ß√µes privadas, sempre com o objetivo de ampliar as perspectivas de di√°logo sobre Governo aberto, participa√ß√£o digital e novos caminhos para a democracia. O evento de maior porte organizado pelo GD foi o <a href="/post/seminario-refletiu-sobre-a-crise-de-legitimidade-da-representacao/">Semin√°rio Crise da Representa√ß√£o e Renova√ß√£o da Democracia</a>, que, em agosto de 2013, reuniu ativistas, blogueiros, jornalistas, acad√™micos e representantes de movimentos sociais para discutirem, entre outros temas, reforma pol√≠tica, novas tecnologias, m√≠dia livre, crise e rela√ß√µes em rede.</p> 
 
-				<p>TambÈm merece destaque a organizaÁ„o de semin·rios no exterior organizados em parceria com entidades internacionais. … o caso do semin·rio <a href="http://gabinetedigital.rs.gov.br/post/governador-defende-participacao-popular-em-seminario-sobre-democracia-na-espanha/">Crise da RepresentaÁ„o e Desafios da Democracia no SÈculo XXI</a>, realizado em Madri em 2012, do semin·rio <a href="http://gabinetedigital.rs.gov.br/post/em-lisboa-tarso-defende-renovacao-democratica-e-politicas-de-inclusao/">Cen·rios para o Futuro da Ibero-AmÈrica</a>, realizado em Lisboa em 2013, e do <a href="http://gabinetedigital.rs.gov.br/post/mecanismos-de-participacao-do-rs-sao-destaque-em-madri/">Semin·rio Internacional CooperaÁ„o Ibero-Americana e Desenvolvimento</a>, novamente em Madri, em 2014.</p>
+				<p>Tamb√©m merece destaque a organiza√ß√£o de semin√°rios no exterior organizados em parceria com entidades internacionais. √â o caso do semin√°rio <a href="/post/governador-defende-participacao-popular-em-seminario-sobre-democracia-na-espanha/">Crise da Representa√ß√£o e Desafios da Democracia no S√©culo XXI</a>, realizado em Madri em 2012, do semin√°rio <a href="/post/em-lisboa-tarso-defende-renovacao-democratica-e-politicas-de-inclusao/">Cen√°rios para o Futuro da Ibero-Am√©rica</a>, realizado em Lisboa em 2013, e do <a href="/post/mecanismos-de-participacao-do-rs-sao-destaque-em-madri/">Semin√°rio Internacional Coopera√ß√£o Ibero-Americana e Desenvolvimento</a>, novamente em Madri, em 2014.</p>
 				</div>
 				<br class="clear" />
 			</div>
@@ -279,54 +279,54 @@ Gabinete Digital | Resultados - 2011/2014
 			<h3>Passe Livre Estudantil</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/220/"><img src="img/thumb_video12.jpg" alt="" /></a>
+					<a href="/videos/220/"><img src="{{ url_for('static', filename='resultados/img/thumb_video12.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>Entre os resultados mais expressivos est· a instituiÁ„o do Passe Livre Estudantil. O Passe Livre foi anunciado pelo governador Tarso Genro em audiÍncia realizada pelo Gabinete Digital em 20 de junho de 2013, uma semana apÛs outro di·logo com manifestantes, que acontecera exatamente uma semana antes, no auge das Jornadas de Junho.</p>
+				<p>Entre os resultados mais expressivos est√° a institui√ß√£o do Passe Livre Estudantil. O Passe Livre foi anunciado pelo governador Tarso Genro em audi√™ncia realizada pelo Gabinete Digital em 20 de junho de 2013, uma semana ap√≥s outro di√°logo com manifestantes, que acontecera exatamente uma semana antes, no auge das Jornadas de Junho.</p>
 				</div>
 				<br class="clear" />
 			</div>
 
-			<h3>Novos horizontes de di·logo</h3>
+			<h3>Novos horizontes de di√°logo</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/248/"><img src="img/thumb_video13.jpg" alt="" /></a>
+					<a href="/videos/248/"><img src="{{ url_for('static', filename='resultados/img/thumb_video13.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>As mesmas audiÍncias que deram origem ao Passe Livre tambÈm conformaram um dos momentos mais marcantes de di·logo do Gabinete Digital. Ainda que de resultado concreto possamos apresentar a concretizaÁ„o do Passe Livre estudantil intermunicipal, os efeitos subjetivos s„o bem mais amplos. O Rio Grande do Sul configurou-se, em 2013, como o ˙nico estado que conseguiu estabelecer di·logo com as vozes das ruas e que demonstrou respeitar sua representatividade, garantindo a posiÁ„o do RS na vanguarda do processo de debate sobre <a href="http://gabinetedigital.rs.gov.br/post/seminario-refletiu-sobre-a-crise-de-legitimidade-da-representacao/">a crise da representaÁ„o e novas formas de democracia no sÈculo XXI.</a></p>
+				<p>As mesmas audi√™ncias que deram origem ao Passe Livre tamb√©m conformaram um dos momentos mais marcantes de di√°logo do Gabinete Digital. Ainda que de resultado concreto possamos apresentar a concretiza√ß√£o do Passe Livre estudantil intermunicipal, os efeitos subjetivos s√£o bem mais amplos. O Rio Grande do Sul configurou-se, em 2013, como o √∫nico estado que conseguiu estabelecer di√°logo com as vozes das ruas e que demonstrou respeitar sua representatividade, garantindo a posi√ß√£o do RS na vanguarda do processo de debate sobre <a href="/post/seminario-refletiu-sobre-a-crise-de-legitimidade-da-representacao/">a crise da representa√ß√£o e novas formas de democracia no s√©culo XXI.</a></p>
 				</div>
 				<br class="clear" />
 			</div> 
 
-			<h3>DesvinculaÁ„o do Corpo de Bombeiros da Brigada Militar</h3>
+			<h3>Desvincula√ß√£o do Corpo de Bombeiros da Brigada Militar</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/263/"><img src="img/thumb_video14.jpg" alt="" /></a>
+					<a href="/videos/263/"><img src="{{ url_for('static', filename='resultados/img/thumb_video14.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>Uma das primeiras atividades realizadas pelo Gabinete Digital, um Governador Responde em 2011, trouxe a demanda de servidores do Corpo de Bombeiros do Estado pela separaÁ„o da categoria da Brigada Militar. ¿ Època, o governador Tarso Genro se comprometeu em estudar a proposta e encaminhar as soluÁıes cabÌveis. No inÌcio de 2014, a proposta de separaÁ„o foi encaminhada ‡ Assembleia e, em junho, aprovada em plen·rio.</p>
+				<p>Uma das primeiras atividades realizadas pelo Gabinete Digital, um Governador Responde em 2011, trouxe a demanda de servidores do Corpo de Bombeiros do Estado pela separa√ß√£o da categoria da Brigada Militar. √Ä √©poca, o governador Tarso Genro se comprometeu em estudar a proposta e encaminhar as solu√ß√µes cab√≠veis. No in√≠cio de 2014, a proposta de separa√ß√£o foi encaminhada √† Assembleia e, em junho, aprovada em plen√°rio.</p>
 				</div>
 				<br class="clear" />
 			</div>
 
-			<h3>ConscientizaÁ„o contra o bullying</h3>
+			<h3>Conscientiza√ß√£o contra o bullying</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/75/"><img src="img/thumb_video15.jpg" alt="" /></a>
+					<a href="/videos/75/"><img src="{{ url_for('static', filename='resultados/img/thumb_video15.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>A primeira ediÁ„o do Governo Escuta, realizada em maio de 2011, propÙs uma reflex„o conjunta entre Estado, especialistas e sociedade sobre as diferentes dimensıes do bullying, tema que, ‡ Època, gozava de grande repercuss„o no rastro de episÛdios de violÍncia escolar que vieram ‡ tona no estado. Como encaminhamento do debate, o Governo do Estado criou o ComitÍ Comunit·rio de PrevenÁ„o ‡ ViolÍncia Escolar, uma rede estadual de proteÁ„o a crianÁas, adolescentes e professores, alÈm de coordenaÁıes regionais para tratar do tema em mais de 1.500 escolas p˙blicas. Em novembro de 2013, o Governo lanÁou o projeto <a href="http://www.rs.gov.br/conteudo/9839/governo-lanca-projeto-de-combate-ao-bullying-escolar/termosbusca=*">Educar Sem Discriminar</a>, promovendo um ciclo de palestras em 30 cidades ga˙chas com a participaÁ„o do escritor FabrÌcio Carpinejar.</p>
+				<p>A primeira edi√ß√£o do Governo Escuta, realizada em maio de 2011, prop√¥s uma reflex√£o conjunta entre Estado, especialistas e sociedade sobre as diferentes dimens√µes do bullying, tema que, √† √©poca, gozava de grande repercuss√£o no rastro de epis√≥dios de viol√™ncia escolar que vieram √† tona no estado. Como encaminhamento do debate, o Governo do Estado criou o Comit√™ Comunit√°rio de Preven√ß√£o √† Viol√™ncia Escolar, uma rede estadual de prote√ß√£o a crian√ßas, adolescentes e professores, al√©m de coordena√ß√µes regionais para tratar do tema em mais de 1.500 escolas p√∫blicas. Em novembro de 2013, o Governo lan√ßou o projeto <a href="http://www.rs.gov.br/conteudo/9839/governo-lanca-projeto-de-combate-ao-bullying-escolar/termosbusca=*">Educar Sem Discriminar</a>, promovendo um ciclo de palestras em 30 cidades ga√∫chas com a participa√ß√£o do escritor Fabr√≠cio Carpinejar.</p>
 				</div>
 				<br class="clear" />
 			</div>
 
-			<h3>Veto ‡ Lei de Estrangeirismos</h3>
+			<h3>Veto √† Lei de Estrangeirismos</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/69/"><img src="img/thumb_video16.jpg" alt="" /></a>
+					<a href="/videos/69/"><img src="{{ url_for('static', filename='resultados/img/thumb_video16.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>Ainda em 2011, em mais uma ediÁ„o do Governo Escuta, o Gabinete Digital promoveu um debate acerca do polÍmico Projeto de Lei aprovado na Assembleia que vetava a utilizaÁ„o, em propagandas e documentos oficiais do Rio Grande do Sul, de palavras em outros idiomas. Como encaminhamento da consulta ‡ sociedade ga˙cha e do debate com especialistas, o governador vetou o projeto.</p>
+				<p>Ainda em 2011, em mais uma edi√ß√£o do Governo Escuta, o Gabinete Digital promoveu um debate acerca do pol√™mico Projeto de Lei aprovado na Assembleia que vetava a utiliza√ß√£o, em propagandas e documentos oficiais do Rio Grande do Sul, de palavras em outros idiomas. Como encaminhamento da consulta √† sociedade ga√∫cha e do debate com especialistas, o governador vetou o projeto.</p>
 				</div>
 				<br class="clear" />
 			</div>
@@ -334,32 +334,32 @@ Gabinete Digital | Resultados - 2011/2014
 			<h3>Formatos abertos (ODF)</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/65/"><img src="img/thumb_video17.jpg" alt="" /></a>
+					<a href="/videos/65/"><img src="{{ url_for('static', filename='resultados/img/thumb_video17.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>No 12∫ FÛrum Internacional do Software Livre, em 2011, uma nova ediÁ„o do Governo Escuta, com a presenÁa de ativistas e especialistas como Jon Maddog Hall, James Beasley e SÈrgio Amadeu, proporcionou um debate sobre tecnologias livres e sua import‚ncia para os governos do sÈculo XXI. Como encaminhamento do di·logo, o Governo do Rio Grande do Sul propÙs e aprovou a Lei Estadual n∫ 14.009/2012, regulamentada pela resoluÁ„o n∫07/2013 do ComitÍ de GovernanÁa de Tecnologia da InformaÁ„o e ComunicaÁ„o (CGTIC). A <a href="http://gabinetedigital.rs.gov.br/post/formatos-abertos-de-documentos-ja-sao-realidade-no-rio-grande-do-sul/">legislaÁ„o determina a adoÁ„o de formatos abertos</a> para a produÁ„o, distribuiÁ„o e armazenamento de documentos no ‚mbito do Executivo, incluindo a homologaÁ„o do LibreOffice como aplicativo padr„o.</p>
+				<p>No 12¬∫ F√≥rum Internacional do Software Livre, em 2011, uma nova edi√ß√£o do Governo Escuta, com a presen√ßa de ativistas e especialistas como Jon Maddog Hall, James Beasley e S√©rgio Amadeu, proporcionou um debate sobre tecnologias livres e sua import√¢ncia para os governos do s√©culo XXI. Como encaminhamento do di√°logo, o Governo do Rio Grande do Sul prop√¥s e aprovou a Lei Estadual n¬∫ 14.009/2012, regulamentada pela resolu√ß√£o n¬∫07/2013 do Comit√™ de Governan√ßa de Tecnologia da Informa√ß√£o e Comunica√ß√£o (CGTIC). A <a href="/post/formatos-abertos-de-documentos-ja-sao-realidade-no-rio-grande-do-sul/">legisla√ß√£o determina a ado√ß√£o de formatos abertos</a> para a produ√ß√£o, distribui√ß√£o e armazenamento de documentos no √¢mbito do Executivo, incluindo a homologa√ß√£o do LibreOffice como aplicativo padr√£o.</p>
 				</div>
 				<br class="clear" />
 			</div>
 			 
-			<h3>Prioridades na sa˙de</h3>
+			<h3>Prioridades na sa√∫de</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/218/"><img src="img/thumb_video18.jpg" alt="" /></a>
+					<a href="/videos/218/"><img src="{{ url_for('static', filename='resultados/img/thumb_video18.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>As demandas por mais leitos hospitalares e novos hospitais regionais priorizadas pelos cidad„os ga˙chos na consulta p˙blica sobre sa˙de realizada em 2011 contribuÌram para agilizar os trabalhos de conclus„o Hospital Regional de Santa Maria. O Rio Grande do Sul tambÈm se tornou, em 2014, o estado da federaÁ„o com o maior n˙mero de leitos hospitalares por habitante, e os investimentos em sa˙de alcanÁaram a marca de 12% da Receita LÌquida.</p>
+				<p>As demandas por mais leitos hospitalares e novos hospitais regionais priorizadas pelos cidad√£os ga√∫chos na consulta p√∫blica sobre sa√∫de realizada em 2011 contribu√≠ram para agilizar os trabalhos de conclus√£o Hospital Regional de Santa Maria. O Rio Grande do Sul tamb√©m se tornou, em 2014, o estado da federa√ß√£o com o maior n√∫mero de leitos hospitalares por habitante, e os investimentos em sa√∫de alcan√ßaram a marca de 12% da Receita L√≠quida.</p>
 				</div>
 				<br class="clear" />
 			</div>
 
-			<h3>SeguranÁa no Tr‚nsito</h3>
+			<h3>Seguran√ßa no Tr√¢nsito</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/78/"><img src="img/thumb_video19.jpg" alt="" /></a>
+					<a href="/videos/78/"><img src="{{ url_for('static', filename='resultados/img/thumb_video19.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>J· a consulta sobre seguranÁa no tr‚nsito, de 2012, priorizou a reduÁ„o no IPVA para motoristas que n„o tenham registrado infraÁıes. O programa existe e foi ampliado em 2013, com o aumento no desconto para quem se cadastra no Nota Fiscal Ga˙cha.</p>
+				<p>J√° a consulta sobre seguran√ßa no tr√¢nsito, de 2012, priorizou a redu√ß√£o no IPVA para motoristas que n√£o tenham registrado infra√ß√µes. O programa existe e foi ampliado em 2013, com o aumento no desconto para quem se cadastra no Nota Fiscal Ga√∫cha.</p>
 				</div>
 				<br class="clear" />
 			</div>
@@ -367,34 +367,34 @@ Gabinete Digital | Resultados - 2011/2014
 			<h3>Modelo de Pedagiamento</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/148/"><img src="img/thumb_video20.jpg" alt="" /></a>
+					<a href="/videos/148/"><img src="{{ url_for('static', filename='resultados/img/thumb_video20.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>No inÌcio de 2013, o Gabinete Digital realizou um Governo Escuta sobre o modelo de ped·gios do Rio Grande do Sul, que contribuiu para a definiÁ„o de quais seriam as principais aÁıes da Empresa Ga˙cha de Rodovias e do modelo participativo de gest„o dos pontos de ped·gio Estado, com as chamadas <a href="http://www.egr.rs.gov.br/conteudo/1455/conselho-comunitario-da-serra-sera-criado-para-auxiliar-a-definir-prioridades-sobre-praca-de-pedagio">praÁas comunit·rias</a>.</p>
+				<p>No in√≠cio de 2013, o Gabinete Digital realizou um Governo Escuta sobre o modelo de ped√°gios do Rio Grande do Sul, que contribuiu para a defini√ß√£o de quais seriam as principais a√ß√µes da Empresa Ga√∫cha de Rodovias e do modelo participativo de gest√£o dos pontos de ped√°gio Estado, com as chamadas <a href="http://www.egr.rs.gov.br/conteudo/1455/conselho-comunitario-da-serra-sera-criado-para-auxiliar-a-definir-prioridades-sobre-praca-de-pedagio">pra√ßas comunit√°rias</a>.</p>
 				</div>
 				<br class="clear" />
 			</div>
 
-			<h3>MudanÁa cultural</h3>
+			<h3>Mudan√ßa cultural</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/126/"><img src="img/thumb_video21.jpg" alt="" /></a>
+					<a href="/videos/126/"><img src="{{ url_for('static', filename='resultados/img/thumb_video21.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>Dentro e fora do Governo, o Gabinete Digital tambÈm influenciou uma guinada da agenda da participaÁ„o digital e da democracia em rede. Da <a href="http://gabinetedigital.rs.gov.br/post/municipio-de-caruaru-lanca-gabinete-digital/">Prefeitura de Caruaru</a> ao <a href="http://gabinetedigital.rs.gov.br/post/gabinete-digital-da-presidencia-lanca-solucoes-para-fortalecer-relacao-com-a-cidadania/">Governo Federal</a>, diversas iniciativas surgiram em todo o paÌs inspiradas na experiÍncia ga˙cha, incluindo em instituiÁıes de ensino, como o <a href="http://gabinetedigital.iff.edu.br/perguntas/respondidas">Instituto Federal Fluminense</a>. O tema ganhou relev‚ncia a ponto do Gabinete Digital ser escolhido pelo Banco Mundial e a FundaÁ„o Get˙lio Vargas como ponto de partida para o <a href="http://gabinetedigital.rs.gov.br/post/governo-do-rs-banco-mundial-e-fgv-criam-observatorio-de-participacao-e-governanca-em-rede/">ObservatÛrio de ParticipaÁ„o e GovernanÁa em Rede</a>.</p>
+				<p>Dentro e fora do Governo, o Gabinete Digital tamb√©m influenciou uma guinada da agenda da participa√ß√£o digital e da democracia em rede. Da <a href="/post/municipio-de-caruaru-lanca-gabinete-digital/">Prefeitura de Caruaru</a> ao <a href="/post/gabinete-digital-da-presidencia-lanca-solucoes-para-fortalecer-relacao-com-a-cidadania/">Governo Federal</a>, diversas iniciativas surgiram em todo o pa√≠s inspiradas na experi√™ncia ga√∫cha, incluindo em institui√ß√µes de ensino, como o <a href="http://gabinetedigital.iff.edu.br/perguntas/respondidas">Instituto Federal Fluminense</a>. O tema ganhou relev√¢ncia a ponto do Gabinete Digital ser escolhido pelo Banco Mundial e a Funda√ß√£o Get√∫lio Vargas como ponto de partida para o <a href="/post/governo-do-rs-banco-mundial-e-fgv-criam-observatorio-de-participacao-e-governanca-em-rede/">Observat√≥rio de Participa√ß√£o e Governan√ßa em Rede</a>.</p>
 
-				<p>Internamente, o Gabinete Digital inspirou o fortalecimento de outros mecanismos de transparÍncia e participaÁ„o, estabelecendo um amplo di·logo com outras inst‚ncias do Sistema de ParticipaÁ„o (como o Conselh„o) e influenciando iniciativas como o<a href="http://gabinetedigital.rs.gov.br/post/central-do-cidadao-vence-premio-das-nacoes-unidas-para-o-servico-publico/"> Mapa da TransparÍncia</a>, desenvolvido pela Casa Civil. A abertura de novos canais apoiados na cultura de redes e em tecnologias abertas tambÈm quebrou paradigmas no relacionamento do Estado com a sociedade, forÁando a burocracia estatal a ceder espaÁo para coletivos e atores sociais n„o organizados em formas tradicionais de representaÁ„o.</p>
+				<p>Internamente, o Gabinete Digital inspirou o fortalecimento de outros mecanismos de transpar√™ncia e participa√ß√£o, estabelecendo um amplo di√°logo com outras inst√¢ncias do Sistema de Participa√ß√£o (como o Conselh√£o) e influenciando iniciativas como o<a href="/post/central-do-cidadao-vence-premio-das-nacoes-unidas-para-o-servico-publico/"> Mapa da Transpar√™ncia</a>, desenvolvido pela Casa Civil. A abertura de novos canais apoiados na cultura de redes e em tecnologias abertas tamb√©m quebrou paradigmas no relacionamento do Estado com a sociedade, for√ßando a burocracia estatal a ceder espa√ßo para coletivos e atores sociais n√£o organizados em formas tradicionais de representa√ß√£o.</p>
 				</div>
 				<br class="clear" />
 			</div>
 
-			<h3>Case acadÍmico</h3>
+			<h3>Case acad√™mico</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/318/"><img src="img/thumb_video22.jpg" alt="" /></a>
+					<a href="/videos/318/"><img src="{{ url_for('static', filename='resultados/img/thumb_video22.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>No meio acadÍmico, o Gabinete Digital foi tema de dezenas de artigos cientÌficos, monografias e teses de mestrado. N˙mero que aumenta ano a ano. Em 2013, o livro <a href="http://gabinetedigital.rs.gov.br/post/baixe-o-livro-gabinete-digital-analise-de-uma-experiencia/">"Gabinete Digital: An·lise de uma experiÍncia"</a> foi publicado, reunindo artigos de pesquisadores das Universidades Federais da Bahia, Rio de Janeiro e Rio Grande do Sul, entre outros.</p>
+				<p>No meio acad√™mico, o Gabinete Digital foi tema de dezenas de artigos cient√≠ficos, monografias e teses de mestrado. N√∫mero que aumenta ano a ano. Em 2013, o livro <a href="/post/baixe-o-livro-gabinete-digital-analise-de-uma-experiencia/">"Gabinete Digital: An√°lise de uma experi√™ncia"</a> foi publicado, reunindo artigos de pesquisadores das Universidades Federais da Bahia, Rio de Janeiro e Rio Grande do Sul, entre outros.</p>
 				</div>
 				<br class="clear" />
 			</div>
@@ -402,74 +402,78 @@ Gabinete Digital | Resultados - 2011/2014
 			<h3>Do Rio Grande do Sul para o mundo</h3>
 			<div>
 				<div class="inside">
-					<a href="http://gabinetedigital.rs.gov.br/videos/43/"><img src="img/thumb_video23.jpg" alt="" /></a>
+					<a href="/videos/43/"><img src="{{ url_for('static', filename='resultados/img/thumb_video23.jp')}}g" alt="" /></a>
 				</div>
 				<div class="text">
-				<p>"A Internet ajuda polÌticos a compreenderem melhor seus eleitores. Se eles quiserem." A frase È da revista brit‚nica The Economist, em matÈria de marÁo de 2013, citando o Gabinete Digital como uma das mais bem sucedidas experiÍncias de democracia digital em curso no mundo. O Partido X, grupo polÌtico da Espanha criado apÛs o 15M, aponta o Gabinete Digital como referÍncia mundial em wikigoverno. O canal de di·logo do Governo do Estado do Rio Grande do Sul tambÈm foi apresentado em <a href="http://gabinetedigital.rs.gov.br/post/mecanismos-de-participacao-do-rs-sao-destaque-em-madri/">Madri</a>, na Espanha, em <a href="http://gabinetedigital.rs.gov.br/post/gabinete-digital-e-destaque-de-conferencias-internacionais-em-portugal/">Cascai</a>s e <a href="http://gabinetedigital.rs.gov.br/post/em-lisboa-tarso-defende-renovacao-democratica-e-politicas-de-inclusao/">Lisboa</a>, Portugal, em <a href="http://gabinetedigital.rs.gov.br/post/gabinete-digital-representa-o-brasil-em-encontro-da-unasul/">Buenos Aires</a>, Argentina, na <a href="http://gabinetedigital.rs.gov.br/post/no-panama-gabinete-digital-e-exemplo-de-inovacao-cidada/">Cidade do Panam·</a>, em San·, capital do IÍmen, nas universidades <a href="http://gabinetedigital.rs.gov.br/post/gabinete-digital-aposta-em-cooperacao-tecnologica-com-instituicoes-norte-americanas">MIT e Harvard</a>, e na sede do Banco Mundial, nos EUA.</p>
+				<p>"A Internet ajuda pol√≠ticos a compreenderem melhor seus eleitores. Se eles quiserem." A frase √© da revista brit√¢nica The Economist, em mat√©ria de mar√ßo de 2013, citando o Gabinete Digital como uma das mais bem sucedidas experi√™ncias de democracia digital em curso no mundo. O Partido X, grupo pol√≠tico da Espanha criado ap√≥s o 15M, aponta o Gabinete Digital como refer√™ncia mundial em wikigoverno. O canal de di√°logo do Governo do Estado do Rio Grande do Sul tamb√©m foi apresentado em <a href="/post/mecanismos-de-participacao-do-rs-sao-destaque-em-madri/">Madri</a>, na Espanha, em <a href="/post/gabinete-digital-e-destaque-de-conferencias-internacionais-em-portugal/">Cascai</a>s e <a href="/post/em-lisboa-tarso-defende-renovacao-democratica-e-politicas-de-inclusao/">Lisboa</a>, Portugal, em <a href="/post/gabinete-digital-representa-o-brasil-em-encontro-da-unasul/">Buenos Aires</a>, Argentina, na <a href="/post/no-panama-gabinete-digital-e-exemplo-de-inovacao-cidada/">Cidade do Panam√°</a>, em San√°, capital do I√™men, nas universidades <a href="/post/gabinete-digital-aposta-em-cooperacao-tecnologica-com-instituicoes-norte-americanas">MIT e Harvard</a>, e na sede do Banco Mundial, nos EUA.</p>
 				</div>
 				<br class="clear" />
 			</div>
 		</div>
 	</div>
 
-	<h3>PremiaÁıes</h3>
+	<h3>Premia√ß√µes</h3>
 	<div>
 		<ul>
-			<li><a href="http://gabinetedigital.rs.gov.br/post/banco-mundial-premia-iniciativa-do-gabinete-digital/">PrÍmio Bank Beneficiary Feedback Awards</a>, concedido pelo Instituto do Banco Mundial. Assista ao <a href="http://gabinetedigital.rs.gov.br/videos/114/">video</a>.</li>
-			<li><a href="http://gabinetedigital.rs.gov.br/post/gabinete-digital-e-finalista-ao-premio-conip/">PrÍmio CONIP</a> de ExcelÍncia em InovaÁ„o na Gest„o P˙blica Prof. Francisco Romeu Landi, concedido pelo Instituto de Estudos de Tecnologias para InovaÁ„o na Gest„o P˙blica (ITIP)</li>
-			<li><a href="http://gabinetedigital.rs.gov.br/post/governo-do-rs-e-finalista-em-premio-de-excelencia-em-governo-eletronico/">PrÍmio E-gov</a>, de excelÍncia em governo eletrÙnico, concedido pela AssociaÁ„o Brasileira de Entidades Estaduais de Tecnologia da InformaÁ„o e ComunicaÁ„o (ABEP)</li>
-			<li><a href="http://gabinetedigital.rs.gov.br/post/gabinete-digital-recebe-premio-nacional/">PrÍmio A Rede 2011</a>, na categoria InovaÁ„o na Gest„o P˙blica, promovido pela Revista A Rede</li>
-			<li><a href="http://gabinetedigital.rs.gov.br/post/gabinete-digital-recebe-premio-em-sao-paulo/">PrÍmio TI & Governo 2011</a>, na categoria e-democracia, concedido pela Plano Editorial</li>
-			<li><a href="http://gabinetedigital.rs.gov.br/post/gabinete-digital-recebe-premio-internacional-de-governo-aberto-e-e-referencia-nas-americas/">PrÍmio Gobierno Abierto Puntogov Asaec</a>, da Red de Gobierno Abierto, Argentina - Assista ao <a href="http://gabinetedigital.rs.gov.br/videos/150/">video</a>.</li>
+			<li><a href="/post/banco-mundial-premia-iniciativa-do-gabinete-digital/">Pr√™mio Bank Beneficiary Feedback Awards</a>, concedido pelo Instituto do Banco Mundial. Assista ao <a href="/videos/114/">video</a>.</li>
+			<li><a href="/post/gabinete-digital-e-finalista-ao-premio-conip/">Pr√™mio CONIP</a> de Excel√™ncia em Inova√ß√£o na Gest√£o P√∫blica Prof. Francisco Romeu Landi, concedido pelo Instituto de Estudos de Tecnologias para Inova√ß√£o na Gest√£o P√∫blica (ITIP)</li>
+			<li><a href="/post/governo-do-rs-e-finalista-em-premio-de-excelencia-em-governo-eletronico/">Pr√™mio E-gov</a>, de excel√™ncia em governo eletr√¥nico, concedido pela Associa√ß√£o Brasileira de Entidades Estaduais de Tecnologia da Informa√ß√£o e Comunica√ß√£o (ABEP)</li>
+			<li><a href="/post/gabinete-digital-recebe-premio-nacional/">Pr√™mio A Rede 2011</a>, na categoria Inova√ß√£o na Gest√£o P√∫blica, promovido pela Revista A Rede</li>
+			<li><a href="/post/gabinete-digital-recebe-premio-em-sao-paulo/">Pr√™mio TI & Governo 2011</a>, na categoria e-democracia, concedido pela Plano Editorial</li>
+			<li><a href="/post/gabinete-digital-recebe-premio-internacional-de-governo-aberto-e-e-referencia-nas-americas/">Pr√™mio Gobierno Abierto Puntogov Asaec</a>, da Red de Gobierno Abierto, Argentina - Assista ao <a href="/videos/150/">video</a>.</li>
 		</ul>
 	</div>
 
-	<h3>PublicaÁıes AcadÍmicas</h3>
+	<h3>Publica√ß√µes Acad√™micas</h3>
 	<div>
 		<dl>
 			<dt>Artigos</dt>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Felipe-Angelis-GovernancaParticipativaEmRedeODesafioDoEstadoEmOuv-4718712.pdf">GovernanÁa participativa em rede: o desafio do estado em ouvir a cidadania</a> - Autor: Felipe Angelis. PUCRS, Porto Alegre, 2014.</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Artigo-Sandra-Bitencourt.pdf">ComunicaÁ„o p˙blica e internet: limites e amplitudes no ambiente digital</a> - Autores: Sandra Bitencourt, Tiago Gautier. UFRJ/FDRH, Porto Alegre,___ .</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Marina-Bueno-8-Ferramentas-digitais-e-participaÁ„o-social-1.pdf">Ferramentas digitais e participaÁ„o social: educaÁ„o (para a) ou mobilizaÁ„o da  cidadania?</a> - Autora: Marina Bueno. UFRJ, Rio de Janeiro,___. </dd>
-			<dd><a href="http://aisel.aisnet.org/confirm2013/59/">Estudo preliminar do Gabinete Digital do Estado do Rio Grande do Sul (Brasil): a influÍncia dos fatores institucionais</a> - Autora: Marie Anne Macadar. PUCRS, Porto Alegre, 2013.</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Ciberdemocracia-an·lise-dos-desafios-e-possibilidades-de-iniciativa-popular-via-internet-no-Brasil.pdf">Ciberdemocracia: an·lise dos desafios e possibilidades de iniciativa popular via internet no Brasil</a>  - Autores: Rafael Santos de Oliveira, LetÌcia Bodanese Rodegheri. UFSM, Santa Maria, 2012. </dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/10-POSSAMAI_-_2013_-_DEMOCRACIA_DIGITAL_versaoreduzida20pp.pdf">PERSPECTIVAS E DESAFIOS DA DEMOCRACIA DIGITAL NO BRASIL: A PARTICIPA«√O ELETR‘NICA NO CICLO DE POLÕTICAS P⁄BLICAS</a> - Autora: Ana Julia Possamai. UFRGS, Porto Alegre, 2011.</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/5-AGGIO-SAMPAIO-2013-Democracia-Digital-e-ParticipaÁ„o-2.pdf">Democracia Digital e ParticipaÁ„o: Os modelos de consulta e os desafios do Gabinete Digital</a> - Autores: Rafael Sampaio, Camilo Aggio, Rafael Evangelista. UFBA/ UFMG, Bahia,___ .</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/gabinete_digital_uma_experiencia_de_democracia_na_rede.pdf">GABINETE DIGITAL: UMA EXPERI NCIA DE DEMOCRACIA NA REDE</a>  - Autores: Ciro AntÙnio da Silva Resende, Janaina Ferreira da Mata. UFMG, Belo Horizonte, ___. </dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/nternet-e-ParticipaÁ„o-uma-an·lise-do-Portal-Gabinete-Digital.pdf">Internet e ParticipaÁ„o: uma an·lise do Portal Gabinete Digital</a> - Autoras: Anna Cristina Brisola, TaÌs Leal, Evellyn Pacheco, Fabiana Crispino. UNISUAM, S„o Paulo, 2012.</dd> 
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Artigo-Luciana-Saraiva.pdf">DIMENS√O ARGUMENTATIVA DA PARTICIPA«√O CIDAD√ NO PROCESSO DELIBERATIVO: PERSPECTIVA HABERMASIANA DE RACIONALIDADE COMUNICATIVA NA CONSULTA P⁄BLICA ONLINE</a>  - Autora: Luciana Saraiva de Oliveira JerÙnimo. UFMA, S„o LuÌs, 2014.</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Artigo-Luciana-Saraiva-2.pdf">Dialogismo e participaÁ„o online: uma proposta de estudo sobre interaÁ„o entre governantes e cidad„os em ambientes do governo eletrÙnico (e-Gov)</a> - Autora: Luciana Saraiva de Oliveira JerÙnimo. UFMA, S„o LuÌs, 2012.</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Raquel-Escobar-Guevara-ACCESS-AND-USE-OF-SOCIAL-NETWORKING-SERVICES-BY-PUBLIC-SERVANTS-IN-LATIN-AMERICA.pdf">ACCESS AND USE OF SOCIAL NETWORKING SERVICES BY PUBLIC SERVANTS IN LATIN AMERICA</a> - Autora: Raquel Escobar Guevara. CIESPAL - Equador)  </dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/Felipe-Angelis-GovernancaParticipativaEmRedeODesafioDoEstadoEmOuv-4718712.pdf">Governan√ßa participativa em rede: o desafio do estado em ouvir a cidadania</a> - Autor: Felipe Angelis. PUCRS, Porto Alegre, 2014.</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/Artigo-Sandra-Bitencourt.pdf">Comunica√ß√£o p√∫blica e internet: limites e amplitudes no ambiente digital</a> - Autores: Sandra Bitencourt, Tiago Gautier. UFRJ/FDRH, Porto Alegre,___ .</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/Marina-Bueno-8-Ferramentas-digitais-e-participa√ß√£o-social-1.pdf">Ferramentas digitais e participa√ß√£o social: educa√ß√£o (para a) ou mobiliza√ß√£o da  cidadania?</a> - Autora: Marina Bueno. UFRJ, Rio de Janeiro,___. </dd>
+			<dd><a href="http://aisel.aisnet.org/confirm2013/59/">Estudo preliminar do Gabinete Digital do Estado do Rio Grande do Sul (Brasil): a influ√™ncia dos fatores institucionais</a> - Autora: Marie Anne Macadar. PUCRS, Porto Alegre, 2013.</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/Ciberdemocracia-an√°lise-dos-desafios-e-possibilidades-de-iniciativa-popular-via-internet-no-Brasil.pdf">Ciberdemocracia: an√°lise dos desafios e possibilidades de iniciativa popular via internet no Brasil</a>  - Autores: Rafael Santos de Oliveira, Let√≠cia Bodanese Rodegheri. UFSM, Santa Maria, 2012. </dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/10-POSSAMAI_-_2013_-_DEMOCRACIA_DIGITAL_versaoreduzida20pp.pdf">PERSPECTIVAS E DESAFIOS DA DEMOCRACIA DIGITAL NO BRASIL: A PARTICIPA√á√ÉO ELETR√îNICA NO CICLO DE POL√çTICAS P√öBLICAS</a> - Autora: Ana Julia Possamai. UFRGS, Porto Alegre, 2011.</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/5-AGGIO-SAMPAIO-2013-Democracia-Digital-e-Participa√ß√£o-2.pdf">Democracia Digital e Participa√ß√£o: Os modelos de consulta e os desafios do Gabinete Digital</a> - Autores: Rafael Sampaio, Camilo Aggio, Rafael Evangelista. UFBA/ UFMG, Bahia,___ .</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/gabinete_digital_uma_experiencia_de_democracia_na_rede.pdf">GABINETE DIGITAL: UMA EXPERI√äNCIA DE DEMOCRACIA NA REDE</a>  - Autores: Ciro Ant√¥nio da Silva Resende, Janaina Ferreira da Mata. UFMG, Belo Horizonte, ___. </dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/nternet-e-Participa√ß√£o-uma-an√°lise-do-Portal-Gabinete-Digital.pdf">Internet e Participa√ß√£o: uma an√°lise do Portal Gabinete Digital</a> - Autoras: Anna Cristina Brisola, Ta√≠s Leal, Evellyn Pacheco, Fabiana Crispino. UNISUAM, S√£o Paulo, 2012.</dd> 
+			<dd><a href="/wp/wp-content/uploads/2014/11/Artigo-Luciana-Saraiva.pdf">DIMENS√ÉO ARGUMENTATIVA DA PARTICIPA√á√ÉO CIDAD√É NO PROCESSO DELIBERATIVO: PERSPECTIVA HABERMASIANA DE RACIONALIDADE COMUNICATIVA NA CONSULTA P√öBLICA ONLINE</a>  - Autora: Luciana Saraiva de Oliveira Jer√¥nimo. UFMA, S√£o Lu√≠s, 2014.</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/Artigo-Luciana-Saraiva-2.pdf">Dialogismo e participa√ß√£o online: uma proposta de estudo sobre intera√ß√£o entre governantes e cidad√£os em ambientes do governo eletr√¥nico (e-Gov)</a> - Autora: Luciana Saraiva de Oliveira Jer√¥nimo. UFMA, S√£o Lu√≠s, 2012.</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/Raquel-Escobar-Guevara-ACCESS-AND-USE-OF-SOCIAL-NETWORKING-SERVICES-BY-PUBLIC-SERVANTS-IN-LATIN-AMERICA.pdf">ACCESS AND USE OF SOCIAL NETWORKING SERVICES BY PUBLIC SERVANTS IN LATIN AMERICA</a> - Autora: Raquel Escobar Guevara. CIESPAL - Equador)  </dd>
 			<dd><a href="http://www.comunicacaoepolitica.com.br/blog/2011/07/o-gabinete-digital-do-rs-e-a-resposta-do-governador/">O Gabinete Digital do RS e a resposta do Governador</a> (Rafael Sampaio/UFMG) - link</dd>
-			<dd><a href="http://leituraglobal.org/as-aves-que-aqui-gorjeiam-nao-gorjeiam-como-la/">As aves que aqui gorjeiam n„o gorjeiam como l·</a> (Bruna Santos) </dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/GOVERNAN«A-NO-TERRIT”RIO-DIGITAL.pdf">GOVERNAN«A NO TERRIT”RIO DIGITAL: EXPERI NCIAS DA ADMINISTRA«√O P⁄BLICA NAS REDES SOCIAIS</a> (Guilherme Nathanli Ribeiro Beserra e Pedro Ferreira Barros/ URCA - Universidade Regional do Cariri)</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/PoliTICS-PolÌticas-de-uso-de-ferramentas-Web-2.0-pela-AdministraÁ„o-P˙blica-na-AmÈrica-Latina-o-caso-do-Brasil-Gabinete-Digital-do-Governo-do-Rio-Grande-do-Sul-2014-10-17.pdf">PolÌticas de uso de ferramentas Web 2.0 pela AdministraÁ„o P˙blica na AmÈrica Latina - o caso do Brasil: Gabinete Digital do Governo do Rio Grande do Sul</a>  (Revista PoliTICs)</dd>
+			<dd><a href="http://leituraglobal.org/as-aves-que-aqui-gorjeiam-nao-gorjeiam-como-la/">As aves que aqui gorjeiam n√£o gorjeiam como l√°</a> (Bruna Santos) </dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/GOVERNAN√áA-NO-TERRIT√ìRIO-DIGITAL.pdf">GOVERNAN√áA NO TERRIT√ìRIO DIGITAL: EXPERI√äNCIAS DA ADMINISTRA√á√ÉO P√öBLICA NAS REDES SOCIAIS</a> (Guilherme Nathanli Ribeiro Beserra e Pedro Ferreira Barros/ URCA - Universidade Regional do Cariri)</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/PoliTICS-Pol√≠ticas-de-uso-de-ferramentas-Web-2.0-pela-Administra√ß√£o-P√∫blica-na-Am√©rica-Latina-o-caso-do-Brasil-Gabinete-Digital-do-Governo-do-Rio-Grande-do-Sul-2014-10-17.pdf">Pol√≠ticas de uso de ferramentas Web 2.0 pela Administra√ß√£o P√∫blica na Am√©rica Latina - o caso do Brasil: Gabinete Digital do Governo do Rio Grande do Sul</a>  (Revista PoliTICs)</dd>
 		</dl>
 		<dl>
 			<dt>Monografias</dt>
-				<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Monografia-Gabriel-Galli-Versao-final.pdf">INTERFACES ENTRE COMUNICA«√O P⁄BLICA E GOVERNO ELETR‘NICO: UMA AN¡LISE DO GABINETE DIGITAL DO GOVERNO DO ESTADO DO RIO GRANDE DO SUL </a> (Gabriel Galli/ PUCRS)</dd>
-				<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/MONOGRAFIA-JO√O-PAULO-D.-BANDEIRA.pdf">MODALIDADES DE INTERA«√O COM OS CIDAD√OS E USO DAS REDES SOCIAIS PELOS GOVERNOS ESTADUAIS DAS REGI’ES SUL E SUDESTE</a>  (Jo„o Paulo Dias Bandeira/ UFPR)</dd>
-				<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/bibliotecadaparticipaÁ„o.pdf">Biblioteca Digital de ParticipaÁ„o Social</a> (Luiz Fernando de Freitas Matos/UnB/FGA)</dd>
+				<dd><a href="/wp/wp-content/uploads/2014/11/Monografia-Gabriel-Galli-Versao-final.pdf">INTERFACES ENTRE COMUNICA√á√ÉO P√öBLICA E GOVERNO ELETR√îNICO: UMA AN√ÅLISE DO GABINETE DIGITAL DO GOVERNO DO ESTADO DO RIO GRANDE DO SUL </a> (Gabriel Galli/ PUCRS)</dd>
+				<dd><a href="/wp/wp-content/uploads/2014/11/MONOGRAFIA-JO√ÉO-PAULO-D.-BANDEIRA.pdf">MODALIDADES DE INTERA√á√ÉO COM OS CIDAD√ÉOS E USO DAS REDES SOCIAIS PELOS GOVERNOS ESTADUAIS DAS REGI√ïES SUL E SUDESTE</a>  (Jo√£o Paulo Dias Bandeira/ UFPR)</dd>
+				<dd><a href="/wp/wp-content/uploads/2014/11/bibliotecadaparticipa√ß√£o.pdf">Biblioteca Digital de Participa√ß√£o Social</a> (Luiz Fernando de Freitas Matos/UnB/FGA)</dd>
 		</dl>
 		<dl>
-			<dt>DissertaÁıes</dt>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/Ana-Julia-Possamai.pdf">DemocratizaÁ„o do Estado na era digital : e-participaÁ„o no ciclo de polÌticas p˙blicas</a> (Ana Julia Possamai/UFRGS)</dd>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/A-INVEN«√O-DA-CIBERDEMOCRACIA-O-CONCEITO-DE-DEMOCRACIA-NA-ERA-DO-CIBERESPA«O.pdf">A INVEN«√O DA CIBERDEMOCRACIA: O CONCEITO DE DEMOCRACIA NA ERA DO CIBERESPA«O</a> (Diego Fruscalso dos Santos/ Unisinos)</dd>
+			<dt>Disserta√ß√µes</dt>
+			<dd><a href="/wp/wp-content/uploads/2014/11/Ana-Julia-Possamai.pdf">Democratiza√ß√£o do Estado na era digital : e-participa√ß√£o no ciclo de pol√≠ticas p√∫blicas</a> (Ana Julia Possamai/UFRGS)</dd>
+			<dd><a href="/wp/wp-content/uploads/2014/11/A-INVEN√á√ÉO-DA-CIBERDEMOCRACIA-O-CONCEITO-DE-DEMOCRACIA-NA-ERA-DO-CIBERESPA√áO.pdf">A INVEN√á√ÉO DA CIBERDEMOCRACIA: O CONCEITO DE DEMOCRACIA NA ERA DO CIBERESPA√áO</a> (Diego Fruscalso dos Santos/ Unisinos)</dd>
 		</dl>
 		<dl>
 			<dt>Tese</dt>
-			<dd><a href="http://www.academia.edu/7175846/ORCAMENTOS_PARTICIPATIVOS_DIGITAIS_um_mapeamento_mundial_das_experiencias_ja_realizadas_e_suas_contribuicoes_para_e-participacao_e_e-democracia">OR«AMENTOS PARTICIPATIVOS DIGITAIS: um mapeamento mundial das experiÍncias j· realizadas e suas contribuiÁıes para e-participaÁ„o e e-democracia</a> (Rafael Sampaio/UFMG)</dd>
+			<dd><a href="http://www.academia.edu/7175846/ORCAMENTOS_PARTICIPATIVOS_DIGITAIS_um_mapeamento_mundial_das_experiencias_ja_realizadas_e_suas_contribuicoes_para_e-participacao_e_e-democracia">OR√áAMENTOS PARTICIPATIVOS DIGITAIS: um mapeamento mundial das experi√™ncias j√° realizadas e suas contribui√ß√µes para e-participa√ß√£o e e-democracia</a> (Rafael Sampaio/UFMG)</dd>
 		</dl>
 		<dl>
-			<dt>Trabalho de Conclus„o</dt>
-			<dd><a href="http://gabinetedigital.rs.gov.br/wp/wp-content/uploads/2014/11/OS-MODELOS-DE-DEMOCRACIA-PARTICIPATIVA-NAS-DISCUSS’ES-DOS-OR«AMENTOS-P⁄BLICOS.pdf">OS MODELOS DE DEMOCRACIA PARTICIPATIVA NAS DISCUSS’ES DOS OR«AMENTOS P⁄BLICOS - Uma an·lise das experiÍncias nas discussıes do orÁamento estadual do Rio Grande do Sul, sob o modelo contratualista e da Public Choice </a>(Edson Borowski/UFSM)</dd>
-			<dd>GABINETE DIGITAL: DA EXPERI NCIA DO ESTADO PARA OS GOVERNOS LOCAIS (Eliane Silveira/ FundaÁ„o Perseu Abramo)</dd>
+			<dt>Trabalho de Conclus√£o</dt>
+			<dd><a href="/wp/wp-content/uploads/2014/11/OS-MODELOS-DE-DEMOCRACIA-PARTICIPATIVA-NAS-DISCUSS√ïES-DOS-OR√áAMENTOS-P√öBLICOS.pdf">OS MODELOS DE DEMOCRACIA PARTICIPATIVA NAS DISCUSS√ïES DOS OR√áAMENTOS P√öBLICOS - Uma an√°lise das experi√™ncias nas discuss√µes do or√ßamento estadual do Rio Grande do Sul, sob o modelo contratualista e da Public Choice </a>(Edson Borowski/UFSM)</dd>
+			<dd>GABINETE DIGITAL: DA EXPERI√äNCIA DO ESTADO PARA OS GOVERNOS LOCAIS (Eliane Silveira/ Funda√ß√£o Perseu Abramo)</dd>
 		</dl>
 	</div>
 
-
+<br/><br/>
 
 <!-- end od container main accordion -->
+</div>
+
+</div>
+</div>
 </div>
 
 {% endblock %}

@@ -38,8 +38,8 @@ from jinja2.utils import Markup
 # from gd import auth as authapi
 # from gd.utils import dumps, sendmail, send_welcome_email, send_password, twitts, get_twitter_connection, treat_categories
 # from gd.model import UserFollow, session as dbsession
-# from gd.content.wp import wordpress
-# from gd.utils.gdcache import fromcache, tocache, cache, removecache
+from gd.content.wp import wordpress
+from gd.utils.gdcache import fromcache, tocache, cache, removecache
 # from gd import conf
 
 resultados = Blueprint(
@@ -50,4 +50,8 @@ resultados = Blueprint(
 
 @resultados.route('/')
 def index_resultados():
-	return render_template('resultados_index.html')
+	menus = fromcache('menuprincipal') or tocache('menuprincipal', wordpress.exapi.getMenuItens(menu_slug='menu-principal') )
+	return render_template(
+		'resultados_index.html',
+		sidebar=wordpress.getSidebar,
+		menu=menus,)
