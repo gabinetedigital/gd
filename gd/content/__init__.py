@@ -286,6 +286,15 @@ def _slugify(string):
     return slug
 
 
+@app.template_filter('urlencode')
+def urlencode(uri, **query):
+   parts = list(urlparse.urlparse(uri))
+   q = urlparse.parse_qs(parts[4])
+   q.update(query)
+   parts[4] = urllib.urlencode(q)
+   return urlparse.urlunparse(parts)
+
+
 @app.context_processor
 def extend_context():
     """This function is a context processor. It injects variables such

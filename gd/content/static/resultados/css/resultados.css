@@ -28,8 +28,8 @@ img {border: none; width: 100%;}
 .minithumbs img {width: 93px; float: left; margin-right: 10px;}
 
 
-.image {margin:0; padding:0; float: left; width: 25%;} 
+.image {margin:0; padding:0; float: left; width: 30%;} 
 .image img {margin-top: 18px;}
-.text {margin:0; padding:0; float: left; width: 75%;}
+.text {margin:0; padding:0; float: left; width: 70%;}
 .clear {clear: both;}
 a {color: #FF9900; text-decoration: none;}
