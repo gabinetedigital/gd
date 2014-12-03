@@ -2,6 +2,20 @@
 
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/base/resultados.js') }}"></script>
+<style type="text/css">
+  
+#govpreguntalogo{
+  width: 45px;
+}
+#govpreguntatitle{
+  background: none repeat scroll 0% 0% transparent;
+  height: auto;
+  padding: 10px 0px 15px 0px;
+  text-indent: 0px;
+  width: 100%;
+}
+
+</style>
 {% endblock %}
 
 {% block content %}
@@ -9,7 +23,8 @@
   <div class="container">
     <div class="row header">
       <div class="span10">
-        <h1>{{wp.getPageByPath('result-govpergunta-%s-header' % ano).title|safe}}</h1>
+        <h1 id="govpreguntalogo"></h1>
+        <h2 id="govpreguntatitle">{{wp.getPageByPath('result-govpergunta-%s-header' % ano).title|safe}}</h1>
       </div>
     </div>
     <div class="row">
