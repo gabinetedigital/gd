@@ -67,7 +67,7 @@ def logout():
 @cidadao.route('/data')
 def data():
     print "RETUNING USER DATA >>>>>>>>>>>"
-    return str(lc.get('/api/v1/person', data={"access_token" : session.get('access_token')[0] }).data)
+    return str(lc.get('/api/v1/person.json', data={"access_token" : session.get('access_token')[0] }).data)
 
 
 @cidadao.route('/authorized')
@@ -86,7 +86,7 @@ def lc_authorized(resp):
     session['access_token'] = (resp['access_token'], '')
 
     # Let's log the user in if he/she has already signed up.
-    userdata = lc.get('/api/v1/person', data={"access_token" : resp['access_token'] } )
+    userdata = lc.get('/api/v1/person.json', data={"access_token" : resp['access_token'] } )
 
     username = userdata.data['username']
     print "LOGANDO VIA LOGIN CIDADAO:", username
