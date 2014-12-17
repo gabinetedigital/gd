@@ -1,10 +1,12 @@
 #accordion {margin: 0 auto; padding:0; width: 90%; transition-property: all; transition-duration: 1s; transition-timing-function: ease-out; font-family: 'Open Sans', sans-serif; color: #7C7C7C; letter-spacing: 1px; line-height: 1.5;}
 #accordion h3 {margin:0; padding: 20px; font-size: 25px; color: #ffffff; border: 0; text-transform: uppercase; cursor: pointer;}
 #accordion h3:nth-of-type(1) {background: #b63b6a;} 
-#accordion h3:nth-of-type(2) {background: #f6772c;} 
-#accordion h3:nth-of-type(3) {background: #ffbb42;} 
-#accordion h3:nth-of-type(4) {background: #37b494;} 
-#accordion h3:nth-of-type(5) {background: #5ab9c0;}
+#accordion h3:nth-of-type(2) {background: #f13c6e;}
+#accordion h3:nth-of-type(3) {background: #f6772c;} 
+#accordion h3:nth-of-type(4) {background: #ffbb42;} 
+#accordion h3:nth-of-type(5) {background: #37b494;} 
+#accordion h3:nth-of-type(6) {background: #5ab9c0;}
+
 
 #oQueFazemos h3 {margin:0 0 2px 20px; padding: 5px 20px; font-size: 18px; color: #f6772c; border: 0;background-color: transparent !important; cursor: pointer; text-transform: none; border-left: 8px solid #f6772c;}
 #oQueFazemos div p {padding-left: 50px !important;}
