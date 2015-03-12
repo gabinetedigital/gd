@@ -51,6 +51,10 @@ locale.setlocale(locale.LC_ALL, 'pt_BR.UTF8')
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
+CORS_HEADERS = {
+        'Access-Control-Allow-Origin': '*'
+}
+
 def checkpoint(name=""):
 	print "-------------------------------->" , d.datetime.strftime(d.datetime.now(),"%H:%M:%S.%f"), name
 
@@ -835,19 +839,20 @@ def sendnews():
 @monitoramento.route('/api/obras.json',methods=('GET',))
 def api_obras():
 	obras = fromcache("obras-monitoramento") or tocache("obras-monitoramento", _get_obras())
-	return Response(dumps(obras),content_type="application/json")
+	return Response(dumps(obras),content_type="application/json", headers=CORS_HEADERS)
 
 @monitoramento.route('/api/obras/<obraid>.json',methods=('GET',))
 def api_obraid(obraid):
 	# obra = fromcache("obra-" + slug) or tocache("obra-" + slug, _get_obras(slug)[0])
 	obra = wordpress.getCustomPost(obraid, 'gdobra')
+	
 	if not obra:
-		return Response(dumps({'status':'invalid_obraid'}),content_type="application/json")
+		return Response(dumps({'status':'invalid_obraid'}),content_type="application/json", headers=CORS_HEADERS)
 
 	# timeline = wordpress.monitoramento.getObraTimeline(obra['id'], int(itemid) )
 	# timeline = adjustCf(timeline)
 	# update = timeline[0]
 
-	return Response(dumps(obra),content_type="application/json")
+	return Response(dumps(obra),content_type="application/json", headers=CORS_HEADERS)
 
 #=================================================================== API ======
